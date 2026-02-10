@@ -1,58 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Gallery - ENJC</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<header>
-  <div class="container nav">
-    <h2 class="logo">ENJC</h2>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="media.html">Media</a>
-      <a href="events.html">Events</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="container">
-  <h2>Church Moments & Worship Gallery</h2>
-
-  <div class="gallery-grid">
-
-    <img src="images/g1.jpg" onclick="openImg(this.src)">
-    <img src="images/g2.jpg" onclick="openImg(this.src)">
-    <img src="images/g3.jpg" onclick="openImg(this.src)">
-    <img src="images/g4.jpg" onclick="openImg(this.src)">
-    <img src="images/g5.jpg" onclick="openImg(this.src)">
-    <img src="images/g6.jpg" onclick="openImg(this.src)">
-
+<section class="gallery container">
+  <h2>Gallery</h2>
+  <div class="grid">
+    <img src="images/g1.jpg">
+    <img src="images/g2.jpg">
+    <img src="images/g1.jpg">
+    <img src="images/g2.jpg">
   </div>
 </section>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeImg()">
-  <img id="lightbox-img">
-</div>
-
-<footer>© ENJC Church</footer>
-
-<script>
-function openImg(src){
-  document.getElementById("lightbox").style.display="flex";
-  document.getElementById("lightbox-img").src=src;
-}
-
-function closeImg(){
-  document.getElementById("lightbox").style.display="none";
-}
-</script>
-
-</body>
-</html>
