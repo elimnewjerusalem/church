@@ -53,18 +53,19 @@ nav a:hover{
 /* ===== HERO ===== */
 
 .hero{
-  height:65vh;
-  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-  url("https://images.unsplash.com/photo-1507692049790-de58290a4334");
-  background-size:cover;
-  background-position:center;
+  height:60vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
-  color:white;
 }
 
+.hero-logo{
+  width:220px;
+  max-width:90%;
+  height:auto;
+  margin-bottom:15px;
+}
 .hero h1{
   font-size:48px;
 }
