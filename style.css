@@ -53,7 +53,7 @@ nav a:hover{
 /* ===== HERO ===== */
 
 .hero{
-  height:90vh;
+  height:65vh;
   background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
   url("https://images.unsplash.com/photo-1507692049790-de58290a4334");
   background-size:cover;
@@ -67,6 +67,11 @@ nav a:hover{
 
 .hero h1{
   font-size:48px;
+}
+
+.hero h2{
+  font-size:18px;
+  margin-bottom:15px;
 }
 
 .btn{
