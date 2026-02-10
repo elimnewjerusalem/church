@@ -4,12 +4,15 @@
   <title>ENJC | Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
   <div class="container nav">
-    <div class="logo"><img src="images/logo/logo.png"></div>
-    
+    <div class="logo">
+      <img src="images/logo/logo.png">
+    </div>
+
     <ul class="menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -21,24 +24,26 @@
   </div>
 </header>
 
+
 <!-- ===== HERO SLIDER ===== -->
 <section class="hero-slider">
 
   <div class="slides">
     <img src="images/home/slide1.jpg" class="slide active">
     <img src="images/home/slide2.jpg" class="slide">
-    <img src="images/home/slide1.jpg" class="slide">
+    <img src="images/home/slide3.jpg" class="slide">
   </div>
 
   <div class="hero-text">
     <h1>Welcome to Elim Church</h1>
-    <a href="#" class="btn">Join Us</a>
+    <a href="media.html" class="btn">Join Us</a>
   </div>
 
-  <button class="arrow prev" onclick="prevSlide()">❮</button>
-  <button class="arrow next" onclick="nextSlide()">❯</button>
+  <button class="arrow prev">❮</button>
+  <button class="arrow next">❯</button>
 
 </section>
+
 
 <section>
   <h2>Service Timings</h2>
@@ -50,11 +55,49 @@
   </div>
 </section>
 
+
 <footer>
   © 2026 Elim New Jerusalem Church
 </footer>
 
-<!-- WhatsApp Floating Button -->
+
+<!-- WhatsApp Floating -->
 <a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
+
+
+
+<!-- ===== SLIDER JAVASCRIPT (IMPORTANT) ===== -->
+<script>
+const slides = document.querySelectorAll(".slide");
+const next = document.querySelector(".next");
+const prev = document.querySelector(".prev");
+
+let index = 0;
+
+function showSlide(i){
+  slides.forEach(s => s.classList.remove("active"));
+  slides[i].classList.add("active");
+}
+
+next.addEventListener("click", () => {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+});
+
+prev.addEventListener("click", () => {
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+});
+
+// auto slide every 4s
+setInterval(() => {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}, 4000);
+</script>
+
+
+</body>
+</html>
