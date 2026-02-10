@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Elim New Jerusalem Church | ENJC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elim New Jerusalem Church</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -14,21 +13,17 @@
 <header>
   <div class="container nav">
 
-    <!-- LOGO -->
-    <div class="brand">
-      <img src="images/logo.png" class="hero-logo">
-
+    <div class="logo">
+      <img src="images/logo.png" alt="ENJC Logo">
     </div>
 
-    <!-- MENU -->
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="media.html">Media</a>
-      <a href="events.html">Events</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
 
   </div>
 </header>
@@ -36,103 +31,112 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div>
-
-    <img src="images/logo.png" style="width:180px; margin-bottom:15px">
-
-    <h2 style="font-weight:300">Jesus Christ – The Head of Our Church</h2>
-
-    <a href="media.html" class="btn">Watch Live Worship</a>
-
+  <div class="hero-content">
+    <h1>Elim New Jerusalem Church</h1>
+    <h2>Jesus Christ – The Head of Our Church</h2>
+    <p>Worship • Word • Prayer • Fellowship</p>
+    <a href="#live" class="btn">Watch Live Service</a>
   </div>
 </section>
 
 
-<!-- ================= WELCOME ================= -->
-<section class="container">
-
-  <h2>Welcome to ENJC</h2>
-
-  <p style="text-align:center; max-width:750px; margin:auto">
-    We are a Christ-centered family where lives are transformed through worship,
-    prayer, and the Word of God. Everything we do is centered on glorifying Jesus Christ.
-    Come and experience His presence with us.
-  </p>
-
+<!-- ================= ABOUT SHORT ================= -->
+<section class="about">
+  <div class="container">
+    <h2>Welcome to ENJC</h2>
+    <p>
+      At Elim New Jerusalem Church, Jesus Christ is our foundation and leader.
+      We gather to worship, grow in faith, and serve our community with love.
+      Join us and experience God’s presence together.
+    </p>
+  </div>
 </section>
 
 
-<!-- ================= SERVICE TIMINGS ================= -->
-<section class="container">
+<!-- ================= SERVICE TIMES ================= -->
+<section class="timings">
+  <div class="container">
 
-  <h2>Prayer & Service Timings</h2>
+    <h2>Prayer & Service Timings</h2>
 
-  <div class="grid">
+    <div class="time-grid">
 
-    <div class="card">
-      <h3>Sunday</h3>
-      <p>5:30 – 7:00 AM</p>
-      <p>8:30 – 10:30 AM</p>
-      <p>11:10 – 12:10 PM</p>
+      <div class="card">
+        <h3>Sunday</h3>
+        <p>5.30 am – 7.00 am</p>
+        <p>8.30 am – 10.30 am</p>
+        <p>11.10 am – 12.10 pm</p>
+      </div>
+
+      <div class="card">
+        <h3>Friday</h3>
+        <p>11.00 am – 01.30 pm</p>
+      </div>
+
+      <div class="card">
+        <h3>Saturday</h3>
+        <p>6.00 pm – 07.00 pm</p>
+      </div>
+
     </div>
-
-    <div class="card">
-      <h3>Friday</h3>
-      <p>11:00 AM – 1:30 PM</p>
-    </div>
-
-    <div class="card">
-      <h3>Saturday</h3>
-      <p>6:00 – 7:00 PM</p>
-    </div>
-
   </div>
-
 </section>
 
 
 <!-- ================= LIVE YOUTUBE ================= -->
-<section class="container">
+<section id="live" class="live">
+  <div class="container">
+    <h2>Live Worship</h2>
 
-  <h2>Watch Live Worship</h2>
-
-  <div class="video-wrapper">
+    <!-- Replace YOUR_CHANNEL_ID -->
     <iframe
       src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID"
       allowfullscreen>
     </iframe>
   </div>
-
 </section>
 
 
-<!-- ================= QUICK LINKS ================= -->
-<section class="container">
+<!-- ================= GALLERY PREVIEW ================= -->
+<section class="gallery">
+  <div class="container">
+    <h2>Moments of Worship</h2>
 
-  <h2>Explore More</h2>
+    <div class="gallery-grid">
+      <img src="images/g1.jpg">
+      <img src="images/g2.jpg">
+      <img src="images/g1.jpg">
+      <img src="images/g2.jpg">
+    </div>
 
-  <div class="grid">
-
-    <a href="events.html" class="card">📅 Events</a>
-    <a href="gallery.html" class="card">📸 Gallery</a>
-    <a href="media.html" class="card">🎥 Sermons</a>
-    <a href="contact.html" class="card">🙏 Contact</a>
-
+    <a href="gallery.html" class="btn">View Full Gallery</a>
   </div>
-
 </section>
 
 
 <!-- ================= FOOTER ================= -->
 <footer>
-  © 2026 Elim New Jerusalem Church | Chennai | #ENJC
+  <div class="container">
+
+    <p><b>Address</b><br>
+      NO 110E, Elaya Street, Tondiarpet, Chennai-600081, Tamilnadu, India
+    </p>
+
+    <div class="social">
+      <a href="https://facebook.com/enjcmedia">Facebook</a>
+      <a href="https://instagram.com/elimnewjerusalemchurch">Instagram</a>
+      <a href="https://youtube.com/@ENJCShorts">YouTube</a>
+    </div>
+
+    <p class="copy">© 2026 Elim New Jerusalem Church</p>
+
+  </div>
 </footer>
 
 
 <!-- ================= WHATSAPP FLOAT ================= -->
-<a class="whatsapp-float"
-   href="https://wa.me/919999999999"
-   target="_blank">💬</a>
+<a href="https://wa.me/919000000000" class="whatsapp" target="_blank">💬</a>
+
 
 </body>
 </html>
