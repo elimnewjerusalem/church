@@ -29,41 +29,49 @@ body{
 
 
 /* =================================
-   HEADER / NAVBAR
+   HEADER / NAVBAR (FINAL CLEAN)
 ================================= */
 
 header{
   background:#0b2a45;
-  padding:12px 0;
   position:sticky;
   top:0;
   z-index:1000;
 }
 
+/* container */
 .nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
+
+  height:70px;              /* 🔥 fixed header height */
+  width:90%;
+  max-width:1200px;
+  margin:auto;
 }
 
-/* logo */
+/* ===== LOGO ===== */
 .logo img{
-  height:55px;
+  height:45px;              /* 🔥 smaller logo */
   width:auto;
+  display:block;
 }
 
-/* menu */
+/* ===== MENU ===== */
 .menu{
   list-style:none;
   display:flex;
-  gap:22px;
+  align-items:center;
+  gap:24px;
 }
 
 .menu a{
   color:white;
   text-decoration:none;
   font-weight:600;
-  transition:.3s;
+  font-size:15px;
+  transition:0.3s;
 }
 
 .menu a:hover{
