@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Media | ENJC</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media | ENJC Church</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -10,127 +12,162 @@
 <header>
   <div class="container nav">
     <div class="logo">
-      <img src="images/logo/logo.png">
+      <img src="images/logo/logo.png" alt="ENJC Church Logo">
     </div>
-
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="media.html" class="active">Media</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="media.html" class="active">Media</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-
-
-<!-- ===== HERO ===== -->
-<section class="page-hero">
-  <h1>Media & Sermons</h1>
-</section>
-
-
-
-<!-- ===== FEATURED VIDEO (auto latest) ===== -->
-<section>
-  <h2>Latest Message</h2>
-
+<!-- Page Hero -->
+<div class="page-hero">
   <div class="container">
-    <iframe id="featuredVideo"
-      src="https://www.youtube.com/embed/ysSagRBRE1A"
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
-
-
-
-
-<!-- ===== FILTER BUTTONS ===== -->
-<section class="filter-buttons">
-  <button onclick="filterVideos('all')">All</button>
-  <button onclick="filterVideos('sermon')">Sermons</button>
-  <button onclick="filterVideos('short')">Shorts</button>
-</section>
-
-
-
-<!-- ===== VIDEO GRID ===== -->
-<section>
-  <div class="container video-grid" id="videoGrid">
-
-    <!-- Sermons -->
-    <img class="thumb sermon"
-      src="https://img.youtube.com/vi/XeNwZHjO2DQ/hqdefault.jpg"
-      onclick="openVideo('XeNwZHjO2DQ')">
-
-    <img class="thumb sermon"
-      src="https://img.youtube.com/vi/5AxMYxuA2Do/hqdefault.jpg"
-      onclick="openVideo('5AxMYxuA2Do')">
-
-    <!-- Shorts -->
-    <img class="thumb short"
-      src="https://img.youtube.com/vi/5LJt7R7G0xk/hqdefault.jpg"
-      onclick="openVideo('5LJt7R7G0xk')">
-
-  </div>
-</section>
-
-
-
-<!-- ===== POPUP PLAYER ===== -->
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <span onclick="closeVideo()" class="close">✕</span>
-    <iframe id="popupFrame" allowfullscreen></iframe>
+    <h1>Sermons & Media</h1>
+    <p>Watch, listen, and be inspired by God's Word</p>
   </div>
 </div>
 
+<!-- Featured Sermon -->
+<section>
+  <div class="container">
+    <h2>Latest Sermon</h2>
+    <p style="margin-bottom:35px;">Catch up on our most recent message</p>
+    
+    <!-- YouTube Video Embed (Replace with your actual video) -->
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; box-shadow:var(--shadow);">
+        <iframe 
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+          title="Latest Sermon" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div style="margin-top:20px; text-align:center;">
+        <h3 style="color:var(--primary); margin-bottom:10px;">Sermon Title Here</h3>
+        <p style="color:#666;">Pastor Name • Date</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- Recent Sermons -->
+<section style="background:white;">
+  <div class="container">
+    <h2>Recent Messages</h2>
+    
+    <div class="events-grid">
+      
+      <!-- Sermon Card 1 -->
+      <div class="event-card">
+        <img src="images/events/e1.jpg" alt="Sermon thumbnail">
+        <div class="event-content">
+          <h3>Faith That Moves Mountains</h3>
+          <p style="color:#666; font-size:14px; margin-bottom:12px;">Pastor Name • January 15, 2026</p>
+          <p>Discover the power of unwavering faith and how to overcome life's greatest obstacles.</p>
+          <a href="#" class="btn call">Watch Now</a>
+        </div>
+      </div>
+
+      <!-- Sermon Card 2 -->
+      <div class="event-card">
+        <img src="images/events/e2.jpg" alt="Sermon thumbnail">
+        <div class="event-content">
+          <h3>Walking in God's Purpose</h3>
+          <p style="color:#666; font-size:14px; margin-bottom:12px;">Pastor Name • January 8, 2026</p>
+          <p>Learn how to discover and fulfill your divine calling and live a purpose-driven life.</p>
+          <a href="#" class="btn call">Watch Now</a>
+        </div>
+      </div>
+
+      <!-- Sermon Card 3 -->
+      <div class="event-card">
+        <img src="images/events/e3.jpg" alt="Sermon thumbnail">
+        <div class="event-content">
+          <h3>The Power of Prayer</h3>
+          <p style="color:#666; font-size:14px; margin-bottom:12px;">Pastor Name • January 1, 2026</p>
+          <p>Understanding how prayer transforms our lives and connects us with God's heart.</p>
+          <a href="#" class="btn call">Watch Now</a>
+        </div>
+      </div>
+      
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#" class="btn register">View All Sermons</a>
+    </div>
+  </div>
+</section>
+
+<!-- Audio Sermons / Podcast -->
+<section>
+  <div class="container">
+    <h2>🎧 Audio Sermons</h2>
+    <p>Listen on the go - download or stream our latest messages</p>
+    
+    <div class="grid" style="margin-top:35px;">
+      <div class="card" style="text-align:left;">
+        <h3 style="font-size:18px; margin-bottom:10px;">🎙️ Latest Episode</h3>
+        <p style="color:#666; font-size:14px;">Episode 45 • 45 min</p>
+        <p style="margin:15px 0;">Faith That Moves Mountains - Powerful message about trusting God in difficult times.</p>
+        <a href="#" class="btn call" style="font-size:14px;">Listen Now</a>
+      </div>
+      
+      <div class="card" style="text-align:left;">
+        <h3 style="font-size:18px; margin-bottom:10px;">📱 Subscribe</h3>
+        <p>Never miss a message! Subscribe to our podcast on your favorite platform.</p>
+        <div style="margin-top:15px;">
+          <a href="#" class="btn register" style="font-size:13px; padding:8px 16px;">Apple Podcasts</a>
+          <a href="#" class="btn call" style="font-size:13px; padding:8px 16px;">Spotify</a>
+        </div>
+      </div>
+      
+      <div class="card" style="text-align:left;">
+        <h3 style="font-size:18px; margin-bottom:10px;">📺 YouTube</h3>
+        <p>Subscribe to our YouTube channel for weekly sermons and special content.</p>
+        <div style="margin-top:15px;">
+          <a href="#" class="btn register" style="font-size:14px;">Subscribe on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Live Stream Info -->
+<section style="background:var(--primary); color:white; margin-top:60px;">
+  <div class="container">
+    <h2 style="color:white;">⚡ Watch Live</h2>
+    <p style="color:rgba(255,255,255,0.9); max-width:650px;">Join us every Sunday for live worship services. Can't make it in person? Watch from anywhere!</p>
+    <div style="margin-top:30px;">
+      <p style="font-size:18px; font-weight:600; color:var(--accent); margin-bottom:15px;">
+        Sundays: 5:30am • 8:30am • 11:30am
+      </p>
+      <a href="#" class="btn register">Watch Live Stream</a>
+      <a href="contact.html" class="btn call" style="background:white; color:var(--primary);">Visit In Person</a>
+    </div>
+  </div>
+</section>
 
 <footer>
-  © 2026 Elim New Jerusalem Church
+  <div class="container">
+    © 2026 Elim New Jerusalem Church. All rights reserved.
+  </div>
 </footer>
 
-
-
-<!-- WhatsApp -->
-<a href="https://wa.me/919444345102" class="whatsapp-float">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
-
-
-
-<!-- ===== JAVASCRIPT ===== -->
-<script>
-
-function openVideo(id){
-  document.getElementById("popup").style.display = "flex";
-  document.getElementById("popupFrame").src =
-    "https://www.youtube.com/embed/" + id + "?autoplay=1";
-}
-
-function closeVideo(){
-  document.getElementById("popup").style.display = "none";
-  document.getElementById("popupFrame").src = "";
-}
-
-function filterVideos(type){
-  const videos = document.querySelectorAll(".thumb");
-
-  videos.forEach(v=>{
-    if(type === "all"){
-      v.style.display="block";
-    } else {
-      v.style.display = v.classList.contains(type) ? "block" : "none";
-    }
-  });
-}
-
-</script>
-
 
 </body>
 </html>

@@ -1,50 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Events | ENJC</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events | ENJC Church</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
 <header>
   <div class="container nav">
-
     <div class="logo">
-      <img src="images/logo/logo.png">
+      <img src="images/logo/logo.png" alt="ENJC Church Logo">
     </div>
-
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="media.html">Media</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="events.html" class="active">Events</a>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <h1>Upcoming Events</h1>
+    <p>Join us for worship, fellowship, and special gatherings</p>
+  </div>
+</div>
 
-<!-- TITLE -->
-<section class="page-hero">
-  <h1>Upcoming Events</h1>
-  <p>Join us for worship & fellowship</p>
+<!-- Events Section -->
+<section>
+  <div class="container">
+    <h2>Join Us</h2>
+    
+    <div class="events-grid" id="events-container">
+      
+      <!-- Event Card 1 -->
+      <div class="event-card">
+        <img src="images/events/e1.jpg" alt="Sunday Worship Service">
+        <div class="event-content">
+          <h3>Sunday Worship Service</h3>
+          <p><strong>📅 Every Sunday</strong><br>
+          05:30am - 07:30am<br>
+          08:30am - 10:30am<br>
+          11:30am - 01:30pm</p>
+          <p>Join us for powerful worship, inspiring messages, and fellowship with believers.</p>
+          <a href="contact.html" class="btn register">Get Directions</a>
+        </div>
+      </div>
+
+      <!-- Event Card 2 -->
+      <div class="event-card">
+        <img src="images/events/e2.jpg" alt="Friday Prayer Meeting">
+        <div class="event-content">
+          <h3>Friday Prayer Meeting</h3>
+          <p><strong>📅 Every Friday</strong><br>
+          11:00am - 01:30pm</p>
+          <p>Come together in unity and power as we lift our voices in prayer.</p>
+          <a href="contact.html" class="btn call">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Event Card 3 -->
+      <div class="event-card">
+        <img src="images/events/e3.jpg" alt="Youth Fellowship">
+        <div class="event-content">
+          <h3>Youth Fellowship</h3>
+          <p><strong>📅 Every Saturday</strong><br>
+          06:00pm - 07:00pm</p>
+          <p>Dynamic gatherings for young people to grow in faith and build friendships.</p>
+          <a href="contact.html" class="btn join">Join Us</a>
+        </div>
+      </div>
+
+      <!-- Add more events as needed -->
+      
+    </div>
+  </div>
 </section>
 
-
-<!-- EVENTS AUTO LOAD -->
-<section class="container">
-  <div id="eventsContainer" class="events-grid"></div>
+<!-- Special Events Section -->
+<section style="background:white;">
+  <div class="container">
+    <h2>Special Events</h2>
+    <p>Mark your calendar for these upcoming special gatherings</p>
+    
+    <div class="grid" style="margin-top:40px;">
+      <div class="card">
+        <h3>🙏 Monthly Fasting Prayer</h3>
+        <p><strong>2nd Saturday of Every Month</strong><br>
+        06:00am - 06:00pm</p>
+        <p>A day dedicated to seeking God's face through fasting and prayer.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🎉 Annual Church Anniversary</h3>
+        <p><strong>Coming Soon</strong></p>
+        <p>Celebrating God's faithfulness with special worship services and activities.</p>
+      </div>
+      
+      <div class="card">
+        <h3>👨‍👩‍👧‍👦 Family Retreat</h3>
+        <p><strong>Details Coming Soon</strong></p>
+        <p>A weekend getaway for families to connect with God and each other.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- CTA Section -->
+<section style="background:var(--primary); color:white; margin-top:60px;">
+  <div class="container">
+    <h2 style="color:white;">Don't Miss Out!</h2>
+    <p style="color:rgba(255,255,255,0.9);">Stay connected and never miss an event. Contact us to get added to our WhatsApp group.</p>
+    <div style="margin-top:30px;">
+      <a href="https://wa.me/919444345102" class="btn join">Join WhatsApp Group</a>
+      <a href="contact.html" class="btn register">Contact Us</a>
+    </div>
+  </div>
+</section>
 
-<footer class="footer">
-  © 2026 Elim New Jerusalem Church
+<footer>
+  <div class="container">
+    © 2026 Elim New Jerusalem Church. All rights reserved.
+  </div>
 </footer>
 
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
+
+<!-- Events JavaScript -->
 <script src="js/events.js"></script>
 
 </body>

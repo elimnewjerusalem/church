@@ -2,110 +2,175 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Contact | ENJC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | ENJC Church</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
 <header>
   <div class="container nav">
-
     <div class="logo">
-      <img src="images/logo/logo.png">
+      <img src="images/logo/logo.png" alt="ENJC Church Logo">
     </div>
-
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="media.html">Media</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="contact.html" class="active">Contact</a>
-    </ul>
-
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <h1>Get In Touch</h1>
+    <p>We'd love to hear from you and answer any questions</p>
+  </div>
+</div>
 
-<!-- ================= PAGE TITLE ================= -->
-<section class="page-hero">
-  <h1>Contact Us</h1>
-  <p>We are here to pray and support you</p>
-</section>
+<!-- Contact Section -->
+<section>
+  <div class="container">
+    <h2>Contact Information</h2>
+    
+    <div class="contact-grid">
+      
+      <!-- Contact Info -->
+      <div>
+        <h3 style="color:var(--primary); margin-bottom:20px;">Visit Us</h3>
+        
+        <div style="margin-bottom:25px;">
+          <h4 style="color:var(--accent); margin-bottom:8px;">📍 Address</h4>
+          <p>Elim New Jerusalem Church<br>
+          [Your Church Address]<br>
+          [City, State, PIN Code]</p>
+        </div>
 
+        <div style="margin-bottom:25px;">
+          <h4 style="color:var(--accent); margin-bottom:8px;">📞 Phone</h4>
+          <p><a href="tel:+919444345102" style="color:var(--primary); text-decoration:none;">+91 94443 45102</a></p>
+        </div>
 
-<!-- ================= CONTACT GRID ================= -->
-<section class="container contact-grid">
+        <div style="margin-bottom:25px;">
+          <h4 style="color:var(--accent); margin-bottom:8px;">✉️ Email</h4>
+          <p><a href="mailto:info@enjcchurch.org" style="color:var(--primary); text-decoration:none;">info@enjcchurch.org</a></p>
+        </div>
 
-  <!-- LEFT SIDE INFO -->
-  <div class="contact-info">
+        <div style="margin-bottom:25px;">
+          <h4 style="color:var(--accent); margin-bottom:8px;">💬 WhatsApp</h4>
+          <p><a href="https://wa.me/919444345102" style="color:var(--primary); text-decoration:none;">Chat with us on WhatsApp</a></p>
+        </div>
 
-    <h3>📍 Church Address</h3>
-    <p>
-      NO 110E, Elaya Street,<br>
-      Tondiarpet, Chennai – 600081,<br>
-      Tamilnadu, India
-    </p>
+        <div>
+          <h4 style="color:var(--accent); margin-bottom:8px;">⏰ Service Times</h4>
+          <p><strong>Sunday:</strong> 5:30am, 8:30am, 11:30am<br>
+          <strong>Friday:</strong> 11:00am<br>
+          <strong>Saturday:</strong> 6:00pm</p>
+        </div>
+      </div>
 
-    <h3>🕊 Service Timings</h3>
-    <p>
-      Sunday – 5:30am | 8:30am | 11:10am<br>
-      Friday – 11:00am to 1:30pm<br>
-      Saturday – 6:00pm to 7:00pm
-    </p>
-
-    <div class="contact-buttons">
-      <a href="tel:+919444345102" class="btn call">📞 Call Us</a>
-      <a href="https://wa.me/919444345102" target="_blank" class="btn join">💬 WhatsApp</a>
+      <!-- Contact Form -->
+      <div>
+        <h3 style="color:var(--primary); margin-bottom:20px;">Send us a Message</h3>
+        <form id="contact-form">
+          
+          <input type="text" name="name" placeholder="Your Name *" required>
+          
+          <input type="email" name="email" placeholder="Your Email *" required>
+          
+          <input type="tel" name="phone" placeholder="Phone Number">
+          
+          <input type="text" name="subject" placeholder="Subject">
+          
+          <textarea name="message" placeholder="Your Message *" required></textarea>
+          
+          <button type="submit" class="btn register" style="width:100%; margin-top:10px; cursor:pointer; border:none; font-size:16px;">
+            Send Message
+          </button>
+          
+        </form>
+      </div>
+      
     </div>
-
   </div>
-
-
-  <!-- RIGHT SIDE FORM -->
-  <div class="contact-form">
-
-    <h3>Prayer Request / Message</h3>
-
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Email">
-      <textarea placeholder="Write your prayer request..."></textarea>
-      <button class="btn register">Send Message</button>
-    </form>
-
-  </div>
-
 </section>
 
-
-<!-- ================= MAP ================= -->
-<section class="container">
-  <iframe
-    src="https://maps.google.com/maps?q=Elaya%20Street%20Tondiarpet%20Chennai%20600081&t=&z=14&ie=UTF8&iwloc=&output=embed"
-    loading="lazy"
-    class="map">
-  </iframe>
+<!-- Map Section -->
+<section style="background:white;">
+  <div class="container">
+    <h2>Find Us on Map</h2>
+    <p style="margin-bottom:30px;">Visit us at our location - we'd love to welcome you!</p>
+    
+    <!-- Replace with your actual Google Maps embed code -->
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.8663076203516!2d80.2707!3d13.0827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA0JzU3LjciTiA4MMKwMTYnMTQuNSJF!5e0!3m2!1sen!2sin!4v1234567890"
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    
+    <div style="margin-top:25px; text-align:center;">
+      <a href="https://maps.google.com/?q=Your+Church+Address" target="_blank" class="btn call">
+        Open in Google Maps
+      </a>
+    </div>
+  </div>
 </section>
 
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-
-  <h3>Elim New Jerusalem Church</h3>
-  <p>Jesus Christ – The Head of Our Church</p>
-
-  <div class="socials">
-    <a href="https://facebook.com/enjcmedia">Facebook</a> |
-    <a href="https://instagram.com/elimnewjerusalemchurch">Instagram</a> |
-    <a href="https://youtube.com/@ElimNewJerusalemChurchOfficial">YouTube</a>
+<!-- Prayer Request Section -->
+<section style="background:var(--primary); color:white; margin-top:60px;">
+  <div class="container">
+    <h2 style="color:white;">Need Prayer?</h2>
+    <p style="color:rgba(255,255,255,0.9); max-width:600px;">We believe in the power of prayer. Share your prayer request with us and our prayer team will lift you up.</p>
+    <div style="margin-top:30px;">
+      <a href="https://wa.me/919444345102?text=Prayer%20Request:%20" class="btn register">Submit Prayer Request</a>
+    </div>
   </div>
+</section>
 
-  <p>© 2026 ENJC. All Rights Reserved.</p>
-
+<footer>
+  <div class="container">
+    © 2026 Elim New Jerusalem Church. All rights reserved.
+  </div>
 </footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
+
+<!-- Contact Form JavaScript -->
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Get form data
+  const name = this.name.value;
+  const email = this.email.value;
+  const phone = this.phone.value;
+  const subject = this.subject.value;
+  const message = this.message.value;
+  
+  // Create WhatsApp message
+  const whatsappMessage = `*New Contact Form Submission*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
+  
+  // Open WhatsApp
+  window.open(`https://wa.me/919444345102?text=${whatsappMessage}`, '_blank');
+  
+  // Reset form
+  this.reset();
+  
+  // Show success message
+  alert('Thank you! Your message has been sent via WhatsApp.');
+});
+</script>
 
 </body>
 </html>

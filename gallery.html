@@ -2,83 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Gallery | ENJC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | ENJC Church</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
 <header>
   <div class="container nav">
-
     <div class="logo">
-      <img src="images/logo/logo.png">
+      <img src="images/logo/logo.png" alt="ENJC Church Logo">
     </div>
-
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="media.html">Media</a></li>
-      <li><a href="gallery.html" class="active">Gallery</a>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-
-<!-- ===== FILTER BUTTONS ===== -->
-<div class="filters">
-  <button onclick="filterGallery('all')" class="active">All</button>
-  <button onclick="filterGallery('events')">Events</button>
-  <button onclick="filterGallery('worship')">Worship</button>
-  <button onclick="filterGallery('youth')">Youth</button>
-  <button onclick="filterGallery('video')">Videos</button>
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <h1>Photo Gallery</h1>
+    <p>Capturing moments of worship, fellowship, and service</p>
+  </div>
 </div>
 
+<!-- Gallery Section -->
+<section>
+  <div class="container">
+    <h2>Church Memories</h2>
+    
+    <div class="gallery" id="gallery-container">
+      
+      <!-- Gallery Item 1 -->
+      <div class="item">
+        <img src="images/gallery/g1.jpg" alt="Church worship service">
+        <p>Sunday Worship Service</p>
+      </div>
 
-<!-- ===== GALLERY GRID ===== -->
-<section class="gallery">
+      <!-- Gallery Item 2 -->
+      <div class="item">
+        <img src="images/gallery/g2.jpg" alt="Youth fellowship">
+        <p>Youth Fellowship</p>
+      </div>
 
-  <!-- IMAGE -->
-  <div class="item events">
-    <img src="images/gallery/g1.jpg" loading="lazy">
-    <p>Sunday Celebration</p>
+      <!-- Gallery Item 3 -->
+      <div class="item">
+        <img src="images/gallery/g3.jpg" alt="Prayer meeting">
+        <p>Prayer Meeting</p>
+      </div>
+
+      <!-- Add more gallery items as needed -->
+      <!-- Example: Copy the structure above and update image paths -->
+      
+    </div>
   </div>
-
-  <div class="item worship">
-    <img src="images/gallery/g2.jpg" loading="lazy">
-    <p>Praise & Worship</p>
-  </div>
-
-  <div class="item youth">
-    <img src="images/gallery/g3.jpg" loading="lazy">
-    <p>Youth Meeting</p>
-  </div>
-
-  <!-- VIDEO -->
-  <div class="item video" data-video="XeNwZHjO2DQ">
-    <img src="https://img.youtube.com/vi/XeNwZHjO2DQ/hqdefault.jpg">
-    <p>Special Sermon</p>
-  </div>
-
 </section>
 
+<!-- Call to Action -->
+<section style="background:white; padding:60px 0;">
+  <div class="container">
+    <h2>Want to Be Part of Our Story?</h2>
+    <p>Join us for worship and fellowship. We'd love to see you!</p>
+    <div style="margin-top:25px;">
+      <a href="contact.html" class="btn register">Visit Us</a>
+      <a href="events.html" class="btn call">Upcoming Events</a>
+    </div>
+  </div>
+</section>
 
-<!-- ===== LIGHTBOX ===== -->
-<div class="lightbox" id="lightbox">
+<footer>
+  <div class="container">
+    © 2026 Elim New Jerusalem Church. All rights reserved.
+  </div>
+</footer>
 
-  <span class="close">&times;</span>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
 
-  <button class="arrow left">&#10094;</button>
-  <img id="lightbox-img">
-  <iframe id="lightbox-video" allowfullscreen></iframe>
-  <button class="arrow right">&#10095;</button>
-
-</div>
-
+<!-- Gallery JavaScript (if needed for lightbox/modal) -->
 <script src="js/gallery.js"></script>
 
 </body>
