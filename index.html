@@ -27,20 +27,12 @@
 
 
 <!-- ===== HERO SLIDER ===== -->
-<section class="hero-slider">
+<section class="slider">
 
-  <div class="slides">
-    <img src="images/home/slide1.jpg" class="slide active">
-    <img src="images/home/slide2.jpg" class="slide">
-    <img src="images/home/slide3.jpg" class="slide">
-  </div>
+  <img src="images/home/slide1.jpg" class="slide active">
+  <img src="images/home/slide2.jpg" class="slide">
 
-  <div class="hero-text">
-    <h1>Elim New Jerusalem Church</h1>
-    <h2>God Bless You</h2>
-    <a href="media.html" class="btn">Join Us</a>
-  </div>
-
+  <!-- arrows -->
   <button class="prev">&#10094;</button>
   <button class="next">&#10095;</button>
 
@@ -82,20 +74,21 @@ function showSlide(i){
   slides[i].classList.add("active");
 }
 
-function nextSlide(){
+next.onclick = () => {
   index = (index + 1) % slides.length;
   showSlide(index);
-}
+};
 
-function prevSlide(){
+prev.onclick = () => {
   index = (index - 1 + slides.length) % slides.length;
   showSlide(index);
-}
+};
 
-next.addEventListener("click", nextSlide);
-prev.addEventListener("click", prevSlide);
-
-setInterval(nextSlide, 3000);
+/* auto slide */
+setInterval(()=>{
+  index = (index + 1) % slides.length;
+  showSlide(index);
+},6000);
 </script>
 
 </body>
