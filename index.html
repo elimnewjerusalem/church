@@ -41,8 +41,8 @@
     <a href="media.html" class="btn">Join Us</a>
   </div>
 
-  <button class="arrow prev">❮</button>
-  <button class="arrow next">❯</button>
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
 
 </section>
 
@@ -69,7 +69,6 @@
 </a>
 
 
-
 <!-- ===== SLIDER JAVASCRIPT (IMPORTANT) ===== -->
 <script>
 const slides = document.querySelectorAll(".slide");
@@ -83,15 +82,20 @@ function showSlide(i){
   slides[i].classList.add("active");
 }
 
-next.addEventListener("click", () => {
+function nextSlide(){
   index = (index + 1) % slides.length;
   showSlide(index);
-});
+}
 
-prev.addEventListener("click", () => {
+function prevSlide(){
   index = (index - 1 + slides.length) % slides.length;
   showSlide(index);
-});
+}
+
+next.addEventListener("click", nextSlide);
+prev.addEventListener("click", prevSlide);
+
+setInterval(nextSlide, 3000);
 </script>
 
 </body>
