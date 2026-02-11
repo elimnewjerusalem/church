@@ -320,3 +320,18 @@ footer{
     height:300px;
   }
 }
+
+/* ===== PAGE HERO ===== */
+
+.page-hero{
+  height:40vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  url("images/home/slide1.jpg");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  font-size:32px;
+}
