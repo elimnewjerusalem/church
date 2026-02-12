@@ -37,12 +37,12 @@ function createEventCard(event) {
   
   // Create video wrapper or image
   let mediaContent = '';
-  if (event.type === 'video' && event.IvFOXvOt0Ck) {
+  if (event.type === 'video' && event.videoId) {
     mediaContent = `
       <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
         <iframe 
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-          src="https://www.youtube.com/embed/${IvFOXvOt0Ck}" 
+          src="https://www.youtube.com/embed/${event.videoId}" 
           title="${event.title}"
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
