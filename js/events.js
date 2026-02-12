@@ -97,7 +97,7 @@ function createRecentStreamCard(stream) {
     <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
       <iframe 
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-        src="https://www.youtube.com/embed/${stream.videoId}" 
+        src="https://www.youtube.com/embed/${IvFOXvOt0Ck}" 
         title="${stream.title}"
         frameborder="0" 
         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -108,7 +108,7 @@ function createRecentStreamCard(stream) {
       <h3>${stream.title}</h3>
       <p style="color: #999; font-size: 14px; margin-bottom: 10px;">📅 ${stream.date}</p>
       <p>${stream.description}</p>
-      <a href="${stream.youtubeLink}" class="btn call" target="_blank">Watch Replay</a>
+      <a href="$ {https://www.youtube.com/live/IvFOXvOt0Ck?si=IxkRni4h2ETpixuK}" class="btn call" target="_blank">Watch Replay</a>
     </div>
   `;
   
