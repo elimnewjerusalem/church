@@ -1,44 +1,48 @@
 {
   "events": [
     {
+      "id": 1,
       "title": "Sunday Worship Service",
-      "image": "images/events/e1.jpg",
-      "date": "Every Sunday",
-      "time": "05:30am - 07:30am, 08:30am - 10:30am, 11:30am - 01:30pm",
+      "type": "video",
+      "videoId": "P7tvLwUQ_tg",
+      "youtubeLink": "https://www.youtube.com/live/P7tvLwUQ_tg",
+      "schedule": "Every Sunday",
+      "times": [
+        "05:30am - 07:30am",
+        "08:30am - 10:30am",
+        "11:30am - 01:30pm"
+      ],
       "description": "Join us for powerful worship, inspiring messages, and fellowship with believers.",
-      "buttonText": "Get Directions",
-      "buttonLink": "contact.html",
+      "buttonText": "Watch Live",
       "buttonClass": "register"
     },
     {
+      "id": 2,
       "title": "Friday Prayer Meeting",
-      "image": "images/events/e2.jpg",
-      "date": "Every Friday",
-      "time": "11:00am - 01:30pm",
+      "type": "video",
+      "videoId": "ysSagRBRE1A",
+      "youtubeLink": "https://www.youtube.com/live/ysSagRBRE1A",
+      "schedule": "Every Friday",
+      "times": [
+        "11:00am - 01:30pm"
+      ],
       "description": "Come together in unity and power as we lift our voices in prayer.",
-      "buttonText": "Learn More",
-      "buttonLink": "contact.html",
+      "buttonText": "Watch Live",
       "buttonClass": "call"
     },
     {
+      "id": 3,
       "title": "Youth Fellowship",
-      "image": "images/events/e3.jpg",
-      "date": "Every Saturday",
-      "time": "06:00pm - 07:00pm",
+      "type": "video",
+      "videoId": "p2doONT8Q2s",
+      "youtubeLink": "https://www.youtube.com/live/p2doONT8Q2s",
+      "schedule": "Every Saturday",
+      "times": [
+        "06:00pm - 07:00pm"
+      ],
       "description": "Dynamic gatherings for young people to grow in faith and build friendships.",
-      "buttonText": "Join Us",
-      "buttonLink": "contact.html",
+      "buttonText": "Watch Live",
       "buttonClass": "join"
-    },
-    {
-      "title": "Monthly Fasting Prayer",
-      "image": "images/events/e1.jpg",
-      "date": "2nd Saturday of Every Month",
-      "time": "06:00am - 06:00pm",
-      "description": "A day dedicated to seeking God's face through fasting and prayer.",
-      "buttonText": "Register",
-      "buttonLink": "contact.html",
-      "buttonClass": "register"
     }
   ]
 }
