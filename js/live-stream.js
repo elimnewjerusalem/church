@@ -7,7 +7,7 @@ const LIVE_STREAMS = {
     channelUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial',
     liveUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial/live',
     // Add your church image/thumbnail here
-    image: 'images/live-worship.jpg', // Change this to your image path
+    image: 'images/live/worship.jpg', // Change this to your image path
     days: [0, 5], // Sunday & Friday
     times: [
       { start: '05:30', end: '07:30' },
@@ -24,7 +24,7 @@ const LIVE_STREAMS = {
     channelUrl: 'https://www.youtube.com/@ENJCShorts',
     liveUrl: 'https://www.youtube.com/@ENJCShorts/live',
     // Add your shorts channel image here
-    image: 'images/daily-devotional.jpg', // Change this to your image path
+    image: 'images/live/devotional.jpg', // Change this to your image path
     days: [0, 1, 2, 3, 4, 5, 6], // Every day
     times: [{ start: '00:00', end: '23:59' }],
     title: 'Daily Devotional Live',
