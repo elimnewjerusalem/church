@@ -10,10 +10,10 @@ const LIVE_STREAMS = {
     image: 'images/Live/worship.jpg', // Change this to your image path
     days: [0, 5], // Sunday & Friday
     times: [
-      { start: '05:30', end: '07:30' },
-      { start: '08:30', end: '10:30' },
-      { start: '11:00', end: '13:30' },
-      { start: '11:30', end: '13:30' }
+      { start: '04:30', end: '08:30' },
+      { start: '08:30', end: '12:00' },
+      { start: '12:00', end: '14:00' },
+      { start: '10:00', end: '14:00' }
     ],
     title: 'Live Worship Service',
     description: 'Join us for live worship, prayer, and powerful messages'
@@ -27,7 +27,7 @@ const LIVE_STREAMS = {
     image: 'images/Live/devotional.jpg', // Change this to your image path
     days: [0, 1, 2, 3, 4, 5, 6], // Every day
     times: [{ start: '00:00', end: '23:59' }],
-    title: 'Daily Devotional Live',
+    title: 'Daily Family Prayer',
     description: 'Quick devotionals and faith encouragement throughout the day'
   }
 };
@@ -95,7 +95,7 @@ function displayLiveStream() {
               </div>
               
               <!-- Text -->
-              <h3 style="font-size: 2rem; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.5); font-weight: bold;">🔴 LIVE NOW</h3>
+              <h3 style="font-size: 2rem; color: #ffffff; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.5); font-weight: bold;">🔴 LIVE NOW</h3>
               <p style="font-size: 1.3rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">Click to Join the Service</p>
             </div>
             

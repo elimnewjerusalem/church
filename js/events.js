@@ -154,7 +154,7 @@ function calculateNextService() {
     title: ''
   };
   
-  // Sunday services: 5:30am, 8:30am, 11:30am
+  // Sunday services: 5:30am, 8:30am, 12:00am
   // Friday service: 11:00am
   
   if (currentDay === 0) { // Sunday
@@ -163,7 +163,7 @@ function calculateNextService() {
     } else if (currentHour < 8 || (currentHour === 8 && currentMinute < 30)) {
       nextService = { day: 'Today', time: '08:30 AM', title: 'Sunday Worship Service' };
     } else if (currentHour < 11 || (currentHour === 11 && currentMinute < 30)) {
-      nextService = { day: 'Today', time: '11:30 AM', title: 'Sunday Worship Service' };
+      nextService = { day: 'Today', time: '12:00 AM', title: 'Sunday Worship Service' };
     } else {
       nextService = { day: 'Friday', time: '11:00 AM', title: 'Friday Prayer Meeting' };
     }
