@@ -1,33 +1,54 @@
-// Live Stream with 4 Different Images Based on Schedule
-// Elim New Jerusalem Church
+// Live Stream Handler - Elim New Jerusalem Church
+// Sunday: 5:30am-7:30am, 8:30am-10:30am, 12:00pm-2:00pm (Main Channel)
+// Friday: 11:00am-2:00pm (Main Channel)
+// Daily Night: 10:30pm-11:00pm (Shorts Channel)
+// Main Channel Priority: ALWAYS FIRST
 
 const LIVE_STREAMS = {
-  // MAIN CHANNEL - Friday & Sunday
+  // MAIN CHANNEL - Sunday & Friday (PRIORITY)
   mainChannel: {
     name: 'Main Channel',
     channelUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial',
     liveUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial/live',
     
-    // Different images for different days
+    // Images for different services
     images: {
-      friday: 'images/live/friday-prayer.jpg',      // Friday 10am-2pm
-      sunday: 'images/live/sunday-worship.jpg',     // Sunday 4am-10pm
+      friday: 'images/live/friday-prayer.jpg',      // Friday - "FAMILY BLESSING PRAYER"
+      sunday: 'images/live/sunday-worship.jpg',     // Sunday - "SUNDAY SERVICE"
     },
     
     // Schedule
     schedule: [
+      // FRIDAY
       {
-        day: 5, // Friday
-        startTime: '10:00',
+        day: 5,
+        startTime: '11:00',
         endTime: '14:00',
         imageKey: 'friday',
         title: 'Friday Prayer Meeting - Live Now',
-        description: 'Join us for powerful prayer and worship'
+        description: 'Join us for Family Blessing Prayer and powerful worship'
+      },
+      // SUNDAY - 3 Services
+      {
+        day: 0,
+        startTime: '05:30',
+        endTime: '07:30',
+        imageKey: 'sunday',
+        title: 'Sunday Worship Service - Live Now',
+        description: 'Join us for inspiring worship, messages, and fellowship'
       },
       {
-        day: 0, // Sunday
-        startTime: '04:00',
-        endTime: '22:00',
+        day: 0,
+        startTime: '08:30',
+        endTime: '10:30',
+        imageKey: 'sunday',
+        title: 'Sunday Worship Service - Live Now',
+        description: 'Join us for inspiring worship, messages, and fellowship'
+      },
+      {
+        day: 0,
+        startTime: '12:00',
+        endTime: '14:00',
         imageKey: 'sunday',
         title: 'Sunday Worship Service - Live Now',
         description: 'Join us for inspiring worship, messages, and fellowship'
@@ -41,25 +62,18 @@ const LIVE_STREAMS = {
     channelUrl: 'https://www.youtube.com/@ENJCShorts',
     liveUrl: 'https://www.youtube.com/@ENJCShorts/live',
     
-    image: 'images/live/night-prayer.jpg',  // Daily Night Prayer 10pm-11pm
+    image: 'images/live/night-prayer.jpg',  // "FAMILY PRAYER"
     
     // Schedule - Daily Night Prayer
     schedule: [
       {
-        day: 'all', // Every day
-        startTime: '22:00',
+        day: 'all',
+        startTime: '22:30',
         endTime: '23:00',
         title: 'Daily Night Prayer - Live Now',
         description: 'End your day with prayer and devotion'
       }
     ]
-  },
-  
-  // COMMON IMAGE - When offline
-  commonImage: {
-    image: 'images/live/common.jpg',  // Shows when not live
-    title: 'Join Us for Live Services',
-    description: 'We go live for worship, prayer, and devotionals'
   }
 };
 
@@ -89,9 +103,9 @@ function isLiveTime(schedule) {
   return null;
 }
 
-// Get active live stream
+// Get active live stream (MAIN CHANNEL PRIORITY)
 function getActiveLiveStream() {
-  // Priority 1: Check Main Channel (Friday & Sunday)
+  // PRIORITY 1: Main Channel (Sunday & Friday) - MOST IMPORTANT
   const mainSlot = isLiveTime(LIVE_STREAMS.mainChannel.schedule);
   if (mainSlot) {
     return {
@@ -101,7 +115,7 @@ function getActiveLiveStream() {
     };
   }
   
-  // Priority 2: Check Shorts Channel (Night Prayer)
+  // PRIORITY 2: Shorts Channel (Daily Night Prayer)
   const shortsSlot = isLiveTime(LIVE_STREAMS.shortsChannel.schedule);
   if (shortsSlot) {
     return {
@@ -111,7 +125,7 @@ function getActiveLiveStream() {
     };
   }
   
-  // No live stream - show common image
+  // Not live - hide section
   return null;
 }
 
@@ -124,7 +138,7 @@ function displayLiveStream() {
   if (!container || !section) return;
   
   if (activeData) {
-    // LIVE STREAM IS ACTIVE
+    // LIVE NOW - SHOW IT
     section.style.display = 'block';
     
     const { stream, slot, type } = activeData;
@@ -145,25 +159,25 @@ function displayLiveStream() {
           🔴 LIVE NOW - ${slot.title}
         </div>
         
-        <!-- Image with Play Overlay - Clickable -->
+        <!-- Image with Play Button - Clickable -->
         <a href="${stream.liveUrl}" target="_blank" style="display: block; text-decoration: none; position: relative; cursor: pointer;">
           <div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transition: transform 0.3s ease;">
             
-            <!-- Live Stream Image -->
+            <!-- Custom Image -->
             <img 
               src="${imageUrl}" 
               alt="${slot.title}" 
-              style="width: 100%; height: auto; display: block; min-height: 400px; object-fit: cover;"
+              style="width: 100%; height: auto; display: block; object-fit: cover;"
             >
             
             <!-- Dark Overlay -->
-            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));">
+            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.2);">
             </div>
             
             <!-- Play Button Overlay -->
             <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
               
-              <!-- Large Pulsing Play Button -->
+              <!-- Pulsing Play Button -->
               <div style="width: 120px; height: 120px; background: rgba(255,0,0,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; animation: pulse 2s infinite; box-shadow: 0 8px 30px rgba(255,0,0,0.5);">
                 <svg width="50" height="50" viewBox="0 0 24 24" fill="white">
                   <path d="M8 5v14l11-7z"/>
@@ -171,9 +185,9 @@ function displayLiveStream() {
               </div>
               
               <!-- Text -->
-              <h3 style="font-size: 2rem; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.6); font-weight: bold;">🔴 LIVE NOW</h3>
-              <p style="font-size: 1.3rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5); margin-bottom: 5px;">Click to Join the Service</p>
-              <p style="font-size: 1rem; opacity: 0.9; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Opens in YouTube</p>
+              <h3 style="font-size: 2rem; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.8); font-weight: bold;">🔴 LIVE NOW</h3>
+              <p style="font-size: 1.3rem; text-shadow: 0 2px 6px rgba(0,0,0,0.8); margin-bottom: 5px;">Click to Join the Service</p>
+              <p style="font-size: 1rem; opacity: 0.9; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Opens in YouTube</p>
             </div>
             
           </div>
@@ -189,7 +203,7 @@ function displayLiveStream() {
     `;
     
   } else {
-    // NOT LIVE - Hide the live section completely
+    // NOT LIVE - Hide section
     section.style.display = 'none';
   }
 }
@@ -224,7 +238,15 @@ document.addEventListener('DOMContentLoaded', () => {
   displayLiveStream();
   setInterval(displayLiveStream, 60000); // Check every minute
   
-  console.log('🔴 Live stream with 4 images initialized');
+  console.log('🔴 Live stream initialized - Main Channel Priority');
   console.log('⏰ Current time:', new Date().toLocaleTimeString());
   console.log('📅 Current day:', ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]);
+  
+  // Debug
+  const active = getActiveLiveStream();
+  if (active) {
+    console.log('✅ LIVE NOW:', active.slot.title, '(' + active.type + ' channel)');
+  } else {
+    console.log('❌ Not live - section hidden');
+  }
 });

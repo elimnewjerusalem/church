@@ -1,7 +1,6 @@
-// Events Page Main JavaScript
-// Handles loading events, recent streams, most watched videos, and next service countdown
+// Events Page JavaScript - Elim New Jerusalem Church
+// Loads: Next Service, Recent Streams, Most Watched Videos
 
-// Load all content when page loads
 document.addEventListener('DOMContentLoaded', () => {
   loadEvents();
   calculateNextService();
@@ -13,15 +12,12 @@ async function loadEvents() {
     const response = await fetch('data/events.json');
     const data = await response.json();
     
-    // Load regular events
-    loadRegularEvents(data.events);
-    
     // Load recent streams (1 shorts + 2 main)
     if (data.recentStreams && data.recentStreams.length > 0) {
       loadRecentStreams(data.recentStreams);
     }
     
-    // Load most watched videos
+    // Load most watched videos (1 shorts + 2 main)
     if (data.mostWatched && data.mostWatched.length > 0) {
       loadMostWatched(data.mostWatched);
     }
@@ -29,58 +25,6 @@ async function loadEvents() {
   } catch (error) {
     console.error('Error loading events:', error);
   }
-}
-
-// Load regular events schedule
-function loadRegularEvents(events) {
-  const container = document.getElementById('events-container');
-  if (!container) return;
-  
-  container.innerHTML = '';
-  
-  events.forEach(event => {
-    const eventCard = createEventCard(event);
-    container.appendChild(eventCard);
-  });
-}
-
-// Create individual event card
-function createEventCard(event) {
-  const card = document.createElement('div');
-  card.className = 'event-card';
-  
-  let mediaContent = '';
-  if (event.type === 'video' && event.videoId) {
-    mediaContent = `
-      <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe 
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-          src="https://www.youtube.com/embed/${event.videoId}" 
-          title="${event.title}"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </div>
-    `;
-  } else if (event.image) {
-    mediaContent = `<img src="${event.image}" alt="${event.title}">`;
-  }
-  
-  const timesHTML = event.times.map(time => `${time}<br>`).join('');
-  
-  card.innerHTML = `
-    ${mediaContent}
-    <div class="event-content">
-      <h3>${event.title}</h3>
-      <p><strong>📅 ${event.schedule}</strong><br>
-      ${timesHTML}</p>
-      <p>${event.description}</p>
-      <a href="${event.youtubeLink || '#'}" class="btn ${event.buttonClass || 'register'}" target="_blank">${event.buttonText || 'Learn More'}</a>
-    </div>
-  `;
-  
-  return card;
 }
 
 // Load recent streams
@@ -137,7 +81,7 @@ function createVideoCard(video, buttonText = 'Watch Now', showViews = false) {
   return card;
 }
 
-// Calculate next service and update countdown
+// Calculate next service and display it
 function calculateNextService() {
   const container = document.getElementById('next-service-info');
   if (!container) return;
@@ -146,44 +90,110 @@ function calculateNextService() {
   const currentDay = now.getDay();
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
+  const currentTime = currentHour * 60 + currentMinute;
   
   let nextService = {
     day: '',
-    date: '',
     time: '',
-    title: ''
+    title: '',
+    description: ''
   };
   
-  // Sunday services: 5:30am, 8:30am, 12:00am
-  // Friday service: 11:00am
+  // Sunday services: 5:30am-7:30am, 8:30am-10:30am, 12:00pm-2:00pm
+  // Friday service: 11:00am-2:00pm
+  // Daily night: 10:30pm-11:00pm
   
   if (currentDay === 0) { // Sunday
-    if (currentHour < 5 || (currentHour === 5 && currentMinute < 30)) {
-      nextService = { day: 'Today', time: '05:30 AM', title: 'Sunday Worship Service' };
-    } else if (currentHour < 8 || (currentHour === 8 && currentMinute < 30)) {
-      nextService = { day: 'Today', time: '08:30 AM', title: 'Sunday Worship Service' };
-    } else if (currentHour < 11 || (currentHour === 11 && currentMinute < 30)) {
-      nextService = { day: 'Today', time: '12:00 AM', title: 'Sunday Worship Service' };
+    if (currentTime < 330) { // Before 5:30am
+      nextService = { 
+        day: 'Today', 
+        time: '05:30 AM', 
+        title: 'Sunday Worship Service',
+        description: 'First service of the day'
+      };
+    } else if (currentTime >= 330 && currentTime < 510) { // 5:30am-8:30am
+      nextService = { 
+        day: 'Today', 
+        time: '08:30 AM', 
+        title: 'Sunday Worship Service',
+        description: 'Second service'
+      };
+    } else if (currentTime >= 510 && currentTime < 720) { // 8:30am-12:00pm
+      nextService = { 
+        day: 'Today', 
+        time: '12:00 PM', 
+        title: 'Sunday Worship Service',
+        description: 'Afternoon service'
+      };
+    } else if (currentTime >= 720 && currentTime < 1350) { // After 12pm, before 10:30pm
+      nextService = { 
+        day: 'Today', 
+        time: '10:30 PM', 
+        title: 'Daily Night Prayer',
+        description: 'End your day with prayer'
+      };
     } else {
-      nextService = { day: 'Friday', time: '11:00 AM', title: 'Friday Prayer Meeting' };
+      nextService = { 
+        day: 'Friday', 
+        time: '11:00 AM', 
+        title: 'Friday Prayer Meeting',
+        description: 'Family Blessing Prayer'
+      };
     }
   } else if (currentDay === 5) { // Friday
-    if (currentHour < 11) {
-      nextService = { day: 'Today', time: '11:00 AM', title: 'Friday Prayer Meeting' };
+    if (currentTime < 660) { // Before 11:00am
+      nextService = { 
+        day: 'Today', 
+        time: '11:00 AM', 
+        title: 'Friday Prayer Meeting',
+        description: 'Family Blessing Prayer'
+      };
+    } else if (currentTime >= 660 && currentTime < 1350) { // After 11am, before 10:30pm
+      nextService = { 
+        day: 'Today', 
+        time: '10:30 PM', 
+        title: 'Daily Night Prayer',
+        description: 'End your day with prayer'
+      };
     } else {
-      nextService = { day: 'Sunday', time: '05:30 AM', title: 'Sunday Worship Service' };
+      nextService = { 
+        day: 'Sunday', 
+        time: '05:30 AM', 
+        title: 'Sunday Worship Service',
+        description: 'First service of the day'
+      };
     }
-  } else if (currentDay < 5) { // Monday to Thursday
-    nextService = { day: 'Friday', time: '11:00 AM', title: 'Friday Prayer Meeting' };
-  } else { // Saturday
-    nextService = { day: 'Sunday', time: '05:30 AM', title: 'Sunday Worship Service' };
+  } else if (currentTime < 1350) { // Any other day before 10:30pm
+    if (currentDay < 5) { // Monday to Thursday
+      nextService = { 
+        day: 'Friday', 
+        time: '11:00 AM', 
+        title: 'Friday Prayer Meeting',
+        description: 'Family Blessing Prayer'
+      };
+    } else { // Saturday
+      nextService = { 
+        day: 'Sunday', 
+        time: '05:30 AM', 
+        title: 'Sunday Worship Service',
+        description: 'First service of the day'
+      };
+    }
+  } else { // After 10:30pm on any day
+    nextService = { 
+      day: 'Today', 
+      time: '10:30 PM', 
+      title: 'Daily Night Prayer',
+      description: 'End your day with prayer'
+    };
   }
   
   container.innerHTML = `
-    <div style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      <h3 style="color: #667eea; margin-bottom: 10px;">📅 Next Live Service</h3>
-      <p style="font-size: 1.3rem; font-weight: bold; color: #2c3e50; margin-bottom: 5px;">${nextService.title}</p>
-      <p style="font-size: 1.1rem; color: #666;">${nextService.day} at ${nextService.time}</p>
+    <div style="text-align: center; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto;">
+      <h3 style="color: #667eea; margin-bottom: 15px; font-size: 1.3rem;">📅 Next Live Service</h3>
+      <p style="font-size: 1.5rem; font-weight: bold; color: #2c3e50; margin-bottom: 8px;">${nextService.title}</p>
+      <p style="font-size: 1.2rem; color: #666; margin-bottom: 8px;">${nextService.day} at ${nextService.time}</p>
+      <p style="font-size: 0.95rem; color: #999;">${nextService.description}</p>
     </div>
   `;
 }

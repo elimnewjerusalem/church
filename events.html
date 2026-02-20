@@ -10,12 +10,12 @@
   <meta http-equiv="Expires" content="0">
   
   <title>Events | ENJC Church</title>
-  <link rel="stylesheet" href="css/style.css?v=20260214">
+  <link rel="stylesheet" href="css/style.css?v=20260215">
 </head>
 
 <body>
 
-<!-- Header -->
+<!-- 1. Header -->
 <header>
   <div class="container nav">
     <div class="logo">
@@ -42,11 +42,11 @@
   </div>
 </div>
 
-<!-- Live Stream Section (Shows ONLY when live) — moved to top -->
+<!-- 2. Live Stream Section (Shows ONLY when live) -->
 <section id="live-stream-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 0; display: none;">
   <div class="container">
     <div style="text-align: center; margin-bottom: 35px;">
-      <h2 style="color: rgb(255, 255, 255); font-size: 2.2rem; margin-bottom: 10px;">🔴 Watch Live Now</h2>
+      <h2 style="color: white; font-size: 2.2rem; margin-bottom: 10px;">🔴 Watch Live Now</h2>
       <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">Join our live worship service</p>
     </div>
     
@@ -59,7 +59,7 @@
   </div>
 </section>
 
-<!-- Next Scheduled Service — moved below live stream -->
+<!-- 3. Next Live Service -->
 <section style="background: #f0f4ff; padding: 30px 0;">
   <div class="container">
     <div id="next-service-info">
@@ -71,7 +71,7 @@
   </div>
 </section>
 
-<!-- Recent Streams: 1 Shorts + 2 Main Channel -->
+<!-- 4. Recent Live Streams (1 Shorts + 2 Main) -->
 <section style="background: #f9f9f9;">
   <div class="container">
     <h2>📺 Recent Live Streams</h2>
@@ -84,11 +84,11 @@
   </div>
 </section>
 
-<!-- Most Watched Videos (3 from Main Channel) -->
+<!-- 5. Most Watched Videos (1 Shorts + 2 Main) -->
 <section style="background: white;">
   <div class="container">
     <h2>🔥 Most Watched Messages</h2>
-    <p style="margin-bottom: 30px;">Popular sermons that touched hearts</p>
+    <p style="margin-bottom: 30px;">Popular sermons and devotionals that touched hearts</p>
     
     <div class="events-grid" id="most-watched-container">
       <!-- Most watched videos will be loaded here -->
@@ -97,21 +97,8 @@
   </div>
 </section>
 
-<!-- Regular Events Schedule -->
+<!-- 6. People Testimonials -->
 <section style="background: #f5f5f5;">
-  <div class="container">
-    <h2>📅 Our Regular Schedule</h2>
-    <p style="margin-bottom: 30px;">Join us for our weekly worship services and gatherings</p>
-    
-    <div class="events-grid" id="events-container">
-      <!-- Events will be loaded from events.json -->
-      <p>Loading events...</p>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonials Slider -->
-<section style="background: white;">
   <div class="container">
     <h2>💬 What People Are Saying</h2>
     <p style="margin-bottom: 40px;">Hear from our community members</p>
@@ -121,7 +108,7 @@
         
         <!-- Testimonial 1 -->
         <div class="testimonial-slide" style="min-width: 100%; padding: 30px; box-sizing: border-box;">
-          <div style="background: #f9f9f9; padding: 30px; border-radius: 15px; text-align: center;">
+          <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <p style="font-size: 1.1rem; color: #555; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
               "This church has transformed my life. The worship is powerful and the messages are life-changing. I'm grateful to be part of this family!"
             </p>
@@ -131,7 +118,7 @@
         
         <!-- Testimonial 2 -->
         <div class="testimonial-slide" style="min-width: 100%; padding: 30px; box-sizing: border-box;">
-          <div style="background: #f9f9f9; padding: 30px; border-radius: 15px; text-align: center;">
+          <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <p style="font-size: 1.1rem; color: #555; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
               "The Friday prayer meetings have become the highlight of my week. There's so much peace and power when we pray together."
             </p>
@@ -141,7 +128,7 @@
         
         <!-- Testimonial 3 -->
         <div class="testimonial-slide" style="min-width: 100%; padding: 30px; box-sizing: border-box;">
-          <div style="background: #f9f9f9; padding: 30px; border-radius: 15px; text-align: center;">
+          <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <p style="font-size: 1.1rem; color: #555; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
               "The youth fellowship has helped me grow in my faith. I've made amazing friends and learned so much about God's love."
             </p>
@@ -160,11 +147,11 @@
   </div>
 </section>
 
-<!-- Special Events Section -->
-<section style="background: #f5f5f5;">
+<!-- 7. Special Events Times -->
+<section style="background: white;">
   <div class="container">
     <h2>⭐ Special Events</h2>
-    <p>Mark your calendar for these upcoming special gatherings</p>
+    <p style="margin-bottom: 40px;">Mark your calendar for these upcoming special gatherings</p>
     
     <div class="grid" style="margin-top:40px;">
       <div class="card">
@@ -189,19 +176,19 @@
   </div>
 </section>
 
-<!-- CTA Section -->
-<section style="background:var(--primary); color:white; margin-top:60px;">
+<!-- 8. CTA Section - Don't Miss Out -->
+<section style="background:var(--primary); color:white; padding: 60px 0;">
   <div class="container">
-    <h2 style="color:white;">Don't Miss Out!</h2>
-    <p style="color:rgba(255,255,255,0.9);">Stay connected and never miss an event. Contact us to get added to our WhatsApp group.</p>
+    <h2 style="color:white; margin-bottom: 15px;">Don't Miss Out!</h2>
+    <p style="color:rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 30px;">Stay connected and never miss an event. Contact us to get added to our WhatsApp group.</p>
     <div style="margin-top:30px;">
-      <a href="https://wa.me/919444345102" class="btn join">Join WhatsApp Group</a>
-      <a href="contact.html" class="btn register">Contact Us</a>
+      <a href="https://wa.me/919444345102" class="btn join" style="margin: 0 10px;">Join WhatsApp Group</a>
+      <a href="contact.html" class="btn register" style="margin: 0 10px;">Contact Us</a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- 9. Footer -->
 <footer>
   <div class="container">
     © 2026 Elim New Jerusalem Church. All rights reserved.
@@ -241,8 +228,8 @@ setInterval(nextTestimonial, 5000);
 </script>
 
 <!-- JavaScript Files -->
-<script src="js/events.js?v=20260214"></script>
-<script src="js/live-stream.js?v=20260214"></script>
+<script src="js/events.js?v=20260215"></script>
+<script src="js/live-stream.js?v=20260215"></script>
 
 </body>
 </html>
