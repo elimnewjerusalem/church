@@ -13,7 +13,7 @@ const LIVE_STREAMS = {
     
     // Images for different services
     images: {
-      friday: 'images/live/friday-prayer.jpg',      // Friday - "FAMILY BLESSING PRAYER"
+      friday: 'images\live\friday-prayer.jpg',      // Friday - "FAMILY BLESSING PRAYER"
       sunday: 'images/live/sunday-worship.jpg',     // Sunday - "SUNDAY SERVICE"
     },
     
