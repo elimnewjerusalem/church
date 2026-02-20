@@ -1,19 +1,20 @@
-// Live Stream with Image/Thumbnail for Elim New Jerusalem Church
-// Shows image with "LIVE NOW" button - fully automatic
+// Live Stream with AUTO-UPDATING YouTube Thumbnail
+// Automatically shows the current live stream thumbnail - NO manual image updates!
 
 const LIVE_STREAMS = {
   mainChannel: {
     name: 'Main Channel',
     channelUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial',
     liveUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial/live',
-    // Add your church image/thumbnail here
-    image: 'images/Live/worship.jpg', // Change this to your image path
+    channelId: 'UCdSmNWW5RWg9ZAhMO9RUL9g', // Add your channel ID here
+    // Fallback image if live thumbnail can't load
+    fallbackImage: 'images/live/worship.jpg',
     days: [0, 5], // Sunday & Friday
     times: [
-      { start: '04:30', end: '08:30' },
+      { start: '05:30', end: '08:30' },
       { start: '08:30', end: '12:00' },
-      { start: '12:00', end: '14:00' },
-      { start: '10:00', end: '14:00' }
+      { start: '12:00', end: '14:30' },
+      { start: '11:00', end: '14:00' }
     ],
     title: 'Live Worship Service',
     description: 'Join us for live worship, prayer, and powerful messages'
@@ -23,11 +24,11 @@ const LIVE_STREAMS = {
     name: 'Shorts Channel',
     channelUrl: 'https://www.youtube.com/@ENJCShorts',
     liveUrl: 'https://www.youtube.com/@ENJCShorts/live',
-    // Add your shorts channel image here
-    image: 'images/Live/devotional.jpg', // Change this to your image path
-    days: [0, 1, 2, 3, 4, 5, 6], // Every day
+    channelId: 'UCdSmNWW5RWg9ZAhMO9RUL9g', // Add your shorts channel ID here
+    fallbackImage: 'images/live/devotional.jpg',
+    days: [0, 1, 2, 3, 4, 5, 6],
     times: [{ start: '00:00', end: '23:59' }],
-    title: 'Daily Family Prayer',
+    title: 'Daily Devotional Live',
     description: 'Quick devotionals and faith encouragement throughout the day'
   }
 };
@@ -54,8 +55,42 @@ function getActiveLiveStream() {
   return null;
 }
 
-// Display live stream with image
-function displayLiveStream() {
+// Fetch latest video ID from channel (for thumbnail)
+async function getLatestVideoId(channelId) {
+  try {
+    // Using YouTube RSS feed to get latest video
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
+    
+    const response = await fetch(proxyUrl);
+    const text = await response.text();
+    
+    // Parse XML to get video ID
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, 'text/xml');
+    const videoIdElement = xml.querySelector('yt\\:videoId, videoId');
+    
+    if (videoIdElement) {
+      return videoIdElement.textContent;
+    }
+  } catch (error) {
+    console.log('Could not fetch video ID:', error);
+  }
+  return null;
+}
+
+// Get YouTube thumbnail URL
+function getYouTubeThumbnail(videoId) {
+  // YouTube thumbnail URLs (in order of quality)
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  // Alternatives:
+  // hqdefault.jpg - 480x360
+  // sddefault.jpg - 640x480
+  // maxresdefault.jpg - 1280x720 (best quality)
+}
+
+// Display live stream with auto-updating thumbnail
+async function displayLiveStream() {
   const activeStream = getActiveLiveStream();
   const container = document.getElementById('live-stream-container');
   const section = document.getElementById('live-stream-section');
@@ -65,6 +100,23 @@ function displayLiveStream() {
   if (activeStream) {
     section.style.display = 'block';
     
+    // Show loading state
+    container.innerHTML = `
+      <div style="max-width: 900px; margin: 0 auto; text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+        <p>Loading live stream...</p>
+      </div>
+    `;
+    
+    // Try to get latest video ID for thumbnail
+    const videoId = await getLatestVideoId(activeStream.channelId);
+    
+    // Determine which image to use
+    let thumbnailUrl = activeStream.fallbackImage;
+    if (videoId) {
+      thumbnailUrl = getYouTubeThumbnail(videoId);
+    }
+    
+    // Display live stream section
     container.innerHTML = `
       <div style="max-width: 900px; margin: 0 auto;">
         
@@ -73,12 +125,17 @@ function displayLiveStream() {
           🔴 LIVE NOW - ${activeStream.title}
         </div>
         
-        <!-- Image/Thumbnail with Play Overlay -->
+        <!-- YouTube Thumbnail with Play Overlay -->
         <a href="${activeStream.liveUrl}" target="_blank" style="display: block; text-decoration: none; position: relative;">
           <div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transition: transform 0.3s;">
             
-            <!-- Church Image -->
-            <img src="${activeStream.image}" alt="${activeStream.title}" style="width: 100%; height: auto; display: block; min-height: 400px; object-fit: cover;">
+            <!-- Auto-Updated YouTube Thumbnail -->
+            <img 
+              src="${thumbnailUrl}" 
+              alt="${activeStream.title}" 
+              style="width: 100%; height: auto; display: block; min-height: 400px; object-fit: cover;"
+              onerror="this.src='${activeStream.fallbackImage}'"
+            >
             
             <!-- Dark Overlay -->
             <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));">
@@ -95,7 +152,7 @@ function displayLiveStream() {
               </div>
               
               <!-- Text -->
-              <h3 style="font-size: 2rem; color: #ffffff; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.5); font-weight: bold;">🔴 LIVE NOW</h3>
+              <h3 style="font-size: 2rem; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.5); font-weight: bold;">🔴 LIVE NOW</h3>
               <p style="font-size: 1.3rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">Click to Join the Service</p>
             </div>
             
@@ -132,9 +189,9 @@ document.head.appendChild(style);
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
   displayLiveStream();
-  setInterval(displayLiveStream, 60000); // Check every minute
+  setInterval(displayLiveStream, 120000); // Check every 2 minutes
   
-  console.log('🔴 Live stream with image initialized');
+  console.log('🔴 Live stream with auto-updating thumbnail initialized');
   console.log('⏰ Current time:', new Date().toLocaleTimeString());
   console.log('📅 Current day:', ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]);
 });
