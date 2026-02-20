@@ -25,7 +25,7 @@ const LIVE_STREAMS = {
         startTime: '11:00',
         endTime: '14:00',
         imageKey: 'friday',
-        title: 'Friday Prayer Meeting - Live Now',
+        title: 'Family Blessing Prayer - Live Now',
         description: 'Join us for Family Blessing Prayer and powerful worship'
       },
       // SUNDAY - 3 Services
@@ -34,7 +34,7 @@ const LIVE_STREAMS = {
         startTime: '05:30',
         endTime: '07:30',
         imageKey: 'sunday',
-        title: 'Sunday Worship Service - Live Now',
+        title: 'Sunday Service - Live Now',
         description: 'Join us for inspiring worship, messages, and fellowship'
       },
       {
@@ -42,7 +42,7 @@ const LIVE_STREAMS = {
         startTime: '08:30',
         endTime: '10:30',
         imageKey: 'sunday',
-        title: 'Sunday Worship Service - Live Now',
+        title: 'Sunday Service - Live Now',
         description: 'Join us for inspiring worship, messages, and fellowship'
       },
       {
@@ -50,7 +50,7 @@ const LIVE_STREAMS = {
         startTime: '12:00',
         endTime: '14:00',
         imageKey: 'sunday',
-        title: 'Sunday Worship Service - Live Now',
+        title: 'Sunday Service - Live Now',
         description: 'Join us for inspiring worship, messages, and fellowship'
       }
     ]
@@ -70,7 +70,7 @@ const LIVE_STREAMS = {
         day: 'all',
         startTime: '22:30',
         endTime: '23:00',
-        title: 'Daily Night Prayer - Live Now',
+        title: 'Family Prayer - Live Now',
         description: 'End your day with prayer and devotion'
       }
     ]
