@@ -9,13 +9,13 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   
-  <title>Events | ENJC Church</title>
-  <link rel="stylesheet" href="css/style.css?v=20260215">
+  <title>Live & Events | ENJC Church</title>
+  <link rel="stylesheet" href="css/style.css?v=20260216">
 </head>
 
 <body>
 
-<!-- 1. Header -->
+<!-- 1. HEADER SECTION -->
 <header>
   <div class="container nav">
     <div class="logo">
@@ -34,161 +34,124 @@
   </div>
 </header>
 
-<!-- Page Hero -->
-<div class="page-hero">
-  <div class="container">
-    <h1>Live & Events</h1>
-    <p>Join us for worship, fellowship, and special gatherings</p>
+<!-- PAGE HERO -->
+<div class="page-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
+  <div class="container" style="position: relative; z-index: 2;">
+    <h1 style="color: white; text-shadow: 0 3px 10px rgba(0,0,0,0.3);">Live & Events</h1>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem;">Join us for worship, fellowship, and special gatherings</p>
   </div>
+  <!-- Animated background pattern -->
+  <div style="position: absolute; inset: 0; opacity: 0.1; background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>'); background-size: 30px 30px;"></div>
 </div>
 
-<!-- 2. Live Stream Section (Shows ONLY when live) -->
-<section id="live-stream-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 0; display: none;">
+<!-- 2. AUTO LIVE SECTION (Shows ONLY when streaming) -->
+<section id="live-stream-section" style="background: #f0f4ff; padding: 50px 0; display: none;">
   <div class="container">
-    <div style="text-align: center; margin-bottom: 35px;">
-      <h2 style="color: white; font-size: 2.2rem; margin-bottom: 10px;">🔴 Watch Live Now</h2>
-      <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">Join our live worship service</p>
-    </div>
-    
-    <!-- Live stream will be displayed here dynamically -->
     <div id="live-stream-container">
-      <div style="text-align: center; padding: 20px; color: rgba(255,255,255,0.8);">
+      <div style="text-align: center; padding: 20px; color: #999;">
         Checking for live streams...
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3. Next Live Service -->
-<section style="background: #f0f4ff; padding: 30px 0;">
+<!-- 3. NEXT LIVE TIME (Countdown Timer) -->
+<section style="background: #f9f9f9; padding: 50px 0;">
   <div class="container">
-    <div id="next-service-info">
-      <!-- Next service info will be loaded here by JavaScript -->
-      <div style="text-align: center; padding: 20px;">
+    <div id="next-service-countdown">
+      <!-- Countdown will be loaded here by JavaScript -->
+      <div style="text-align: center; padding: 40px;">
         <p style="color: #999;">Loading next service...</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 4. Recent Live Streams (1 Shorts + 2 Main) -->
-<section style="background: #f9f9f9;">
+<!-- 4. RECENT LIVE STREAMS -->
+<section style="background: white; padding: 60px 0;">
   <div class="container">
     <h2>📺 Recent Live Streams</h2>
-    <p style="margin-bottom: 30px;">Catch up on our latest worship services and devotionals</p>
+    <p style="margin-bottom: 35px; color: #666; font-size: 1.1rem;">Catch up on our latest worship services and devotionals</p>
     
     <div class="events-grid" id="recent-streams-container">
-      <!-- Recent streams will be loaded here -->
       <p>Loading recent streams...</p>
     </div>
   </div>
 </section>
 
-<!-- 5. Most Watched Videos (1 Shorts + 2 Main) -->
-<section style="background: white;">
+<!-- 5. MOST WATCHED VIDEOS -->
+<section style="background: #f5f5f5; padding: 60px 0;">
   <div class="container">
     <h2>🔥 Most Watched Messages</h2>
-    <p style="margin-bottom: 30px;">Popular sermons and devotionals that touched hearts</p>
+    <p style="margin-bottom: 35px; color: #666; font-size: 1.1rem;">Popular sermons and devotionals that touched hearts</p>
     
     <div class="events-grid" id="most-watched-container">
-      <!-- Most watched videos will be loaded here -->
       <p>Loading popular videos...</p>
     </div>
   </div>
 </section>
 
-<!-- 6. People Testimonials -->
-<section style="background: #f5f5f5;">
+<!-- 6. VERSE REELS (NEW!) -->
+<section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 0; color: white;">
+  <div class="container">
+    <h2 style="color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.3);">📖 Verse Reels</h2>
+    <p style="margin-bottom: 35px; color: rgba(255,255,255,0.95); font-size: 1.1rem;">Daily scripture encouragement in short videos</p>
+    
+    <div class="events-grid" id="verse-reels-container">
+      <p style="color: rgba(255,255,255,0.8);">Loading verse reels...</p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 35px;">
+      <a href="https://www.youtube.com/@ENJCShorts" class="btn" style="background: white; color: #667eea; padding: 14px 35px; border-radius: 30px; text-decoration: none; display: inline-block; font-weight: bold; font-size: 1.05rem;" target="_blank">More Reels on YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. SPECIAL EVENTS SCHEDULE -->
+<section style="background: white; padding: 60px 0;">
+  <div class="container">
+    <h2>⭐ Special Events</h2>
+    <p style="margin-bottom: 40px; color: #666; font-size: 1.1rem;">Mark your calendar for these upcoming special gatherings</p>
+    
+    <div class="grid" id="special-events-container" style="margin-top:40px;">
+      <!-- Special events will be loaded here -->
+    </div>
+  </div>
+</section>
+
+<!-- 8. PEOPLE TESTIMONIALS -->
+<section style="background: #f5f5f5; padding: 60px 0;">
   <div class="container">
     <h2>💬 What People Are Saying</h2>
-    <p style="margin-bottom: 40px;">Hear from our community members</p>
+    <p style="margin-bottom: 40px; color: #666; font-size: 1.1rem;">Hear from our community members</p>
     
     <div class="testimonials-slider" style="max-width: 800px; margin: 0 auto; position: relative; overflow: hidden;">
       <div class="testimonial-track" id="testimonial-track" style="display: flex; transition: transform 0.5s ease;">
-        
-        <!-- Testimonial 1 -->
-        <div class="testimonial-slide" style="min-width: 100%; padding: 30px; box-sizing: border-box;">
-          <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <p style="font-size: 1.1rem; color: #555; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
-              "This church has transformed my life. The worship is powerful and the messages are life-changing. I'm grateful to be part of this family!"
-            </p>
-            <p style="font-weight: bold; color: #2c3e50;">- Sarah M.</p>
-          </div>
-        </div>
-        
-        <!-- Testimonial 2 -->
-        <div class="testimonial-slide" style="min-width: 100%; padding: 30px; box-sizing: border-box;">
-          <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <p style="font-size: 1.1rem; color: #555; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
-              "The Friday prayer meetings have become the highlight of my week. There's so much peace and power when we pray together."
-            </p>
-            <p style="font-weight: bold; color: #2c3e50;">- John D.</p>
-          </div>
-        </div>
-        
-        <!-- Testimonial 3 -->
-        <div class="testimonial-slide" style="min-width: 100%; padding: 30px; box-sizing: border-box;">
-          <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <p style="font-size: 1.1rem; color: #555; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
-              "The youth fellowship has helped me grow in my faith. I've made amazing friends and learned so much about God's love."
-            </p>
-            <p style="font-weight: bold; color: #2c3e50;">- David K.</p>
-          </div>
-        </div>
-        
+        <!-- Testimonials will be loaded here -->
       </div>
       
       <!-- Slider Navigation -->
       <div style="text-align: center; margin-top: 25px;">
-        <button onclick="previousTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem;">❮</button>
-        <button onclick="nextTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem;">❯</button>
+        <button onclick="previousTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">❮</button>
+        <button onclick="nextTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">❯</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 7. Special Events Times -->
-<section style="background: white;">
-  <div class="container">
-    <h2>⭐ Special Events</h2>
-    <p style="margin-bottom: 40px;">Mark your calendar for these upcoming special gatherings</p>
-    
-    <div class="grid" style="margin-top:40px;">
-      <div class="card">
-        <h3>🙏 Monthly Fasting Prayer</h3>
-        <p><strong>2nd Saturday of Every Month</strong><br>
-        06:00am - 06:00pm</p>
-        <p>A day dedicated to seeking God's face through fasting and prayer.</p>
-      </div>
-      
-      <div class="card">
-        <h3>🎉 Annual Church Anniversary</h3>
-        <p><strong>Coming Soon</strong></p>
-        <p>Celebrating God's faithfulness with special worship services and activities.</p>
-      </div>
-      
-      <div class="card">
-        <h3>👨‍👩‍👧‍👦 Family Retreat</h3>
-        <p><strong>Details Coming Soon</strong></p>
-        <p>A weekend getaway for families to connect with God and each other.</p>
-      </div>
+<!-- 9. CTA SECTION - Don't Miss Out -->
+<section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 70px 0;">
+  <div class="container" style="text-align: center;">
+    <h2 style="color: white; margin-bottom: 20px; font-size: 2.2rem;">Don't Miss Out!</h2>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">Stay connected and never miss an event. Join our WhatsApp group for live notifications and updates.</p>
+    <div>
+      <a href="https://wa.me/919444345102" class="btn join" style="margin: 0 10px 10px 10px; padding: 16px 40px; font-size: 1.1rem;">Join WhatsApp Group</a>
+      <a href="contact.html" class="btn register" style="margin: 0 10px 10px 10px; padding: 16px 40px; font-size: 1.1rem;">Contact Us</a>
     </div>
   </div>
 </section>
 
-<!-- 8. CTA Section - Don't Miss Out -->
-<section style="background:var(--primary); color:white; padding: 60px 0;">
-  <div class="container">
-    <h2 style="color:white; margin-bottom: 15px;">Don't Miss Out!</h2>
-    <p style="color:rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 30px;">Stay connected and never miss an event. Contact us to get added to our WhatsApp group.</p>
-    <div style="margin-top:30px;">
-      <a href="https://wa.me/919444345102" class="btn join" style="margin: 0 10px;">Join WhatsApp Group</a>
-      <a href="contact.html" class="btn register" style="margin: 0 10px;">Contact Us</a>
-    </div>
-  </div>
-</section>
-
-<!-- 9. Footer -->
+<!-- 10. FOOTER -->
 <footer>
   <div class="container">
     © 2026 Elim New Jerusalem Church. All rights reserved.
@@ -203,24 +166,31 @@
 <!-- Testimonial Slider Script -->
 <script>
 let currentTestimonial = 0;
-const testimonials = document.querySelectorAll('.testimonial-slide');
-const totalTestimonials = testimonials.length;
-
-function showTestimonial(index) {
+const updateTestimonialSlider = () => {
+  const testimonials = document.querySelectorAll('.testimonial-slide');
+  const totalTestimonials = testimonials.length;
+  
+  if (totalTestimonials === 0) return;
+  
   const track = document.getElementById('testimonial-track');
   if (track) {
-    track.style.transform = `translateX(-${index * 100}%)`;
+    track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
   }
+};
+
+function showTestimonial(index) {
+  const testimonials = document.querySelectorAll('.testimonial-slide');
+  const totalTestimonials = testimonials.length;
+  currentTestimonial = ((index % totalTestimonials) + totalTestimonials) % totalTestimonials;
+  updateTestimonialSlider();
 }
 
 function nextTestimonial() {
-  currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
-  showTestimonial(currentTestimonial);
+  showTestimonial(currentTestimonial + 1);
 }
 
 function previousTestimonial() {
-  currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
-  showTestimonial(currentTestimonial);
+  showTestimonial(currentTestimonial - 1);
 }
 
 // Auto-slide every 5 seconds
@@ -228,8 +198,8 @@ setInterval(nextTestimonial, 5000);
 </script>
 
 <!-- JavaScript Files -->
-<script src="js/events.js?v=20260215"></script>
-<script src="js/live-stream.js?v=20260215"></script>
+<script src="js/events.js?v=20260216"></script>
+<script src="js/live-stream.js?v=20260216"></script>
 
 </body>
 </html>

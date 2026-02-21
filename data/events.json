@@ -1,50 +1,4 @@
 {
-  "events": [
-    {
-      "id": 1,
-      "title": "Sunday Worship Service",
-      "type": "video",
-      "videoId": "P7tvLwUQ_tg",
-      "youtubeLink": "https://www.youtube.com/live/P7tvLwUQ_tg",
-      "schedule": "Every Sunday",
-      "times": [
-        "05:30am - 07:30am",
-        "08:30am - 10:30am",
-        "11:30am - 01:30pm"
-      ],
-      "description": "Join us for powerful worship, inspiring messages, and fellowship with believers.",
-      "buttonText": "Watch Live",
-      "buttonClass": "register"
-    },
-    {
-      "id": 2,
-      "title": "Friday Prayer Meeting",
-      "type": "video",
-      "videoId": "ysSagRBRE1A",
-      "youtubeLink": "https://www.youtube.com/live/ysSagRBRE1A",
-      "schedule": "Every Friday",
-      "times": [
-        "11:00am - 01:30pm"
-      ],
-      "description": "Come together in unity and power as we lift our voices in prayer.",
-      "buttonText": "Watch Live",
-      "buttonClass": "call"
-    },
-    {
-      "id": 3,
-      "title": "Youth Fellowship",
-      "type": "video",
-      "videoId": "p2doONT8Q2s",
-      "youtubeLink": "https://www.youtube.com/live/p2doONT8Q2s",
-      "schedule": "Every Saturday",
-      "times": [
-        "06:00pm - 07:00pm"
-      ],
-      "description": "Dynamic gatherings for young people to grow in faith and build friendships.",
-      "buttonText": "Watch Live",
-      "buttonClass": "join"
-    }
-  ],
   "recentStreams": [
     {
       "id": 1,
@@ -60,7 +14,7 @@
       "title": "Sunday Worship - Faith That Moves Mountains",
       "videoId": "ysSagRBRE1A",
       "youtubeLink": "https://www.youtube.com/watch?v=ysSagRBRE1A",
-      "date": "February 8, 2026",
+      "date": "February 9, 2026",
       "channel": "main",
       "description": "Powerful message about trusting God in difficult times"
     },
@@ -69,7 +23,7 @@
       "title": "Friday Prayer - Unity in the Spirit",
       "videoId": "H1ot4mB-Z8U",
       "youtubeLink": "https://www.youtube.com/watch?v=H1ot4mB-Z8U",
-      "date": "February 13, 2026",
+      "date": "February 7, 2026",
       "channel": "main",
       "description": "Coming together in prayer and worship"
     }
@@ -77,35 +31,99 @@
   "mostWatched": [
     {
       "id": 1,
-      "title": "The Power of Faith",
+      "title": "Short Devotional - Faith Over Fear",
       "videoId": "5LJt7R7G0xk",
       "youtubeLink": "https://www.youtube.com/watch?v=5LJt7R7G0xk",
       "views": "21K views",
-      "description": "Discover how faith can transform your life"
+      "channel": "shorts",
+      "description": "Quick encouragement for your day"
     },
     {
       "id": 2,
-      "title": "Walking in Victory",
+      "title": "The Power of Faith",
       "videoId": "5AxMYxuA2Do",
       "youtubeLink": "https://www.youtube.com/watch?v=5AxMYxuA2Do",
       "views": "16K views",
-      "description": "Overcoming life's challenges with God's strength"
+      "channel": "main",
+      "description": "Discover how faith can transform your life"
     },
     {
       "id": 3,
-      "title": "Grace and Mercy",
+      "title": "Walking in Victory",
       "videoId": "XeNwZHjO2DQ",
       "youtubeLink": "https://www.youtube.com/watch?v=XeNwZHjO2DQ",
       "views": "15K views",
-      "description": "Understanding God's unconditional love"
+      "channel": "main",
+      "description": "Overcoming life's challenges with God's strength"
     }
   ],
-  "liveSchedule": {
-    "nextService": {
-      "title": "Sunday Worship Service",
-      "date": "February 16, 2026",
-      "time": "05:30 AM",
-      "countdown": true
+  "verseReels": [
+    {
+      "id": 1,
+      "title": "Philippians 4:13 - I Can Do All Things",
+      "videoId": "VERSE_REEL_ID_1",
+      "youtubeLink": "https://www.youtube.com/shorts/VERSE_REEL_ID_1",
+      "verse": "Philippians 4:13",
+      "description": "Strength through Christ"
+    },
+    {
+      "id": 2,
+      "title": "Psalm 23 - The Lord is My Shepherd",
+      "videoId": "VERSE_REEL_ID_2",
+      "youtubeLink": "https://www.youtube.com/shorts/VERSE_REEL_ID_2",
+      "verse": "Psalm 23:1",
+      "description": "God's guidance and protection"
+    },
+    {
+      "id": 3,
+      "title": "Jeremiah 29:11 - Plans to Prosper You",
+      "videoId": "VERSE_REEL_ID_3",
+      "youtubeLink": "https://www.youtube.com/shorts/VERSE_REEL_ID_3",
+      "verse": "Jeremiah 29:11",
+      "description": "Hope and a future"
     }
-  }
+  ],
+  "specialEvents": [
+    {
+      "id": 1,
+      "title": "Monthly Fasting Prayer",
+      "icon": "🙏",
+      "schedule": "2nd Saturday of Every Month",
+      "time": "06:00am - 06:00pm",
+      "description": "A day dedicated to seeking God's face through fasting and prayer"
+    },
+    {
+      "id": 2,
+      "title": "Annual Church Anniversary",
+      "icon": "🎉",
+      "schedule": "Coming Soon",
+      "time": "",
+      "description": "Celebrating God's faithfulness with special worship services and activities"
+    },
+    {
+      "id": 3,
+      "title": "Family Retreat",
+      "icon": "👨‍👩‍👧‍👦",
+      "schedule": "Details Coming Soon",
+      "time": "",
+      "description": "A weekend getaway for families to connect with God and each other"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "This church has transformed my life. The worship is powerful and the messages are life-changing. I'm grateful to be part of this family!",
+      "author": "Sarah M."
+    },
+    {
+      "id": 2,
+      "text": "The Friday prayer meetings have become the highlight of my week. There's so much peace and power when we pray together.",
+      "author": "John D."
+    },
+    {
+      "id": 3,
+      "text": "The youth fellowship has helped me grow in my faith. I've made amazing friends and learned so much about God's love.",
+      "author": "David K."
+    }
+  ]
 }
