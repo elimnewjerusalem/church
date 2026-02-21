@@ -50,8 +50,7 @@ function calculateNextService() {
     // Friday
     { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image: 'friday-prayer.jpg' },
     // Daily night prayer
-    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'images/live/night-prayer.jpg' }
-  ];
+    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'images/live/night-prayer.jpg' },
   
   // Find next service
   for (let i = 0; i < 7; i++) {
