@@ -44,13 +44,13 @@ function calculateNextService() {
   
   const services = [
     // Sunday services
-    { day: 0, time: 330, endTime: 450, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: 'images/live/sunday-worship.jpg' },
-    { day: 0, time: 510, endTime: 630, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: 'images/live/sunday-worship.jpg' },
-    { day: 0, time: 720, endTime: 840, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: 'images/live/sunday-worship.jpg' },
+    { day: 0, time: 330, endTime: 450, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: src="${nextServiceData.image}" },
+    { day: 0, time: 510, endTime: 630, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: src="${nextServiceData.image}" },
+    { day: 0, time: 720, endTime: 840, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: src="${nextServiceData.image}" },
     // Friday
-    { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image: 'images/live/friday-prayer.jpg' },
+    { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image:src="${nextServiceData.image}" },
     // Daily night prayer
-    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'images/live/night-prayer.jpg' },
+    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: src="${nextServiceData.image}" }, 
   ];
 
   // Find next service
