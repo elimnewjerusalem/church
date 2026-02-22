@@ -20,6 +20,14 @@
   padding:0;
   box-sizing:border-box;
 }
+body {
+  margin: 0;
+  padding: 0;
+}
+section {
+  margin: 0;
+  padding: 0;
+}
 
 body{
   background:var(--light);
@@ -122,6 +130,10 @@ header{
 
 .slide.active{
   display: block;
+}
+
+.slider {
+  margin-top: 0;
 }
 
 /* FIXED: Removed the white overlay that was blocking the slider */
