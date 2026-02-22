@@ -257,6 +257,20 @@ section{
   overflow-x: hidden; /* FIX: Prevent overflow */
 }
 
+/* PAGE HERO - NO GAP */
+.page-hero{
+  padding:40px 0;
+  text-align:center;
+  width: 100%;
+  margin: 0; /* Remove margin */
+}
+
+/* SLIDER - NO GAP */
+.slider{
+  margin-top: 0 !important; /* Remove top margin */
+  padding-top: 0 !important; /* Remove top padding */
+}
+
 h1,h2,h3{
   margin-bottom:20px;
   color:var(--primary);
