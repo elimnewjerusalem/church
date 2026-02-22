@@ -2,27 +2,27 @@
   "recentStreams": [
     {
       "id": 1,
-      "title": "Daily Devotional - Morning Prayer",
-      "videoId": "6nyqxCh-5gI",
-      "youtubeLink": "https://www.youtube.com/watch?v=6nyqxCh-5gI",
-      "date": "February 13, 2026",
+      "title": "ENJC Family Prayer",
+      "videoId": "bIRnhvmvD84",
+      "youtubeLink": "https://www.youtube.com/watch?v=bIRnhvmvD84",
+      "date": "February 21, 2026",
       "channel": "shorts",
-      "description": "Start your day with faith and encouragement"
+      "description": "End your day with faith and encouragement"
     },
     {
       "id": 2,
       "title": "Sunday Worship - Faith That Moves Mountains",
-      "videoId": "ysSagRBRE1A",
-      "youtubeLink": "https://www.youtube.com/watch?v=ysSagRBRE1A",
-      "date": "February 9, 2026",
+      "videoId": "/dbu7DGtOFzo",
+      "youtubeLink": "https://www.youtube.com/watch?v=/dbu7DGtOFzo",
+      "date": "February 22, 2026",
       "channel": "main",
-      "description": "Powerful message about trusting God in difficult times"
+      "description": "Powerful message about God Honor You"
     },
     {
       "id": 3,
-      "title": "Friday Prayer - Unity in the Spirit",
-      "videoId": "H1ot4mB-Z8U",
-      "youtubeLink": "https://www.youtube.com/watch?v=H1ot4mB-Z8U",
+      "title": "Family Blessing Prayer - Unity in the Spirit",
+      "videoId": "/wO5aewJI0lM",
+      "youtubeLink": "https://www.youtube.com/watch?v=/wO5aewJI0lM",
       "date": "February 7, 2026",
       "channel": "main",
       "description": "Coming together in prayer and worship"
@@ -31,12 +31,12 @@
   "mostWatched": [
     {
       "id": 1,
-      "title": "Short Devotional - Faith Over Fear",
+      "title": "Prophetic Sunday Sericve Promo",
       "videoId": "5LJt7R7G0xk",
       "youtubeLink": "https://www.youtube.com/watch?v=5LJt7R7G0xk",
       "views": "21K views",
       "channel": "shorts",
-      "description": "Quick encouragement for your day"
+      "description": "Watch the live on Youtube"
     },
     {
       "id": 2,
@@ -60,25 +60,25 @@
   "verseReels": [
     {
       "id": 1,
-      "title": "Philippians 4:13 - I Can Do All Things",
-      "videoId": "VERSE_REEL_ID_1",
-      "youtubeLink": "https://www.youtube.com/shorts/VERSE_REEL_ID_1",
+      "title": "Sing to the LORD,",
+      "videoId": "/3T9-1IZIqA8",
+      "youtubeLink": "https://www.youtube.com/shorts//3T9-1IZIqA8",
       "verse": "Philippians 4:13",
       "description": "Strength through Christ"
     },
     {
       "id": 2,
-      "title": "Psalm 23 - The Lord is My Shepherd",
-      "videoId": "VERSE_REEL_ID_2",
-      "youtubeLink": "https://www.youtube.com/shorts/VERSE_REEL_ID_2",
+      "title": "Therefore I will praise You, O LORD, among the nations; I will sing praises to Your name",
+      "videoId": "TheMCk-NDuA",
+      "youtubeLink": "https://www.youtube.com/shorts/TheMCk-NDuA",
       "verse": "Psalm 23:1",
       "description": "God's guidance and protection"
     },
     {
       "id": 3,
-      "title": "Jeremiah 29:11 - Plans to Prosper You",
-      "videoId": "VERSE_REEL_ID_3",
-      "youtubeLink": "https://www.youtube.com/shorts/VERSE_REEL_ID_3",
+      "title": "John 5:24 - he has crossed over from death to life.",
+      "videoId": "7E3z_df7LcM",
+      "youtubeLink": "https://www.youtube.com/shorts/7E3z_df7LcM",
       "verse": "Jeremiah 29:11",
       "description": "Hope and a future"
     }
@@ -86,11 +86,11 @@
   "specialEvents": [
     {
       "id": 1,
-      "title": "Monthly Fasting Prayer",
+      "title": "Monthly Special Prayer",
       "icon": "🙏",
       "schedule": "2nd Saturday of Every Month",
       "time": "06:00am - 06:00pm",
-      "description": "A day dedicated to seeking God's face through fasting and prayer"
+      "description": "A day dedicated to seeking God's face through Special and prayer"
     },
     {
       "id": 2,
