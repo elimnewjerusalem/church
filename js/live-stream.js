@@ -1,5 +1,5 @@
 // Live Stream Handler - Elim New Jerusalem Church
-// Updated: Button below video, no top banner
+// Fixed: Always show section (live OR channel link)
 
 const LIVE_STREAMS = {
   mainChannel: {
@@ -117,9 +117,11 @@ function displayLiveStream() {
   
   if (!container || !section) return;
   
+  // ALWAYS SHOW THE SECTION
+  section.style.display = 'block';
+  
   if (activeData) {
-    section.style.display = 'block';
-    
+    // LIVE NOW - Show live content
     const { stream, slot, type } = activeData;
     
     let imageUrl;
@@ -132,28 +134,22 @@ function displayLiveStream() {
     container.innerHTML = `
       <div style="max-width: 1000px; margin: 0 auto;">
         
-        <!-- Clickable Live Stream Image (NO button inside) -->
         <a href="${stream.liveUrl}" target="_blank" style="display: block; text-decoration: none; position: relative; cursor: pointer;">
           <div style="position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 50px rgba(0,0,0,0.3); transition: transform 0.3s ease;">
             
-            <!-- Live Image -->
             <img 
               src="${imageUrl}" 
               alt="${slot.title}" 
               style="width: 100%; height: auto; display: block; object-fit: cover;"
-              onerror="this.onerror=null; this.src='images/live/common.jpg';"
+              onerror="this.onerror=null; this.src='images/Live/common.jpg';"
             >
             
-            <!-- Small LIVE badge in corner -->
             <div style="position: absolute; top: 20px; right: 20px; background: #ff0000; color: white; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; animation: pulse 2s infinite;">
               🔴 LIVE
             </div>
             
-            <!-- Overlay -->
-            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.25);">
-            </div>
+            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.25);"></div>
             
-            <!-- Play Button ONLY -->
             <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
               <div style="width: 130px; height: 130px; background: rgba(255,0,0,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: pulse 2s infinite; box-shadow: 0 10px 40px rgba(255,0,0,0.6);">
                 <svg width="55" height="55" viewBox="0 0 24 24" fill="white">
@@ -165,12 +161,10 @@ function displayLiveStream() {
           </div>
         </a>
         
-        <!-- Description (centered) -->
         <div style="margin-top: 20px; text-align: center;">
           <p style="color: #555; margin-bottom: 20px; font-size: 1.1rem;">${slot.description}</p>
         </div>
         
-        <!-- LIVE NOW Button BELOW video -->
         <div style="text-align: center; margin-top: 25px;">
           <a href="${stream.liveUrl}" class="btn" style="background: #ff0000; color: white; padding: 16px 45px; font-size: 1.2rem; border-radius: 30px; text-decoration: none; display: inline-block; font-weight: bold; box-shadow: 0 4px 15px rgba(255,0,0,0.4); animation: pulse 2s infinite;" target="_blank">
             🔴 LIVE NOW - ${slot.title}
@@ -181,7 +175,46 @@ function displayLiveStream() {
     `;
     
   } else {
-    section.style.display = 'none';
+    // NOT LIVE - Show channel link with common image
+    container.innerHTML = `
+      <div style="max-width: 1000px; margin: 0 auto;">
+        
+        <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" style="display: block; text-decoration: none; position: relative; cursor: pointer;">
+          <div style="position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 50px rgba(0,0,0,0.3); transition: transform 0.3s ease;">
+            
+            <img 
+              src="images/Live/common.jpg" 
+              alt="Elim New Jerusalem Church" 
+              style="width: 100%; height: auto; display: block; object-fit: cover;"
+            >
+            
+            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>
+            
+            <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
+              <div style="width: 100px; height: 100px; background: rgba(102,126,234,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                <svg width="45" height="45" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <h3 style="font-size: 1.8rem; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.8); font-weight: bold;">Visit Our Channel</h3>
+              <p style="font-size: 1.1rem; text-shadow: 0 2px 6px rgba(0,0,0,0.8);">Watch past services and stay updated</p>
+            </div>
+            
+          </div>
+        </a>
+        
+        <div style="margin-top: 20px; text-align: center;">
+          <p style="color: #555; margin-bottom: 20px; font-size: 1.1rem;">We're not live right now, but you can watch our previous services</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 25px;">
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" class="btn register" style="padding: 16px 45px; font-size: 1.1rem; border-radius: 30px; text-decoration: none; display: inline-block; font-weight: bold;" target="_blank">
+            📺 Visit YouTube Channel
+          </a>
+        </div>
+        
+      </div>
+    `;
   }
 }
 
@@ -200,7 +233,7 @@ style.textContent = `
   
   .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255,0,0,0.5) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
   }
 `;
 document.head.appendChild(style);
@@ -210,9 +243,11 @@ document.addEventListener('DOMContentLoaded', () => {
   displayLiveStream();
   setInterval(displayLiveStream, 60000);
   
-  console.log('🔴 Live stream initialized');
+  console.log('🔴 Live stream initialized - Always visible');
   const active = getActiveLiveStream();
   if (active) {
     console.log('✅ LIVE:', active.slot.title);
+  } else {
+    console.log('📺 Showing channel link');
   }
 });

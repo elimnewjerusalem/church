@@ -1,5 +1,5 @@
 // Events Page JavaScript - Elim New Jerusalem Church
-// Updated: Split layout countdown with Add to Calendar
+// Fixed: No blinking countdown timer
 
 document.addEventListener('DOMContentLoaded', () => {
   loadAllContent();
@@ -29,7 +29,7 @@ let nextServiceData = null;
 
 function startCountdownTimer() {
   calculateNextService();
-  updateCountdown();
+  renderCountdownHTML(); // Initial render ONCE
 }
 
 function calculateNextService() {
@@ -77,15 +77,16 @@ function calculateNextService() {
   }
 }
 
+// Only update the numbers, NOT the entire HTML (prevents blinking)
 function updateCountdown() {
-  const container = document.getElementById('next-service-countdown');
-  if (!container || !nextServiceData) return;
+  if (!nextServiceData) return;
   
   const now = new Date();
   const diff = nextServiceData.date - now;
   
   if (diff <= 0) {
     calculateNextService();
+    renderCountdownHTML(); // Re-render for new service
     return;
   }
   
@@ -94,7 +95,29 @@ function updateCountdown() {
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
   
-  // Create calendar event data
+  // Update only the numbers (no blinking!)
+  const hoursEl = document.getElementById('countdown-hours');
+  const minutesEl = document.getElementById('countdown-minutes');
+  const secondsEl = document.getElementById('countdown-seconds');
+  
+  if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+  if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+  if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+}
+
+// Render HTML once
+function renderCountdownHTML() {
+  const container = document.getElementById('next-service-countdown');
+  if (!container || !nextServiceData) return;
+  
+  const now = new Date();
+  const diff = nextServiceData.date - now;
+  
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  
   const calendarData = {
     title: nextServiceData.name,
     date: nextServiceData.date,
@@ -106,56 +129,43 @@ function updateCountdown() {
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
         
-        <!-- LEFT SIDE - Info & Countdown -->
+        <!-- LEFT SIDE -->
         <div style="padding-right: 20px;">
-          
-          <!-- Service Name -->
           <h3 style="font-size: 2rem; color: #2c3e50; margin-bottom: 15px; font-weight: bold;">${nextServiceData.name}</h3>
-          
-          <!-- Date & Time -->
           <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
           
-          <!-- Countdown Timer -->
+          <!-- Countdown with IDs -->
           <div style="display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;">
-            ${days > 0 ? `
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; min-width: 90px; text-align: center;">
-              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${days}</div>
-              <div style="font-size: 0.9rem; opacity: 0.9;">Day${days !== 1 ? 's' : ''}</div>
-            </div>
-            ` : ''}
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; min-width: 90px; text-align: center;">
-              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${String(hours).padStart(2, '0')}</div>
+              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;" id="countdown-hours">${String(hours).padStart(2, '0')}</div>
               <div style="font-size: 0.9rem; opacity: 0.9;">Hours</div>
             </div>
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; min-width: 90px; text-align: center;">
-              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${String(minutes).padStart(2, '0')}</div>
+              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;" id="countdown-minutes">${String(minutes).padStart(2, '0')}</div>
               <div style="font-size: 0.9rem; opacity: 0.9;">Minutes</div>
             </div>
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; min-width: 90px; text-align: center;">
-              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${String(seconds).padStart(2, '0')}</div>
+              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;" id="countdown-seconds">${String(seconds).padStart(2, '0')}</div>
               <div style="font-size: 0.9rem; opacity: 0.9;">Seconds</div>
             </div>
           </div>
           
-          <!-- Add to Calendar Button -->
           <div>
             <button onclick="addToCalendar('${calendarData.title}', '${nextServiceData.date.toISOString()}', '${calendarData.description}')" class="btn register" style="padding: 14px 30px; font-size: 1.05rem; cursor: pointer; border: none;">
               📅 Add to Calendar
             </button>
           </div>
-          
         </div>
         
-        <!-- RIGHT SIDE - Image with small LIVE banner -->
+        <!-- RIGHT SIDE -->
         <div style="position: relative;">
           <div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
             <img 
-              src="images/Live/${nextServiceData.image}" 
+              src="${nextServiceData.image}" 
               alt="${nextServiceData.name}" 
               style="width: 100%; height: auto; display: block;"
               onerror="this.onerror=null; this.src='images/Live/common.jpg';"
             >
-            <!-- Small LIVE banner overlay -->
             <div style="position: absolute; top: 15px; right: 15px; background: #ff0000; color: white; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
               ⏰ NEXT LIVE SERVICE
             </div>
@@ -163,12 +173,10 @@ function updateCountdown() {
         </div>
         
       </div>
-      
     </div>
   `;
 }
 
-// Add to Calendar Function
 function addToCalendar(title, dateISO, description) {
   const date = new Date(dateISO);
   const year = date.getFullYear();
@@ -177,9 +185,8 @@ function addToCalendar(title, dateISO, description) {
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
   
-  // Format for Google Calendar
   const startDate = `${year}${month}${day}T${hours}${minutes}00`;
-  const endDate = new Date(date.getTime() + 2 * 60 * 60 * 1000); // +2 hours
+  const endDate = new Date(date.getTime() + 2 * 60 * 60 * 1000);
   const endYear = endDate.getFullYear();
   const endMonth = String(endDate.getMonth() + 1).padStart(2, '0');
   const endDay = String(endDate.getDate()).padStart(2, '0');
@@ -187,7 +194,6 @@ function addToCalendar(title, dateISO, description) {
   const endMinutes = String(endDate.getMinutes()).padStart(2, '0');
   const endDateStr = `${endYear}${endMonth}${endDay}T${endHours}${endMinutes}00`;
   
-  // Google Calendar URL
   const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDateStr}&details=${encodeURIComponent(description)}&location=Elim+New+Jerusalem+Church`;
   
   window.open(googleCalUrl, '_blank');
