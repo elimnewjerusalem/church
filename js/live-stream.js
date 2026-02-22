@@ -8,8 +8,8 @@ const LIVE_STREAMS = {
     liveUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial/live',
     
     images: {
-      friday: 'images/live/friday-prayer.jpg',
-      sunday: 'images/live/sunday-worship.jpg',
+      friday: 'images/Live/friday-prayer.jpg',
+      sunday: 'images/Live/sunday-worship.jpg',
     },
     
     schedule: [
@@ -53,7 +53,7 @@ const LIVE_STREAMS = {
     channelUrl: 'https://www.youtube.com/@ENJCShorts',
     liveUrl: 'https://www.youtube.com/@ENJCShorts/live',
     
-    image: 'images/live/night-prayer.jpg',
+    image: 'images/Live/night-prayer.jpg',
     
     schedule: [
       {
