@@ -10,12 +10,12 @@
   <meta http-equiv="Expires" content="0">
   
   <title>Live & Events | ENJC Church</title>
-  <link rel="stylesheet" href="css/style.css?v=20260216">
+  <link rel="stylesheet" href="css/style.css?v=20260217">
 </head>
 
 <body>
 
-<!-- 1. HEADER SECTION -->
+<!-- HEADER -->
 <header>
   <div class="container nav">
     <div class="logo">
@@ -40,11 +40,10 @@
     <h1 style="color: white; text-shadow: 0 3px 10px rgba(0,0,0,0.3);">Live & Events</h1>
     <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem;">Join us for worship, fellowship, and special gatherings</p>
   </div>
-  <!-- Animated background pattern -->
   <div style="position: absolute; inset: 0; opacity: 0.1; background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>'); background-size: 30px 30px;"></div>
 </div>
 
-<!-- 2. AUTO LIVE SECTION (Shows ONLY when streaming) -->
+<!-- AUTO LIVE SECTION (No top banner, button below) -->
 <section id="live-stream-section" style="background: #f0f4ff; padding: 50px 0; display: none;">
   <div class="container">
     <div id="live-stream-container">
@@ -55,11 +54,10 @@
   </div>
 </section>
 
-<!-- 3. NEXT LIVE TIME (Countdown Timer) -->
+<!-- NEXT LIVE TIME (Split Layout: Info Left, Image Right) -->
 <section style="background: #f9f9f9; padding: 50px 0;">
   <div class="container">
     <div id="next-service-countdown">
-      <!-- Countdown will be loaded here by JavaScript -->
       <div style="text-align: center; padding: 40px;">
         <p style="color: #999;">Loading next service...</p>
       </div>
@@ -67,7 +65,7 @@
   </div>
 </section>
 
-<!-- 4. RECENT LIVE STREAMS -->
+<!-- RECENT LIVE STREAMS -->
 <section style="background: white; padding: 60px 0;">
   <div class="container">
     <h2>📺 Recent Live Streams</h2>
@@ -79,7 +77,7 @@
   </div>
 </section>
 
-<!-- 5. MOST WATCHED VIDEOS -->
+<!-- MOST WATCHED VIDEOS -->
 <section style="background: #f5f5f5; padding: 60px 0;">
   <div class="container">
     <h2>🔥 Most Watched Messages</h2>
@@ -91,7 +89,7 @@
   </div>
 </section>
 
-<!-- 6. VERSE REELS (NEW!) -->
+<!-- VERSE REELS -->
 <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 0; color: white;">
   <div class="container">
     <h2 style="color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.3);">📖 Verse Reels</h2>
@@ -107,19 +105,19 @@
   </div>
 </section>
 
-<!-- 7. SPECIAL EVENTS SCHEDULE -->
+<!-- SPECIAL EVENTS SCHEDULE -->
 <section style="background: white; padding: 60px 0;">
   <div class="container">
     <h2>⭐ Special Events</h2>
     <p style="margin-bottom: 40px; color: #666; font-size: 1.1rem;">Mark your calendar for these upcoming special gatherings</p>
     
     <div class="grid" id="special-events-container" style="margin-top:40px;">
-      <!-- Special events will be loaded here -->
+      <!-- Special events loaded here -->
     </div>
   </div>
 </section>
 
-<!-- 8. PEOPLE TESTIMONIALS -->
+<!-- TESTIMONIALS -->
 <section style="background: #f5f5f5; padding: 60px 0;">
   <div class="container">
     <h2>💬 What People Are Saying</h2>
@@ -127,10 +125,9 @@
     
     <div class="testimonials-slider" style="max-width: 800px; margin: 0 auto; position: relative; overflow: hidden;">
       <div class="testimonial-track" id="testimonial-track" style="display: flex; transition: transform 0.5s ease;">
-        <!-- Testimonials will be loaded here -->
+        <!-- Testimonials loaded here -->
       </div>
       
-      <!-- Slider Navigation -->
       <div style="text-align: center; margin-top: 25px;">
         <button onclick="previousTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">❮</button>
         <button onclick="nextTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">❯</button>
@@ -139,7 +136,7 @@
   </div>
 </section>
 
-<!-- 9. CTA SECTION - Don't Miss Out -->
+<!-- CTA SECTION -->
 <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 70px 0;">
   <div class="container" style="text-align: center;">
     <h2 style="color: white; margin-bottom: 20px; font-size: 2.2rem;">Don't Miss Out!</h2>
@@ -151,7 +148,7 @@
   </div>
 </section>
 
-<!-- 10. FOOTER -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     © 2026 Elim New Jerusalem Church. All rights reserved.
@@ -166,17 +163,16 @@
 <!-- Testimonial Slider Script -->
 <script>
 let currentTestimonial = 0;
-const updateTestimonialSlider = () => {
+
+function updateTestimonialSlider() {
   const testimonials = document.querySelectorAll('.testimonial-slide');
-  const totalTestimonials = testimonials.length;
-  
-  if (totalTestimonials === 0) return;
+  if (testimonials.length === 0) return;
   
   const track = document.getElementById('testimonial-track');
   if (track) {
     track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
   }
-};
+}
 
 function showTestimonial(index) {
   const testimonials = document.querySelectorAll('.testimonial-slide');
@@ -193,13 +189,12 @@ function previousTestimonial() {
   showTestimonial(currentTestimonial - 1);
 }
 
-// Auto-slide every 5 seconds
 setInterval(nextTestimonial, 5000);
 </script>
 
 <!-- JavaScript Files -->
-<script src="js/events.js?v=20260216"></script>
-<script src="js/live-stream.js?v=20260216"></script>
+<script src="js/events.js?v=20260217"></script>
+<script src="js/live-stream.js?v=20260217"></script>
 
 </body>
 </html>
