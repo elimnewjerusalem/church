@@ -44,13 +44,13 @@ function calculateNextService() {
   
   const services = [
     // Sunday services
-    { day: 0, time: 330, endTime: 450, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: src="${nextServiceData.image}" },
-    { day: 0, time: 510, endTime: 630, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: src="${nextServiceData.image}" },
-    { day: 0, time: 720, endTime: 840, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: src="${nextServiceData.image}" },
+    { day: 0, time: 330, endTime: 450, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: 'images/Live/sunday-worship.jpg'},
+    { day: 0, time: 510, endTime: 630, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: 'images/Live/sunday-worship.jpg'},
+    { day: 0, time: 720, endTime: 840, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: 'images/Live/sunday-worship.jpg'},
     // Friday
-    { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image:src="${nextServiceData.image}" },
+    { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image: 'images/Live/friday-prayer.jpg'},
     // Daily night prayer
-    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: src="${nextServiceData.image}" }, 
+    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'images/Live/night-prayer.jpg'}, 
   ];
 
   // Find next service
@@ -110,10 +110,10 @@ function updateCountdown() {
       <!-- Service Image -->
       <div style="position: relative; border-radius: 12px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
         <img 
-          src="images/live/${nextServiceData.image}" 
+          src="images/Live/${nextServiceData.image}" 
           alt="${nextServiceData.name}" 
           style="width: 100%; height: auto; display: block;"
-          onerror="this.onerror=null; this.src='images/live/common.jpg'; console.error('Image not found: ${nextServiceData.image}');"
+          onerror="this.onerror=null; this.src='images/Live/common.jpg'; console.error('Image not found: ${nextServiceData.image}');"
         >
         <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)); display: flex; align-items: center; justify-content: center;">
           <div style="text-align: center; color: white;">
