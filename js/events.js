@@ -38,11 +38,11 @@ function calculateNextService() {
   const currentTime = now.getHours() * 60 + now.getMinutes();
   
   const services = [
-    { day: 0, time: 330, endTime: 450, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: 'sunday-worship.jpg' },
-    { day: 0, time: 510, endTime: 630, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: 'sunday-worship.jpg' },
-    { day: 0, time: 720, endTime: 840, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: 'sunday-worship.jpg' },
-    { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image: 'friday-prayer.jpg' },
-    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'night-prayer.jpg' }
+    { day: 0, time: 330, endTime: 450, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: 'Images/Live/sunday-worship.jpg' },
+    { day: 0, time: 510, endTime: 630, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: 'Images/Live/sunday-worship.jpg' },
+    { day: 0, time: 720, endTime: 840, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: 'Images/Live/sunday-worship.jpg' },
+    { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image: 'Images/Live/friday-prayer.jpg' },
+    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'Images/Live/night-prayer.jpg' }
   ];
   
   for (let i = 0; i < 7; i++) {
@@ -150,10 +150,10 @@ function updateCountdown() {
         <div style="position: relative;">
           <div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
             <img 
-              src="images/live/${nextServiceData.image}" 
+              src="images/Live/${nextServiceData.image}" 
               alt="${nextServiceData.name}" 
               style="width: 100%; height: auto; display: block;"
-              onerror="this.onerror=null; this.src='images/live/common.jpg';"
+              onerror="this.onerror=null; this.src='images/ive/common.jpg';"
             >
             <!-- Small LIVE banner overlay -->
             <div style="position: absolute; top: 15px; right: 15px; background: #ff0000; color: white; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
