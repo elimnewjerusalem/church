@@ -1,6 +1,6 @@
 /* ===================================
    ENJC – Elegant Church Theme
-   Enhanced Version with Fixes
+   Mobile Fixed Version
 =================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
@@ -14,19 +14,25 @@
   --text-dark:#1a1a1a;
 }
 
-/* ===== RESET ===== */
+/* ===== RESET - MOBILE FIX ===== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
-body {
+
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* FIX: Prevent horizontal scroll */
 }
+
 section {
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* FIX: Prevent overflow */
 }
 
 body{
@@ -38,12 +44,13 @@ body{
 
 
 /* ===================================
-   CONTAINER
+   CONTAINER - MOBILE FIX
 =================================== */
 .container{
   width:92%;
   max-width:1200px;
   margin:auto;
+  padding: 0 10px; /* FIX: Add padding for mobile */
 }
 
 
@@ -57,6 +64,7 @@ header{
   background:rgba(11,42,69,.97);
   backdrop-filter:blur(12px);
   box-shadow:0 2px 20px rgba(0,0,0,.1);
+  width: 100%; /* FIX: Full width */
 }
 
 .nav{
@@ -64,6 +72,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  width: 100%; /* FIX: Full width */
 }
 
 .logo img{
@@ -80,6 +89,7 @@ header{
   list-style:none;
   display:flex;
   gap:8px;
+  flex-wrap: wrap; /* FIX: Allow wrapping on small screens */
 }
 
 .menu a{
@@ -105,13 +115,14 @@ header{
 
 
 /* ===================================
-   HERO SLIDER
+   HERO SLIDER - MOBILE FIX
 =================================== */
 .slider{
   position: relative;
   width: 100%;
   height: 70vh;
   overflow: hidden;
+  margin: 0; /* FIX: Remove any margin */
 }
 
 .slide{
@@ -132,11 +143,6 @@ header{
   display: block;
 }
 
-.slider {
-  margin-top: 0;
-}
-
-/* FIXED: Removed the white overlay that was blocking the slider */
 .slider::before{
   content:"";
   position:absolute;
@@ -187,6 +193,7 @@ header{
   width:90%;
   max-width:900px;
   animation: fadeInUp 1.2s ease-out;
+  padding: 0 15px; /* FIX: Add padding for mobile */
 }
 
 @keyframes fadeInUp {
@@ -241,11 +248,13 @@ header{
 
 
 /* ===================================
-   SECTIONS
+   SECTIONS - MOBILE FIX
 =================================== */
 section{
   padding:90px 0;
   text-align:center;
+  width: 100%; /* FIX: Full width */
+  overflow-x: hidden; /* FIX: Prevent overflow */
 }
 
 h1,h2,h3{
@@ -509,6 +518,7 @@ footer{
   margin-top:80px;
   text-align:center;
   font-size:15px;
+  width: 100%; /* FIX: Full width */
 }
 
 footer a{
@@ -544,48 +554,51 @@ footer a:hover{
 
 
 /* ===================================
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE - ENHANCED
 =================================== */
 @media(max-width:768px){
 
+  /* FIX: Container on mobile */
+  .container{
+    width:95%;
+    padding: 0 5px;
+  }
+
+  /* FIX: Navigation */
+  .nav{
+    height:auto;
+    min-height:75px;
+    flex-wrap:wrap;
+    padding:10px 0;
+  }
+
   .menu{
-    gap:6px;
-    font-size:13px;
+    gap:4px;
+    font-size:12px;
+    justify-content:center;
+    width:100%;
+    margin-top:10px;
   }
 
   .menu a{
-    padding:8px 12px;
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  /* FIX: Logo */
+  .logo img{
+    height:40px;
+  }
+
+  /* FIX: Hero text */
+  .hero-text{
+    width:95%;
+    padding:0 10px;
   }
 
   .hero-text h1{
-    font-size:36px;
-  }
-
-  .hero-text p{
-    font-size:16px;
-  }
-
-  h2{
     font-size:32px;
-  }
-
-  section{
-    padding:60px 0;
-  }
-
-  iframe{
-    height:280px;
-  }
-
-  .prev, .next{
-    padding:8px 12px;
-    font-size:24px;
-  }
-}
-
-@media(max-width:480px){
-  .hero-text h1{
-    font-size:28px;
+    letter-spacing:0;
   }
 
   .hero-text p{
@@ -597,10 +610,133 @@ footer a:hover{
     padding:12px 24px;
     font-size:14px;
   }
+
+  /* FIX: Slider controls */
+  .prev, .next{
+    padding:8px 12px;
+    font-size:20px;
+  }
+
+  .prev{ left:10px; }
+  .next{ right:10px; }
+
+  /* FIX: Headings */
+  h2{
+    font-size:28px;
+  }
+
+  /* FIX: Sections */
+  section{
+    padding:50px 0;
+  }
+
+  /* FIX: Grid layouts */
+  .grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .events-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .gallery{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+
+  /* FIX: Cards */
+  .card{
+    padding:25px 20px;
+  }
+
+  /* FIX: iFrame */
+  iframe{
+    height:280px;
+  }
+
+  /* FIX: Buttons */
+  .btn{
+    padding:10px 20px;
+    font-size:14px;
+    margin:4px 2px;
+  }
+
+  /* FIX: WhatsApp float */
+  .whatsapp-float{
+    bottom:15px;
+    right:15px;
+  }
+
+  .whatsapp-float img{
+    width:55px;
+  }
 }
 
+/* EXTRA SMALL DEVICES */
+@media(max-width:480px){
+
+  .container{
+    width:98%;
+    padding:0 2px;
+  }
+
+  .menu{
+    gap:2px;
+    font-size:11px;
+  }
+
+  .menu a{
+    padding:6px 8px;
+  }
+
+  .hero-text h1{
+    font-size:24px;
+  }
+
+  .hero-text p{
+    font-size:12px;
+  }
+
+  .hero-btn{
+    padding:10px 20px;
+    font-size:13px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  .events-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .event-card img{
+    height:180px;
+  }
+
+  .event-content{
+    padding:18px;
+  }
+
+  .event-content h3{
+    font-size:18px;
+  }
+}
+
+/* FIX: Slider height on mobile */
 @media (max-width: 768px){
   .slider{
-    height: 60vh;
+    height: 50vh;
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 480px){
+  .slider{
+    height: 40vh;
+    min-height: 350px;
   }
 }
