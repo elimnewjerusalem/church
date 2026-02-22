@@ -1,35 +1,31 @@
 // Events Page JavaScript - Elim New Jerusalem Church
-// Complete rebuild with countdown timer and all features
 
 document.addEventListener('DOMContentLoaded', () => {
   loadAllContent();
   startCountdownTimer();
-  
-  // Update countdown every second
   setInterval(updateCountdown, 1000);
 });
 
-// Load all content from JSON
+// ==================== LOAD JSON ====================
+
 async function loadAllContent() {
   try {
     const response = await fetch('data/events.json');
     const data = await response.json();
-    
-    // Load all sections
+
     loadRecentStreams(data.recentStreams);
     loadMostWatched(data.mostWatched);
     loadVerseReels(data.verseReels);
     loadSpecialEvents(data.specialEvents);
     loadTestimonials(data.testimonials);
-    
+
   } catch (error) {
     console.error('Error loading events:', error);
   }
 }
 
-// ==================== COUNTDOWN TIMER ====================
+// ==================== COUNTDOWN ====================
 
-let countdownInterval;
 let nextServiceData = null;
 
 function startCountdownTimer() {
@@ -39,122 +35,79 @@ function startCountdownTimer() {
 }
 
 function calculateNextService() {
+
   const now = new Date();
   const currentDay = now.getDay();
   const currentTime = now.getHours() * 60 + now.getMinutes();
-  
+
   const services = [
-    // Sunday services
-    { day: 0, time: 330, endTime: 450, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: 'images/Live/sunday-worship.jpg'},
-    { day: 0, time: 510, endTime: 630, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: 'images/Live/sunday-worship.jpg'},
-    { day: 0, time: 720, endTime: 840, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: 'images/Live/sunday-worship.jpg'},
-    // Friday
-    { day: 5, time: 660, endTime: 840, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image: 'images/Live/friday-prayer.jpg'},
-    // Daily night prayer
-    { day: 'daily', time: 1350, endTime: 1380, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'images/Live/night-prayer.jpg'}, 
+    { day: 0, time: 330, name: 'Sunday Worship Service', timeStr: '05:30 AM', image: 'images/Live/sunday-worship.jpg'},
+    { day: 0, time: 510, name: 'Sunday Worship Service', timeStr: '08:30 AM', image: 'images/Live/sunday-worship.jpg'},
+    { day: 0, time: 720, name: 'Sunday Worship Service', timeStr: '12:00 PM', image: 'images/Live/sunday-worship.jpg'},
+    { day: 5, time: 660, name: 'Friday Prayer Meeting', timeStr: '11:00 AM', image: 'images/Live/friday-prayer.jpg'},
+    { day: 'daily', time: 1350, name: 'Daily Night Prayer', timeStr: '10:30 PM', image: 'images/Live/night-prayer.jpg'}
   ];
 
-  // Find next service
   for (let i = 0; i < 7; i++) {
+
     const checkDay = (currentDay + i) % 7;
-    const checkTime = i === 0 ? currentTime : 0;
-    
+
     for (const service of services) {
+
       if (service.day === 'daily' || service.day === checkDay) {
-        if (i === 0 && checkTime >= service.time && checkTime < service.endTime) {
-          continue;
-        }
-        if (i === 0 && checkTime >= service.time) {
-          continue;
-        }
-        
+
         const serviceDate = new Date(now);
         serviceDate.setDate(serviceDate.getDate() + i);
         serviceDate.setHours(Math.floor(service.time / 60));
         serviceDate.setMinutes(service.time % 60);
         serviceDate.setSeconds(0);
-        
-        nextServiceData = {
-          name: service.name,
-          time: service.timeStr,
-          date: serviceDate,
-          image: service.image,
-          dayName: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][checkDay]
-        };
-        return;
+
+        if (serviceDate > now) {
+          nextServiceData = {
+            name: service.name,
+            time: service.timeStr,
+            date: serviceDate,
+            image: service.image
+          };
+          return;
+        }
       }
     }
   }
 }
 
 function updateCountdown() {
+
   const container = document.getElementById('next-service-countdown');
   if (!container || !nextServiceData) return;
-  
+
   const now = new Date();
   const diff = nextServiceData.date - now;
-  
+
   if (diff <= 0) {
-    // Service starting now - recalculate
     calculateNextService();
     return;
   }
-  
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  
+
   container.innerHTML = `
-    <div style="background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 900px; margin: 0 auto;">
-      
-      <!-- Service Image -->
-      <div style="position: relative; border-radius: 12px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-        <img 
-          src="images/Live/${nextServiceData.image}" 
-          alt="${nextServiceData.name}" 
-          style="width: 100%; height: auto; display: block;"
-          onerror="this.onerror=null; this.src='images/Live/common.jpg'; console.error('Image not found: ${nextServiceData.image}');"
-        >
-        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)); display: flex; align-items: center; justify-content: center;">
-          <div style="text-align: center; color: white;">
-            <h3 style="font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 3px 10px rgba(0,0,0,0.8); font-weight: bold;">⏰ NEXT LIVE SERVICE</h3>
-          </div>
-        </div>
+    <div style="background:white; padding:40px; border-radius:15px; box-shadow:0 4px 20px rgba(0,0,0,0.1); text-align:center;">
+
+      <img src="${nextServiceData.image}" 
+           style="width:100%; max-width:500px; border-radius:12px; margin-bottom:20px;" />
+
+      <h3>${nextServiceData.name}</h3>
+      <p style="color:#666;">${nextServiceData.time}</p>
+
+      <div style="display:flex; justify-content:center; gap:20px; margin-top:20px;">
+        <div><strong>${String(hours).padStart(2,'0')}</strong><br>Hours</div>
+        <div><strong>${String(minutes).padStart(2,'0')}</strong><br>Minutes</div>
+        <div><strong>${String(seconds).padStart(2,'0')}</strong><br>Seconds</div>
       </div>
-      
-      <!-- Service Info -->
-      <div style="text-align: center; margin-bottom: 25px;">
-        <h3 style="font-size: 1.8rem; color: #2c3e50; margin-bottom: 10px; font-weight: bold;">${nextServiceData.name}</h3>
-        <p style="font-size: 1.2rem; color: #666; margin-bottom: 5px;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
-      </div>
-      
-      <!-- Countdown Timer -->
-      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        ${days > 0 ? `
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; border-radius: 12px; min-width: 100px; text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${days}</div>
-          <div style="font-size: 0.9rem; opacity: 0.9;">Day${days !== 1 ? 's' : ''}</div>
-        </div>
-        ` : ''}
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; border-radius: 12px; min-width: 100px; text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${String(hours).padStart(2, '0')}</div>
-          <div style="font-size: 0.9rem; opacity: 0.9;">Hours</div>
-        </div>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; border-radius: 12px; min-width: 100px; text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${String(minutes).padStart(2, '0')}</div>
-          <div style="font-size: 0.9rem; opacity: 0.9;">Minutes</div>
-        </div>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; border-radius: 12px; min-width: 100px; text-align: center;">
-          <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;">${String(seconds).padStart(2, '0')}</div>
-          <div style="font-size: 0.9rem; opacity: 0.9;">Seconds</div>
-        </div>
-      </div>
-      
-      <!-- Set Reminder Button -->
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="https://wa.me/919444345102?text=Please remind me about ${encodeURIComponent(nextServiceData.name)}" class="btn register" target="_blank">Set Reminder</a>
-      </div>
+
     </div>
   `;
 }
