@@ -135,20 +135,24 @@ function renderCountdownHTML() {
           <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
           
           <!-- Countdown with IDs -->
-          <div style="display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;">
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; min-width: 90px; text-align: center;">
-              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;" id="countdown-hours">${String(hours).padStart(2, '0')}</div>
-              <div style="font-size: 0.9rem; opacity: 0.9;">Hours</div>
-            </div>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; min-width: 90px; text-align: center;">
-              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;" id="countdown-minutes">${String(minutes).padStart(2, '0')}</div>
-              <div style="font-size: 0.9rem; opacity: 0.9;">Minutes</div>
-            </div>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; min-width: 90px; text-align: center;">
-              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px;" id="countdown-seconds">${String(seconds).padStart(2, '0')}</div>
-              <div style="font-size: 0.9rem; opacity: 0.9;">Seconds</div>
-            </div>
-          </div>
+          <div class="countdown-container" style="display: flex; flex-wrap: nowrap; gap: 12px; justify-content: center; align-items: stretch; width: 100%; margin-bottom: 30px;">
+  
+           <div class="countdown-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 15px; border-radius: 12px; text-align: center; flex: 1 1 0; min-width: 0; max-width: 120px; display: flex; flex-direction: column; justify-content: center;">
+           <div class="number" style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px; line-height: 1;" id="countdown-hours">${String(hours).padStart(2, '0')}</div>
+           <div class="label" style="font-size: 0.9rem; opacity: 0.9; line-height: 1;">Hours</div>
+           </div>
+  
+          <div class="countdown-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 15px; border-radius: 12px; text-align: center; flex: 1 1 0; min-width: 0; max-width: 120px; display: flex; flex-direction: column; justify-content: center;">
+          <div class="number" style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px; line-height: 1;" id="countdown-minutes">${String(minutes).padStart(2, '0')}</div>
+          <div class="label" style="font-size: 0.9rem; opacity: 0.9; line-height: 1;">Minutes</div>
+  </div>
+  
+  <div class="countdown-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 15px; border-radius: 12px; text-align: center; flex: 1 1 0; min-width: 0; max-width: 120px; display: flex; flex-direction: column; justify-content: center;">
+    <div class="number" style="font-size: 2.5rem; font-weight: bold; margin-bottom: 5px; line-height: 1;" id="countdown-seconds">${String(seconds).padStart(2, '0')}</div>
+    <div class="label" style="font-size: 0.9rem; opacity: 0.9; line-height: 1;">Seconds</div>
+  </div>
+  
+</div>
           
           <div>
             <button onclick="addToCalendar('${calendarData.title}', '${nextServiceData.date.toISOString()}', '${calendarData.description}')" class="btn register" style="padding: 14px 30px; font-size: 1.05rem; transform: translateX(-50%); cursor: pointer; border: none;">
