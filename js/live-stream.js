@@ -220,8 +220,8 @@ function displayLiveStream() {
             <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>
             
             <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
-              <div style="width: 100px; height: 100px; background: rgba(255, 5, 5, 0.9); border-radius: 30%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                <svg width="45" height="45" viewBox="0 0 24 24" fill="white">
+              <div style="width: 50px; height: 50px; background: rgba(255, 5, 5, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                <svg width="35" height="35" viewBox="0 0 24 24" fill="white">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               </div>
