@@ -219,16 +219,6 @@ function displayLiveStream() {
             
             <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>
             
-            <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
-              <div style="width: 50px; height: 50px; background: rgba(255, 5, 5, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                <svg width="35" height="35" viewBox="0 0 24 24" fill="white">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </div>
-              <h3 style="font-size: 1.8rem; margin-bottom: 10px; rgba(255, 255, 255, 0.9); text-shadow: 0 3px 8px rgba(0,0,0,0.8); font-weight: bold;">Visit Our Channel</h3>
-              <p style="font-size: 1.1rem; text-shadow: 0 2px 6px rgba(0,0,0,0.8);">Watch past services and stay updated</p>
-            </div>
-            
           </div>
         </a>
         
