@@ -130,7 +130,7 @@ function renderCountdownHTML() {
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
         
         <!-- LEFT SIDE -->
-        <div style="padding-right: 20px;">
+        <div style="padding-center: 20px;">
           <h3 style="font-size: 2rem; color: #2c3e50; margin-bottom: 15px; font-weight: bold;">${nextServiceData.name}</h3>
           <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
           
