@@ -9,6 +9,7 @@
 
 <body>
 
+<!-- HEADER - UNCHANGED -->
 <header>
   <div class="container nav">
     <div class="logo">
@@ -27,102 +28,119 @@
   </div>
 </header>
 
-<!-- Page Hero -->
+<!-- PAGE HERO - UNCHANGED -->
 <div class="page-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
   <div class="container" style="position: relative; z-index: 2;">
-    <h1 style="color: white; text-shadow: 0 3px 10px rgba(0,0,0,0.3);">About Our Church</h1>
-    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem;">Building a Christ-centered community of faith, hope, and transforming love</p>
+    <h1 style="color: white; text-shadow: 0 3px 10px rgba(0,0,0,0.3);">About Us</h1>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem;">Know our story, mission, and leadership</p>
   </div>
   <div style="position: absolute; inset: 0; opacity: 0.1; background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>'); background-size: 30px 30px;"></div>
 </div>
 
-<!-- Our Story -->
-<section>
+<!-- PASTOR PROFILE + OUR STORY SECTION -->
+<section style="background: white;">
   <div class="container">
-    <h2>Our Story</h2>
-    <p>Elim New Jerusalem Church (ENJC) is a Spirit-empowered, Bible-centered church passionately committed to proclaiming the life-changing Gospel of Jesus Christ.
-     <br>Born out of prayer and a divine calling, ENJC was established with one vision — to see lives radically transformed by the power of God.</br>
-     <br>What began as a burden in the heasrt has become a growing community where people encounter God's presence, discover their purpose, and walk in victory.</br>
-     <br>We are not just a gathering.</br>
-     <br>We are a movement of faith.</br>
-     <br>At ENJC, individuals are restored, families are strengthened, and destinies are shaped through authentic worship, strong biblical teaching, and the active work of the Holy Spirit.</br></p>
     
-    <p>We are passionate about:
-🔥 Raising spiritually strong believers
-🔥 Building Christ-centered families
-🔥 Reaching our community with bold love and practical compassion
-🔥 Equipping disciples to impact the world
-We believe church is not just a place you attend —
-it is a spiritual family where you belong, grow, and thrive.</p>
-  </div>
-</section>
-
-<!-- Our Vision & Mission -->
-<section style="background:white;">
-  <div class="container">
-    <h2>Vision & Mission</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Our Vision</h3>
-        <p>To be a church that glorifies God by making disciples who love Jesus, live in community, and serve the world with compassion and excellence.</p>
+    <div class="pastor-story-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: start; max-width: 1100px; margin: 0 auto;">
+      
+      <!-- LEFT SIDE - PASTOR PROFILE -->
+      <div class="pastor-profile" style="text-align: center; background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%); padding: 40px 30px; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.08);">
+        
+        <!-- Pastor Image -->
+        <div style="margin-bottom: 25px;">
+          <img src="images/about/pastor.jpg" alt="Pastor Name" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 6px solid var(--accent); box-shadow: 0 8px 25px rgba(0,0,0,0.15);" onerror="this.src='https://via.placeholder.com/180?text=Pastor'">
+        </div>
+        
+        <!-- Pastor Info -->
+        <h3 style="font-size: 1.6rem; color: var(--primary); margin-bottom: 8px; font-weight: 700;">Pastor John Doe</h3>
+        <p style="font-size: 1rem; color: var(--accent); font-weight: 600; margin-bottom: 6px;">Senior Pastor & Founder</p>
+        <p style="font-size: 0.9rem; color: #666; font-style: italic; margin-bottom: 0;">"Called to serve with faith and vision"</p>
+        
       </div>
-      <div class="card">
-        <h3>Our Mission</h3>
-        <p>Empowering believers to grow spiritually, connect meaningfully, and serve sacrificially through worship, discipleship, and outreach.</p>
+      
+      <!-- RIGHT SIDE - OUR STORY + TESTIMONY -->
+      <div class="story-testimony" style="text-align: left;">
+        
+        <!-- Our Story -->
+        <div style="margin-bottom: 45px;">
+          <h2 style="font-size: 2.2rem; color: var(--primary); margin-bottom: 25px; text-align: left;">Our Story</h2>
+          <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 18px;">
+            Elim New Jerusalem Church was founded with a vision to bring the transforming power of Jesus Christ to families and communities. What started as a small gathering of believers has grown into a vibrant church family dedicated to worship, fellowship, and service.
+          </p>
+          <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 18px;">
+            We believe in the power of prayer, the authority of God's Word, and the presence of the Holy Spirit. Our church is built on a foundation of faith, hope, and love, where every person is welcomed and valued.
+          </p>
+          <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 0;">
+            Today, we continue to grow as a community of believers, united in our mission to glorify God and share His love with the world.
+          </p>
+        </div>
+        
+        <!-- Pastor's Testimony -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 35px; border-radius: 16px; box-shadow: 0 8px 25px rgba(102,126,234,0.3);">
+          <h3 style="font-size: 1.5rem; color: white; margin-bottom: 20px; font-weight: 700;">Pastor's Testimony</h3>
+          <p style="font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.95); margin-bottom: 0; font-weight: 400;">
+            "God called me out of darkness into His marvelous light. When I surrendered my life to Christ, He transformed my heart and gave me a vision to plant a church where broken lives could be restored. Elim New Jerusalem Church is a testimony of God's faithfulness. Every soul saved, every family restored, and every life transformed is evidence that our God is alive and working among us. This ministry is not about me—it's about Jesus Christ and His redemptive power. I am humbled to serve as an instrument in His hands."
+          </p>
+        </div>
+        
       </div>
-      <div class="card">
-        <h3>Core Values</h3>
-        <p>Faith • Worship • Community • Service • Excellence • Integrity • Love</p>
-      </div>
+      
     </div>
+    
   </div>
 </section>
 
-<!-- What We Believe -->
-<section>
+<!-- MISSION & VISION SECTION -->
+<section style="background: #f6f8fb;">
   <div class="container">
-    <h2>What We Believe</h2>
-    <div class="belief-grid">
-      <div class="card">
-        <h3>📖 The Bible</h3>
-        <p>We believe the Bible is the inspired, infallible Word of God and our ultimate authority for faith and practice.</p>
+    
+    <h2 style="text-align: center; margin-bottom: 50px;">Our Mission & Vision</h2>
+    
+    <div class="mission-vision-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
+      
+      <!-- MISSION CARD -->
+      <div class="mission-card" style="background: white; padding: 45px 40px; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); transition: all 0.4s ease; border-left: 5px solid var(--accent); position: relative; overflow: hidden;">
+        
+        <!-- Icon -->
+        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent) 0%, #ffca28 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(244,180,0,0.3);">
+          <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        
+        <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; font-weight: 700;">Our Mission</h3>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 0;">
+          To glorify God by proclaiming the Gospel of Jesus Christ, making disciples, and equipping believers to live out their faith through worship, fellowship, and service to others.
+        </p>
+        
       </div>
-      <div class="card">
-        <h3>✝️ Jesus Christ</h3>
-        <p>We believe in Jesus Christ, the Son of God, who died for our sins and rose again for our salvation.</p>
+      
+      <!-- VISION CARD -->
+      <div class="vision-card" style="background: white; padding: 45px 40px; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); transition: all 0.4s ease; border-left: 5px solid #667eea; position: relative; overflow: hidden;">
+        
+        <!-- Icon -->
+        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(102,126,234,0.3);">
+          <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        
+        <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; font-weight: 700;">Our Vision</h3>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 0;">
+          To be a Christ-centered community where lives are transformed, families are strengthened, and the love of Jesus reaches every generation and every nation.
+        </p>
+        
       </div>
-      <div class="card">
-        <h3>🕊️ Holy Spirit</h3>
-        <p>We believe in the Holy Spirit who empowers believers for godly living and effective ministry.</p>
-      </div>
-      <div class="card">
-        <h3>⛪ The Church</h3>
-        <p>We believe in the universal church, the body of Christ, called to worship, fellowship, and service.</p>
-      </div>
-      <div class="card">
-        <h3>🙏 Prayer</h3>
-        <p>We believe in the power of prayer to transform lives, heal the sick, and move mountains.</p>
-      </div>
-      <div class="card">
-        <h3>❤️ Love & Service</h3>
-        <p>We believe in demonstrating God's love through compassionate service to our community and world.</p>
-      </div>
+      
     </div>
+    
   </div>
 </section>
 
-<!-- Join Us -->
-<section style="background:var(--primary); color:white; margin-top:60px;">
-  <div class="container">
-    <h2 style="color:white;">Join Our Family</h2>
-    <p style="color:rgba(255,255,255,0.9); max-width:600px;">We'd love to have you worship with us! Whether you're new to faith or have been walking with Christ for years, there's a place for you at ENJC.</p>
-    <div style="margin-top:30px;">
-      <a href="contact.html" class="btn register">Get Connected</a>
-      <a href="events.html" class="btn call" style="background:white; color:var(--primary);">View Events</a>
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER - UNCHANGED -->
 <footer>
   <div class="container">
     © 2026 Elim New Jerusalem Church. All rights reserved.
@@ -133,6 +151,35 @@ it is a spiritual family where you belong, grow, and thrive.</p>
 <a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
+
+<!-- CSS FOR HOVER EFFECTS -->
+<style>
+/* Pastor Story Responsive */
+@media (max-width: 768px) {
+  .pastor-story-container {
+    grid-template-columns: 1fr !important;
+    gap: 35px !important;
+  }
+  
+  .pastor-profile {
+    padding: 30px 20px !important;
+  }
+}
+
+/* Mission Vision Responsive */
+@media (max-width: 768px) {
+  .mission-vision-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Hover Effects */
+.mission-card:hover,
+.vision-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15) !important;
+}
+</style>
 
 </body>
 </html>
