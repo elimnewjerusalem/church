@@ -155,7 +155,7 @@ function renderCountdownHTML() {
 </div>
           
           <div>
-            <button onclick="addToCalendar('${calendarData.title}', '${nextServiceData.date.toISOString()}', '${calendarData.description}')" class="btn register" style="padding: 14px 30px; font-size: 1.05rem; transform: translateX(-50%); cursor: pointer; border: none;">
+            <button onclick="addToCalendar('${calendarData.title}', '${nextServiceData.date.toISOString()}', '${calendarData.description}')" class="btn register" style="padding: 14px 30px; font-size: 1.05rem; transform: translateX(-50%); cursor: pointer; border: none; position: relative;">
               📅 Add to Calendar
             </button>
           </div>
