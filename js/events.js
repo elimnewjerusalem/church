@@ -131,8 +131,8 @@ function renderCountdownHTML() {
         
         <!-- LEFT SIDE -->
         <div style="padding-center: 20px;">
-          <h3 style="font-size: 2rem; color: #2c3e50; margin-bottom: 15px;position: relative; right: 10%; font-weight: bold;">${nextServiceData.name}</h3>
-          <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px;position: relative; right: 10%;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
+          <h3 style="font-size: 2rem; color: #2c3e50; margin-bottom: 15px; position: relative; right: 10%; font-weight: bold;">${nextServiceData.name}</h3>
+          <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px; position: relative; right: 10%;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
           
           <!-- Countdown with IDs -->
           <div style="display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;">
