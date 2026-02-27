@@ -1,5 +1,21 @@
 // Live Stream Handler - Elim New Jerusalem Church
-// Fixed: Always show section (live OR channel link)
+// Features: Auto YouTube thumbnail + Always visible section
+
+// ===== YOUTUBE LIVE VIDEO IDs =====
+// UPDATE THESE WHEN GOING LIVE
+const YOUTUBE_LIVE_IDS = {
+  mainChannel: '',  // Example: 'dQw4w9WgXcQ' - Get from live URL
+  shortsChannel: ''  // Example: 'jNQXAC9IVRw' - Get from shorts live URL
+};
+
+// Get YouTube thumbnail URL
+function getYouTubeThumbnail(videoId) {
+  if (!videoId || videoId.length < 5) {
+    return null; // No valid video ID
+  }
+  // Use maxresdefault for best quality
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+}
 
 const LIVE_STREAMS = {
   mainChannel: {
@@ -121,14 +137,27 @@ function displayLiveStream() {
   section.style.display = 'block';
   
   if (activeData) {
-    // LIVE NOW - Show live content
+    // ===== LIVE NOW - Show with YouTube thumbnail =====
     const { stream, slot, type } = activeData;
     
+    // Get video ID based on channel type
+    const videoId = type === 'main' ? YOUTUBE_LIVE_IDS.mainChannel : YOUTUBE_LIVE_IDS.shortsChannel;
+    const thumbnailUrl = getYouTubeThumbnail(videoId);
+    
+    // Use thumbnail if available, otherwise fallback to default image
     let imageUrl;
-    if (type === 'main') {
-      imageUrl = stream.images[slot.imageKey];
+    if (thumbnailUrl) {
+      // YouTube thumbnail available
+      imageUrl = thumbnailUrl;
+      console.log('✅ Using YouTube thumbnail:', thumbnailUrl);
     } else {
-      imageUrl = stream.image;
+      // Fallback to default images
+      if (type === 'main') {
+        imageUrl = stream.images[slot.imageKey];
+      } else {
+        imageUrl = stream.image;
+      }
+      console.log('⚠️ Using fallback image (no video ID set)');
     }
     
     container.innerHTML = `
@@ -175,7 +204,7 @@ function displayLiveStream() {
     `;
     
   } else {
-    // NOT LIVE - Show channel link with common image
+    // NOT LIVE - Show channel link with default image
     container.innerHTML = `
       <div style="max-width: 1000px; margin: 0 auto;">
         
@@ -243,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
   displayLiveStream();
   setInterval(displayLiveStream, 60000);
   
-  console.log('🔴 Live stream initialized - Always visible');
+  console.log('🔴 Live stream initialized - YouTube Thumbnail Feature Active');
   const active = getActiveLiveStream();
   if (active) {
     console.log('✅ LIVE:', active.slot.title);

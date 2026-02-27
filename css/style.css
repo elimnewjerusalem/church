@@ -754,3 +754,120 @@ footer a:hover{
     min-height: 350px;
   }
 }
+
+/* ====================================
+   COUNTDOWN RESPONSIVE FIX
+   Add to your style.css file
+   ==================================== */
+
+/* Countdown Container - Responsive Flexbox */
+.countdown-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 15px !important;
+  justify-content: flex-start !important;
+}
+
+/* Countdown Box Styling */
+.countdown-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 20px !important;
+  border-radius: 12px !important;
+  min-width: 90px !important;
+  text-align: center !important;
+  flex: 0 1 auto !important;
+}
+
+/* Number and Label */
+.countdown-box .number {
+  font-size: 2.5rem !important;
+  font-weight: bold !important;
+  margin-bottom: 5px !important;
+}
+
+.countdown-box .label {
+  font-size: 0.9rem !important;
+  opacity: 0.9 !important;
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+
+/* Tablets and Small Screens */
+@media (max-width: 768px) {
+  /* Countdown container */
+  .countdown-container {
+    gap: 12px !important;
+    justify-content: center !important;
+  }
+  
+  /* Countdown boxes */
+  .countdown-box {
+    min-width: 80px !important;
+    padding: 16px 12px !important;
+  }
+  
+  .countdown-box .number {
+    font-size: 2rem !important;
+  }
+  
+  .countdown-box .label {
+    font-size: 0.85rem !important;
+  }
+  
+  /* Grid layout for countdown section */
+  .countdown-container + div {
+    margin-top: 20px !important;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  /* Countdown container */
+  .countdown-container {
+    gap: 10px !important;
+    justify-content: center !important;
+  }
+  
+  /* Countdown boxes - smaller */
+  .countdown-box {
+    min-width: 70px !important;
+    padding: 14px 10px !important;
+  }
+  
+  .countdown-box .number {
+    font-size: 1.8rem !important;
+  }
+  
+  .countdown-box .label {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Very Small Screens */
+@media (max-width: 360px) {
+  .countdown-box {
+    min-width: 65px !important;
+    padding: 12px 8px !important;
+  }
+  
+  .countdown-box .number {
+    font-size: 1.6rem !important;
+  }
+}
+
+/* ===== GRID LAYOUT FIX ===== */
+
+/* Ensure the parent grid stacks on mobile */
+@media (max-width: 768px) {
+  /* The grid containing countdown (Left) and image (Right) */
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+  
+  /* Remove padding on mobile */
+  div[style*="padding-right: 20px"] {
+    padding-right: 0 !important;
+  }
+}
