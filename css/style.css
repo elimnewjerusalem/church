@@ -760,23 +760,29 @@ footer a:hover{
    Add to your style.css file
    ==================================== */
 
-/* Countdown Container - Responsive Flexbox */
+/* Countdown Container - FORCE SINGLE ROW */
 .countdown-container {
   display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 15px !important;
-  justify-content: flex-start !important;
+  flex-wrap: nowrap !important;  /* IMPORTANT: No wrapping */
+  gap: 12px !important;
+  justify-content: center !important;
+  align-items: stretch !important;  /* Equal height */
+  width: 100% !important;
 }
 
-/* Countdown Box Styling */
+/* Countdown Box - Equal Width */
 .countdown-box {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   color: white !important;
-  padding: 20px !important;
+  padding: 20px 15px !important;
   border-radius: 12px !important;
-  min-width: 90px !important;
   text-align: center !important;
-  flex: 0 1 auto !important;
+  flex: 1 1 0 !important;  /* Equal width for all boxes */
+  min-width: 0 !important;  /* Allow shrinking */
+  max-width: 120px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
 }
 
 /* Number and Label */
@@ -784,55 +790,47 @@ footer a:hover{
   font-size: 2.5rem !important;
   font-weight: bold !important;
   margin-bottom: 5px !important;
+  line-height: 1 !important;
 }
 
 .countdown-box .label {
   font-size: 0.9rem !important;
   opacity: 0.9 !important;
+  line-height: 1 !important;
 }
 
-/* ===== MOBILE RESPONSIVENESS ===== */
-
-/* Tablets and Small Screens */
+/* ===== TABLET (768px) ===== */
 @media (max-width: 768px) {
-  /* Countdown container */
   .countdown-container {
-    gap: 12px !important;
-    justify-content: center !important;
+    gap: 10px !important;
+    padding: 0 10px !important;
   }
   
-  /* Countdown boxes */
   .countdown-box {
-    min-width: 80px !important;
-    padding: 16px 12px !important;
+    padding: 18px 12px !important;
+    max-width: 110px !important;
   }
   
   .countdown-box .number {
-    font-size: 2rem !important;
+    font-size: 2.2rem !important;
   }
   
   .countdown-box .label {
     font-size: 0.85rem !important;
   }
-  
-  /* Grid layout for countdown section */
-  .countdown-container + div {
-    margin-top: 20px !important;
-  }
 }
 
-/* Mobile Phones */
+/* ===== MOBILE (480px) ===== */
 @media (max-width: 480px) {
-  /* Countdown container */
   .countdown-container {
-    gap: 10px !important;
-    justify-content: center !important;
+    gap: 8px !important;
+    padding: 0 5px !important;
   }
   
-  /* Countdown boxes - smaller */
   .countdown-box {
-    min-width: 70px !important;
-    padding: 14px 10px !important;
+    padding: 15px 8px !important;
+    max-width: 100px !important;
+    border-radius: 10px !important;
   }
   
   .countdown-box .number {
@@ -844,30 +842,64 @@ footer a:hover{
   }
 }
 
-/* Very Small Screens */
+/* ===== VERY SMALL MOBILE (360px) ===== */
 @media (max-width: 360px) {
+  .countdown-container {
+    gap: 6px !important;
+    padding: 0 5px !important;
+  }
+  
   .countdown-box {
-    min-width: 65px !important;
-    padding: 12px 8px !important;
+    padding: 12px 6px !important;
+    max-width: 90px !important;
   }
   
   .countdown-box .number {
     font-size: 1.6rem !important;
   }
+  
+  .countdown-box .label {
+    font-size: 0.7rem !important;
+  }
 }
 
-/* ===== GRID LAYOUT FIX ===== */
-
-/* Ensure the parent grid stacks on mobile */
-@media (max-width: 768px) {
-  /* The grid containing countdown (Left) and image (Right) */
-  div[style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-    gap: 30px !important;
+/* ===== EXTRA SMALL (320px) ===== */
+@media (max-width: 320px) {
+  .countdown-container {
+    gap: 5px !important;
   }
   
-  /* Remove padding on mobile */
+  .countdown-box {
+    padding: 10px 4px !important;
+    max-width: 80px !important;
+  }
+  
+  .countdown-box .number {
+    font-size: 1.4rem !important;
+  }
+  
+  .countdown-box .label {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ===== PARENT GRID FIX ===== */
+/* Make parent container stack on mobile */
+@media (max-width: 768px) {
+  /* Target the parent grid containing countdown and image */
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 25px !important;
+  }
+  
+  /* Remove padding */
   div[style*="padding-right: 20px"] {
     padding-right: 0 !important;
+  }
+  
+  /* Center the countdown section */
+  .countdown-container {
+    max-width: 100% !important;
+    margin: 0 auto !important;
   }
 }
