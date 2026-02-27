@@ -130,9 +130,9 @@ function renderCountdownHTML() {
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
         
         <!-- LEFT SIDE -->
-        <div style="padding-center: 20px;">
-          <h3 style="font-size: 2rem; color: #2c3e50; margin-bottom: 15px; position: relative; right: 10%; font-weight: bold;">${nextServiceData.name}</h3>
-          <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px; position: relative; right: 10%;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
+        <div style="padding-left: 20px; position: relative;">
+          <h3 style="font-size: 2rem; color: #2c3e50; margin-bottom: 15px;  font-weight: bold;">${nextServiceData.name}</h3>
+          <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px;">${nextServiceData.dayName} at ${nextServiceData.time}</p>
           
           <!-- Countdown with IDs -->
           <div style="display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;">
@@ -151,7 +151,7 @@ function renderCountdownHTML() {
           </div>
           
           <div>
-            <button onclick="addToCalendar('${calendarData.title}', '${nextServiceData.date.toISOString()}', '${calendarData.description}')" class="btn register" style="padding: 14px 30px; font-size: 1.05rem; position: relative; right: 10%; transform: translateX(-50%); cursor: pointer; border: none;">
+            <button onclick="addToCalendar('${calendarData.title}', '${nextServiceData.date.toISOString()}', '${calendarData.description}')" class="btn register" style="padding: 14px 30px; font-size: 1.05rem; transform: translateX(-50%); cursor: pointer; border: none;">
               📅 Add to Calendar
             </button>
           </div>
