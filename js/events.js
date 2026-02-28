@@ -172,7 +172,7 @@ function renderCountdownHTML() {
               style="width: 100%; height: auto; display: block;"
               onerror="this.onerror=null; this.src='images/Live/common.jpg';"
             >
-            <div style="position: center; background: #6200ff; color: white; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+            <div style="position: center; background: #764ba2; color: white; padding: 8px 16px; border-radius: top:0px : Buttom:6px ; font-weight: bold; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
               ⏰ NEXT LIVE SERVICE
             </div>
           </div>
