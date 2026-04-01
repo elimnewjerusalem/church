@@ -5,203 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ENJC | Elim New Jerusalem Church</title>
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- ===== SCROLL ANIMATION STYLES ===== -->
-  <style>
-    /* Fade-in on scroll */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Staggered delay for grid cards */
-    .fade-in:nth-child(1) { transition-delay: 0.05s; }
-    .fade-in:nth-child(2) { transition-delay: 0.12s; }
-    .fade-in:nth-child(3) { transition-delay: 0.19s; }
-    .fade-in:nth-child(4) { transition-delay: 0.26s; }
-    .fade-in:nth-child(5) { transition-delay: 0.33s; }
-    .fade-in:nth-child(6) { transition-delay: 0.40s; }
-
-    /* Slider dot indicators */
-    .slider-dots {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 10;
-    }
-    .slider-dots span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      display: block;
-    }
-    .slider-dots span.active {
-      background: #f4b400;
-      transform: scale(1.25);
-    }
-
-    /* ===== VERSE OF THE WEEK ===== */
-    .verse-section {
-      background: var(--white);
-      padding: 50px 0;
-    }
-    .verse-block {
-      border-left: 5px solid var(--accent);
-      padding: 24px 32px;
-      background: #fffdf4;
-      border-radius: 0 12px 12px 0;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .verse-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .verse-block blockquote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: var(--primary);
-      line-height: 1.8;
-      margin: 0 0 12px 0;
-    }
-    .verse-block cite {
-      font-size: 0.9rem;
-      color: #666;
-      font-style: normal;
-    }
-
-    /* ===== RICH FOOTER ===== */
-    .footer-rich {
-      background: var(--primary);
-      color: white;
-      padding: 60px 0 0;
-      margin-top: 80px;
-      width: 100%;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 40px;
-    }
-    .footer-brand img {
-      height: 45px;
-      margin-bottom: 16px;
-      filter: brightness(0) invert(1);
-      opacity: 0.9;
-    }
-    .footer-brand p {
-      color: rgba(255,255,255,0.65);
-      font-size: 14px;
-      line-height: 1.7;
-      max-width: 280px;
-      margin: 0 0 20px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .footer-social a {
-      display: inline-block;
-      padding: 7px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 13px;
-      transition: all 0.3s ease;
-    }
-    .footer-social a:hover {
-      background: var(--accent);
-      color: var(--primary);
-      border-color: var(--accent);
-    }
-    .footer-col h4 {
-      color: var(--accent);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 18px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-    }
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-col ul li {
-      margin-bottom: 10px;
-    }
-    .footer-col ul li a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
-    .footer-col ul li a:hover {
-      color: var(--accent);
-    }
-    .footer-col address {
-      font-style: normal;
-      color: rgba(255,255,255,0.65);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-    .footer-col address a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    .footer-col address a:hover {
-      color: var(--accent);
-    }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 20px 0;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-    }
-
-    /* Footer mobile */
-    @media (max-width: 768px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      .footer-brand p {
-        max-width: 100%;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
 <header>
   <div class="container nav">
+
     <div class="logo">
       <img src="images/logo/logo.png" alt="ENJC Church Logo">
     </div>
+
     <nav>
       <ul class="menu">
         <li><a href="index.html" class="active">Home</a></li>
@@ -216,36 +30,17 @@
 </header>
 
 
-<!-- ===== PAGE HERO ===== -->
-<div class="page-hero" style="background: linear-gradient(135deg, #0b2a45 0%, #1a4a70 100%); position: relative; overflow: hidden;">
-  <div class="container" style="position: relative; z-index: 2;">
-    <h1 style="color: white; text-shadow: 0 3px 10px rgba(0,0,0,0.3);">Welcome to ENJC Family</h1>
-    <p style="color: rgba(255,255,255,0.90); font-size: 1.2rem;">Father &bull; Son &bull; Holy Spirit &bull; Fellowship</p>
-  </div>
-  <div style="position: absolute; inset: 0; opacity: 0.07; background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>'); background-size: 30px 30px;"></div>
-</div>
-
-
 <!-- ===== HERO SLIDER ===== -->
 <section class="slider">
 
   <img src="images/home/slide1.jpg" class="slide active" alt="Church worship service">
   <img src="images/home/slide2.jpg" class="slide" alt="Church community gathering">
-  <img src="images/home/slide3.jpg" class="slide" alt="Church community gathering">
 
-  <!-- Text Overlay -->
+  <!-- ⭐ TEXT OVERLAY -->
   <div class="hero-text">
-    <h2 style="color: #ffffff;">Because you are precious in my sight,<br>
-        You are honoured and I love you<br>
-        Isaiah 43:4</h2>
-    <a href="events.html" class="hero-btn">Join Us Today</a>
-  </div>
-
-  <!-- Dot indicators -->
-  <div class="slider-dots">
-    <span class="active" onclick="goToSlide(0)"></span>
-    <span onclick="goToSlide(1)"></span>
-    <span onclick="goToSlide(2)"></span>
+    <h1>Welcome to ENJC Church</h1>
+    <p>Worship • Word • Prayer • Fellowship</p>
+    <a href="media.html" class="hero-btn">Join Us Today</a>
   </div>
 
   <button class="prev" aria-label="Previous slide">&#10094;</button>
@@ -254,106 +49,37 @@
 </section>
 
 
-<!-- ===== VERSE OF THE WEEK ===== -->
-<div class="verse-section">
-  <div class="container">
-    <div class="verse-block fade-in">
-      <p class="verse-label">Verse of the Week</p>
-      <blockquote>
-        "For I know the plans I have for you, declares the Lord — plans for welfare and not for evil,
-        to give you a future and a hope."
-      </blockquote>
-      <cite>— Jeremiah 29:11</cite>
-    </div>
-  </div>
-</div>
-
-
 <!-- ===== SERVICE TIMINGS ===== -->
 <section>
   <div class="container">
-    <h2 class="fade-in">Service Timings</h2>
+    <h2>Service Timings</h2>
     <div class="grid">
-      <div class="card fade-in">
+      <div class="card">
         <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Sunday</strong>
         05:30am – 07:30am<br>
         08:30am – 10:30am<br>
         11:30am – 01:30pm
       </div>
-      <div class="card fade-in">
+      <div class="card">
         <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Friday</strong>
         11:00am – 01:30pm
       </div>
-      <div class="card fade-in">
+      <div class="card">
         <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Saturday</strong>
         06:00pm – 07:00pm
       </div>
-      <div class="card fade-in">
+      <div class="card">
         <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">2nd Saturday</strong>
         06:00am – 06:00pm
-      </div>
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Night Prayer</strong>
-        10:30pm – 11:00pm
-      </div>
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Deliverance Meeting</strong>
-        06:00pm – 08:30pm
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ===== RICH FOOTER ===== -->
-<footer class="footer-rich">
+<footer>
   <div class="container">
-    <div class="footer-grid">
-
-      <!-- Brand column -->
-      <div class="footer-brand">
-        <img src="images/logo/logo.png" alt="ENJC Logo">
-        <p>Elim New Jerusalem Church — a community of believers united in worship, prayer, and fellowship. All are welcome in God's house.</p>
-        <div class="footer-social">
-          <a href="https://www.youtube.com/@enjcchurch" target="_blank" rel="noopener">YouTube</a>
-          <a href="https://www.facebook.com/enjcchurch" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://www.instagram.com/enjcchurch" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://wa.me/919444345102" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="media.html">Media</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <!-- Address & Contact -->
-      <div class="footer-col">
-        <h4>Visit Us</h4>
-        <address>
-          No. 110E, Ellaya Mudali Street,<br>
-          Tondiarpet,<br>
-          Chennai – 600 081,<br>
-          Tamil Nadu, India<br><br>
-          <a href="tel:+919444345102">+91 94443 45102</a>
-        </address>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <div class="container">
-      &copy; 2026 Elim New Jerusalem Church. All rights reserved.
-    </div>
+    © 2026 Elim New Jerusalem Church. All rights reserved.
   </div>
 </footer>
 
@@ -364,58 +90,35 @@
 </a>
 
 
-<!-- ===== JAVASCRIPT ===== -->
+<!-- ===== SLIDER JAVASCRIPT ===== -->
 <script>
-  // ── Slider ──────────────────────────────────────────────
-  const slides = document.querySelectorAll(".slide");
-  const dots   = document.querySelectorAll(".slider-dots span");
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
+const slides = document.querySelectorAll(".slide");
+const next = document.querySelector(".next");
+const prev = document.querySelector(".prev");
 
-  let index = 0;
-  let timer;
+let index = 0;
 
-  function showSlide(i) {
-    slides.forEach(s => s.classList.remove("active"));
-    dots.forEach(d => d.classList.remove("active"));
-    slides[i].classList.add("active");
-    dots[i].classList.add("active");
-    index = i;
-  }
+function showSlide(i){
+  slides.forEach(s => s.classList.remove("active"));
+  slides[i].classList.add("active");
+}
 
-  function goToSlide(i) {
-    clearInterval(timer);
-    showSlide(i);
-    startAutoPlay();
-  }
+// Manual navigation
+next.onclick = () => {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+};
 
-  function startAutoPlay() {
-    timer = setInterval(() => {
-      showSlide((index + 1) % slides.length);
-    }, 5000);
-  }
+prev.onclick = () => {
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+};
 
-  nextBtn.onclick = () => goToSlide((index + 1) % slides.length);
-  prevBtn.onclick = () => goToSlide((index - 1 + slides.length) % slides.length);
-
-  // Pause on hover
-  document.querySelector(".slider").addEventListener("mouseenter", () => clearInterval(timer));
-  document.querySelector(".slider").addEventListener("mouseleave", startAutoPlay);
-
-  startAutoPlay();
-
-
-  // ── Scroll Fade-In ───────────────────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+// Auto-advance every 5 seconds
+setInterval(() => {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}, 5000);
 </script>
 
 </body>

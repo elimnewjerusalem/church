@@ -3,24 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Prevent Browser Caching -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  
-  <title>Live & Events | ENJC Church</title>
+  <title>Live &amp; Events | ENJC Church</title>
   <link rel="stylesheet" href="css/style.css?v=20260217">
-</head>
+  <style>
+    .fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
+    .fade-in.visible { opacity:1; transform:none; }
 
+    .live-badge { display:inline-flex; align-items:center; gap:7px; background:#ff3b30; color:white; font-size:12px; font-weight:700; letter-spacing:1.5px; padding:5px 14px; border-radius:20px; text-transform:uppercase; }
+    .live-dot { width:8px; height:8px; border-radius:50%; background:white; animation:blink 1.2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* Service schedule table */
+    .schedule-table { width:100%; border-collapse:collapse; margin-top:20px; }
+    .schedule-table th { background:var(--primary); color:white; padding:14px 18px; text-align:left; font-size:14px; letter-spacing:.5px; }
+    .schedule-table td { padding:14px 18px; border-bottom:1px solid #eee; font-size:15px; color:#444; }
+    .schedule-table tr:last-child td { border-bottom:none; }
+    .schedule-table tr:hover td { background:#fffdf4; }
+    .schedule-table .day { font-weight:600; color:var(--primary); }
+    .schedule-table .time { color:var(--accent); font-weight:500; }
+
+    /* Testimonial cards */
+    .testimonial-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; margin-top:20px; }
+    .testimonial-card { background:white; border-radius:16px; padding:28px; box-shadow:var(--shadow); border-left:4px solid var(--accent); }
+    .testimonial-card p { font-style:italic; color:#555; line-height:1.8; margin-bottom:16px; font-size:.97rem; }
+    .testimonial-card .author { font-weight:600; color:var(--primary); font-size:.9rem; }
+
+    /* CTA section */
+    .cta-section { background:var(--primary); color:white; padding:70px 0; text-align:center; }
+    .cta-section h2 { color:white; margin-bottom:16px; }
+    .cta-section p { color:rgba(255,255,255,.9); font-size:1.1rem; max-width:580px; margin:0 auto 30px; }
+
+    /* Footer */
+    .footer-rich { background:var(--primary); color:white; padding:60px 0 0; margin-top:0; width:100%; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; padding-bottom:40px; }
+    .footer-brand img { height:45px; margin-bottom:16px; filter:brightness(0) invert(1); opacity:.9; }
+    .footer-brand p { color:rgba(255,255,255,.65); font-size:14px; line-height:1.7; max-width:280px; margin:0 0 20px; }
+    .footer-social { display:flex; gap:10px; flex-wrap:wrap; }
+    .footer-social a { display:inline-block; padding:7px 14px; border-radius:8px; border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.75); text-decoration:none; font-size:13px; transition:all .3s; }
+    .footer-social a:hover { background:var(--accent); color:var(--primary); border-color:var(--accent); }
+    .footer-col h4 { color:var(--accent); font-size:13px; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:18px; font-weight:600; }
+    .footer-col ul { list-style:none; padding:0; margin:0; }
+    .footer-col ul li { margin-bottom:10px; }
+    .footer-col ul li a { color:rgba(255,255,255,.65); text-decoration:none; font-size:14px; transition:color .3s; }
+    .footer-col ul li a:hover { color:var(--accent); }
+    .footer-col address { font-style:normal; color:rgba(255,255,255,.65); font-size:14px; line-height:1.8; }
+    .footer-col address a { color:rgba(255,255,255,.65); text-decoration:none; }
+    .footer-col address a:hover { color:var(--accent); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding:20px 0; text-align:center; font-size:13px; color:rgba(255,255,255,.4); }
+    @media(max-width:768px){ .footer-grid{grid-template-columns:1fr;gap:30px;} .schedule-table th,.schedule-table td{padding:10px 12px;font-size:13px;} }
+  </style>
+</head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="container nav">
-    <div class="logo">
-      <img src="images/logo/logo.png" alt="ENJC Church Logo">
-    </div>
+    <div class="logo"><img src="images/logo/logo.png" alt="ENJC Church Logo"></div>
     <nav>
       <ul class="menu">
         <li><a href="index.html">Home</a></li>
@@ -34,167 +71,156 @@
   </div>
 </header>
 
-<!-- PAGE HERO -->
-<div class="page-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
-  <div class="container" style="position: relative; z-index: 2;">
-    <h1 style="color: white; text-shadow: 0 3px 10px rgba(0,0,0,0.3);">Live & Events</h1>
-    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem;">Join us for worship, fellowship, and special gatherings</p>
+<div class="page-hero" style="background:linear-gradient(135deg,#0b2a45 0%,#1a4a70 100%);position:relative;overflow:hidden;">
+  <div class="container" style="position:relative;z-index:2;">
+    <h1 style="color:white;text-shadow:0 3px 10px rgba(0,0,0,.3);">Live &amp; Events</h1>
+    <p style="color:rgba(255,255,255,.9);font-size:1.2rem;">Join us for worship, fellowship, and special gatherings</p>
   </div>
-  <div style="position: absolute; inset: 0; opacity: 0.1; background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>'); background-size: 30px 30px;"></div>
+  <div style="position:absolute;inset:0;opacity:.07;background-image:url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>');background-size:30px 30px;"></div>
 </div>
 
-<!-- AUTO LIVE SECTION (No top banner, button below) -->
-<section id="live-stream-section" style="background: #f0f4ff; padding: 50px 0; display: none;">
+<!-- Live Section -->
+<section id="live-stream-section" style="background:#f0f4ff;padding:50px 0;display:none;">
   <div class="container">
     <div id="live-stream-container">
-      <div style="text-align: center; padding: 20px; color: #999;">
-        Checking for live streams...
-      </div>
+      <div style="text-align:center;padding:20px;color:#999;">Checking for live streams...</div>
     </div>
   </div>
 </section>
 
-<!-- NEXT LIVE TIME (Split Layout: Info Left, Image Right) -->
-<section style="background: #f9f9f9; padding: 50px 0;">
+<!-- Service Schedule -->
+<section style="background:white;">
+  <div class="container">
+    <h2 class="fade-in">Weekly Service Schedule</h2>
+    <p class="fade-in" style="color:#666;margin-bottom:30px;">We'd love to see you at any of our services — all are welcome.</p>
+
+    <div class="fade-in" style="border-radius:16px;overflow:hidden;box-shadow:var(--shadow);">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Service</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="day">Sunday</td><td>Morning Worship (1st)</td><td class="time">05:30am – 07:30am</td></tr>
+          <tr><td class="day">Sunday</td><td>Morning Worship (2nd)</td><td class="time">08:30am – 10:30am</td></tr>
+          <tr><td class="day">Sunday</td><td>Morning Worship (3rd)</td><td class="time">11:30am – 01:30pm</td></tr>
+          <tr><td class="day">Friday</td><td>Friday Prayer</td><td class="time">11:00am – 01:30pm</td></tr>
+          <tr><td class="day">Saturday</td><td>Evening Service</td><td class="time">06:00pm – 07:00pm</td></tr>
+          <tr><td class="day">2nd Saturday</td><td>All-Day Prayer</td><td class="time">06:00am – 06:00pm</td></tr>
+          <tr><td class="day">Daily</td><td>Night Prayer</td><td class="time">10:30pm – 11:00pm</td></tr>
+          <tr><td class="day">Weekly</td><td>Deliverance Meeting</td><td class="time">06:00pm – 08:30pm</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:28px;text-align:center;" class="fade-in">
+      <a href="https://wa.me/919444345102" target="_blank" class="btn join">Get Service Updates on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- Next Service Countdown -->
+<section style="background:#f6f8fb;padding:50px 0;">
   <div class="container">
     <div id="next-service-countdown">
-      <div style="text-align: center; padding: 40px;">
-        <p style="color: #999;">Loading next service...</p>
+      <div style="text-align:center;padding:40px;">
+        <p style="color:#999;">Loading next service...</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RECENT LIVE STREAMS -->
-<section style="background: white; padding: 60px 0;">
+<!-- Recent Streams -->
+<section style="background:white;padding:60px 0;">
   <div class="container">
-    <h2>📺 Recent Live Streams</h2>
-    <p style="margin-bottom: 35px; color: #666; font-size: 1.1rem;">Catch up on our latest worship services and devotionals</p>
-    
-    <div class="events-grid" id="recent-streams-container">
-      <p>Loading recent streams...</p>
+    <h2 class="fade-in">Recent Live Streams</h2>
+    <p class="fade-in" style="margin-bottom:35px;color:#666;font-size:1.05rem;">Catch up on our latest worship services and devotionals</p>
+    <div class="events-grid fade-in" id="recent-streams-container">
+      <p style="color:#999;">Loading recent streams...</p>
     </div>
   </div>
 </section>
 
-<!-- MOST WATCHED VIDEOS -->
-<section style="background: #f5f5f5; padding: 60px 0;">
+<!-- Most Watched -->
+<section style="background:#f5f5f5;padding:60px 0;">
   <div class="container">
-    <h2>🔥 Most Watched Messages</h2>
-    <p style="margin-bottom: 35px; color: #666; font-size: 1.1rem;">Popular sermons and devotionals that touched hearts</p>
-    
-    <div class="events-grid" id="most-watched-container">
-      <p>Loading popular videos...</p>
+    <h2 class="fade-in">Most Watched Messages</h2>
+    <p class="fade-in" style="margin-bottom:35px;color:#666;font-size:1.05rem;">Popular sermons and devotionals that touched hearts</p>
+    <div class="events-grid fade-in" id="most-watched-container">
+      <p style="color:#999;">Loading popular videos...</p>
     </div>
   </div>
 </section>
 
-<!-- VERSE REELS -->
-<section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 0; color: white;">
+<!-- Testimonials -->
+<section style="background:white;padding:60px 0;">
   <div class="container">
-    <h2 style="color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.3);">📖 Verse Reels</h2>
-    <p style="margin-bottom: 35px; color: rgba(255,255,255,0.95); font-size: 1.1rem;">Daily scripture encouragement in short videos</p>
-    
-    <div class="events-grid" id="verse-reels-container">
-      <p style="color: rgba(255,255,255,0.8);">Loading verse reels...</p>
-    </div>
-    
-    <div style="text-align: center; margin-top: 35px;">
-      <a href="https://www.youtube.com/@ENJCShorts" class="btn" style="background: white; color: #667eea; padding: 14px 35px; border-radius: 30px; text-decoration: none; display: inline-block; font-weight: bold; font-size: 1.05rem;" target="_blank">More Reels on YouTube</a>
+    <h2 class="fade-in">What People Are Saying</h2>
+    <p class="fade-in" style="color:#666;margin-bottom:10px;">Hear from our community members</p>
+    <div class="testimonial-grid" id="testimonial-track">
+      <!-- Loaded by events.js -->
     </div>
   </div>
 </section>
 
-<!-- SPECIAL EVENTS SCHEDULE -->
-<section style="background: white; padding: 60px 0;">
+<!-- CTA -->
+<div class="cta-section">
   <div class="container">
-    <h2>⭐ Special Events</h2>
-    <p style="margin-bottom: 40px; color: #666; font-size: 1.1rem;">Mark your calendar for these upcoming special gatherings</p>
-    
-    <div class="grid" id="special-events-container" style="margin-top:40px;">
-      <!-- Special events loaded here -->
-    </div>
+    <h2>Don't Miss Out!</h2>
+    <p>Stay connected and never miss an event. Join our WhatsApp group for live notifications and updates.</p>
+    <a href="https://wa.me/919444345102" class="btn join" style="margin:0 10px 10px;padding:14px 36px;font-size:1rem;">Join WhatsApp Group</a>
+    <a href="contact.html" class="btn register" style="margin:0 10px 10px;padding:14px 36px;font-size:1rem;">Contact Us</a>
   </div>
-</section>
+</div>
 
-<!-- TESTIMONIALS -->
-<section style="background: #f5f5f5; padding: 60px 0;">
+<!-- Rich Footer -->
+<footer class="footer-rich">
   <div class="container">
-    <h2>💬 What People Are Saying</h2>
-    <p style="margin-bottom: 40px; color: #666; font-size: 1.1rem;">Hear from our community members</p>
-    
-    <div class="testimonials-slider" style="max-width: 800px; margin: 0 auto; position: relative; overflow: hidden;">
-      <div class="testimonial-track" id="testimonial-track" style="display: flex; transition: transform 0.5s ease;">
-        <!-- Testimonials loaded here -->
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo/logo.png" alt="ENJC Logo">
+        <p>Elim New Jerusalem Church — a community of believers united in worship, prayer, and fellowship. All are welcome in God's house.</p>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.facebook.com/ENJCChurch" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/enjcchurch" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
       </div>
-      
-      <div style="text-align: center; margin-top: 25px;">
-        <button onclick="previousTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">❮</button>
-        <button onclick="nextTestimonial()" style="background: #667eea; color: white; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">❯</button>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <address>No. 110E, Ellaya Mudali Street,<br>Tondiarpet,<br>Chennai – 600 081,<br>Tamil Nadu, India<br><br><a href="tel:+919444345102">+91 94443 45102</a></address>
       </div>
     </div>
   </div>
-</section>
-
-<!-- CTA SECTION -->
-<section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 70px 0;">
-  <div class="container" style="text-align: center;">
-    <h2 style="color: white; margin-bottom: 20px; font-size: 2.2rem;">Don't Miss Out!</h2>
-    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">Stay connected and never miss an event. Join our WhatsApp group for live notifications and updates.</p>
-    <div>
-      <a href="https://wa.me/919444345102" class="btn join" style="margin: 0 10px 10px 10px; padding: 16px 40px; font-size: 1.1rem;">Join WhatsApp Group</a>
-      <a href="contact.html" class="btn register" style="margin: 0 10px 10px 10px; padding: 16px 40px; font-size: 1.1rem;">Contact Us</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    © 2026 Elim New Jerusalem Church. All rights reserved.
-  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</div></div>
 </footer>
 
-<!-- WhatsApp Floating Button -->
 <a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 
-<!-- Testimonial Slider Script -->
 <script>
-let currentTestimonial = 0;
-
-function updateTestimonialSlider() {
-  const testimonials = document.querySelectorAll('.testimonial-slide');
-  if (testimonials.length === 0) return;
-  
-  const track = document.getElementById('testimonial-track');
-  if (track) {
-    track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-  }
-}
-
-function showTestimonial(index) {
-  const testimonials = document.querySelectorAll('.testimonial-slide');
-  const totalTestimonials = testimonials.length;
-  currentTestimonial = ((index % totalTestimonials) + totalTestimonials) % totalTestimonials;
-  updateTestimonialSlider();
-}
-
-function nextTestimonial() {
-  showTestimonial(currentTestimonial + 1);
-}
-
-function previousTestimonial() {
-  showTestimonial(currentTestimonial - 1);
-}
-
-setInterval(nextTestimonial, 5000);
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
-
-<!-- JavaScript Files -->
 <script src="js/events.js?v=20260217"></script>
 <script src="js/live-stream.js?v=20260217"></script>
-
 </body>
 </html>

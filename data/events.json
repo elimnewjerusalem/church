@@ -1,129 +1,48 @@
 {
-  "recentStreams": [
+  "events": [
     {
       "id": 1,
-      "title": "ENJC Family Prayer",
-      "videoId": "6F-sbXwdrjI",
-      "youtubeLink": "https://www.youtube.com/watch?v=6F-sbXwdrjI",
-      "date": "February 21, 2026",
-      "channel": "shorts",
-      "description": "End your day with faith and encouragement"
+      "title": "Sunday Worship Service",
+      "type": "video",
+      "videoId": "P7tvLwUQ_tg",
+      "youtubeLink": "https://www.youtube.com/live/P7tvLwUQ_tg",
+      "schedule": "Every Sunday",
+      "times": [
+        "05:30am - 07:30am",
+        "08:30am - 10:30am",
+        "11:30am - 01:30pm"
+      ],
+      "description": "Join us for powerful worship, inspiring messages, and fellowship with believers.",
+      "buttonText": "Watch Live",
+      "buttonClass": "register"
     },
     {
       "id": 2,
-      "title": "Sunday Worship - Faith That Moves Mountains",
-      "videoId": "/BqOLXeAVEZs",
-      "youtubeLink": "https://www.youtube.com/watch?v=/BqOLXeAVEZs",
-      "date": "February 22, 2026",
-      "channel": "main",
-      "description": "Powerful message about God Honor You"
+      "title": "Friday Prayer Meeting",
+      "type": "video",
+      "videoId": "ysSagRBRE1A",
+      "youtubeLink": "https://www.youtube.com/live/ysSagRBRE1A",
+      "schedule": "Every Friday",
+      "times": [
+        "11:00am - 01:30pm"
+      ],
+      "description": "Come together in unity and power as we lift our voices in prayer.",
+      "buttonText": "Watch Live",
+      "buttonClass": "call"
     },
     {
       "id": 3,
-      "title": "Family Blessing Prayer - Unity in the Spirit",
-      "videoId": "/ofwLCN2mWDk",
-      "youtubeLink": "https://www.youtube.com/watch?v=/ofwLCN2mWDk",
-      "date": "February 7, 2026",
-      "channel": "main",
-      "description": "Coming together in prayer and worship"
-    }
-  ],
-  "mostWatched": [
-    {
-      "id": 1,
-      "title": "Prophetic Sunday Sericve Promo",
-      "videoId": "5LJt7R7G0xk",
-      "youtubeLink": "https://www.youtube.com/watch?v=5LJt7R7G0xk",
-      "views": "21K views",
-      "channel": "shorts",
-      "description": "Watch the live on Youtube"
-    },
-    {
-      "id": 2,
-      "title": "The Power of Faith",
-      "videoId": "5AxMYxuA2Do",
-      "youtubeLink": "https://www.youtube.com/watch?v=5AxMYxuA2Do",
-      "views": "16K views",
-      "channel": "main",
-      "description": "Discover how faith can transform your life"
-    },
-    {
-      "id": 3,
-      "title": "Walking in Victory",
-      "videoId": "XeNwZHjO2DQ",
-      "youtubeLink": "https://www.youtube.com/watch?v=XeNwZHjO2DQ",
-      "views": "15K views",
-      "channel": "main",
-      "description": "Overcoming life's challenges with God's strength"
-    }
-  ],
-  "verseReels": [
-    {
-      "id": 1,
-      "title": "Sing to the LORD,",
-      "videoId": "/3T9-1IZIqA8",
-      "youtubeLink": "https://www.youtube.com/shorts//3T9-1IZIqA8",
-      "verse": "Philippians 4:13",
-      "description": "Strength through Christ"
-    },
-    {
-      "id": 2,
-      "title": "Therefore I will praise You, O LORD, among the nations; I will sing praises to Your name",
-      "videoId": "TheMCk-NDuA",
-      "youtubeLink": "https://www.youtube.com/shorts/TheMCk-NDuA",
-      "verse": "Psalm 23:1",
-      "description": "God's guidance and protection"
-    },
-    {
-      "id": 3,
-      "title": "John 5:24 - he has crossed over from death to life.",
-      "videoId": "7E3z_df7LcM",
-      "youtubeLink": "https://www.youtube.com/shorts/7E3z_df7LcM",
-      "verse": "Jeremiah 29:11",
-      "description": "Hope and a future"
-    }
-  ],
-  "specialEvents": [
-    {
-      "id": 1,
-      "title": "Monthly Special Prayer",
-      "icon": "🙏",
-      "schedule": "2nd Saturday of Every Month",
-      "time": "06:00am - 06:00pm",
-      "description": "A day dedicated to seeking God's face through Special and prayer"
-    },
-    {
-      "id": 2,
-      "title": "Annual Church Anniversary",
-      "icon": "🎉",
-      "schedule": "Coming Soon",
-      "time": "",
-      "description": "Celebrating God's faithfulness with special worship services and activities"
-    },
-    {
-      "id": 3,
-      "title": "Family Retreat",
-      "icon": "👨‍👩‍👧‍👦",
-      "schedule": "Details Coming Soon",
-      "time": "",
-      "description": "A weekend getaway for families to connect with God and each other"
-    }
-  ],
-  "testimonials": [
-    {
-      "id": 1,
-      "text": "This church has transformed my life. The worship is powerful and the messages are life-changing. I'm grateful to be part of this family!",
-      "author": "Sarah M."
-    },
-    {
-      "id": 2,
-      "text": "The Friday prayer meetings have become the highlight of my week. There's so much peace and power when we pray together.",
-      "author": "John D."
-    },
-    {
-      "id": 3,
-      "text": "The youth fellowship has helped me grow in my faith. I've made amazing friends and learned so much about God's love.",
-      "author": "David K."
+      "title": "Youth Fellowship",
+      "type": "video",
+      "videoId": "p2doONT8Q2s",
+      "youtubeLink": "https://www.youtube.com/live/p2doONT8Q2s",
+      "schedule": "Every Saturday",
+      "times": [
+        "06:00pm - 07:00pm"
+      ],
+      "description": "Dynamic gatherings for young people to grow in faith and build friendships.",
+      "buttonText": "Watch Live",
+      "buttonClass": "join"
     }
   ]
 }
