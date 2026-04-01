@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sermons | ENJC Church</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:none}
+    .fade-in:nth-child(1){transition-delay:.05s}.fade-in:nth-child(2){transition-delay:.12s}
+    .fade-in:nth-child(3){transition-delay:.19s}.fade-in:nth-child(4){transition-delay:.26s}
+
+    /* Series filter pills */
+    .filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;justify-content:center}
+    .filter-pill{padding:8px 20px;border-radius:999px;border:2px solid var(--primary);background:white;color:var(--primary);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s}
+    .filter-pill.active,.filter-pill:hover{background:var(--primary);color:white}
+
+    /* Featured sermon */
+    .featured-sermon{background:var(--primary);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;margin-bottom:60px}
+    .featured-video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+    .featured-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+    .featured-info{padding:40px;display:flex;flex-direction:column;justify-content:center}
+    .featured-tag{display:inline-block;background:var(--accent);color:var(--primary);font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;width:fit-content}
+    .featured-info h3{color:white;font-size:1.6rem;margin-bottom:12px;line-height:1.35}
+    .featured-info p{color:rgba(255,255,255,.75);font-size:.95rem;line-height:1.7;margin-bottom:20px}
+    .featured-meta{display:flex;gap:16px;color:rgba(255,255,255,.55);font-size:13px}
+
+    /* Sermon cards grid */
+    .sermons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px}
+    .sermon-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:all .3s}
+    .sermon-card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,0,0,.12)}
+    .sermon-thumb{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#111}
+    .sermon-thumb iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+    .sermon-thumb-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+    .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:background .3s;cursor:pointer}
+    .sermon-card:hover .play-overlay{background:rgba(0,0,0,.5)}
+    .play-btn{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center}
+    .play-btn svg{margin-left:3px}
+    .sermon-body{padding:20px}
+    .sermon-series{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:600;margin-bottom:6px}
+    .sermon-title{font-size:1.05rem;color:var(--primary);font-weight:600;margin-bottom:8px;line-height:1.4}
+    .sermon-meta{display:flex;justify-content:space-between;font-size:12px;color:#888}
+    .sermon-watch{display:inline-block;margin-top:14px;background:var(--primary);color:white;padding:8px 18px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500;transition:all .2s}
+    .sermon-watch:hover{background:#0f3a60}
+
+    /* Playlist section */
+    .playlist-section{background:#f6f8fb;padding:70px 0}
+    .playlist-embed{border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .playlist-embed iframe{display:block;border:0}
+
+    /* CTA */
+    .sermon-cta{background:var(--primary);padding:60px 0;text-align:center}
+    .sermon-cta h2{color:white;margin-bottom:12px}
+    .sermon-cta p{color:rgba(255,255,255,.85);margin-bottom:28px;font-size:1.05rem}
+
+    /* Footer */
+    .footer-rich{background:var(--primary);color:white;padding:60px 0 0;margin-top:0;width:100%}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:40px}
+    .footer-brand img{height:45px;margin-bottom:16px;filter:brightness(0) invert(1);opacity:.9}
+    .footer-brand p{color:rgba(255,255,255,.65);font-size:14px;line-height:1.7;max-width:280px;margin:0 0 20px}
+    .footer-social{display:flex;gap:10px;flex-wrap:wrap}
+    .footer-social a{display:inline-block;padding:7px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;transition:all .3s}
+    .footer-social a:hover{background:var(--accent);color:var(--primary);border-color:var(--accent)}
+    .footer-col h4{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px;font-weight:600}
+    .footer-col ul{list-style:none;padding:0;margin:0}
+    .footer-col ul li{margin-bottom:10px}
+    .footer-col ul li a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;transition:color .3s}
+    .footer-col ul li a:hover{color:var(--accent)}
+    .footer-col address{font-style:normal;color:rgba(255,255,255,.65);font-size:14px;line-height:1.8}
+    .footer-col address a{color:rgba(255,255,255,.65);text-decoration:none}
+    .footer-col address a:hover{color:var(--accent)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;text-align:center;font-size:13px;color:rgba(255,255,255,.4)}
+    @media(max-width:768px){
+      .featured-sermon{grid-template-columns:1fr}
+      .sermons-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr;gap:30px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo"><img src="images/logo/logo.png" alt="ENJC Church Logo"></div>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="sermons.html" class="active">Sermons</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero" style="background:linear-gradient(135deg,#0b2a45 0%,#1a4a70 100%);position:relative;overflow:hidden;">
+  <div class="container" style="position:relative;z-index:2;">
+    <h1 style="color:white;text-shadow:0 3px 10px rgba(0,0,0,.3);">Sermons &amp; Messages</h1>
+    <p style="color:rgba(255,255,255,.9);font-size:1.2rem;">Be fed by the Word of God — watch anytime, anywhere</p>
+  </div>
+  <div style="position:absolute;inset:0;opacity:.07;background-image:url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>');background-size:30px 30px;"></div>
+</div>
+
+<!-- LATEST SERMON FEATURED -->
+<section style="background:white;padding:70px 0;">
+  <div class="container">
+    <h2 class="fade-in">Latest Message</h2>
+    <p class="fade-in" style="color:#666;margin-bottom:40px;">Watch this week's sermon from Elim New Jerusalem Church</p>
+
+    <div class="featured-sermon fade-in">
+      <div class="featured-video">
+        <!-- Replace VIDEO_ID with your actual YouTube video ID -->
+        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=ElimNewJerusalemChurchOfficial" allowfullscreen title="Latest ENJC Sermon"></iframe>
+      </div>
+      <div class="featured-info">
+        <span class="featured-tag">Latest Sermon</span>
+        <h3>Sunday Worship Message</h3>
+        <p>Join us every Sunday as we open God's Word together. Our messages are rooted in Scripture, relevant to life, and filled with the power of the Holy Spirit.</p>
+        <div class="featured-meta">
+          <span>ENJC Church</span>
+          <span>Sunday Service</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER + RECENT SERMONS -->
+<section style="background:#f6f8fb;padding:70px 0;">
+  <div class="container">
+    <h2 class="fade-in">Recent Messages</h2>
+    <p class="fade-in" style="color:#666;margin-bottom:32px;">Catch up on recent worship services and devotionals</p>
+
+    <div class="filter-bar fade-in">
+      <button class="filter-pill active" onclick="setFilter(this,'all')">All Messages</button>
+      <button class="filter-pill" onclick="setFilter(this,'sunday')">Sunday Service</button>
+      <button class="filter-pill" onclick="setFilter(this,'friday')">Friday Prayer</button>
+      <button class="filter-pill" onclick="setFilter(this,'special')">Special Events</button>
+    </div>
+
+    <div class="sermons-grid" id="sermons-grid">
+      <!-- Card 1 -->
+      <div class="sermon-card fade-in" data-type="sunday">
+        <div class="sermon-thumb">
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">
+            <img class="sermon-thumb-img" src="images/Live/sunday-worship.jpg" alt="Sunday Worship" onerror="this.style.background='#0b2a45'">
+            <div class="play-overlay">
+              <div class="play-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#0b2a45"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="sermon-body">
+          <p class="sermon-series">Sunday Service</p>
+          <p class="sermon-title">Sunday Morning Worship</p>
+          <div class="sermon-meta"><span>ENJC Church</span><span>Sunday</span></div>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" class="sermon-watch">Watch on YouTube</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="sermon-card fade-in" data-type="friday">
+        <div class="sermon-thumb">
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">
+            <img class="sermon-thumb-img" src="images/Live/friday-prayer.jpg" alt="Friday Prayer" onerror="this.style.background='#1a4a70'">
+            <div class="play-overlay">
+              <div class="play-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#0b2a45"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="sermon-body">
+          <p class="sermon-series">Friday Prayer</p>
+          <p class="sermon-title">Friday Prayer &amp; Worship Service</p>
+          <div class="sermon-meta"><span>ENJC Church</span><span>Friday</span></div>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" class="sermon-watch">Watch on YouTube</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="sermon-card fade-in" data-type="sunday">
+        <div class="sermon-thumb">
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">
+            <img class="sermon-thumb-img" src="images/Live/night-prayer.jpg" alt="Night Prayer" onerror="this.style.background='#0b2a45'">
+            <div class="play-overlay">
+              <div class="play-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#0b2a45"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="sermon-body">
+          <p class="sermon-series">Night Prayer</p>
+          <p class="sermon-title">Night Prayer &amp; Worship</p>
+          <div class="sermon-meta"><span>ENJC Church</span><span>Daily</span></div>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" class="sermon-watch">Watch on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL YOUTUBE PLAYLIST -->
+<section class="playlist-section">
+  <div class="container">
+    <h2 class="fade-in">Full Sermon Library</h2>
+    <p class="fade-in" style="color:#666;margin-bottom:32px;">Browse all our messages directly from our YouTube channel</p>
+    <div class="playlist-embed fade-in">
+      <iframe width="100%" height="480"
+        src="https://www.youtube.com/embed/videoseries?list=UUElimNewJerusalemChurchOfficial"
+        title="ENJC Sermon Playlist" allowfullscreen>
+      </iframe>
+    </div>
+    <div style="text-align:center;margin-top:28px;" class="fade-in">
+      <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn call" style="padding:14px 36px;font-size:1rem;">View All on YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="sermon-cta">
+  <div class="container">
+    <h2>Never miss a message</h2>
+    <p>Subscribe to our YouTube channel and join our WhatsApp group for notifications every time we go live.</p>
+    <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" class="btn register" style="margin:0 8px 8px;padding:13px 30px;">Subscribe on YouTube</a>
+    <a href="https://wa.me/919444345102" target="_blank" class="btn join" style="margin:0 8px 8px;padding:13px 30px;">Join WhatsApp Group</a>
+  </div>
+</div>
+
+<footer class="footer-rich">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo/logo.png" alt="ENJC Logo">
+        <p>Elim New Jerusalem Church — a community of believers united in worship, prayer, and fellowship.</p>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.facebook.com/ENJCChurch" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/enjcchurch" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <address>No. 110E, Ellaya Mudali Street,<br>Tondiarpet,<br>Chennai – 600 081,<br>Tamil Nadu, India<br><br><a href="tel:+919444345102">+91 94443 45102</a></address>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</div></div>
+</footer>
+
+<a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
+
+<script>
+function setFilter(btn, type) {
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.sermon-card').forEach(card => {
+    card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+  });
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, {threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

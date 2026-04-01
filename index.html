@@ -5,209 +5,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ENJC | Elim New Jerusalem Church</title>
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- ===== SCROLL ANIMATION STYLES ===== -->
   <style>
-    /* Fade-in on scroll */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Staggered delay for grid cards */
-    .fade-in:nth-child(1) { transition-delay: 0.05s; }
-    .fade-in:nth-child(2) { transition-delay: 0.12s; }
-    .fade-in:nth-child(3) { transition-delay: 0.19s; }
-    .fade-in:nth-child(4) { transition-delay: 0.26s; }
-    .fade-in:nth-child(5) { transition-delay: 0.33s; }
-    .fade-in:nth-child(6) { transition-delay: 0.40s; }
-
-    /* Slider dot indicators */
-    .slider-dots {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 10;
-    }
-    .slider-dots span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      display: block;
-    }
-    .slider-dots span.active {
-      background: #f4b400;
-      transform: scale(1.25);
-    }
-
-    /* ===== VERSE OF THE WEEK ===== */
-    .verse-section {
-      background: var(--white);
-      padding: 50px 0;
-    }
-    .verse-block {
-      border-left: 5px solid var(--accent);
-      padding: 24px 32px;
-      background: #fffdf4;
-      border-radius: 0 12px 12px 0;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .verse-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .verse-block blockquote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: var(--primary);
-      line-height: 1.8;
-      margin: 0 0 12px 0;
-    }
-    .verse-block cite {
-      font-size: 0.9rem;
-      color: #666;
-      font-style: normal;
-    }
-
-    /* ===== RICH FOOTER ===== */
-    .footer-rich {
-      background: var(--primary);
-      color: white;
-      padding: 60px 0 0;
-      margin-top: 80px;
-      width: 100%;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 40px;
-    }
-    .footer-brand img {
-      height: 45px;
-      margin-bottom: 16px;
-      filter: brightness(0) invert(1);
-      opacity: 0.9;
-    }
-    .footer-brand p {
-      color: rgba(255,255,255,0.65);
-      font-size: 14px;
-      line-height: 1.7;
-      max-width: 280px;
-      margin: 0 0 20px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .footer-social a {
-      display: inline-block;
-      padding: 7px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 13px;
-      transition: all 0.3s ease;
-    }
-    .footer-social a:hover {
-      background: var(--accent);
-      color: var(--primary);
-      border-color: var(--accent);
-    }
-    .footer-col h4 {
-      color: var(--accent);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 18px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-    }
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-col ul li {
-      margin-bottom: 10px;
-    }
-    .footer-col ul li a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
-    .footer-col ul li a:hover {
-      color: var(--accent);
-    }
-    .footer-col address {
-      font-style: normal;
-      color: rgba(255,255,255,0.65);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-    .footer-col address a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    .footer-col address a:hover {
-      color: var(--accent);
-    }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 20px 0;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-    }
-
-    /* Footer mobile */
-    @media (max-width: 768px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      .footer-brand p {
-        max-width: 100%;
-      }
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:none}
+    .fade-in:nth-child(1){transition-delay:.05s}.fade-in:nth-child(2){transition-delay:.12s}
+    .fade-in:nth-child(3){transition-delay:.19s}.fade-in:nth-child(4){transition-delay:.26s}
+    .fade-in:nth-child(5){transition-delay:.33s}.fade-in:nth-child(6){transition-delay:.40s}
+    .slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+    .slider-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .3s,transform .3s;display:block}
+    .slider-dots span.active{background:#f4b400;transform:scale(1.25)}
+    .verse-section{background:var(--white);padding:50px 0}
+    .verse-block{border-left:5px solid var(--accent);padding:24px 32px;background:#fffdf4;border-radius:0 12px 12px 0;max-width:800px;margin:0 auto;text-align:left}
+    .verse-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:600;margin-bottom:12px}
+    .verse-block blockquote{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;color:var(--primary);line-height:1.8;margin:0 0 12px}
+    .verse-block cite{font-size:.9rem;color:#666;font-style:normal}
+    .visitor-section{background:var(--primary);padding:80px 0}
+    .visitor-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .visitor-text h2{color:#f4b400;font-size:2.2rem;margin-bottom:20px}
+    .visitor-text p{color:rgba(255,255,255,.85);line-height:1.8;font-size:1rem;margin-bottom:24px}
+    .visitor-steps{display:flex;flex-direction:column;gap:18px}
+    .visitor-step{display:flex;gap:16px;align-items:flex-start}
+    .step-circle{width:36px;height:36px;border-radius:50%;background:#f4b400;color:#0b2a45;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-text h4{color:white;font-size:1rem;margin-bottom:4px}
+    .step-text p{color:rgba(255,255,255,.7);font-size:.9rem;margin:0;line-height:1.5}
+    .visitor-cta-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:40px;text-align:center}
+    .visitor-cta-box h3{color:white;font-size:1.5rem;margin-bottom:10px}
+    .visitor-cta-box p{color:rgba(255,255,255,.75);font-size:.95rem;margin-bottom:28px;line-height:1.7}
+    .visitor-btn{display:inline-block;background:#f4b400;color:#0b2a45;padding:13px 32px;border-radius:10px;font-weight:700;text-decoration:none;font-size:15px;transition:all .3s;margin:4px}
+    .visitor-btn:hover{background:#ffca28;transform:translateY(-2px)}
+    .visitor-btn.outline{background:transparent;color:white;border:2px solid rgba(255,255,255,.4)}
+    .visitor-btn.outline:hover{background:rgba(255,255,255,.1);border-color:white}
+    .giving-section{background:#f6f8fb;padding:80px 0}
+    .giving-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;max-width:1000px;margin:0 auto}
+    .giving-text h2{color:var(--primary);margin-bottom:16px}
+    .giving-text p{color:#555;line-height:1.8;margin-bottom:18px}
+    .giving-methods{display:flex;flex-direction:column;gap:12px}
+    .giving-method{display:flex;align-items:center;gap:14px;background:white;padding:16px 20px;border-radius:12px;box-shadow:var(--shadow)}
+    .gm-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .gm-info h4{font-size:14px;color:var(--primary);margin-bottom:2px}
+    .gm-info p{font-size:12px;color:#888;margin:0}
+    .qr-box{background:white;border-radius:20px;padding:32px;text-align:center;box-shadow:var(--shadow);border:2px dashed #e0e0e0}
+    .qr-placeholder{width:160px;height:160px;background:#f5f5f5;border-radius:12px;margin:0 auto 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed #ddd}
+    .outreach-section{background:white;padding:80px 0}
+    .outreach-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:40px}
+    .outreach-card{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:all .3s}
+    .outreach-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.12)}
+    .outreach-img{height:160px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:3rem}
+    .outreach-body{padding:22px}
+    .outreach-body h4{color:var(--primary);font-size:1.1rem;margin-bottom:8px}
+    .outreach-body p{color:#555;font-size:.9rem;line-height:1.65;margin:0}
+    .ministries-strip{background:var(--primary);padding:60px 0}
+    .ministries-strip h2{color:white;margin-bottom:10px}
+    .min-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:32px}
+    .min-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:24px 16px;text-align:center;text-decoration:none;transition:all .3s;display:block}
+    .min-card:hover{background:rgba(244,180,0,.15);border-color:#f4b400;transform:translateY(-4px)}
+    .min-card .m-icon{font-size:2rem;margin-bottom:10px;display:block}
+    .min-card h4{color:white;font-size:.95rem;margin:0}
+    .footer-rich{background:var(--primary);color:white;padding:60px 0 0;margin-top:0;width:100%}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:40px}
+    .footer-brand img{height:45px;margin-bottom:16px;filter:brightness(0) invert(1);opacity:.9}
+    .footer-brand p{color:rgba(255,255,255,.65);font-size:14px;line-height:1.7;max-width:280px;margin:0 0 20px}
+    .footer-social{display:flex;gap:10px;flex-wrap:wrap}
+    .footer-social a{display:inline-block;padding:7px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;transition:all .3s}
+    .footer-social a:hover{background:var(--accent);color:var(--primary);border-color:var(--accent)}
+    .footer-col h4{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px;font-weight:600}
+    .footer-col ul{list-style:none;padding:0;margin:0}
+    .footer-col ul li{margin-bottom:10px}
+    .footer-col ul li a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;transition:color .3s}
+    .footer-col ul li a:hover{color:var(--accent)}
+    .footer-col address{font-style:normal;color:rgba(255,255,255,.65);font-size:14px;line-height:1.8}
+    .footer-col address a{color:rgba(255,255,255,.65);text-decoration:none}
+    .footer-col address a:hover{color:var(--accent)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;text-align:center;font-size:13px;color:rgba(255,255,255,.4)}
+    @media(max-width:768px){
+      .visitor-grid,.giving-grid,.outreach-grid{grid-template-columns:1fr;gap:30px}
+      .footer-grid{grid-template-columns:1fr;gap:30px}
     }
   </style>
 </head>
-
 <body>
 
 <header>
   <div class="container nav">
-    <div class="logo">
-      <img src="images/logo/logo.png" alt="ENJC Church Logo">
-    </div>
+    <div class="logo"><img src="images/logo/logo.png" alt="ENJC Church Logo"></div>
     <nav>
       <ul class="menu">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="media.html">Media</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -215,208 +101,237 @@
   </div>
 </header>
 
-
-<!-- ===== PAGE HERO ===== -->
-<div class="page-hero" style="background: linear-gradient(135deg, #0b2a45 0%, #1a4a70 100%); position: relative; overflow: hidden;">
-  <div class="container" style="position: relative; z-index: 2;">
-    <h1 style="color: white; text-shadow: 0 3px 10px rgba(0,0,0,0.3);">Welcome to ENJC Family</h1>
-    <p style="color: rgba(255,255,255,0.90); font-size: 1.2rem;">Father &bull; Son &bull; Holy Spirit &bull; Fellowship</p>
+<div class="page-hero" style="background:linear-gradient(135deg,#0b2a45 0%,#1a4a70 100%);position:relative;overflow:hidden;">
+  <div class="container" style="position:relative;z-index:2;">
+    <h1 style="color:white;text-shadow:0 3px 10px rgba(0,0,0,.3);">Welcome to ENJC Family</h1>
+    <p style="color:rgba(255,255,255,.9);font-size:1.2rem;">Father &bull; Son &bull; Holy Spirit &bull; Fellowship</p>
   </div>
-  <div style="position: absolute; inset: 0; opacity: 0.07; background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>'); background-size: 30px 30px;"></div>
+  <div style="position:absolute;inset:0;opacity:.07;background-image:url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; fill=&quot;white&quot;/></svg>');background-size:30px 30px;"></div>
 </div>
 
-
-<!-- ===== HERO SLIDER ===== -->
 <section class="slider">
-
   <img src="images/home/slide1.jpg" class="slide active" alt="Church worship service">
   <img src="images/home/slide2.jpg" class="slide" alt="Church community gathering">
   <img src="images/home/slide3.jpg" class="slide" alt="Church community gathering">
-
-  <!-- Text Overlay -->
   <div class="hero-text">
-    <h2 style="color: #ffffff;">Because you are precious in my sight,<br>
-        You are honoured and I love you<br>
-        Isaiah 43:4</h2>
+    <h2 style="color:#fff;">Because you are precious in my sight,<br>You are honoured and I love you<br>Isaiah 43:4</h2>
     <a href="events.html" class="hero-btn">Join Us Today</a>
   </div>
-
-  <!-- Dot indicators -->
   <div class="slider-dots">
     <span class="active" onclick="goToSlide(0)"></span>
     <span onclick="goToSlide(1)"></span>
     <span onclick="goToSlide(2)"></span>
   </div>
-
   <button class="prev" aria-label="Previous slide">&#10094;</button>
   <button class="next" aria-label="Next slide">&#10095;</button>
-
 </section>
 
-
-<!-- ===== VERSE OF THE WEEK ===== -->
 <div class="verse-section">
   <div class="container">
     <div class="verse-block fade-in">
       <p class="verse-label">Verse of the Week</p>
-      <blockquote>
-        "For I know the plans I have for you, declares the Lord — plans for welfare and not for evil,
-        to give you a future and a hope."
-      </blockquote>
+      <blockquote>"For I know the plans I have for you, declares the Lord — plans for welfare and not for evil, to give you a future and a hope."</blockquote>
       <cite>— Jeremiah 29:11</cite>
     </div>
   </div>
 </div>
 
-
-<!-- ===== SERVICE TIMINGS ===== -->
-<section>
+<!-- NEW VISITOR WELCOME -->
+<section class="visitor-section">
   <div class="container">
-    <h2 class="fade-in">Service Timings</h2>
-    <div class="grid">
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Sunday</strong>
-        05:30am – 07:30am<br>
-        08:30am – 10:30am<br>
-        11:30am – 01:30pm
+    <div class="visitor-grid">
+      <div class="visitor-text fade-in">
+        <h2>New here? You're welcome.</h2>
+        <p>Whether you're coming for the first time or returning after a long time away — there is a place for you at ENJC. No pressure, just open arms and the presence of God.</p>
+        <div class="visitor-steps">
+          <div class="visitor-step">
+            <div class="step-circle">1</div>
+            <div class="step-text">
+              <h4>Pick a service time</h4>
+              <p>3 Sunday services — 5:30am, 8:30am, or 11:30am. All are identical, pick what works for you.</p>
+            </div>
+          </div>
+          <div class="visitor-step">
+            <div class="step-circle">2</div>
+            <div class="step-text">
+              <h4>Find us easily</h4>
+              <p>No. 110E, Ellaya Mudali Street, Tondiarpet, Chennai. Near Bedestha Swimming Pool.</p>
+            </div>
+          </div>
+          <div class="visitor-step">
+            <div class="step-circle">3</div>
+            <div class="step-text">
+              <h4>Let us know you're coming</h4>
+              <p>WhatsApp us — we'd love to welcome you personally at the door.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Friday</strong>
-        11:00am – 01:30pm
-      </div>
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Saturday</strong>
-        06:00pm – 07:00pm
-      </div>
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">2nd Saturday</strong>
-        06:00am – 06:00pm
-      </div>
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Night Prayer</strong>
-        10:30pm – 11:00pm
-      </div>
-      <div class="card fade-in">
-        <strong style="font-size:20px; color:var(--primary); display:block; margin-bottom:12px;">Deliverance Meeting</strong>
-        06:00pm – 08:30pm
+      <div class="visitor-cta-box fade-in">
+        <h3>Planning your first visit?</h3>
+        <p>Let us know — we'll make sure someone is there to greet you and help you feel at home from the first moment.</p>
+        <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20planning%20to%20visit%20ENJC%20this%20Sunday!" target="_blank" class="visitor-btn">I'm visiting this Sunday</a>
+        <br>
+        <a href="contact.html" class="visitor-btn outline" style="margin-top:8px;">Ask us a question</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SERVICE TIMINGS -->
+<section>
+  <div class="container">
+    <h2 class="fade-in">Service Timings</h2>
+    <div class="grid">
+      <div class="card fade-in"><strong style="font-size:20px;color:var(--primary);display:block;margin-bottom:12px;">Sunday</strong>05:30am – 07:30am<br>08:30am – 10:30am<br>11:30am – 01:30pm</div>
+      <div class="card fade-in"><strong style="font-size:20px;color:var(--primary);display:block;margin-bottom:12px;">Friday</strong>11:00am – 01:30pm</div>
+      <div class="card fade-in"><strong style="font-size:20px;color:var(--primary);display:block;margin-bottom:12px;">Saturday</strong>06:00pm – 07:00pm</div>
+      <div class="card fade-in"><strong style="font-size:20px;color:var(--primary);display:block;margin-bottom:12px;">2nd Saturday</strong>06:00am – 06:00pm</div>
+      <div class="card fade-in"><strong style="font-size:20px;color:var(--primary);display:block;margin-bottom:12px;">Night Prayer</strong>10:30pm – 11:00pm</div>
+      <div class="card fade-in"><strong style="font-size:20px;color:var(--primary);display:block;margin-bottom:12px;">Deliverance Meeting</strong>06:00pm – 08:30pm</div>
+    </div>
+  </div>
+</section>
 
-<!-- ===== RICH FOOTER ===== -->
+<!-- COMMUNITY OUTREACH -->
+<section class="outreach-section">
+  <div class="container">
+    <h2 class="fade-in">Serving Our Community</h2>
+    <p class="fade-in" style="color:#666;max-width:650px;margin:0 auto;">Faith in action. We believe the church exists not just within its walls, but in the streets, homes, and hearts of Chennai.</p>
+    <div class="outreach-grid">
+      <div class="outreach-card fade-in">
+        <div class="outreach-img">🙏</div>
+        <div class="outreach-body">
+          <h4>Prayer for the City</h4>
+          <p>Every week we pray for Tondiarpet and Chennai — for families, schools, hospitals, and local leaders. Our Night Prayer is open to all.</p>
+        </div>
+      </div>
+      <div class="outreach-card fade-in">
+        <div class="outreach-img">❤️</div>
+        <div class="outreach-body">
+          <h4>Care &amp; Support</h4>
+          <p>We support families through practical help, hospital visits, and pastoral counselling. No one walks through hardship alone here.</p>
+        </div>
+      </div>
+      <div class="outreach-card fade-in">
+        <div class="outreach-img">✝️</div>
+        <div class="outreach-body">
+          <h4>Deliverance Ministry</h4>
+          <p>Our weekly Deliverance Meeting is a place of healing and freedom. Lives are transformed by the power of prayer and God's Word.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVING -->
+<section class="giving-section">
+  <div class="container">
+    <div class="giving-grid">
+      <div class="giving-text fade-in">
+        <h2>Give &amp; Support</h2>
+        <p>Your giving helps us worship freely, serve the community, and share the Gospel. Every contribution makes a difference in God's Kingdom.</p>
+        <p style="font-size:.9rem;color:#888;font-style:italic;">"God loves a cheerful giver." — 2 Corinthians 9:7</p>
+        <div class="giving-methods">
+          <div class="giving-method">
+            <div class="gm-icon" style="background:#e8f5e9;">💚</div>
+            <div class="gm-info"><h4>Google Pay / PhonePe / UPI</h4><p>Scan the QR code or use our UPI ID</p></div>
+          </div>
+          <div class="giving-method">
+            <div class="gm-icon" style="background:#e3f2fd;">📱</div>
+            <div class="gm-info"><h4>WhatsApp us</h4><p>Message us for bank transfer details</p></div>
+          </div>
+          <div class="giving-method">
+            <div class="gm-icon" style="background:#fff8e1;">🏛️</div>
+            <div class="gm-info"><h4>In person</h4><p>Offering during any Sunday service</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="qr-box fade-in">
+        <strong style="display:block;font-size:15px;color:var(--primary);margin-bottom:6px;">Scan to Give</strong>
+        <p style="font-size:12px;color:#aaa;margin-bottom:16px;">Replace with your actual UPI QR code</p>
+        <div class="qr-placeholder">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5" stroke-linecap="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/>
+            <rect x="19" y="14" width="2" height="2"/><rect x="14" y="19" width="2" height="2"/>
+            <rect x="18" y="19" width="3" height="2"/>
+          </svg>
+          <span style="font-size:11px;color:#bbb;">UPI QR Code</span>
+        </div>
+        <p style="font-size:12px;color:#888;">Add your QR image in <code>images/</code> and update the src</p>
+        <a href="https://wa.me/919444345102?text=I%20would%20like%20to%20give%20to%20ENJC%20Church" target="_blank" style="display:inline-block;margin-top:16px;background:var(--primary);color:white;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">Give via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES STRIP -->
+<section class="ministries-strip">
+  <div class="container">
+    <h2 class="fade-in">Our Ministries</h2>
+    <p style="color:rgba(255,255,255,.75);" class="fade-in">A place for every person at every stage of life.</p>
+    <div class="min-grid">
+      <a href="ministries.html#youth" class="min-card fade-in"><span class="m-icon">👦</span><h4>Youth</h4></a>
+      <a href="ministries.html#women" class="min-card fade-in"><span class="m-icon">👩</span><h4>Women's Fellowship</h4></a>
+      <a href="ministries.html#prayer" class="min-card fade-in"><span class="m-icon">🙏</span><h4>Prayer Ministry</h4></a>
+      <a href="ministries.html#deliverance" class="min-card fade-in"><span class="m-icon">✝️</span><h4>Deliverance</h4></a>
+      <a href="ministries.html#worship" class="min-card fade-in"><span class="m-icon">🎵</span><h4>Worship Team</h4></a>
+      <a href="ministries.html" class="min-card fade-in"><span class="m-icon">→</span><h4>View All</h4></a>
+    </div>
+  </div>
+</section>
+
 <footer class="footer-rich">
   <div class="container">
     <div class="footer-grid">
-
-      <!-- Brand column -->
       <div class="footer-brand">
         <img src="images/logo/logo.png" alt="ENJC Logo">
         <p>Elim New Jerusalem Church — a community of believers united in worship, prayer, and fellowship. All are welcome in God's house.</p>
         <div class="footer-social">
-          <a href="https://www.youtube.com/@enjcchurch" target="_blank" rel="noopener">YouTube</a>
-          <a href="https://www.facebook.com/enjcchurch" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.facebook.com/ENJCChurch" target="_blank" rel="noopener">Facebook</a>
           <a href="https://www.instagram.com/enjcchurch" target="_blank" rel="noopener">Instagram</a>
           <a href="https://wa.me/919444345102" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
-
-      <!-- Quick Links -->
       <div class="footer-col">
         <h4>Quick Links</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="media.html">Media</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-
-      <!-- Address & Contact -->
       <div class="footer-col">
         <h4>Visit Us</h4>
-        <address>
-          No. 110E, Ellaya Mudali Street,<br>
-          Tondiarpet,<br>
-          Chennai – 600 081,<br>
-          Tamil Nadu, India<br><br>
-          <a href="tel:+919444345102">+91 94443 45102</a>
-        </address>
+        <address>No. 110E, Ellaya Mudali Street,<br>Tondiarpet,<br>Chennai – 600 081,<br>Tamil Nadu, India<br><br><a href="tel:+919444345102">+91 94443 45102</a></address>
       </div>
-
     </div>
   </div>
-
-  <div class="footer-bottom">
-    <div class="container">
-      &copy; 2026 Elim New Jerusalem Church. All rights reserved.
-    </div>
-  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</div></div>
 </footer>
 
-
-<!-- WhatsApp Floating Button -->
 <a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 
-
-<!-- ===== JAVASCRIPT ===== -->
 <script>
-  // ── Slider ──────────────────────────────────────────────
-  const slides = document.querySelectorAll(".slide");
-  const dots   = document.querySelectorAll(".slider-dots span");
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
-
-  let index = 0;
-  let timer;
-
-  function showSlide(i) {
-    slides.forEach(s => s.classList.remove("active"));
-    dots.forEach(d => d.classList.remove("active"));
-    slides[i].classList.add("active");
-    dots[i].classList.add("active");
-    index = i;
-  }
-
-  function goToSlide(i) {
-    clearInterval(timer);
-    showSlide(i);
-    startAutoPlay();
-  }
-
-  function startAutoPlay() {
-    timer = setInterval(() => {
-      showSlide((index + 1) % slides.length);
-    }, 5000);
-  }
-
-  nextBtn.onclick = () => goToSlide((index + 1) % slides.length);
-  prevBtn.onclick = () => goToSlide((index - 1 + slides.length) % slides.length);
-
-  // Pause on hover
-  document.querySelector(".slider").addEventListener("mouseenter", () => clearInterval(timer));
-  document.querySelector(".slider").addEventListener("mouseleave", startAutoPlay);
-
-  startAutoPlay();
-
-
-  // ── Scroll Fade-In ───────────────────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+const slides=document.querySelectorAll(".slide"),dots=document.querySelectorAll(".slider-dots span"),nextBtn=document.querySelector(".next"),prevBtn=document.querySelector(".prev");
+let index=0,timer;
+function showSlide(i){slides.forEach(s=>s.classList.remove("active"));dots.forEach(d=>d.classList.remove("active"));slides[i].classList.add("active");dots[i].classList.add("active");index=i;}
+function goToSlide(i){clearInterval(timer);showSlide(i);startAutoPlay();}
+function startAutoPlay(){timer=setInterval(()=>showSlide((index+1)%slides.length),5000);}
+nextBtn.onclick=()=>goToSlide((index+1)%slides.length);
+prevBtn.onclick=()=>goToSlide((index-1+slides.length)%slides.length);
+document.querySelector(".slider").addEventListener("mouseenter",()=>clearInterval(timer));
+document.querySelector(".slider").addEventListener("mouseleave",startAutoPlay);
+startAutoPlay();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll(".fade-in").forEach(el=>obs.observe(el));
 </script>
-
 </body>
 </html>
