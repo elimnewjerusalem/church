@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sermons | ENJC Church</title>
+  <meta name="description" content="Watch sermons and messages from ENJC — Elim New Jerusalem Church, Chennai. Live streams, Sunday services, and prayer meetings on YouTube.">
+  <meta name="keywords" content="ENJC, Elim New Jerusalem Church, Chennai, Tondiarpet, church, worship, sermons">
+  <meta property="og:title" content="ENJC | Elim New Jerusalem Church">
+  <meta property="og:description" content="Watch sermons and messages from ENJC — Elim New Jerusalem Church, Chennai. Live streams, Sunday services, and prayer meetings on YouTube.">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
@@ -76,6 +81,22 @@
       .sermons-grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr;gap:30px}
     }
+
+    /* ===== HAMBURGER NAV ===== */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:1001}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s ease}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media(max-width:768px){
+      .hamburger{display:flex}
+      .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0b2a45;padding:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1000}
+      .menu.open{display:flex}
+      .menu li{width:100%}
+      .menu a{display:block;padding:13px 24px;border-radius:0;font-size:15px}
+      .menu a:hover,.menu a.active{background:rgba(244,180,0,.15);color:#f4b400}
+      .nav{position:relative;flex-wrap:nowrap}
+    }
   </style>
 </head>
 <body>
@@ -93,6 +114,9 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -112,8 +136,8 @@
 
     <div class="featured-sermon fade-in">
       <div class="featured-video">
-        <!-- Replace VIDEO_ID with your actual YouTube video ID -->
-        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=ElimNewJerusalemChurchOfficial" allowfullscreen title="Latest ENJC Sermon"></iframe>
+        <!-- Latest uploads from ENJC channel — replace UCxxxxxxx with your real channel ID from YouTube Studio → Customisation → Basic Info -->
+        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=ElimNewJerusalemChurchOfficial&index=0" allowfullscreen title="Latest ENJC Sermon" loading="lazy"></iframe>
       </div>
       <div class="featured-info">
         <span class="featured-tag">Latest Sermon</span>
@@ -209,10 +233,14 @@
     <h2 class="fade-in">Full Sermon Library</h2>
     <p class="fade-in" style="color:#666;margin-bottom:32px;">Browse all our messages directly from our YouTube channel</p>
     <div class="playlist-embed fade-in">
+      <!-- Replace UCxxxxxxxxx with your real Channel ID from YouTube Studio -->
       <iframe width="100%" height="480"
         src="https://www.youtube.com/embed/videoseries?list=UUElimNewJerusalemChurchOfficial"
-        title="ENJC Sermon Playlist" allowfullscreen>
+        title="ENJC Sermon Playlist" allowfullscreen loading="lazy">
       </iframe>
+      <div style="padding:16px 20px;background:#fffdf4;border-top:2px solid #f4b400;font-size:13px;color:#555;">
+        <strong style="color:#0b2a45;">To show your real playlist:</strong> Go to YouTube Studio → Customisation → Basic Info → copy the Channel ID (starts with UC...) and replace <code>UUElimNewJerusalemChurchOfficial</code> in this file.
+      </div>
     </div>
     <div style="text-align:center;margin-top:28px;" class="fade-in">
       <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn call" style="padding:14px 36px;font-size:1rem;">View All on YouTube</a>

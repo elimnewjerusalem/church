@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery | ENJC Church</title>
+  <meta name="description" content="Photos from ENJC Church — worship services, fellowships, and community moments at Elim New Jerusalem Church, Chennai.">
+  <meta name="keywords" content="ENJC, Elim New Jerusalem Church, Chennai, Tondiarpet, church, worship, sermons">
+  <meta property="og:title" content="ENJC | Elim New Jerusalem Church">
+  <meta property="og:description" content="Photos from ENJC Church — worship services, fellowships, and community moments at Elim New Jerusalem Church, Chennai.">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
@@ -49,6 +54,22 @@
     .footer-col address a:hover { color:var(--accent); }
     .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding:20px 0; text-align:center; font-size:13px; color:rgba(255,255,255,.4); }
     @media(max-width:768px){ .gallery{grid-template-columns:1fr;} .footer-grid{grid-template-columns:1fr;gap:30px;} }
+
+    /* ===== HAMBURGER NAV ===== */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:1001}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s ease}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media(max-width:768px){
+      .hamburger{display:flex}
+      .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0b2a45;padding:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1000}
+      .menu.open{display:flex}
+      .menu li{width:100%}
+      .menu a{display:block;padding:13px 24px;border-radius:0;font-size:15px}
+      .menu a:hover,.menu a.active{background:rgba(244,180,0,.15);color:#f4b400}
+      .nav{position:relative;flex-wrap:nowrap}
+    }
   </style>
 </head>
 <body>
@@ -66,6 +87,9 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 

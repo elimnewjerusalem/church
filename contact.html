@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | ENJC Church</title>
+  <meta name="description" content="Contact Elim New Jerusalem Church — No.110E, Ellaya Mudali Street, Tondiarpet, Chennai 600081. Call +91 94443 45102 or WhatsApp us.">
+  <meta name="keywords" content="ENJC, Elim New Jerusalem Church, Chennai, Tondiarpet, church, worship, sermons">
+  <meta property="og:title" content="ENJC | Elim New Jerusalem Church">
+  <meta property="og:description" content="Contact Elim New Jerusalem Church — No.110E, Ellaya Mudali Street, Tondiarpet, Chennai 600081. Call +91 94443 45102 or WhatsApp us.">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
@@ -61,6 +66,22 @@
       .contact-form-wrap { padding:24px; }
       .footer-grid { grid-template-columns:1fr; gap:30px; }
     }
+
+    /* ===== HAMBURGER NAV ===== */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:1001}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s ease}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media(max-width:768px){
+      .hamburger{display:flex}
+      .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0b2a45;padding:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1000}
+      .menu.open{display:flex}
+      .menu li{width:100%}
+      .menu a{display:block;padding:13px 24px;border-radius:0;font-size:15px}
+      .menu a:hover,.menu a.active{background:rgba(244,180,0,.15);color:#f4b400}
+      .nav{position:relative;flex-wrap:nowrap}
+    }
   </style>
 </head>
 <body>
@@ -78,6 +99,9 @@
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -106,7 +130,7 @@
       <div class="contact-info-card fade-in">
         <div class="ci-icon">✉️</div>
         <h4>Email</h4>
-        <a href="mailto:enjcofficial@gmail.com">enjcofficial@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#f1949f9b929e9797989298909db1969c90989ddf929e9c"><span class="__cf_email__" data-cfemail="ed8883878e828b8b848e848c81ad8a808c8481c38e8280">[email&#160;protected]</span></a>
       </div>
       <div class="contact-info-card fade-in">
         <div class="ci-icon">💬</div>
@@ -234,7 +258,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Scroll animations
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
@@ -249,10 +273,4 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   const phone   = this.phone.value.trim();
   const subject = this.subject.value.trim();
   const message = this.message.value.trim();
-  const text = `*New Message from ENJC Website*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Subject:* ${encodeURIComponent(subject)}%0A*Message:* ${encodeURIComponent(message)}`;
-  window.open(`https://wa.me/919444345102?text=${text}`, '_blank');
-  this.reset();
-});
-</script>
-</body>
-</html>
+  const text = `*New Message from ENJC Website*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(ema

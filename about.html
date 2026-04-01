@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us | ENJC Church</title>
+  <meta name="description" content="Learn about Elim New Jerusalem Church — our story, mission, vision, and leadership. A Christ-centred community in Tondiarpet, Chennai.">
+  <meta name="keywords" content="ENJC, Elim New Jerusalem Church, Chennai, Tondiarpet, church, worship, sermons">
+  <meta property="og:title" content="ENJC | Elim New Jerusalem Church">
+  <meta property="og:description" content="Learn about Elim New Jerusalem Church — our story, mission, vision, and leadership. A Christ-centred community in Tondiarpet, Chennai.">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
@@ -63,6 +68,22 @@
       .mv-grid { grid-template-columns:1fr; }
       .footer-grid { grid-template-columns:1fr; gap:30px; }
     }
+
+    /* ===== HAMBURGER NAV ===== */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:1001}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s ease}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media(max-width:768px){
+      .hamburger{display:flex}
+      .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0b2a45;padding:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1000}
+      .menu.open{display:flex}
+      .menu li{width:100%}
+      .menu a{display:block;padding:13px 24px;border-radius:0;font-size:15px}
+      .menu a:hover,.menu a.active{background:rgba(244,180,0,.15);color:#f4b400}
+      .nav{position:relative;flex-wrap:nowrap}
+    }
   </style>
 </head>
 <body>
@@ -80,6 +101,9 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -98,10 +122,12 @@
 
       <!-- Pastor Profile -->
       <div class="pastor-profile fade-in">
-        <img src="images/about/pastor.jpg" alt="Pastor" onerror="this.src='https://via.placeholder.com/180?text=Pastor'">
-        <h3>Pastor John Doe</h3>
-        <p class="role">Senior Pastor &amp; Founder</p>
+        <img src="images/about/pastor.jpg" alt="Senior Pastor — ENJC Church" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:180px;height:180px;border-radius:50%;background:#0b2a45;border:6px solid var(--accent);align-items:center;justify-content:center;margin:0 auto;font-size:2.5rem;">🙏</div>
+        <h3>Senior Pastor</h3>
+        <p class="role">Senior Pastor &amp; Founder — ENJC Church</p>
         <p class="quote">"Called to serve with faith and vision"</p>
+        <p style="font-size:11px;color:#aaa;margin-top:10px;font-style:italic;">📸 Add pastor photo to <code>images/about/pastor.jpg</code></p>
       </div>
 
       <!-- Story + Testimony -->

@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ENJC | Elim New Jerusalem Church</title>
+  <meta name="description" content="Elim New Jerusalem Church (ENJC) — Tondiarpet, Chennai. Sunday worship at 5:30am, 8:30am & 11:30am. All are welcome. Join our family of faith.">
+  <meta name="keywords" content="ENJC, Elim New Jerusalem Church, Chennai, Tondiarpet, church, worship, sermons">
+  <meta property="og:title" content="ENJC | Elim New Jerusalem Church">
+  <meta property="og:description" content="Elim New Jerusalem Church (ENJC) — Tondiarpet, Chennai. Sunday worship at 5:30am, 8:30am & 11:30am. All are welcome. Join our family of faith.">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
@@ -81,6 +86,22 @@
       .visitor-grid,.giving-grid,.outreach-grid{grid-template-columns:1fr;gap:30px}
       .footer-grid{grid-template-columns:1fr;gap:30px}
     }
+
+    /* ===== HAMBURGER NAV ===== */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:1001}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s ease}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media(max-width:768px){
+      .hamburger{display:flex}
+      .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0b2a45;padding:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1000}
+      .menu.open{display:flex}
+      .menu li{width:100%}
+      .menu a{display:block;padding:13px 24px;border-radius:0;font-size:15px}
+      .menu a:hover,.menu a.active{background:rgba(244,180,0,.15);color:#f4b400}
+      .nav{position:relative;flex-wrap:nowrap}
+    }
   </style>
 </head>
 <body>
@@ -98,6 +119,9 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -248,19 +272,19 @@
         </div>
       </div>
       <div class="qr-box fade-in">
-        <strong style="display:block;font-size:15px;color:var(--primary);margin-bottom:6px;">Scan to Give</strong>
-        <p style="font-size:12px;color:#aaa;margin-bottom:16px;">Replace with your actual UPI QR code</p>
-        <div class="qr-placeholder">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5" stroke-linecap="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/>
-            <rect x="19" y="14" width="2" height="2"/><rect x="14" y="19" width="2" height="2"/>
-            <rect x="18" y="19" width="3" height="2"/>
-          </svg>
-          <span style="font-size:11px;color:#bbb;">UPI QR Code</span>
+        <strong style="display:block;font-size:15px;color:var(--primary);margin-bottom:6px;">Give Online</strong>
+        <p style="font-size:13px;color:#555;margin-bottom:20px;line-height:1.6;">Send your offering directly via UPI or WhatsApp — fast, easy, and secure.</p>
+        <div style="background:#f6f8fb;border-radius:12px;padding:20px;margin-bottom:16px;">
+          <p style="font-size:13px;font-weight:600;color:var(--primary);margin-bottom:6px;">UPI ID</p>
+          <p style="font-size:16px;color:#333;font-family:monospace;letter-spacing:.5px;margin:0;">
+            <!-- Replace with your real UPI ID e.g. enjcchurch@upi -->
+            <span style="background:#fff;padding:8px 14px;border-radius:8px;border:1px solid #ddd;display:inline-block;">enjcchurch@upi</span>
+          </p>
+          <p style="font-size:11px;color:#aaa;margin-top:8px;">Replace <code>enjcchurch@upi</code> with your real UPI ID</p>
         </div>
-        <p style="font-size:12px;color:#888;">Add your QR image in <code>images/</code> and update the src</p>
-        <a href="https://wa.me/919444345102?text=I%20would%20like%20to%20give%20to%20ENJC%20Church" target="_blank" style="display:inline-block;margin-top:16px;background:var(--primary);color:white;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">Give via WhatsApp</a>
+        <!-- To add QR code: save your UPI QR as images/upi-qr.png and uncomment below -->
+        <!-- <img src="images/upi-qr.png" alt="UPI QR Code" style="width:150px;border-radius:10px;margin-bottom:12px;"> -->
+        <a href="https://wa.me/919444345102?text=I%20would%20like%20to%20give%20to%20ENJC%20Church" target="_blank" style="display:inline-block;background:var(--primary);color:white;padding:11px 26px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;transition:all .3s;">Give via WhatsApp</a>
       </div>
     </div>
   </div>
