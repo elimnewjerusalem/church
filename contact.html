@@ -273,4 +273,6 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   const phone   = this.phone.value.trim();
   const subject = this.subject.value.trim();
   const message = this.message.value.trim();
-  const text = `*New Message from ENJC Website*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(ema
+  const text = `*New Message from ENJC Website*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Subject:* ${encodeURIComponent(subject)}%0A*Message:* ${encodeURIComponent(message)}`;
+  const waLink = `https://wa.me/919444345102?text=${text}`;
+});
