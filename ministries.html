@@ -4,379 +4,373 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ministries | ENJC Church</title>
-  <meta name="description" content="Explore ENJC ministries — Youth, Women's Fellowship, Prayer, Deliverance, Worship and more.">
+  <meta name="description" content="Explore ENJC ministries — Youth, Women's Fellowship, Prayer, Deliverance, Worship and more in Chennai.">
   <meta name="keywords" content="ENJC, Elim New Jerusalem Church, Chennai, Tondiarpet">
   <meta property="og:title" content="Ministries | ENJC Church">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    /* ── BASE ─────────────────────────────────────── */
+    /* ── RESET & TOKENS ───────────────────── */
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --navy:#0b2a45;
-      --navy2:#1a4a70;
-      --gold:#f4b400;
-      --gold2:#ffca28;
-      --green:#25D366;
-      --bg:#f6f8fb;
-      --white:#ffffff;
-      --shadow:0 4px 20px rgba(0,0,0,.08);
-      --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+      --navy:#0b2a45;--navy2:#1a4a70;--gold:#f4b400;--gold2:#ffca28;
+      --warm:#fffdf4;--bg:#f4f6f9;--white:#ffffff;--border:#e8ecf0;
+      --text:#1a1a2e;--muted:#6b7280;--shadow:0 2px 12px rgba(0,0,0,.07);
+      --shadow-lg:0 8px 32px rgba(0,0,0,.12);--radius:10px;--radius-lg:16px;
     }
     html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth}
-    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:#1a1a1a;line-height:1.7;
-      /* bottom padding so content isn't hidden behind fixed bottom nav on mobile */
-      padding-bottom:0}
-    @media(max-width:768px){body{padding-bottom:70px}}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    @media(max-width:768px){body{padding-bottom:68px}}
+    a{text-decoration:none}
+    img{max-width:100%}
 
-    /* ── FADE IN ──────────────────────────────────── */
-    .fade-in{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    /* ── FADE IN ──────────────────────────── */
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
     .fade-in.visible{opacity:1;transform:none}
-    .fade-in:nth-child(1){transition-delay:.05s}.fade-in:nth-child(2){transition-delay:.11s}
-    .fade-in:nth-child(3){transition-delay:.17s}.fade-in:nth-child(4){transition-delay:.23s}
-    .fade-in:nth-child(5){transition-delay:.29s}.fade-in:nth-child(6){transition-delay:.35s}
+    .fade-in:nth-child(1){transition-delay:.04s}.fade-in:nth-child(2){transition-delay:.1s}
+    .fade-in:nth-child(3){transition-delay:.16s}.fade-in:nth-child(4){transition-delay:.22s}
+    .fade-in:nth-child(5){transition-delay:.28s}.fade-in:nth-child(6){transition-delay:.34s}
 
-    /* ── CONTAINER ────────────────────────────────── */
-    .container{width:92%;max-width:1200px;margin:0 auto;padding:0 10px}
+    /* ── CONTAINER ────────────────────────── */
+    .container{width:92%;max-width:1200px;margin:0 auto;padding:0 12px}
 
-    /* ── HEADER ───────────────────────────────────── */
-    header{position:sticky;top:0;z-index:900;background:rgba(11,42,69,.97);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.15)}
-    .nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .logo img{height:48px;transition:transform .3s}
-    .logo img:hover{transform:scale(1.05)}
+    /* ── TOP BAR ──────────────────────────── */
+    .top-bar{background:var(--navy);padding:6px 0}
+    .top-bar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .top-bar p{color:rgba(255,255,255,.7);font-size:12px}
+    .top-bar-links{display:flex;gap:14px}
+    .top-bar-links a{color:rgba(255,255,255,.6);font-size:11px;transition:color .2s}
+    .top-bar-links a:hover{color:var(--gold)}
 
-    /* Desktop menu */
-    .menu{list-style:none;display:flex;gap:4px;align-items:center}
-    .menu a{color:rgba(255,255,255,.8);text-decoration:none;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .25s;font-size:14px}
-    .menu a:hover{background:rgba(244,180,0,.15);color:var(--gold)}
-    .menu a.active{background:var(--gold);color:var(--navy);font-weight:600}
-    .nav-cta{background:var(--gold);color:var(--navy);padding:9px 20px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:all .25s;white-space:nowrap}
-    .nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-
-    /* Hamburger */
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:1001}
-    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s ease}
+    /* ── MAIN HEADER ──────────────────────── */
+    header{background:var(--white);border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:900;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+    .header-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-box{width:36px;height:36px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;font-size:14px;flex-shrink:0}
+    .logo-text{line-height:1.2}
+    .logo-text strong{display:block;font-size:15px;color:var(--navy);font-weight:800;letter-spacing:.5px}
+    .logo-text span{display:block;font-size:10px;color:var(--muted);font-weight:400}
+    .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+    .nav-links a{color:var(--muted);font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;transition:all .2s;white-space:nowrap;border-bottom:2px solid transparent}
+    .nav-links a:hover{color:var(--navy);background:#f0f4f8}
+    .nav-links a.active{color:var(--navy);font-weight:700;border-bottom-color:var(--gold);border-radius:6px 6px 0 0}
+    .nav-search{display:flex;align-items:center;gap:6px;background:#f0f4f8;border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+    .nav-search:hover{border-color:var(--navy);background:white}
+    .nav-search svg{width:13px;height:13px;flex-shrink:0}
+    .nav-right{display:flex;align-items:center;gap:8px}
+    .nav-visit{background:var(--navy);color:white;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:700;white-space:nowrap;transition:all .2s}
+    .nav-visit:hover{background:var(--navy2);transform:translateY(-1px)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
     .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .hamburger.open span:nth-child(2){opacity:0}
     .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-    /* ── HERO SLIDER ──────────────────────────────── */
-    .slider{position:relative;width:100%;height:75vh;min-height:480px;overflow:hidden}
-    @media(max-width:768px){.slider{height:55vh;min-height:380px}}
-    .slide{position:absolute;width:100%;height:100%;object-fit:cover;display:none;animation:fadeSlide .8s ease}
-    @keyframes fadeSlide{from{opacity:0}to{opacity:1}}
-    .slide.active{display:block}
-    .slider::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,42,69,.45) 0%,rgba(11,42,69,.65) 100%);z-index:1}
-    .hero-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:5;width:90%;max-width:860px;padding:0 16px}
-    .hero-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,3rem);color:white;font-weight:800;line-height:1.25;margin-bottom:10px;text-shadow:0 3px 16px rgba(0,0,0,.4)}
-    .hero-text p{color:rgba(255,255,255,.85);font-size:clamp(.85rem,1.5vw,1.1rem);letter-spacing:2px;margin-bottom:24px;text-transform:uppercase;font-weight:500}
-    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .hero-btn-gold{background:var(--gold);color:var(--navy);padding:13px 30px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .3s;box-shadow:0 6px 20px rgba(244,180,0,.4)}
-    .hero-btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(244,180,0,.5)}
-    .hero-btn-outline{border:2px solid rgba(255,255,255,.55);color:white;padding:11px 26px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;transition:all .3s;backdrop-filter:blur(4px)}
-    .hero-btn-outline:hover{background:rgba(255,255,255,.12);border-color:white}
-    .slider-dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:6}
-    .slider-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s;display:block}
-    .slider-dots span.active{background:var(--gold);transform:scale(1.3)}
-    .slider .prev,.slider .next{position:absolute;top:50%;transform:translateY(-50%);font-size:28px;background:rgba(11,42,69,.65);color:white;border:2px solid rgba(255,255,255,.25);padding:10px 16px;cursor:pointer;z-index:6;border-radius:8px;transition:all .3s;backdrop-filter:blur(6px)}
-    .slider .prev:hover,.slider .next:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
-    .slider .prev{left:18px}.slider .next{right:18px}
-    @media(max-width:480px){.slider .prev,.slider .next{padding:7px 11px;font-size:20px}.slider .prev{left:10px}.slider .next{right:10px}}
+    /* ── PAGE HERO BANNER ─────────────────── */
+    .page-hero{background:var(--navy);padding:44px 0 36px;border-bottom:4px solid var(--gold)}
+    .page-hero h1{font-family:'Playfair Display',Georgia,serif;color:white;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:6px}
+    .page-hero p{color:rgba(255,255,255,.72);font-size:1rem}
+    .page-hero-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+    .breadcrumb a,.breadcrumb span{font-size:12px;color:rgba(255,255,255,.5)}
+    .breadcrumb a:hover{color:var(--gold)}
+    .breadcrumb .sep{color:rgba(255,255,255,.3)}
 
-    /* ── QUICK ACCESS BAR (mobile only) ───────────── */
-    .quick-bar{display:none;background:var(--white);border-bottom:1px solid #eee;border-top:1px solid #eee}
+    /* ── SECTION ──────────────────────────── */
+    .section{padding:60px 0}
+    .section-white{background:var(--white)}
+    .section-bg{background:var(--bg)}
+    .section-navy{background:var(--navy)}
+    .section-warm{background:var(--warm)}
+    .section-head{margin-bottom:40px}
+    .section-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:6px;display:block}
+    .section-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,2.8vw,2.1rem);color:var(--navy);margin-bottom:8px;line-height:1.25}
+    .section-sub{color:var(--muted);max-width:580px;font-size:.97rem}
+    .divider-gold{width:48px;height:4px;background:var(--gold);border-radius:2px;margin:10px 0 16px}
+
+    /* ── CARDS ────────────────────────────── */
+    .card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);transition:all .3s;border:1px solid var(--border)}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+
+    /* ── VERSE BLOCK ──────────────────────── */
+    .verse-block{background:var(--warm);border-left:5px solid var(--gold);padding:20px 24px;border-radius:0 var(--radius) var(--radius) 0}
+    .verse-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:8px}
+    .verse-text{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:8px}
+    .verse-ref{font-size:.85rem;color:var(--muted)}
+
+    /* ── TIMING TABLE ─────────────────────── */
+    .time-table{width:100%;border-collapse:collapse}
+    .time-table tr{border-bottom:1px solid var(--border)}
+    .time-table tr:last-child{border-bottom:none}
+    .time-table tr.featured{background:var(--warm)}
+    .time-table td{padding:10px 12px;font-size:.93rem}
+    .time-table .day{color:var(--navy);font-weight:700}
+    .time-table .time{color:var(--muted);text-align:right}
+    .time-table tr.featured .day{color:var(--gold)}
+
+    /* ── LIVE BADGE ───────────────────────── */
+    .live-badge{display:inline-flex;align-items:center;gap:5px;background:#fff0f0;border:1px solid #fecaca;color:#dc2626;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.5px}
+    .live-dot{width:7px;height:7px;border-radius:50%;background:#dc2626;animation:blink 1.2s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+    /* ── BUTTONS ──────────────────────────── */
+    .btn-navy{display:inline-block;background:var(--navy);color:white;padding:11px 24px;border-radius:8px;font-weight:700;font-size:14px;transition:all .25s}
+    .btn-navy:hover{background:var(--navy2);transform:translateY(-1px)}
+    .btn-gold{display:inline-block;background:var(--gold);color:var(--navy);padding:11px 24px;border-radius:8px;font-weight:700;font-size:14px;transition:all .25s}
+    .btn-gold:hover{background:var(--gold2);transform:translateY(-1px)}
+    .btn-outline{display:inline-block;border:2px solid var(--navy);color:var(--navy);padding:9px 22px;border-radius:8px;font-weight:700;font-size:14px;transition:all .25s}
+    .btn-outline:hover{background:var(--navy);color:white}
+    .btn-wa{display:inline-block;background:#25D366;color:white;padding:11px 24px;border-radius:8px;font-weight:700;font-size:14px;transition:all .25s}
+    .btn-wa:hover{background:#20ba5a;transform:translateY(-1px)}
+
+    /* ── FOOTER ───────────────────────────── */
+    .footer{background:var(--navy);color:white;padding:52px 0 0}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:40px}
+    .footer-brand-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .footer-logo-box{width:36px;height:36px;background:rgba(244,180,0,.15);border:2px solid var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;font-size:14px}
+    .footer-logo-name{color:white;font-weight:800;font-size:15px;letter-spacing:.5px}
+    .footer-brand p{color:rgba(255,255,255,.55);font-size:13px;line-height:1.75;max-width:280px;margin-bottom:18px}
+    .footer-social{display:flex;gap:8px;flex-wrap:wrap}
+    .footer-social a{background:rgba(255,255,255,.08);color:rgba(255,255,255,.65);padding:6px 13px;border-radius:6px;font-size:12px;border:1px solid rgba(255,255,255,.12);transition:all .2s}
+    .footer-social a:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+    .footer-col h4{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:16px}
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:9px}
+    .footer-col ul li a{color:rgba(255,255,255,.55);font-size:13px;transition:color .2s}
+    .footer-col ul li a:hover{color:var(--gold)}
+    .footer-col address{font-style:normal;color:rgba(255,255,255,.55);font-size:13px;line-height:1.85}
+    .footer-col address a{color:rgba(255,255,255,.55)}
+    .footer-col address a:hover{color:var(--gold)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .footer-bottom p{color:rgba(255,255,255,.3);font-size:12px}
+    .footer-bottom-links{display:flex;gap:14px}
+    .footer-bottom-links a{color:rgba(255,255,255,.35);font-size:12px}
+    .footer-bottom-links a:hover{color:var(--gold)}
+
+    /* ── WHATSAPP FLOAT ───────────────────── */
+    .wa-float{position:fixed;bottom:28px;right:22px;z-index:800;transition:transform .3s}
+    .wa-float:hover{transform:scale(1.1)}
+    .wa-float img{width:56px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+    @media(max-width:768px){.wa-float{bottom:78px;right:14px}.wa-float img{width:50px}}
+
+    /* ── BOTTOM NAV ───────────────────────── */
+    .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:950;background:var(--white);border-top:2px solid var(--gold);height:62px;align-items:center;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+    @media(max-width:768px){.bottom-nav{display:flex}}
+    .bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;padding:4px 2px}
+    .bn-icon{font-size:20px;line-height:1}
+    .bn-label{font-size:9px;color:var(--muted);font-weight:500}
+    .bn-item.active .bn-label{color:var(--navy);font-weight:700}
+    .bn-center-wrap{flex:1;display:flex;justify-content:center}
+    .bn-center{width:50px;height:50px;border-radius:50%;background:var(--navy);border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;margin-top:-20px;box-shadow:0 4px 14px rgba(11,42,69,.35);text-decoration:none;transition:transform .2s}
+    .bn-center:hover{transform:scale(1.08)}
+
+    /* ── QUICK BAR (mobile) ───────────────── */
+    .quick-bar{display:none;background:var(--white);border-bottom:1px solid var(--border)}
     .quick-bar-inner{display:flex}
-    .q-item{flex:1;padding:11px 4px;text-align:center;text-decoration:none;color:#555;font-size:11px;font-weight:500;border-right:1px solid #eee;transition:all .2s}
+    .q-item{flex:1;padding:10px 4px;text-align:center;text-decoration:none;color:var(--muted);font-size:11px;font-weight:500;border-right:1px solid var(--border)}
     .q-item:last-child{border-right:none}
-    .q-item .q-icon{font-size:18px;display:block;margin-bottom:2px}
-    .q-item:hover,.q-item.active{color:var(--navy);background:#f6f8fb;font-weight:600}
+    .q-item .q-icon{font-size:17px;display:block;margin-bottom:2px}
+    .q-item.active{color:var(--navy);font-weight:700;background:#f8fafc}
     @media(max-width:768px){.quick-bar{display:block}}
 
-    /* ── VERSE ────────────────────────────────────── */
-    .verse-section{background:var(--white);padding:40px 0}
-    .verse-block{border-left:5px solid var(--gold);padding:20px 28px;background:#fffdf4;border-radius:0 12px 12px 0;max-width:820px;margin:0 auto;text-align:left}
-    .verse-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-    .verse-label::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold)}
-    .verse-block blockquote{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.18rem);font-style:italic;color:var(--navy);line-height:1.8;margin:0 0 10px}
-    .verse-block cite{font-size:.88rem;color:#888;font-style:normal}
-
-    /* ── VISITOR SECTION ──────────────────────────── */
-    .visitor-section{background:var(--navy);padding:72px 0}
-    .visitor-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-    .visitor-text h2{font-family:'Playfair Display',serif;color:var(--gold);font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:18px;line-height:1.2}
-    .visitor-text p{color:rgba(255,255,255,.82);line-height:1.8;margin-bottom:22px}
-    .visitor-steps{display:flex;flex-direction:column;gap:16px}
-    .visitor-step{display:flex;gap:14px;align-items:flex-start}
-    .step-circle{width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-    .step-text h4{color:white;font-size:.95rem;margin-bottom:3px;font-weight:600}
-    .step-text p{color:rgba(255,255,255,.65);font-size:.88rem;margin:0;line-height:1.5}
-    .visitor-cta-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:36px;text-align:center}
-    .visitor-cta-box h3{color:white;font-size:1.4rem;margin-bottom:10px;font-family:'Playfair Display',serif}
-    .visitor-cta-box p{color:rgba(255,255,255,.72);font-size:.93rem;margin-bottom:26px;line-height:1.7}
-    .visitor-btn{display:inline-block;background:var(--gold);color:var(--navy);padding:13px 30px;border-radius:10px;font-weight:700;text-decoration:none;font-size:14px;transition:all .3s;margin:4px}
-    .visitor-btn:hover{background:var(--gold2);transform:translateY(-2px)}
-    .visitor-btn.outline{background:transparent;color:white;border:2px solid rgba(255,255,255,.35)}
-    .visitor-btn.outline:hover{background:rgba(255,255,255,.08);border-color:white}
-
-    /* ── SERVICE TIMINGS ──────────────────────────── */
-    section.timings{padding:72px 0;background:var(--white)}
-    .timings h2,.outreach-section h2,.giving-section h2,.ministries-strip h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--navy);margin-bottom:10px;text-align:center;position:relative;display:inline-block}
-    .section-head{text-align:center;margin-bottom:44px}
-    .section-head p{color:#666;max-width:600px;margin:8px auto 0}
-    .underline-gold::after{content:'';display:block;width:60px;height:4px;background:var(--gold);border-radius:2px;margin:10px auto 0}
-
-    /* 3-col desktop timings */
-    .timings-desktop{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .timing-card{background:var(--bg);border-radius:16px;padding:28px 24px;border:2px solid transparent;transition:all .35s;position:relative;overflow:hidden}
-    .timing-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:var(--gold);transform:scaleX(0);transition:transform .35s;transform-origin:left}
-    .timing-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:var(--shadow-lg)}
-    .timing-card:hover::before{transform:scaleX(1)}
-    .timing-card strong{font-size:1.1rem;color:var(--navy);display:block;margin-bottom:10px;font-weight:700}
-    .timing-card .time-list{font-size:.92rem;color:#555;line-height:2}
-    .timing-card.highlight{background:var(--navy);border-color:var(--gold)}
-    .timing-card.highlight::before{transform:scaleX(1)}
-    .timing-card.highlight strong{color:var(--gold)}
-    .timing-card.highlight .time-list{color:rgba(255,255,255,.8)}
-
-    /* ── OUTREACH ─────────────────────────────────── */
-    .outreach-section{background:var(--bg);padding:72px 0}
-    .outreach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
-    .outreach-card{background:var(--white);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:all .35s}
-    .outreach-card:hover{transform:translateY(-7px);box-shadow:var(--shadow-lg)}
-    .outreach-banner{height:120px;display:flex;align-items:center;justify-content:center;font-size:2.8rem}
-    .outreach-body{padding:22px}
-    .outreach-body h4{color:var(--navy);font-size:1.05rem;margin-bottom:8px;font-weight:700}
-    .outreach-body p{color:#666;font-size:.9rem;line-height:1.7;margin:0}
-
-    /* ── GIVING ───────────────────────────────────── */
-    .giving-section{background:var(--white);padding:72px 0}
-    .giving-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1000px;margin:0 auto}
-    .giving-text p{color:#555;line-height:1.8;margin-bottom:16px}
-    .giving-verse{font-style:italic;font-size:.88rem;color:#888;border-left:3px solid var(--gold);padding-left:14px;margin-bottom:22px}
-    .giving-methods{display:flex;flex-direction:column;gap:11px}
-    .giving-method{display:flex;align-items:center;gap:14px;background:var(--bg);padding:14px 18px;border-radius:12px}
-    .gm-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-    .gm-info h4{font-size:13px;color:var(--navy);margin-bottom:1px;font-weight:600}
-    .gm-info p{font-size:11px;color:#999;margin:0}
-    .giving-box{background:var(--bg);border-radius:20px;padding:30px;text-align:center;border:2px dashed #e0e0e0}
-    .upi-id-box{background:white;border:1px solid #e0e0e0;border-radius:10px;padding:14px 20px;display:inline-block;font-family:monospace;font-size:1rem;color:var(--navy);font-weight:600;margin:12px 0;letter-spacing:.5px}
-    .give-wa-btn{display:inline-block;background:var(--navy);color:white;padding:11px 26px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;margin-top:14px;transition:all .3s}
-    .give-wa-btn:hover{background:var(--navy2);transform:translateY(-2px)}
-
-    /* ── MINISTRIES STRIP ─────────────────────────── */
-    .ministries-strip{background:var(--navy);padding:64px 0}
-    .ministries-strip h2{color:var(--gold)}
-    .ministries-strip .section-head p{color:rgba(255,255,255,.65)}
-    .min-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:10px}
-    .min-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px 12px;text-align:center;text-decoration:none;transition:all .3s;display:block}
-    .min-card:hover{background:rgba(244,180,0,.18);border-color:var(--gold);transform:translateY(-5px)}
-    .min-card .m-icon{font-size:1.9rem;margin-bottom:8px;display:block}
-    .min-card h4{color:white;font-size:.85rem;margin:0;font-weight:500;line-height:1.3}
-
-    /* ── FOOTER ───────────────────────────────────── */
-    .footer-rich{background:var(--navy);color:white;padding:56px 0 0;margin-top:0}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:40px}
-    .footer-brand img{height:44px;margin-bottom:14px;filter:brightness(0) invert(1);opacity:.9}
-    .footer-brand p{color:rgba(255,255,255,.6);font-size:13px;line-height:1.75;max-width:280px;margin:0 0 18px}
-    .footer-social{display:flex;gap:8px;flex-wrap:wrap}
-    .footer-social a{display:inline-block;padding:6px 13px;border-radius:7px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);text-decoration:none;font-size:12px;transition:all .25s}
-    .footer-social a:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
-    .footer-col h4{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;font-weight:700}
-    .footer-col ul{list-style:none;padding:0;margin:0}
-    .footer-col ul li{margin-bottom:9px}
-    .footer-col ul li a{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;transition:color .25s}
-    .footer-col ul li a:hover{color:var(--gold)}
-    .footer-col address{font-style:normal;color:rgba(255,255,255,.6);font-size:13px;line-height:1.85}
-    .footer-col address a{color:rgba(255,255,255,.6);text-decoration:none}
-    .footer-col address a:hover{color:var(--gold)}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;text-align:center;font-size:12px;color:rgba(255,255,255,.35)}
-
-    /* ── WHATSAPP FLOAT ───────────────────────────── */
-    .whatsapp-float{position:fixed;bottom:30px;right:24px;z-index:800;transition:transform .3s}
-    .whatsapp-float:hover{transform:scale(1.1)}
-    .whatsapp-float img{width:60px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
-    @media(max-width:768px){.whatsapp-float{bottom:82px;right:16px}.whatsapp-float img{width:52px}}
-
-    /* ── BOTTOM NAV (mobile only) ─────────────────── */
-    .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:950;background:var(--navy);border-top:1px solid rgba(255,255,255,.1);height:64px;align-items:center;box-shadow:0 -4px 20px rgba(0,0,0,.2)}
-    @media(max-width:768px){.bottom-nav{display:flex}}
-    .bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;padding:6px 2px 4px;gap:2px;transition:all .2s}
-    .bn-item .bn-icon{font-size:20px;line-height:1}
-    .bn-item .bn-label{font-size:9.5px;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.3px}
-    .bn-item.active .bn-label{color:var(--gold)}
-    .bn-center-wrap{flex:1;display:flex;justify-content:center;align-items:flex-start;padding-top:0}
-    .bn-center{width:52px;height:52px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;margin-top:-20px;box-shadow:0 4px 16px rgba(244,180,0,.55);transition:transform .2s;text-decoration:none}
-    .bn-center:hover{transform:scale(1.08)}
-    .bn-center:active{transform:scale(.95)}
-
-    /* ── MOBILE RESPONSIVE ────────────────────────── */
+    /* ── MOBILE RESPONSIVE ────────────────── */
     @media(max-width:768px){
+      .top-bar{display:none}
       .hamburger{display:flex}
-      .nav-cta{display:none}
-      .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0b2a45;padding:10px 0;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:1000}
-      .menu.open{display:flex}
-      .menu li{width:100%}
-      .menu a{display:block;padding:13px 24px;border-radius:0;font-size:15px}
-      .nav{position:relative;flex-wrap:nowrap;height:60px}
-      .logo img{height:42px}
-
-      .visitor-grid{grid-template-columns:1fr;gap:28px}
-      .visitor-cta-box{padding:24px}
-
-      .timings-desktop{grid-template-columns:1fr 1fr;gap:14px}
-
-      .outreach-grid{grid-template-columns:1fr;gap:16px}
-      .outreach-banner{height:90px;font-size:2.2rem}
-
-      .giving-grid{grid-template-columns:1fr;gap:28px}
-
-      .min-grid{grid-template-columns:repeat(3,1fr);gap:10px}
-      .min-card{padding:16px 8px}
-      .min-card .m-icon{font-size:1.6rem}
-
+      .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:var(--white);border-top:1px solid var(--border);padding:8px 0;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:1000}
+      .nav-links.open{display:flex}
+      .nav-links li{width:100%}
+      .nav-links a{display:block;padding:12px 20px;border-radius:0;border-bottom:none;font-size:15px}
+      .nav-links a.active{background:#f0f4f8;border-left:4px solid var(--gold)}
+      .header-inner{position:relative;flex-wrap:nowrap;height:58px}
+      .nav-search{display:none}
+      .nav-visit{display:none}
       .footer-grid{grid-template-columns:1fr;gap:28px}
-      .footer-brand p{max-width:100%}
-
-      .slider{height:50vh;min-height:340px}
-      .hero-text h2{font-size:1.45rem}
+      .footer-bottom{flex-direction:column;text-align:center}
     }
-
     @media(max-width:480px){
-      .timings-desktop{grid-template-columns:1fr}
-      .min-grid{grid-template-columns:repeat(2,1fr)}
-      .hero-btns{flex-direction:column;align-items:center}
-      .hero-btn-gold,.hero-btn-outline{width:100%;max-width:240px;text-align:center}
+      .section{padding:44px 0}
     }
-
-    /* Section headings */
-    h2.section-h{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.3rem);color:var(--navy);margin-bottom:8px;text-align:center}
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--gold);margin-bottom:0}
+  .stat-box{padding:18px 20px;border-right:1px solid rgba(11,42,69,.12);text-align:center}
+  .stat-box:last-child{border-right:none}
+  .stat-box .n{font-size:2rem;font-weight:800;color:var(--navy);font-family:'Playfair Display',Georgia,serif}
+  .stat-box .l{font-size:.8rem;color:rgba(11,42,69,.65);font-weight:500}
+  .join-banner{background:var(--warm);border:1px solid #f4e08a;border-radius:var(--radius-lg);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+  .join-banner p{color:var(--text);font-size:.95rem;flex:1;margin:0}
+  .min-full-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .min-full-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);transition:all .3s}
+  .min-full-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+  .min-banner-f{height:110px;display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+  .min-body-f{padding:20px}
+  .min-body-f h3{font-family:'Playfair Display',Georgia,serif;color:var(--navy);font-size:1.05rem;margin-bottom:8px}
+  .min-body-f p{color:var(--muted);font-size:.87rem;line-height:1.7;margin-bottom:12px}
+  .min-tag{display:inline-block;background:var(--bg);color:var(--navy);font-size:9.5px;font-weight:600;padding:2px 8px;border-radius:999px;margin:2px;border:1px solid var(--border)}
+  .min-join{display:inline-block;background:var(--navy);color:white;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;margin-top:10px;transition:all .2s}
+  .min-join:hover{background:var(--navy2)}
+  @media(max-width:768px){.stats-row{grid-template-columns:1fr 1fr}.min-full-grid{grid-template-columns:1fr}.join-banner{flex-direction:column}}
+</style>
 </head>
 <body>
-
-  </style>
-</head>
-<body><header>
-  <div class="container nav">
-    <div class="logo"><img src="images/logo/logo.png" alt="ENJC Church Logo"></div>
-    <nav><ul class="menu" id="main-menu">
-        <li><a href="index.html" >Home</a></li>
-        <li><a href="about.html" >About</a></li>
-        <li><a href="sermons.html" >Sermons</a></li>
-        <li><a href="ministries.html" class="active">Ministries</a></li>
-        <li><a href="events.html" >Events</a></li>
-        <li><a href="contact.html" >Contact</a></li>
-    </ul></nav>
-    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20planning%20to%20visit%20ENJC!" target="_blank" class="nav-cta">Visit Us</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+<div class="top-bar">
+  <div class="container top-bar-inner">
+    <p>📍 No.110E, Ellaya Mudali Street, Tondiarpet, Chennai — <a href="tel:+919444345102" style="color:rgba(255,255,255,.7)">+91 94443 45102</a></p>
+    <div class="top-bar-links">
+      <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">YouTube</a>
+      <a href="https://www.facebook.com/ENJCChurch" target="_blank">Facebook</a>
+      <a href="https://wa.me/919444345102" target="_blank">WhatsApp</a>
+    </div>
   </div>
-</header><div class="page-hero-banner">
-  <div class="container" style="position:relative;z-index:2;text-align:center">
+</div>
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-box">E</div>
+      <div class="logo-text"><strong>ENJC</strong><span>Elim New Jerusalem Church</span></div>
+    </a>
+    <nav><ul class="nav-links" id="nav-menu"><li><a href="index.html" >Home</a></li><li><a href="about.html" >About</a></li><li><a href="sermons.html" >Sermons</a></li><li><a href="ministries.html" class="active">Ministries</a></li><li><a href="events.html" >Events</a></li><li><a href="contact.html" >Contact</a></li></ul></nav>
+    <div class="nav-right">
+      <div class="nav-search"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="5"/><path d="M13 13l4 4"/></svg>Search...</div>
+      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20planning%20to%20visit%20ENJC!" target="_blank" class="nav-visit">Visit Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="quick-bar"><div class="quick-bar-inner"><a href="index.html" class="q-item"><span class="q-icon">🏠</span>Home</a><a href="sermons.html" class="q-item"><span class="q-icon">📺</span>Sermons</a><a href="events.html" class="q-item"><span class="q-icon">📅</span>Events</a><a href="ministries.html" class="q-item  active"><span class="q-icon">✝️</span>Ministry</a><a href="contact.html" class="q-item"><span class="q-icon">📞</span>Contact</a></div></div>
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Our Ministries</span></div>
     <h1>Our Ministries</h1><p>A place for every person at every stage of life</p>
   </div>
-</div><div class="quick-bar"><div class="quick-bar-inner"><a href="index.html" class="q-item"><span class="q-icon">🏠</span>Home</a><a href="sermons.html" class="q-item"><span class="q-icon">📺</span>Sermons</a><a href="events.html" class="q-item"><span class="q-icon">📅</span>Events</a><a href="ministries.html" class="q-item  active"><span class="q-icon">✝️</span>Ministry</a><a href="contact.html" class="q-item"><span class="q-icon">📞</span>Contact</a></div></div>
-<div class="stats-strip">
-  <div class="container"><div class="stats-grid">
-    <div class="stat-item fade-in"><div class="sn">6+</div><div class="sl">Active Ministries</div></div>
-    <div class="stat-item fade-in"><div class="sn">3</div><div class="sl">Sunday Services</div></div>
-    <div class="stat-item fade-in"><div class="sn">7</div><div class="sl">Days of Prayer</div></div>
-    <div class="stat-item fade-in"><div class="sn">∞</div><div class="sl">God's Grace</div></div>
-  </div></div>
 </div>
-<section style="background:var(--white);padding:64px 0">
+
+<div class="stats-row">
+  <div class="stat-box"><div class="n">6+</div><div class="l">Active ministries</div></div>
+  <div class="stat-box"><div class="n">3</div><div class="l">Sunday services</div></div>
+  <div class="stat-box"><div class="n">7</div><div class="l">Days of prayer</div></div>
+  <div class="stat-box"><div class="n">∞</div><div class="l">God's grace</div></div>
+</div>
+<section class="section section-bg">
   <div class="container">
-    <div class="join-bar fade-in">
-      <p><strong>Want to get involved?</strong> Every ministry welcomes new members. WhatsApp us and we'll connect you with the right team.</p>
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20get%20involved%20in%20a%20ministry%20at%20ENJC!" target="_blank" style="background:var(--gold);color:var(--navy);padding:11px 26px;border-radius:8px;text-decoration:none;font-weight:700;white-space:nowrap;font-size:14px;">Get Involved</a>
+    <div class="join-banner fade-in">
+      <p><strong>Want to get involved?</strong> Every ministry welcomes new members. WhatsApp us and we'll connect you with the right leader.</p>
+      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20get%20involved%20in%20a%20ministry!" target="_blank" class="btn-gold">Get Involved</a>
     </div>
-    <div class="section-head"><h2 class="section-h underline-gold fade-in">All Ministries</h2></div>
-    <div class="min-grid-full">
-<div class="min-hero-card fade-in" id="youth">
-    <div class="min-banner" style="background:#e6f1fb;">👦</div>
-    <div class="min-body">
-      <h3>Youth Ministry</h3>
-      <p>Moving young people toward spiritual maturity and a real relationship with Jesus through worship, Bible study, and community.</p>
-      <div><span class="min-tag">Ages 13–25</span><span class="min-tag">Weekly meetings</span><span class="min-tag">Prayer & worship</span></div>
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Youth%20Ministry%20at%20ENJC!" target="_blank" class="min-join">Join Youth Ministry</a>
-    </div>
-  </div><div class="min-hero-card fade-in" id="women">
-    <div class="min-banner" style="background:#fbeaf0;">👩</div>
-    <div class="min-body">
-      <h3>Women's Fellowship</h3>
-      <p>A safe, warm space for women to grow in faith together. Through prayer, encouragement, and God's Word, we lift each other up.</p>
-      <div><span class="min-tag">All ages</span><span class="min-tag">Bible study</span><span class="min-tag">Prayer & support</span></div>
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Women's%20Fellowship%20at%20ENJC!" target="_blank" class="min-join">Join Women's Fellowship</a>
-    </div>
-  </div><div class="min-hero-card fade-in" id="prayer">
-    <div class="min-banner" style="background:#eaf3de;">🙏</div>
-    <div class="min-body">
-      <h3>Prayer Ministry</h3>
-      <p>Prayer is the heartbeat of ENJC. Our warriors intercede for individuals, families, the church, and the city of Chennai.</p>
-      <div><span class="min-tag">Daily Night Prayer</span><span class="min-tag">Intercession</span><span class="min-tag">Open to all</span></div>
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Prayer%20Ministry%20at%20ENJC!" target="_blank" class="min-join">Join Prayer Ministry</a>
-    </div>
-  </div><div class="min-hero-card fade-in" id="deliverance">
-    <div class="min-banner" style="background:#fffdf4;">✝️</div>
-    <div class="min-body">
-      <h3>Deliverance Ministry</h3>
-      <p>A powerful weekly gathering where lives are set free by the authority of Jesus Christ. God still breaks chains today.</p>
-      <div><span class="min-tag">Weekly meetings</span><span class="min-tag">Healing prayer</span><span class="min-tag">Open to all</span></div>
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Deliverance%20Ministry%20at%20ENJC!" target="_blank" class="min-join">Join Deliverance Ministry</a>
-    </div>
-  </div><div class="min-hero-card fade-in" id="worship">
-    <div class="min-banner" style="background:#f3eafd;">🎵</div>
-    <div class="min-body">
-      <h3>Worship Team</h3>
-      <p>Our team leads the church into God's presence through music and spirit-filled praise. If you have a musical gift, join us.</p>
-      <div><span class="min-tag">Musicians</span><span class="min-tag">Singers</span><span class="min-tag">Sound & tech</span></div>
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Worship%20Team%20at%20ENJC!" target="_blank" class="min-join">Join Worship Team</a>
-    </div>
-  </div><div class="min-hero-card fade-in" id="men">
-    <div class="min-banner" style="background:#e6f1fb;">👨</div>
-    <div class="min-body">
-      <h3>Men's Fellowship</h3>
-      <p>Men gather to sharpen each other as fathers, husbands, and servants of God. Built on brotherhood, accountability, and Scripture.</p>
-      <div><span class="min-tag">All ages</span><span class="min-tag">Brotherhood</span><span class="min-tag">Bible & prayer</span></div>
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Men's%20Fellowship%20at%20ENJC!" target="_blank" class="min-join">Join Men's Fellowship</a>
-    </div>
+    <div class="section-head"><span class="section-label">Get Involved</span><h2 class="section-title">All Ministries</h2><div class="divider-gold"></div></div>
+    <div class="min-full-grid"><div class="min-full-card fade-in" id="youth">
+  <div class="min-banner-f" style="background:#e6f1fb">👦</div>
+  <div class="min-body-f">
+    <h3>Youth Ministry</h3><p>Moving young people toward spiritual maturity through worship, Bible study, and community.</p>
+    <div><span class="min-tag">Ages 13–25</span><span class="min-tag">Weekly meetings</span><span class="min-tag">Prayer & worship</span></div>
+    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Youth%20Ministry!" target="_blank" class="min-join">Join Youth</a>
   </div>
-    </div>
+</div><div class="min-full-card fade-in" id="women">
+  <div class="min-banner-f" style="background:#fbeaf0">👩</div>
+  <div class="min-body-f">
+    <h3>Women's Fellowship</h3><p>A safe, warm space for women to grow in faith together through prayer and encouragement.</p>
+    <div><span class="min-tag">All ages</span><span class="min-tag">Bible study</span><span class="min-tag">Prayer & support</span></div>
+    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Women's%20Fellowship!" target="_blank" class="min-join">Join Women's</a>
+  </div>
+</div><div class="min-full-card fade-in" id="prayer">
+  <div class="min-banner-f" style="background:#eaf3de">🙏</div>
+  <div class="min-body-f">
+    <h3>Prayer Ministry</h3><p>The heartbeat of ENJC. Interceding for individuals, families, and the city of Chennai.</p>
+    <div><span class="min-tag">Daily Night Prayer</span><span class="min-tag">Intercession</span><span class="min-tag">Open to all</span></div>
+    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Prayer%20Ministry!" target="_blank" class="min-join">Join Prayer</a>
+  </div>
+</div><div class="min-full-card fade-in" id="deliverance">
+  <div class="min-banner-f" style="background:#fffdf4">✝️</div>
+  <div class="min-body-f">
+    <h3>Deliverance Ministry</h3><p>A powerful weekly gathering where lives are set free by the authority of Jesus Christ.</p>
+    <div><span class="min-tag">Weekly meetings</span><span class="min-tag">Healing prayer</span><span class="min-tag">Open to all</span></div>
+    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Deliverance%20Ministry!" target="_blank" class="min-join">Join Deliverance</a>
+  </div>
+</div><div class="min-full-card fade-in" id="worship">
+  <div class="min-banner-f" style="background:#f3eafd">🎵</div>
+  <div class="min-body-f">
+    <h3>Worship Team</h3><p>Leading the church into God's presence through music, song, and spirit-filled praise.</p>
+    <div><span class="min-tag">Musicians</span><span class="min-tag">Singers</span><span class="min-tag">Sound & tech</span></div>
+    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Worship%20Team!" target="_blank" class="min-join">Join Worship</a>
+  </div>
+</div><div class="min-full-card fade-in" id="men">
+  <div class="min-banner-f" style="background:#e6f1fb">👨</div>
+  <div class="min-body-f">
+    <h3>Men's Fellowship</h3><p>Men sharpening each other as fathers, husbands, and servants of God through brotherhood.</p>
+    <div><span class="min-tag">All ages</span><span class="min-tag">Brotherhood</span><span class="min-tag">Bible & prayer</span></div>
+    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20join%20Men's%20Fellowship!" target="_blank" class="min-join">Join Men's</a>
+  </div>
+</div></div>
   </div>
 </section>
-<section style="background:var(--navy);padding:56px 0;text-align:center">
+<section class="section section-navy" style="text-align:center">
   <div class="container">
-    <h2 style="font-family:'Playfair Display',serif;color:white;margin-bottom:12px">Not sure where you fit?</h2>
-    <p style="color:rgba(255,255,255,.82);max-width:520px;margin:0 auto 26px">That's completely okay. WhatsApp us and we'll have a friendly conversation.</p>
-    <a href="https://wa.me/919444345102?text=Hi%2C%20I'd%20like%20to%20find%20the%20right%20ministry%20for%20me!" target="_blank" style="background:var(--gold);color:var(--navy);padding:13px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">Chat with Us</a>
+    <span class="section-label" style="color:rgba(244,180,0,.7)">Connect</span>
+    <h2 class="section-title" style="color:white;margin-bottom:10px">Not sure where you fit?</h2>
+    <p style="color:rgba(255,255,255,.65);max-width:480px;margin:0 auto 24px">That's completely fine. WhatsApp us and we'll have a friendly conversation about where you'd thrive.</p>
+    <a href="https://wa.me/919444345102?text=Hi%2C%20I%27d%20like%20to%20find%20the%20right%20ministry!" target="_blank" class="btn-gold">Chat with Us</a>
   </div>
-</section><footer class="footer-rich">
-  <div class="container"><div class="footer-grid">
-    <div class="footer-brand">
-      <img src="images/logo/logo.png" alt="ENJC Logo">
-      <p>Elim New Jerusalem Church — a community of believers united in worship, prayer, and fellowship.</p>
-      <div class="footer-social">
-        <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">YouTube</a>
-        <a href="https://www.facebook.com/ENJCChurch" target="_blank">Facebook</a>
-        <a href="https://www.instagram.com/enjcchurch" target="_blank">Instagram</a>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-logo-box">E</div>
+          <span class="footer-logo-name">ENJC Church</span>
+        </div>
+        <p>Elim New Jerusalem Church — a community of believers united in worship, prayer, and fellowship. All are welcome in God's house.</p>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">YouTube</a>
+          <a href="https://www.facebook.com/ENJCChurch" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/enjcchurch" target="_blank">Instagram</a>
+          <a href="https://wa.me/919444345102" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <address>No.110E, Ellaya Mudali Street,<br>Tondiarpet,<br>Chennai – 600 081,<br>Tamil Nadu, India<br><br>
+        <a href="tel:+919444345102">+91 94443 45102</a><br>
+        <a href="mailto:enjcofficial@gmail.com">enjcofficial@gmail.com</a></address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Elim New Jerusalem Church. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
         <a href="https://wa.me/919444345102" target="_blank">WhatsApp</a>
       </div>
     </div>
-    <div class="footer-col"><h4>Quick Links</h4><ul>
-      <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
-      <li><a href="sermons.html">Sermons</a></li><li><a href="ministries.html">Ministries</a></li>
-      <li><a href="events.html">Events</a></li><li><a href="contact.html">Contact</a></li>
-    </ul></div>
-    <div class="footer-col"><h4>Visit Us</h4>
-      <address>No.110E, Ellaya Mudali Street,<br>Tondiarpet, Chennai – 600 081,<br>Tamil Nadu, India<br><br><a href="tel:+919444345102">+91 94443 45102</a></address>
-    </div>
-  </div></div>
-  <div class="footer-bottom"><div class="container">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</div></div>
-</footer><a href="https://wa.me/919444345102" class="whatsapp-float" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
-<nav class="bottom-nav"><a href="index.html" class="bn-item"><span class="bn-icon">🏠</span><span class="bn-label" >Home</span></a><a href="sermons.html" class="bn-item"><span class="bn-icon">🎵</span><span class="bn-label" >Sermons</span></a><div class="bn-center-wrap"><a href="https://wa.me/919444345102?text=Prayer%20Request:" target="_blank" class="bn-center">🙏</a></div><a href="events.html" class="bn-item"><span class="bn-icon">📅</span><span class="bn-label" >Events</span></a><a href="contact.html" class="bn-item"><span class="bn-icon">👤</span><span class="bn-label" >More</span></a></nav><script>
-  function toggleMenu(){document.getElementById('main-menu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
-  document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('main-menu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}));
+  </div>
+</footer>
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+<nav class="bottom-nav">
+  <a href="index.html" class="bn-item"><span class="bn-icon">🏠</span><span class="bn-label" >Home</span></a><a href="sermons.html" class="bn-item"><span class="bn-icon">🎵</span><span class="bn-label" >Sermons</span></a>
+  <div class="bn-center-wrap"><a href="https://wa.me/919444345102?text=Prayer%20Request:" target="_blank" class="bn-center">🙏</a></div>
+  <a href="events.html" class="bn-item"><span class="bn-icon">📅</span><span class="bn-label" >Events</span></a><a href="contact.html" class="bn-item"><span class="bn-icon">👤</span><span class="bn-label" >More</span></a>
+</nav>
+<script>
+  function toggleMenu(){document.getElementById('nav-menu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-menu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}));
   const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}}),{threshold:.1});
   document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
-</script></body></html>
+</script>
+</body></html>
