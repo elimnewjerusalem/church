@@ -505,8 +505,8 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   <div class="container hero-content" style="position:relative;z-index:3;padding-bottom:52px;padding-top:0">
 
     <!-- Eyebrow -->
-    <div style="color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px">
-      <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span>Isaiah 43:4 &nbsp;&middot;&nbsp; Elim New Jerusalem Church
+    <div style="color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px;background:none;border:none;text-decoration:none">
+      <span style="width:28px;height:1px;background:var(--gold);display:inline-block;flex-shrink:0"></span>Isaiah 43:4 &nbsp;&middot;&nbsp; Elim New Jerusalem Church
     </div>
 
     <!-- Verse heading — updated text -->
@@ -545,6 +545,11 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 </section>
 
 <style>
+/* ── Kill any blue highlight/selection inside hero ── */
+#hero ::selection{background:transparent}
+#hero div{background-color:transparent}
+#hero div[style]{background-color:revert}
+
 /* ── MOBILE: swap to portrait image, keep overlay style ── */
 @media(max-width:768px){
   #hero{min-height:100svh;min-height:100vh}
