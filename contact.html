@@ -190,12 +190,6 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   .svc-grid{grid-template-columns:1fr 1fr}
   .min-grid{grid-template-columns:1fr 1fr}
 }
-<style>
-@media(max-width:768px){
-  .ticker-track{animation-duration:45s}
-  .tick-item{font-size:12px;padding:0 20px}
-}
-</style>
 </style>
 <style>
 /* ═══════════════════════════════════════════
@@ -600,4 +594,16 @@ document.getElementById('cf').addEventListener('submit',function(e){
 <style>
 input::placeholder,textarea::placeholder{color:rgba(255,255,255,.25)}
 input:focus,textarea:focus{outline:none;border-color:var(--gold)!important;background:rgba(245,166,35,.06)!important}
-@media(max-
+@media(max-width:768px){
+  .mob-stack-grid{grid-template-columns:1fr!important;gap:20px!important}
+  .mob-2col-grid{grid-template-columns:1fr 1fr!important}
+  input,textarea,select{font-size:16px!important;min-height:44px;padding:12px 14px!important}
+  textarea{min-height:100px!important}
+  button[type=submit]{min-height:48px;font-size:15px!important;padding:14px!important}
+}
+@media(max-width:400px){
+  .mob-2col-grid{grid-template-columns:1fr!important}
+}
+</style>
+</body>
+</html>
