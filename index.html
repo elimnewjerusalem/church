@@ -190,6 +190,12 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   .svc-grid{grid-template-columns:1fr 1fr}
   .min-grid{grid-template-columns:1fr 1fr}
 }
+<style>
+@media(max-width:768px){
+  .ticker-track{animation-duration:45s}
+  .tick-item{font-size:12px;padding:0 20px}
+}
+</style>
 </style>
 </head>
 <body>
@@ -260,6 +266,41 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   </div>
 </section>
 
+<section class="sec sec-dark3">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+      <div class="fi">
+        <div class="sec-label">First Time Visiting?</div>
+        <h2 class="sec-title">Plan Your <em>Visit</em></h2>
+        <p style="color:var(--muted);font-size:.92rem;line-height:1.85;margin:14px 0 20px">We want your first Sunday at ENJC to feel like coming home. No pressure, no dress code — just open arms, powerful worship, and the presence of God.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">1</div>
+            <div><div style="color:white;font-size:.92rem;font-weight:600;margin-bottom:2px">Pick a service time</div><div style="color:var(--muted);font-size:.83rem">Sunday at 5:30am, 8:30am or 11:30am — all identical.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">2</div>
+            <div><div style="color:white;font-size:.92rem;font-weight:600;margin-bottom:2px">Find us easily</div><div style="color:var(--muted);font-size:.83rem">No.110E, Ellaya Mudali Street, Tondiarpet — near Bedestha Swimming Pool.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">3</div>
+            <div><div style="color:white;font-size:.92rem;font-weight:600;margin-bottom:2px">Let us know you're coming</div><div style="color:var(--muted);font-size:.83rem">WhatsApp us — we'll have someone at the door to welcome you personally.</div></div>
+          </div>
+        </div>
+        <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20planning%20to%20visit%20ENJC%20this%20Sunday!" target="_blank" class="btn-gold">I'm Visiting This Sunday &#8594;</a>
+      </div>
+      <div class="fi" style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.18);border-radius:var(--radius-lg);padding:28px">
+        <h3 style="font-family:'Playfair Display',serif;color:white;font-size:1.1rem;margin-bottom:18px;font-weight:700">What to <em style="color:var(--gold)">expect</em></h3>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">🎵</span><div><div style="color:white;font-size:.85rem;font-weight:600">Spirit-filled worship</div><div style="color:var(--muted);font-size:.78rem">Powerful praise and prayer</div></div></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">📖</span><div><div style="color:white;font-size:.85rem;font-weight:600">Word-based message</div><div style="color:var(--muted);font-size:.78rem">Practical, life-changing preaching</div></div></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">🤝</span><div><div style="color:white;font-size:.85rem;font-weight:600">Warm community</div><div style="color:var(--muted);font-size:.78rem">You'll be welcomed from the first moment</div></div></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">⏱️</span><div><div style="color:white;font-size:.85rem;font-weight:600">About 2 hours</div><div style="color:var(--muted);font-size:.78rem">Each service runs approximately 2 hours</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="sec sec-dark2">
   <div class="container">
     <div class="sec-label fi">When We Meet</div>
@@ -329,7 +370,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 <nav class="bottom-nav">
-  <a href="index.html" class="bn-item active"><span class="bn-icon">&#127968;</span><span class="bn-label" style="color:var(--gold)">Home</span></a><a href="media.html" class="bn-item"><span class="bn-icon">&#127900;</span><span class="bn-label" >Media</span></a>
+  <a href="index.html" class="bn-item active"><span class="bn-icon">&#127968;</span><span class="bn-label" style="color:var(--gold)">Home</span></a><a href="media.html" class="bn-item"><span class="bn-icon">&#128250;</span><span class="bn-label" >Media</span></a>
   <div class="bn-center-wrap"><a href="ministries.html" class="bn-center" aria-label="Ministries">&#10013;</a></div>
   <a href="events.html" class="bn-item"><span class="bn-icon">&#128197;</span><span class="bn-label" >Events</span></a><a href="contact.html" class="bn-item"><span class="bn-icon">&#128100;</span><span class="bn-label" >More</span></a>
 </nav>
@@ -348,5 +389,24 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
 </script>
 
+<script>
+(function(){
+  var verses=[
+    {text:'"For I know the plans I have for you, declares the Lord — plans for welfare and not for evil, to give you a future and a hope."',ref:'— Jeremiah 29:11'},
+    {text:'"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways acknowledge Him, and He will make your paths straight."',ref:'— Proverbs 3:5-6'},
+    {text:'"I can do all things through Christ who strengthens me."',ref:'— Philippians 4:13'},
+    {text:'"The Lord is my shepherd; I shall not want."',ref:'— Psalm 23:1'},
+    {text:'"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."',ref:'— Joshua 1:9'},
+    {text:'"Come to me, all you who are weary and burdened, and I will give you rest."',ref:'— Matthew 11:28'},
+    {text:'"But those who hope in the Lord will renew their strength. They will soar on wings like eagles."',ref:'— Isaiah 40:31'}
+  ];
+  var d=new Date().getDay();
+  var v=verses[d];
+  var tEl=document.querySelector('.verse-text');
+  var rEl=document.querySelector('.verse-ref');
+  if(tEl&&v)tEl.textContent=v.text;
+  if(rEl&&v)rEl.textContent=v.ref;
+})();
+</script>
 </body>
 </html>

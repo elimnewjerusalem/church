@@ -190,6 +190,12 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   .svc-grid{grid-template-columns:1fr 1fr}
   .min-grid{grid-template-columns:1fr 1fr}
 }
+<style>
+@media(max-width:768px){
+  .ticker-track{animation-duration:45s}
+  .tick-item{font-size:12px;padding:0 20px}
+}
+</style>
 </style>
 </head>
 <body>
@@ -232,7 +238,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:36px">
       <div class="fi" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:var(--radius-lg);padding:18px 14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:8px">&#128205;</div><h4 style="color:white;font-size:.85rem;font-weight:600;margin-bottom:6px">Address</h4><p style="color:var(--muted);font-size:.78rem;line-height:1.65">No.110E, Ellaya Mudali Street, Tondiarpet<br>(Near Bedestha Swimming Pool)<br>Chennai&ndash;600 081</p></div>
       <div class="fi" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:var(--radius-lg);padding:18px 14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:8px">&#128222;</div><h4 style="color:white;font-size:.85rem;font-weight:600;margin-bottom:6px">Phone</h4><a href="tel:+919444345102" style="color:var(--gold);font-size:.82rem">+91 94443 45102</a></div>
-      <div class="fi" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:var(--radius-lg);padding:18px 14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:8px">&#9993;</div><h4 style="color:white;font-size:.85rem;font-weight:600;margin-bottom:6px">Email</h4><a href="mailto:enjcofficial@gmail.com" style="color:var(--gold);font-size:.78rem">enjcofficial@gmail.com</a></div>
+      <div class="fi" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:var(--radius-lg);padding:18px 14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:8px">&#9993;</div><h4 style="color:white;font-size:.85rem;font-weight:600;margin-bottom:6px">Email</h4><a href="/cdn-cgi/l/email-protection#7a1f141019151c1c1319131b163a1d171b131654191517" style="color:var(--gold);font-size:.78rem"><span class="__cf_email__" data-cfemail="d4b1babeb7bbb2b2bdb7bdb5b894b3b9b5bdb8fab7bbb9">[email&#160;protected]</span></a></div>
       <div class="fi" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:var(--radius-lg);padding:18px 14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:8px">&#128172;</div><h4 style="color:white;font-size:.85rem;font-weight:600;margin-bottom:6px">WhatsApp</h4><a href="https://wa.me/919444345102" target="_blank" style="color:var(--gold);font-size:.82rem">Chat with us now</a></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
@@ -243,7 +249,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><input type="tel" name="phone" placeholder="Phone Number" style="background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 13px;color:white;font-family:'Inter',sans-serif;font-size:.85rem"><input type="text" name="subject" placeholder="Subject" style="background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 13px;color:white;font-family:'Inter',sans-serif;font-size:.85rem"></div>
           <textarea name="message" placeholder="Your Prayer request *" required style="width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 13px;color:white;font-family:'Inter',sans-serif;font-size:.85rem;resize:vertical;min-height:110px;margin-top:10px"></textarea>
           <button type="submit" style="background:var(--gold);color:var(--dark);padding:12px;border-radius:var(--radius);border:none;font-size:.93rem;font-weight:700;cursor:pointer;width:100%;margin-top:8px;font-family:'Inter',sans-serif;transition:all .25s">Send via WhatsApp</button>
-          <p style="font-size:10px;color:var(--dim);margin-top:7px;text-align:center">Your message opens in WhatsApp &mdash; quick and easy.</p>
+          <p style="font-size:10px;color:var(--dim);margin-top:7px;text-align:center">&#128161; This will open WhatsApp &mdash; please tap <strong style="color:var(--gold)">Send</strong> in the app to complete your message.</p>
         </form>
       </div>
       <div class="fi" style="display:flex;flex-direction:column;gap:14px">
@@ -291,11 +297,11 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 <nav class="bottom-nav">
-  <a href="index.html" class="bn-item"><span class="bn-icon">&#127968;</span><span class="bn-label" >Home</span></a><a href="media.html" class="bn-item"><span class="bn-icon">&#127900;</span><span class="bn-label" >Media</span></a>
+  <a href="index.html" class="bn-item"><span class="bn-icon">&#127968;</span><span class="bn-label" >Home</span></a><a href="media.html" class="bn-item"><span class="bn-icon">&#128250;</span><span class="bn-label" >Media</span></a>
   <div class="bn-center-wrap"><a href="ministries.html" class="bn-center" aria-label="Ministries">&#10013;</a></div>
   <a href="events.html" class="bn-item"><span class="bn-icon">&#128197;</span><span class="bn-label" >Events</span></a><a href="contact.html" class="bn-item active"><span class="bn-icon">&#128100;</span><span class="bn-label" style="color:var(--gold)">More</span></a>
 </nav>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleMenu(){
     document.getElementById('menu').classList.toggle('open');
     document.getElementById('ham').classList.toggle('open');
@@ -322,10 +328,4 @@ document.getElementById('cf').addEventListener('submit',function(e){
 <style>
 input::placeholder,textarea::placeholder{color:rgba(255,255,255,.25)}
 input:focus,textarea:focus{outline:none;border-color:var(--gold)!important;background:rgba(245,166,35,.06)!important}
-@media(max-width:768px){
-  .container>div[style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr!important}
-  .container>div>div[style*="grid-template-columns:1fr 1fr"]:not(form *){grid-template-columns:1fr!important}
-}
-</style>
-</body>
-</html>
+@media(max-
