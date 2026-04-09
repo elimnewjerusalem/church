@@ -230,10 +230,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 }
 
 /* ── HOME HERO ── */
-@media(max-width:768px){
-  #hero{min-height:100svh!important}
-  #hero img{object-position:center center!important}
-}
+
 
 /* ── VERSE BLOCK ── */
 @media(max-width:768px){
@@ -476,31 +473,60 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 </div>
 
 <!-- ═══ HERO — Full bleed image, content over lower half ═══ -->
-<!-- ═══ HERO DESKTOP — full bleed cover, content over dark bottom ═══ -->
-<section id="hero" class="hero-desktop-sec" style="position:relative;width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:#050810">
+<!-- ═══ UNIFIED HERO — overlay on all screens ═══ -->
+<section id="hero" style="position:relative;width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:#050810">
 
+  <!-- Desktop image (PC + landscape) -->
   <img src="images/home/slide1.jpg"
-       id="hero-img"
-       alt="Father, Son, Holy Spirit — ENJC Worship"
+       id="hero-img-desk"
+       alt="Father, Son, Holy Spirit"
        loading="eager"
        fetchpriority="high"
        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0">
 
-  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(5,8,16,.1) 0%,rgba(5,8,16,.2) 35%,rgba(5,8,16,.72) 60%,rgba(5,8,16,.94) 80%,rgba(5,8,16,1) 100%)"></div>
+  <!-- Mobile image (portrait phones) — hidden on desktop via CSS -->
+  <img src="images/home/slide2.jpg"
+       id="hero-img-mob"
+       alt="Father, Son, Holy Spirit"
+       loading="eager"
+       style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0">
 
-  <div class="container" style="position:relative;z-index:3;padding-top:0;padding-bottom:48px">
-    <div style="color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px">
+  <!-- Dark gradient — bottom heavy so text is always readable -->
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(
+    to bottom,
+    rgba(5,8,16,.05) 0%,
+    rgba(5,8,16,.15) 30%,
+    rgba(5,8,16,.65) 58%,
+    rgba(5,8,16,.92) 78%,
+    rgba(5,8,16,1)   100%
+  )"></div>
+
+  <!-- Content — overlaid on image on ALL screen sizes -->
+  <div class="container hero-content" style="position:relative;z-index:3;padding-bottom:52px;padding-top:0">
+
+    <!-- Eyebrow -->
+    <div style="color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px">
       <span style="width:28px;height:1px;background:var(--gold);display:inline-block"></span>Isaiah 43:4 &nbsp;&middot;&nbsp; Elim New Jerusalem Church
     </div>
-    <h1 style="font-family:'Playfair Display',Georgia,serif;color:white;font-size:clamp(2.4rem,5.5vw,4.6rem);font-weight:800;line-height:1.06;margin-bottom:10px;max-width:680px">
-      Because you are<br><em style="color:var(--gold);font-style:italic">precious</em><br>in my sight
+
+    <!-- Verse heading — updated text -->
+    <h1 style="font-family:'Playfair Display',Georgia,serif;color:white;font-size:clamp(2rem,5vw,4.2rem);font-weight:800;line-height:1.15;margin-bottom:8px;max-width:720px">
+      Because you are <em style="color:var(--gold);font-style:italic">precious</em><br>
+      in my sight,<br>
+      <span style="font-size:.72em;font-weight:700;color:rgba(255,255,255,.85)">You are honoured and I love you</span>
     </h1>
-    <p style="color:rgba(255,255,255,.55);font-size:.93rem;letter-spacing:.5px;margin-bottom:26px">Father &bull; Son &bull; Holy Spirit &bull; Fellowship</p>
+
+    <!-- Reference -->
+    <p style="color:rgba(255,255,255,.45);font-size:.88rem;letter-spacing:1px;margin-bottom:28px;font-style:italic">— Isaiah 43:4</p>
+
+    <!-- CTAs -->
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px">
       <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20visiting%20ENJC%20this%20Sunday!" target="_blank" class="btn-gold">Join Us Today</a>
       <a href="events.html" class="btn-outline">Watch Live &rarr;</a>
     </div>
-    <div style="display:flex;gap:0;border-top:1px solid rgba(255,255,255,.1);padding-top:24px;flex-wrap:wrap">
+
+    <!-- Stats -->
+    <div style="display:flex;gap:0;border-top:1px solid rgba(255,255,255,.1);padding-top:22px;flex-wrap:wrap">
       <div style="padding-right:28px;border-right:1px solid rgba(255,255,255,.1);margin-right:28px">
         <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:800;line-height:1">3</div>
         <div style="color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Sunday services</div>
@@ -514,65 +540,24 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
         <div style="color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Days of prayer</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══ HERO MOBILE — full image visible, content below ═══ -->
-<section id="hero-mobile" style="display:none;background:#050810;flex-direction:column">
-
-  <!-- Full image — no cropping, full width, aspect ratio preserved -->
-  <div style="width:100%;position:relative;overflow:hidden;line-height:0">
-    <img src="images/home/slide2.jpg"
-         alt="Father, Son, Holy Spirit — ENJC Worship"
-         loading="eager"
-         fetchpriority="high"
-         style="width:100%;height:auto;display:block">
-    <!-- Subtle bottom fade so image blends into content -->
-    <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,#050810)"></div>
-  </div>
-
-  <!-- Content below the image -->
-  <div style="background:#050810;padding:24px 20px 32px">
-    <div style="color:var(--gold);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px">
-      <span style="width:20px;height:1px;background:var(--gold);display:inline-block"></span>Isaiah 43:4 &middot; ENJC
-    </div>
-    <h1 style="font-family:'Playfair Display',Georgia,serif;color:white;font-size:2rem;font-weight:800;line-height:1.1;margin-bottom:8px">
-      Because you are<br><em style="color:var(--gold);font-style:italic">precious</em><br>in my sight
-    </h1>
-    <p style="color:rgba(255,255,255,.5);font-size:.82rem;letter-spacing:.3px;margin-bottom:20px">Father &bull; Son &bull; Holy Spirit &bull; Fellowship</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px">
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20visiting%20ENJC%20this%20Sunday!" target="_blank" class="btn-gold" style="flex:1;text-align:center;font-size:13px;padding:11px 16px">Join Us Today</a>
-      <a href="events.html" class="btn-outline" style="flex:1;text-align:center;font-size:13px;padding:10px 14px">Watch Live &rarr;</a>
-    </div>
-    <!-- Stats row -->
-    <div style="display:flex;border-top:1px solid rgba(255,255,255,.1);padding-top:18px">
-      <div style="flex:1;text-align:center">
-        <div style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--gold);font-weight:800;line-height:1">3</div>
-        <div style="color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-top:3px">Sundays</div>
-      </div>
-      <div style="width:1px;background:rgba(255,255,255,.1)"></div>
-      <div style="flex:1;text-align:center">
-        <div style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--gold);font-weight:800;line-height:1">6+</div>
-        <div style="color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-top:3px">Ministries</div>
-      </div>
-      <div style="width:1px;background:rgba(255,255,255,.1)"></div>
-      <div style="flex:1;text-align:center">
-        <div style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--gold);font-weight:800;line-height:1">7</div>
-        <div style="color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-top:3px">Days prayer</div>
-      </div>
-    </div>
   </div>
 </section>
 
 <style>
-/* Show/hide correct hero version */
+/* ── MOBILE: swap to portrait image, keep overlay style ── */
 @media(max-width:768px){
-  .hero-desktop-sec{display:none!important}
-  #hero-mobile{display:flex!important}
+  #hero{min-height:100svh;min-height:100vh}
+  #hero-img-desk{display:none!important}
+  #hero-img-mob{display:block!important}
+  .hero-content{padding-bottom:32px!important}
+  .hero-content h1{font-size:1.75rem!important;line-height:1.2!important}
+  .hero-content .btn-gold,
+  .hero-content .btn-outline{flex:1;text-align:center;padding:11px 14px!important;font-size:13px!important}
+  .hero-content div[style*="padding-right:28px"]{padding-right:18px!important;margin-right:18px!important}
 }
-@media(min-width:769px){
-  #hero-mobile{display:none!important}
-  .hero-desktop-sec{display:flex!important}
+@media(max-width:400px){
+  .hero-content h1{font-size:1.5rem!important}
 }
 </style>
 
