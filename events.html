@@ -197,6 +197,278 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 }
 </style>
 </style>
+<style>
+/* ═══════════════════════════════════════════
+   ENJC — MOBILE IMPROVEMENTS (≤768px)
+   Covers all 7 pages systematically
+═══════════════════════════════════════════ */
+
+/* ── NAV ── */
+@media(max-width:768px){
+  .nav{height:56px;padding:0 16px}
+  .logo-mark{width:30px;height:30px;font-size:12px}
+  .logo-text strong{font-size:13px}
+  .logo-text span{font-size:9px}
+}
+
+/* ── TICKER ── */
+@media(max-width:768px){
+  .ticker{height:30px}
+  .ticker-track{animation-duration:45s}
+  .tick-item{font-size:11px;padding:0 18px;height:30px;letter-spacing:.2px}
+}
+
+/* ── PAGE HERO (inner pages) ── */
+@media(max-width:768px){
+  .page-hero{padding:32px 0 24px}
+  .page-hero h1{font-size:1.8rem}
+  .page-hero p{font-size:.85rem}
+  .page-hero-eyebrow{font-size:9px}
+}
+
+/* ── SECTIONS ── */
+@media(max-width:768px){
+  .sec{padding:32px 0}
+  .container{width:100%;padding:0 16px}
+  .sec-title{font-size:1.5rem}
+  .sec-label{font-size:9px;letter-spacing:2px}
+  .sec-sub{font-size:.85rem}
+}
+
+/* ── HOME HERO ── */
+@media(max-width:768px){
+  section[style*="min-height:78vh"]{
+    min-height:auto!important;
+    padding-top:0!important
+  }
+  .container[style*="padding-bottom:52px"]{
+    padding-top:44px!important;
+    padding-bottom:36px!important
+  }
+  h1[style*="clamp(2.2rem"]{
+    font-size:2rem!important;
+    line-height:1.12!important
+  }
+  p[style*="Father"]{
+    font-size:.82rem!important;
+    margin-bottom:20px!important
+  }
+  .btn-gold,.btn-outline{
+    padding:10px 18px!important;
+    font-size:12px!important
+  }
+}
+
+/* ── VERSE BLOCK ── */
+@media(max-width:768px){
+  .verse-block{padding:14px 16px}
+  .verse-text{font-size:1rem}
+}
+
+/* ── SERVICE GRID ── */
+@media(max-width:768px){
+  .svc-grid{grid-template-columns:1fr 1fr!important;gap:8px}
+  .svc-card{padding:14px 12px}
+  .svc-day{font-size:12px}
+  .svc-time{font-size:10px}
+}
+@media(max-width:400px){
+  .svc-grid{grid-template-columns:1fr!important}
+}
+
+/* ── MINISTRY GRID ── */
+@media(max-width:768px){
+  .min-grid{grid-template-columns:1fr 1fr!important;gap:8px}
+  .min-card{padding:16px 10px}
+  .min-icon{font-size:18px!important;margin-bottom:7px}
+  .min-name{font-size:11px}
+  .min-desc{font-size:9px}
+}
+
+/* ── VIDEO GRID ── */
+@media(max-width:768px){
+  .video-grid{grid-template-columns:1fr!important;gap:10px}
+  .video-thumb{height:130px}
+}
+
+/* ── TESTIMONIALS ── */
+@media(max-width:768px){
+  #testimonial-track{grid-template-columns:1fr!important}
+}
+
+/* ── GIVE SECTION (index) ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:40px"]{
+    grid-template-columns:1fr!important;
+    gap:20px!important
+  }
+}
+
+/* ── PLAN YOUR VISIT ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:40px"]{
+    grid-template-columns:1fr!important;
+    gap:20px!important
+  }
+}
+
+/* ── ABOUT — pastor grid ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:280px 1fr"]{
+    grid-template-columns:1fr!important;
+    gap:20px!important
+  }
+  div[style*="width:140px;height:140px"]{
+    width:110px!important;
+    height:110px!important
+  }
+}
+
+/* ── ABOUT — mission vision ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:1fr 1fr"][style*="max-width:960px"]{
+    grid-template-columns:1fr!important
+  }
+}
+
+/* ── CONTACT — 4-col info cards ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:repeat(4,1fr)"][style*="gap:12px"]{
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important
+  }
+}
+
+/* ── CONTACT — form + times 2-col ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:24px"]{
+    grid-template-columns:1fr!important;
+    gap:16px!important
+  }
+}
+
+/* ── CONTACT — inline form input grids ── */
+@media(max-width:768px){
+  form div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr!important
+  }
+  input,textarea{
+    padding:12px 14px!important;
+    font-size:16px!important;
+    min-height:44px
+  }
+  textarea{min-height:100px!important}
+  button[type=submit]{
+    padding:14px!important;
+    font-size:15px!important;
+    min-height:48px
+  }
+}
+
+/* ── EVENTS — countdown grid ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:32px"]{
+    grid-template-columns:1fr!important;
+    gap:16px!important
+  }
+  .cd-box{padding:10px 12px;min-width:auto;flex:1}
+  .cd-n{font-size:1.4rem!important}
+  .cd-l{font-size:7px}
+}
+
+/* ── EVENTS — verse reels grid ── */
+@media(max-width:768px){
+  #verse-reels-container{grid-template-columns:1fr!important}
+  #special-events-container{grid-template-columns:1fr!important}
+}
+
+/* ── EVENTS — testimonial buttons ── */
+@media(max-width:768px){
+  button[onclick="prevT()"],button[onclick="nextT()"]{
+    padding:10px 20px!important;
+    font-size:1.1rem!important;
+    min-height:44px;
+    min-width:48px
+  }
+}
+
+/* ── MINISTRIES — stats strip ── */
+@media(max-width:768px){
+  div[style*="grid-template-columns:repeat(4,1fr)"][style*="background:var(--gold)"]{
+    grid-template-columns:1fr 1fr!important
+  }
+}
+
+/* ── MINISTRIES — join banner ── */
+@media(max-width:768px){
+  div[style*="display:flex"][style*="align-items:center"][style*="justify-content:space-between"]{
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:12px!important
+  }
+}
+
+/* ── MEDIA — social cards ── */
+@media(max-width:768px){
+  div[style*="repeat(auto-fit,minmax(260px,1fr))"]{
+    grid-template-columns:1fr!important
+  }
+}
+
+/* ── GALLERY ── */
+@media(max-width:768px){
+  div[style*="auto-fill,minmax(260px,1fr)"]{
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important
+  }
+}
+
+/* ── BOTTOM NAV ── */
+@media(max-width:768px){
+  .bottom-nav{height:58px}
+  .bn-icon{font-size:17px}
+  .bn-label{font-size:8px;letter-spacing:0}
+  .bn-center{width:44px;height:44px;font-size:17px;margin-top:-14px}
+}
+
+/* ── WA FLOAT ── */
+@media(max-width:768px){
+  .wa-float{bottom:72px;right:12px}
+  .wa-float img{width:46px}
+}
+
+/* ── FOOTER ── */
+@media(max-width:768px){
+  .footer{padding:14px 0}
+  .footer-inner{gap:8px}
+  .footer-copy{font-size:10px}
+  .footer-links a{font-size:10px}
+}
+
+/* ── GLOBAL TOUCH TARGETS ── */
+@media(max-width:768px){
+  .btn-gold,.btn-outline,.btn-wa,.btn-ghost{
+    min-height:44px;
+    display:inline-flex!important;
+    align-items:center;
+    justify-content:center;
+    padding:11px 20px!important;
+    font-size:13px!important
+  }
+  .min-join{
+    min-height:36px;
+    display:inline-flex!important;
+    align-items:center
+  }
+  a[class*="btn"]{min-height:44px}
+}
+
+/* ── HEADINGS SCALE ── */
+@media(max-width:480px){
+  .sec-title{font-size:1.3rem}
+  .page-hero h1{font-size:1.6rem}
+}
+</style>
 </head>
 <body>
 <header>
@@ -244,7 +516,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 <section class="sec sec-dark2">
   <div class="container">
     <div id="next-service-countdown">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
+      <div class="mob-stack-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
         <div>
           <div class="sec-label fi">Coming Up</div>
           <h2 class="sec-title fi">Next Service</h2>
