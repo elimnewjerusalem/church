@@ -346,6 +346,9 @@ document.querySelectorAll(".menu a").forEach(a=>a.addEventListener("click",()=>{
   document.getElementById("ham").classList.remove("open");
 }));
 
+// ── EMBEDDED TAMIL BIBLE (key chapters — instant, no API) ──
+const TAMIL_BIBLE = {"43_3": [[1, "நிக்கோதேமு என்னும் பேரோடு பரிசேயரில் ஒரு மனுஷன் இருந்தான், அவன் யூதருடைய அதிபதி."], [2, "இயேசுவிடத்தில் இரவிலே வந்து: ரபீ, நீர் தேவனிடத்திலிருந்து வந்த போதகர் என்று அறிவோம்; தேவன் தம்மோடிருக்காவிட்டால் நீர் செய்கிற இந்த அற்புதங்களை ஒருவனும் செய்யமாட்டான் என்றான்."], [3, "இயேசு அவனுக்கு: மறுபடியும் பிறவாவிட்டால் ஒருவனும் தேவனுடைய ராஜ்யத்தை காண மாட்டான் என்று மெய்யாகவே உனக்கு சொல்லுகிறேன் என்றார்."], [4, "நிக்கோதேமு: மனுஷன் முதிர்வயதனாயிருக்கும்போது எப்படி பிறக்கலாம்? என்றான்."], [5, "இயேசு: ஒருவன் ஜலத்தினாலும் ஆவியினாலும் பிறவாவிட்டால் தேவனுடைய ராஜ்யத்தில் பிரவேசிக்க மாட்டான் என்று மெய்யாகவே உனக்கு சொல்லுகிறேன்."], [6, "மாம்சத்தால் பிறப்பது மாம்சமாயிருக்கும்; ஆவியினால் பிறப்பது ஆவியாயிருக்கும்."], [14, "மோசே வனாந்தரத்திலே சர்ப்பத்தை உயர்த்தினதுபோல மனுஷகுமாரனும் உயர்த்தப்படவேண்டும்;"], [15, "அவரில் விசுவாசமாயிருக்கிற எவனும் கெட்டுப்போகாமல் நித்தியஜீவனை அடையும்படிக்கு."], [16, "தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார், அதனால் தம்முடைய ஒரே பேறான குமாரனை அனுப்பினார்; அவரில் விசுவாசமாயிருக்கிற எவனும் கெட்டுப்போகாமல் நித்தியஜீவனை அடையும்படிக்கு."], [17, "தேவன் தம்முடைய குமாரனை உலகத்தை ஆக்கினைக்குள்ளாக தண்டிக்கும்படி அல்ல, அவராலே உலகம் இரட்சிக்கப்படும்படி உலகத்தில் அனுப்பினார்."], [36, "குமாரனில் விசுவாசமாயிருக்கிறவன் நித்தியஜீவனை உடையவன்; குமாரனுக்கு கீழ்ப்படியாதவனோ ஜீவனை காண்பதில்லை."]], "19_23": [[1, "கர்த்தர் என் மேய்ப்பர்; எனக்கு குறைவுண்டாவதில்லை."], [2, "அவர் என்னை பசும்புல்தரை மேய்ச்சலிடத்திலே படுத்து, அமர்வான தண்ணீர் அருகே என்னை நடத்துகிறார்."], [3, "என் ஆத்துமாவை அவர் தேற்றுகிறார்; தமது நாமத்தினிமித்தம் நீதியின் பாதைகளிலே என்னை நடத்துகிறார்."], [4, "நான் மரண இருளின் பள்ளத்தாக்கிலே நடந்தாலும் தீங்குக்கு பயப்படேன்; தேவரீர் என்னோடு இருக்கிறீர்; உமது கோல் உமது தடி என்னை தேற்றுகிறது."], [5, "என் சத்துருக்கள் பார்க்கையில் என் முன்னே ஒரு பந்தியை ஆயத்தம்பண்ணுகிறீர்; என் தலையில் எண்ணெய் பூசுகிறீர்; என் பாத்திரம் நிறைந்து வழிகிறது."], [6, "என் ஜீவனுள்ள நாளெல்லாம் நன்மையும் கிருபையும் என்னைத் தொடரும்; கர்த்தருடைய வீட்டிலே நான் நீடித்த நாட்கள் வாசம்பண்ணுவேன்."]], "43_1": [[1, "ஆதியிலே வார்த்தை இருந்தது, அந்த வார்த்தை தேவனிடத்திலிருந்தது, அந்த வார்த்தை தேவனாயிருந்தது."], [2, "அவர் ஆதியிலே தேவனிடத்திலிருந்தார்."], [3, "எல்லாம் அவராலே உண்டாயிற்று; உண்டானதொன்றும் அவராலே அல்லாமல் உண்டாகவில்லை."], [4, "அவரிலே ஜீவன் இருந்தது, அந்த ஜீவன் மனுஷருக்கு வெளிச்சமாயிருந்தது."], [12, "அவரை ஏற்றுக்கொண்டவர்கள் எத்தனைபேரோ, அத்தனைபேருக்கும் தேவனுடைய பிள்ளைகளாகும்படி அதிகாரம் கொடுத்தார்."], [14, "வார்த்தை மாம்சமாகி, கிருபையினாலும் சத்தியத்தினாலும் நிறைந்தவராய் நம்மிடையே வாசம்பண்ணினார்."]], "50_4": [[4, "கர்த்தருக்குள் எப்பொழுதும் சந்தோஷமாயிருங்கள்; மறுபடியும் சொல்லுகிறேன், சந்தோஷமாயிருங்கள்."], [6, "ஒன்றினிமித்தமும் கவலைப்படாமல், எல்லாவற்றிலேயும் ஸ்தோத்திரத்தோடு கூடிய விண்ணப்பங்களாலும் வேண்டுதல்களாலும் உங்கள் அபேட்சைகளை தேவனுக்கு தெரியப்படுத்துங்கள்."], [7, "அப்பொழுது எல்லா அறிவையும் கடந்த தேவசமாதானம் உங்கள் இருதயங்களையும் சிந்தைகளையும் கிறிஸ்து இயேசுவுக்குள்ளாக காத்துக்கொள்ளும்."], [13, "என்னை பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்."], [19, "என் தேவன் தமது ஐசுவரியத்தின்படியே கிறிஸ்து இயேசுவிலுள்ள மகிமையிலே உங்கள் குறைவுகளையெல்லாம் நிறைவாக்குவார்."]], "23_40": [[28, "நீ அறியவில்லையா? கேட்டிருக்கவில்லையா? கர்த்தர் நித்திய தேவன்; பூமியின் கடையாந்தரங்களை சிருஷ்டித்தவர்; இளைக்கிறதுமில்லை, அசதிப்படுகிறதுமில்லை."], [29, "இளைத்தவனுக்கு வல்லமையை கொடுக்கிறார்; சத்துவமற்றவனுக்கு பெலன் பெருகப்பண்ணுகிறார்."], [31, "கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்; கழுகுகளைப்போல சிறகடித்து ஏறுவார்கள்; ஓடினாலும் இளைப்படையார்கள், நடந்தாலும் சோர்வடையார்கள்."]], "40_5": [[3, "ஆவியில் எளிமையுள்ளவர்கள் பாக்கியவான்கள்; பரலோக ராஜ்யம் அவர்களுடையது."], [4, "துக்கப்படுகிறவர்கள் பாக்கியவான்கள்; அவர்கள் ஆறுதலடைவார்கள்."], [5, "சாந்தகுணமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் பூமியை சுதந்தரிப்பார்கள்."], [6, "நீதியின்மேல் பசிதாகமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் திருப்தியடைவார்கள்."], [7, "இரக்கமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் இரக்கம் பெறுவார்கள்."], [8, "இருதயத்தில் சுத்தமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் தேவனை தரிசிப்பார்கள்."], [9, "சமாதானமாக்குகிறவர்கள் பாக்கியவான்கள்; அவர்கள் தேவனுடைய புத்திரர் என்னப்படுவார்கள்."]], "45_8": [[1, "ஆகையால், கிறிஸ்து இயேசுவுக்குள் இருக்கிறவர்களுக்கு ஆக்கினைத்தீர்ப்பு இல்லை."], [28, "தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும் என்று அறிவோம்."], [31, "தேவன் நமக்கு துணையாயிருந்தால் நமக்கு விரோதமாக இருப்பவர் யார்?"], [38, "மரணமும் ஜீவனும் தேவதூதர்களும் அதிகாரங்களும் வல்லமைகளும் நம்மை பிரிக்கமாட்டாது."], [39, "நம்முடைய கர்த்தராகிய கிறிஸ்து இயேசுவுக்குள் விளங்குகிற தேவனுடைய அன்பைவிட்டு நம்மை பிரிக்கமாட்டாது என்று நிச்சயித்திருக்கிறேன்."]]};
+
 // ── STATE ─────────────────────────────────────────────────────
 let currentLang = "en";
 let currentBook = "";
@@ -521,64 +524,50 @@ async function loadChapter(){
   if(!currentBook) return;
   stopAudio();
   showLoading();
-
   try{
     let verses = [];
     if(currentLang === "en"){
-      // English via bible-api.com — needs full book name e.g. genesis, john
-      const url = `https://bible-api.com/${currentBook}+${currentChapter}?translation=kjv`;
+      const url = "https://bible-api.com/"+currentBook+"+"+currentChapter+"?translation=kjv";
       const res = await fetch(url);
-      if(!res.ok) throw new Error("Chapter not found (" + res.status + ")");
+      if(!res.ok) throw new Error("Chapter not found ("+res.status+")");
       const data = await res.json();
       if(data.error) throw new Error(data.error);
-      verses = (data.verses||[]).map(v=>({num:v.verse, text:v.text.trim().replace(/\n/g," ")}));
+      verses = (data.verses||[]).map(function(v){
+        return {num:v.verse, text:v.text.trim().replace(/\n/g," ")};
+      });
     } else {
-      // Tamil Bible via bolls.life API
-      // TAOVBSI = Tamil Old Version Bible Society of India (correct translation code)
-      const book = BOOKS_EN.find(b=>b.id===currentBook);
+      const book = BOOKS_EN.find(function(b){return b.id===currentBook;});
       const bookNum = book ? book.num : 1;
-      let loaded = false;
-
-      // Primary: bolls.life — free, CORS-enabled, reliable
-      try {
-        const url = `https://bolls.life/get-chapter/TAOVBSI/${bookNum}/${currentChapter}/`;
-        const res = await fetch(url);
-        if(res.ok){
-          const data = await res.json();
-          // bolls.life returns: [{pk, verse, text, book, chapter}]
-          if(Array.isArray(data) && data.length){
-            verses = data.map(v=>({num:v.verse, text:v.text}));
-            loaded = true;
-          }
+      const key = bookNum+"_"+currentChapter;
+      if(TAMIL_BIBLE[key]){
+        verses = TAMIL_BIBLE[key].map(function(v){return {num:v[0],text:v[1]};});
+      } else {
+        var ok = false;
+        try{
+          var r1 = await fetch("https://bolls.life/get-chapter/TAOVBSI/"+bookNum+"/"+currentChapter+"/");
+          if(r1.ok){var d1=await r1.json();if(Array.isArray(d1)&&d1.length){verses=d1.map(function(v){return{num:v.verse,text:v.text};});ok=true;}}
+        }catch(e1){}
+        if(!ok){
+          try{
+            var r2 = await fetch("https://getbible.net/v2/tam/"+bookNum+"/"+currentChapter+".json");
+            if(r2.ok){var d2=await r2.json();if(d2.verses&&d2.verses.length){verses=d2.verses.map(function(v){return{num:v.verse_nr,text:v.verse};});ok=true;}}
+          }catch(e2){}
         }
-      } catch(e){ console.warn("bolls.life failed:", e.message); }
-
-      // Fallback: getbible.net v2 with "tam" abbreviation
-      if(!loaded){
-        try {
-          const url2 = `https://getbible.net/v2/tam/${bookNum}/${currentChapter}.json`;
-          const res2 = await fetch(url2);
-          if(res2.ok){
-            const data2 = await res2.json();
-            if(data2.verses && data2.verses.length){
-              verses = data2.verses.map(v=>({num:v.verse_nr, text:v.verse}));
-              loaded = true;
-            }
-          }
-        } catch(e){ console.warn("getbible fallback failed:", e.message); }
+        if(!ok){
+          try{
+            var r3 = await fetch("https://getbible.net/v2/tamil/"+bookNum+"/"+currentChapter+".json");
+            if(r3.ok){var d3=await r3.json();if(d3.verses&&d3.verses.length){verses=d3.verses.map(function(v){return{num:v.verse_nr,text:v.verse};});ok=true;}}
+          }catch(e3){}
+        }
+        if(!ok) throw new Error("Tamil not available. Try: John 1, John 3, Psalms 23, Matthew 5, Philippians 4, Isaiah 40, Romans 8");
       }
-
-      if(!loaded) throw new Error(
-        "Tamil Bible could not load. Try a different book or check your internet."
-      );
     }
-
-    if(!verses.length) throw new Error("No verses found");
+    if(!verses.length) throw new Error("No verses found.");
     currentVerses = verses;
     renderVerses(verses);
     updateChapterUI();
   } catch(err){
-    showError("Could not load this chapter. Please check your internet connection and try again.<br><small>" + err.message + "</small>");
+    showError("Could not load this chapter. Please check your internet connection and try again.<br><small>"+err.message+"</small>");
   }
 }
 
