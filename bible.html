@@ -6,6 +6,7 @@
   <title>Bible | ENJC Church</title>
   <meta name="description" content="Read and listen to the Bible in Tamil and English — Elim New Jerusalem Church">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Inter:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600;700&display=swap');
@@ -532,14 +533,44 @@ async function loadChapter(){
       if(data.error) throw new Error(data.error);
       verses = (data.verses||[]).map(v=>({num:v.verse, text:v.text.trim().replace(/\n/g," ")}));
     } else {
-      // Tamil via getbible.net v2 API — returns clean JSON with CORS
+      // Tamil Bible via bolls.life API
+      // TAOVBSI = Tamil Old Version Bible Society of India (correct translation code)
       const book = BOOKS_EN.find(b=>b.id===currentBook);
       const bookNum = book ? book.num : 1;
-      const url = `https://getbible.net/v2/tamil/${bookNum}/${currentChapter}.json`;
-      const res = await fetch(url);
-      if(!res.ok) throw new Error("Tamil chapter not found (" + res.status + ")");
-      const data = await res.json();
-      verses = (data.verses||[]).map(v=>({num:v.verse_nr, text:v.verse}));
+      let loaded = false;
+
+      // Primary: bolls.life — free, CORS-enabled, reliable
+      try {
+        const url = `https://bolls.life/get-chapter/TAOVBSI/${bookNum}/${currentChapter}/`;
+        const res = await fetch(url);
+        if(res.ok){
+          const data = await res.json();
+          // bolls.life returns: [{pk, verse, text, book, chapter}]
+          if(Array.isArray(data) && data.length){
+            verses = data.map(v=>({num:v.verse, text:v.text}));
+            loaded = true;
+          }
+        }
+      } catch(e){ console.warn("bolls.life failed:", e.message); }
+
+      // Fallback: getbible.net v2 with "tam" abbreviation
+      if(!loaded){
+        try {
+          const url2 = `https://getbible.net/v2/tam/${bookNum}/${currentChapter}.json`;
+          const res2 = await fetch(url2);
+          if(res2.ok){
+            const data2 = await res2.json();
+            if(data2.verses && data2.verses.length){
+              verses = data2.verses.map(v=>({num:v.verse_nr, text:v.verse}));
+              loaded = true;
+            }
+          }
+        } catch(e){ console.warn("getbible fallback failed:", e.message); }
+      }
+
+      if(!loaded) throw new Error(
+        "Tamil Bible could not load. Try a different book or check your internet."
+      );
     }
 
     if(!verses.length) throw new Error("No verses found");
@@ -555,7 +586,7 @@ function showLoading(){
   document.getElementById("bible-content").innerHTML = `
     <div class="bible-loading">
       <div class="loading-spin"></div>
-      <p>Loading ${currentLang==="ta"?"Tamil":"English"} Bible...</p>
+      <p>Loading ${currentLang==="ta"?"Tamil (தமிழ்)":"English"} Bible...</p>
     </div>`;
 }
 
