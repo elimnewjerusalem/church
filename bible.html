@@ -362,74 +362,75 @@ let currentVotdRef = "";
 
 // ── BIBLE BOOKS DATA ─────────────────────────────────────────
 const BOOKS_EN = [
+  // id = URL-friendly name for bible-api.com, num = book number for getbible.net
   // Old Testament
-  {id:"GEN",name:"Genesis",chapters:50,testament:"Old Testament"},
-  {id:"EXO",name:"Exodus",chapters:40,testament:"Old Testament"},
-  {id:"LEV",name:"Leviticus",chapters:27,testament:"Old Testament"},
-  {id:"NUM",name:"Numbers",chapters:36,testament:"Old Testament"},
-  {id:"DEU",name:"Deuteronomy",chapters:34,testament:"Old Testament"},
-  {id:"JOS",name:"Joshua",chapters:24,testament:"Old Testament"},
-  {id:"JDG",name:"Judges",chapters:21,testament:"Old Testament"},
-  {id:"RUT",name:"Ruth",chapters:4,testament:"Old Testament"},
-  {id:"1SA",name:"1 Samuel",chapters:31,testament:"Old Testament"},
-  {id:"2SA",name:"2 Samuel",chapters:24,testament:"Old Testament"},
-  {id:"1KI",name:"1 Kings",chapters:22,testament:"Old Testament"},
-  {id:"2KI",name:"2 Kings",chapters:25,testament:"Old Testament"},
-  {id:"1CH",name:"1 Chronicles",chapters:29,testament:"Old Testament"},
-  {id:"2CH",name:"2 Chronicles",chapters:36,testament:"Old Testament"},
-  {id:"EZR",name:"Ezra",chapters:10,testament:"Old Testament"},
-  {id:"NEH",name:"Nehemiah",chapters:13,testament:"Old Testament"},
-  {id:"EST",name:"Esther",chapters:10,testament:"Old Testament"},
-  {id:"JOB",name:"Job",chapters:42,testament:"Old Testament"},
-  {id:"PSA",name:"Psalms",chapters:150,testament:"Old Testament"},
-  {id:"PRO",name:"Proverbs",chapters:31,testament:"Old Testament"},
-  {id:"ECC",name:"Ecclesiastes",chapters:12,testament:"Old Testament"},
-  {id:"SNG",name:"Song of Solomon",chapters:8,testament:"Old Testament"},
-  {id:"ISA",name:"Isaiah",chapters:66,testament:"Old Testament"},
-  {id:"JER",name:"Jeremiah",chapters:52,testament:"Old Testament"},
-  {id:"LAM",name:"Lamentations",chapters:5,testament:"Old Testament"},
-  {id:"EZK",name:"Ezekiel",chapters:48,testament:"Old Testament"},
-  {id:"DAN",name:"Daniel",chapters:12,testament:"Old Testament"},
-  {id:"HOS",name:"Hosea",chapters:14,testament:"Old Testament"},
-  {id:"JOL",name:"Joel",chapters:3,testament:"Old Testament"},
-  {id:"AMO",name:"Amos",chapters:9,testament:"Old Testament"},
-  {id:"OBA",name:"Obadiah",chapters:1,testament:"Old Testament"},
-  {id:"JON",name:"Jonah",chapters:4,testament:"Old Testament"},
-  {id:"MIC",name:"Micah",chapters:7,testament:"Old Testament"},
-  {id:"NAM",name:"Nahum",chapters:3,testament:"Old Testament"},
-  {id:"HAB",name:"Habakkuk",chapters:3,testament:"Old Testament"},
-  {id:"ZEP",name:"Zephaniah",chapters:3,testament:"Old Testament"},
-  {id:"HAG",name:"Haggai",chapters:2,testament:"Old Testament"},
-  {id:"ZEC",name:"Zechariah",chapters:14,testament:"Old Testament"},
-  {id:"MAL",name:"Malachi",chapters:4,testament:"Old Testament"},
+  {id:"genesis",num:1,name:"Genesis",chapters:50,testament:"Old Testament"},
+  {id:"exodus",num:2,name:"Exodus",chapters:40,testament:"Old Testament"},
+  {id:"leviticus",num:3,name:"Leviticus",chapters:27,testament:"Old Testament"},
+  {id:"numbers",num:4,name:"Numbers",chapters:36,testament:"Old Testament"},
+  {id:"deuteronomy",num:5,name:"Deuteronomy",chapters:34,testament:"Old Testament"},
+  {id:"joshua",num:6,name:"Joshua",chapters:24,testament:"Old Testament"},
+  {id:"judges",num:7,name:"Judges",chapters:21,testament:"Old Testament"},
+  {id:"ruth",num:8,name:"Ruth",chapters:4,testament:"Old Testament"},
+  {id:"1+samuel",num:9,name:"1 Samuel",chapters:31,testament:"Old Testament"},
+  {id:"2+samuel",num:10,name:"2 Samuel",chapters:24,testament:"Old Testament"},
+  {id:"1+kings",num:11,name:"1 Kings",chapters:22,testament:"Old Testament"},
+  {id:"2+kings",num:12,name:"2 Kings",chapters:25,testament:"Old Testament"},
+  {id:"1+chronicles",num:13,name:"1 Chronicles",chapters:29,testament:"Old Testament"},
+  {id:"2+chronicles",num:14,name:"2 Chronicles",chapters:36,testament:"Old Testament"},
+  {id:"ezra",num:15,name:"Ezra",chapters:10,testament:"Old Testament"},
+  {id:"nehemiah",num:16,name:"Nehemiah",chapters:13,testament:"Old Testament"},
+  {id:"esther",num:17,name:"Esther",chapters:10,testament:"Old Testament"},
+  {id:"job",num:18,name:"Job",chapters:42,testament:"Old Testament"},
+  {id:"psalms",num:19,name:"Psalms",chapters:150,testament:"Old Testament"},
+  {id:"proverbs",num:20,name:"Proverbs",chapters:31,testament:"Old Testament"},
+  {id:"ecclesiastes",num:21,name:"Ecclesiastes",chapters:12,testament:"Old Testament"},
+  {id:"song+of+solomon",num:22,name:"Song of Solomon",chapters:8,testament:"Old Testament"},
+  {id:"isaiah",num:23,name:"Isaiah",chapters:66,testament:"Old Testament"},
+  {id:"jeremiah",num:24,name:"Jeremiah",chapters:52,testament:"Old Testament"},
+  {id:"lamentations",num:25,name:"Lamentations",chapters:5,testament:"Old Testament"},
+  {id:"ezekiel",num:26,name:"Ezekiel",chapters:48,testament:"Old Testament"},
+  {id:"daniel",num:27,name:"Daniel",chapters:12,testament:"Old Testament"},
+  {id:"hosea",num:28,name:"Hosea",chapters:14,testament:"Old Testament"},
+  {id:"joel",num:29,name:"Joel",chapters:3,testament:"Old Testament"},
+  {id:"amos",num:30,name:"Amos",chapters:9,testament:"Old Testament"},
+  {id:"obadiah",num:31,name:"Obadiah",chapters:1,testament:"Old Testament"},
+  {id:"jonah",num:32,name:"Jonah",chapters:4,testament:"Old Testament"},
+  {id:"micah",num:33,name:"Micah",chapters:7,testament:"Old Testament"},
+  {id:"nahum",num:34,name:"Nahum",chapters:3,testament:"Old Testament"},
+  {id:"habakkuk",num:35,name:"Habakkuk",chapters:3,testament:"Old Testament"},
+  {id:"zephaniah",num:36,name:"Zephaniah",chapters:3,testament:"Old Testament"},
+  {id:"haggai",num:37,name:"Haggai",chapters:2,testament:"Old Testament"},
+  {id:"zechariah",num:38,name:"Zechariah",chapters:14,testament:"Old Testament"},
+  {id:"malachi",num:39,name:"Malachi",chapters:4,testament:"Old Testament"},
   // New Testament
-  {id:"MAT",name:"Matthew",chapters:28,testament:"New Testament"},
-  {id:"MRK",name:"Mark",chapters:16,testament:"New Testament"},
-  {id:"LUK",name:"Luke",chapters:24,testament:"New Testament"},
-  {id:"JHN",name:"John",chapters:21,testament:"New Testament"},
-  {id:"ACT",name:"Acts",chapters:28,testament:"New Testament"},
-  {id:"ROM",name:"Romans",chapters:16,testament:"New Testament"},
-  {id:"1CO",name:"1 Corinthians",chapters:16,testament:"New Testament"},
-  {id:"2CO",name:"2 Corinthians",chapters:13,testament:"New Testament"},
-  {id:"GAL",name:"Galatians",chapters:6,testament:"New Testament"},
-  {id:"EPH",name:"Ephesians",chapters:6,testament:"New Testament"},
-  {id:"PHP",name:"Philippians",chapters:4,testament:"New Testament"},
-  {id:"COL",name:"Colossians",chapters:4,testament:"New Testament"},
-  {id:"1TH",name:"1 Thessalonians",chapters:5,testament:"New Testament"},
-  {id:"2TH",name:"2 Thessalonians",chapters:3,testament:"New Testament"},
-  {id:"1TI",name:"1 Timothy",chapters:6,testament:"New Testament"},
-  {id:"2TI",name:"2 Timothy",chapters:4,testament:"New Testament"},
-  {id:"TIT",name:"Titus",chapters:3,testament:"New Testament"},
-  {id:"PHM",name:"Philemon",chapters:1,testament:"New Testament"},
-  {id:"HEB",name:"Hebrews",chapters:13,testament:"New Testament"},
-  {id:"JAS",name:"James",chapters:5,testament:"New Testament"},
-  {id:"1PE",name:"1 Peter",chapters:5,testament:"New Testament"},
-  {id:"2PE",name:"2 Peter",chapters:3,testament:"New Testament"},
-  {id:"1JN",name:"1 John",chapters:5,testament:"New Testament"},
-  {id:"2JN",name:"2 John",chapters:1,testament:"New Testament"},
-  {id:"3JN",name:"3 John",chapters:1,testament:"New Testament"},
-  {id:"JUD",name:"Jude",chapters:1,testament:"New Testament"},
-  {id:"REV",name:"Revelation",chapters:22,testament:"New Testament"}
+  {id:"matthew",num:40,name:"Matthew",chapters:28,testament:"New Testament"},
+  {id:"mark",num:41,name:"Mark",chapters:16,testament:"New Testament"},
+  {id:"luke",num:42,name:"Luke",chapters:24,testament:"New Testament"},
+  {id:"john",num:43,name:"John",chapters:21,testament:"New Testament"},
+  {id:"acts",num:44,name:"Acts",chapters:28,testament:"New Testament"},
+  {id:"romans",num:45,name:"Romans",chapters:16,testament:"New Testament"},
+  {id:"1+corinthians",num:46,name:"1 Corinthians",chapters:16,testament:"New Testament"},
+  {id:"2+corinthians",num:47,name:"2 Corinthians",chapters:13,testament:"New Testament"},
+  {id:"galatians",num:48,name:"Galatians",chapters:6,testament:"New Testament"},
+  {id:"ephesians",num:49,name:"Ephesians",chapters:6,testament:"New Testament"},
+  {id:"philippians",num:50,name:"Philippians",chapters:4,testament:"New Testament"},
+  {id:"colossians",num:51,name:"Colossians",chapters:4,testament:"New Testament"},
+  {id:"1+thessalonians",num:52,name:"1 Thessalonians",chapters:5,testament:"New Testament"},
+  {id:"2+thessalonians",num:53,name:"2 Thessalonians",chapters:3,testament:"New Testament"},
+  {id:"1+timothy",num:54,name:"1 Timothy",chapters:6,testament:"New Testament"},
+  {id:"2+timothy",num:55,name:"2 Timothy",chapters:4,testament:"New Testament"},
+  {id:"titus",num:56,name:"Titus",chapters:3,testament:"New Testament"},
+  {id:"philemon",num:57,name:"Philemon",chapters:1,testament:"New Testament"},
+  {id:"hebrews",num:58,name:"Hebrews",chapters:13,testament:"New Testament"},
+  {id:"james",num:59,name:"James",chapters:5,testament:"New Testament"},
+  {id:"1+peter",num:60,name:"1 Peter",chapters:5,testament:"New Testament"},
+  {id:"2+peter",num:61,name:"2 Peter",chapters:3,testament:"New Testament"},
+  {id:"1+john",num:62,name:"1 John",chapters:5,testament:"New Testament"},
+  {id:"2+john",num:63,name:"2 John",chapters:1,testament:"New Testament"},
+  {id:"3+john",num:64,name:"3 John",chapters:1,testament:"New Testament"},
+  {id:"jude",num:65,name:"Jude",chapters:1,testament:"New Testament"},
+  {id:"revelation",num:66,name:"Revelation",chapters:22,testament:"New Testament"}
 ];
 
 // Tamil book names (short list — key books)
@@ -523,26 +524,22 @@ async function loadChapter(){
   try{
     let verses = [];
     if(currentLang === "en"){
-      // English via bible-api.com (KJV, free)
+      // English via bible-api.com — needs full book name e.g. genesis, john
       const url = `https://bible-api.com/${currentBook}+${currentChapter}?translation=kjv`;
       const res = await fetch(url);
-      if(!res.ok) throw new Error("Chapter not found");
+      if(!res.ok) throw new Error("Chapter not found (" + res.status + ")");
       const data = await res.json();
-      verses = (data.verses||[]).map(v=>({num:v.verse, text:v.text.trim()}));
+      if(data.error) throw new Error(data.error);
+      verses = (data.verses||[]).map(v=>({num:v.verse, text:v.text.trim().replace(/\n/g," ")}));
     } else {
-      // Tamil via getbible.net (free, Tamil = tam)
-      const bookIndex = BOOKS_EN.findIndex(b=>b.id===currentBook)+1;
-      const url = `https://getbible.net/json?passage=${currentBook}+${currentChapter}&v=tamil`;
+      // Tamil via getbible.net v2 API — returns clean JSON with CORS
+      const book = BOOKS_EN.find(b=>b.id===currentBook);
+      const bookNum = book ? book.num : 1;
+      const url = `https://getbible.net/v2/tamil/${bookNum}/${currentChapter}.json`;
       const res = await fetch(url);
-      let raw = await res.text();
-      // getbible wraps in callback — strip it
-      raw = raw.replace(/^[^(]+\(/, "").replace(/\);?\s*$/, "");
-      const data = JSON.parse(raw);
-      const chapterData = data.book?.[0]?.chapter || {};
-      verses = Object.keys(chapterData).sort((a,b)=>+a-+b).map(k=>({
-        num: parseInt(k),
-        text: chapterData[k].verse
-      }));
+      if(!res.ok) throw new Error("Tamil chapter not found (" + res.status + ")");
+      const data = await res.json();
+      verses = (data.verses||[]).map(v=>({num:v.verse_nr, text:v.verse}));
     }
 
     if(!verses.length) throw new Error("No verses found");
