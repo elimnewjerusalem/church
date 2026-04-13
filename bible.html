@@ -174,6 +174,67 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   .ticker-track{animation-duration:45s}
   .tick-item{font-size:11px;padding:0 18px}
 }
+
+/* ── FEATURE TOOLBAR ── */
+.feature-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.feat-btn{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:var(--radius);padding:7px 13px;color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:5px}
+.feat-btn:hover{border-color:var(--border2);color:white}
+.feat-btn.active{border-color:rgba(245,166,35,.4);background:rgba(245,166,35,.1);color:var(--gold)}
+
+/* ── FONT SIZE ── */
+.fsz-bar{display:flex;align-items:center;gap:8px}
+.fsz-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:5px 12px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;min-width:36px}
+.fsz-btn:hover{border-color:var(--gold);color:var(--gold)}
+#fsz-val{font-size:11px;color:var(--muted);min-width:30px;text-align:center}
+
+/* ── VERSE ACTIONS (copy/bookmark/share per verse) ── */
+.verse-actions{display:flex;gap:4px;flex-shrink:0;margin-top:2px;opacity:0;transition:opacity .2s}
+.verse-item:hover .verse-actions{opacity:1}
+.vact-btn{background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:4px 7px;cursor:pointer;font-size:12px;color:var(--muted);transition:all .2s;line-height:1}
+.vact-btn:hover{border-color:var(--border2);color:white}
+.vact-btn.bm-saved{border-color:rgba(245,166,35,.4);color:var(--gold);background:rgba(245,166,35,.08)}
+
+/* ── TOPIC PILLS ── */
+.topic-section{margin-bottom:20px;display:none}
+.topic-section.open{display:block}
+.topic-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:600}
+.topic-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.topic-pill{border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.topic-pill:hover,.topic-pill.active{border-color:rgba(245,166,35,.4);color:var(--gold);background:rgba(245,166,35,.08)}
+
+/* ── READING PLAN ── */
+.plan-section{margin-bottom:20px;display:none}
+.plan-section.open{display:block}
+.plan-progress-bar{background:rgba(255,255,255,.08);border-radius:999px;height:5px;margin-bottom:14px;overflow:hidden}
+.plan-fill{height:5px;border-radius:999px;background:var(--gold);transition:width .3s}
+.plan-day{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:6px;cursor:pointer;transition:all .2s}
+.plan-day:hover{border-color:var(--border2)}
+.plan-day.done{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.06)}
+.plan-check{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:var(--gold);transition:all .2s}
+.plan-day.done .plan-check{background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.4)}
+.plan-info-txt{flex:1}
+.plan-day-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.plan-chapter{font-size:.9rem;color:white;margin-top:2px}
+.plan-day.done .plan-chapter{color:var(--gold)}
+
+/* ── BOOKMARKS SECTION ── */
+.bm-section{margin-bottom:20px;display:none}
+.bm-section.open{display:block}
+.bm-empty{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
+
+/* ── VERSE IMAGE ── */
+.img-section{margin-bottom:20px;display:none}
+.img-section.open{display:block}
+.img-controls-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.img-sel{background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 12px;color:var(--text);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer}
+.img-preview{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;margin-bottom:10px;text-align:center}
+.img-preview canvas{border-radius:6px;max-width:100%;height:auto}
+.img-dl-btn{background:var(--gold);color:var(--dark);border:none;border-radius:var(--radius);padding:9px 20px;font-weight:700;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.img-dl-btn:hover{background:var(--gold2)}
+
+/* ── TOAST ── */
+.bible-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(8,12,16,.95);border:1px solid rgba(245,166,35,.3);color:var(--gold);padding:9px 18px;border-radius:999px;font-size:12px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none;z-index:9999;white-space:nowrap}
+.bible-toast.show{opacity:1}
 </style>
 </head>
 <body>
@@ -243,6 +304,77 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-en" onclick="setLang('en')">&#127468;&#127463; English</button>
       <button class="lang-btn" id="btn-ta" onclick="setLang('ta')">&#127470;&#127475; Tamil</button>
+    </div>
+
+    <!-- Feature Toolbar -->
+    <div class="feature-bar">
+      <div class="fsz-bar">
+        <button class="fsz-btn" onclick="changeFont(-1)">A&#8722;</button>
+        <span id="fsz-val">16px</span>
+        <button class="fsz-btn" onclick="changeFont(1)">A+</button>
+      </div>
+      <button class="feat-btn" id="btn-topics" onclick="togglePanel('topics')">&#127993; Topics</button>
+      <button class="feat-btn" id="btn-bookmarks" onclick="togglePanel('bookmarks')">&#9829; Saved</button>
+      <button class="feat-btn" id="btn-plan" onclick="togglePanel('plan')">&#128197; Reading Plan</button>
+      <button class="feat-btn" id="btn-image" onclick="togglePanel('image')">&#128247; Verse Image</button>
+    </div>
+
+    <!-- TOPIC SEARCH PANEL -->
+    <div class="topic-section" id="panel-topics">
+      <div class="topic-label">Browse by topic</div>
+      <div class="topic-pills">
+        <button class="topic-pill" onclick="showTopic(this,'faith')">Faith</button>
+        <button class="topic-pill" onclick="showTopic(this,'prayer')">Prayer</button>
+        <button class="topic-pill" onclick="showTopic(this,'love')">Love</button>
+        <button class="topic-pill" onclick="showTopic(this,'peace')">Peace</button>
+        <button class="topic-pill" onclick="showTopic(this,'healing')">Healing</button>
+        <button class="topic-pill" onclick="showTopic(this,'salvation')">Salvation</button>
+        <button class="topic-pill" onclick="showTopic(this,'strength')">Strength</button>
+        <button class="topic-pill" onclick="showTopic(this,'family')">Family</button>
+        <button class="topic-pill" onclick="showTopic(this,'hope')">Hope</button>
+        <button class="topic-pill" onclick="showTopic(this,'worship')">Worship</button>
+      </div>
+      <div id="topic-results"></div>
+    </div>
+
+    <!-- BOOKMARKS PANEL -->
+    <div class="bm-section" id="panel-bookmarks">
+      <div class="topic-label">&#9829; Saved verses</div>
+      <div id="bm-list"></div>
+    </div>
+
+    <!-- READING PLAN PANEL -->
+    <div class="plan-section" id="panel-plan">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div class="topic-label" style="margin:0">7-Day Reading Plan</div>
+        <span id="plan-pct" style="font-size:11px;color:var(--muted)">0 / 7</span>
+      </div>
+      <div class="plan-progress-bar"><div class="plan-fill" id="plan-fill" style="width:0%"></div></div>
+      <div id="plan-days"></div>
+      <button onclick="resetPlan()" style="margin-top:10px;background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:6px 14px;color:var(--muted);font-size:11px;cursor:pointer;font-family:Inter,sans-serif">Reset plan</button>
+    </div>
+
+    <!-- VERSE IMAGE PANEL -->
+    <div class="img-section" id="panel-image">
+      <div class="topic-label">Generate a shareable verse image</div>
+      <div class="img-controls-row">
+        <select class="img-sel" id="img-verse-sel" onchange="drawVerseCanvas()">
+          <option value="0">John 3:16</option>
+          <option value="1">Philippians 4:13</option>
+          <option value="2">Psalm 23:1</option>
+          <option value="3">Jeremiah 29:11</option>
+          <option value="4">Isaiah 43:4</option>
+          <option value="5">Isaiah 40:31</option>
+          <option value="6">Matthew 11:28</option>
+        </select>
+        <select class="img-sel" id="img-style-sel" onchange="drawVerseCanvas()">
+          <option value="dark">Dark Gold</option>
+          <option value="navy">Navy Blue</option>
+          <option value="warm">Warm Cream</option>
+        </select>
+      </div>
+      <div class="img-preview"><canvas id="verse-canvas" width="600" height="320"></canvas></div>
+      <button class="img-dl-btn" onclick="downloadVerseImg()">&#8595; Download Image</button>
     </div>
 
     <!-- Search -->
@@ -663,19 +795,25 @@ function nextChapter(){
 
 // ── RENDER VERSES ─────────────────────────────────────────────
 function renderVerses(verses){
-  const isTamil = currentLang === "ta";
-  const html = verses.map((v,i) => `
-<div class="verse-item" id="vi-${i}" onclick="playVerse(${i})">
-  <span class="verse-num">${v.num}</span>
-  <span class="verse-text ${isTamil?"tamil":""}">${v.text}</span>
-  <button class="verse-play" title="Listen" onclick="event.stopPropagation();playVerse(${i})">
-    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-  </button>
-</div>`).join("");
-  document.getElementById("bible-content").innerHTML =
-    `<div class="verse-list">${html}</div>`;
+  var isTamil = currentLang === "ta";
+  var html = verses.map(function(v,i){
+    var ref = currentBookName+" "+currentChapter+":"+v.num;
+    var bms = JSON.parse(localStorage.getItem("enjc_bm")||"[]");
+    var isBm = bms.some(function(b){return b.ref===ref;});
+    var safeText = v.text.replace(/'/g,"\'").replace(/\n/g," ");
+    var safeRef = ref.replace(/'/g,"\'");
+    return "<div class=\"verse-item\" id=\"vi-"+i+"\">"
+      +"<span class=\"verse-num\" onclick=\"playVerse("+i+")\" style=\"cursor:pointer\">"+v.num+"</span>"
+      +"<span class=\"verse-text "+(isTamil?"tamil":"")+" style=\"font-size:"+currentFontSize+"px\" onclick=\"playVerse("+i+")\" style=\"cursor:pointer\">"+v.text+"</span>"
+      +"<div class=\"verse-actions\">"
+      +"<button class=\"vact-btn\" title=\"Listen\" onclick=\"playVerse("+i+")\">&#9654;</button>"
+      +"<button class=\"vact-btn\" title=\"Copy\" onclick=\"copyVerse('"+safeRef+"','"+safeText+"')\">&#128203;</button>"
+      +"<button class=\"vact-btn "+(isBm?"bm-saved":"")+" \" id=\"bmbtn-"+i+"\" title=\"Save\" onclick=\"toggleBookmark('"+safeRef+"','"+safeText+"',"+i+")\">&#9829;</button>"
+      +"<button class=\"vact-btn\" title=\"Share\" onclick=\"shareVerse('"+safeRef+"','"+safeText+"')\">&#128279;</button>"
+      +"</div></div>";
+  }).join("");
+  document.getElementById("bible-content").innerHTML = "<div class=\"verse-list\">"+html+"</div>";
 }
-
 // ── AUDIO ─────────────────────────────────────────────────────
 function getVoice(){
   const voices = synth.getVoices();
@@ -929,6 +1067,272 @@ async function searchBible(){
 if(synth.onvoiceschanged !== undefined){
   synth.onvoiceschanged = ()=>{ synth.getVoices(); };
 }
+
+// ══════════════════════════════════════════════════════════════
+//  ENJC Bible — Extra Features
+// ══════════════════════════════════════════════════════════════
+
+// ── TOAST ────────────────────────────────────────────────────
+var _toast = null;
+function showToast(msg){
+  var el = document.getElementById("bible-toast");
+  if(!el){ el=document.createElement("div"); el.id="bible-toast"; el.className="bible-toast"; document.body.appendChild(el); }
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(_toast);
+  _toast = setTimeout(function(){ el.classList.remove("show"); }, 2200);
+}
+
+// ── FONT SIZE ────────────────────────────────────────────────
+var currentFontSize = parseInt(localStorage.getItem("enjc_fsz")||"16");
+(function(){ document.getElementById("fsz-val").textContent = currentFontSize+"px"; })();
+function changeFont(dir){
+  currentFontSize = dir===0 ? 16 : Math.min(26, Math.max(12, currentFontSize + dir*2));
+  localStorage.setItem("enjc_fsz", currentFontSize);
+  document.getElementById("fsz-val").textContent = currentFontSize+"px";
+  document.querySelectorAll(".verse-text").forEach(function(el){ el.style.fontSize = currentFontSize+"px"; });
+}
+
+// ── PANEL TOGGLE ─────────────────────────────────────────────
+function togglePanel(id){
+  var panels = ["topics","bookmarks","plan","image"];
+  panels.forEach(function(p){
+    var el = document.getElementById("panel-"+p);
+    var btn = document.getElementById("btn-"+p);
+    if(p === id){
+      var isOpen = el.classList.contains("open");
+      el.classList.toggle("open", !isOpen);
+      if(btn) btn.classList.toggle("active", !isOpen);
+      if(p==="bookmarks" && !isOpen) renderBmList();
+      if(p==="plan" && !isOpen) renderPlan();
+      if(p==="image" && !isOpen) setTimeout(drawVerseCanvas, 50);
+    } else {
+      el.classList.remove("open");
+      if(btn) btn.classList.remove("active");
+    }
+  });
+}
+
+// ── COPY VERSE ───────────────────────────────────────────────
+function copyVerse(ref, text){
+  var full = ref + " — " + text;
+  if(navigator.clipboard){ navigator.clipboard.writeText(full); }
+  showToast("Copied: " + ref);
+}
+
+// ── SHARE VERSE ──────────────────────────────────────────────
+function shareVerse(ref, text){
+  var msg = ref + "\n" + text + "\n\nRead: https://elimnewjerusalem.github.io/church/bible.html";
+  if(navigator.share){ navigator.share({title:"ENJC Bible", text:msg}); }
+  else { if(navigator.clipboard) navigator.clipboard.writeText(msg); showToast("Copied to share!"); }
+}
+
+// ── BOOKMARKS ────────────────────────────────────────────────
+function getBookmarks(){ return JSON.parse(localStorage.getItem("enjc_bm")||"[]"); }
+function saveBookmarks(bms){ localStorage.setItem("enjc_bm", JSON.stringify(bms)); }
+
+function toggleBookmark(ref, text, idx){
+  var bms = getBookmarks();
+  var found = bms.findIndex(function(b){ return b.ref===ref; });
+  var btn = document.getElementById("bmbtn-"+idx);
+  if(found >= 0){
+    bms.splice(found, 1);
+    if(btn) btn.classList.remove("bm-saved");
+    showToast("Removed from saved");
+  } else {
+    bms.unshift({ref:ref, text:text});
+    if(btn) btn.classList.add("bm-saved");
+    showToast("&#9829; Verse saved!");
+  }
+  saveBookmarks(bms);
+  // Update bookmark count badge
+  var badge = document.getElementById("btn-bookmarks");
+  if(badge) badge.textContent = "&#9829; Saved" + (bms.length ? " ("+bms.length+")" : "");
+}
+
+function renderBmList(){
+  var bms = getBookmarks();
+  var el = document.getElementById("bm-list");
+  if(!bms.length){
+    el.innerHTML = '<div class="bm-empty">No saved verses yet.<br>Tap &#9829; on any verse to save it.</div>';
+    return;
+  }
+  el.innerHTML = bms.map(function(b, i){
+    return '<div class="verse-item" style="margin-bottom:6px">'
+      + '<div style="flex:1"><div style="font-size:10px;color:var(--gold);margin-bottom:4px">'+b.ref+'</div>'
+      + '<span class="verse-text" style="font-size:14px">'+b.text+'</span></div>'
+      + '<div class="verse-actions" style="opacity:1">'
+      + '<button class="vact-btn" onclick="copyVerse(''+b.ref.replace(/'/g,"\'")+'',''+b.text.replace(/'/g,"\'")+'')" title="Copy">&#128203;</button>'
+      + '<button class="vact-btn" onclick="removeBookmark('+i+')" title="Remove" style="color:#f87171">&#10005;</button>'
+      + '</div></div>';
+  }).join("");
+}
+
+function removeBookmark(i){
+  var bms = getBookmarks();
+  bms.splice(i, 1);
+  saveBookmarks(bms);
+  renderBmList();
+  showToast("Removed");
+  var badge = document.getElementById("btn-bookmarks");
+  if(badge) badge.textContent = "&#9829; Saved" + (bms.length ? " ("+bms.length+")" : "");
+}
+
+// ── TOPIC SEARCH ─────────────────────────────────────────────
+var TOPICS = {
+  faith:    [{ref:"Hebrews 11:1",text:"Now faith is the substance of things hoped for, the evidence of things not seen."},{ref:"Romans 10:17",text:"Faith comes from hearing, and hearing through the word of Christ."},{ref:"Matthew 17:20",text:"If you have faith like a grain of mustard seed, nothing will be impossible for you."}],
+  prayer:   [{ref:"Philippians 4:6",text:"Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God."},{ref:"Matthew 6:9",text:"Pray then like this: Our Father in heaven, hallowed be your name."},{ref:"1 Thessalonians 5:17",text:"Pray without ceasing."}],
+  love:     [{ref:"John 3:16",text:"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."},{ref:"1 Corinthians 13:4",text:"Love is patient and kind; love does not envy or boast; it is not arrogant."},{ref:"1 John 4:8",text:"Anyone who does not love does not know God, because God is love."}],
+  peace:    [{ref:"John 14:27",text:"Peace I leave with you; my peace I give to you. Let not your hearts be troubled, neither let them be afraid."},{ref:"Philippians 4:7",text:"The peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus."},{ref:"Isaiah 26:3",text:"You keep him in perfect peace whose mind is stayed on you, because he trusts in you."}],
+  healing:  [{ref:"Isaiah 53:5",text:"But he was pierced for our transgressions; he was crushed for our iniquities; and by his wounds we are healed."},{ref:"Jeremiah 17:14",text:"Heal me, O Lord, and I shall be healed; save me, and I shall be saved."},{ref:"James 5:14",text:"Is anyone among you sick? Let him call for the elders of the church to pray over him, anointing him with oil in the name of the Lord."}],
+  salvation:[{ref:"John 3:16",text:"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."},{ref:"Romans 10:9",text:"If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved."},{ref:"Acts 4:12",text:"There is salvation in no one else, for there is no other name under heaven given among men by which we must be saved."}],
+  strength: [{ref:"Philippians 4:13",text:"I can do all things through him who strengthens me."},{ref:"Isaiah 40:31",text:"They who wait for the Lord shall renew their strength; they shall mount up with wings like eagles."},{ref:"Psalm 46:1",text:"God is our refuge and strength, a very present help in trouble."}],
+  family:   [{ref:"Joshua 24:15",text:"As for me and my house, we will serve the Lord."},{ref:"Proverbs 22:6",text:"Train up a child in the way he should go; even when he is old he will not depart from it."},{ref:"Ephesians 6:1",text:"Children, obey your parents in the Lord, for this is right."}],
+  hope:     [{ref:"Jeremiah 29:11",text:"For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope."},{ref:"Romans 15:13",text:"May the God of hope fill you with all joy and peace in believing."},{ref:"Lamentations 3:22",text:"The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning."}],
+  worship:  [{ref:"Psalm 95:1",text:"Oh come, let us sing to the Lord; let us make a joyful noise to the rock of our salvation!"},{ref:"John 4:24",text:"God is spirit, and those who worship him must worship in spirit and truth."},{ref:"Romans 12:1",text:"Present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship."}]
+};
+
+function showTopic(btn, topic){
+  document.querySelectorAll(".topic-pill").forEach(function(p){ p.classList.remove("active"); });
+  btn.classList.add("active");
+  var verses = TOPICS[topic]||[];
+  var html = verses.map(function(v,i){
+    return '<div class="verse-item" style="margin-bottom:6px">'
+      + '<span class="verse-num">'+(i+1)+'</span>'
+      + '<div style="flex:1"><div style="font-size:10px;color:var(--gold);margin-bottom:4px">'+v.ref+'</div>'
+      + '<span class="verse-text" style="font-size:'+currentFontSize+'px">'+v.text+'</span></div>'
+      + '<div class="verse-actions" style="opacity:1">'
+      + '<button class="vact-btn" onclick="copyVerse(''+v.ref.replace(/'/g,"\'")+'',''+v.text.replace(/'/g,"\'")+'')" title="Copy">&#128203;</button>'
+      + '<button class="vact-btn" onclick="shareVerse(''+v.ref.replace(/'/g,"\'")+'',''+v.text.replace(/'/g,"\'")+'')" title="Share">&#128279;</button>'
+      + '</div></div>';
+  }).join("");
+  document.getElementById("topic-results").innerHTML = html;
+}
+
+// ── READING PLAN ─────────────────────────────────────────────
+var PLAN_DATA = [
+  {day:"Day 1",chapter:"Psalm 1",label:"The blessed man"},
+  {day:"Day 2",chapter:"John 1",label:"The Word became flesh"},
+  {day:"Day 3",chapter:"Romans 8",label:"No condemnation in Christ"},
+  {day:"Day 4",chapter:"Matthew 5",label:"The Beatitudes"},
+  {day:"Day 5",chapter:"Philippians 4",label:"Rejoice always"},
+  {day:"Day 6",chapter:"Isaiah 40",label:"Renew your strength"},
+  {day:"Day 7",chapter:"Revelation 21",label:"All things made new"}
+];
+
+function getPlanDone(){ return JSON.parse(localStorage.getItem("enjc_plan7")||"[]"); }
+function savePlanDone(d){ localStorage.setItem("enjc_plan7", JSON.stringify(d)); }
+
+function renderPlan(){
+  var done = getPlanDone();
+  var count = done.length;
+  document.getElementById("plan-pct").textContent = count+" / 7";
+  document.getElementById("plan-fill").style.width = Math.round(count/7*100)+"%";
+  document.getElementById("plan-days").innerHTML = PLAN_DATA.map(function(p,i){
+    var isDone = done.includes(i);
+    return '<div class="plan-day'+(isDone?" done":"")+'" onclick="togglePlanDay('+i+')">'
+      +'<div class="plan-check">'+(isDone?"&#10003;":"")+'</div>'
+      +'<div class="plan-info-txt"><div class="plan-day-label">'+p.day+'</div>'
+      +'<div class="plan-chapter">'+p.chapter+' <span style="font-size:.8em;opacity:.6">— '+p.label+'</span></div></div>'
+      +'</div>';
+  }).join("");
+}
+
+function togglePlanDay(i){
+  var done = getPlanDone();
+  var idx = done.indexOf(i);
+  if(idx>=0) done.splice(idx,1); else done.push(i);
+  savePlanDone(done);
+  renderPlan();
+  showToast(done.includes(i) ? "Day "+(i+1)+" complete! &#10003;" : "Marked incomplete");
+}
+
+function resetPlan(){ savePlanDone([]); renderPlan(); showToast("Plan reset"); }
+
+// ── VERSE IMAGE GENERATOR ────────────────────────────────────
+var IMG_VERSES = [
+  {ref:"John 3:16", text:"For God so loved the world, that He gave His only begotten Son, that whoever believes in Him shall not perish but have eternal life."},
+  {ref:"Philippians 4:13", text:"I can do all things through Christ who strengthens me."},
+  {ref:"Psalm 23:1", text:"The Lord is my shepherd; I shall not want."},
+  {ref:"Jeremiah 29:11", text:"For I know the plans I have for you, declares the Lord — plans for welfare and not for evil, to give you a future and a hope."},
+  {ref:"Isaiah 43:4", text:"Because you are precious in my sight, and honoured, and I love you."},
+  {ref:"Isaiah 40:31", text:"But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles."},
+  {ref:"Matthew 11:28", text:"Come to me, all who labour and are heavy laden, and I will give you rest."}
+];
+
+var IMG_THEMES = {
+  dark:{bg:"#080c10",text:"#f5a623",body:"#e8edf4",ref:"rgba(232,237,244,.45)",line:"#f5a623",logo:"rgba(245,166,35,.5)"},
+  navy:{bg:"#0b2545",text:"#ffffff",body:"rgba(255,255,255,.9)",ref:"rgba(255,255,255,.45)",line:"#f5a623",logo:"rgba(255,255,255,.3)"},
+  warm:{bg:"#fdf6ec",text:"#8b4513",body:"#3d2b1a",ref:"rgba(61,43,26,.45)",line:"#8b4513",logo:"rgba(139,69,19,.3)"}
+};
+
+function drawVerseCanvas(){
+  var sel = parseInt(document.getElementById("img-verse-sel").value)||0;
+  var styleName = document.getElementById("img-style-sel").value||"dark";
+  var v = IMG_VERSES[sel];
+  var t = IMG_THEMES[styleName];
+  var cv = document.getElementById("verse-canvas");
+  if(!cv) return;
+  var ctx = cv.getContext("2d");
+  var W=cv.width, H=cv.height;
+
+  ctx.fillStyle=t.bg; ctx.fillRect(0,0,W,H);
+
+  // Top border accent
+  ctx.fillStyle=t.line; ctx.fillRect(0,0,W,3);
+
+  // ENJC label
+  ctx.fillStyle=t.logo; ctx.font="bold 11px system-ui";
+  ctx.letterSpacing="3px"; ctx.fillText("ELIM NEW JERUSALEM CHURCH",32,36);
+  ctx.letterSpacing="0px";
+
+  // Gold line separator
+  ctx.fillStyle=t.line; ctx.globalAlpha=.3;
+  ctx.fillRect(32,46,60,1.5); ctx.globalAlpha=1;
+
+  // Verse text — word wrap
+  function wrapText(text,x,y,maxW,lh,fs,color,style){
+    ctx.font=(style||"normal")+" "+fs+"px Georgia,serif";
+    ctx.fillStyle=color;
+    var words=text.split(" "), line="";
+    for(var n=0;n<words.length;n++){
+      var test=line+words[n]+" ";
+      if(ctx.measureText(test).width>maxW && n>0){
+        ctx.fillText(line.trim(),x,y); line=words[n]+" "; y+=lh;
+      } else line=test;
+    }
+    ctx.fillText(line.trim(),x,y); return y+lh;
+  }
+
+  var endY = wrapText('"'+v.text+'"', 32, 80, W-64, 30, 18, t.body, "italic");
+
+  // Reference
+  ctx.font="bold 14px system-ui"; ctx.fillStyle=t.text;
+  ctx.fillText("— "+v.ref, 32, endY+10);
+
+  // Bottom
+  ctx.fillStyle=t.logo; ctx.globalAlpha=.4;
+  ctx.fillRect(32,H-28,W-64,1); ctx.globalAlpha=1;
+  ctx.fillStyle=t.logo; ctx.font="11px system-ui";
+  ctx.fillText("elimnewjerusalem.github.io/church/bible.html", 32, H-12);
+}
+
+function downloadVerseImg(){
+  var cv = document.getElementById("verse-canvas");
+  var a = document.createElement("a");
+  a.download = "enjc-verse.jpg";
+  a.href = cv.toDataURL("image/jpeg", 0.95);
+  a.click();
+  showToast("Image downloaded!");
+}
+
+// Init bookmark badge
+(function(){
+  var bms = getBookmarks();
+  var badge = document.getElementById("btn-bookmarks");
+  if(badge && bms.length) badge.innerHTML = "&#9829; Saved ("+bms.length+")";
+})();
+
 </script>
 
 </body>
