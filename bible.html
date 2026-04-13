@@ -545,78 +545,80 @@ async function loadChapter(){
         return {num:v.verse, text:v.text.trim().replace(/\n/g," ")};
       });
     } else {
-      // ── FULL TAMIL BIBLE ────────────────────────────────────
-      // Uses 4-layer fallback for complete coverage of all 66 books
+      // ── TAMIL BIBLE via bolls.life API ───────────────────────
+      // TAMOVR = Tamil Old Version (பரிசுத்த வேதாகமம் O.V.)
+      // TAMBL98 = Tamil Bible 1998 (backup)
+      // bolls.life has CORS enabled — works directly in browser
       const book = BOOKS_EN.find(function(b){return b.id===currentBook;});
       const bookNum = book ? book.num : 1;
       const key = bookNum+"_"+currentChapter;
 
-      // Layer 1: Embedded data (instant, offline)
+      // Layer 1: Embedded data (instant, works offline)
       if(TAMIL_BIBLE[key]){
         verses = TAMIL_BIBLE[key].map(function(v){return {num:v[0],text:v[1]};});
 
       } else {
         var ok = false;
 
-        // Layer 2: getbible.net direct (fastest if CORS open)
+        // Layer 2: bolls.life TAMOVR (Tamil Old Version — correct code)
         if(!ok){
           try{
-            var u1 = "https://getbible.net/v2/tamil/"+bookNum+"/"+currentChapter+".json";
-            var r1 = await fetch(u1, {signal: AbortSignal.timeout(5000)});
+            var r1 = await fetch(
+              "https://bolls.life/get-text/TAMOVR/"+bookNum+"/"+currentChapter+"/",
+              {signal: AbortSignal.timeout(8000)}
+            );
             if(r1.ok){
               var d1 = await r1.json();
-              if(d1.verses && d1.verses.length){
-                verses = d1.verses.map(function(v){return {num:v.verse_nr, text:v.verse};});
+              if(Array.isArray(d1) && d1.length){
+                verses = d1.map(function(v){return {num:v.verse, text:v.text};});
                 ok = true;
               }
             }
-          }catch(e1){console.warn("Direct:",e1.message);}
+          }catch(e1){console.warn("TAMOVR:",e1.message);}
         }
 
-        // Layer 3: allorigins.win CORS proxy → getbible.net
+        // Layer 3: bolls.life TAMBL98 (Tamil Bible 1998 — backup)
         if(!ok){
           try{
-            var target = encodeURIComponent("https://getbible.net/v2/tamil/"+bookNum+"/"+currentChapter+".json");
-            var u2 = "https://api.allorigins.win/get?url="+target;
-            var r2 = await fetch(u2, {signal: AbortSignal.timeout(8000)});
+            var r2 = await fetch(
+              "https://bolls.life/get-text/TAMBL98/"+bookNum+"/"+currentChapter+"/",
+              {signal: AbortSignal.timeout(8000)}
+            );
             if(r2.ok){
               var d2 = await r2.json();
-              if(d2.contents){
-                var parsed = JSON.parse(d2.contents);
-                if(parsed.verses && parsed.verses.length){
-                  verses = parsed.verses.map(function(v){return {num:v.verse_nr, text:v.verse};});
-                  ok = true;
-                }
-              }
-            }
-          }catch(e2){console.warn("Proxy1:",e2.message);}
-        }
-
-        // Layer 4: corsproxy.io → bolls.life
-        if(!ok){
-          try{
-            var target2 = encodeURIComponent("https://bolls.life/get-chapter/TAOVBSI/"+bookNum+"/"+currentChapter+"/");
-            var u3 = "https://corsproxy.io/?"+target2;
-            var r3 = await fetch(u3, {signal: AbortSignal.timeout(8000)});
-            if(r3.ok){
-              var d3 = await r3.json();
-              if(Array.isArray(d3) && d3.length){
-                verses = d3.map(function(v){return {num:v.verse, text:v.text};});
+              if(Array.isArray(d2) && d2.length){
+                verses = d2.map(function(v){return {num:v.verse, text:v.text};});
                 ok = true;
               }
             }
-          }catch(e3){console.warn("Proxy2:",e3.message);}
+          }catch(e2){console.warn("TAMBL98:",e2.message);}
+        }
+
+        // Layer 4: api.getbible.net v2 (extra fallback)
+        if(!ok){
+          try{
+            var r3 = await fetch(
+              "https://api.getbible.net/v2/tamil/"+bookNum+"/"+currentChapter+".json",
+              {signal: AbortSignal.timeout(8000)}
+            );
+            if(r3.ok){
+              var d3 = await r3.json();
+              if(d3.verses && d3.verses.length){
+                verses = d3.verses.map(function(v){return {num:v.verse_nr, text:v.verse};});
+                ok = true;
+              }
+            }
+          }catch(e3){console.warn("getbible:",e3.message);}
         }
 
         if(!ok){
           throw new Error(
             "இந்த அதிகாரத்தை இப்போது ஏற்ற முடியவில்லை.\n"+
-            "(Could not load this chapter. Please check your internet connection.)\n"+
-            "Offline available: John, Psalms 23, Matt 5, Phil 4, Isa 40, Rom 8 and more."
+            "(Could not load. Check internet connection.)\n"+
+            "Offline: John 1-6,10-17,20 | Psalms 1,22-23,27,46,51,91,121 | Matt 5-6,11,28 | Acts 1-2 | Rom 3,5,8,10,12 | 1Cor 13 | Phil 4 | Isa 40,43,53 | Gen 1 | Rev 21-22"
           );
         }
       }
-    
     }
     if(!verses.length) throw new Error("No verses found.");
     currentVerses = verses;
