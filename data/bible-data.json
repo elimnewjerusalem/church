@@ -1,0 +1,32 @@
+{
+  "verseOfDay": [
+    {"text":"For I know the plans I have for you, declares the Lord — plans for welfare and not for evil, to give you a future and a hope.","ref":"Jeremiah 29:11","book":"jeremiah","chapter":29},
+    {"text":"Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths.","ref":"Proverbs 3:5-6","book":"proverbs","chapter":3},
+    {"text":"I can do all things through him who strengthens me.","ref":"Philippians 4:13","book":"philippians","chapter":4},
+    {"text":"The Lord is my shepherd; I shall not want.","ref":"Psalm 23:1","book":"psalms","chapter":23},
+    {"text":"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.","ref":"Joshua 1:9","book":"joshua","chapter":1},
+    {"text":"Come to me, all who labour and are heavy laden, and I will give you rest.","ref":"Matthew 11:28","book":"matthew","chapter":11},
+    {"text":"But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.","ref":"Isaiah 40:31","book":"isaiah","chapter":40}
+  ],
+  "imageVerses": [
+    {"ref":"John 3:16","text":"For God so loved the world, that He gave His only begotten Son, that whoever believes in Him shall not perish but have eternal life."},
+    {"ref":"Philippians 4:13","text":"I can do all things through Christ who strengthens me."},
+    {"ref":"Psalm 23:1","text":"The Lord is my shepherd; I shall not want."},
+    {"ref":"Jeremiah 29:11","text":"For I know the plans I have for you, declares the Lord — plans for welfare and not for evil, to give you a future and a hope."},
+    {"ref":"Isaiah 43:4","text":"Because you are precious in my sight, and honoured, and I love you."},
+    {"ref":"Isaiah 40:31","text":"But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles."},
+    {"ref":"Matthew 11:28","text":"Come to me, all who labour and are heavy laden, and I will give you rest."},
+    {"ref":"Romans 8:28","text":"And we know that for those who love God all things work together for good."},
+    {"ref":"Proverbs 3:5","text":"Trust in the Lord with all your heart, and do not lean on your own understanding."},
+    {"ref":"John 14:6","text":"I am the way, and the truth, and the life. No one comes to the Father except through me."}
+  ],
+  "readingPlan": [
+    {"day":"Day 1","chapter":"Psalm 1","label":"The blessed man","book":"psalms","ch":1},
+    {"day":"Day 2","chapter":"John 1","label":"The Word became flesh","book":"john","ch":1},
+    {"day":"Day 3","chapter":"Romans 8","label":"No condemnation in Christ","book":"romans","ch":8},
+    {"day":"Day 4","chapter":"Matthew 5","label":"The Beatitudes","book":"matthew","ch":5},
+    {"day":"Day 5","chapter":"Philippians 4","label":"Rejoice always","book":"philippians","ch":4},
+    {"day":"Day 6","chapter":"Isaiah 40","label":"Renew your strength","book":"isaiah","ch":40},
+    {"day":"Day 7","chapter":"Revelation 21","label":"All things made new","book":"revelation","ch":21}
+  ]
+}

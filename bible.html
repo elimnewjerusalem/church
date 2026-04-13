@@ -4,32 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bible | ENJC Church</title>
-  <meta name="description" content="Read and listen to the Bible in Tamil and English — Elim New Jerusalem Church">
+  <meta name="description" content="Read and listen to the Holy Bible in Tamil and English — Elim New Jerusalem Church">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Inter:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --dark:#080c10;--dark2:#0d1520;--dark3:#111a26;
-  --navy:#0b2545;--navy2:#1a3a6b;
-  --gold:#f5a623;--gold2:#ffd166;
+  --navy:#0b2545;--gold:#f5a623;--gold2:#ffd166;
   --text:#e8edf4;--muted:rgba(232,237,244,.45);--dim:rgba(232,237,244,.2);
   --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);
   --radius:4px;--radius-lg:6px;
 }
 html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth}
-body{font-family:"Inter",system-ui,sans-serif;background:var(--dark);color:var(--text);line-height:1.7}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:var(--text);line-height:1.7}
 @media(max-width:768px){body{padding-bottom:62px}}
 a{text-decoration:none;color:inherit}
 
-/* ── SHARED ── */
+/* ── NAV ── */
 .container{width:92%;max-width:1100px;margin:0 auto;padding:0 14px}
 header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:900;backdrop-filter:blur(12px)}
 .nav{height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-mark{width:34px;height:34px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;font-weight:700;font-family:"Playfair Display",serif;flex-shrink:0}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-mark{width:34px;height:34px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;font-weight:700;font-family:'Playfair Display',serif;flex-shrink:0}
 .logo-text strong{display:block;font-size:14px;color:white;font-weight:600;line-height:1.2}
 .logo-text span{display:block;font-size:10px;color:var(--muted)}
 .menu{list-style:none;display:flex;gap:2px}
@@ -48,89 +46,131 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 .ticker-track{display:flex;animation:ticker 28s linear infinite;white-space:nowrap}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .tick-item{padding:0 28px;font-size:11px;font-weight:700;color:var(--dark);letter-spacing:.5px;text-transform:uppercase;border-right:1px solid rgba(8,12,16,.15);height:34px;display:inline-flex;align-items:center;gap:7px;flex-shrink:0}
-.tick-dot{width:4px;height:4px;border-radius:50%;background:var(--dark);opacity:.35;flex-shrink:0}
+.tick-dot{width:4px;height:4px;border-radius:50%;background:var(--dark);opacity:.35}
 
 /* ── PAGE HERO ── */
 .page-hero{background:var(--navy);padding:40px 0 32px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
-.page-hero::before{content:"";position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px)}
+.page-hero::before{content:'';position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px)}
 .hero-eyebrow{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:10px}
-.hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--gold);display:inline-block}
-.page-hero h1{font-family:"Playfair Display",serif;color:white;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;position:relative;z-index:1}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);display:inline-block}
+.page-hero h1{font-family:'Playfair Display',serif;color:white;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800}
 .page-hero h1 em{color:var(--gold);font-style:italic}
 .page-hero p{color:var(--muted);font-size:.9rem;margin-top:6px}
 
-/* ── BIBLE UI ── */
+/* ── BIBLE WRAP ── */
 .bible-wrap{padding:32px 0 56px}
 
-/* Language toggle */
-.lang-toggle{display:flex;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius-lg);padding:4px;gap:4px;width:fit-content;margin-bottom:24px}
-.lang-btn{padding:8px 20px;border-radius:var(--radius);border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:"Inter",sans-serif}
+/* ── LANG TOGGLE ── */
+.lang-toggle{display:flex;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius-lg);padding:4px;gap:4px;width:fit-content;margin-bottom:18px}
+.lang-btn{padding:8px 20px;border-radius:var(--radius);border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
 .lang-btn.active{background:var(--gold);color:var(--dark)}
 
-/* Selectors row */
+/* ── FEATURE TOOLBAR ── */
+.feature-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.feat-btn{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:var(--radius);padding:7px 13px;color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:5px}
+.feat-btn:hover{border-color:var(--border2);color:white}
+.feat-btn.active{border-color:rgba(245,166,35,.4);background:rgba(245,166,35,.1);color:var(--gold)}
+.fsz-bar{display:flex;align-items:center;gap:8px}
+.fsz-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:5px 12px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.fsz-btn:hover{border-color:var(--gold);color:var(--gold)}
+#fsz-val{font-size:11px;color:var(--muted);min-width:32px;text-align:center}
+
+/* ── SEARCH ── */
+.search-row{display:flex;gap:8px;margin-bottom:20px}
+.search-input{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 14px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif}
+.search-input::placeholder{color:var(--muted)}
+.search-input:focus{outline:none;border-color:var(--gold)}
+.search-btn{background:var(--gold);color:var(--dark);border:none;border-radius:var(--radius);padding:10px 20px;font-weight:700;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif}
+.search-btn:hover{background:var(--gold2)}
+
+/* ── SELECTORS ── */
 .selector-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:20px}
-.bible-select{background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 14px;color:var(--text);font-size:13px;font-family:"Inter",sans-serif;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f5a623' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;transition:border .2s}
+.bible-select{background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 14px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f5a623' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
 .bible-select:focus{outline:none;border-color:var(--gold)}
 .bible-select option{background:#0d1520;color:var(--text)}
 
-/* Search */
-.search-row{display:flex;gap:8px;margin-bottom:24px}
-.search-input{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 14px;color:var(--text);font-size:13px;font-family:"Inter",sans-serif}
-.search-input::placeholder{color:var(--muted)}
-.search-input:focus{outline:none;border-color:var(--gold)}
-.search-btn{background:var(--gold);color:var(--dark);border:none;border-radius:var(--radius);padding:10px 20px;font-weight:700;font-size:13px;cursor:pointer;font-family:"Inter",sans-serif;transition:all .2s;white-space:nowrap}
-.search-btn:hover{background:var(--gold2)}
+/* ── VOTD ── */
+.votd-card{background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.2);border-left:3px solid var(--gold);border-radius:var(--radius-lg);padding:20px;margin-bottom:24px}
+.votd-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.votd-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:8px}
+.votd-ref{font-size:.82rem;color:var(--muted);margin-bottom:12px;display:block}
+.votd-actions{display:flex;gap:8px;flex-wrap:wrap}
+.votd-play{background:var(--gold);color:var(--dark);border:none;border-radius:var(--radius);padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px}
+.votd-share{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif}
+.votd-share:hover{color:white;border-color:var(--border2)}
 
-/* Audio controls */
+/* ── AUDIO BAR ── */
 .audio-bar{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:var(--radius-lg);padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
 .audio-play-btn{width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
-.audio-play-btn:hover{background:var(--gold2);transform:scale(1.05)}
-.audio-play-btn svg{margin-left:2px}
+.audio-play-btn:hover{background:var(--gold2)}
 .audio-info{flex:1}
 .audio-title{color:white;font-size:13px;font-weight:600;margin-bottom:2px}
 .audio-status{color:var(--muted);font-size:11px}
-.audio-speed{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:5px 10px;color:var(--text);font-size:11px;font-family:"Inter",sans-serif;cursor:pointer}
-.audio-stop-btn{background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:var(--radius);padding:8px 14px;color:var(--muted);font-size:12px;cursor:pointer;font-family:"Inter",sans-serif;transition:all .2s}
-.audio-stop-btn:hover{color:white;border-color:var(--border2)}
+.audio-speed{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:5px 10px;color:var(--text);font-size:11px;font-family:'Inter',sans-serif;cursor:pointer}
+.audio-stop-btn{background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:var(--radius);padding:8px 14px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
+.audio-stop-btn:hover{color:white}
 
-/* Chapter info bar */
+/* ── CHAPTER BAR ── */
 .chapter-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
-.chapter-title{font-family:"Playfair Display",serif;color:white;font-size:1.2rem;font-weight:700}
+.chapter-title{font-family:'Playfair Display',serif;color:white;font-size:1.2rem;font-weight:700}
 .chapter-nav{display:flex;gap:6px}
-.ch-nav-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:7px 14px;color:var(--muted);font-size:12px;cursor:pointer;font-family:"Inter",sans-serif;transition:all .2s}
+.ch-nav-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:7px 14px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
 .ch-nav-btn:hover{color:white;border-color:var(--border2)}
 .ch-nav-btn:disabled{opacity:.3;cursor:default}
 
-/* Verse list */
+/* ── VERSE LIST ── */
 .verse-list{display:flex;flex-direction:column;gap:2px}
 .verse-item{display:flex;gap:12px;padding:12px 14px;border-radius:var(--radius-lg);cursor:pointer;transition:all .2s;border:1px solid transparent}
 .verse-item:hover{background:rgba(255,255,255,.04);border-color:var(--border)}
 .verse-item.playing{background:rgba(245,166,35,.08);border-color:rgba(245,166,35,.25)}
-.verse-num{color:var(--gold);font-size:12px;font-weight:700;min-width:28px;padding-top:2px;flex-shrink:0}
-.verse-text{color:var(--text);font-size:.95rem;line-height:1.85}
-.verse-text.tamil{font-family:"Noto Serif Tamil","Latha",serif;font-size:1rem;line-height:2}
-.verse-play{background:transparent;border:1px solid var(--border);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;margin-top:2px;transition:all .2s;opacity:0}
-.verse-item:hover .verse-play{opacity:1}
-.verse-item.playing .verse-play{opacity:1;background:var(--gold);border-color:var(--gold)}
+.verse-num{color:var(--gold);font-size:12px;font-weight:700;min-width:28px;padding-top:3px;flex-shrink:0;cursor:pointer}
+.verse-text{color:var(--text);font-size:15px;line-height:1.85;flex:1}
+.verse-text.tamil{font-family:'Noto Serif Tamil','Latha',serif;font-size:1rem;line-height:2}
+.verse-actions{display:flex;gap:4px;flex-shrink:0;margin-top:2px;opacity:0;transition:opacity .2s}
+.verse-item:hover .verse-actions{opacity:1}
+.vact-btn{background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:4px 7px;cursor:pointer;font-size:12px;color:var(--muted);transition:all .2s;line-height:1}
+.vact-btn:hover{border-color:var(--border2);color:white}
+.vact-btn.bm-saved{border-color:rgba(245,166,35,.4);color:var(--gold);background:rgba(245,166,35,.08)}
 
-/* Loading / error */
+/* ── PANELS ── */
+.topic-section,.bm-section,.plan-section,.img-section{margin-bottom:20px;display:none}
+.topic-section.open,.bm-section.open,.plan-section.open,.img-section.open{display:block}
+.panel-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:600}
+.topic-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.topic-pill{border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.topic-pill:hover,.topic-pill.active{border-color:rgba(245,166,35,.4);color:var(--gold);background:rgba(245,166,35,.08)}
+.bm-empty{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
+.plan-progress-bar{background:rgba(255,255,255,.08);border-radius:999px;height:5px;margin-bottom:14px;overflow:hidden}
+.plan-fill{height:5px;border-radius:999px;background:var(--gold);transition:width .3s}
+.plan-day{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:6px;cursor:pointer;transition:all .2s}
+.plan-day:hover{border-color:var(--border2)}
+.plan-day.done{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.06)}
+.plan-check{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:var(--gold)}
+.plan-day.done .plan-check{background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.4)}
+.plan-day-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.plan-chapter{font-size:.9rem;color:white;margin-top:2px}
+.plan-day.done .plan-chapter{color:var(--gold)}
+.img-controls-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.img-sel{background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 12px;color:var(--text);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer}
+.img-preview{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;margin-bottom:10px;text-align:center}
+.img-preview canvas{border-radius:6px;max-width:100%;height:auto}
+.img-dl-btn{background:var(--gold);color:var(--dark);border:none;border-radius:var(--radius);padding:9px 20px;font-weight:700;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
+.img-dl-btn:hover{background:var(--gold2)}
+
+/* ── LOADING / ERROR ── */
 .bible-loading{text-align:center;padding:48px 20px;color:var(--muted)}
 .loading-spin{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .bible-error{background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.2);border-radius:var(--radius-lg);padding:16px;color:#f87171;font-size:.88rem;margin-bottom:16px}
 
-/* Verse of Day */
-.votd-card{background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.2);border-left:3px solid var(--gold);border-radius:var(--radius-lg);padding:20px;margin-bottom:24px}
-.votd-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
-.votd-text{font-family:"Playfair Display",serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:6px}
-.votd-ref{font-size:.82rem;color:var(--muted);margin-bottom:12px}
-.votd-actions{display:flex;gap:8px;flex-wrap:wrap}
-.votd-play{background:var(--gold);color:var(--dark);border:none;border-radius:var(--radius);padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:"Inter",sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px}
-.votd-play:hover{background:var(--gold2)}
-.votd-share{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer;font-family:"Inter",sans-serif;transition:all .2s}
-.votd-share:hover{color:white;border-color:var(--border2)}
+/* ── TAMIL INFO ── */
+.tamil-info{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.2);border-radius:var(--radius-lg);padding:12px 16px;margin-bottom:16px;font-size:.82rem;color:rgba(232,237,244,.6);display:none}
 
-/* Footer */
+/* ── TOAST ── */
+.bible-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(8,12,16,.95);border:1px solid rgba(245,166,35,.3);color:var(--gold);padding:9px 18px;border-radius:999px;font-size:12px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none;z-index:9999;white-space:nowrap}
+.bible-toast.show{opacity:1}
+
+/* ── FOOTER ── */
 .footer{background:var(--dark);border-top:1px solid var(--border);padding:18px 0}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .footer-copy{color:var(--dim);font-size:11px}
@@ -138,13 +178,12 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 .footer-links a{color:var(--dim);font-size:11px;transition:color .2s}
 .footer-links a:hover{color:var(--gold)}
 
-/* WA Float */
-.wa-float{position:fixed;bottom:26px;right:20px;z-index:800;transition:transform .3s}
-.wa-float:hover{transform:scale(1.1)}
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:26px;right:20px;z-index:800}
 .wa-float img{width:54px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
 @media(max-width:768px){.wa-float{bottom:74px;right:14px}.wa-float img{width:48px}}
 
-/* Bottom Nav */
+/* ── BOTTOM NAV ── */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:950;background:var(--dark);border-top:1px solid var(--gold);height:60px;align-items:center;box-shadow:0 -4px 20px rgba(0,0,0,.4)}
 @media(max-width:768px){.bottom-nav{display:flex}}
 .bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;padding:4px 2px}
@@ -154,7 +193,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 .bn-center-wrap{flex:1;display:flex;justify-content:center}
 .bn-center{width:46px;height:46px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:19px;margin-top:-16px;box-shadow:0 4px 16px rgba(245,166,35,.45)}
 
-/* Mobile */
+/* ── MOBILE ── */
 @media(max-width:768px){
   .hamburger{display:flex}
   .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(8,12,16,.98);border-top:1px solid var(--border);padding:8px 0;z-index:1000}
@@ -167,74 +206,9 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   .selector-row select:first-child{grid-column:1/-1}
   .footer-inner{flex-direction:column;text-align:center}
   .footer-links{justify-content:center}
-  .audio-bar{gap:10px}
-  .chapter-bar{flex-direction:column;align-items:flex-start}
-}
-@media(max-width:768px){
   .ticker-track{animation-duration:45s}
   .tick-item{font-size:11px;padding:0 18px}
 }
-
-/* ── FEATURE TOOLBAR ── */
-.feature-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-.feat-btn{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:var(--radius);padding:7px 13px;color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:5px}
-.feat-btn:hover{border-color:var(--border2);color:white}
-.feat-btn.active{border-color:rgba(245,166,35,.4);background:rgba(245,166,35,.1);color:var(--gold)}
-
-/* ── FONT SIZE ── */
-.fsz-bar{display:flex;align-items:center;gap:8px}
-.fsz-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius);padding:5px 12px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;min-width:36px}
-.fsz-btn:hover{border-color:var(--gold);color:var(--gold)}
-#fsz-val{font-size:11px;color:var(--muted);min-width:30px;text-align:center}
-
-/* ── VERSE ACTIONS (copy/bookmark/share per verse) ── */
-.verse-actions{display:flex;gap:4px;flex-shrink:0;margin-top:2px;opacity:0;transition:opacity .2s}
-.verse-item:hover .verse-actions{opacity:1}
-.vact-btn{background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:4px 7px;cursor:pointer;font-size:12px;color:var(--muted);transition:all .2s;line-height:1}
-.vact-btn:hover{border-color:var(--border2);color:white}
-.vact-btn.bm-saved{border-color:rgba(245,166,35,.4);color:var(--gold);background:rgba(245,166,35,.08)}
-
-/* ── TOPIC PILLS ── */
-.topic-section{margin-bottom:20px;display:none}
-.topic-section.open{display:block}
-.topic-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:600}
-.topic-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-.topic-pill{border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-.topic-pill:hover,.topic-pill.active{border-color:rgba(245,166,35,.4);color:var(--gold);background:rgba(245,166,35,.08)}
-
-/* ── READING PLAN ── */
-.plan-section{margin-bottom:20px;display:none}
-.plan-section.open{display:block}
-.plan-progress-bar{background:rgba(255,255,255,.08);border-radius:999px;height:5px;margin-bottom:14px;overflow:hidden}
-.plan-fill{height:5px;border-radius:999px;background:var(--gold);transition:width .3s}
-.plan-day{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:6px;cursor:pointer;transition:all .2s}
-.plan-day:hover{border-color:var(--border2)}
-.plan-day.done{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.06)}
-.plan-check{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:var(--gold);transition:all .2s}
-.plan-day.done .plan-check{background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.4)}
-.plan-info-txt{flex:1}
-.plan-day-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.plan-chapter{font-size:.9rem;color:white;margin-top:2px}
-.plan-day.done .plan-chapter{color:var(--gold)}
-
-/* ── BOOKMARKS SECTION ── */
-.bm-section{margin-bottom:20px;display:none}
-.bm-section.open{display:block}
-.bm-empty{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
-
-/* ── VERSE IMAGE ── */
-.img-section{margin-bottom:20px;display:none}
-.img-section.open{display:block}
-.img-controls-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.img-sel{background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 12px;color:var(--text);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer}
-.img-preview{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;margin-bottom:10px;text-align:center}
-.img-preview canvas{border-radius:6px;max-width:100%;height:auto}
-.img-dl-btn{background:var(--gold);color:var(--dark);border:none;border-radius:var(--radius);padding:9px 20px;font-weight:700;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-.img-dl-btn:hover{background:var(--gold2)}
-
-/* ── TOAST ── */
-.bible-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(8,12,16,.95);border:1px solid rgba(245,166,35,.3);color:var(--gold);padding:9px 18px;border-radius:999px;font-size:12px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none;z-index:9999;white-space:nowrap}
-.bible-toast.show{opacity:1}
 </style>
 </head>
 <body>
@@ -279,7 +253,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   <div class="container">
     <div class="hero-eyebrow">God's Word</div>
     <h1>Holy <em>Bible</em></h1>
-    <p>Read and listen in Tamil &amp; English &mdash; Old &amp; New Testament</p>
+    <p>Read and listen in Tamil &amp; English &mdash; All 66 Books</p>
   </div>
 </div>
 
@@ -287,7 +261,7 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
   <div class="container">
 
     <!-- Verse of the Day -->
-    <div class="votd-card" id="votd-card">
+    <div class="votd-card">
       <div class="votd-label">&#9733; Verse of the Day</div>
       <blockquote class="votd-text" id="votd-text">Loading today's verse...</blockquote>
       <cite class="votd-ref" id="votd-ref"></cite>
@@ -313,15 +287,15 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
         <span id="fsz-val">16px</span>
         <button class="fsz-btn" onclick="changeFont(1)">A+</button>
       </div>
-      <button class="feat-btn" id="btn-topics" onclick="togglePanel('topics')">&#127993; Topics</button>
+      <button class="feat-btn" id="btn-topics"    onclick="togglePanel('topics')">&#127993; Topics</button>
       <button class="feat-btn" id="btn-bookmarks" onclick="togglePanel('bookmarks')">&#9829; Saved</button>
-      <button class="feat-btn" id="btn-plan" onclick="togglePanel('plan')">&#128197; Reading Plan</button>
-      <button class="feat-btn" id="btn-image" onclick="togglePanel('image')">&#128247; Verse Image</button>
+      <button class="feat-btn" id="btn-plan"      onclick="togglePanel('plan')">&#128197; Reading Plan</button>
+      <button class="feat-btn" id="btn-image"     onclick="togglePanel('image')">&#128247; Verse Image</button>
     </div>
 
-    <!-- TOPIC SEARCH PANEL -->
+    <!-- Topics Panel -->
     <div class="topic-section" id="panel-topics">
-      <div class="topic-label">Browse by topic</div>
+      <div class="panel-label">Browse by topic</div>
       <div class="topic-pills">
         <button class="topic-pill" onclick="showTopic(this,'faith')">Faith</button>
         <button class="topic-pill" onclick="showTopic(this,'prayer')">Prayer</button>
@@ -337,16 +311,16 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
       <div id="topic-results"></div>
     </div>
 
-    <!-- BOOKMARKS PANEL -->
+    <!-- Bookmarks Panel -->
     <div class="bm-section" id="panel-bookmarks">
-      <div class="topic-label">&#9829; Saved verses</div>
+      <div class="panel-label">&#9829; Saved Verses</div>
       <div id="bm-list"></div>
     </div>
 
-    <!-- READING PLAN PANEL -->
+    <!-- Reading Plan Panel -->
     <div class="plan-section" id="panel-plan">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <div class="topic-label" style="margin:0">7-Day Reading Plan</div>
+        <div class="panel-label" style="margin:0">7-Day Reading Plan</div>
         <span id="plan-pct" style="font-size:11px;color:var(--muted)">0 / 7</span>
       </div>
       <div class="plan-progress-bar"><div class="plan-fill" id="plan-fill" style="width:0%"></div></div>
@@ -354,19 +328,11 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
       <button onclick="resetPlan()" style="margin-top:10px;background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:6px 14px;color:var(--muted);font-size:11px;cursor:pointer;font-family:Inter,sans-serif">Reset plan</button>
     </div>
 
-    <!-- VERSE IMAGE PANEL -->
+    <!-- Verse Image Panel -->
     <div class="img-section" id="panel-image">
-      <div class="topic-label">Generate a shareable verse image</div>
+      <div class="panel-label">Generate a shareable verse image</div>
       <div class="img-controls-row">
-        <select class="img-sel" id="img-verse-sel" onchange="drawVerseCanvas()">
-          <option value="0">John 3:16</option>
-          <option value="1">Philippians 4:13</option>
-          <option value="2">Psalm 23:1</option>
-          <option value="3">Jeremiah 29:11</option>
-          <option value="4">Isaiah 43:4</option>
-          <option value="5">Isaiah 40:31</option>
-          <option value="6">Matthew 11:28</option>
-        </select>
+        <select class="img-sel" id="img-verse-sel" onchange="drawVerseCanvas()"></select>
         <select class="img-sel" id="img-style-sel" onchange="drawVerseCanvas()">
           <option value="dark">Dark Gold</option>
           <option value="navy">Navy Blue</option>
@@ -380,12 +346,12 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
     <!-- Search -->
     <div class="search-row">
       <input type="text" class="search-input" id="search-input"
-             placeholder="Search verses... e.g. faith, love, prayer"
+             placeholder="Search verses... e.g. faith, love, John 3:16"
              onkeydown="if(event.key==='Enter')searchBible()">
       <button class="search-btn" onclick="searchBible()">&#128269; Search</button>
     </div>
 
-    <!-- Book / Chapter / Verse selectors -->
+    <!-- Selectors -->
     <div class="selector-row">
       <select class="bible-select" id="book-select" onchange="onBookChange()">
         <option value="">Select a Book...</option>
@@ -396,14 +362,23 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
       <button class="search-btn" onclick="loadChapter()" id="load-btn" style="display:none">Go</button>
     </div>
 
-    <!-- Audio bar -->
+    <!-- Tamil info -->
+    <div class="tamil-info" id="tamil-info">
+      <strong style="color:var(--gold)">&#128214; Tamil offline chapters:</strong>
+      John (1&ndash;6, 10&ndash;11, 13&ndash;17, 20), Psalms (1, 22, 23, 27, 46, 51, 91, 121),
+      Matthew (5, 6, 11, 28), Acts (1, 2), Romans (3, 5, 8, 10, 12),
+      1 Cor 13, Eph 6, Phil 4, Isaiah (40, 43, 53), Genesis 1, Rev (21, 22).
+      Other chapters load from internet.
+    </div>
+
+    <!-- Audio Bar -->
     <div class="audio-bar" id="audio-bar" style="display:none">
       <button class="audio-play-btn" id="play-pause-btn" onclick="togglePlayPause()">
-        <svg id="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg id="play-icon"  width="18" height="18" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg>
         <svg id="pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="#080c10" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
       </button>
       <div class="audio-info">
-        <div class="audio-title" id="audio-title">Ready to play</div>
+        <div class="audio-title"  id="audio-title">Ready to play</div>
         <div class="audio-status" id="audio-status">Tap a verse to listen</div>
       </div>
       <select class="audio-speed" id="speed-select" onchange="changeSpeed()">
@@ -415,25 +390,18 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
       <button class="audio-stop-btn" onclick="stopAudio()">&#9632; Stop</button>
     </div>
 
-    <!-- Chapter header -->
+    <!-- Chapter Bar -->
     <div class="chapter-bar" id="chapter-bar" style="display:none">
       <div class="chapter-title" id="chapter-title"></div>
       <div class="chapter-nav">
         <button class="ch-nav-btn" id="prev-btn" onclick="prevChapter()">&#8592; Prev</button>
         <button class="ch-nav-btn" onclick="playAllVerses()">&#9654; Play All</button>
-        <button class="ch-nav-btn" id="next-btn" onclick="nextChapter()">Next &#8594;</button>
+        <button class="ch-nav-btn" id="next-btn"  onclick="nextChapter()">Next &#8594;</button>
       </div>
     </div>
 
-    <!-- Content area -->
-    <div id="tamil-info" style="display:none;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.2);border-radius:6px;padding:12px 16px;margin-bottom:16px;font-size:.82rem;color:rgba(232,237,244,.6)">
-  <strong style="color:var(--gold)">&#128214; Tamil offline chapters:</strong>
-  John (1–6, 10–11, 13–17, 20), Psalms (1, 22, 23, 27, 46, 51, 91, 121),
-  Matthew (5, 6, 11, 28), Acts (1, 2), Romans (3, 5, 8, 10, 12),
-  1 Cor 13, Eph 6, Phil 4, Isaiah (40, 43, 53), Genesis 1, Revelation (21, 22).
-  <br>Other chapters load from internet.
-</div>
-<div id="bible-content">
+    <!-- Bible Content -->
+    <div id="bible-content">
       <div style="text-align:center;padding:48px 20px;color:var(--muted)">
         <div style="font-size:2.5rem;margin-bottom:14px">&#128214;</div>
         <p style="font-size:1rem;margin-bottom:6px;color:rgba(255,255,255,.6)">Select a book and chapter to begin reading</p>
@@ -461,879 +429,15 @@ header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);positi
 </a>
 
 <nav class="bottom-nav">
-  <a href="index.html" class="bn-item"><span class="bn-icon">&#127968;</span><span class="bn-label">Home</span></a>
-  <a href="media.html" class="bn-item"><span class="bn-icon">&#128250;</span><span class="bn-label">Media</span></a>
+  <a href="index.html"     class="bn-item"><span class="bn-icon">&#127968;</span><span class="bn-label">Home</span></a>
+  <a href="media.html"     class="bn-item"><span class="bn-icon">&#128250;</span><span class="bn-label">Media</span></a>
   <div class="bn-center-wrap"><a href="ministries.html" class="bn-center" aria-label="Ministries">&#10013;</a></div>
-  <a href="events.html" class="bn-item"><span class="bn-icon">&#128197;</span><span class="bn-label">Events</span></a>
-  <a href="bible.html" class="bn-item active"><span class="bn-icon">&#128214;</span><span class="bn-label" style="color:var(--gold)">Bible</span></a>
+  <a href="events.html"    class="bn-item"><span class="bn-icon">&#128197;</span><span class="bn-label">Events</span></a>
+  <a href="bible.html"     class="bn-item active"><span class="bn-icon">&#128214;</span><span class="bn-label" style="color:var(--gold)">Bible</span></a>
 </nav>
 
-<script>
-// ═══════════════════════════════════════════════════════════
-//  ENJC Bible Reader — Text + Speech Synthesis Audio
-//  API: bible-api.com (free, no key needed)
-//  Tamil: getbible.net (free)
-// ═══════════════════════════════════════════════════════════
-
-// ── NAV ──────────────────────────────────────────────────────
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("open");
-  document.getElementById("ham").classList.toggle("open");
-}
-document.querySelectorAll(".menu a").forEach(a=>a.addEventListener("click",()=>{
-  document.getElementById("menu").classList.remove("open");
-  document.getElementById("ham").classList.remove("open");
-}));
-
-// ── EMBEDDED TAMIL BIBLE (key chapters — instant, no API) ──
-const TAMIL_BIBLE = {"43_1": [[1, "ஆதியிலே வார்த்தை இருந்தது, அந்த வார்த்தை தேவனிடத்திலிருந்தது, அந்த வார்த்தை தேவனாயிருந்தது."], [2, "அவர் ஆதியிலே தேவனிடத்திலிருந்தார்."], [3, "எல்லாம் அவராலே உண்டாயிற்று; உண்டானதொன்றும் அவராலே அல்லாமல் உண்டாகவில்லை."], [4, "அவரிலே ஜீவன் இருந்தது, அந்த ஜீவன் மனுஷருக்கு வெளிச்சமாயிருந்தது."], [5, "அந்த வெளிச்சம் இருளிலே பிரகாசிக்கிறது; இருளானது அதை மறைக்கவில்லை."], [9, "மெய்யான வெளிச்சம் உலகத்திலே வந்தது; அது உலகத்திற்கு வரும் எல்லா மனுஷரையும் பிரகாசிப்பிக்கிறது."], [11, "அவர் தம்முடையவர்களிடத்தில் வந்தார், தம்முடையவர்களோ அவரை ஏற்றுக்கொள்ளவில்லை."], [12, "அவரை ஏற்றுக்கொண்டவர்கள் எத்தனைபேரோ, அத்தனைபேருக்கும் தேவனுடைய பிள்ளைகளாகும்படி அவருடைய நாமத்தின்மேல் விசுவாசமாயிருக்கிறவர்களுக்கு அதிகாரம் கொடுத்தார்."], [14, "வார்த்தை மாம்சமாகி, கிருபையினாலும் சத்தியத்தினாலும் நிறைந்தவராய் நம்மிடையே வாசம்பண்ணினார்; பிதாவினிடத்திலிருந்து வந்த ஒரேபேறானவருடைய மகிமையை நாங்கள் கண்டோம்."], [17, "நியாயப்பிரமாணம் மோசேயினால் கொடுக்கப்பட்டது; கிருபையும் சத்தியமும் இயேசு கிறிஸ்துவினால் உண்டாயிற்று."], [29, "மறுநாளிலே யோவான்: இதோ, உலகத்தின் பாவத்தை தண்டிக்கும் தேவனுடைய ஆட்டுக்குட்டியை பாருங்கள் என்றான்."]], "43_2": [[1, "மூன்றாம் நாளிலே கலிலேயாவிலுள்ள கானா என்னும் ஊரிலே ஒரு கலியாணம் நடந்தது."], [11, "இயேசு இந்த அற்புதங்களில் முதலாவதை கலிலேயாவிலுள்ள கானாவிலே செய்து தம்முடைய மகிமையை வெளிப்படுத்தினார்."]], "43_3": [[1, "நிக்கோதேமு என்னும் பேரோடு பரிசேயரில் ஒரு மனுஷன் இருந்தான், அவன் யூதருடைய அதிபதி."], [3, "மறுபடியும் பிறவாவிட்டால் ஒருவனும் தேவனுடைய ராஜ்யத்தை காண மாட்டான் என்று மெய்யாகவே மெய்யாகவே உனக்கு சொல்லுகிறேன்."], [5, "ஒருவன் ஜலத்தினாலும் ஆவியினாலும் பிறவாவிட்டால் தேவனுடைய ராஜ்யத்தில் பிரவேசிக்க மாட்டான்."], [7, "நீங்கள் மறுபடியும் பிறக்கவேண்டும் என்று நான் உனக்குச் சொன்னதைக் குறித்து ஆச்சரியப்படாதே."], [14, "மோசே வனாந்தரத்திலே சர்ப்பத்தை உயர்த்தினதுபோல மனுஷகுமாரனும் உயர்த்தப்படவேண்டும்."], [15, "அவரில் விசுவாசமாயிருக்கிற எவனும் கெட்டுப்போகாமல் நித்தியஜீவனை அடையும்படிக்கு."], [16, "தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார், அதனால் தம்முடைய ஒரே பேறான குமாரனை அனுப்பினார்; அவரில் விசுவாசமாயிருக்கிற எவனும் கெட்டுப்போகாமல் நித்தியஜீவனை அடையும்படிக்கு."], [17, "தேவன் தம்முடைய குமாரனை உலகத்தை ஆக்கினைக்குள்ளாக தண்டிக்கும்படி அல்ல, அவராலே உலகம் இரட்சிக்கப்படும்படி உலகத்தில் அனுப்பினார்."], [36, "குமாரனில் விசுவாசமாயிருக்கிறவன் நித்தியஜீவனை உடையவன்; குமாரனுக்கு கீழ்ப்படியாதவனோ ஜீவனை காண்பதில்லை."]], "43_4": [[14, "நான் கொடுக்கும் தண்ணீரை குடிக்கிறவனுக்கோ என்றைக்கும் தாகமாவதில்லை; நான் கொடுக்கும் தண்ணீர் அவனுக்குள்ளே நித்தியஜீவன் உண்டாகும்படி ஊற்றெழும்புகிற நீரூற்றாயிருக்கும்."], [24, "தேவன் ஆவியாயிருக்கிறார்; அவரை தொழுதுகொள்ளுகிறவர்கள் ஆவியோடும் உண்மையோடும் தொழுதுகொள்ளவேண்டும்."]], "43_5": [[24, "என் வார்த்தையை கேட்டு என்னை அனுப்பினவரை விசுவாசிக்கிறவனுக்கு நித்தியஜீவன் உண்டு."], [39, "நித்தியஜீவனை அடைவோம் என்று நினைத்து வேதவாக்கியங்களை ஆராய்கிறீர்கள்; அவைகளே என்னைக்குறித்துச் சாட்சிகொடுக்கிறவைகள்."]], "43_6": [[35, "நான்தான் ஜீவ அப்பம்; என்னிடத்தில் வருகிறவன் பசியடைவதில்லை; என்னை விசுவாசிக்கிறவன் என்றைக்கும் தாகமடைவதில்லை."], [37, "பிதா எனக்கு கொடுக்கிறவர்களெல்லாரும் என்னிடத்தில் வருவார்கள்; என்னிடத்தில் வருகிறவனை நான் புறம்பே தள்ளுவதில்லை."], [47, "மெய்யாகவே மெய்யாகவே உங்களுக்கு சொல்லுகிறேன், விசுவாசிக்கிறவனுக்கு நித்தியஜீவன் உண்டு."], [51, "நான் வானத்திலிருந்திறங்கின ஜீவ அப்பம்; இந்த அப்பத்தை சாப்பிடுகிறவன் என்றென்றைக்கும் பிழைப்பான்."]], "43_10": [[10, "திருடன் திருடவும் கொல்லவும் நாசம்பண்ணவும் வருகிறான்; நான் அவைகளுக்கு ஜீவன் உண்டாகவும் அது பரிபூரணமாயிருக்கவும் வந்தேன்."], [11, "நான் நல்ல மேய்ப்பன்; நல்ல மேய்ப்பன் ஆடுகளுக்காக தன் ஜீவனை கொடுக்கிறான்."], [14, "நான் நல்ல மேய்ப்பன்; நான் என்னுடையவைகளை அறிவேன்."], [27, "என் ஆடுகள் என் சத்தத்தைக் கேட்கிறது; நான் அவைகளை அறிவேன், அவைகள் என்னை பின்பற்றுகிறது."], [28, "நான் அவைகளுக்கு நித்தியஜீவனை கொடுக்கிறேன்; அவைகள் என்றென்றைக்கும் கெட்டுப்போவதில்லை."]], "43_11": [[25, "நானே உயிர்த்தெழுதலும் ஜீவனுமாயிருக்கிறேன்; என்னை விசுவாசிக்கிறவன் மரித்தாலும் பிழைப்பான்."], [26, "உயிரோடிருந்து என்னை விசுவாசிக்கிற எவனும் என்றென்றைக்கும் மரிக்கமாட்டான்."], [35, "இயேசு கண்ணீர் விட்டார்."], [43, "இயேசு உரத்த சத்தத்தினால்: லாசருவே, வெளியே வா என்று கூப்பிட்டார்."]], "43_13": [[34, "நான் உங்களுக்கு புதிய கட்டளை கொடுக்கிறேன்; நான் உங்களை நேசித்தது போல நீங்களும் ஒருவரையொருவர் நேசியுங்கள்."], [35, "நீங்கள் ஒருவரையொருவர் நேசிக்கிறீர்களானால், அதனால் நீங்கள் என் சீஷர்கள் என்று எல்லாரும் அறிவார்கள்."]], "43_14": [[1, "உங்கள் இருதயம் கலங்காதிருக்கட்டும்; தேவனிடத்தில் விசுவாசமாயிருங்கள், என்னிடத்திலும் விசுவாசமாயிருங்கள்."], [2, "என் பிதாவின் வீட்டில் அநேக வாசஸ்தலங்கள் உண்டு; உங்களுக்கு இடம் ஆயத்தம்பண்ண போகிறேன்."], [6, "நான்தான் வழியும் சத்தியமும் ஜீவனுமாயிருக்கிறேன்; என்னைத் தவிர வேறொருவன் மூலமாய் பிதாவினிடத்தில் வரான்."], [13, "என் நாமத்தினாலே நீங்கள் எதை கேட்பீர்களோ அதை செய்வேன்."], [27, "சமாதானத்தை உங்களுக்கு வைத்துவிடுகிறேன், என்னுடைய சமாதானத்தை உங்களுக்கு கொடுக்கிறேன்."]], "43_15": [[1, "நான் மெய்யான திராட்சைச்செடி; என் பிதா தோட்டக்காரர்."], [4, "என்னிலே நிலைத்திருங்கள், நான் உங்களிலே நிலைத்திருப்பேன்."], [5, "நான் திராட்சைச்செடி, நீங்கள் கொடிகள்; என்னிலே நிலைத்திருக்கிறவனும் நான் அவனிலே நிலைத்திருக்கிறவனுமே மிகுந்த கனிகளை கொடுப்பான்."], [7, "நீங்கள் என்னிலே நிலைத்திருந்து என் வார்த்தைகள் உங்களிலே நிலைத்திருந்தால், நீங்கள் கேட்டுக்கொள்வதையெல்லாம் உங்களுக்கு கிடைக்கும்."], [13, "தன் நண்பர்களுக்காக தன் ஜீவனை கொடுக்கிறதிலும் அதிகமான அன்பு ஒருவருக்கும் இல்லை."]], "43_16": [[33, "இவைகளை நான் உங்களுக்கு சொன்னது, என்னிலே சமாதானம் அடையும்படிக்கே; உலகத்தில் உங்களுக்கு உபத்திரவம் உண்டு; ஆகிலும் திடன்கொள்ளுங்கள், நான் உலகத்தை ஜெயித்தேன்."]], "43_17": [[3, "நித்தியஜீவன் என்னவென்றால், மெய்யான ஒரே தேவனாகிய உம்மையும் நீர் அனுப்பினவராகிய இயேசு கிறிஸ்துவையும் அறிவதே."]], "43_20": [[31, "இயேசு தேவனுடைய குமாரனாகிய கிறிஸ்து என்று நீங்கள் விசுவாசிக்கவும், விசுவாசித்து அவருடைய நாமத்தினாலே ஜீவனை அடையவும், இவைகள் எழுதப்பட்டிருக்கிறது."]], "19_1": [[1, "பாக்கியவான் அந்த மனுஷன்; அவன் துன்மார்க்கருடைய ஆலோசனையில் நடவாமலும், பாவிகளுடைய வழியில் நிற்காமலும், நிந்தனைக்காரருடைய இருக்கையில் உட்காராமலும்,"], [2, "கர்த்தருடைய நியாயப்பிரமாணத்தில் பிரியமாயிருந்து, இரவும் பகலும் அவருடைய நியாயப்பிரமாணத்தை தியானிக்கிறான்."], [3, "அவன் நீரோடைகளின் கரையிலே நடப்பட்டு தன் காலத்திலே தன் கனியை கொடுத்து, தன் இலை உதிராத மரத்தைப்போல் இருப்பான்."], [6, "கர்த்தர் நீதிமான்களுடைய வழியை அறிவார்; துன்மார்க்கருடைய வழியோ கெட்டுப்போம்."]], "19_22": [[1, "என் தேவனே, என் தேவனே, ஏன் என்னை கைவிட்டீர்?"], [5, "அவர்களுடைய முன்னோர்கள் அவரை நம்பினார்கள்; நம்பினார்கள், அவர் அவர்களை விடுவித்தார்."], [16, "நாய்கள் என்னை சூழ்ந்தன; பொல்லாதவர்களுடைய கூட்டம் என்னை வளைந்தது."]], "19_23": [[1, "கர்த்தர் என் மேய்ப்பர்; எனக்கு குறைவுண்டாவதில்லை."], [2, "அவர் என்னை பசும்புல்தரை மேய்ச்சலிடத்திலே படுத்து, அமர்வான தண்ணீர் அருகே என்னை நடத்துகிறார்."], [3, "என் ஆத்துமாவை அவர் தேற்றுகிறார்; தமது நாமத்தினிமித்தம் நீதியின் பாதைகளிலே என்னை நடத்துகிறார்."], [4, "நான் மரண இருளின் பள்ளத்தாக்கிலே நடந்தாலும் தீங்குக்கு பயப்படேன்; தேவரீர் என்னோடு இருக்கிறீர்; உமது கோல் உமது தடி என்னை தேற்றுகிறது."], [5, "என் சத்துருக்கள் பார்க்கையில் என் முன்னே ஒரு பந்தியை ஆயத்தம்பண்ணுகிறீர்; என் தலையில் எண்ணெய் பூசுகிறீர்; என் பாத்திரம் நிறைந்து வழிகிறது."], [6, "என் ஜீவனுள்ள நாளெல்லாம் நன்மையும் கிருபையும் என்னைத் தொடரும்; கர்த்தருடைய வீட்டிலே நான் நீடித்த நாட்கள் வாசம்பண்ணுவேன்."]], "19_27": [[1, "கர்த்தர் என் வெளிச்சமும் என் இரட்சிப்புமாயிருக்கிறார்; யாருக்கு பயப்படுவேன்?"], [4, "கர்த்தரின் வீட்டிலே வாசமாயிருக்கவும், அவருடைய அழகை தரிசிக்கவும், ஒரே காரியம் கர்த்தரிடத்தில் வேண்டிக்கொண்டேன்."], [14, "கர்த்தரை நோக்கி காத்திரு; திடன்கொள், உன் இருதயம் திடப்படட்டும்."]], "19_46": [[1, "தேவன் நமக்கு அடைக்கலமும் பெலனுமாயிருக்கிறார்; ஆபத்துக்காலத்தில் அவர் உதவி எளிதில் கிடைக்கும்."], [2, "ஆதலால் பூமி மாறினாலும், மலைகள் கடலின் நடுவிலே தள்ளுண்டாலும் பயப்படமாட்டோம்."], [10, "இளைத்திருங்கள், நான் தேவனென்று அறியுங்கள்."]], "19_51": [[1, "தேவனே, உமது கிருபையின்படி என்மேல் இரங்கும்; உமது மிகுந்த உருக்கத்தின்படி என் மீறுதல்களை அழித்துவிடும்."], [10, "தேவனே, என்னில் சுத்தமான இருதயத்தை சிருஷ்டியும்; உறுதியான ஆவியை என் உள்ளத்திலே புதுப்பியும்."], [17, "தேவனுக்கு ஏற்கும் பலிகள் நொறுங்கிய ஆவி; நொறுங்கிய மனதையும் நருங்கிய இருதயத்தையும் தேவனே தள்ளாதீர்."]], "19_91": [[1, "உன்னதமானவரின் மறைவிடத்தில் வாசம்பண்ணுகிறவன் சர்வவல்லவரின் நிழலிலே தங்குவான்."], [4, "அவர் தம்முடைய இறகுகளினால் உன்னை மூடுவார்; அவருடைய செட்டைகளின் கீழே நீ அடைக்கலமடைவாய்."], [9, "கர்த்தரே என் அடைக்கலம் என்று சொல்லி உன்னதமானவரை உன் வாசஸ்தலமாக வைத்திருக்கிறாய்."], [10, "ஒரு தீங்கும் உனக்கு நேரிடாது; ஒரு வாதையும் உன் கூடாரத்திற்கு சேராது."], [11, "தம் தூதர்களுக்கு உன்னைக்குறித்து கட்டளையிடுவார்; உன் எல்லா வழிகளிலும் உன்னை காக்கும்படிக்கு."]], "19_121": [[1, "மலைகளை நோக்கி என் கண்களை ஏறெடுக்கிறேன்; என் உதவி எங்கே நின்று வரும்?"], [2, "என் உதவி வானத்தையும் பூமியையும் உண்டாக்கின கர்த்தரிடத்திலிருந்து வரும்."], [3, "உன் காலை தள்ளுவிக்கான்; உன்னை காக்கிறவர் தூங்கான்."], [7, "கர்த்தர் உன்னை எல்லாத் தீங்கிலும் காப்பார்; அவர் உன் ஆத்துமாவை காப்பார்."], [8, "கர்த்தர் உன் வருகையையும் போக்கையும் இதுமுதல் என்றென்றைக்கும் காப்பார்."]], "40_5": [[3, "ஆவியில் எளிமையுள்ளவர்கள் பாக்கியவான்கள்; பரலோக ராஜ்யம் அவர்களுடையது."], [4, "துக்கப்படுகிறவர்கள் பாக்கியவான்கள்; அவர்கள் ஆறுதலடைவார்கள்."], [5, "சாந்தகுணமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் பூமியை சுதந்தரிப்பார்கள்."], [6, "நீதியின்மேல் பசிதாகமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் திருப்தியடைவார்கள்."], [7, "இரக்கமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் இரக்கம் பெறுவார்கள்."], [8, "இருதயத்தில் சுத்தமுள்ளவர்கள் பாக்கியவான்கள்; அவர்கள் தேவனை தரிசிப்பார்கள்."], [9, "சமாதானமாக்குகிறவர்கள் பாக்கியவான்கள்; அவர்கள் தேவனுடைய புத்திரர் என்னப்படுவார்கள்."], [14, "நீங்கள் உலகத்தின் வெளிச்சமாயிருக்கிறீர்கள்."], [16, "உங்கள் வெளிச்சம் மனுஷர் முன்பாக பிரகாசிக்கட்டும்."]], "40_6": [[9, "பரமண்டலங்களிலிருக்கிற எங்கள் பிதாவே, உமது நாமம் பரிசுத்தப்படுவதாக."], [10, "உமது ராஜ்யம் வருவதாக; உமது சித்தம் பரமண்டலத்திலே செய்யப்படுவதுபோல பூமியிலேயும் செய்யப்படுவதாக."], [11, "எங்களுக்கு வேண்டிய ஆகாரத்தை இன்று எங்களுக்கு அருளும்."], [12, "எங்கள் கடன்களை எங்களுக்கு மன்னியும்; நாங்களும் எங்கள் கடனாளிகளை மன்னிக்கிறோம்."], [13, "எங்களை சோதனைக்கு உட்படுத்தாமல் தீமையினின்று எங்களை தப்புவியும்."], [33, "நீங்கள் முதலாவது தேவனுடைய ராஜ்யத்தையும் அவருடைய நீதியையும் தேடுங்கள்."]], "40_11": [[28, "வருத்தப்பட்டு பாரஞ்சுமக்கிறவர்களே, நீங்கள் எல்லாரும் என்னிடத்தில் வாருங்கள், நான் உங்களுக்கு இளைப்பாறுதல் தருவேன்."], [29, "என் நுகத்தை உங்கள்மேல் ஏற்றுக்கொண்டு என்னிடத்தில் கற்றுக்கொள்ளுங்கள்; நான் சாந்தகுணமும் மனத்தாழ்மையும் உள்ளவன்."]], "40_28": [[18, "வானத்திலும் பூமியிலும் எல்லா அதிகாரமும் எனக்கு கொடுக்கப்பட்டிருக்கிறது."], [19, "ஆகையால், நீங்கள் புறப்பட்டு போய், சகல ஜாதிகளையும் சீஷராக்கி, பிதா குமாரன் பரிசுத்த ஆவியின் நாமத்தினாலே அவர்களுக்கு ஞானஸ்நானம் கொடுத்து,"], [20, "நான் உங்களுக்கு கட்டளையிட்ட யாவையும் அவர்களுக்கு போதியுங்கள்; இதோ, உலகத்தின் முடிவுபரியந்தம் சகல நாட்களிலும் நான் உங்களுடனே இருக்கிறேன்."]], "44_1": [[8, "பரிசுத்த ஆவியானவர் உங்கள்மேல் வரும்போது நீங்கள் பெலன் அடைந்து, எருசலேமிலும் யூதேயா முழுவதிலும் சமாரியாவிலும் பூமியின் கடையாந்தரம் வரைக்கும் என்னுடைய சாட்சிகளாயிருப்பீர்கள்."]], "44_2": [[1, "பெந்தகொஸ்தே நாள் வந்தபோது, அவர்களெல்லாரும் ஒருமனப்பட்டு ஒரே இடத்திலே கூடியிருந்தார்கள்."], [2, "வேகமான காற்று வீசுகிறதுபோல் ஒரு சத்தம் வானத்திலிருந்து உண்டாகி, அவர்கள் உட்கார்ந்திருந்த வீடு முழுவதையும் நிரப்பிற்று."], [4, "அவர்களெல்லாரும் பரிசுத்த ஆவியினாலே நிரப்பப்பட்டு, ஆவியானவர் அவர்களுக்கு உரைக்கும்படி கொடுத்தபடியே வேறே வேறே பாஷைகளிலே பேசத் தொடங்கினார்கள்."], [38, "பேதுரு: நீங்கள் மனந்திரும்பி, பாவமன்னிப்புக்கென்று இயேசு கிறிஸ்துவின் நாமத்தினாலே அஞ்ஞான ஸ்நானம் பெற்றுக்கொள்ளுங்கள்; அப்பொழுது பரிசுத்த ஆவியாகிய வரத்தை பெறுவீர்கள்."]], "45_3": [[23, "எல்லாரும் பாவஞ்செய்து தேவமகிமையற்றவர்களாகி,"], [24, "அவருடைய கிருபையினாலே கிறிஸ்து இயேசுவிலுள்ள மீட்பின்மூலமாய் இலவசமாக நீதிமான்களாக்கப்படுகிறார்கள்."]], "45_5": [[8, "நாம் இன்னும் பாவிகளாயிருக்கும்போதே கிறிஸ்து நமக்காக மரித்தார்; இதினாலே தேவன் நம்மேல் வைத்த தம்முடைய அன்பை விளங்கப்பண்ணுகிறார்."]], "45_8": [[1, "ஆகையால், கிறிஸ்து இயேசுவுக்குள் இருக்கிறவர்களுக்கு ஆக்கினைத்தீர்ப்பு இல்லை."], [28, "தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு, அதாவது தம்முடைய தீர்மானத்தின்படியே அழைக்கப்பட்டவர்களுக்கு, எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும் என்று அறிவோம்."], [31, "தேவன் நமக்கு துணையாயிருந்தால் நமக்கு விரோதமாக இருப்பவர் யார்?"], [38, "மரணமும் ஜீவனும் தேவதூதர்களும் அதிகாரங்களும் வல்லமைகளும் நம்மை பிரிக்கமாட்டாது."], [39, "நம்முடைய கர்த்தராகிய கிறிஸ்து இயேசுவுக்குள் விளங்குகிற தேவனுடைய அன்பைவிட்டு நம்மை பிரிக்கமாட்டாது என்று நிச்சயித்திருக்கிறேன்."]], "45_10": [[9, "நீ இயேசுவை கர்த்தர் என்று உன் வாயினாலே அறிக்கையிட்டு, தேவன் அவரை மரித்தோரிலிருந்து எழுப்பினார் என்று உன் இருதயத்திலே விசுவாசித்தால் இரட்சிக்கப்படுவாய்."], [13, "கர்த்தருடைய நாமத்தை தொழுதுகொள்ளுகிற எவனும் இரட்சிக்கப்படுவான்."]], "45_12": [[1, "ஆகையால் சகோதரரே, உங்கள் சரீரங்களை ஜீவனுள்ளதும் பரிசுத்தமுள்ளதும் தேவனுக்கு பிரியமுமான பலியாக ஒப்புக்கொடுக்கும்படி உங்களை வேண்டிக்கொள்ளுகிறேன்."], [2, "இந்த உலகத்தோடு ஒத்த வடிவாயிராமல், உங்கள் மனம் புதிதாகுதலினாலே உருமாறுங்கள்."]], "46_13": [[1, "என்னிடத்தில் மனுஷரின் பாஷைகளோடும் தூதர்களின் பாஷைகளோடும் பேசினாலும், அன்பு எனக்கில்லாவிட்டால், நான் முழங்குகிற வெண்கலமும் ஒலிக்கிற கைத்தாளமுமாயிருப்பேன்."], [4, "அன்பு நீடிய பொறுமையுள்ளது; அன்பு தயவுள்ளது; அன்பு பொறாமைப்படாது."], [5, "அன்பு அசிஷ்டமாய் நடவாது; தன் நன்மையை தேடாது; சினமடைவதில்லை."], [7, "எல்லாவற்றையும் தாங்கும்; எல்லாவற்றையும் விசுவாசிக்கும்; எல்லாவற்றையும் நம்பும்; எல்லாவற்றையும் சகிக்கும்."], [8, "அன்பு என்றைக்கும் ஒழியாது."], [13, "இப்பொழுதும் விசுவாசம் நம்பிக்கை அன்பு என்னும் இம்மூன்றும் நிலைத்திருக்கும்; இவைகளில் அன்பே மேலானது."]], "49_6": [[10, "இனிமேலும் கர்த்தருக்குள்ளும் அவருடைய சக்தியின் வல்லமையினாலும் பலப்படுங்கள்."], [11, "நீங்கள் பிசாசினுடைய தந்திரங்களுக்கு எதிர்த்து நிற்கும்படி, தேவனுடைய சர்வாயுதவர்க்கத்தையும் தரித்துக்கொள்ளுங்கள்."]], "50_4": [[4, "கர்த்தருக்குள் எப்பொழுதும் சந்தோஷமாயிருங்கள்; மறுபடியும் சொல்லுகிறேன், சந்தோஷமாயிருங்கள்."], [6, "ஒன்றினிமித்தமும் கவலைப்படாமல், எல்லாவற்றிலேயும் ஸ்தோத்திரத்தோடு கூடிய விண்ணப்பங்களாலும் வேண்டுதல்களாலும் உங்கள் அபேட்சைகளை தேவனுக்கு தெரியப்படுத்துங்கள்."], [7, "அப்பொழுது எல்லா அறிவையும் கடந்த தேவசமாதானம் உங்கள் இருதயங்களையும் சிந்தைகளையும் கிறிஸ்து இயேசுவுக்குள்ளாக காத்துக்கொள்ளும்."], [13, "என்னை பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்."], [19, "என் தேவன் தமது ஐசுவரியத்தின்படியே கிறிஸ்து இயேசுவிலுள்ள மகிமையிலே உங்கள் குறைவுகளையெல்லாம் நிறைவாக்குவார்."]], "23_40": [[28, "கர்த்தர் நித்திய தேவன்; பூமியின் கடையாந்தரங்களை சிருஷ்டித்தவர்; இளைக்கிறதுமில்லை, அசதிப்படுகிறதுமில்லை."], [29, "இளைத்தவனுக்கு வல்லமையை கொடுக்கிறார்; சத்துவமற்றவனுக்கு பெலன் பெருகப்பண்ணுகிறார்."], [30, "வாலிபர் இளைத்து அசதிப்படுவார்கள்; வலிமையுள்ள மனுஷர் தள்ளாடி விழுவார்கள்."], [31, "கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்; கழுகுகளைப்போல சிறகடித்து ஏறுவார்கள்; ஓடினாலும் இளைப்படையார்கள், நடந்தாலும் சோர்வடையார்கள்."]], "23_43": [[1, "யாக்கோபே, உன்னை சிருஷ்டித்த கர்த்தர் இப்போது சொல்லுகிறார்: பயப்படாதே; நான் உன்னை மீட்டுக்கொண்டேன்; நீ என்னுடையவன்."], [2, "நீ தண்ணீர்களில் நடக்கும்போது நான் உன்னோடிருப்பேன்; ஆறுகள் உன்னை மூழ்கடிக்காது."], [4, "நீ என் கண்களுக்கு அருமையானவன்; நீ கனம்பெற்றவன்; நான் உன்னை நேசிக்கிறேன்."]], "23_53": [[3, "அவர் அசட்டைசெய்யப்பட்டு, மனுஷரால் புறக்கணிக்கப்பட்டவர்; அவர் துக்கம் நிறைந்தவர்."], [5, "அவர் நம்முடைய மீறுதல்களினிமித்தம் காயப்பட்டு, நம்முடைய அக்கிரமங்களினிமித்தம் நொறுக்கப்பட்டார்; நமக்கு சமாதானத்தை கொடுக்கும் ஆக்கினை அவர்மேல் விழுந்தது; அவருடைய தழும்புகளால் குணமாகிறோம்."], [6, "நாம் எல்லாரும் ஆடுகளைப்போல வழிதப்பி திரிந்தோம்; கர்த்தர் நம்மெல்லாருடைய அக்கிரமத்தையும் அவர்மேல் சுமத்தினார்."]], "20_3": [[5, "உன் சம்பூர்ண இருதயத்தோடே கர்த்தரில் நம்பிக்கைவை; உன் சொந்த அறிவை நம்பாதே."], [6, "உன் எல்லா வழிகளிலும் அவரை நினை; அவரே உன் பாதைகளை செவ்வைப்படுத்துவார்."]], "1_1": [[1, "ஆதியிலே தேவன் வானத்தையும் பூமியையும் சிருஷ்டித்தார்."], [2, "பூமியானது ஒழுங்கற்றதும் வெறுமையுமாயிருந்தது; ஆழத்தின்மேல் இருள் இருந்தது; தேவ ஆவியானவர் ஜலத்தின்மேல் அசைவாடிக்கொண்டிருந்தார்."], [3, "தேவன் வெளிச்சம் உண்டாகக்கடவது என்றார்; வெளிச்சம் உண்டாயிற்று."], [26, "தேவன்: நம்முடைய சாயலாகவும் நம்முடைய ரூபத்தின்படியேயும் மனுஷனை உண்டாக்குவோம்; என்று சொன்னார்."], [27, "தேவன் தம்முடைய சாயலாக மனுஷனை சிருஷ்டித்தார்; ஆணும் பெண்ணுமாக அவர்களை சிருஷ்டித்தார்."], [31, "தேவன் தாம் உண்டாக்கின எல்லாவற்றையும் பார்த்தார், அது மிகவும் நல்லது என்று இருந்தது."]], "66_21": [[1, "நான் புதிய வானத்தையும் புதிய பூமியையும் கண்டேன்; முந்தின வானமும் முந்தின பூமியும் ஒழிந்துபோயின."], [3, "தேவனுடைய வாசஸ்தலம் மனுஷரோடிருக்கிறது; அவர் அவர்களோடே வாசமாயிருப்பார்."], [4, "அவர் அவர்களுடைய கண்களில் எல்லா கண்ணீரையும் துடைப்பார்; இனி மரணமிராது; இனி துக்கமும் அழுகையும் வேதனையும் இராது."]], "66_22": [[13, "நான் அல்பாவும் ஓமெகாவும், ஆதியும் அந்தமும் ஆகிய கர்த்தர் சொல்லுகிறேன்."], [17, "ஆவியும் மணவாட்டியும் வா என்று சொல்லுகிறார்கள்; தாகமாயிருக்கிறவன் வரட்டும்; விரும்புகிறவன் ஜீவத்தண்ணீரை இலவசமாய் வாங்கிக்கொள்ளட்டும்."], [20, "இதோ, சீக்கிரமாய் வருகிறேன் என்கிறார். ஆமேன். கர்த்தராகிய இயேசுவே வாரும்."]]};
-
-// ── STATE ─────────────────────────────────────────────────────
-let currentLang = "en";
-let currentBook = "";
-let currentBookName = "";
-let currentChapter = 1;
-let totalChapters = 1;
-let currentVerses = [];
-let synth = window.speechSynthesis;
-let currentUtterance = null;
-let isPlaying = false;
-let currentVerseIndex = 0;
-let playAllMode = false;
-let currentVotdText = "";
-let currentVotdRef = "";
-
-// ── BIBLE BOOKS DATA ─────────────────────────────────────────
-const BOOKS_EN = [
-  // id = URL-friendly name for bible-api.com, num = book number for getbible.net
-  // Old Testament
-  {id:"genesis",num:1,name:"Genesis",chapters:50,testament:"Old Testament"},
-  {id:"exodus",num:2,name:"Exodus",chapters:40,testament:"Old Testament"},
-  {id:"leviticus",num:3,name:"Leviticus",chapters:27,testament:"Old Testament"},
-  {id:"numbers",num:4,name:"Numbers",chapters:36,testament:"Old Testament"},
-  {id:"deuteronomy",num:5,name:"Deuteronomy",chapters:34,testament:"Old Testament"},
-  {id:"joshua",num:6,name:"Joshua",chapters:24,testament:"Old Testament"},
-  {id:"judges",num:7,name:"Judges",chapters:21,testament:"Old Testament"},
-  {id:"ruth",num:8,name:"Ruth",chapters:4,testament:"Old Testament"},
-  {id:"1+samuel",num:9,name:"1 Samuel",chapters:31,testament:"Old Testament"},
-  {id:"2+samuel",num:10,name:"2 Samuel",chapters:24,testament:"Old Testament"},
-  {id:"1+kings",num:11,name:"1 Kings",chapters:22,testament:"Old Testament"},
-  {id:"2+kings",num:12,name:"2 Kings",chapters:25,testament:"Old Testament"},
-  {id:"1+chronicles",num:13,name:"1 Chronicles",chapters:29,testament:"Old Testament"},
-  {id:"2+chronicles",num:14,name:"2 Chronicles",chapters:36,testament:"Old Testament"},
-  {id:"ezra",num:15,name:"Ezra",chapters:10,testament:"Old Testament"},
-  {id:"nehemiah",num:16,name:"Nehemiah",chapters:13,testament:"Old Testament"},
-  {id:"esther",num:17,name:"Esther",chapters:10,testament:"Old Testament"},
-  {id:"job",num:18,name:"Job",chapters:42,testament:"Old Testament"},
-  {id:"psalms",num:19,name:"Psalms",chapters:150,testament:"Old Testament"},
-  {id:"proverbs",num:20,name:"Proverbs",chapters:31,testament:"Old Testament"},
-  {id:"ecclesiastes",num:21,name:"Ecclesiastes",chapters:12,testament:"Old Testament"},
-  {id:"song+of+solomon",num:22,name:"Song of Solomon",chapters:8,testament:"Old Testament"},
-  {id:"isaiah",num:23,name:"Isaiah",chapters:66,testament:"Old Testament"},
-  {id:"jeremiah",num:24,name:"Jeremiah",chapters:52,testament:"Old Testament"},
-  {id:"lamentations",num:25,name:"Lamentations",chapters:5,testament:"Old Testament"},
-  {id:"ezekiel",num:26,name:"Ezekiel",chapters:48,testament:"Old Testament"},
-  {id:"daniel",num:27,name:"Daniel",chapters:12,testament:"Old Testament"},
-  {id:"hosea",num:28,name:"Hosea",chapters:14,testament:"Old Testament"},
-  {id:"joel",num:29,name:"Joel",chapters:3,testament:"Old Testament"},
-  {id:"amos",num:30,name:"Amos",chapters:9,testament:"Old Testament"},
-  {id:"obadiah",num:31,name:"Obadiah",chapters:1,testament:"Old Testament"},
-  {id:"jonah",num:32,name:"Jonah",chapters:4,testament:"Old Testament"},
-  {id:"micah",num:33,name:"Micah",chapters:7,testament:"Old Testament"},
-  {id:"nahum",num:34,name:"Nahum",chapters:3,testament:"Old Testament"},
-  {id:"habakkuk",num:35,name:"Habakkuk",chapters:3,testament:"Old Testament"},
-  {id:"zephaniah",num:36,name:"Zephaniah",chapters:3,testament:"Old Testament"},
-  {id:"haggai",num:37,name:"Haggai",chapters:2,testament:"Old Testament"},
-  {id:"zechariah",num:38,name:"Zechariah",chapters:14,testament:"Old Testament"},
-  {id:"malachi",num:39,name:"Malachi",chapters:4,testament:"Old Testament"},
-  // New Testament
-  {id:"matthew",num:40,name:"Matthew",chapters:28,testament:"New Testament"},
-  {id:"mark",num:41,name:"Mark",chapters:16,testament:"New Testament"},
-  {id:"luke",num:42,name:"Luke",chapters:24,testament:"New Testament"},
-  {id:"john",num:43,name:"John",chapters:21,testament:"New Testament"},
-  {id:"acts",num:44,name:"Acts",chapters:28,testament:"New Testament"},
-  {id:"romans",num:45,name:"Romans",chapters:16,testament:"New Testament"},
-  {id:"1+corinthians",num:46,name:"1 Corinthians",chapters:16,testament:"New Testament"},
-  {id:"2+corinthians",num:47,name:"2 Corinthians",chapters:13,testament:"New Testament"},
-  {id:"galatians",num:48,name:"Galatians",chapters:6,testament:"New Testament"},
-  {id:"ephesians",num:49,name:"Ephesians",chapters:6,testament:"New Testament"},
-  {id:"philippians",num:50,name:"Philippians",chapters:4,testament:"New Testament"},
-  {id:"colossians",num:51,name:"Colossians",chapters:4,testament:"New Testament"},
-  {id:"1+thessalonians",num:52,name:"1 Thessalonians",chapters:5,testament:"New Testament"},
-  {id:"2+thessalonians",num:53,name:"2 Thessalonians",chapters:3,testament:"New Testament"},
-  {id:"1+timothy",num:54,name:"1 Timothy",chapters:6,testament:"New Testament"},
-  {id:"2+timothy",num:55,name:"2 Timothy",chapters:4,testament:"New Testament"},
-  {id:"titus",num:56,name:"Titus",chapters:3,testament:"New Testament"},
-  {id:"philemon",num:57,name:"Philemon",chapters:1,testament:"New Testament"},
-  {id:"hebrews",num:58,name:"Hebrews",chapters:13,testament:"New Testament"},
-  {id:"james",num:59,name:"James",chapters:5,testament:"New Testament"},
-  {id:"1+peter",num:60,name:"1 Peter",chapters:5,testament:"New Testament"},
-  {id:"2+peter",num:61,name:"2 Peter",chapters:3,testament:"New Testament"},
-  {id:"1+john",num:62,name:"1 John",chapters:5,testament:"New Testament"},
-  {id:"2+john",num:63,name:"2 John",chapters:1,testament:"New Testament"},
-  {id:"3+john",num:64,name:"3 John",chapters:1,testament:"New Testament"},
-  {id:"jude",num:65,name:"Jude",chapters:1,testament:"New Testament"},
-  {id:"revelation",num:66,name:"Revelation",chapters:22,testament:"New Testament"}
-];
-
-// Tamil book names (short list — key books)
-const BOOKS_TA = BOOKS_EN.map(b => ({...b})); // same structure, API handles translation
-
-// Verse of the Day pool
-const VOTD_POOL = [
-  {text:"For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.",ref:"Jeremiah 29:11",book:"JER",chapter:29,verse:11},
-  {text:"I can do all things through Christ who strengthens me.",ref:"Philippians 4:13",book:"PHP",chapter:4,verse:13},
-  {text:"Trust in the Lord with all your heart, and do not lean on your own understanding.",ref:"Proverbs 3:5",book:"PRO",chapter:3,verse:5},
-  {text:"The Lord is my shepherd; I shall not want.",ref:"Psalm 23:1",book:"PSA",chapter:23,verse:1},
-  {text:"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",ref:"Joshua 1:9",book:"JOS",chapter:1,verse:9},
-  {text:"Come to me, all you who are weary and burdened, and I will give you rest.",ref:"Matthew 11:28",book:"MAT",chapter:11,verse:28},
-  {text:"But those who hope in the Lord will renew their strength. They will soar on wings like eagles.",ref:"Isaiah 40:31",book:"ISA",chapter:40,verse:31}
-];
-
-// ── INIT ──────────────────────────────────────────────────────
-window.addEventListener("DOMContentLoaded", ()=>{
-  populateBooks();
-  loadVotd();
-});
-
-function populateBooks(){
-  const sel = document.getElementById("book-select");
-  let lastTestament = "";
-  BOOKS_EN.forEach(b => {
-    if(b.testament !== lastTestament){
-      const og = document.createElement("optgroup");
-      og.label = b.testament;
-      sel.appendChild(og);
-      lastTestament = b.testament;
-    }
-    const opt = document.createElement("option");
-    opt.value = b.id;
-    opt.textContent = b.name;
-    sel.lastElementChild.appendChild(opt);
-  });
-}
-
-function loadVotd(){
-  const day = new Date().getDay();
-  const v = VOTD_POOL[day];
-  currentVotdText = v.text;
-  currentVotdRef = v.ref;
-  document.getElementById("votd-text").textContent = "\u201c" + v.text + "\u201d";
-  document.getElementById("votd-ref").textContent = "\u2014 " + v.ref;
-}
-
-// ── LANGUAGE ──────────────────────────────────────────────────
-function setLang(lang){
-  currentLang = lang;
-  document.getElementById("btn-en").classList.toggle("active", lang==="en");
-  document.getElementById("btn-ta").classList.toggle("active", lang==="ta");
-  var info = document.getElementById("tamil-info");
-  if(info) info.style.display = lang==="ta" ? "block" : "none";
-  stopAudio();
-  if(currentBook && currentChapter) loadChapter();
-}
-
-// ── BOOK / CHAPTER SELECT ─────────────────────────────────────
-function onBookChange(){
-  const bookId = document.getElementById("book-select").value;
-  if(!bookId) return;
-  const book = BOOKS_EN.find(b=>b.id===bookId);
-  currentBook = bookId;
-  currentBookName = book.name;
-  totalChapters = book.chapters;
-  currentChapter = 1;
-
-  const chSel = document.getElementById("chapter-select");
-  chSel.innerHTML = "";
-  chSel.disabled = false;
-  for(let i=1;i<=book.chapters;i++){
-    const o = document.createElement("option");
-    o.value = i; o.textContent = "Chapter " + i;
-    chSel.appendChild(o);
-  }
-  document.getElementById("load-btn").style.display = "block";
-  loadChapter();
-}
-
-function onChapterChange(){
-  currentChapter = parseInt(document.getElementById("chapter-select").value)||1;
-  loadChapter();
-}
-
-// ── LOAD CHAPTER ─────────────────────────────────────────────
-async function loadChapter(){
-  if(!currentBook) return;
-  stopAudio();
-  showLoading();
-  try{
-    let verses = [];
-    if(currentLang === "en"){
-      const url = "https://bible-api.com/"+currentBook+"+"+currentChapter+"?translation=kjv";
-      const res = await fetch(url);
-      if(!res.ok) throw new Error("Chapter not found ("+res.status+")");
-      const data = await res.json();
-      if(data.error) throw new Error(data.error);
-      verses = (data.verses||[]).map(function(v){
-        return {num:v.verse, text:v.text.trim().replace(/\n/g," ")};
-      });
-    } else {
-      // ── TAMIL BIBLE via bolls.life API ───────────────────────
-      // TAMOVR = Tamil Old Version (பரிசுத்த வேதாகமம் O.V.)
-      // TAMBL98 = Tamil Bible 1998 (backup)
-      // bolls.life has CORS enabled — works directly in browser
-      const book = BOOKS_EN.find(function(b){return b.id===currentBook;});
-      const bookNum = book ? book.num : 1;
-      const key = bookNum+"_"+currentChapter;
-
-      // Layer 1: Embedded data (instant, works offline)
-      if(TAMIL_BIBLE[key]){
-        verses = TAMIL_BIBLE[key].map(function(v){return {num:v[0],text:v[1]};});
-
-      } else {
-        var ok = false;
-
-        // Layer 2: bolls.life TAMOVR (Tamil Old Version — correct code)
-        if(!ok){
-          try{
-            var r1 = await fetch(
-              "https://bolls.life/get-text/TAMOVR/"+bookNum+"/"+currentChapter+"/",
-              {signal: AbortSignal.timeout(8000)}
-            );
-            if(r1.ok){
-              var d1 = await r1.json();
-              if(Array.isArray(d1) && d1.length){
-                verses = d1.map(function(v){return {num:v.verse, text:v.text};});
-                ok = true;
-              }
-            }
-          }catch(e1){console.warn("TAMOVR:",e1.message);}
-        }
-
-        // Layer 3: bolls.life TAMBL98 (Tamil Bible 1998 — backup)
-        if(!ok){
-          try{
-            var r2 = await fetch(
-              "https://bolls.life/get-text/TAMBL98/"+bookNum+"/"+currentChapter+"/",
-              {signal: AbortSignal.timeout(8000)}
-            );
-            if(r2.ok){
-              var d2 = await r2.json();
-              if(Array.isArray(d2) && d2.length){
-                verses = d2.map(function(v){return {num:v.verse, text:v.text};});
-                ok = true;
-              }
-            }
-          }catch(e2){console.warn("TAMBL98:",e2.message);}
-        }
-
-        // Layer 4: api.getbible.net v2 (extra fallback)
-        if(!ok){
-          try{
-            var r3 = await fetch(
-              "https://api.getbible.net/v2/tamil/"+bookNum+"/"+currentChapter+".json",
-              {signal: AbortSignal.timeout(8000)}
-            );
-            if(r3.ok){
-              var d3 = await r3.json();
-              if(d3.verses && d3.verses.length){
-                verses = d3.verses.map(function(v){return {num:v.verse_nr, text:v.verse};});
-                ok = true;
-              }
-            }
-          }catch(e3){console.warn("getbible:",e3.message);}
-        }
-
-        if(!ok){
-          throw new Error(
-            "இந்த அதிகாரத்தை இப்போது ஏற்ற முடியவில்லை.\n"+
-            "(Could not load. Check internet connection.)\n"+
-            "Offline: John 1-6,10-17,20 | Psalms 1,22-23,27,46,51,91,121 | Matt 5-6,11,28 | Acts 1-2 | Rom 3,5,8,10,12 | 1Cor 13 | Phil 4 | Isa 40,43,53 | Gen 1 | Rev 21-22"
-          );
-        }
-      }
-    }
-    if(!verses.length) throw new Error("No verses found.");
-    currentVerses = verses;
-    renderVerses(verses);
-    updateChapterUI();
-  } catch(err){
-    showError("Could not load this chapter. Please check your internet connection and try again.<br><small>"+err.message+"</small>");
-  }
-}
-
-function showLoading(){
-  document.getElementById("bible-content").innerHTML = `
-    <div class="bible-loading">
-      <div class="loading-spin"></div>
-      <p>Loading ${currentLang==="ta"?"Tamil (தமிழ்)":"English"} Bible...</p>
-    </div>`;
-}
-
-function showError(msg){
-  document.getElementById("bible-content").innerHTML =
-    `<div class="bible-error">&#9888; ${msg}</div>`;
-}
-
-function updateChapterUI(){
-  const bar = document.getElementById("chapter-bar");
-  bar.style.display = "flex";
-  document.getElementById("chapter-title").textContent =
-    currentBookName + " — Chapter " + currentChapter;
-  document.getElementById("prev-btn").disabled = currentChapter <= 1;
-  document.getElementById("next-btn").disabled = currentChapter >= totalChapters;
-  // sync select
-  document.getElementById("chapter-select").value = currentChapter;
-  document.getElementById("audio-bar").style.display = "flex";
-}
-
-function prevChapter(){
-  if(currentChapter > 1){ currentChapter--; loadChapter(); }
-}
-function nextChapter(){
-  if(currentChapter < totalChapters){ currentChapter++; loadChapter(); }
-}
-
-// ── RENDER VERSES ─────────────────────────────────────────────
-function renderVerses(verses){
-  var isTamil = currentLang === "ta";
-  var html = verses.map(function(v,i){
-    var ref = currentBookName+" "+currentChapter+":"+v.num;
-    var bms = JSON.parse(localStorage.getItem("enjc_bm")||"[]");
-    var isBm = bms.some(function(b){return b.ref===ref;});
-    var safeText = v.text.replace(/'/g,"\'").replace(/\n/g," ");
-    var safeRef = ref.replace(/'/g,"\'");
-    return "<div class=\"verse-item\" id=\"vi-"+i+"\">"
-      +"<span class=\"verse-num\" onclick=\"playVerse("+i+")\" style=\"cursor:pointer\">"+v.num+"</span>"
-      +"<span class=\"verse-text "+(isTamil?"tamil":"")+" style=\"font-size:"+currentFontSize+"px\" onclick=\"playVerse("+i+")\" style=\"cursor:pointer\">"+v.text+"</span>"
-      +"<div class=\"verse-actions\">"
-      +"<button class=\"vact-btn\" title=\"Listen\" onclick=\"playVerse("+i+")\">&#9654;</button>"
-      +"<button class=\"vact-btn\" title=\"Copy\" onclick=\"copyVerse('"+safeRef+"','"+safeText+"')\">&#128203;</button>"
-      +"<button class=\"vact-btn "+(isBm?"bm-saved":"")+" \" id=\"bmbtn-"+i+"\" title=\"Save\" onclick=\"toggleBookmark('"+safeRef+"','"+safeText+"',"+i+")\">&#9829;</button>"
-      +"<button class=\"vact-btn\" title=\"Share\" onclick=\"shareVerse('"+safeRef+"','"+safeText+"')\">&#128279;</button>"
-      +"</div></div>";
-  }).join("");
-  document.getElementById("bible-content").innerHTML = "<div class=\"verse-list\">"+html+"</div>";
-}
-// ── AUDIO ─────────────────────────────────────────────────────
-function getVoice(){
-  const voices = synth.getVoices();
-  if(currentLang === "ta"){
-    // Try Tamil voice first
-    const ta = voices.find(v=>v.lang.startsWith("ta"));
-    if(ta) return ta;
-  }
-  // English — prefer Indian English if available
-  const inEn = voices.find(v=>v.lang==="en-IN");
-  if(inEn) return inEn;
-  return voices.find(v=>v.lang.startsWith("en")) || voices[0] || null;
-}
-
-// ── FCBH API KEY (optional — set for real human audio) ──────
-// Register free at: https://4.dbt.io
-// Then replace "" with your key below
-const FCBH_KEY = "";
-
-// FCBH fileset IDs for audio
-const FCBH_AUDIO = {
-  en: "ENGKJVC2DA",  // English KJV — human voice
-  ta: "TAOVBSN2DA"   // Tamil OV — human voice
-};
-
-// Map book num to FCBH book code
-const FCBH_BOOK_CODES = {
-  1:"GEN",2:"EXO",3:"LEV",4:"NUM",5:"DEU",6:"JOS",7:"JDG",8:"RUT",
-  9:"1SA",10:"2SA",11:"1KI",12:"2KI",13:"1CH",14:"2CH",15:"EZR",
-  16:"NEH",17:"EST",18:"JOB",19:"PSA",20:"PRO",21:"ECC",22:"SNG",
-  23:"ISA",24:"JER",25:"LAM",26:"EZK",27:"DAN",28:"HOS",29:"JOL",
-  30:"AMO",31:"OBA",32:"JON",33:"MIC",34:"NAM",35:"HAB",36:"ZEP",
-  37:"HAG",38:"ZEC",39:"MAL",40:"MAT",41:"MRK",42:"LUK",43:"JHN",
-  44:"ACT",45:"ROM",46:"1CO",47:"2CO",48:"GAL",49:"EPH",50:"PHP",
-  51:"COL",52:"1TH",53:"2TH",54:"1TI",55:"2TI",56:"TIT",57:"PHM",
-  58:"HEB",59:"JAS",60:"1PE",61:"2PE",62:"1JN",63:"2JN",64:"3JN",
-  65:"JUD",66:"REV"
-};
-
-let fcbhAudio = null; // Audio element for FCBH
-
-async function playFCBH(bookNum, chapter, verse) {
-  if(!FCBH_KEY) return false;
-  try{
-    const fileset = currentLang==="ta" ? FCBH_AUDIO.ta : FCBH_AUDIO.en;
-    const bookCode = FCBH_BOOK_CODES[bookNum] || "";
-    if(!bookCode) return false;
-    const url = `https://4.dbt.io/api/bibles/filesets/${fileset}/${bookCode}/${chapter}?v=4&key=${FCBH_KEY}`;
-    const res = await fetch(url);
-    if(!res.ok) return false;
-    const data = await res.json();
-    const files = data.data || [];
-    // Find file for this verse or chapter start
-    const file = files.find(f=>f.verse_start<=verse && f.verse_end>=verse) || files[0];
-    if(!file || !file.path) return false;
-    if(fcbhAudio){ fcbhAudio.pause(); fcbhAudio = null; }
-    fcbhAudio = new Audio(file.path);
-    fcbhAudio.playbackRate = parseFloat(document.getElementById("speed-select").value)||1;
-    await fcbhAudio.play();
-    isPlaying = true; updatePlayBtn();
-    document.getElementById("audio-status").textContent = "▶ Real human audio";
-    return true;
-  }catch(e){ return false; }
-}
-
-function speakText(text, onEnd){
-  if(currentUtterance){ synth.cancel(); }
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.rate = parseFloat(document.getElementById("speed-select").value)||1;
-  const voice = getVoice();
-  if(voice) utt.voice = voice;
-  utt.lang = currentLang === "ta" ? "ta-IN" : "en-IN";
-  utt.onend = onEnd || null;
-  utt.onerror = ()=>{ isPlaying=false; updatePlayBtn(); };
-  currentUtterance = utt;
-  synth.speak(utt);
-  isPlaying = true;
-  updatePlayBtn();
-}
-
-async function playVerse(index){
-  playAllMode = false;
-  currentVerseIndex = index;
-  highlightVerse(index);
-  const v = currentVerses[index];
-  document.getElementById("audio-title").textContent =
-    currentBookName + " " + currentChapter + ":" + v.num;
-  document.getElementById("audio-status").textContent = "Loading...";
-
-  // Try FCBH real human audio first
-  if(FCBH_KEY && currentBook){
-    const book = BOOKS_EN.find(function(b){return b.id===currentBook;});
-    const bookNum = book ? book.num : 0;
-    const fcbhOk = await playFCBH(bookNum, currentChapter, v.num);
-    if(fcbhOk) return;
-  }
-
-  // Fallback: browser TTS
-  speakText(v.text);
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function playAllVerses(){
-  if(!currentVerses.length) return;
-  playAllMode = true;
-  currentVerseIndex = 0;
-  playNextInSequence();
-}
-
-function playNextInSequence(){
-  if(!playAllMode || currentVerseIndex >= currentVerses.length){
-    playAllMode = false; isPlaying = false; updatePlayBtn();
-    document.getElementById("audio-status").textContent = "Finished";
-    return;
-  }
-  const v = currentVerses[currentVerseIndex];
-  highlightVerse(currentVerseIndex);
-  document.getElementById("audio-title").textContent =
-    currentBookName + " " + currentChapter + ":" + v.num;
-  document.getElementById("audio-status").textContent =
-    "Verse " + v.num + " of " + currentVerses.length;
-  speakText(v.text, ()=>{
-    currentVerseIndex++;
-    playNextInSequence();
-  });
-  // scroll verse into view
-  const el = document.getElementById("vi-" + currentVerseIndex);
-  if(el) el.scrollIntoView({behavior:"smooth",block:"center"});
-}
-
-function highlightVerse(index){
-  document.querySelectorAll(".verse-item").forEach(el=>el.classList.remove("playing"));
-  const el = document.getElementById("vi-" + index);
-  if(el) el.classList.add("playing");
-}
-
-function togglePlayPause(){
-  if(synth.speaking && !synth.paused){
-    synth.pause(); isPlaying = false; updatePlayBtn();
-    document.getElementById("audio-status").textContent = "Paused";
-  } else if(synth.paused){
-    synth.resume(); isPlaying = true; updatePlayBtn();
-    document.getElementById("audio-status").textContent = "Playing...";
-  } else {
-    // Nothing playing — play from beginning
-    if(currentVerses.length) playAllVerses();
-  }
-}
-
-function stopAudio(){
-  synth.cancel();
-  if(fcbhAudio){ fcbhAudio.pause(); fcbhAudio=null; }
-  isPlaying = false;
-  playAllMode = false;
-  updatePlayBtn();
-  document.querySelectorAll(".verse-item").forEach(el=>el.classList.remove("playing"));
-  document.getElementById("audio-status").textContent = "Stopped";
-}
-
-function changeSpeed(){
-  if(currentUtterance && synth.speaking){
-    // restart with new speed
-    const idx = currentVerseIndex;
-    stopAudio();
-    setTimeout(()=>playVerse(idx), 100);
-  }
-}
-
-function updatePlayBtn(){
-  document.getElementById("play-icon").style.display = isPlaying?"none":"block";
-  document.getElementById("pause-icon").style.display = isPlaying?"block":"none";
-}
-
-// ── VERSE OF DAY AUDIO ────────────────────────────────────────
-function playVotd(){
-  const btn = document.getElementById("votd-play-btn");
-  if(synth.speaking){ synth.cancel(); btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Listen`; return; }
-  speakText(currentVotdRef + ". " + currentVotdText);
-  btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Stop`;
-  currentUtterance.onend = ()=>{ btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Listen`; };
-}
-
-function shareVotd(){
-  const msg = "\u201c" + currentVotdText + "\u201d\n\u2014 " + currentVotdRef +
-    "\n\nRead more at: https://elimnewjerusalem.github.io/church/bible.html";
-  if(navigator.share){
-    navigator.share({title:"Verse of the Day | ENJC", text:msg});
-  } else {
-    const waUrl = "https://wa.me/?text=" + encodeURIComponent(msg);
-    window.open(waUrl,"_blank");
-  }
-}
-
-// ── SEARCH ────────────────────────────────────────────────────
-async function searchBible(){
-  const query = document.getElementById("search-input").value.trim();
-  if(!query) return;
-  stopAudio();
-  document.getElementById("chapter-bar").style.display = "none";
-  document.getElementById("bible-content").innerHTML = `
-    <div class="bible-loading">
-      <div class="loading-spin"></div>
-      <p>Searching for "${query}"...</p>
-    </div>`;
-
-  try{
-    const url = `https://bible-api.com/${encodeURIComponent(query)}?translation=kjv`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if(data.error){
-      // Try as keyword — search known verses
-      const results = VOTD_POOL.filter(v=>
-        v.text.toLowerCase().includes(query.toLowerCase()) ||
-        v.ref.toLowerCase().includes(query.toLowerCase())
-      );
-      if(results.length){
-        const html = results.map(v=>`
-<div class="verse-item" onclick="speakText(\'${v.ref}. \' + \'${v.text.replace(/\'/g,"\\'")}\')">
-  <span class="verse-num">&#9733;</span>
-  <div>
-    <div style="font-size:.8rem;color:var(--gold);margin-bottom:4px">${v.ref}</div>
-    <span class="verse-text">${v.text}</span>
-  </div>
-</div>`).join("");
-        document.getElementById("bible-content").innerHTML =
-          `<p style="color:var(--muted);font-size:.85rem;margin-bottom:14px">Found ${results.length} result(s) for "${query}"</p><div class="verse-list">${html}</div>`;
-      } else {
-        showError(`No results found for "${query}". Try a verse reference like "John 3:16" or a word like "faith".`);
-      }
-      return;
-    }
-
-    const verses = data.verses||[];
-    const html = verses.map(v=>`
-<div class="verse-item" onclick="speakText(\'${v.book_name} ${v.chapter}:${v.verse}. \' + \'${v.text.replace(/\'/g,"\\'").replace(/\n/g," ")}\')">
-  <span class="verse-num">&#9733;</span>
-  <div>
-    <div style="font-size:.8rem;color:var(--gold);margin-bottom:4px">${v.book_name} ${v.chapter}:${v.verse}</div>
-    <span class="verse-text">${v.text.replace(/\n/g," ")}</span>
-  </div>
-</div>`).join("");
-    document.getElementById("bible-content").innerHTML =
-      `<p style="color:var(--muted);font-size:.85rem;margin-bottom:14px">Results for "${query}"</p><div class="verse-list">${html}</div>`;
-  } catch(e){
-    showError("Search failed. Try a verse reference like John 3:16 or Psalm 23.");
-  }
-}
-
-// Load voices when ready
-if(synth.onvoiceschanged !== undefined){
-  synth.onvoiceschanged = ()=>{ synth.getVoices(); };
-}
-
-// ══════════════════════════════════════════════════════════════
-//  ENJC Bible — Extra Features
-// ══════════════════════════════════════════════════════════════
-
-// ── TOAST ────────────────────────────────────────────────────
-var _toast = null;
-function showToast(msg){
-  var el = document.getElementById("bible-toast");
-  if(!el){ el=document.createElement("div"); el.id="bible-toast"; el.className="bible-toast"; document.body.appendChild(el); }
-  el.textContent = msg;
-  el.classList.add("show");
-  clearTimeout(_toast);
-  _toast = setTimeout(function(){ el.classList.remove("show"); }, 2200);
-}
-
-// ── FONT SIZE ────────────────────────────────────────────────
-var currentFontSize = parseInt(localStorage.getItem("enjc_fsz")||"16");
-(function(){ document.getElementById("fsz-val").textContent = currentFontSize+"px"; })();
-function changeFont(dir){
-  currentFontSize = dir===0 ? 16 : Math.min(26, Math.max(12, currentFontSize + dir*2));
-  localStorage.setItem("enjc_fsz", currentFontSize);
-  document.getElementById("fsz-val").textContent = currentFontSize+"px";
-  document.querySelectorAll(".verse-text").forEach(function(el){ el.style.fontSize = currentFontSize+"px"; });
-}
-
-// ── PANEL TOGGLE ─────────────────────────────────────────────
-function togglePanel(id){
-  var panels = ["topics","bookmarks","plan","image"];
-  panels.forEach(function(p){
-    var el = document.getElementById("panel-"+p);
-    var btn = document.getElementById("btn-"+p);
-    if(p === id){
-      var isOpen = el.classList.contains("open");
-      el.classList.toggle("open", !isOpen);
-      if(btn) btn.classList.toggle("active", !isOpen);
-      if(p==="bookmarks" && !isOpen) renderBmList();
-      if(p==="plan" && !isOpen) renderPlan();
-      if(p==="image" && !isOpen) setTimeout(drawVerseCanvas, 50);
-    } else {
-      el.classList.remove("open");
-      if(btn) btn.classList.remove("active");
-    }
-  });
-}
-
-// ── COPY VERSE ───────────────────────────────────────────────
-function copyVerse(ref, text){
-  var full = ref + " — " + text;
-  if(navigator.clipboard){ navigator.clipboard.writeText(full); }
-  showToast("Copied: " + ref);
-}
-
-// ── SHARE VERSE ──────────────────────────────────────────────
-function shareVerse(ref, text){
-  var msg = ref + "\n" + text + "\n\nRead: https://elimnewjerusalem.github.io/church/bible.html";
-  if(navigator.share){ navigator.share({title:"ENJC Bible", text:msg}); }
-  else { if(navigator.clipboard) navigator.clipboard.writeText(msg); showToast("Copied to share!"); }
-}
-
-// ── BOOKMARKS ────────────────────────────────────────────────
-function getBookmarks(){ return JSON.parse(localStorage.getItem("enjc_bm")||"[]"); }
-function saveBookmarks(bms){ localStorage.setItem("enjc_bm", JSON.stringify(bms)); }
-
-function toggleBookmark(ref, text, idx){
-  var bms = getBookmarks();
-  var found = bms.findIndex(function(b){ return b.ref===ref; });
-  var btn = document.getElementById("bmbtn-"+idx);
-  if(found >= 0){
-    bms.splice(found, 1);
-    if(btn) btn.classList.remove("bm-saved");
-    showToast("Removed from saved");
-  } else {
-    bms.unshift({ref:ref, text:text});
-    if(btn) btn.classList.add("bm-saved");
-    showToast("&#9829; Verse saved!");
-  }
-  saveBookmarks(bms);
-  // Update bookmark count badge
-  var badge = document.getElementById("btn-bookmarks");
-  if(badge) badge.textContent = "&#9829; Saved" + (bms.length ? " ("+bms.length+")" : "");
-}
-
-function renderBmList(){
-  var bms = getBookmarks();
-  var el = document.getElementById("bm-list");
-  if(!bms.length){
-    el.innerHTML = '<div class="bm-empty">No saved verses yet.<br>Tap &#9829; on any verse to save it.</div>';
-    return;
-  }
-  el.innerHTML = bms.map(function(b, i){
-    return '<div class="verse-item" style="margin-bottom:6px">'
-      + '<div style="flex:1"><div style="font-size:10px;color:var(--gold);margin-bottom:4px">'+b.ref+'</div>'
-      + '<span class="verse-text" style="font-size:14px">'+b.text+'</span></div>'
-      + '<div class="verse-actions" style="opacity:1">'
-      + '<button class="vact-btn" onclick="copyVerse(''+b.ref.replace(/'/g,"\'")+'',''+b.text.replace(/'/g,"\'")+'')" title="Copy">&#128203;</button>'
-      + '<button class="vact-btn" onclick="removeBookmark('+i+')" title="Remove" style="color:#f87171">&#10005;</button>'
-      + '</div></div>';
-  }).join("");
-}
-
-function removeBookmark(i){
-  var bms = getBookmarks();
-  bms.splice(i, 1);
-  saveBookmarks(bms);
-  renderBmList();
-  showToast("Removed");
-  var badge = document.getElementById("btn-bookmarks");
-  if(badge) badge.textContent = "&#9829; Saved" + (bms.length ? " ("+bms.length+")" : "");
-}
-
-// ── TOPIC SEARCH ─────────────────────────────────────────────
-var TOPICS = {
-  faith:    [{ref:"Hebrews 11:1",text:"Now faith is the substance of things hoped for, the evidence of things not seen."},{ref:"Romans 10:17",text:"Faith comes from hearing, and hearing through the word of Christ."},{ref:"Matthew 17:20",text:"If you have faith like a grain of mustard seed, nothing will be impossible for you."}],
-  prayer:   [{ref:"Philippians 4:6",text:"Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God."},{ref:"Matthew 6:9",text:"Pray then like this: Our Father in heaven, hallowed be your name."},{ref:"1 Thessalonians 5:17",text:"Pray without ceasing."}],
-  love:     [{ref:"John 3:16",text:"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."},{ref:"1 Corinthians 13:4",text:"Love is patient and kind; love does not envy or boast; it is not arrogant."},{ref:"1 John 4:8",text:"Anyone who does not love does not know God, because God is love."}],
-  peace:    [{ref:"John 14:27",text:"Peace I leave with you; my peace I give to you. Let not your hearts be troubled, neither let them be afraid."},{ref:"Philippians 4:7",text:"The peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus."},{ref:"Isaiah 26:3",text:"You keep him in perfect peace whose mind is stayed on you, because he trusts in you."}],
-  healing:  [{ref:"Isaiah 53:5",text:"But he was pierced for our transgressions; he was crushed for our iniquities; and by his wounds we are healed."},{ref:"Jeremiah 17:14",text:"Heal me, O Lord, and I shall be healed; save me, and I shall be saved."},{ref:"James 5:14",text:"Is anyone among you sick? Let him call for the elders of the church to pray over him, anointing him with oil in the name of the Lord."}],
-  salvation:[{ref:"John 3:16",text:"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."},{ref:"Romans 10:9",text:"If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved."},{ref:"Acts 4:12",text:"There is salvation in no one else, for there is no other name under heaven given among men by which we must be saved."}],
-  strength: [{ref:"Philippians 4:13",text:"I can do all things through him who strengthens me."},{ref:"Isaiah 40:31",text:"They who wait for the Lord shall renew their strength; they shall mount up with wings like eagles."},{ref:"Psalm 46:1",text:"God is our refuge and strength, a very present help in trouble."}],
-  family:   [{ref:"Joshua 24:15",text:"As for me and my house, we will serve the Lord."},{ref:"Proverbs 22:6",text:"Train up a child in the way he should go; even when he is old he will not depart from it."},{ref:"Ephesians 6:1",text:"Children, obey your parents in the Lord, for this is right."}],
-  hope:     [{ref:"Jeremiah 29:11",text:"For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope."},{ref:"Romans 15:13",text:"May the God of hope fill you with all joy and peace in believing."},{ref:"Lamentations 3:22",text:"The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning."}],
-  worship:  [{ref:"Psalm 95:1",text:"Oh come, let us sing to the Lord; let us make a joyful noise to the rock of our salvation!"},{ref:"John 4:24",text:"God is spirit, and those who worship him must worship in spirit and truth."},{ref:"Romans 12:1",text:"Present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship."}]
-};
-
-function showTopic(btn, topic){
-  document.querySelectorAll(".topic-pill").forEach(function(p){ p.classList.remove("active"); });
-  btn.classList.add("active");
-  var verses = TOPICS[topic]||[];
-  var html = verses.map(function(v,i){
-    return '<div class="verse-item" style="margin-bottom:6px">'
-      + '<span class="verse-num">'+(i+1)+'</span>'
-      + '<div style="flex:1"><div style="font-size:10px;color:var(--gold);margin-bottom:4px">'+v.ref+'</div>'
-      + '<span class="verse-text" style="font-size:'+currentFontSize+'px">'+v.text+'</span></div>'
-      + '<div class="verse-actions" style="opacity:1">'
-      + '<button class="vact-btn" onclick="copyVerse(''+v.ref.replace(/'/g,"\'")+'',''+v.text.replace(/'/g,"\'")+'')" title="Copy">&#128203;</button>'
-      + '<button class="vact-btn" onclick="shareVerse(''+v.ref.replace(/'/g,"\'")+'',''+v.text.replace(/'/g,"\'")+'')" title="Share">&#128279;</button>'
-      + '</div></div>';
-  }).join("");
-  document.getElementById("topic-results").innerHTML = html;
-}
-
-// ── READING PLAN ─────────────────────────────────────────────
-var PLAN_DATA = [
-  {day:"Day 1",chapter:"Psalm 1",label:"The blessed man"},
-  {day:"Day 2",chapter:"John 1",label:"The Word became flesh"},
-  {day:"Day 3",chapter:"Romans 8",label:"No condemnation in Christ"},
-  {day:"Day 4",chapter:"Matthew 5",label:"The Beatitudes"},
-  {day:"Day 5",chapter:"Philippians 4",label:"Rejoice always"},
-  {day:"Day 6",chapter:"Isaiah 40",label:"Renew your strength"},
-  {day:"Day 7",chapter:"Revelation 21",label:"All things made new"}
-];
-
-function getPlanDone(){ return JSON.parse(localStorage.getItem("enjc_plan7")||"[]"); }
-function savePlanDone(d){ localStorage.setItem("enjc_plan7", JSON.stringify(d)); }
-
-function renderPlan(){
-  var done = getPlanDone();
-  var count = done.length;
-  document.getElementById("plan-pct").textContent = count+" / 7";
-  document.getElementById("plan-fill").style.width = Math.round(count/7*100)+"%";
-  document.getElementById("plan-days").innerHTML = PLAN_DATA.map(function(p,i){
-    var isDone = done.includes(i);
-    return '<div class="plan-day'+(isDone?" done":"")+'" onclick="togglePlanDay('+i+')">'
-      +'<div class="plan-check">'+(isDone?"&#10003;":"")+'</div>'
-      +'<div class="plan-info-txt"><div class="plan-day-label">'+p.day+'</div>'
-      +'<div class="plan-chapter">'+p.chapter+' <span style="font-size:.8em;opacity:.6">— '+p.label+'</span></div></div>'
-      +'</div>';
-  }).join("");
-}
-
-function togglePlanDay(i){
-  var done = getPlanDone();
-  var idx = done.indexOf(i);
-  if(idx>=0) done.splice(idx,1); else done.push(i);
-  savePlanDone(done);
-  renderPlan();
-  showToast(done.includes(i) ? "Day "+(i+1)+" complete! &#10003;" : "Marked incomplete");
-}
-
-function resetPlan(){ savePlanDone([]); renderPlan(); showToast("Plan reset"); }
-
-// ── VERSE IMAGE GENERATOR ────────────────────────────────────
-var IMG_VERSES = [
-  {ref:"John 3:16", text:"For God so loved the world, that He gave His only begotten Son, that whoever believes in Him shall not perish but have eternal life."},
-  {ref:"Philippians 4:13", text:"I can do all things through Christ who strengthens me."},
-  {ref:"Psalm 23:1", text:"The Lord is my shepherd; I shall not want."},
-  {ref:"Jeremiah 29:11", text:"For I know the plans I have for you, declares the Lord — plans for welfare and not for evil, to give you a future and a hope."},
-  {ref:"Isaiah 43:4", text:"Because you are precious in my sight, and honoured, and I love you."},
-  {ref:"Isaiah 40:31", text:"But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles."},
-  {ref:"Matthew 11:28", text:"Come to me, all who labour and are heavy laden, and I will give you rest."}
-];
-
-var IMG_THEMES = {
-  dark:{bg:"#080c10",text:"#f5a623",body:"#e8edf4",ref:"rgba(232,237,244,.45)",line:"#f5a623",logo:"rgba(245,166,35,.5)"},
-  navy:{bg:"#0b2545",text:"#ffffff",body:"rgba(255,255,255,.9)",ref:"rgba(255,255,255,.45)",line:"#f5a623",logo:"rgba(255,255,255,.3)"},
-  warm:{bg:"#fdf6ec",text:"#8b4513",body:"#3d2b1a",ref:"rgba(61,43,26,.45)",line:"#8b4513",logo:"rgba(139,69,19,.3)"}
-};
-
-function drawVerseCanvas(){
-  var sel = parseInt(document.getElementById("img-verse-sel").value)||0;
-  var styleName = document.getElementById("img-style-sel").value||"dark";
-  var v = IMG_VERSES[sel];
-  var t = IMG_THEMES[styleName];
-  var cv = document.getElementById("verse-canvas");
-  if(!cv) return;
-  var ctx = cv.getContext("2d");
-  var W=cv.width, H=cv.height;
-
-  ctx.fillStyle=t.bg; ctx.fillRect(0,0,W,H);
-
-  // Top border accent
-  ctx.fillStyle=t.line; ctx.fillRect(0,0,W,3);
-
-  // ENJC label
-  ctx.fillStyle=t.logo; ctx.font="bold 11px system-ui";
-  ctx.letterSpacing="3px"; ctx.fillText("ELIM NEW JERUSALEM CHURCH",32,36);
-  ctx.letterSpacing="0px";
-
-  // Gold line separator
-  ctx.fillStyle=t.line; ctx.globalAlpha=.3;
-  ctx.fillRect(32,46,60,1.5); ctx.globalAlpha=1;
-
-  // Verse text — word wrap
-  function wrapText(text,x,y,maxW,lh,fs,color,style){
-    ctx.font=(style||"normal")+" "+fs+"px Georgia,serif";
-    ctx.fillStyle=color;
-    var words=text.split(" "), line="";
-    for(var n=0;n<words.length;n++){
-      var test=line+words[n]+" ";
-      if(ctx.measureText(test).width>maxW && n>0){
-        ctx.fillText(line.trim(),x,y); line=words[n]+" "; y+=lh;
-      } else line=test;
-    }
-    ctx.fillText(line.trim(),x,y); return y+lh;
-  }
-
-  var endY = wrapText('"'+v.text+'"', 32, 80, W-64, 30, 18, t.body, "italic");
-
-  // Reference
-  ctx.font="bold 14px system-ui"; ctx.fillStyle=t.text;
-  ctx.fillText("— "+v.ref, 32, endY+10);
-
-  // Bottom
-  ctx.fillStyle=t.logo; ctx.globalAlpha=.4;
-  ctx.fillRect(32,H-28,W-64,1); ctx.globalAlpha=1;
-  ctx.fillStyle=t.logo; ctx.font="11px system-ui";
-  ctx.fillText("elimnewjerusalem.github.io/church/bible.html", 32, H-12);
-}
-
-function downloadVerseImg(){
-  var cv = document.getElementById("verse-canvas");
-  var a = document.createElement("a");
-  a.download = "enjc-verse.jpg";
-  a.href = cv.toDataURL("image/jpeg", 0.95);
-  a.click();
-  showToast("Image downloaded!");
-}
-
-// Init bookmark badge
-(function(){
-  var bms = getBookmarks();
-  var badge = document.getElementById("btn-bookmarks");
-  if(badge && bms.length) badge.innerHTML = "&#9829; Saved ("+bms.length+")";
-})();
-
-</script>
+<!-- Load bible.js last -->
+<script src="js/bible.js"></script>
 
 </body>
 </html>
