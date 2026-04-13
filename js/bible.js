@@ -385,30 +385,96 @@ function renderVerses(verses) {
 }
 
 // ── AUDIO ──────────────────────────────────────────────────────
-function getVoice() {
+// ── VOICE DETECTION ───────────────────────────────────────────
+// Lists all available voices for debugging
+function listVoices() {
+  return synth.getVoices();
+}
+
+function getTamilVoice() {
   var voices = synth.getVoices();
-  if (currentLang === "ta") {
-    var ta = voices.find(function(v){ return v.lang.startsWith("ta"); });
-    if (ta) return ta;
+  // Try exact Tamil voices first
+  var exact = [
+    "ta-IN", "ta_IN", "ta-LK", "ta",
+    "Tamil", "tamil"
+  ];
+  for (var i = 0; i < exact.length; i++) {
+    var v = voices.find(function(v){
+      return v.lang === exact[i] || v.name.toLowerCase().includes("tamil");
+    });
+    if (v) return v;
   }
+  // Try any voice starting with "ta"
+  var taVoice = voices.find(function(v){ return v.lang.startsWith("ta"); });
+  if (taVoice) return taVoice;
+  return null;
+}
+
+function getEnglishVoice() {
+  var voices = synth.getVoices();
+  // Prefer Indian English for church context
   return voices.find(function(v){ return v.lang === "en-IN"; }) ||
+         voices.find(function(v){ return v.lang === "en-GB"; }) ||
+         voices.find(function(v){ return v.lang === "en-US"; }) ||
          voices.find(function(v){ return v.lang.startsWith("en"); }) ||
          voices[0] || null;
 }
 
 function speakText(text, onEnd) {
-  if (currentUtterance) synth.cancel();
-  var utt = new SpeechSynthesisUtterance(text);
-  utt.rate = parseFloat(document.getElementById("speed-select").value) || 1;
-  var voice = getVoice();
-  if (voice) utt.voice = voice;
-  utt.lang = currentLang === "ta" ? "ta-IN" : "en-IN";
-  utt.onend = onEnd || null;
-  utt.onerror = function(){ isPlaying = false; updatePlayBtn(); };
-  currentUtterance = utt;
-  synth.speak(utt);
-  isPlaying = true;
-  updatePlayBtn();
+  // Cancel any existing speech
+  synth.cancel();
+  currentUtterance = null;
+
+  // Small delay to let cancel() complete
+  setTimeout(function() {
+    var utt = new SpeechSynthesisUtterance(text);
+    utt.rate = parseFloat(document.getElementById("speed-select").value) || 1;
+    utt.volume = 1;
+    utt.pitch = 1;
+
+    if (currentLang === "ta") {
+      var taVoice = getTamilVoice();
+      if (taVoice) {
+        // Tamil voice found — use it
+        utt.voice = taVoice;
+        utt.lang = taVoice.lang || "ta-IN";
+      } else {
+        // No Tamil voice — use English voice but show warning
+        var enVoice = getEnglishVoice();
+        if (enVoice) utt.voice = enVoice;
+        utt.lang = "en-IN";
+        // Show one-time message about Tamil voice
+        if (!window._tamilVoiceWarned) {
+          window._tamilVoiceWarned = true;
+          showToast("No Tamil voice found — install Tamil TTS in device settings");
+          document.getElementById("audio-status").textContent =
+            "Tamil voice not installed — using English";
+        }
+      }
+    } else {
+      var enVoice = getEnglishVoice();
+      if (enVoice) utt.voice = enVoice;
+      utt.lang = "en-IN";
+    }
+
+    utt.onstart = function() { isPlaying = true; updatePlayBtn(); };
+    utt.onend   = function() {
+      isPlaying = false; updatePlayBtn();
+      if (onEnd) onEnd();
+    };
+    utt.onerror = function(e) {
+      isPlaying = false; updatePlayBtn();
+      console.warn("TTS error:", e.error);
+      if (e.error !== "interrupted") {
+        document.getElementById("audio-status").textContent = "Audio error: " + e.error;
+      }
+    };
+
+    currentUtterance = utt;
+    synth.speak(utt);
+    isPlaying = true;
+    updatePlayBtn();
+  }, 100);
 }
 
 async function playVerse(index) {
@@ -488,8 +554,23 @@ function updatePlayBtn() {
   document.getElementById("pause-icon").style.display = isPlaying ? "block" : "none";
 }
 
-if (synth.onvoiceschanged !== undefined) {
-  synth.onvoiceschanged = function(){ synth.getVoices(); };
+// Load voices on init — some browsers need a trigger
+if (typeof speechSynthesis !== "undefined") {
+  speechSynthesis.getVoices();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = function() {
+      var voices = speechSynthesis.getVoices();
+      var hasTamil = voices.some(function(v){
+        return v.lang.startsWith("ta") || v.name.toLowerCase().includes("tamil");
+      });
+      var statusEl = document.getElementById("audio-status");
+      if (statusEl && currentLang === "ta" && !hasTamil) {
+        statusEl.textContent = "Tamil voice not installed on this device";
+      }
+      console.log("Voices loaded:", voices.length,
+        "| Tamil available:", hasTamil ? "YES" : "NO — install Tamil TTS");
+    };
+  }
 }
 
 // ── SEARCH ─────────────────────────────────────────────────────
