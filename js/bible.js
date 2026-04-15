@@ -24,7 +24,7 @@ const C = {
 const S = {
   lang:'ta', // DEFAULT = Tamil (Tamil-first!)
   book:'', bookName:'', bookTaName:'', bookNum:1,
-  ch:1, totalCh:1, verses:[], enVerses:[],
+  ch:1, totalCh:1, verses:[], taVerses:[], enVerses:[],
   fs:parseInt(localStorage.getItem('enjc_fs')||'18'), // larger default for Tamil
   hl:JSON.parse(localStorage.getItem('enjc_hl')||'{}'),
   bm:JSON.parse(localStorage.getItem('enjc_bm')||'[]'),
@@ -289,17 +289,20 @@ async function loadCh(){
   stopAud();
   setHTML('<div class="bload"><div class="bspin"></div><p>'+(S.lang==='ta'?'தமிழ் வேதாகமம் ஏற்றுகிறது...':'Loading English Bible...')+'</p></div>');
   try{
-    if(S.lang==='ta'){
-      S.verses=await loadTA();
-    }else{
-      S.verses=await loadEN();
+    // Always load both Tamil + English in parallel for modal use
+    const [taR, enR] = await Promise.allSettled([loadTA(), loadEN()]);
+    S.taVerses = taR.status==='fulfilled' ? taR.value : [];
+    S.enVerses = enR.status==='fulfilled' ? enR.value : [];
+    // Primary verses = selected language
+    S.verses = S.lang==='ta' ? S.taVerses : S.enVerses;
+    // Fallback: if Tamil empty, use English
+    if(!S.verses.length && S.lang==='ta' && S.enVerses.length){
+      S.verses = S.enVerses;
+      toast('Tamil இணைய இல்லை — English காட்டுகிறோம்');
     }
-    if(!S.verses.length)throw new Error('வசனங்கள் கிடைக்கவில்லை (No verses found)');
-    // If parallel mode, load English alongside Tamil
-    if(S.showParallel&&S.lang==='ta'){
-      try{S.enVerses=await loadEN();}catch(e){S.enVerses=[];}
-    }
-    renderVerses();updateChUI();
+    if(!S.verses.length) throw new Error('வசனங்கள் கிடைக்கவில்லை — Please check internet');
+    renderVerses();
+    updateChUI();
   }catch(e){
     setHTML('<div class="berr">&#9888; '+e.message+'</div>');
   }
@@ -350,7 +353,7 @@ function updateChUI(){
   document.getElementById('prevb').disabled=S.ch<=1;
   document.getElementById('nextb').disabled=S.ch>=S.totalCh;
   document.getElementById('ch-sel').value=S.ch;
-  document.getElementById('apl').style.display='flex';
+  document.getElementById('abar').style.display='flex';
   document.getElementById('apstat').textContent='வசனத்தை தொட்டு கேளுங்கள்';
 }
 
@@ -1017,15 +1020,11 @@ function modalAct(action){
     }
     initBmBadge();
   } else if(action==='copy'){
-    const out=(mv.taRef&&mv.taTxt?mv.taRef+' — '+mv.taTxt+'
-':'')+mv.ref+' — '+(mv.enTxt||mv.v.text);
+    const out=(mv.taRef&&mv.taTxt?mv.taRef+' — '+mv.taTxt+'\n':'')+mv.ref+' — '+(mv.enTxt||mv.v.text);
     navigator.clipboard?.writeText(out);
     toast('Copied!');
   } else if(action==='share'){
-    const msg=mv.ref+'
-'+(mv.enTxt||mv.v.text)+'
-
-https://elimnewjerusalem.github.io/church/bible.html';
+    const msg=mv.ref+'\n'+(mv.enTxt||mv.v.text)+'\n\nhttps://elimnewjerusalem.github.io/church/bible.html';
     if(navigator.share)navigator.share({title:'ENJC Bible',text:msg});
     else{navigator.clipboard?.writeText(msg);toast('Copied!');}
   }
