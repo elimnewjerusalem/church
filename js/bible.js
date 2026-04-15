@@ -440,23 +440,52 @@ async function tryFCBH(bookNum,ch,lang){
 
 function speakNow(text,lang,cb){
   stopAud();
+  const lg=lang||S.lang;
+  const spd=parseFloat(document.getElementById('aspd')?.value||'1');
+
   setTimeout(async()=>{
-    // Try FCBH first if key is set
+    // Layer 1: FCBH real human audio (if API key set)
     if(FCBH_KEY&&S.bookNum){
-      const url=await tryFCBH(S.bookNum,S.ch,lang||S.lang);
+      const url=await tryFCBH(S.bookNum,S.ch,lg);
       if(url){
         if(S.audEl){S.audEl.pause();S.audEl=null;}
         S.audEl=new Audio(url);
-        S.audEl.playbackRate=parseFloat(document.getElementById('aspd')?.value||'1');
+        S.audEl.playbackRate=spd;
         S.audEl.onplay=()=>{S.playing=true;updPBtn();};
         S.audEl.onended=()=>{S.playing=false;updPBtn();if(cb)cb();};
-        S.audEl.onerror=()=>{S.playing=false;updPBtn();speakTTS(text,lang,cb);};
+        S.audEl.onerror=()=>{S.playing=false;updPBtn();useRVorTTS(text,lg,spd,cb);};
         S.audEl.play();S.playing=true;updPBtn();
         return;
       }
     }
-    speakTTS(text,lang,cb);
+    // Layer 2: ResponsiveVoice (works on all devices — no install)
+    // Layer 3: SpeechSynthesis fallback
+    useRVorTTS(text,lg,spd,cb);
   },80);
+}
+
+function useRVorTTS(text,lang,spd,cb){
+  if(typeof responsiveVoice!=='undefined'&&responsiveVoice.voiceSupport()){
+    S.rvReady=true;
+    const voice=lang==='ta'?'Tamil Female':'en-IN Female';
+    const alt=lang==='ta'?'Tamil Male':'UK English Male';
+    responsiveVoice.speak(text,voice,{
+      rate:spd,pitch:1,volume:1,
+      onstart:()=>{S.playing=true;updPBtn();},
+      onend:()=>{S.playing=false;updPBtn();if(cb)cb();},
+      onerror:()=>{
+        // Try alternate RV voice
+        responsiveVoice.speak(text,alt,{
+          rate:spd,pitch:1,volume:1,
+          onstart:()=>{S.playing=true;updPBtn();},
+          onend:()=>{S.playing=false;updPBtn();if(cb)cb();},
+          onerror:()=>{S.playing=false;updPBtn();speakTTS(text,lang,cb);}
+        });
+      }
+    });
+  }else{
+    speakTTS(text,lang,cb);
+  }
 }
 
 function speakTTS(text,lang,cb){
@@ -469,8 +498,8 @@ function speakTTS(text,lang,cb){
     if(tv){u.voice=tv;u.lang=tv.lang;}
     else{
       u.lang='ta-IN';
-      // Show Tamil TTS install guide once
-      if(!window._taWarn){
+      // Show guide only if ResponsiveVoice also not available
+      if(!S.rvReady&&!window._taWarn){
         window._taWarn=true;
         setTimeout(()=>showTaGuide(),500);
       }
@@ -540,6 +569,7 @@ function togPlay(){
 }
 
 function stopAud(){
+  try{if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();}catch(e){}
   if(S.audEl){S.audEl.pause();S.audEl.currentTime=0;S.audEl=null;}
   synth.cancel();
   S.playing=false;S.playAllM=false;updPBtn();
