@@ -341,8 +341,11 @@ function setHTML(h){document.getElementById('bcontent').innerHTML=h;}
 
 function updateChUI(){
   document.getElementById('chbar').style.display='flex';
+  // Reset progress bar
+  const pf=document.getElementById('chprogf');
+  if(pf)pf.style.width='0%';
   const taName=S.bookTaName||S.bookName;
-  document.getElementById('chtitle').textContent=taName+' \u2014 அதிகாரம் '+S.ch;
+  document.getElementById('chtitle').textContent=taName+' \u2014 அதிகாரம் '+S.ch;const _cs=document.getElementById('chsub');if(_cs)_cs.textContent=S.bookName+' Chapter '+S.ch;
   
   document.getElementById('prevb').disabled=S.ch<=1;
   document.getElementById('nextb').disabled=S.ch>=S.totalCh;
@@ -372,7 +375,7 @@ function renderVerses(){
     const enText=enMap[v.num]||'';
     const enSt=enText.replace(/'/g,"\\'");
 
-    return `<div class="vi${isHl?' vhl':''}${isTa?' vi-ta':''}" id="vi${i}">
+    return `<div class="vi${isHl?' vhl':''}${isTa?' vi-ta':''}" id="vi${i}" onclick="openVModal(${i})">
 <span class="vn" onclick="playV(${i})">${v.num}</span>
 <div class="vb">
 <span class="vtxt${isTa?' ta-font':''}" style="font-size:${S.fs}px" onclick="playV(${i})">${v.text}</span>
@@ -558,6 +561,12 @@ function seqPlay(){
 function hlPlay(i){
   document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vplay'));
   document.getElementById('vi'+i)?.classList.add('vplay');
+  // Update reading progress
+  if(S.verses.length){
+    const pct=Math.round((i+1)/S.verses.length*100);
+    const pf=document.getElementById('chprogf');
+    if(pf)pf.style.width=pct+'%';
+  }
 }
 
 function togPlay(){
@@ -669,7 +678,7 @@ function chFont(d){
 }
 
 // ── PANEL TOGGLE ─────────────────────────────────────────────────
-function togPanel(id){
+function togPanel(id,btn){
   ['topics','plan','bm','img'].forEach(p=>{
     const el=document.getElementById('panel-'+p);
     const qa=document.getElementById('qa-'+p);
@@ -942,6 +951,86 @@ function shareIG(){
 }
 
 // ── KEYBOARD ─────────────────────────────────────────────────────
+
+// ── VERSE MODAL ──────────────────────────────────────────────────
+var _modalVerse = null;
+
+function openVModal(i){
+  const v = S.verses[i]; if(!v) return;
+  _modalVerse = {i, v,
+    ref: S.bookName+' '+S.ch+':'+v.num,
+    taRef: (S.bookTaName||S.bookName)+' '+S.ch+':'+v.num,
+    enTxt: (S.enVerses.find(e=>e.num===v.num)||{}).text || (S.lang==='en'?v.text:''),
+    taTxt: (S.taVerses.find(t=>t.num===v.num)||{}).text || (S.lang==='ta'?v.text:'')
+  };
+  const mv = _modalVerse;
+  document.getElementById('vmodal-ref').textContent = mv.taRef + (mv.ref!==mv.taRef?' · '+mv.ref:'');
+  document.getElementById('vmodal-ta').textContent = mv.taTxt ? '“'+mv.taTxt+'”' : '';
+  document.getElementById('vmodal-en').textContent = mv.enTxt ? '“'+mv.enTxt+'”' : '';
+  document.getElementById('vmodal-en').style.display = mv.enTxt ? 'block' : 'none';
+  // Check if bookmarked
+  const bms=getBM();
+  const isBm=bms.some(b=>b.ref===mv.ref);
+  document.getElementById('modal-bm-ic').textContent = isBm ? '♥' : '♡';
+  document.getElementById('modal-bm-lb').textContent = isBm ? 'Saved ✓' : 'Save Verse';
+  document.getElementById('vmodal-wrap').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeVModal(){
+  document.getElementById('vmodal-wrap').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function closeModal(e){
+  if(e.target===document.getElementById('vmodal-wrap')) closeVModal();
+}
+
+function modalAct(action){
+  const mv=_modalVerse; if(!mv) return;
+  if(action==='ta-audio'){
+    speakNow(mv.taTxt||mv.v.text,'ta');
+    toast('▶ Tamil audio...');
+  } else if(action==='en-audio'){
+    speakNow(mv.enTxt||mv.v.text,'en');
+    toast('▶ English audio...');
+  } else if(action==='image'){
+    S.igVerse={ref:mv.ref,taRef:mv.taRef,text:mv.enTxt,ta:mv.taTxt};
+    closeVModal();
+    togPanel('img',document.getElementById('qa-img'));
+    setTimeout(drawIG,100);
+    toast('Image Generator திறந்தது');
+  } else if(action==='save'){
+    const bms=getBM();
+    const fi=bms.findIndex(b=>b.ref===mv.ref);
+    if(fi>=0){
+      bms.splice(fi,1);saveBM(bms);
+      document.getElementById('modal-bm-ic').textContent='♡';
+      document.getElementById('modal-bm-lb').textContent='Save Verse';
+      toast('Removed');
+    } else {
+      bms.unshift({ref:mv.ref,text:mv.enTxt||mv.v.text,taRef:mv.taRef,taText:mv.taTxt});
+      saveBM(bms);
+      document.getElementById('modal-bm-ic').textContent='♥';
+      document.getElementById('modal-bm-lb').textContent='Saved ✓';
+      toast('♥ சேமிக்கப்பட்டது!');
+    }
+    initBmBadge();
+  } else if(action==='copy'){
+    const out=(mv.taRef&&mv.taTxt?mv.taRef+' — '+mv.taTxt+'
+':'')+mv.ref+' — '+(mv.enTxt||mv.v.text);
+    navigator.clipboard?.writeText(out);
+    toast('Copied!');
+  } else if(action==='share'){
+    const msg=mv.ref+'
+'+(mv.enTxt||mv.v.text)+'
+
+https://elimnewjerusalem.github.io/church/bible.html';
+    if(navigator.share)navigator.share({title:'ENJC Bible',text:msg});
+    else{navigator.clipboard?.writeText(msg);toast('Copied!');}
+  }
+}
+
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
   if(e.key==='ArrowRight')nextCh();
