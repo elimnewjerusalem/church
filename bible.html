@@ -11,237 +11,261 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Inter:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --dark:#080c10;--dark2:#0d1520;--dark3:#111a26;--navy:#0b2545;
-  --gold:#f5a623;--gold2:#ffd166;--gold-dim:rgba(245,166,35,.12);
-  --text:#e8edf4;--muted:rgba(232,237,244,.45);--dim:rgba(232,237,244,.18);
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.13);
-  --r:4px;--rl:8px;--success:rgba(52,211,153,.15);
+  --dk:#080c10;--dk2:#0d1520;--dk3:#111a26;--nv:#0b2545;
+  --gd:#f5a623;--gd2:#ffd166;--gdm:rgba(245,166,35,.12);
+  --tx:#e8edf4;--mt:rgba(232,237,244,.45);--dm:rgba(232,237,244,.18);
+  --bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.13);
+  --r:4px;--rl:10px;--rxl:14px;
 }
 html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:var(--text);line-height:1.7;font-size:15px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--dk);color:var(--tx);line-height:1.7}
 a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
 @media(max-width:768px){body{padding-bottom:64px}}
 
-/* ── NAV ── */
-.wrap{width:92%;max-width:1100px;margin:0 auto;padding:0 14px}
-header{background:rgba(8,12,16,.97);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:900;backdrop-filter:blur(16px)}
-.nav{height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
-.logo-wrap{display:flex;align-items:center;gap:10px}
-.logo-mark{width:34px;height:34px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;font-weight:700;font-family:'Playfair Display',serif;flex-shrink:0}
-.logo-text strong{display:block;font-size:14px;color:white;font-weight:600;line-height:1.2}
-.logo-text span{font-size:10px;color:var(--muted)}
+/* NAV */
+.w{width:92%;max-width:1100px;margin:0 auto;padding:0 14px}
+header{background:rgba(8,12,16,.97);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:900;backdrop-filter:blur(16px)}
+.nav{height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
+.logo{display:flex;align-items:center;gap:10px}
+.lm{width:33px;height:33px;border:1.5px solid var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gd);font-size:13px;font-weight:700;font-family:'Playfair Display',serif;flex-shrink:0}
+.lt strong{display:block;font-size:13px;color:white;font-weight:600;line-height:1.2}
+.lt span{font-size:10px;color:var(--mt)}
 .menu{list-style:none;display:flex;gap:2px}
-.menu a{color:var(--muted);font-size:12px;font-weight:500;padding:6px 12px;border-radius:var(--r);transition:all .2s}
+.menu a{color:var(--mt);font-size:12px;font-weight:500;padding:6px 11px;border-radius:var(--r);transition:all .2s}
 .menu a:hover{color:white;background:rgba(255,255,255,.06)}
-.menu a.active{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--dark);padding:8px 18px;border-radius:var(--r);font-size:12px;font-weight:700;transition:all .2s}
-.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent}
+.menu a.active{color:var(--gd)}
+.ncta{background:var(--gd);color:var(--dk);padding:7px 16px;border-radius:var(--r);font-size:12px;font-weight:700}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
 .ham span{display:block;width:22px;height:1.5px;background:white;border-radius:2px;transition:all .3s}
 .ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .ham.open span:nth-child(2){opacity:0}
 .ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-/* ── TICKER ── */
-.ticker{background:var(--gold);height:32px;overflow:hidden;display:flex;align-items:center}
-.ticker-track{display:flex;animation:ticker 30s linear infinite;white-space:nowrap}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.tick-item{padding:0 24px;font-size:11px;font-weight:700;color:var(--dark);letter-spacing:.5px;text-transform:uppercase;border-right:1px solid rgba(8,12,16,.15);height:32px;display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
-.tick-dot{width:3px;height:3px;border-radius:50%;background:var(--dark);opacity:.3}
+/* TICKER */
+.ticker{background:var(--gd);height:30px;overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;animation:tk 30s linear infinite;white-space:nowrap}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti{padding:0 22px;font-size:10px;font-weight:700;color:var(--dk);letter-spacing:.5px;text-transform:uppercase;border-right:1px solid rgba(8,12,16,.15);height:30px;display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
+.td{width:3px;height:3px;border-radius:50%;background:var(--dk);opacity:.3}
 
-/* ── PAGE HERO ── */
-.page-hero{background:var(--navy);padding:36px 0 28px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.page-hero::before{content:'';position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px)}
-.eyebrow{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);display:inline-block}
-.page-hero h1{font-family:'Playfair Display',serif;color:white;font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800}
-.page-hero h1 em{color:var(--gold);font-style:italic}
-.page-hero p{color:var(--muted);font-size:.88rem;margin-top:5px}
+/* PAGE HERO */
+.ph{background:var(--nv);padding:32px 0 24px;border-bottom:1px solid var(--bd);position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px)}
+.ey{color:var(--gd);font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.ey::before{content:'';width:16px;height:1px;background:var(--gd);display:inline-block}
+.ph h1{font-family:'Playfair Display',serif;color:white;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800}
+.ph h1 em{color:var(--gd);font-style:italic}
+.ph p{color:var(--mt);font-size:.85rem;margin-top:4px}
 
-/* ── BIBLE LAYOUT ── */
-.b-wrap{padding:28px 0 56px}
-.b-grid{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
-@media(max-width:900px){.b-grid{grid-template-columns:1fr}}
+/* MAIN LAYOUT */
+.bw{padding:24px 0 56px}
+.bg{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+@media(max-width:960px){.bg{grid-template-columns:1fr}}
 
-/* ── SIDEBAR ── */
-.b-sidebar{background:var(--dark2);border:1px solid var(--border);border-radius:var(--rl);padding:16px;position:sticky;top:80px}
-.sb-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
-.b-sel{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23f5a623' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;margin-bottom:8px}
-.b-sel:focus{outline:none;border-color:var(--gold)}
-.b-sel option,.b-sel optgroup{background:#0d1520;color:var(--text)}
-.go-btn{width:100%;background:var(--gold);color:var(--dark);border:none;border-radius:var(--r);padding:10px;font-weight:700;font-size:13px;transition:all .2s;margin-bottom:12px}
-.go-btn:hover{background:var(--gold2)}
-.sb-divider{height:1px;background:var(--border);margin:12px 0}
+/* SIDEBAR */
+.sb{background:var(--dk2);border:1px solid var(--bd);border-radius:var(--rxl);padding:16px;position:sticky;top:72px}
+.sbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);font-weight:600;margin-bottom:8px}
+.sdiv{height:1px;background:var(--bd);margin:14px 0}
 
-/* ── LANG TOGGLE ── */
-.lang-toggle{display:flex;gap:4px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:var(--r);padding:3px;margin-bottom:12px}
-.lang-btn{flex:1;padding:7px;border:none;background:transparent;color:var(--muted);font-size:12px;font-weight:600;border-radius:3px;transition:all .2s}
-.lang-btn.active{background:var(--gold);color:var(--dark)}
+/* LANG TOGGLE */
+.lt-wrap{display:flex;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:3px;gap:3px;margin-bottom:12px}
+.ltb{flex:1;padding:7px;border-radius:3px;font-size:12px;font-weight:600;color:var(--mt);transition:all .2s;text-align:center}
+.ltb.on{background:var(--gd);color:var(--dk)}
 
-/* ── FONT SIZE ── */
-.fsz-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.fsz-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--r);padding:5px 10px;color:var(--text);font-size:13px;font-weight:700;min-width:34px;transition:all .2s}
-.fsz-btn:hover{border-color:var(--gold);color:var(--gold)}
-#fsz-val{font-size:11px;color:var(--muted);flex:1;text-align:center}
+/* SELECTS */
+.bsel{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--bd2);border-radius:var(--r);padding:9px 12px;color:var(--tx);font-size:13px;font-family:'Inter',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23f5a623' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;margin-bottom:8px;cursor:pointer}
+.bsel:focus{outline:none;border-color:var(--gd)}
+.bsel option,.bsel optgroup{background:#0d1520;color:var(--tx)}
+.gobtn{width:100%;background:var(--gd);color:var(--dk);border-radius:var(--r);padding:10px;font-weight:700;font-size:13px;margin-bottom:14px;display:none;transition:all .2s}
+.gobtn:hover{background:var(--gd2)}
 
-/* ── PANEL BUTTONS ── */
-.panel-btns{display:flex;flex-direction:column;gap:5px}
-.p-btn{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;color:var(--muted);font-size:12px;font-weight:500;text-align:left;transition:all .2s;display:flex;align-items:center;gap:7px}
-.p-btn:hover{border-color:var(--border2);color:white}
-.p-btn.active{border-color:rgba(245,166,35,.4);background:var(--gold-dim);color:var(--gold)}
+/* FONT SIZE */
+.fszr{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.fsb{background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:var(--r);padding:5px 10px;color:var(--tx);font-size:13px;font-weight:700;min-width:33px;text-align:center;transition:all .2s}
+.fsb:hover{border-color:var(--gd);color:var(--gd)}
+#fszv{font-size:11px;color:var(--mt);flex:1;text-align:center}
 
-/* ── VOTD CARD ── */
-.votd-card{background:var(--dark2);border:1px solid rgba(245,166,35,.2);border-left:3px solid var(--gold);border-radius:var(--rl);padding:20px;margin-bottom:20px}
-.votd-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
-.votd-en,.votd-ta{margin-bottom:12px}
-.votd-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,.88);line-height:1.75;margin-bottom:4px}
-.votd-ta .votd-text{font-family:'Noto Serif Tamil',serif;font-size:.95rem}
-.votd-ref{font-size:.8rem;color:var(--muted);display:block;margin-bottom:8px}
-.votd-acts{display:flex;gap:7px;flex-wrap:wrap}
-.votd-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--r);padding:6px 12px;font-size:11px;color:var(--muted);transition:all .2s}
-.votd-btn:hover{color:white;border-color:var(--border2)}
-.votd-btn.gold{background:var(--gold);color:var(--dark);border-color:var(--gold)}
-.votd-btn.gold:hover{background:var(--gold2)}
-.votd-ta-row{display:none;border-top:1px solid var(--border);padding-top:12px;margin-top:4px}
+/* QUICK ACTION GRID */
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
+.qab{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:9px 4px;text-align:center;transition:all .2s}
+.qab:hover{border-color:var(--bd2)}
+.qab.on{border-color:rgba(245,166,35,.35);background:var(--gdm);color:var(--gd)}
+.qai{font-size:16px;display:block;margin-bottom:3px;line-height:1}
+.qal{font-size:9px;color:var(--mt)}
 
-/* ── SEARCH ── */
-.search-row{display:flex;gap:8px;margin-bottom:16px}
-.s-input{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--r);padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif}
-.s-input::placeholder{color:var(--muted)}
-.s-input:focus{outline:none;border-color:var(--gold)}
-.s-btn{background:var(--gold);color:var(--dark);border:none;border-radius:var(--r);padding:9px 18px;font-weight:700;font-size:13px}
-.s-btn:hover{background:var(--gold2)}
+/* PANEL BUTTONS */
+.pbtns{display:flex;flex-direction:column;gap:5px}
+.pb{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:9px 12px;color:var(--mt);font-size:12px;text-align:left;display:flex;align-items:center;gap:8px;transition:all .2s}
+.pb:hover{border-color:var(--bd2);color:white}
+.pb.on{border-color:rgba(245,166,35,.35);background:var(--gdm);color:var(--gd)}
 
-/* ── AUDIO BAR ── */
-.audio-bar{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.18);border-radius:var(--rl);padding:12px 16px;display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
-.aud-play{width:40px;height:40px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
-.aud-play:hover{background:var(--gold2);transform:scale(1.05)}
-.aud-info{flex:1;min-width:0}
-.aud-title{color:white;font-size:12px;font-weight:600;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.aud-status{color:var(--muted);font-size:11px}
-.spd-sel{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--r);padding:4px 8px;color:var(--text);font-size:11px;font-family:'Inter',sans-serif}
-.aud-stop{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--r);padding:6px 12px;color:var(--muted);font-size:11px;transition:all .2s}
-.aud-stop:hover{color:white}
+/* VOTD */
+.votd{background:linear-gradient(135deg,#0d1a2e,#0b2545);border:1px solid rgba(245,166,35,.2);border-left:3px solid var(--gd);border-radius:var(--rxl);padding:18px;margin-bottom:18px}
+.vtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.vbadge{background:rgba(245,166,35,.15);color:var(--gd);font-size:9px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.5px}
+.vshr{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:13px}
+.ven{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,.88);line-height:1.7;margin-bottom:5px}
+.vta{font-family:'Noto Serif Tamil',serif;font-size:.9rem;color:rgba(232,237,244,.6);line-height:1.85;border-top:1px solid var(--bd);padding-top:8px;margin-top:6px;display:none}
+.vref{font-size:.78rem;color:var(--gd);font-weight:600;margin-top:5px;display:block}
+.vacts{display:flex;gap:5px;margin-top:12px;flex-wrap:wrap}
+.vab{flex:1;min-width:0;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:6px 4px;font-size:10px;color:var(--mt);text-align:center;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .2s}
+.vab:hover{color:white;border-color:var(--bd2)}
+.vab.gd{background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.3);color:var(--gd)}
 
-/* ── CHAPTER BAR ── */
-.chapter-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
-.ch-title{font-family:'Playfair Display',serif;color:white;font-size:1.15rem;font-weight:700}
-.ch-nav{display:flex;gap:6px}
-.ch-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--r);padding:7px 16px;color:var(--muted);font-size:12px;transition:all .2s}
-.ch-btn:hover:not(:disabled){color:white;border-color:var(--border2)}
-.ch-btn:disabled{opacity:.3;cursor:default}
-.ch-btn.gold{background:var(--gold);color:var(--dark);border-color:var(--gold)}
-.ch-btn.gold:hover{background:var(--gold2)}
+/* SEARCH */
+.sr{display:flex;gap:7px;margin-bottom:16px}
+.si{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--bd2);border-radius:var(--rl);padding:10px 14px;color:var(--tx);font-size:13px;font-family:'Inter',sans-serif}
+.si::placeholder{color:var(--mt)}
+.si:focus{outline:none;border-color:var(--gd)}
+.sbtn{background:var(--gd);color:var(--dk);border-radius:var(--rl);padding:10px 16px;font-size:14px;font-weight:700;transition:all .2s}
+.sbtn:hover{background:var(--gd2)}
 
-/* ── VERSE LIST ── */
-.v-list{display:flex;flex-direction:column;gap:1px}
-.v-item{display:flex;gap:12px;padding:11px 12px;border-radius:var(--rl);border:1px solid transparent;transition:background .15s,border .15s;position:relative}
-.v-item:hover{background:rgba(255,255,255,.04);border-color:var(--border)}
-.v-item.v-playing{background:rgba(245,166,35,.07);border-color:rgba(245,166,35,.2)}
-.v-item.v-hl{background:rgba(250,204,21,.06);border-color:rgba(250,204,21,.2)}
-.v-num{color:var(--gold);font-size:11px;font-weight:700;min-width:26px;padding-top:3px;flex-shrink:0;cursor:pointer;user-select:none}
-.v-text{color:var(--text);line-height:1.85;flex:1;cursor:pointer}
-.v-ta{font-family:'Noto Serif Tamil',serif;line-height:2.1}
-.v-acts{display:flex;gap:3px;flex-shrink:0;align-items:flex-start;padding-top:2px;opacity:0;transition:opacity .15s}
-.v-item:hover .v-acts{opacity:1}
-.v-btn{background:transparent;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:12px;color:var(--muted);transition:all .15s;line-height:1}
-.v-btn:hover{border-color:var(--border2);color:white}
-.v-btn-bm{color:var(--gold)!important;border-color:rgba(245,166,35,.4)!important;background:var(--gold-dim)!important}
-.v-btn-hl{color:#fbbf24!important;border-color:rgba(251,191,36,.4)!important;background:rgba(251,191,36,.08)!important}
-.v-tag{font-size:10px;color:var(--gold);margin-bottom:3px;font-weight:600}
+/* AUDIO BAR */
+.abar{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.18);border-radius:var(--rl);padding:11px 14px;display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.ap{width:38px;height:38px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.ap:hover{background:var(--gd2);transform:scale(1.05)}
+.ai{flex:1;min-width:0}
+.atitle{color:white;font-size:12px;font-weight:600;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.astat{color:var(--mt);font-size:11px}
+.aspd{background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:var(--r);padding:4px 8px;color:var(--tx);font-size:11px;font-family:'Inter',sans-serif}
+.astop{background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:var(--r);padding:6px 10px;color:var(--mt);font-size:11px;transition:all .2s}
+.astop:hover{color:white}
 
-/* ── PANELS ── */
-.b-panel{display:none;background:var(--dark2);border:1px solid var(--border);border-radius:var(--rl);padding:16px;margin-bottom:16px}
-.b-panel.open{display:block}
-.panel-ttl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
+/* CHAPTER BAR */
+.chbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.chtitle{font-family:'Playfair Display',serif;color:white;font-size:1.1rem;font-weight:700}
+.chnav{display:flex;gap:5px}
+.chnb{background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:var(--r);padding:7px 14px;color:var(--mt);font-size:12px;transition:all .2s}
+.chnb:hover:not(:disabled){color:white;border-color:var(--bd2)}
+.chnb:disabled{opacity:.3}
+.chnb.gd{background:var(--gd);color:var(--dk);border-color:var(--gd)}
+.chnb.gd:hover{background:var(--gd2)}
 
-/* ── TOPIC PILLS ── */
-.t-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.t-pill{border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.03);transition:all .2s}
-.t-pill:hover,.t-pill.active{border-color:rgba(245,166,35,.4);color:var(--gold);background:var(--gold-dim)}
+/* VERSES */
+.vlist{display:flex;flex-direction:column;gap:2px}
+.vi{display:flex;gap:10px;padding:11px 12px;border-radius:var(--rl);border:1px solid transparent;transition:all .15s;position:relative}
+.vi:hover{background:rgba(255,255,255,.04);border-color:var(--bd)}
+.vi.vplay{background:rgba(245,166,35,.07);border-color:rgba(245,166,35,.2)}
+.vi.vhl{background:rgba(250,204,21,.06);border-color:rgba(250,204,21,.2)}
+.vn{color:var(--gd);font-size:11px;font-weight:700;min-width:24px;padding-top:3px;flex-shrink:0;cursor:pointer}
+.vb{flex:1;min-width:0}
+.vtxt{color:var(--tx);line-height:1.85;cursor:pointer}
+.vta{font-family:'Noto Serif Tamil',serif;font-size:.92rem;color:rgba(232,237,244,.55);line-height:2;border-top:1px solid rgba(255,255,255,.05);padding-top:7px;margin-top:7px;display:none}
+.vtag{font-size:10px;color:var(--gd);margin-bottom:3px;font-weight:600}
+.vacts{display:flex;gap:3px;flex-shrink:0;align-items:flex-start;padding-top:2px;opacity:0;transition:opacity .15s}
+.vi:hover .vacts{opacity:1}
+.vbt{background:transparent;border:1px solid var(--bd);border-radius:5px;padding:4px 7px;font-size:12px;color:var(--mt);transition:all .15s;line-height:1}
+.vbt:hover{border-color:var(--bd2);color:white}
+.vbt.bm{color:var(--gd)!important;border-color:rgba(245,166,35,.4)!important;background:var(--gdm)!important}
+.vbt.hl{color:#fbbf24!important;border-color:rgba(251,191,36,.35)!important;background:rgba(251,191,36,.07)!important}
 
-/* ── READING PLAN ── */
-.plan-bar{background:rgba(255,255,255,.08);border-radius:999px;height:4px;margin-bottom:14px;overflow:hidden}
-.plan-fill{height:4px;border-radius:999px;background:var(--gold);transition:width .3s}
-.plan-day{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--rl);margin-bottom:5px;cursor:pointer;transition:all .2s}
-.plan-day:hover{border-color:var(--border2)}
-.plan-day.done{border-color:rgba(245,166,35,.25);background:rgba(245,166,35,.04)}
-.plan-chk{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--gold);transition:all .2s}
-.plan-day.done .plan-chk{background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.4)}
-.plan-inf{flex:1}
-.plan-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.plan-ch{font-size:.88rem;color:white;margin-top:1px}
-.plan-day.done .plan-ch{color:var(--gold)}
-.plan-go{background:transparent;border:1px solid var(--border);border-radius:var(--r);padding:5px 10px;color:var(--muted);font-size:11px;flex-shrink:0;transition:all .2s}
-.plan-go:hover{color:white;border-color:var(--border2)}
+/* PANELS */
+.bpanel{display:none;background:var(--dk2);border:1px solid var(--bd);border-radius:var(--rxl);padding:16px;margin-bottom:16px}
+.bpanel.open{display:block}
+.ptitle{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);font-weight:600;margin-bottom:12px}
 
-/* ── IMAGE GEN ── */
-.img-preview{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--rl);padding:12px;margin-bottom:10px;text-align:center}
-.img-preview canvas{border-radius:5px;max-width:100%;height:auto}
-.img-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
-.img-sel{flex:1;min-width:120px;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--r);padding:7px 10px;color:var(--text);font-size:12px;font-family:'Inter',sans-serif}
-.img-dl{background:var(--gold);color:var(--dark);border:none;border-radius:var(--r);padding:9px 18px;font-weight:700;font-size:12px}
-.img-dl:hover{background:var(--gold2)}
+/* TOPIC PILLS */
+.tpills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tp{border:1px solid var(--bd);border-radius:999px;padding:6px 14px;font-size:12px;color:var(--mt);background:rgba(255,255,255,.03);transition:all .2s}
+.tp:hover,.tp.on{border-color:rgba(245,166,35,.35);color:var(--gd);background:var(--gdm)}
 
-/* ── LOADING / ERROR ── */
-.b-loading{text-align:center;padding:56px 20px;color:var(--muted)}
-.b-spin{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.b-error{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:var(--rl);padding:16px;color:#fca5a5;font-size:.88rem}
-.b-empty{text-align:center;padding:28px;color:var(--muted);font-size:.88rem}
+/* READING PLAN */
+.pbar{background:rgba(255,255,255,.08);border-radius:999px;height:4px;margin-bottom:14px;overflow:hidden}
+.pfill{height:4px;border-radius:999px;background:var(--gd);transition:width .3s}
+.pday{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--bd);border-radius:var(--rl);margin-bottom:5px;cursor:pointer;transition:all .2s}
+.pday:hover{border-color:var(--bd2)}
+.pday.done{border-color:rgba(245,166,35,.25);background:rgba(245,166,35,.04)}
+.pchk{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--gd)}
+.pday.done .pchk{background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.4)}
+.pinfo{flex:1}
+.plbl{font-size:9px;color:var(--mt);text-transform:uppercase;letter-spacing:.5px}
+.pch{font-size:.88rem;color:white;margin-top:1px}
+.pday.done .pch{color:var(--gd)}
+.pgo{background:transparent;border:1px solid var(--bd);border-radius:var(--r);padding:5px 10px;color:var(--mt);font-size:11px;flex-shrink:0;transition:all .2s}
+.pgo:hover{color:white;border-color:var(--bd2)}
 
-/* ── TAMIL INFO ── */
-.ta-info{background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.18);border-radius:var(--rl);padding:10px 14px;margin-bottom:14px;font-size:.8rem;color:rgba(232,237,244,.55);display:none}
+/* IMAGE GENERATOR */
+.igsec{font-size:9px;color:var(--mt);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;margin-top:10px}
+.igsec:first-child{margin-top:0}
+.szrow{display:flex;gap:5px;margin-bottom:2px}
+.szb{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:8px 4px;font-size:10px;color:var(--mt);text-align:center;cursor:pointer;transition:all .2s;line-height:1.3}
+.szb span{display:block;font-size:8px;opacity:.6;margin-top:2px}
+.szb.on{background:var(--gdm);border-color:rgba(245,166,35,.4);color:var(--gd);font-weight:700}
+.bgrow{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:2px}
+.bgsw{width:30px;height:30px;border-radius:7px;cursor:pointer;border:2px solid transparent;flex-shrink:0;transition:all .2s}
+.bgsw.on{border-color:var(--gd);transform:scale(1.1)}
+.tcrow{display:flex;gap:5px;margin-bottom:2px}
+.tcb{flex:1;border-radius:var(--r);padding:7px 4px;font-size:10px;font-weight:700;text-align:center;cursor:pointer;border:1.5px solid transparent;transition:all .2s}
+.igprev{border-radius:var(--rl);overflow:hidden;margin:10px 0;position:relative;display:flex;align-items:center;justify-content:center}
+.igprev canvas{display:block;max-width:100%;height:auto;border-radius:var(--rl)}
+.igdlrow{display:flex;gap:6px;margin-top:2px}
+.igdl{flex:1;background:var(--gd);color:var(--dk);border-radius:var(--r);padding:9px;font-size:12px;font-weight:700;text-align:center;transition:all .2s;cursor:pointer}
+.igdl:hover{background:var(--gd2)}
+.igdl.out{background:transparent;border:1px solid rgba(245,166,35,.4);color:var(--gd)}
+.igdl.out:hover{background:var(--gdm)}
 
-/* ── TOAST ── */
-.btoast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:rgba(8,12,16,.97);border:1px solid rgba(245,166,35,.3);color:var(--gold);padding:9px 20px;border-radius:999px;font-size:12px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none;z-index:9999;white-space:nowrap}
+/* LOADING/ERROR */
+.bload{text-align:center;padding:60px 20px;color:var(--mt)}
+.bspin{width:34px;height:34px;border:3px solid var(--bd);border-top-color:var(--gd);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.berr{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:var(--rl);padding:14px;color:#fca5a5;font-size:.88rem}
+.bempty{text-align:center;padding:28px;color:var(--mt);font-size:.88rem}
+
+/* TAMIL INFO */
+.tainfo{background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.15);border-radius:var(--rl);padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:rgba(232,237,244,.5);display:none}
+
+/* TOAST */
+.btoast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:rgba(8,12,16,.97);border:1px solid rgba(245,166,35,.3);color:var(--gd);padding:9px 20px;border-radius:999px;font-size:12px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none;z-index:9999;white-space:nowrap}
 .btoast.show{opacity:1}
 
-/* ── FOOTER ── */
-.footer{background:var(--dark);border-top:1px solid var(--border);padding:18px 0}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-copy{color:var(--dim);font-size:11px}
-.footer-links{display:flex;gap:16px}
-.footer-links a{color:var(--dim);font-size:11px;transition:color .2s}
-.footer-links a:hover{color:var(--gold)}
+/* FOOTER */
+footer{background:var(--dk);border-top:1px solid var(--bd);padding:16px 0}
+.fi{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.fc{color:var(--dm);font-size:11px}
+.fl{display:flex;gap:14px}
+.fl a{color:var(--dm);font-size:11px;transition:color .2s}
+.fl a:hover{color:var(--gd)}
 
-/* ── WA FLOAT ── */
-.wa-float{position:fixed;bottom:26px;right:20px;z-index:800}
-.wa-float img{width:52px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
-@media(max-width:768px){.wa-float{bottom:72px;right:12px}.wa-float img{width:46px}}
+/* WA FLOAT */
+.wa{position:fixed;bottom:26px;right:20px;z-index:800}
+.wa img{width:50px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
+@media(max-width:768px){.wa{bottom:72px;right:12px}.wa img{width:44px}}
 
-/* ── BOTTOM NAV ── */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:950;background:var(--dark);border-top:1px solid var(--gold);height:60px;align-items:center;box-shadow:0 -4px 24px rgba(0,0,0,.5)}
-@media(max-width:768px){.bottom-nav{display:flex}}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px}
-.bn-icon{font-size:17px;line-height:1}
-.bn-label{font-size:8px;color:var(--dim);font-weight:500;letter-spacing:.3px;text-transform:uppercase}
-.bn-item.active .bn-label{color:var(--gold)}
-.bn-cw{flex:1;display:flex;justify-content:center}
-.bn-c{width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px;margin-top:-14px;box-shadow:0 4px 16px rgba(245,166,35,.4)}
+/* BOTTOM NAV */
+.bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:950;background:var(--dk);border-top:1px solid var(--gd);height:60px;align-items:center;box-shadow:0 -4px 24px rgba(0,0,0,.5)}
+@media(max-width:768px){.bnav{display:flex}}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px}
+.bnic{font-size:16px;line-height:1}
+.bnl{font-size:8px;color:var(--dm);font-weight:500;letter-spacing:.3px;text-transform:uppercase}
+.bni.act .bnl{color:var(--gd)}
+.bncw{flex:1;display:flex;justify-content:center}
+.bnc{width:42px;height:42px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;font-size:17px;margin-top:-12px;box-shadow:0 4px 14px rgba(245,166,35,.4)}
 
-/* ── MOBILE ── */
+/* MOBILE */
 @media(max-width:768px){
   .ham{display:flex}
-  .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(8,12,16,.99);border-top:1px solid var(--border);padding:8px 0;z-index:1000}
+  .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(8,12,16,.99);border-top:1px solid var(--bd);padding:8px 0;z-index:1000}
   .menu.open{display:flex}
   .menu li{width:100%}
   .menu a{display:block;padding:13px 20px;font-size:15px}
-  .nav-cta{display:none}
+  .ncta{display:none}
+  .nav{position:relative;height:58px}
   .ticker-track{animation-duration:45s}
-  .footer-inner{flex-direction:column;text-align:center}
-  .footer-links{justify-content:center}
-  .v-acts{opacity:1}
+  .fi{flex-direction:column;text-align:center}
+  .fl{justify-content:center}
+  .vacts{opacity:1}
+  .qa{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap nav">
-    <a href="index.html" class="logo-wrap">
-      <div class="logo-mark">E</div>
-      <div class="logo-text"><strong>ENJC</strong><span>Elim New Jerusalem Church</span></div>
+  <div class="w nav">
+    <a href="index.html" class="logo">
+      <div class="lm">E</div>
+      <div class="lt"><strong>ENJC</strong><span>Elim New Jerusalem Church</span></div>
     </a>
     <nav><ul class="menu" id="menu">
       <li><a href="index.html">Home</a></li>
@@ -253,226 +277,234 @@ header{background:rgba(8,12,16,.97);border-bottom:1px solid var(--border);positi
       <li><a href="bible.html" class="active">Bible</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul></nav>
-    <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" rel="noopener" class="nav-cta">&#128205; Visit Us</a>
+    <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" rel="noopener" class="ncta">&#128205; Visit Us</a>
     <button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <div class="ticker">
   <div class="ticker-track">
-    <span class="tick-item"><span class="tick-dot"></span>Read &amp; Listen &mdash; Tamil &amp; English</span>
-    <span class="tick-item"><span class="tick-dot"></span>All 66 Books</span>
-    <span class="tick-item"><span class="tick-dot"></span>Audio &bull; Bookmarks &bull; Image</span>
-    <span class="tick-item"><span class="tick-dot"></span>Tondiarpet, Chennai</span>
-    <span class="tick-item"><span class="tick-dot"></span>+91 94443 45102</span>
-    <span class="tick-item"><span class="tick-dot"></span>Read &amp; Listen &mdash; Tamil &amp; English</span>
-    <span class="tick-item"><span class="tick-dot"></span>All 66 Books</span>
-    <span class="tick-item"><span class="tick-dot"></span>Audio &bull; Bookmarks &bull; Image</span>
-    <span class="tick-item"><span class="tick-dot"></span>Tondiarpet, Chennai</span>
-    <span class="tick-item"><span class="tick-dot"></span>+91 94443 45102</span>
+    <span class="ti"><span class="td"></span>Tamil &amp; English Bible</span>
+    <span class="ti"><span class="td"></span>All 66 Books</span>
+    <span class="ti"><span class="td"></span>Audio &bull; Image &bull; Bookmark</span>
+    <span class="ti"><span class="td"></span>Tondiarpet, Chennai</span>
+    <span class="ti"><span class="td"></span>+91 94443 45102</span>
+    <span class="ti"><span class="td"></span>Tamil &amp; English Bible</span>
+    <span class="ti"><span class="td"></span>All 66 Books</span>
+    <span class="ti"><span class="td"></span>Audio &bull; Image &bull; Bookmark</span>
+    <span class="ti"><span class="td"></span>Tondiarpet, Chennai</span>
+    <span class="ti"><span class="td"></span>+91 94443 45102</span>
   </div>
 </div>
 
-<div class="page-hero">
-  <div class="wrap">
-    <div class="eyebrow">God's Word</div>
+<div class="ph">
+  <div class="w">
+    <div class="ey">God's Word</div>
     <h1>Holy <em>Bible</em></h1>
-    <p>Read &amp; listen in Tamil and English &mdash; Old &amp; New Testament</p>
+    <p>Tamil &amp; English &mdash; All 66 Books &mdash; Audio &bull; Image &bull; Bookmarks</p>
   </div>
 </div>
 
-<div class="b-wrap">
-  <div class="wrap">
+<div class="bw">
+<div class="w">
 
-    <!-- VOTD -->
-    <div class="votd-card">
-      <div class="votd-label">&#9733; Verse of the Day</div>
-      <div class="votd-en">
-        <blockquote class="votd-text" id="votd-en-text">Loading today's verse...</blockquote>
-        <cite class="votd-ref" id="votd-en-ref"></cite>
-        <div class="votd-acts">
-          <button class="votd-btn gold" onclick="playVOTD('en')">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> English Audio
-          </button>
-          <button class="votd-btn" onclick="shareVOTD()">&#128279; Share</button>
-        </div>
-      </div>
-      <div class="votd-ta-row" id="votd-ta-row">
-        <blockquote class="votd-text" id="votd-ta-text" style="font-family:'Noto Serif Tamil',serif;margin-top:12px"></blockquote>
-        <cite class="votd-ref" id="votd-ta-ref"></cite>
-        <button class="votd-btn" onclick="playVOTD('ta')">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Tamil Audio
-        </button>
-      </div>
+<!-- VOTD -->
+<div class="votd">
+  <div class="vtop">
+    <span class="vbadge">&#9733; VERSE OF THE DAY</span>
+    <button class="vshr" onclick="shareVOTD()" title="Share">&#128279;</button>
+  </div>
+  <blockquote class="ven" id="votd-en">"For God so loved the world, that He gave His only begotten Son."</blockquote>
+  <div class="vta" id="votd-ta">"தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார்..."</div>
+  <cite class="vref" id="votd-ref">— John 3:16</cite>
+  <div class="vacts">
+    <button class="vab gd" onclick="playVOTD('en')">&#9654; English</button>
+    <button class="vab gd" onclick="playVOTD('ta')">&#9654; Tamil</button>
+    <button class="vab" onclick="genVOTDImage()">&#128247; Image</button>
+    <button class="vab" onclick="copyVOTD()">&#128203; Copy</button>
+    <button class="vab" id="votd-ta-toggle" onclick="toggleVOTDTamil()">&#127470;&#127475; Show Tamil</button>
+  </div>
+</div>
+
+<div class="bg">
+
+<!-- SIDEBAR -->
+<div class="sb">
+  <div class="sbl">Language</div>
+  <div class="lt-wrap">
+    <button class="ltb on" id="btn-en" onclick="setLang('en')">&#127468;&#127463; English</button>
+    <button class="ltb" id="btn-ta" onclick="setLang('ta')">&#127470;&#127475; Tamil</button>
+  </div>
+
+  <div class="sbl">Select Passage</div>
+  <select class="bsel" id="book-sel" onchange="onBook()"><option value="">Choose a book...</option></select>
+  <select class="bsel" id="ch-sel" onchange="onCh()" disabled><option value="">Chapter</option></select>
+  <button class="gobtn" id="gobtn" onclick="loadCh()">Read Chapter</button>
+
+  <div class="sdiv"></div>
+  <div class="sbl">Font Size</div>
+  <div class="fszr">
+    <button class="fsb" onclick="chFont(-1)">A&#8722;</button>
+    <span id="fszv">16px</span>
+    <button class="fsb" onclick="chFont(1)">A+</button>
+    <button class="fsb" onclick="chFont(0)" style="font-size:10px;padding:5px 7px">Reset</button>
+  </div>
+
+  <div class="sdiv"></div>
+  <div class="sbl">Quick Actions</div>
+  <div class="qa">
+    <button class="qab" id="qa-topics" onclick="togPanel('topics')"><span class="qai">&#127993;</span><div class="qal">Topics</div></button>
+    <button class="qab" id="qa-plan" onclick="togPanel('plan')"><span class="qai">&#128197;</span><div class="qal">Plan</div></button>
+    <button class="qab" id="qa-bm" onclick="togPanel('bm')"><span class="qai">&#9829;</span><div class="qal">Saved</div></button>
+    <button class="qab" id="qa-img" onclick="togPanel('img')"><span class="qai">&#128247;</span><div class="qal">Image</div></button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="bmain">
+
+  <!-- Search -->
+  <div class="sr">
+    <input class="si" id="sinput" type="text" placeholder="Search — John 3:16, faith, love..." onkeydown="if(event.key==='Enter')doSearch()">
+    <button class="sbtn" onclick="doSearch()">&#128269;</button>
+  </div>
+
+  <!-- Topic Panel -->
+  <div class="bpanel" id="panel-topics">
+    <div class="ptitle">Browse by topic</div>
+    <div class="tpills">
+      <button class="tp" onclick="showTopic(this,'faith')">Faith</button>
+      <button class="tp" onclick="showTopic(this,'prayer')">Prayer</button>
+      <button class="tp" onclick="showTopic(this,'love')">Love</button>
+      <button class="tp" onclick="showTopic(this,'peace')">Peace</button>
+      <button class="tp" onclick="showTopic(this,'healing')">Healing</button>
+      <button class="tp" onclick="showTopic(this,'salvation')">Salvation</button>
+      <button class="tp" onclick="showTopic(this,'strength')">Strength</button>
+      <button class="tp" onclick="showTopic(this,'family')">Family</button>
+      <button class="tp" onclick="showTopic(this,'hope')">Hope</button>
+      <button class="tp" onclick="showTopic(this,'worship')">Worship</button>
+    </div>
+    <div id="topic-res"></div>
+  </div>
+
+  <!-- Reading Plan Panel -->
+  <div class="bpanel" id="panel-plan">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div class="ptitle" style="margin:0">7-Day Reading Plan</div>
+      <span id="ppct" style="font-size:11px;color:var(--mt)">0/7</span>
+    </div>
+    <div class="pbar"><div class="pfill" id="pfill" style="width:0"></div></div>
+    <div id="pdays"></div>
+    <button onclick="resetPlan()" style="margin-top:10px;border:1px solid var(--bd);border-radius:var(--r);padding:6px 14px;color:var(--mt);font-size:11px;background:transparent">Reset</button>
+  </div>
+
+  <!-- Bookmarks Panel -->
+  <div class="bpanel" id="panel-bm">
+    <div class="ptitle">&#9829; Saved Verses</div>
+    <div id="bmlist"></div>
+  </div>
+
+  <!-- Image Generator Panel -->
+  <div class="bpanel" id="panel-img">
+    <div class="ptitle">&#128247; Verse Image Generator</div>
+
+    <div class="igsec">Size / Ratio</div>
+    <div class="szrow">
+      <button class="szb on" data-sz="9:16" onclick="setSz(this,'9:16')">9:16<span>Story</span></button>
+      <button class="szb" data-sz="3:4"  onclick="setSz(this,'3:4')">3:4<span>Portrait</span></button>
+      <button class="szb" data-sz="1:1"  onclick="setSz(this,'1:1')">1:1<span>Square</span></button>
+      <button class="szb" data-sz="16:9" onclick="setSz(this,'16:9')">16:9<span>Wide</span></button>
     </div>
 
-    <div class="b-grid">
+    <div class="igsec">Background Colour</div>
+    <div class="bgrow" id="bgrow">
+      <div class="bgsw on" data-bg="#080c10" style="background:#080c10" title="Dark" onclick="setBG(this,'#080c10')"></div>
+      <div class="bgsw" data-bg="#0b2545" style="background:#0b2545" title="Navy" onclick="setBG(this,'#0b2545')"></div>
+      <div class="bgsw" data-bg="#1a0b2e" style="background:#1a0b2e" title="Purple" onclick="setBG(this,'#1a0b2e')"></div>
+      <div class="bgsw" data-bg="#0f2d1a" style="background:#0f2d1a" title="Forest" onclick="setBG(this,'#0f2d1a')"></div>
+      <div class="bgsw" data-bg="#2d0f0f" style="background:#2d0f0f" title="Maroon" onclick="setBG(this,'#2d0f0f')"></div>
+      <div class="bgsw" data-bg="#fdf6ec" style="background:#fdf6ec;border:1px solid rgba(0,0,0,.1)" title="Cream" onclick="setBG(this,'#fdf6ec')"></div>
+      <div class="bgsw" data-bg="#ffffff" style="background:#fff;border:1px solid rgba(0,0,0,.1)" title="White" onclick="setBG(this,'#ffffff')"></div>
+      <div class="bgsw" data-bg="#1c1409" style="background:#1c1409" title="Brown" onclick="setBG(this,'#1c1409')"></div>
+    </div>
 
-      <!-- SIDEBAR -->
-      <div class="b-sidebar">
+    <div class="igsec">Text Colour</div>
+    <div class="tcrow" id="tcrow">
+      <button class="tcb on" data-tc="#f5a623" style="background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.4);color:#f5a623" onclick="setTC(this,'#f5a623')">&#9733; Gold</button>
+      <button class="tcb" data-tc="#c0c0c0" style="background:rgba(192,192,192,.1);border-color:rgba(192,192,192,.3);color:#c0c0c0" onclick="setTC(this,'#c0c0c0')">&#9733; Silver</button>
+      <button class="tcb" data-tc="#ffffff" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff" onclick="setTC(this,'#ffffff')">White</button>
+      <button class="tcb" data-tc="#111111" style="background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.2);color:#111" onclick="setTC(this,'#111111')">Black</button>
+    </div>
 
-        <!-- Lang -->
-        <div class="sb-label">Language</div>
-        <div class="lang-toggle">
-          <button class="lang-btn active" id="btn-en" onclick="setLang('en')">&#127468;&#127463; English</button>
-          <button class="lang-btn" id="btn-ta" onclick="setLang('ta')">&#127470;&#127475; Tamil</button>
-        </div>
+    <div class="igsec">Verse to use</div>
+    <select class="bsel" id="img-vsel" onchange="drawIG()"></select>
+    <button onclick="useCurrentVerse()" style="width:100%;border:1px solid var(--bd);border-radius:var(--r);padding:8px;color:var(--mt);font-size:12px;background:transparent;margin-bottom:10px">Use highlighted / current verse</button>
 
-        <!-- Book / Chapter -->
-        <div class="sb-label">Select passage</div>
-        <select class="b-sel" id="book-select" onchange="onBookChange()">
-          <option value="">Choose a book...</option>
-        </select>
-        <select class="b-sel" id="chapter-select" onchange="onChapterChange()" disabled>
-          <option value="">Chapter</option>
-        </select>
-        <button class="go-btn" onclick="loadChapter()" id="load-btn" style="display:none">Read Chapter</button>
+    <div class="igsec">Preview</div>
+    <div class="igprev"><canvas id="igcv"></canvas></div>
 
-        <div class="sb-divider"></div>
-
-        <!-- Font Size -->
-        <div class="sb-label">Font size</div>
-        <div class="fsz-row">
-          <button class="fsz-btn" onclick="changeFont(-1)">A&#8722;</button>
-          <span id="fsz-val">16px</span>
-          <button class="fsz-btn" onclick="changeFont(1)">A+</button>
-          <button class="fsz-btn" onclick="changeFont(0)" style="font-size:11px">Reset</button>
-        </div>
-
-        <div class="sb-divider"></div>
-
-        <!-- Feature Panels -->
-        <div class="sb-label">Features</div>
-        <div class="panel-btns">
-          <button class="p-btn" id="btn-topics"    onclick="togglePanel('topics')">&#127993; Topic Search</button>
-          <button class="p-btn" id="btn-bookmarks" onclick="togglePanel('bookmarks')">&#9829; Saved Verses</button>
-          <button class="p-btn" id="btn-plan"      onclick="togglePanel('plan')">&#128197; Reading Plan</button>
-          <button class="p-btn" id="btn-image"     onclick="togglePanel('image')">&#128247; Verse Image</button>
-        </div>
-
-      </div>
-
-      <!-- MAIN CONTENT -->
-      <div class="b-main">
-
-        <!-- Search -->
-        <div class="search-row">
-          <input class="s-input" id="search-input" type="text"
-            placeholder="Search any verse or reference e.g. John 3:16 or faith..."
-            onkeydown="if(event.key==='Enter')searchBible()">
-          <button class="s-btn" onclick="searchBible()">&#128269;</button>
-        </div>
-
-        <!-- Topic Panel -->
-        <div class="b-panel" id="panel-topics">
-          <div class="panel-ttl">Browse by topic</div>
-          <div class="t-pills">
-            <button class="t-pill" onclick="showTopic(this,'faith')">Faith</button>
-            <button class="t-pill" onclick="showTopic(this,'prayer')">Prayer</button>
-            <button class="t-pill" onclick="showTopic(this,'love')">Love</button>
-            <button class="t-pill" onclick="showTopic(this,'peace')">Peace</button>
-            <button class="t-pill" onclick="showTopic(this,'healing')">Healing</button>
-            <button class="t-pill" onclick="showTopic(this,'salvation')">Salvation</button>
-            <button class="t-pill" onclick="showTopic(this,'strength')">Strength</button>
-            <button class="t-pill" onclick="showTopic(this,'family')">Family</button>
-            <button class="t-pill" onclick="showTopic(this,'hope')">Hope</button>
-            <button class="t-pill" onclick="showTopic(this,'worship')">Worship</button>
-          </div>
-          <div id="topic-results"></div>
-        </div>
-
-        <!-- Bookmarks Panel -->
-        <div class="b-panel" id="panel-bookmarks">
-          <div class="panel-ttl">&#9829; Saved Verses</div>
-          <div id="bm-list"></div>
-        </div>
-
-        <!-- Reading Plan Panel -->
-        <div class="b-panel" id="panel-plan">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-            <div class="panel-ttl" style="margin:0">7-Day Reading Plan</div>
-            <span id="plan-pct" style="font-size:11px;color:var(--muted)">0 / 7</span>
-          </div>
-          <div class="plan-bar"><div class="plan-fill" id="plan-fill" style="width:0%"></div></div>
-          <div id="plan-days"></div>
-          <button onclick="resetPlan()" style="margin-top:10px;background:transparent;border:1px solid var(--border);border-radius:var(--r);padding:6px 14px;color:var(--muted);font-size:11px">Reset plan</button>
-        </div>
-
-        <!-- Image Panel -->
-        <div class="b-panel" id="panel-image">
-          <div class="panel-ttl">&#128247; Verse Image Generator</div>
-          <div class="img-row">
-            <select class="img-sel" id="img-verse-sel" onchange="drawCanvas()"></select>
-            <select class="img-sel" id="img-theme-sel" onchange="drawCanvas()">
-              <option value="dark">Dark Gold</option>
-              <option value="navy">Navy Blue</option>
-              <option value="warm">Warm Cream</option>
-              <option value="purple">Royal Purple</option>
-            </select>
-          </div>
-          <div class="img-row">
-            <button class="p-btn" onclick="useCurrentVerse()" style="flex:1;justify-content:center">Use current verse</button>
-          </div>
-          <div class="img-preview"><canvas id="verse-canvas" width="600" height="320"></canvas></div>
-          <button class="img-dl" onclick="downloadImg()">&#8595; Download Image</button>
-        </div>
-
-        <!-- Tamil offline info -->
-        <div class="ta-info" id="tamil-info">
-          <strong style="color:var(--gold)">&#128214; Tamil offline chapters:</strong>
-          John (1&ndash;6, 10&ndash;17, 20), Psalms (1, 22&ndash;23, 27, 46, 51, 91, 121),
-          Matt (5, 6, 11, 28), Acts (1&ndash;2), Romans (3, 5, 8, 10, 12),
-          1 Cor 13, Phil 4, Isa (40, 43, 53), Gen 1, Rev (21&ndash;22).
-          Other chapters load from internet.
-        </div>
-
-        <!-- Audio Bar -->
-        <div class="audio-bar" id="audio-bar" style="display:none">
-          <button class="aud-play" id="aud-play-btn" onclick="togglePlayPause()">
-            <svg id="play-icon"  width="16" height="16" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg>
-            <svg id="pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="#080c10" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-          </button>
-          <div class="aud-info">
-            <div class="aud-title"  id="aud-title">Ready</div>
-            <div class="aud-status" id="aud-status">Tap any verse to listen</div>
-          </div>
-          <select class="spd-sel" id="spd-sel" onchange="changeSpeed()">
-            <option value="0.75">0.75x</option>
-            <option value="1" selected>1x</option>
-            <option value="1.25">1.25x</option>
-            <option value="1.5">1.5x</option>
-          </select>
-          <button class="aud-stop" onclick="stopAudio()">&#9632; Stop</button>
-        </div>
-
-        <!-- Chapter Bar -->
-        <div class="chapter-bar" id="chapter-bar" style="display:none">
-          <div class="ch-title" id="ch-title"></div>
-          <div class="ch-nav">
-            <button class="ch-btn" id="prev-btn" onclick="prevChapter()">&#8592; Prev</button>
-            <button class="ch-btn gold" onclick="playAllChapter()">&#9654; Play All</button>
-            <button class="ch-btn" id="next-btn" onclick="nextChapter()">Next &#8594;</button>
-          </div>
-        </div>
-
-        <!-- Bible Content -->
-        <div id="bible-content">
-          <div class="b-loading" style="padding:80px 20px">
-            <div style="font-size:2.5rem;margin-bottom:14px">&#128214;</div>
-            <p style="font-size:1rem;margin-bottom:6px;color:rgba(255,255,255,.5)">Select a book and chapter to begin reading</p>
-            <p style="font-size:.85rem;color:var(--muted)">or search for any verse above</p>
-          </div>
-        </div>
-
-      </div><!-- .b-main -->
-    </div><!-- .b-grid -->
+    <div class="igdlrow">
+      <button class="igdl" onclick="dlIG('png')">&#8595; PNG</button>
+      <button class="igdl" onclick="dlIG('jpg')">&#8595; JPG</button>
+      <button class="igdl out" onclick="shareIG()">&#128279; Share</button>
+    </div>
   </div>
-</div>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <p class="footer-copy">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</p>
-    <div class="footer-links">
+  <!-- Tamil Info -->
+  <div class="tainfo" id="tainfo">
+    <strong style="color:var(--gd)">&#128214; Tamil offline:</strong>
+    John (1&ndash;6,10&ndash;17,20), Psalms (1,22,23,27,46,51,91,121), Matt (5,6,11,28),
+    Acts (1,2), Romans (3,5,8,10,12), 1Cor 13, Phil 4, Isa (40,43,53), Gen 1, Rev (21,22).
+    Other chapters load from internet.
+  </div>
+
+  <!-- Audio Bar -->
+  <div class="abar" id="abar" style="display:none">
+    <button class="ap" id="abtn" onclick="togPlay()">
+      <svg id="plic" width="14" height="14" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="puic" width="14" height="14" viewBox="0 0 24 24" fill="#080c10" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+    <div class="ai">
+      <div class="atitle" id="atitle">Ready</div>
+      <div class="astat" id="astat">Tap any verse to listen</div>
+    </div>
+    <select class="aspd" id="aspd" onchange="chSpd()">
+      <option value="0.75">0.75x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+    </select>
+    <button class="astop" onclick="stopAud()">&#9632; Stop</button>
+  </div>
+
+  <!-- Chapter Bar -->
+  <div class="chbar" id="chbar" style="display:none">
+    <div class="chtitle" id="chtitle"></div>
+    <div class="chnav">
+      <button class="chnb" id="prevb" onclick="prevCh()">&#8592; Prev</button>
+      <button class="chnb gd" onclick="playAll()">&#9654; Play All</button>
+      <button class="chnb" id="nextb" onclick="nextCh()">Next &#8594;</button>
+    </div>
+  </div>
+
+  <!-- Bible Content -->
+  <div id="bcontent">
+    <div class="bload" style="padding:80px 20px">
+      <div style="font-size:2.5rem;margin-bottom:14px">&#128214;</div>
+      <p style="font-size:1rem;margin-bottom:5px;color:rgba(255,255,255,.5)">Select a book and chapter to begin</p>
+      <p style="font-size:.85rem;color:var(--mt)">or search for any verse above</p>
+    </div>
+  </div>
+
+</div><!-- bmain -->
+</div><!-- bg -->
+</div><!-- w -->
+</div><!-- bw -->
+
+<footer>
+  <div class="w fi">
+    <p class="fc">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</p>
+    <div class="fl">
       <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">YouTube</a>
       <a href="https://www.facebook.com/ENJCChurch" target="_blank">Facebook</a>
       <a href="https://www.instagram.com/enjcchurch" target="_blank">Instagram</a>
@@ -481,16 +513,16 @@ header{background:rgba(8,12,16,.97);border-bottom:1px solid var(--border);positi
   </div>
 </footer>
 
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener">
+<a href="https://wa.me/919444345102" class="wa" target="_blank" rel="noopener">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 
-<nav class="bottom-nav">
-  <a href="index.html" class="bn-item"><span class="bn-icon">&#127968;</span><span class="bn-label">Home</span></a>
-  <a href="media.html" class="bn-item"><span class="bn-icon">&#128250;</span><span class="bn-label">Media</span></a>
-  <div class="bn-cw"><a href="ministries.html" class="bn-c" aria-label="Ministries">&#10013;</a></div>
-  <a href="events.html" class="bn-item"><span class="bn-icon">&#128197;</span><span class="bn-label">Events</span></a>
-  <a href="bible.html" class="bn-item active"><span class="bn-icon">&#128214;</span><span class="bn-label" style="color:var(--gold)">Bible</span></a>
+<nav class="bnav">
+  <a href="index.html" class="bni"><span class="bnic">&#127968;</span><span class="bnl">Home</span></a>
+  <a href="media.html" class="bni"><span class="bnic">&#128250;</span><span class="bnl">Media</span></a>
+  <div class="bncw"><a href="ministries.html" class="bnc" aria-label="Ministries">&#10013;</a></div>
+  <a href="events.html" class="bni"><span class="bnic">&#128197;</span><span class="bnl">Events</span></a>
+  <a href="bible.html" class="bni act"><span class="bnic">&#128214;</span><span class="bnl" style="color:var(--gd)">Bible</span></a>
 </nav>
 
 <script src="js/bible.js"></script>
