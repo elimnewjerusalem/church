@@ -223,7 +223,7 @@ function copyVOTD(){
   toast('&#128203; நகலெடுக்கப்பட்டது!');
 }
 
-function genVOTDImage(){
+function genVOTDImg(){
   const v=window._vd;if(!v)return;
   S.customVerse={ta:v.ta,tref:v.tref,en:v.en,ref:v.ref};
   togPanel('img');setTimeout(drawIG,120);
@@ -625,7 +625,7 @@ function useVerseForImg(taRef,taText,enRef,enText){
 function togHL(vnum,i){
   const k=S.book+S.ch;if(!S.hl[k])S.hl[k]={};
   const el=document.getElementById('vi'+i);
-  const btn=el?.querySelectorAll('.vbt')[1];
+  const btn=el?.querySelectorAll('.vtbtn')[1];
   if(S.hl[k][vnum]){delete S.hl[k][vnum];el?.classList.remove('vhl');btn?.classList.remove('hl');toast(S.lang==='ta'?'குறிப்பு நீக்கப்பட்டது':'Highlight removed');}
   else{S.hl[k][vnum]=1;el?.classList.add('vhl');btn?.classList.add('hl');toast(S.lang==='ta'?'&#9679; குறிப்பிடப்பட்டது':'&#9679; Highlighted');}
   localStorage.setItem('enjc_hl',JSON.stringify(S.hl));
@@ -657,14 +657,13 @@ function renderBmList(){
     const sr=(b.refTA||b.ref).replace(/'/g,"\\'");const st=b.text.replace(/'/g,"\\'");
     const srEN=b.ref.replace(/'/g,"\\'");
     return `<div class="vi" style="margin-bottom:6px">
-<div class="vb"><div class="vtag">${b.refTA||b.ref}</div>
-<span class="vtxt ta-font" style="font-size:${S.fs}px">${b.text}</span>
-${b.ref!==b.refTA&&b.ref?`<div class="vtag" style="margin-top:5px;opacity:.6">${b.ref}</div>`:''}
-</div>
+<div class="vi-inner"><div class="vbody"><div class="vtag">${b.refTA||b.ref}</div>
+<span class="vtxt vtamil" style="font-size:${S.fs}px">${b.text}</span>
+${b.ref!==b.refTA&&b.ref?`<div class="vtag" style="margin-top:5px;opacity:.6">${b.ref}</div>`:''}</div></div>
 <div class="vacts" style="opacity:1">
-<button class="vbt" onclick="cpV('${sr}','${st}')">&#128203;</button>
-<button class="vbt" onclick="shrV('${srEN}','${st}','${sr}')">&#128279;</button>
-<button class="vbt" onclick="rmBM(${i})" style="color:#f87171">&#10005;</button>
+<button class="vtbtn" onclick="cpV('${sr}','${st}'); event.stopPropagation();">&#128203;</button>
+<button class="vtbtn" onclick="shrV('${srEN}','${st}','${sr}'); event.stopPropagation();">&#128279;</button>
+<button class="vtbtn" onclick="rmBM(${i}); event.stopPropagation();" style="color:#f87171">&#10005;</button>
 </div></div>`;
   }).join('');
 }
@@ -677,7 +676,7 @@ function chFont(d){
   S.fs=d===0?18:Math.min(30,Math.max(13,S.fs+d*2));
   localStorage.setItem('enjc_fs',S.fs);
   document.getElementById('fszv').textContent=S.fs+'px';
-  document.querySelectorAll('.vtxt').forEach(el=>el.style.fontSize=S.fs+'px');
+  document.querySelectorAll('.vtxt, .valt').forEach(el=>el.style.fontSize=S.fs+'px');
 }
 
 // ── PANEL TOGGLE ─────────────────────────────────────────────────
@@ -703,13 +702,13 @@ function showTopic(btn,topic){
     const sr=v.ref.replace(/'/g,"\\'");const st=v.text.replace(/'/g,"\\'");
     const srEN=(v.en||v.ref).replace(/'/g,"\\'");
     return `<div class="vi" style="margin-bottom:6px">
-<span class="vn">${i+1}</span>
-<div class="vb"><div class="vtag">${v.ref}${v.en?' | '+v.en:''}</div>
-<span class="vtxt ta-font" style="font-size:${S.fs}px">${v.text}</span></div>
+<div class="vi-inner"><span class="vnum" style="padding:0;min-width:auto;font-size:.9em">${i+1}</span>
+<div class="vbody"><div class="vtag">${v.ref}${v.en?' | '+v.en:''}</div>
+<span class="vtxt vtamil" style="font-size:${S.fs}px">${v.text}</span></div></div>
 <div class="vacts" style="opacity:1">
-<button class="vbt" onclick="cpV('${sr}','${st}')">&#128203;</button>
-<button class="vbt" onclick="shrV('${srEN}','${st}','${sr}')">&#128279;</button>
-<button class="vbt" onclick="useVerseForImg('${sr}','${st}','${srEN}','')">&#128247;</button>
+<button class="vtbtn" onclick="cpV('${sr}','${st}'); event.stopPropagation();">&#128203;</button>
+<button class="vtbtn" onclick="shrV('${srEN}','${st}','${sr}'); event.stopPropagation();">&#128279;</button>
+<button class="vtbtn" onclick="useVerseForImg('${sr}','${st}','${srEN}',''); event.stopPropagation();">&#128247;</button>
 </div></div>`;
   }).join('')||'<div class="bempty">வசனங்கள் கிடைக்கவில்லை.</div>';
 }
@@ -726,8 +725,8 @@ function renderPlan(){
     const isDone=done.includes(i);
     return `<div class="pday${isDone?' done':''}" onclick="togPDay(${i})">
 <div class="pchk">${isDone?'&#10003;':''}</div>
-<div class="pinfo"><div class="plbl">${p.day}</div>
-<div class="pch">${p.ch} <span style="opacity:.5;font-size:.82em">\u2014 ${p.lbl}</span></div></div>
+<div class="pdinf"><div class="pdlbl">${p.day}</div>
+<div class="pdch">${p.ch} <span style="opacity:.5;font-size:.82em">\u2014 ${p.lbl}</span></div></div>
 <button class="pgo" onclick="event.stopPropagation();goPlan(${i})">படி &rarr;</button>
 </div>`;
   }).join('');
@@ -771,11 +770,11 @@ async function doSearch(){
         const ref=v.book_name+' '+v.chapter+':'+v.verse;
         const txt=v.text.replace(/\n/g,' ');
         const sr=ref.replace(/'/g,"\\'");const st=txt.replace(/'/g,"\\'");
-        return `<div class="vi"><span class="vn">&#9733;</span>
-<div class="vb"><div class="vtag">${ref}</div><span class="vtxt">${txt}</span></div>
+        return `<div class="vi"><div class="vi-inner"><span class="vnum">&#9733;</span>
+<div class="vbody"><div class="vtag">${ref}</div><span class="vtxt">${txt}</span></div></div>
 <div class="vacts" style="opacity:1">
-<button class="vbt" onclick="cpV('${sr}','${st}')">&#128203;</button>
-<button class="vbt" onclick="useVerseForImg('${sr}','${st}','${sr}','${st}')">&#128247;</button>
+<button class="vtbtn" onclick="cpV('${sr}','${st}'); event.stopPropagation();">&#128203;</button>
+<button class="vtbtn" onclick="useVerseForImg('${sr}','${st}','${sr}','${st}'); event.stopPropagation();">&#128247;</button>
 </div></div>`;
       }).join('')+'</div>');
   }catch(e){setHTML('<div class="berr">முடிவு இல்லை "'+q+'" \u2014 John 3:16 அல்லது faith என்று முயற்சிக்கவும்.</div>');}
@@ -786,7 +785,7 @@ const RATIO={'9:16':[1080,1920],'3:4':[900,1200],'1:1':[1080,1080],'16:9':[1920,
 
 function initIGVerses(){
   const verses=IGVERSES;
-  const sel=document.getElementById('img-vsel');if(!sel)return;
+  const sel=document.getElementById('igvsel');if(!sel)return;
   S.igVerses=verses;
   sel.innerHTML='';
   verses.forEach((v,i)=>{
@@ -811,7 +810,7 @@ function setTC(btn,tc){
   btn.classList.add('on');S.igTc=tc;drawIG();
 }
 
-function useCurrentVerse(){
+function useCurVerse(){
   if(!S.verses.length){toast(S.lang==='ta'?'முதலில் ஒரு அதிகாரம் தேர்வு செய்யுங்கள்':'Select a chapter first');return;}
   const hlk=S.book+S.ch;const hlm=S.hl[hlk]||{};
   const nums=Object.keys(hlm).map(Number);
@@ -826,7 +825,7 @@ function useCurrentVerse(){
 
 function getIGVerse(){
   if(S.customVerse){const v=S.customVerse;S.customVerse=null;return v;}
-  const idx=parseInt(document.getElementById('img-vsel')?.value||'0');
+  const idx=parseInt(document.getElementById('igvsel')?.value||'0');
   return (S.igVerses||IGVERSES)[idx]||IGVERSES[0];
 }
 
