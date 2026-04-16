@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYP
+          <button class="qa-btn" id="qa-quiz" onclick="togPanel('quiz');if(!document.getElementById('quiz-body').innerHTML)startQuiz()">
+            <span class="qa-icon">&#129504;</span><div class="qa-label">Quiz</div>
+          </button>
+          <button class="qa-btn" id="qa-tracker" onclick="togPanel('tracker');renderTracker()">
+            <span class="qa-icon">&#128202;</span><div class="qa-label" id="tracker-pct">Track</div>
+          </button>E html>
 <html lang="ta">
 <head>
 <meta charset="UTF-8">
@@ -512,6 +518,7 @@ body.light{--bg:#ffffff;--bg2:#f5f5f5;--bg3:#eeeeee;--tx:#111;--tx2:rgba(17,17,1
         </button>
         <button class="v-pill" onclick="genVOTDImage()">&#128247; Image</button>
         <button class="v-pill" onclick="copyVOTD()">&#128203; Copy</button>
+        <button class="v-pill" onclick="requestPushNotification()">&#128276; Notify</button>
         <button class="v-pill" onclick="shareVOTD()">&#128279; Share</button>
       </div>
     </div>
@@ -587,6 +594,14 @@ body.light{--bg:#ffffff;--bg2:#f5f5f5;--bg3:#eeeeee;--tx:#111;--tx2:rgba(17,17,1
         </div>
       </div>
 
+      <!-- Cache info -->
+      <div style="margin-bottom:14px;background:var(--bg3);border-radius:var(--r);padding:10px 12px">
+        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Offline Cache</div>
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px" id="cache-info">Loading...</div>
+        <button onclick="document.getElementById('cache-info').textContent=getCacheInfo()" style="background:transparent;border:1px solid var(--bd);border-radius:99px;padding:4px 12px;font-size:10px;color:var(--tx3);font-family:var(--sans);cursor:pointer;margin-right:6px">Refresh</button>
+        <button onclick="clearTaCache();document.getElementById('cache-info').textContent=getCacheInfo()" style="background:transparent;border:1px solid rgba(248,113,113,.3);border-radius:99px;padding:4px 12px;font-size:10px;color:#fca5a5;font-family:var(--sans);cursor:pointer">Clear</button>
+      </div>
+
       <div>
         <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Line Spacing</div>
         <div style="display:flex;gap:6px">
@@ -595,6 +610,18 @@ body.light{--bg:#ffffff;--bg2:#f5f5f5;--bg3:#eeeeee;--tx:#111;--tx2:rgba(17,17,1
           <button onclick="setSpacing(2.4)" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Wide</button>
         </div>
       </div>
+    </div>
+
+    <!-- Quiz Panel -->
+    <div class="feat-panel" id="panel-quiz">
+      <div class="panel-head">&#129504; Bible Quiz</div>
+      <div id="quiz-body"></div>
+    </div>
+
+    <!-- Tracker Panel -->
+    <div class="feat-panel" id="panel-tracker">
+      <div class="panel-head">&#128202; Reading Progress</div>
+      <div id="tracker-body"></div>
     </div>
     <div class="feat-panel" id="panel-img">
       <div class="panel-head">&#128247; Verse Image Generator</div>

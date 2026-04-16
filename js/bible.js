@@ -326,7 +326,18 @@ async function loadEN(){
 
 async function loadTA(){
   const key=S.bookNum+'_'+S.ch;
+
+  // Layer 1: embedded offline DB
   if(S.tamilDB[key])return S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
+
+  // Layer 2: localStorage cache (auto-offline after first read)
+  const ck='enjc_ta_'+key;
+  try{
+    const cached=localStorage.getItem(ck);
+    if(cached){const p=JSON.parse(cached);if(p&&p.length)return p;}
+  }catch(e){}
+
+  // Layer 3: fetch from API + cache for offline
   for(const url of[
     C.taAPI1+S.bookNum+'/'+S.ch+'/',
     C.taAPI2+S.bookNum+'/'+S.ch+'/',
@@ -335,11 +346,32 @@ async function loadTA(){
     try{
       const r=await fetchT(url);if(!r.ok)continue;
       const d=await r.json();
-      if(Array.isArray(d)&&d.length)return d.map(v=>({num:v.verse,text:v.text}));
-      if(d.verses?.length)return d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
+      let verses=null;
+      if(Array.isArray(d)&&d.length)verses=d.map(v=>({num:v.verse,text:v.text}));
+      else if(d.verses?.length)verses=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
+      if(verses&&verses.length){
+        try{
+          localStorage.setItem(ck,JSON.stringify(verses));
+          const n=Object.keys(localStorage).filter(k=>k.startsWith('enjc_ta_')).length;
+          if(n%10===0)toast('\u{1F4D6} '+n+' chapters offline saved');
+        }catch(e){}
+        return verses;
+      }
     }catch(e){continue;}
   }
-  throw new Error('இந்த அதிகாரம் offline-ல் இல்லை. இணைய இணைப்பை சரிபாருங்கள்.\nOffline: யோவான் 1-6,10-17,20 | சங்கீதம் 23 | மத்தேயு 5 | ரோமர் 8 | பிலிப்பியர் 4');
+  throw new Error('No internet. Previously read chapters available offline.');
+}
+
+function clearTaCache(){
+  const keys=Object.keys(localStorage).filter(k=>k.startsWith('enjc_ta_'));
+  keys.forEach(k=>localStorage.removeItem(k));
+  toast('Cache cleared: '+keys.length+' chapters');
+}
+
+function getCacheInfo(){
+  const keys=Object.keys(localStorage).filter(k=>k.startsWith('enjc_ta_'));
+  const kb=Math.round(keys.reduce((a,k)=>{try{return a+(localStorage.getItem(k)||'').length;}catch(e){return a;}},0)/1024);
+  return keys.length+' chapters cached ('+kb+' KB)';
 }
 
 async function fetchT(url){
@@ -363,6 +395,7 @@ function updateChUI(){
   document.getElementById('nextb').disabled=S.ch>=S.totalCh;
   document.getElementById('ch-sel').value=S.ch;
   document.getElementById('abar').style.display='flex';
+  setTimeout(markChapterRead, 500);
   document.getElementById('apstat').textContent='வசனத்தை தொட்டு கேளுங்கள்';
 }
 
@@ -718,7 +751,7 @@ function chFont(d){
 
 // ── PANEL TOGGLE ─────────────────────────────────────────────────
 function togPanel(id,btn){
-  ['topics','plan','bm','img','settings'].forEach(p=>{
+  ['topics','plan','bm','img','settings','quiz','tracker'].forEach(p=>{
     const el=document.getElementById('panel-'+p);
     const qa=document.getElementById('qa-'+p);
     const open=p===id&&!el.classList.contains('open');
@@ -1297,6 +1330,217 @@ function setIGTemplate(name){
     if(lbl)lbl.style.color=isOn?'var(--gd)':'rgba(255,255,255,.35)';
   });
   drawIG();
+}
+
+
+// ── FCBH SETUP GUIDE ─────────────────────────────────────────────
+function checkFCBH(){
+  if(FCBH_KEY){
+    toast('FCBH audio active! Real human voice.');
+    return true;
+  }
+  toast('FCBH key missing. Register free at 4.dbt.io then paste key in bible.js line 8');
+  return false;
+}
+
+// ── WEB PUSH NOTIFICATION ─────────────────────────────────────────
+const PUSH_VOTD_KEY='enjc_push_enabled';
+
+async function requestPushNotification(){
+  if(!('Notification' in window)){
+    toast('This browser does not support notifications');
+    return;
+  }
+  if(Notification.permission==='granted'){
+    scheduleDailyVerse();
+    toast('Notifications already enabled!');
+    return;
+  }
+  if(Notification.permission==='denied'){
+    toast('Notifications blocked. Enable in browser settings.');
+    return;
+  }
+  const perm=await Notification.requestPermission();
+  if(perm==='granted'){
+    localStorage.setItem(PUSH_VOTD_KEY,'1');
+    scheduleDailyVerse();
+    toast('Notifications enabled! Daily verse every morning.');
+    showTestNotification();
+  }else{
+    toast('Notification permission denied');
+  }
+}
+
+function showTestNotification(){
+  const pool=VOTD;
+  const v=pool[new Date().getDay()%pool.length];
+  if(Notification.permission==='granted'){
+    new Notification('ENJC Bible - Today\'s Verse', {
+      body:(v.tref||v.ref)+'\n'+(v.ta||v.en),
+      icon:'/church/images/icon.png',
+      tag:'enjc-votd'
+    });
+  }
+}
+
+function scheduleDailyVerse(){
+  // Check every hour if it's 7am and notification not sent today
+  const NOTIF_KEY='enjc_notif_last';
+  function check(){
+    const now=new Date();
+    const today=now.toDateString();
+    const last=localStorage.getItem(NOTIF_KEY);
+    if(now.getHours()>=7&&last!==today&&Notification.permission==='granted'){
+      localStorage.setItem(NOTIF_KEY,today);
+      const pool=VOTD;
+      const v=pool[now.getDay()%pool.length];
+      new Notification('ENJC Bible - ' + (v.tref||v.ref), {
+        body:(v.ta||v.en).substring(0,100)+'...',
+        icon:'/church/images/icon.png',
+        tag:'enjc-votd'
+      });
+    }
+  }
+  check();
+  setInterval(check,60*60*1000); // check every hour
+}
+
+// Auto-schedule if previously enabled
+if(localStorage.getItem(PUSH_VOTD_KEY)==='1'&&Notification.permission==='granted'){
+  scheduleDailyVerse();
+}
+
+// ── BIBLE QUIZ ────────────────────────────────────────────────────
+const QUIZ_QUESTIONS=[
+  {q:"யோவான் 3:16 இல் தேவன் உலகத்தில் என்ன செய்தார்?",a:1,opts:["ஆக்கினை தீர்த்தார்","அன்பு கூர்ந்தார்","நியாயந்தீர்த்தார்","மறந்தார்"],ref:"யோவான் 3:16"},
+  {q:"கர்த்தர் என் ___; எனக்கு குறைவுண்டாவதில்லை. (சங்கீதம் 23:1)",a:0,opts:["மேய்ப்பர்","தந்தை","ராஜா","நண்பர்"],ref:"சங்கீதம் 23:1"},
+  {q:"பிலிப்பியர் 4:13 — என்னை ___ பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்.",a:2,opts:["எப்போதும்","மட்டும்","","அன்பாய்"],ref:"பிலிப்பியர் 4:13"},
+  {q:"எரேமியா 29:11 — என்னால் நினைக்கப்படுகிற நினைவுகள் எவ்வகையானவை?",a:0,opts:["சமாதானம்","தீமை","நியாயம்","கோபம்"],ref:"எரேமியா 29:11"},
+  {q:"யோசுவா 1:9 — திடமனதாயிரு, ___; கர்த்தர் உன்னோடிருக்கிறார்.",a:1,opts:["பெரியவனாயிரு","தைரியமாயிரு","சந்தோஷமாயிரு","நம்பிக்கையாயிரு"],ref:"யோசுவா 1:9"},
+  {q:"ஏசாயா 40:31 — கர்த்தருக்கு காத்திருக்கிறவர்கள் என்ன அடைவார்கள்?",a:2,opts:["ஆசீர்வாதம்","சமாதானம்","புதுப்பெலன்","ஜீவன்"],ref:"ஏசாயா 40:31"},
+  {q:"மத்தேயு 11:28 — வருத்தப்பட்டு பாரஞ்சுமக்கிறவர்களே என்னிடத்தில் வாருங்கள்; நான் என்ன தருவேன்?",a:3,opts:["வாழ்க்கை","நம்பிக்கை","ஆசீர்வாதம்","இளைப்பாறுதல்"],ref:"மத்தேயு 11:28"},
+  {q:"1 கொரிந்தியர் 13:4 — அன்பு நீடிய ___ உள்ளது",a:0,opts:["பொறுமை","கோபம்","சந்தோஷம்","சக்தி"],ref:"1 கொரிந்தியர் 13:4"},
+  {q:"ரோமர் 8:28 — தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் எதற்கு ஏதுவாக நடக்கும்?",a:1,opts:["தீமைக்கு","நன்மைக்கு","ஆக்கினைக்கு","சோதனைக்கு"],ref:"ரோமர் 8:28"},
+  {q:"சங்கீதம் 46:1 — தேவன் நமக்கு அடைக்கலமும் ___ மாயிருக்கிறார்",a:2,opts:["சந்தோஷமு","அன்பு","பெலனு","நம்பிக்கையு"],ref:"சங்கீதம் 46:1"}
+];
+
+var _quizIdx=0, _quizScore=0, _quizActive=false;
+
+function startQuiz(){
+  _quizIdx=0;_quizScore=0;_quizActive=true;
+  _quizOrder=[...Array(QUIZ_QUESTIONS.length).keys()].sort(()=>Math.random()-.5).slice(0,10);
+  renderQuizQ();
+}
+
+var _quizOrder=[];
+
+function renderQuizQ(){
+  const el=document.getElementById('quiz-body');if(!el)return;
+  if(_quizIdx>=_quizOrder.length){
+    // Show result
+    const pct=Math.round(_quizScore/_quizOrder.length*100);
+    const msg=pct>=80?'மிகவும் நல்லது! Excellent!':pct>=60?'நல்லது! Good!':'இன்னும் படியுங்கள்! Keep studying!';
+    el.innerHTML=`<div style="text-align:center;padding:24px 16px">
+      <div style="font-size:3rem;margin-bottom:12px">${pct>=80?'🏆':pct>=60?'⭐':'📖'}</div>
+      <div style="font-size:1.4rem;font-weight:600;color:var(--gd);margin-bottom:6px">${_quizScore}/${_quizOrder.length}</div>
+      <div style="font-size:.95rem;color:var(--tx2);margin-bottom:20px">${msg}</div>
+      <button onclick="startQuiz()" style="background:var(--gd);color:var(--bg);border:none;border-radius:99px;padding:10px 24px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans)">மீண்டும் விளையாடு</button>
+    </div>`;
+    return;
+  }
+  const q=QUIZ_QUESTIONS[_quizOrder[_quizIdx]];
+  const num=_quizIdx+1;
+  el.innerHTML=`
+    <div style="padding:16px 18px;border-bottom:1px solid var(--bd)">
+      <div style="font-size:9px;color:var(--tx3);letter-spacing:1px;margin-bottom:8px">கேள்வி ${num}/${_quizOrder.length} · Score: ${_quizScore}</div>
+      <div style="font-size:14px;color:var(--tx);line-height:1.7;font-family:var(--tamil)">${q.q}</div>
+      <div style="font-size:9px;color:var(--gd);margin-top:5px">${q.ref}</div>
+    </div>
+    <div style="padding:12px 16px;display:flex;flex-direction:column;gap:7px">
+      ${q.opts.map((opt,i)=>`<button onclick="answerQ(${i})" style="background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:11px 14px;text-align:left;color:var(--tx);font-size:13px;font-family:var(--tamil);cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--gdb)'" onmouseout="this.style.borderColor='var(--bd)'">${String.fromCharCode(65+i)}. ${opt}</button>`).join('')}
+    </div>`;
+}
+
+function answerQ(i){
+  const q=QUIZ_QUESTIONS[_quizOrder[_quizIdx]];
+  const correct=i===q.a;
+  if(correct)_quizScore++;
+  const btns=document.getElementById('quiz-body').querySelectorAll('button');
+  btns.forEach((b,idx)=>{
+    b.disabled=true;
+    if(idx===q.a)b.style.background='rgba(76,175,80,.2)',b.style.borderColor='#4caf50',b.style.color='#4caf50';
+    else if(idx===i&&!correct)b.style.background='rgba(248,113,113,.15)',b.style.borderColor='#f87171',b.style.color='#f87171';
+  });
+  toast(correct?'✓ சரியான பதில்!':'✗ '+q.opts[q.a]+' சரியான பதில்');
+  setTimeout(()=>{_quizIdx++;renderQuizQ();},1500);
+}
+
+// ── CHAPTER READ TRACKER ─────────────────────────────────────────
+const TRACKER_KEY='enjc_read';
+
+function getReadChapters(){return JSON.parse(localStorage.getItem(TRACKER_KEY)||'{}');}
+function saveReadChapters(d){localStorage.setItem(TRACKER_KEY,JSON.stringify(d));}
+
+function markChapterRead(){
+  if(!S.book||!S.ch)return;
+  const d=getReadChapters();
+  if(!d[S.book])d[S.book]=[];
+  if(!d[S.book].includes(S.ch)){
+    d[S.book].push(S.ch);
+    saveReadChapters(d);
+    const total=BOOKS.find(b=>b.id===S.book)?.ch||1;
+    const pct=Math.round(d[S.book].length/total*100);
+    toast('\u2713 '+S.bookTaName+' \u0b85\u0ba4\u0bbf\u0b95\u0bbe\u0bb0\u0bae\u0bcd '+S.ch+' \u0baa\u0b9f\u0bbf\u0ba4\u0bcd\u0ba4\u0bc1 \u0bae\u0bc1\u0b9f\u0bbf\u0ba4\u0bcd\u0ba4\u0ba4\u0bc1 ('+pct+'%)');
+    initTrackerBadge();
+  }
+}
+
+function getReadStats(){
+  const d=getReadChapters();
+  let totalRead=0;
+  BOOKS.forEach(b=>{if(d[b.id])totalRead+=d[b.id].length;});
+  const totalChapters=1189;
+  return {read:totalRead,total:totalChapters,pct:Math.round(totalRead/totalChapters*100)};
+}
+
+function initTrackerBadge(){
+  const stats=getReadStats();
+  const el=document.getElementById('tracker-pct');
+  if(el)el.textContent=stats.pct+'%';
+}
+
+function renderTracker(){
+  const d=getReadChapters();
+  const el=document.getElementById('tracker-body');if(!el)return;
+  const stats=getReadStats();
+  el.innerHTML=`
+    <div style="text-align:center;padding:14px 0 10px">
+      <div style="font-size:2rem;font-weight:600;color:var(--gd)">${stats.pct}%</div>
+      <div style="font-size:11px;color:var(--tx3)">${stats.read} / ${stats.total} chapters read</div>
+      <div style="background:rgba(255,255,255,.07);border-radius:99px;height:4px;margin:10px 0">
+        <div style="height:4px;border-radius:99px;background:var(--gd);width:${stats.pct}%;transition:width .4s"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:5px;max-height:300px;overflow-y:auto">
+      ${BOOKS.map(b=>{
+        const read=(d[b.id]||[]).length;
+        const pct=Math.round(read/b.ch*100);
+        const color=pct===100?'var(--gd)':pct>0?'rgba(232,160,32,.5)':'var(--tx3)';
+        return `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--bd)">
+          <div style="font-size:12px;color:${color};min-width:18px">${pct===100?'✓':pct>0?'◑':'○'}</div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:var(--tx);font-family:var(--tamil)">${b.ta}</div>
+            <div style="background:rgba(255,255,255,.06);border-radius:99px;height:2px;margin-top:3px">
+              <div style="height:2px;border-radius:99px;background:${color};width:${pct}%"></div>
+            </div>
+          </div>
+          <div style="font-size:10px;color:${color};font-weight:600;min-width:32px;text-align:right">${read}/${b.ch}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <button onclick="markChapterRead()" style="width:100%;margin-top:10px;background:var(--gd);color:var(--bg);border:none;border-radius:99px;padding:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans)">\u2713 Mark This Chapter as Read</button>
+  `;
+  initTrackerBadge();
 }
 
 document.addEventListener('keydown',e=>{
