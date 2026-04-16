@@ -33,7 +33,9 @@ const S = {
   igVerses:[], customVerse:null,
   audEl:null, // HTML Audio element for FCBH
   playing:false, playAllM:false, pIdx:0,
-  showParallel:false, // show both Tamil + English side by side
+  showParallel:false,
+  _audioUnlocked:false,
+  _voicesLoaded:false,
   hlColor:'#f5c518',   // active highlight colour
   notes:JSON.parse(localStorage.getItem('enjc_notes')||'{}'), // verse notes
   theme:'dark',        // dark | sepia | light
@@ -159,14 +161,186 @@ const TOPICS={
 };
 
 // ── INIT ─────────────────────────────────────────────────────────
+
+// ── PANEL CONTENT GENERATORS ─────────────────────────────────────
+const PANEL_TITLES={
+  topics:'Topics',plan:'7-\u0ba8\u0bbe\u0bb3\u0bcd \u0ba4\u0bbf\u0b9f\u0bcd\u0b9f\u0bae\u0bcd',
+  bm:'\u2665 \u0b9a\u0bc7\u0bae\u0bbf\u0baa\u0bcd\u0baa\u0bc1',img:'\u0b87\u0bae\u0bc7\u0b9c\u0bcd \u0b9c\u0bc6\u0ba9\u0bb0\u0bc7\u0b9f\u0bcd\u0b9f\u0bb0\u0bcd',
+  settings:'\u0b85\u0bae\u0bc8\u0baa\u0bcd\u0baa\u0bc1\u0b95\u0bb3\u0bcd',quiz:'Bible Quiz',tracker:'\u0bb5\u0bbe\u0b9a\u0bbf\u0baa\u0bcd\u0baa\u0bc1 \u0baa\u0ba4\u0bbf\u0bb5\u0bc1'
+};
+
+function openPanel(id){
+  // Deactivate all QA buttons
+  document.querySelectorAll('.feat-btn,.qa-btn').forEach(b=>b.classList.remove('on','act'));
+  const qb=document.getElementById('qa-'+id)||document.getElementById('feat-'+id);
+  if(qb)qb.classList.add('on');
+
+  document.getElementById('sp-title').textContent=PANEL_TITLES[id]||id;
+  const body=document.getElementById('sp-body');
+  body.innerHTML='<div style="text-align:center;padding:40px 0"><div class="bspin"></div></div>';
+  document.getElementById('panel-overlay').classList.add('open');
+  document.getElementById('side-panel').classList.add('open');
+  document.body.style.overflow='hidden';
+
+  // Load content
+  setTimeout(()=>{
+    if(id==='topics')renderPanelTopics(body);
+    else if(id==='bm'){renderBmList();body.appendChild(document.getElementById('bmlist'));}
+    else if(id==='plan'){renderPlan();body.appendChild(document.getElementById('pdays'));
+      const hdr=document.createElement('div');
+      hdr.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-bottom:12px';
+      hdr.innerHTML='<div class="pbar" style="flex:1;margin-right:12px"><div class="pfill" id="pfill2"></div></div><span id="ppct2" style="font-size:11px;color:var(--tx3)"></span>';
+      body.insertBefore(hdr,body.firstChild);
+      const d=getPD();
+      const pct2=document.getElementById('ppct2');
+      const pf2=document.getElementById('pfill2');
+      if(pct2)pct2.textContent=d.length+'/7';
+      if(pf2)pf2.style.width=Math.round(d.length/7*100)+'%';
+    }
+    else if(id==='img'){
+      const igp=document.getElementById('panel-img');
+      if(igp){body.innerHTML=igp.innerHTML;setTimeout(drawIG,100);}
+    }
+    else if(id==='settings')renderPanelSettings(body);
+    else if(id==='quiz'){body.innerHTML='<div id="quiz-body"></div>';startQuiz();}
+    else if(id==='tracker'){body.innerHTML='<div id="tracker-body"></div>';renderTracker();}
+  },30);
+}
+
+function closePanel(){
+  document.getElementById('panel-overlay').classList.remove('open');
+  document.getElementById('side-panel').classList.remove('open');
+  document.body.style.overflow='';
+  document.querySelectorAll('.feat-btn,.qa-btn').forEach(b=>b.classList.remove('on'));
+}
+
+// Keep togPanel as alias
+function togPanel(id,btn){
+  const panel=document.getElementById('side-panel');
+  if(panel.classList.contains('open')&&document.getElementById('sp-title').textContent===PANEL_TITLES[id]){
+    closePanel();
+  }else{
+    openPanel(id);
+  }
+}
+
+function renderPanelTopics(body){
+  const pills=document.querySelector('.tpills');
+  const res=document.getElementById('topic-res');
+  const wrap=document.createElement('div');
+  if(pills)wrap.appendChild(pills.cloneNode(true));
+  const reswrap=document.createElement('div');
+  reswrap.id='topic-res-panel';
+  wrap.appendChild(reswrap);
+  body.innerHTML='';
+  body.appendChild(wrap);
+  // Wire up topic pills
+  wrap.querySelectorAll('.tp').forEach(tp=>{
+    tp.onclick=function(){
+      wrap.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+      this.classList.add('on');
+      const topic=this.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
+      if(topic){
+        const tmpDiv=document.createElement('div');
+        showTopic(this,topic);
+        reswrap.innerHTML=document.getElementById('topic-res')?.innerHTML||'';
+      }
+    };
+  });
+}
+
+function renderPanelSettings(body){
+  body.innerHTML=`
+    <div style="margin-bottom:16px">
+      <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Reading Theme</div>
+      <div style="display:flex;gap:6px">
+        <button class="theme-btn on" data-theme="dark" onclick="setTheme('dark')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:12px;color:var(--tx2);cursor:pointer;font-family:var(--sans);transition:all .2s">\u{1F319} Dark</button>
+        <button class="theme-btn" data-theme="sepia" onclick="setTheme('sepia')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:12px;color:var(--tx2);cursor:pointer;font-family:var(--sans);transition:all .2s">\u{1F4DC} Sepia</button>
+        <button class="theme-btn" data-theme="light" onclick="setTheme('light')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:12px;color:var(--tx2);cursor:pointer;font-family:var(--sans);transition:all .2s">\u2600 Light</button>
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Tamil Font</div>
+      <div style="display:flex;gap:6px">
+        <button class="font-btn on" data-font="noto" onclick="setFontFamily('noto')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Noto Serif</button>
+        <button class="font-btn" data-font="latha" onclick="setFontFamily('latha')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Latha</button>
+        <button class="font-btn" data-font="bamini" onclick="setFontFamily('bamini')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Bamini</button>
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Highlight Colour</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="hlc on" data-color="#f5c518" style="width:24px;height:24px;border-radius:50%;background:#f5c518;cursor:pointer;border:2.5px solid white;flex-shrink:0" onclick="setHlColor('#f5c518')"></div>
+        <div class="hlc" data-color="#4caf50" style="width:24px;height:24px;border-radius:50%;background:#4caf50;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#4caf50')"></div>
+        <div class="hlc" data-color="#60b0ff" style="width:24px;height:24px;border-radius:50%;background:#60b0ff;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#60b0ff')"></div>
+        <div class="hlc" data-color="#c850c8" style="width:24px;height:24px;border-radius:50%;background:#c850c8;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#c850c8')"></div>
+        <div class="hlc" data-color="#ff7043" style="width:24px;height:24px;border-radius:50%;background:#ff7043;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#ff7043')"></div>
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Font Size</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button onclick="chFont(-1)" style="background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:6px;padding:7px 14px;font-size:13px;color:var(--tx);cursor:pointer;font-weight:600;font-family:var(--sans)">A\u2212</button>
+        <span id="fszv2" style="font-size:12px;color:var(--tx3);flex:1;text-align:center">${S.fs}px</span>
+        <button onclick="chFont(1)" style="background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:6px;padding:7px 14px;font-size:13px;color:var(--tx);cursor:pointer;font-weight:600;font-family:var(--sans)">A+</button>
+        <button onclick="chFont(0)" style="background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:6px;padding:7px 10px;font-size:11px;color:var(--tx);cursor:pointer;font-family:var(--sans)">\u21ba</button>
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Line Spacing</div>
+      <div style="display:flex;gap:6px">
+        <button onclick="setSpacing(1.6)" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:12px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Compact</button>
+        <button onclick="setSpacing(1.9)" style="flex:1;background:var(--gdm);border:1px solid var(--gdb);border-radius:6px;padding:8px;font-size:12px;color:var(--gd);cursor:pointer;font-family:var(--sans)">Normal</button>
+        <button onclick="setSpacing(2.4)" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:12px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Wide</button>
+      </div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--r);padding:12px 14px">
+      <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Offline Cache</div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:8px" id="cache-info2">Loading...</div>
+      <div style="display:flex;gap:6px">
+        <button onclick="try{document.getElementById('cache-info2').textContent=getCacheInfo();}catch(e){}" style="background:transparent;border:1px solid var(--bd);border-radius:99px;padding:5px 14px;font-size:11px;color:var(--tx3);cursor:pointer;font-family:var(--sans)">Refresh</button>
+        <button onclick="clearTaCache();try{document.getElementById('cache-info2').textContent=getCacheInfo();}catch(e){}" style="background:transparent;border:1px solid rgba(248,113,113,.3);border-radius:99px;padding:5px 14px;font-size:11px;color:#fca5a5;cursor:pointer;font-family:var(--sans)">Clear</button>
+      </div>
+    </div>
+  `;
+  // Update cache info
+  setTimeout(()=>{try{const ci2=body.querySelector('#cache-info2');if(ci2)ci2.textContent=getCacheInfo();}catch(e){}},200);
+  // Sync theme/font buttons
+  syncSettingsBtns();
+}
+
+function syncSettingsBtns(){
+  setTimeout(()=>{
+    document.querySelectorAll('.theme-btn').forEach(b=>b.classList.toggle('on',b.dataset.theme===S.theme));
+    document.querySelectorAll('.font-btn').forEach(b=>b.classList.toggle('on',b.dataset.font===S.fontFamily));
+  },50);
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   populateBooks();
   initFsz();
   initBmBadge();
   initVoices();
+  // Show VOTD immediately from local data — no network wait
+  loadVOTD();
+  // Then load remote data in background
   loadData();
-  setLang('ta'); // Tamil default
+  setLang('ta');
   document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',closeMenu));
+  // Unlock audio on any first interaction
+  document.addEventListener('click', unlockAudio, {once:true});
+  document.addEventListener('touchstart', unlockAudio, {once:true});
+  // Add keyboard shortcuts
+  document.addEventListener('keydown',e=>{
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+    if(e.key==='ArrowRight')nextCh();
+    if(e.key==='ArrowLeft')prevCh();
+    if(e.key===' '){e.preventDefault();togPlay();}
+    if(e.key==='Escape')closePanel();
+  });
+  // Init cache info
+  const ci=document.getElementById('cache-info');
+  if(ci)setTimeout(()=>{try{ci.textContent=getCacheInfo();}catch(e){}},800);
 });
 
 async function loadData(){
@@ -198,21 +372,24 @@ function toast(msg,dur=2500){
 
 // ── VOTD ─────────────────────────────────────────────────────────
 function loadVOTD(){
-  // Bulletproof VOTD — always use local VOTD array as fallback
   let pool=VOTD;
-  try{if(S.bibleData&&S.bibleData.verseOfDay&&S.bibleData.verseOfDay.length)pool=S.bibleData.verseOfDay;}catch(e){}
-  const v=pool[new Date().getDay()%pool.length];
-  if(!v||(!v.ta&&!v.en))return; // safety guard
+  try{if(S.bibleData&&Array.isArray(S.bibleData.verseOfDay)&&S.bibleData.verseOfDay.length>0){
+    pool=S.bibleData.verseOfDay;
+  }}catch(e){}
+  const day=new Date().getDay();
+  const v=pool[day%pool.length];
+  if(!v)return;
   window._vd=v;
-  // Tamil FIRST
   const taText=v.ta||v.en||'';
   const enText=v.en||v.ta||'';
   const taRef=v.tref||v.ref||'';
   const enRef=v.ref||v.tref||'';
-  document.getElementById('votd-ta').textContent='\u201c'+taText+'\u201d';
-  document.getElementById('votd-taref').textContent='\u2014 '+taRef;
-  document.getElementById('votd-en').textContent='\u201c'+enText+'\u201d';
-  document.getElementById('votd-ref').textContent='\u2014 '+v.ref;
+  // Update all VOTD elements safely
+  const safe=(id,txt)=>{const el=document.getElementById(id);if(el)el.textContent=txt;};
+  safe('votd-ta','“'+taText+'”');
+  safe('votd-taref','— '+taRef);
+  safe('votd-en','“'+enText+'”');
+  safe('votd-ref','— '+enRef);
 }
 
 function playVOTD(lang){
@@ -456,8 +633,35 @@ const synth=window.speechSynthesis;
 let utt=null;
 
 function initVoices(){
-  if(synth.onvoiceschanged!==undefined)synth.onvoiceschanged=()=>synth.getVoices();
-  synth.getVoices();
+  // Load voices with retry — Chrome loads async
+  function tryLoad(attempts){
+    const vv=synth.getVoices();
+    if(vv.length>0){S._voicesLoaded=true;return;}
+    if(attempts>0)setTimeout(()=>tryLoad(attempts-1),300);
+  }
+  if(synth.onvoiceschanged!==undefined){
+    synth.onvoiceschanged=()=>{synth.getVoices();S._voicesLoaded=true;};
+  }
+  tryLoad(10); // retry up to 10 times
+}
+
+// Unlock Web Audio on first user gesture (required by Chrome/iOS)
+function unlockAudio(){
+  if(S._audioUnlocked)return;
+  S._audioUnlocked=true;
+  // Create and immediately stop a silent audio context
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const buf=ctx.createBuffer(1,1,22050);
+    const src=ctx.createBufferSource();
+    src.buffer=buf;src.connect(ctx.destination);
+    src.start(0);
+    ctx.resume().then(()=>ctx.close());
+  }catch(e){}
+  // Also init synth
+  const u=new SpeechSynthesisUtterance('');
+  u.volume=0;u.rate=10;
+  try{synth.speak(u);}catch(e){}
 }
 
 function getTaVoice(){
@@ -495,42 +699,57 @@ async function tryFCBH(bookNum,ch,lang){
 }
 
 function speakNow(text,lang,cb){
+  unlockAudio(); // ensure audio is unlocked on PC/iOS
   stopAud();
   const lg=lang||S.lang;
   const spd=parseFloat(document.getElementById('aspd')?.value||'1');
+  
+  // Show audio bar immediately
+  const ab=document.getElementById('abar');
+  if(ab)ab.style.display='flex';
+  const apst=document.getElementById('apstat');
+  if(apst)apst.textContent=lg==='ta'?'ஒலி தயாரிக்கிறது...':'Preparing audio...';
+  S.playing=true;updPBtn();
 
   setTimeout(async()=>{
-    // Layer 1: FCBH real human audio (if API key set)
-    if(FCBH_KEY&&S.bookNum){
-      const url=await tryFCBH(S.bookNum,S.ch,lg);
-      if(url){
-        if(S.audEl){S.audEl.pause();S.audEl=null;}
-        S.audEl=new Audio(url);
-        S.audEl.playbackRate=spd;
-        S.audEl.onplay=()=>{S.playing=true;updPBtn();};
-        S.audEl.onended=()=>{S.playing=false;updPBtn();if(cb)cb();};
-        S.audEl.onerror=()=>{S.playing=false;updPBtn();useRVorTTS(text,lg,spd,cb);};
-        S.audEl.play();S.playing=true;updPBtn();
-        return;
+    try{
+      // Layer 1: FCBH real human audio
+      if(FCBH_KEY&&S.bookNum){
+        const url=await tryFCBH(S.bookNum,S.ch,lg);
+        if(url){
+          if(S.audEl){S.audEl.pause();S.audEl=null;}
+          S.audEl=new Audio(url);
+          S.audEl.playbackRate=spd;
+          S.audEl.onplay=()=>{S.playing=true;updPBtn();if(apst)apst.textContent='Playing...';};
+          S.audEl.onended=()=>{S.playing=false;updPBtn();if(cb)cb();};
+          S.audEl.onerror=()=>{S.playing=false;updPBtn();useRVorTTS(text,lg,spd,cb);};
+          await S.audEl.play();
+          S.playing=true;updPBtn();
+          return;
+        }
       }
+      // Layer 2+3: ResponsiveVoice / SpeechSynthesis
+      useRVorTTS(text,lg,spd,cb);
+    }catch(e){
+      console.warn('Audio error:',e);
+      useRVorTTS(text,lg,spd,cb);
     }
-    // Layer 2: ResponsiveVoice (works on all devices — no install)
-    // Layer 3: SpeechSynthesis fallback
-    useRVorTTS(text,lg,spd,cb);
-  },80);
+  },50);
 }
 
 function useRVorTTS(text,lang,spd,cb){
+  const apst=document.getElementById('apstat');
   if(typeof responsiveVoice!=='undefined'&&responsiveVoice.voiceSupport()){
     S.rvReady=true;
-    const voice=lang==='ta'?'Tamil Female':'en-IN Female';
-    const alt=lang==='ta'?'Tamil Male':'UK English Male';
+    // PC: use UK English Male for English (more reliable on Chrome)
+    const voice=lang==='ta'?'Tamil Female':(navigator.userAgent.includes('Chrome')?'UK English Male':'en-IN Female');
+    const alt=lang==='ta'?'Tamil Male':'UK English Female';
+    if(apst)apst.textContent=lang==='ta'?'Tamil Female voice...':'English voice...';
     responsiveVoice.speak(text,voice,{
       rate:spd,pitch:1,volume:1,
-      onstart:()=>{S.playing=true;updPBtn();},
+      onstart:()=>{S.playing=true;updPBtn();if(apst)apst.textContent=lang==='ta'?'இயங்குகிறது...':'Playing...';},
       onend:()=>{S.playing=false;updPBtn();if(cb)cb();},
       onerror:()=>{
-        // Try alternate RV voice
         responsiveVoice.speak(text,alt,{
           rate:spd,pitch:1,volume:1,
           onstart:()=>{S.playing=true;updPBtn();},
@@ -568,8 +787,14 @@ function speakTTS(text,lang,cb){
   u.onstart=()=>{S.playing=true;updPBtn();};
   u.onend=()=>{S.playing=false;updPBtn();if(cb)cb();};
   u.onerror=(e)=>{S.playing=false;updPBtn();
-    if(e.error!=='interrupted')document.getElementById('apstat').textContent=
-      (S.lang==='ta'?'Tamil TTS இல்லை — Settings-ல் install பண்ணுங்கள்':'Audio error');
+    if(e.error!=='interrupted'){
+      const msg=S.lang==='ta'?
+        'Tamil TTS இல்லை — Browser settings-ல் Tamil voice install பண்ணுங்கள்':
+        'Audio playback error — check browser permissions';
+      const apst=document.getElementById('apstat');
+      if(apst)apst.textContent=msg;
+      toast('&#128266; '+msg,3500);
+    }
   };
   utt=u;synth.speak(u);S.playing=true;updPBtn();
 }
@@ -585,10 +810,14 @@ function hideTaGuide(){
 }
 
 async function playV(i){
+  unlockAudio();
   S.playAllM=false;S.pIdx=i;
   const v=S.verses[i];if(!v)return;
   hlPlay(i);
   const taName=S.bookTaName||S.bookName;
+  // Show audio bar immediately
+  const ab=document.getElementById('abar');
+  if(ab)ab.style.display='flex';
   document.getElementById('aptitle').textContent=(S.lang==='ta'?taName:S.bookName)+' '+S.ch+':'+v.num;
   document.getElementById('apstat').textContent=(S.lang==='ta'?'வசனம் '+v.num+' இயங்குகிறது...':'Playing verse '+v.num+'...');
   speakNow(v.text,S.lang);
@@ -1327,17 +1556,7 @@ function setSpacing(val){
   toast('Line spacing: '+val);
 }
 
-function setIGTemplate(name){
-  _igTemplate=name;
-  document.querySelectorAll('.ig-tpl-btn').forEach(el=>{
-    const isOn=el.dataset.tpl===name;
-    el.style.borderColor=isOn?'var(--gdb)':'rgba(255,255,255,.08)';
-    el.style.borderWidth=isOn?'1.5px':'1px';
-    const lbl=el.querySelector('div:last-child');
-    if(lbl)lbl.style.color=isOn?'var(--gd)':'rgba(255,255,255,.35)';
-  });
-  drawIG();
-}
+
 
 
 // ── FCBH SETUP GUIDE ─────────────────────────────────────────────
@@ -1549,10 +1768,3 @@ function renderTracker(){
   `;
   initTrackerBadge();
 }
-
-document.addEventListener('keydown',e=>{
-  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
-  if(e.key==='ArrowRight')nextCh();
-  if(e.key==='ArrowLeft')prevCh();
-  if(e.key===' '){e.preventDefault();togPlay();}
-});
