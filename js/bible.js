@@ -198,13 +198,20 @@ function toast(msg,dur=2500){
 
 // ── VOTD ─────────────────────────────────────────────────────────
 function loadVOTD(){
-  const pool=(S.bibleData.verseOfDay||VOTD);
+  // Bulletproof VOTD — always use local VOTD array as fallback
+  let pool=VOTD;
+  try{if(S.bibleData&&S.bibleData.verseOfDay&&S.bibleData.verseOfDay.length)pool=S.bibleData.verseOfDay;}catch(e){}
   const v=pool[new Date().getDay()%pool.length];
+  if(!v||(!v.ta&&!v.en))return; // safety guard
   window._vd=v;
   // Tamil FIRST
-  document.getElementById('votd-ta').textContent='\u201c'+(v.ta||v.en)+'\u201d';
-  document.getElementById('votd-taref').textContent='\u2014 '+(v.tref||v.ref);
-  document.getElementById('votd-en').textContent='\u201c'+v.en+'\u201d';
+  const taText=v.ta||v.en||'';
+  const enText=v.en||v.ta||'';
+  const taRef=v.tref||v.ref||'';
+  const enRef=v.ref||v.tref||'';
+  document.getElementById('votd-ta').textContent='\u201c'+taText+'\u201d';
+  document.getElementById('votd-taref').textContent='\u2014 '+taRef;
+  document.getElementById('votd-en').textContent='\u201c'+enText+'\u201d';
   document.getElementById('votd-ref').textContent='\u2014 '+v.ref;
 }
 
@@ -855,7 +862,7 @@ const RATIO={'9:16':[1080,1920],'3:4':[900,1200],'1:1':[1080,1080],'16:9':[1920,
 
 function initIGVerses(){
   const verses=IGVERSES;
-  const sel=document.getElementById('img-vsel');if(!sel)return;
+  const sel=document.getElementById('igvsel')||document.getElementById('img-vsel');if(!sel)return;
   S.igVerses=verses;
   sel.innerHTML='';
   verses.forEach((v,i)=>{
