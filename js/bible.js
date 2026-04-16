@@ -33,7 +33,11 @@ const S = {
   igVerses:[], customVerse:null,
   audEl:null, // HTML Audio element for FCBH
   playing:false, playAllM:false, pIdx:0,
-  showParallel:false // show both Tamil + English side by side
+  showParallel:false, // show both Tamil + English side by side
+  hlColor:'#f5c518',   // active highlight colour
+  notes:JSON.parse(localStorage.getItem('enjc_notes')||'{}'), // verse notes
+  theme:'dark',        // dark | sepia | light
+  fontFamily:'noto'    // noto | latha | bamini
 };
 
 // ── TAMIL BOOK NAMES ─────────────────────────────────────────────
@@ -223,7 +227,7 @@ function copyVOTD(){
   toast('&#128203; நகலெடுக்கப்பட்டது!');
 }
 
-function genVOTDImg(){
+function genVOTDImage(){
   const v=window._vd;if(!v)return;
   S.customVerse={ta:v.ta,tref:v.tref,en:v.en,ref:v.ref};
   togPanel('img');setTimeout(drawIG,120);
@@ -245,7 +249,12 @@ function setLang(l){
 function togParallel(){
   S.showParallel=!S.showParallel;
   const btn=document.getElementById('para-btn');
-  if(btn)btn.classList.toggle('on',S.showParallel);
+  if(btn){
+    btn.textContent=S.showParallel?'On ✓':'Off';
+    btn.style.color=S.showParallel?'var(--gd)':'var(--tx2)';
+    btn.style.borderColor=S.showParallel?'var(--gdb)':'var(--bd)';
+    btn.style.background=S.showParallel?'var(--gdm)':'rgba(255,255,255,.05)';
+  }
   if(S.verses.length)renderVerses();
 }
 
@@ -383,6 +392,7 @@ function renderVerses(){
 <div class="vb">
 <span class="vtxt${isTa?' ta-font':''}" style="font-size:${S.fs}px" onclick="playV(${i})">${v.text}</span>
 ${S.showParallel&&enText?`<span class="vtxt v-en-parallel" style="font-size:${Math.max(12,S.fs-2)}px">${enText}</span>`:''}
+${S.notes[refEN]?`<div style="font-size:11px;color:var(--gd);line-height:1.5;margin-top:6px;padding:4px 8px;background:var(--gdm);border-radius:4px;border-left:2px solid var(--gd);font-style:italic">&#128221; ${S.notes[refEN].substring(0,60)}${S.notes[refEN].length>60?'...':''}</div>`:''}
 </div>
 <div class="vacts">
 <button class="vbt vaplay" onclick="playV(${i})" title="${isTa?'கேளுங்கள்':'Listen'}">&#9654;</button>
@@ -622,13 +632,39 @@ function useVerseForImg(taRef,taText,enRef,enText){
 }
 
 // ── HIGHLIGHT ────────────────────────────────────────────────────
-function togHL(vnum,i){
+function showHlPicker(){
+  const p=document.getElementById('hl-picker');
+  if(p)p.style.display=p.style.display==='flex'?'none':'flex';
+}
+function togHL(vnum,i,color){
   const k=S.book+S.ch;if(!S.hl[k])S.hl[k]={};
   const el=document.getElementById('vi'+i);
-  const btn=el?.querySelectorAll('.vtbtn')[1];
-  if(S.hl[k][vnum]){delete S.hl[k][vnum];el?.classList.remove('vhl');btn?.classList.remove('hl');toast(S.lang==='ta'?'குறிப்பு நீக்கப்பட்டது':'Highlight removed');}
-  else{S.hl[k][vnum]=1;el?.classList.add('vhl');btn?.classList.add('hl');toast(S.lang==='ta'?'&#9679; குறிப்பிடப்பட்டது':'&#9679; Highlighted');}
+  const btn=el?.querySelectorAll('.vbt')[1];
+  if(S.hl[k][vnum]&&!color){
+    delete S.hl[k][vnum];
+    el?.classList.remove('vhl');
+    el?.style.removeProperty('--hl-color');
+    btn?.classList.remove('hl');
+    toast(S.lang==='ta'?'குறிப்பு நீக்கப்பட்டது':'Highlight removed');
+  }else{
+    const c=color||S.hlColor||'#f5c518';
+    S.hl[k][vnum]=c;
+    el?.classList.add('vhl');
+    el?.style.setProperty('--hl-color',c);
+    btn?.classList.add('hl');
+    toast(S.lang==='ta'?'&#9679; குறிப்பிடப்பட்டது':'&#9679; Highlighted');
+  }
   localStorage.setItem('enjc_hl',JSON.stringify(S.hl));
+}
+
+function setHlColor(color){
+  S.hlColor=color;
+  document.querySelectorAll('.hlc').forEach(el=>{
+    const isOn=el.dataset.color===color;
+    el.style.borderColor=isOn?'white':'transparent';
+    el.style.transform=isOn?'scale(1.15)':'scale(1)';
+  });
+  toast('&#9679; Highlight colour set');
 }
 
 // ── BOOKMARKS ────────────────────────────────────────────────────
@@ -657,13 +693,14 @@ function renderBmList(){
     const sr=(b.refTA||b.ref).replace(/'/g,"\\'");const st=b.text.replace(/'/g,"\\'");
     const srEN=b.ref.replace(/'/g,"\\'");
     return `<div class="vi" style="margin-bottom:6px">
-<div class="vi-inner"><div class="vbody"><div class="vtag">${b.refTA||b.ref}</div>
-<span class="vtxt vtamil" style="font-size:${S.fs}px">${b.text}</span>
-${b.ref!==b.refTA&&b.ref?`<div class="vtag" style="margin-top:5px;opacity:.6">${b.ref}</div>`:''}</div></div>
+<div class="vb"><div class="vtag">${b.refTA||b.ref}</div>
+<span class="vtxt ta-font" style="font-size:${S.fs}px">${b.text}</span>
+${b.ref!==b.refTA&&b.ref?`<div class="vtag" style="margin-top:5px;opacity:.6">${b.ref}</div>`:''}
+</div>
 <div class="vacts" style="opacity:1">
-<button class="vtbtn" onclick="cpV('${sr}','${st}'); event.stopPropagation();">&#128203;</button>
-<button class="vtbtn" onclick="shrV('${srEN}','${st}','${sr}'); event.stopPropagation();">&#128279;</button>
-<button class="vtbtn" onclick="rmBM(${i}); event.stopPropagation();" style="color:#f87171">&#10005;</button>
+<button class="vbt" onclick="cpV('${sr}','${st}')">&#128203;</button>
+<button class="vbt" onclick="shrV('${srEN}','${st}','${sr}')">&#128279;</button>
+<button class="vbt" onclick="rmBM(${i})" style="color:#f87171">&#10005;</button>
 </div></div>`;
   }).join('');
 }
@@ -676,12 +713,12 @@ function chFont(d){
   S.fs=d===0?18:Math.min(30,Math.max(13,S.fs+d*2));
   localStorage.setItem('enjc_fs',S.fs);
   document.getElementById('fszv').textContent=S.fs+'px';
-  document.querySelectorAll('.vtxt, .valt').forEach(el=>el.style.fontSize=S.fs+'px');
+  document.querySelectorAll('.vtxt').forEach(el=>el.style.fontSize=S.fs+'px');
 }
 
 // ── PANEL TOGGLE ─────────────────────────────────────────────────
 function togPanel(id,btn){
-  ['topics','plan','bm','img'].forEach(p=>{
+  ['topics','plan','bm','img','settings'].forEach(p=>{
     const el=document.getElementById('panel-'+p);
     const qa=document.getElementById('qa-'+p);
     const open=p===id&&!el.classList.contains('open');
@@ -702,13 +739,13 @@ function showTopic(btn,topic){
     const sr=v.ref.replace(/'/g,"\\'");const st=v.text.replace(/'/g,"\\'");
     const srEN=(v.en||v.ref).replace(/'/g,"\\'");
     return `<div class="vi" style="margin-bottom:6px">
-<div class="vi-inner"><span class="vnum" style="padding:0;min-width:auto;font-size:.9em">${i+1}</span>
-<div class="vbody"><div class="vtag">${v.ref}${v.en?' | '+v.en:''}</div>
-<span class="vtxt vtamil" style="font-size:${S.fs}px">${v.text}</span></div></div>
+<span class="vn">${i+1}</span>
+<div class="vb"><div class="vtag">${v.ref}${v.en?' | '+v.en:''}</div>
+<span class="vtxt ta-font" style="font-size:${S.fs}px">${v.text}</span></div>
 <div class="vacts" style="opacity:1">
-<button class="vtbtn" onclick="cpV('${sr}','${st}'); event.stopPropagation();">&#128203;</button>
-<button class="vtbtn" onclick="shrV('${srEN}','${st}','${sr}'); event.stopPropagation();">&#128279;</button>
-<button class="vtbtn" onclick="useVerseForImg('${sr}','${st}','${srEN}',''); event.stopPropagation();">&#128247;</button>
+<button class="vbt" onclick="cpV('${sr}','${st}')">&#128203;</button>
+<button class="vbt" onclick="shrV('${srEN}','${st}','${sr}')">&#128279;</button>
+<button class="vbt" onclick="useVerseForImg('${sr}','${st}','${srEN}','')">&#128247;</button>
 </div></div>`;
   }).join('')||'<div class="bempty">வசனங்கள் கிடைக்கவில்லை.</div>';
 }
@@ -725,8 +762,8 @@ function renderPlan(){
     const isDone=done.includes(i);
     return `<div class="pday${isDone?' done':''}" onclick="togPDay(${i})">
 <div class="pchk">${isDone?'&#10003;':''}</div>
-<div class="pdinf"><div class="pdlbl">${p.day}</div>
-<div class="pdch">${p.ch} <span style="opacity:.5;font-size:.82em">\u2014 ${p.lbl}</span></div></div>
+<div class="pinfo"><div class="plbl">${p.day}</div>
+<div class="pch">${p.ch} <span style="opacity:.5;font-size:.82em">\u2014 ${p.lbl}</span></div></div>
 <button class="pgo" onclick="event.stopPropagation();goPlan(${i})">படி &rarr;</button>
 </div>`;
   }).join('');
@@ -770,11 +807,11 @@ async function doSearch(){
         const ref=v.book_name+' '+v.chapter+':'+v.verse;
         const txt=v.text.replace(/\n/g,' ');
         const sr=ref.replace(/'/g,"\\'");const st=txt.replace(/'/g,"\\'");
-        return `<div class="vi"><div class="vi-inner"><span class="vnum">&#9733;</span>
-<div class="vbody"><div class="vtag">${ref}</div><span class="vtxt">${txt}</span></div></div>
+        return `<div class="vi"><span class="vn">&#9733;</span>
+<div class="vb"><div class="vtag">${ref}</div><span class="vtxt">${txt}</span></div>
 <div class="vacts" style="opacity:1">
-<button class="vtbtn" onclick="cpV('${sr}','${st}'); event.stopPropagation();">&#128203;</button>
-<button class="vtbtn" onclick="useVerseForImg('${sr}','${st}','${sr}','${st}'); event.stopPropagation();">&#128247;</button>
+<button class="vbt" onclick="cpV('${sr}','${st}')">&#128203;</button>
+<button class="vbt" onclick="useVerseForImg('${sr}','${st}','${sr}','${st}')">&#128247;</button>
 </div></div>`;
       }).join('')+'</div>');
   }catch(e){setHTML('<div class="berr">முடிவு இல்லை "'+q+'" \u2014 John 3:16 அல்லது faith என்று முயற்சிக்கவும்.</div>');}
@@ -785,7 +822,7 @@ const RATIO={'9:16':[1080,1920],'3:4':[900,1200],'1:1':[1080,1080],'16:9':[1920,
 
 function initIGVerses(){
   const verses=IGVERSES;
-  const sel=document.getElementById('igvsel');if(!sel)return;
+  const sel=document.getElementById('img-vsel');if(!sel)return;
   S.igVerses=verses;
   sel.innerHTML='';
   verses.forEach((v,i)=>{
@@ -810,7 +847,7 @@ function setTC(btn,tc){
   btn.classList.add('on');S.igTc=tc;drawIG();
 }
 
-function useCurVerse(){
+function useCurrentVerse(){
   if(!S.verses.length){toast(S.lang==='ta'?'முதலில் ஒரு அதிகாரம் தேர்வு செய்யுங்கள்':'Select a chapter first');return;}
   const hlk=S.book+S.ch;const hlm=S.hl[hlk]||{};
   const nums=Object.keys(hlm).map(Number);
@@ -825,7 +862,7 @@ function useCurVerse(){
 
 function getIGVerse(){
   if(S.customVerse){const v=S.customVerse;S.customVerse=null;return v;}
-  const idx=parseInt(document.getElementById('igvsel')?.value||'0');
+  const idx=parseInt(document.getElementById('img-vsel')?.value||'0');
   return (S.igVerses||IGVERSES)[idx]||IGVERSES[0];
 }
 
@@ -834,15 +871,47 @@ function drawIG(){
   const[W,H]=RATIO[S.igSz]||[1080,1920];
   cv.width=W;cv.height=H;
   const ctx=cv.getContext('2d');
-  const bg=S.igBg;const tc=S.igTc;
+  const v=getIGVerse();
+
+  // Determine bg and tc based on mode
+  let bg=S.igBg, tc=S.igTc;
+  if(_igMode==='template'){
+    const tpl=IG_TEMPLATES[_igTemplate]||IG_TEMPLATES.cross;
+    bg=tpl.bg; tc=tpl.accent;
+  }
+
   const light=isLightBg(bg);
   const bodyC=light?'rgba(0,0,0,0.85)':'rgba(255,255,255,0.9)';
   const subC=light?'rgba(0,0,0,0.5)':'rgba(255,255,255,0.55)';
-  const v=getIGVerse();
 
   // Background
-  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  if(_igMode==='photo'&&_userPhoto){
+    // Draw user photo
+    const img=new Image();
+    img.onload=()=>{
+      // Draw photo cover
+      const ir=img.width/img.height;const cr=W/H;
+      let sx=0,sy=0,sw=img.width,sh=img.height;
+      if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}
+      else{sh=img.width/cr;sy=(img.height-sh)/2;}
+      ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
+      // Dark overlay for text readability
+      const opacity=getOverlayOpacity();
+      ctx.fillStyle='rgba(0,0,0,'+opacity+')';
+      ctx.fillRect(0,0,W,H);
+      // Draw the rest
+      _drawIGContent(ctx,W,H,tc,'rgba(255,255,255,0.92)','rgba(255,255,255,0.6)',v);
+    };
+    img.src=_userPhoto;
+    return; // async
+  }else{
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  }
 
+  _drawIGContent(ctx,W,H,tc,bodyC,subC,v);
+}
+
+function _drawIGContent(ctx,W,H,tc,bodyC,subC,v){
   // Top accent
   ctx.fillStyle=tc;ctx.fillRect(0,0,W,5);
 
@@ -975,6 +1044,10 @@ function openVModal(i){
   const isBm=bms.some(b=>b.ref===mv.ref);
   document.getElementById('modal-bm-ic').textContent = isBm ? '♥' : '♡';
   document.getElementById('modal-bm-lb').textContent = isBm ? 'Saved ✓' : 'Save Verse';
+  // Load existing note
+  const notes=getNotes();
+  const noteEl=document.getElementById('note-ta');
+  if(noteEl)noteEl.value=notes[mv.ref]||'';
   document.getElementById('vmodal-wrap').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -1027,6 +1100,203 @@ function modalAct(action){
     if(navigator.share)navigator.share({title:'ENJC Bible',text:msg});
     else{navigator.clipboard?.writeText(msg);toast('Copied!');}
   }
+}
+
+
+// ── NOTES ────────────────────────────────────────────────────────
+function getNotes(){return JSON.parse(localStorage.getItem('enjc_notes')||'{}');}
+function saveNotes(n){localStorage.setItem('enjc_notes',JSON.stringify(n));S.notes=n;}
+
+function openNoteModal(i){
+  // Open verse modal then focus note
+  openVModal(i);
+  setTimeout(()=>{
+    const ta=document.getElementById('note-ta');
+    if(ta)ta.focus();
+  },300);
+}
+
+function saveNote(ref,text){
+  const notes=getNotes();
+  if(text.trim()){notes[ref]=text.trim();}
+  else{delete notes[ref];}
+  saveNotes(notes);
+  // Update note indicator on verse
+  renderNoteIndicators();
+  toast(text.trim()?'📝 '+(S.lang==='ta'?'குறிப்பு சேமிக்கப்பட்டது':'Note saved'):'Note removed');
+}
+
+function renderNoteIndicators(){
+  const notes=getNotes();
+  document.querySelectorAll('.vi').forEach((el,i)=>{
+    const v=S.verses[i];if(!v)return;
+    const ref=S.bookName+' '+S.ch+':'+v.num;
+    const noteEl=el.querySelector('.vnote-ind');
+    if(notes[ref]){
+      if(!noteEl){
+        const nd=document.createElement('div');
+        nd.className='vnote-ind';
+        nd.textContent='📝 '+notes[ref].substring(0,40)+(notes[ref].length>40?'...':'');
+        el.querySelector('.vb')?.appendChild(nd);
+      }else{
+        noteEl.textContent='📝 '+notes[ref].substring(0,40)+(notes[ref].length>40?'...':'');
+      }
+    }else if(noteEl){
+      noteEl.remove();
+    }
+  });
+}
+
+// ── READING THEMES ───────────────────────────────────────────────
+const THEMES={
+  dark:{
+    '--bg':'#07090f','--bg2':'#0c1018','--bg3':'#111926',
+    '--tx':'#dde4f0','--tx2':'rgba(221,228,240,.55)','--tx3':'rgba(221,228,240,.25)',
+    '--bd':'rgba(255,255,255,.06)','--bd2':'rgba(255,255,255,.12)',
+    '--card':'#111926'
+  },
+  sepia:{
+    '--bg':'#f8f1e4','--bg2':'#f2e9d8','--bg3':'#ede0c8',
+    '--tx':'#2c1a0e','--tx2':'rgba(44,26,14,.6)','--tx3':'rgba(44,26,14,.35)',
+    '--bd':'rgba(44,26,14,.1)','--bd2':'rgba(44,26,14,.2)',
+    '--card':'#f2e9d8'
+  },
+  light:{
+    '--bg':'#ffffff','--bg2':'#f5f5f5','--bg3':'#eeeeee',
+    '--tx':'#111111','--tx2':'rgba(17,17,17,.55)','--tx3':'rgba(17,17,17,.3)',
+    '--bd':'rgba(0,0,0,.08)','--bd2':'rgba(0,0,0,.15)',
+    '--card':'#f5f5f5'
+  }
+};
+
+function setTheme(theme){
+  S.theme=theme;
+  localStorage.setItem('enjc_theme',theme);
+  const t=THEMES[theme];
+  const root=document.documentElement;
+  if(t){Object.entries(t).forEach(([k,v])=>root.style.setProperty(k,v));}
+  // Update gold to brown/dark for sepia light
+  if(theme==='sepia'){
+    root.style.setProperty('--gd','#8b4513');
+    root.style.setProperty('--gd2','#a0522d');
+    root.style.setProperty('--gdm','rgba(139,69,19,.1)');
+    root.style.setProperty('--gdb','rgba(139,69,19,.25)');
+  }else if(theme==='light'){
+    root.style.setProperty('--gd','#b8860b');
+    root.style.setProperty('--gd2','#daa520');
+    root.style.setProperty('--gdm','rgba(184,134,11,.1)');
+    root.style.setProperty('--gdb','rgba(184,134,11,.25)');
+  }else{
+    root.style.setProperty('--gd','#e8a020');
+    root.style.setProperty('--gd2','#f5bf50');
+    root.style.setProperty('--gdm','rgba(232,160,32,.12)');
+    root.style.setProperty('--gdb','rgba(232,160,32,.22)');
+  }
+  document.querySelectorAll('.theme-btn').forEach(b=>b.classList.toggle('on',b.dataset.theme===theme));
+  toast(theme==='dark'?'🌙 Dark':theme==='sepia'?'📜 Sepia':'☀ Light');
+}
+
+function setFontFamily(fam){
+  S.fontFamily=fam;
+  localStorage.setItem('enjc_font',fam);
+  const fonts={noto:"'Noto Serif Tamil',serif",latha:"'Latha','Arial Unicode MS',serif",bamini:"'Bamini',serif"};
+  document.documentElement.style.setProperty('--tamil',fonts[fam]||fonts.noto);
+  document.querySelectorAll('.font-btn').forEach(b=>b.classList.toggle('on',b.dataset.font===fam));
+}
+
+// Init theme from localStorage
+(function(){
+  const t=localStorage.getItem('enjc_theme');
+  const f=localStorage.getItem('enjc_font');
+  if(t)setTheme(t);
+  if(f)setFontFamily(f);
+})();
+
+// ── IMAGE GEN — PHOTO UPLOAD ─────────────────────────────────────
+var _userPhoto = null; // base64 data URL
+var _igMode = 'colour'; // colour | photo | template
+var _igTemplate = 'cross';
+
+const IG_TEMPLATES = {
+  cross:   {bg:'#0b1929', accent:'#e8a020', style:'cross'},
+  sunrise: {bg:'#2d1a05', accent:'#f5a020', style:'sunrise'},
+  nature:  {bg:'#0d2010', accent:'#4caf50', style:'nature'},
+  stars:   {bg:'#05051a', accent:'#9c88ff', style:'stars'}
+};
+
+function setIGMode(mode){
+  _igMode=mode;
+  ['colour','photo','template'].forEach(m=>{
+    const el=document.getElementById('igmode-'+m);
+    if(el)el.classList.toggle('on',m===mode);
+  });
+  const colSec=document.getElementById('ig-colour-sec');
+  const phSec=document.getElementById('ig-photo-sec');
+  const tplSec=document.getElementById('ig-template-sec');
+  if(colSec)colSec.style.display=mode==='colour'?'block':'none';
+  if(phSec)phSec.style.display=mode==='photo'?'block':'none';
+  if(tplSec)tplSec.style.display=mode==='template'?'block':'none';
+  drawIG();
+}
+
+function triggerPhotoUpload(){
+  const inp=document.createElement('input');
+  inp.type='file';inp.accept='image/*';
+  inp.onchange=e=>{
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      _userPhoto=ev.target.result;
+      const thumb=document.getElementById('ig-photo-thumb');
+      if(thumb){thumb.src=_userPhoto;thumb.style.display='block';}
+      const placeholder=document.getElementById('ig-photo-placeholder');
+      if(placeholder)placeholder.style.display='none';
+      drawIG();
+      toast(S.lang==='ta'?'📷 படம் ஏற்றப்பட்டது!':'📷 Photo uploaded!');
+    };
+    reader.readAsDataURL(file);
+  };
+  inp.click();
+}
+
+function setIGTemplate(name){
+  _igTemplate=name;
+  document.querySelectorAll('.ig-tpl').forEach(el=>el.classList.toggle('on',el.dataset.tpl===name));
+  drawIG();
+}
+
+function getOverlayOpacity(){
+  const sl=document.getElementById('overlay-slider');
+  return sl?parseInt(sl.value)/100:0.55;
+}
+
+
+function autoSaveNote(text){
+  const mv=_modalVerse;if(!mv)return;
+  const ref=mv.ref;
+  const notes=getNotes();
+  if(text.trim()){notes[ref]=text.trim();}
+  else{delete notes[ref];}
+  saveNotes(notes);
+  renderNoteIndicators();
+}
+
+function setSpacing(val){
+  document.documentElement.style.setProperty('--line-height', val);
+  document.querySelectorAll('.verse-text,.vtxt').forEach(el=>el.style.lineHeight=val);
+  toast('Line spacing: '+val);
+}
+
+function setIGTemplate(name){
+  _igTemplate=name;
+  document.querySelectorAll('.ig-tpl-btn').forEach(el=>{
+    const isOn=el.dataset.tpl===name;
+    el.style.borderColor=isOn?'var(--gdb)':'rgba(255,255,255,.08)';
+    el.style.borderWidth=isOn?'1.5px':'1px';
+    const lbl=el.querySelector('div:last-child');
+    if(lbl)lbl.style.color=isOn?'var(--gd)':'rgba(255,255,255,.35)';
+  });
+  drawIG();
 }
 
 document.addEventListener('keydown',e=>{
