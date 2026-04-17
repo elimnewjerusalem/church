@@ -800,109 +800,417 @@ function goPlan(i){
 
 // ── IMAGE GENERATOR ──────────────────────────────────────────────
 const RATIO={'9:16':[1080,1920],'3:4':[900,1200],'1:1':[1080,1080],'16:9':[1920,1080]};
-let _igMode='colour',_igTemplate='cross',_userPhoto=null;
+const SIZE_LABELS={'9:16':'1080×1920','3:4':'900×1200','1:1':'1080×1080','16:9':'1920×1080'};
+const SIZE_HINTS={'9:16':'Story / Reel','3:4':'Portrait Post','1:1':'Square Post','16:9':'YouTube / Wide'};
+
+let _igMode='solid', _igBgColor='#8b1a1a', _igFont='serif';
+let _igTaSize=52, _igEnSize=36;
+let _igPhotoOpacity=60, _userPhoto=null, _igSz='9:16';
+
+const FONTS={
+  serif:"'Noto Serif Tamil',Georgia,serif",
+  sans:"'DM Sans',system-ui,sans-serif",
+  italic:"italic 'Noto Serif Tamil',Georgia,serif",
+  mono:"'Courier New',monospace"
+};
 
 function renderImgPanel(body){
   body.innerHTML=`
-    <div class="ig-tabs">
-      <div class="ig-tab on" id="igtab-colour" onclick="setIGMode('colour')">🎨 Colour</div>
-      <div class="ig-tab" id="igtab-photo" onclick="setIGMode('photo')">📷 Photo</div>
-      <div class="ig-tab" id="igtab-template" onclick="setIGMode('template')">🌄 Templates</div>
-    </div>
-    <div id="ig-colour-sec">
-      <span class="p-lbl">Size</span>
-      <div class="ig-sizes">
-        <div class="sz-btn on" data-sz="9:16" onclick="setSz(this,'9:16')">9:16<span>Story</span></div>
-        <div class="sz-btn" data-sz="3:4" onclick="setSz(this,'3:4')">3:4<span>Portrait</span></div>
-        <div class="sz-btn" data-sz="1:1" onclick="setSz(this,'1:1')">1:1<span>Square</span></div>
-        <div class="sz-btn" data-sz="16:9" onclick="setSz(this,'16:9')">16:9<span>Wide</span></div>
+<style>
+.ig-root{display:flex;flex-direction:column;gap:10px}
+.ig-sec{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden}
+.ig-sec-head{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:7px;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx2)}
+.ig-sec-body{padding:12px}
+
+/* Size */
+.ig-size-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.ig-sz{border:1.5px solid var(--bd);border-radius:6px;padding:7px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .18s;background:rgba(255,255,255,.02)}
+.ig-sz:hover{border-color:var(--bd2);background:rgba(255,255,255,.04)}
+.ig-sz.on{border-color:var(--gdb);background:var(--gdm)}
+.ig-sz-vis{display:flex;align-items:flex-end;justify-content:center;height:22px}
+.ig-sz-rect{border-radius:2px;background:var(--tx3);transition:all .15s}
+.ig-sz.on .ig-sz-rect{background:var(--gd)}
+.ig-sz-name{font-size:9px;font-weight:600;color:var(--tx2)}
+.ig-sz.on .ig-sz-name{color:var(--gd)}
+.ig-sz-hint{font-size:7px;color:var(--tx3);text-align:center;line-height:1.3}
+
+/* BG tabs */
+.ig-bg-tabs{display:flex;gap:3px;background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:6px;padding:3px;margin-bottom:10px}
+.ig-bgtab{flex:1;padding:7px 4px;border-radius:4px;font-size:10px;color:var(--tx3);text-align:center;cursor:pointer;transition:all .18s;font-weight:500;font-family:var(--sans)}
+.ig-bgtab.on{background:var(--gd);color:var(--bg);font-weight:600}
+
+/* RGB */
+.ig-rgb-area{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+.ig-wheel{width:88px;height:88px;border-radius:50%;background:conic-gradient(#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000);cursor:crosshair;position:relative;border:3px solid var(--bd2);flex-shrink:0}
+.ig-wheel-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:white;border:2.5px solid rgba(0,0,0,.5);transform:translate(-50%,-50%);pointer-events:none;transition:left .1s,top .1s}
+.ig-rgb-prev{width:100%;height:28px;border-radius:6px;border:1px solid var(--bd2);cursor:pointer}
+.ig-rgb-hex{font-size:12px;color:var(--gd);font-family:monospace;font-weight:600}
+.ig-rgb-sliders{width:100%;display:flex;flex-direction:column;gap:5px}
+.ig-sl-row{display:flex;align-items:center;gap:7px}
+.ig-sl-lbl{font-size:9px;font-weight:700;color:var(--tx3);width:10px}
+.ig-csl{flex:1;-webkit-appearance:none;height:4px;border-radius:99px;cursor:pointer;outline:none}
+.ig-csl.r{background:linear-gradient(90deg,#1a0000,#ff0000)}
+.ig-csl.g{background:linear-gradient(90deg,#001a00,#00ff00)}
+.ig-csl.b{background:linear-gradient(90deg,#00001a,#0000ff)}
+.ig-csl::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:white;border:2px solid rgba(0,0,0,.3);cursor:pointer}
+.ig-sl-num{font-size:9px;color:var(--tx2);min-width:22px;text-align:right;font-family:monospace}
+
+/* Photo */
+.ig-photo-drop{border:1.5px dashed var(--gdb);border-radius:8px;padding:14px;text-align:center;background:var(--gdm);cursor:pointer;transition:all .2s}
+.ig-photo-drop:hover{background:rgba(232,160,32,.18)}
+.ig-photo-thumb-wrap{margin-bottom:8px;display:none}
+.ig-photo-thumb{max-width:100%;max-height:80px;border-radius:6px;object-fit:cover}
+
+/* Generic slider */
+.ig-gsl-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.ig-gsl-lbl{font-size:10px;color:var(--tx2);min-width:52px}
+.ig-gsl{flex:1;-webkit-appearance:none;height:4px;border-radius:99px;background:rgba(255,255,255,.12);cursor:pointer;outline:none}
+.ig-gsl::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gd);border:2px solid rgba(0,0,0,.3)}
+.ig-gsl-val{font-size:11px;color:var(--gd);font-weight:600;min-width:36px;text-align:right;font-family:monospace}
+
+/* Font */
+.ig-font-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.ig-fb{border:1.5px solid var(--bd);border-radius:6px;padding:9px 6px;cursor:pointer;text-align:center;transition:all .18s;background:rgba(255,255,255,.02)}
+.ig-fb:hover{border-color:var(--bd2)}
+.ig-fb.on{border-color:var(--gdb);background:var(--gdm)}
+.ig-fb-name{font-size:10.5px;color:var(--tx2);font-weight:500}
+.ig-fb.on .ig-fb-name{color:var(--gd)}
+.ig-fb-hint{font-size:8px;color:var(--tx3);margin-top:2px}
+
+/* Canvas */
+.ig-canvas-wrap{background:rgba(0,0,0,.3);border:1px solid var(--bd);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:140px}
+canvas#igcv{max-width:100%;max-height:200px;display:block}
+
+/* Export */
+.ig-export-primary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:6px}
+.ig-ex-btn{border-radius:99px;padding:9px 4px;font-size:10px;font-weight:600;cursor:pointer;text-align:center;border:none;font-family:var(--sans);display:flex;align-items:center;justify-content:center;gap:3px;transition:all .18s}
+.ig-ex-btn:active{transform:scale(.97)}
+.ig-ex-p{background:var(--gd);color:var(--bg)}
+.ig-ex-p:hover{filter:brightness(1.1)}
+.ig-ex-o{background:transparent;border:1.5px solid var(--gdb);color:var(--gd)}
+.ig-ex-o:hover{background:var(--gdm)}
+.ig-share-row{display:flex;gap:4px}
+.ig-share-btn{flex:1;border-radius:6px;padding:8px 4px;font-size:9px;font-weight:500;cursor:pointer;text-align:center;display:flex;align-items:center;justify-content:center;gap:3px;border:1px solid var(--bd);background:rgba(255,255,255,.04);color:var(--tx2);transition:all .18s;font-family:var(--sans)}
+.ig-share-btn:hover{border-color:var(--bd2);background:rgba(255,255,255,.08)}
+.ig-wa{border-color:rgba(37,211,102,.3)!important;color:#25d366!important}
+.ig-ig{border-color:rgba(225,48,108,.3)!important;color:#e1306c!important}
+.ig-yt{border-color:rgba(255,0,0,.3)!important;color:#ff0000!important}
+.ig-cp{border-color:rgba(100,200,255,.3)!important;color:#64c8ff!important}
+
+/* Verse select */
+.ig-vsel{width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:6px;padding:8px 10px;color:var(--tx);font-size:11px;font-family:var(--sans);cursor:pointer;margin-bottom:7px}
+.ig-use-btn{width:100%;border:1px solid var(--bd);border-radius:6px;padding:8px;color:var(--tx2);font-size:11px;background:transparent;font-family:var(--sans);cursor:pointer;transition:all .2s;margin-bottom:10px}
+.ig-use-btn:hover{border-color:var(--gdb);color:var(--gd)}
+
+/* Info badge */
+.ig-info-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.ig-badge{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:4px;padding:3px 8px;font-size:9px;color:var(--tx3)}
+.ig-badge span{color:var(--gd);font-weight:600}
+</style>
+
+<div class="ig-root">
+
+  <!-- SIZE -->
+  <div class="ig-sec">
+    <div class="ig-sec-head">📐 Image Size</div>
+    <div class="ig-sec-body">
+      <div class="ig-size-grid">
+        <div class="ig-sz on" onclick="igSetSize(this,'9:16')">
+          <div class="ig-sz-vis"><div class="ig-sz-rect" style="width:13px;height:21px"></div></div>
+          <div class="ig-sz-name">9:16</div>
+          <div class="ig-sz-hint">Story<br>Reel</div>
+        </div>
+        <div class="ig-sz" onclick="igSetSize(this,'3:4')">
+          <div class="ig-sz-vis"><div class="ig-sz-rect" style="width:17px;height:21px"></div></div>
+          <div class="ig-sz-name">3:4</div>
+          <div class="ig-sz-hint">Portrait<br>Post</div>
+        </div>
+        <div class="ig-sz" onclick="igSetSize(this,'1:1')">
+          <div class="ig-sz-vis"><div class="ig-sz-rect" style="width:21px;height:21px"></div></div>
+          <div class="ig-sz-name">1:1</div>
+          <div class="ig-sz-hint">Square<br>Post</div>
+        </div>
+        <div class="ig-sz" onclick="igSetSize(this,'16:9')">
+          <div class="ig-sz-vis"><div class="ig-sz-rect" style="width:24px;height:15px"></div></div>
+          <div class="ig-sz-name">16:9</div>
+          <div class="ig-sz-hint">YouTube<br>Wide</div>
+        </div>
       </div>
-      <span class="p-lbl">Background</span>
-      <div class="bg-swatches">
-        <div class="bgsw on" style="background:#06080e" data-bg="#06080e" onclick="setBG(this,'#06080e')"></div>
-        <div class="bgsw" style="background:#0b2545" data-bg="#0b2545" onclick="setBG(this,'#0b2545')"></div>
-        <div class="bgsw" style="background:#1a0b2e" data-bg="#1a0b2e" onclick="setBG(this,'#1a0b2e')"></div>
-        <div class="bgsw" style="background:#0d2b1a" data-bg="#0d2b1a" onclick="setBG(this,'#0d2b1a')"></div>
-        <div class="bgsw" style="background:#2d0f0f" data-bg="#2d0f0f" onclick="setBG(this,'#2d0f0f')"></div>
-        <div class="bgsw" style="background:#fdf6ec;border:1px solid rgba(0,0,0,.2)" data-bg="#fdf6ec" onclick="setBG(this,'#fdf6ec')"></div>
-        <div class="bgsw" style="background:#fff;border:1px solid rgba(0,0,0,.2)" data-bg="#ffffff" onclick="setBG(this,'#ffffff')"></div>
-        <div class="bgsw" style="background:#1c1409" data-bg="#1c1409" onclick="setBG(this,'#1c1409')"></div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND -->
+  <div class="ig-sec">
+    <div class="ig-sec-head">🎨 Background</div>
+    <div class="ig-sec-body">
+      <div class="ig-bg-tabs">
+        <div class="ig-bgtab on" id="igtab-solid" onclick="igSetBgMode('solid')">🎨 Solid Colour</div>
+        <div class="ig-bgtab" id="igtab-photo" onclick="igSetBgMode('photo')">📷 My Photo</div>
+      </div>
+
+      <!-- SOLID -->
+      <div id="ig-solid-sec">
+        <div class="ig-rgb-area">
+          <div class="ig-wheel" id="ig-wheel" onmousedown="igWheelStart(event)" ontouchstart="igWheelStart(event)">
+            <div class="ig-wheel-dot" id="ig-wheel-dot" style="left:55px;top:22px"></div>
+          </div>
+          <div class="ig-rgb-prev" id="ig-rgb-prev" style="background:#8b1a1a" onclick="igPickPresets()"></div>
+          <div class="ig-rgb-hex" id="ig-rgb-hex">#8B1A1A</div>
+          <div class="ig-rgb-sliders">
+            <div class="ig-sl-row">
+              <span class="ig-sl-lbl" style="color:#f87171">R</span>
+              <input type="range" class="ig-csl r" id="ig-r" min="0" max="255" value="139" oninput="igRGBSlider()">
+              <span class="ig-sl-num" id="ig-rval">139</span>
+            </div>
+            <div class="ig-sl-row">
+              <span class="ig-sl-lbl" style="color:#4ade80">G</span>
+              <input type="range" class="ig-csl g" id="ig-g" min="0" max="255" value="26" oninput="igRGBSlider()">
+              <span class="ig-sl-num" id="ig-gval">26</span>
+            </div>
+            <div class="ig-sl-row">
+              <span class="ig-sl-lbl" style="color:#60a5fa">B</span>
+              <input type="range" class="ig-csl b" id="ig-b" min="0" max="255" value="26" oninput="igRGBSlider()">
+              <span class="ig-sl-num" id="ig-bval">26</span>
+            </div>
+          </div>
+        </div>
+        <!-- Quick presets -->
+        <div style="display:flex;gap:5px;margin-top:10px;flex-wrap:wrap">
+          ${['#8b1a1a','#1a3a7a','#2d5a1b','#3d1a7a','#0f5c52','#8b3a1a','#1a1a1a','#2c1810'].map(c=>`<div onclick="igSetColor('${c}')" style="width:22px;height:22px;border-radius:4px;background:${c};cursor:pointer;border:2px solid transparent;transition:all .15s" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"></div>`).join('')}
+        </div>
+      </div>
+
+      <!-- PHOTO -->
+      <div id="ig-photo-sec" style="display:none">
+        <div class="ig-photo-thumb-wrap" id="ig-thumb-wrap">
+          <img id="ig-photo-thumb" class="ig-photo-thumb">
+        </div>
+        <div class="ig-photo-drop" onclick="igUploadPhoto()">
+          <div style="font-size:24px;margin-bottom:6px">📷</div>
+          <div style="font-size:11px;color:var(--gd);font-weight:500">Upload Photo</div>
+          <div style="font-size:9px;color:var(--tx3);margin-top:3px">Gallery · Camera · Files</div>
+          <button onclick="event.stopPropagation();igUploadPhoto()" style="margin-top:10px;background:var(--gd);color:var(--bg);border:none;border-radius:99px;padding:7px 18px;font-size:11px;font-weight:600;font-family:var(--sans);cursor:pointer">Choose Photo</button>
+        </div>
+        <div class="ig-gsl-row">
+          <span class="ig-gsl-lbl">Dark Overlay</span>
+          <input type="range" class="ig-gsl" id="ig-opacity" min="0" max="90" value="60" step="5" oninput="document.getElementById('ig-opval').textContent=this.value+'%';drawIG()">
+          <span class="ig-gsl-val" id="ig-opval">60%</span>
+        </div>
       </div>
     </div>
-    <div id="ig-photo-sec" style="display:none">
-      <div class="photo-upload-area" onclick="uploadPhoto()">
-        <img id="ig-thumb" style="display:none;max-width:100%;max-height:80px;object-fit:cover;border-radius:6px;margin-bottom:6px">
-        <div id="ig-photo-ph">📷 Upload Photo<br><small style="color:var(--tx3)">Gallery · Camera · Files</small></div>
-        <button onclick="event.stopPropagation();uploadPhoto()" style="margin-top:8px;background:var(--gd);color:var(--bg);border:none;border-radius:99px;padding:6px 16px;font-size:11px;font-weight:500;font-family:var(--sans);cursor:pointer">Choose</button>
+  </div>
+
+  <!-- FONT -->
+  <div class="ig-sec">
+    <div class="ig-sec-head">🔤 Font Style & Size</div>
+    <div class="ig-sec-body">
+      <div class="ig-font-grid">
+        <div class="ig-fb on" onclick="igSetFont(this,'serif')"><div class="ig-fb-name" style="font-family:Georgia,serif">Serif</div><div class="ig-fb-hint">Traditional</div></div>
+        <div class="ig-fb" onclick="igSetFont(this,'sans')"><div class="ig-fb-name">Sans</div><div class="ig-fb-hint">Modern</div></div>
+        <div class="ig-fb" onclick="igSetFont(this,'italic')"><div class="ig-fb-name" style="font-family:Georgia,serif;font-style:italic">Italic</div><div class="ig-fb-hint">Elegant</div></div>
+        <div class="ig-fb" onclick="igSetFont(this,'mono')"><div class="ig-fb-name" style="font-family:'Courier New',monospace;font-size:9px">Mono</div><div class="ig-fb-hint">Classic</div></div>
       </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-        <span style="font-size:10px;color:var(--tx3)">Overlay</span>
-        <input type="range" id="overlay-slider" min="0" max="90" value="55" step="5" oninput="g('ov-val').textContent=this.value+'%';drawIG()" style="flex:1;accent-color:var(--gd)">
-        <span id="ov-val" style="font-size:10px;color:var(--gd);min-width:28px">55%</span>
+      <div class="ig-gsl-row">
+        <span class="ig-gsl-lbl">Tamil</span>
+        <input type="range" class="ig-gsl" id="ig-tasize" min="28" max="72" value="52" oninput="document.getElementById('ig-tasizeval').textContent=this.value+'px';_igTaSize=parseInt(this.value);drawIG()">
+        <span class="ig-gsl-val" id="ig-tasizeval">52px</span>
+      </div>
+      <div class="ig-gsl-row">
+        <span class="ig-gsl-lbl">English</span>
+        <input type="range" class="ig-gsl" id="ig-ensize" min="20" max="52" value="36" oninput="document.getElementById('ig-ensizeval').textContent=this.value+'px';_igEnSize=parseInt(this.value);drawIG()">
+        <span class="ig-gsl-val" id="ig-ensizeval">36px</span>
       </div>
     </div>
-    <div id="ig-template-sec" style="display:none">
-      <div class="tpl-grid">
-        ${Object.entries(IG_TEMPLATES).map(([k,t])=>`
-          <div class="tpl-card${k===_igTemplate?' on':''}" data-tpl="${k}" onclick="setTpl(this,'${k}')">
-            <div class="tpl-preview" style="background:${t.bg};border-top:2px solid ${t.accent}">${k}</div>
-            <div class="tpl-label">${k.charAt(0).toUpperCase()+k.slice(1)}</div>
-          </div>`).join('')}
+  </div>
+
+  <!-- VERSE -->
+  <div class="ig-sec">
+    <div class="ig-sec-head">📖 Verse</div>
+    <div class="ig-sec-body">
+      <select class="ig-vsel" id="igvsel" onchange="drawIG()"></select>
+      <button class="ig-use-btn" onclick="useCurrentV()">Use current / highlighted verse</button>
+      <!-- Info -->
+      <div class="ig-info-row">
+        <div class="ig-badge" id="ig-size-badge">Size <span>9:16 · 1080×1920</span></div>
+        <div class="ig-badge" id="ig-color-badge">BG <span>#8B1A1A</span></div>
       </div>
     </div>
-    <span class="p-lbl">Text Colour</span>
-    <div class="tc-row">
-      <div class="tc-btn on" data-tc="#e8a020" style="background:rgba(232,160,32,.15);border-color:rgba(232,160,32,.4);color:#e8a020" onclick="setTC(this,'#e8a020')">★ Gold</div>
-      <div class="tc-btn" data-tc="#c0c0c0" style="background:rgba(192,192,192,.1);border-color:rgba(192,192,192,.3);color:#c0c0c0" onclick="setTC(this,'#c0c0c0')">★ Silver</div>
-      <div class="tc-btn" data-tc="#ffffff" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.25);color:#fff" onclick="setTC(this,'#ffffff')">White</div>
-      <div class="tc-btn" data-tc="#111111" style="background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.25);color:#111" onclick="setTC(this,'#111111')">Black</div>
+  </div>
+
+  <!-- CANVAS -->
+  <div class="ig-canvas-wrap">
+    <canvas id="igcv"></canvas>
+  </div>
+
+  <!-- EXPORT -->
+  <div class="ig-sec">
+    <div class="ig-sec-head">⬇ Export & Share</div>
+    <div class="ig-sec-body">
+      <div class="ig-export-primary">
+        <button class="ig-ex-btn ig-ex-p" onclick="dlIG('png')">↓ PNG</button>
+        <button class="ig-ex-btn ig-ex-p" onclick="dlIG('jpg')">↓ JPG</button>
+        <button class="ig-ex-btn ig-ex-o" onclick="dlIG('webp')">↓ WebP</button>
+      </div>
+      <div class="ig-share-row">
+        <button class="ig-share-btn ig-wa" onclick="shareToApp('wa')">🟢 WhatsApp</button>
+        <button class="ig-share-btn ig-ig" onclick="shareToApp('ig')">📸 Insta</button>
+        <button class="ig-share-btn ig-yt" onclick="shareToApp('yt')">▶ YouTube</button>
+        <button class="ig-share-btn ig-cp" onclick="copyImgToClipboard()">📋 Copy</button>
+      </div>
     </div>
-    <span class="p-lbl">Verse</span>
-    <select id="igvsel" style="margin-bottom:8px" onchange="drawIG()"></select>
-    <button onclick="useCurrentV()" style="width:100%;border:1px solid var(--bd);border-radius:var(--rl);padding:8px;color:var(--tx2);font-size:11px;background:transparent;margin-bottom:10px;font-family:var(--sans);cursor:pointer">Use current / highlighted verse</button>
-    <div class="ig-canvas-wrap"><canvas id="igcv"></canvas></div>
-    <div class="ig-dl-row">
-      <button class="ig-dl-btn primary" onclick="dlIG('png')">↓ PNG</button>
-      <button class="ig-dl-btn primary" onclick="dlIG('jpg')">↓ JPG</button>
-      <button class="ig-dl-btn outline" onclick="shareIG()">🔗 Share</button>
-    </div>`;
+  </div>
+
+</div>`;
+
   initIGVerses();
+  setTimeout(drawIG, 80);
+}
+
+// ── IG SIZE ──────────────────────────────────────────────────────
+function igSetSize(el, sz){
+  _igSz = sz;
+  document.querySelectorAll('.ig-sz').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  const badge = document.getElementById('ig-size-badge');
+  if(badge) badge.innerHTML = `Size <span>${sz} · ${SIZE_LABELS[sz]||''}</span>`;
   drawIG();
 }
 
-function initIGVerses(){
-  const sel=g('igvsel');if(!sel)return;
-  const vv=IGVERSES;S.igVerses=vv;
-  sel.innerHTML=vv.map((v,i)=>`<option value="${i}">${v.tref} — ${v.ta.substring(0,28)}...</option>`).join('');
-}
-
-function setIGMode(mode){
-  _igMode=mode;
-  ['colour','photo','template'].forEach(m=>{
-    const t=g('igtab-'+m);if(t)t.classList.toggle('on',m===mode);
-    const s=g('ig-'+m+'-sec');if(s)s.style.display=m===mode?'block':'none';
-  });
+// ── BG MODE ──────────────────────────────────────────────────────
+function igSetBgMode(mode){
+  _igMode = mode;
+  document.getElementById('igtab-solid').classList.toggle('on', mode==='solid');
+  document.getElementById('igtab-photo').classList.toggle('on', mode==='photo');
+  const ss = document.getElementById('ig-solid-sec');
+  const ps = document.getElementById('ig-photo-sec');
+  if(ss) ss.style.display = mode==='solid'?'block':'none';
+  if(ps) ps.style.display = mode==='photo'?'block':'none';
   drawIG();
 }
-function setSz(el,sz){document.querySelectorAll('.sz-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');S.igSz=sz;drawIG();}
-function setBG(el,bg){document.querySelectorAll('.bgsw').forEach(b=>b.classList.remove('on'));el.classList.add('on');S.igBg=bg;drawIG();}
-function setTC(el,tc){document.querySelectorAll('.tc-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');S.igTc=tc;drawIG();}
-function setTpl(el,name){_igTemplate=name;document.querySelectorAll('.tpl-card').forEach(c=>c.classList.toggle('on',c.dataset.tpl===name));drawIG();}
-function uploadPhoto(){
-  const inp=document.createElement('input');inp.type='file';inp.accept='image/*';
+
+// ── RGB WHEEL ────────────────────────────────────────────────────
+function igSetColor(hex){
+  _igBgColor = hex;
+  const r=parseInt(hex.slice(1,3),16);
+  const g=parseInt(hex.slice(3,5),16);
+  const b=parseInt(hex.slice(5,7),16);
+  const ri=document.getElementById('ig-r');
+  const gi=document.getElementById('ig-g');
+  const bi=document.getElementById('ig-b');
+  if(ri){ri.value=r;document.getElementById('ig-rval').textContent=r;}
+  if(gi){gi.value=g;document.getElementById('ig-gval').textContent=g;}
+  if(bi){bi.value=b;document.getElementById('ig-bval').textContent=b;}
+  const prev=document.getElementById('ig-rgb-prev');
+  if(prev)prev.style.background=hex;
+  const hexEl=document.getElementById('ig-rgb-hex');
+  if(hexEl)hexEl.textContent=hex.toUpperCase();
+  const badge=document.getElementById('ig-color-badge');
+  if(badge)badge.innerHTML=`BG <span>${hex.toUpperCase()}</span>`;
+  drawIG();
+}
+
+function igRGBSlider(){
+  const r=parseInt(document.getElementById('ig-r')?.value||'0');
+  const g=parseInt(document.getElementById('ig-g')?.value||'0');
+  const b=parseInt(document.getElementById('ig-b')?.value||'0');
+  document.getElementById('ig-rval').textContent=r;
+  document.getElementById('ig-gval').textContent=g;
+  document.getElementById('ig-bval').textContent=b;
+  const hex='#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+  _igBgColor=hex;
+  const prev=document.getElementById('ig-rgb-prev');
+  if(prev)prev.style.background=hex;
+  const hexEl=document.getElementById('ig-rgb-hex');
+  if(hexEl)hexEl.textContent=hex.toUpperCase();
+  const badge=document.getElementById('ig-color-badge');
+  if(badge)badge.innerHTML=`BG <span>${hex.toUpperCase()}</span>`;
+  drawIG();
+}
+
+// Wheel drag
+let _igWheelDragging=false;
+function igWheelStart(e){
+  _igWheelDragging=true;
+  igWheelMove(e);
+  document.addEventListener('mousemove',igWheelMove);
+  document.addEventListener('mouseup',()=>{_igWheelDragging=false;document.removeEventListener('mousemove',igWheelMove);});
+  document.addEventListener('touchmove',igWheelMove,{passive:false});
+  document.addEventListener('touchend',()=>{_igWheelDragging=false;});
+}
+function igWheelMove(e){
+  if(!_igWheelDragging)return;
+  e.preventDefault?.();
+  const wheel=document.getElementById('ig-wheel');
+  if(!wheel)return;
+  const rect=wheel.getBoundingClientRect();
+  const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+  const clientX=e.touches?e.touches[0].clientX:e.clientX;
+  const clientY=e.touches?e.touches[0].clientY:e.clientY;
+  const dx=clientX-cx, dy=clientY-cy;
+  const r=rect.width/2;
+  const dist=Math.min(Math.sqrt(dx*dx+dy*dy),r);
+  const angle=Math.atan2(dy,dx);
+  // Hue from angle
+  const hue=((angle*180/Math.PI)+360)%360;
+  const sat=dist/r;
+  // HSV to RGB
+  const h=hue/60, i=Math.floor(h), f=h-i;
+  const p=1-sat, q=1-sat*f, t=1-sat*(1-f);
+  let rr,gg,bb;
+  switch(i%6){
+    case 0:rr=1;gg=t;bb=p;break;
+    case 1:rr=q;gg=1;bb=p;break;
+    case 2:rr=p;gg=1;bb=t;break;
+    case 3:rr=p;gg=q;bb=1;break;
+    case 4:rr=t;gg=p;bb=1;break;
+    default:rr=1;gg=p;bb=q;break;
+  }
+  const R=Math.round(rr*255), G=Math.round(gg*255), B=Math.round(bb*255);
+  // Update dot position
+  const dot=document.getElementById('ig-wheel-dot');
+  if(dot){dot.style.left=(cx-rect.left+Math.cos(angle)*dist)+'px';dot.style.top=(cy-rect.top+Math.sin(angle)*dist)+'px';}
+  // Update sliders
+  const ri=document.getElementById('ig-r');
+  const gi=document.getElementById('ig-g');
+  const bi=document.getElementById('ig-b');
+  if(ri)ri.value=R;if(gi)gi.value=G;if(bi)bi.value=B;
+  igRGBSlider();
+}
+
+// ── FONT ─────────────────────────────────────────────────────────
+function igSetFont(el, font){
+  _igFont = font;
+  document.querySelectorAll('.ig-fb').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  drawIG();
+}
+
+// ── PHOTO UPLOAD ─────────────────────────────────────────────────
+function igUploadPhoto(){
+  const inp=document.createElement('input');
+  inp.type='file';inp.accept='image/*';
   inp.onchange=e=>{
     const f=e.target.files[0];if(!f)return;
     const r=new FileReader();
     r.onload=ev=>{
       _userPhoto=ev.target.result;
-      const th=g('ig-thumb');if(th){th.src=_userPhoto;th.style.display='block';}
-      const ph=g('ig-photo-ph');if(ph)ph.style.display='none';
+      const th=document.getElementById('ig-photo-thumb');
+      const wrap=document.getElementById('ig-thumb-wrap');
+      if(th){th.src=_userPhoto;if(wrap)wrap.style.display='block';}
       drawIG();toast('📷 Photo uploaded!');
     };
     r.readAsDataURL(f);
   };
   inp.click();
 }
+
+// ── VERSE INIT ───────────────────────────────────────────────────
+function initIGVerses(){
+  const sel=document.getElementById('igvsel');if(!sel)return;
+  S.igVerses=IGVERSES;
+  sel.innerHTML=IGVERSES.map((v,i)=>`<option value="${i}">${v.tref} — ${v.ta.substring(0,30)}...</option>`).join('');
+}
+
 function useCurrentV(){
   if(!S.verses.length){toast('Select a chapter first');return;}
   const v=S.verses[0];
@@ -913,86 +1221,225 @@ function useCurrentV(){
   drawIG();toast('Using current verse');
 }
 
+// ── DRAW ─────────────────────────────────────────────────────────
 function getIGVerse(){
   if(S.customVerse){const v=S.customVerse;S.customVerse=null;return v;}
-  const idx=parseInt(g('igvsel')?.value||'0');
+  const idx=parseInt(document.getElementById('igvsel')?.value||'0');
   return(S.igVerses||IGVERSES)[idx]||IGVERSES[0];
 }
 
 function drawIG(){
-  const cv=g('igcv');if(!cv)return;
-  const[W,H]=RATIO[S.igSz]||[1080,1920];
+  const cv=document.getElementById('igcv');if(!cv)return;
+  const[W,H]=RATIO[_igSz]||[1080,1920];
   cv.width=W;cv.height=H;
   const ctx=cv.getContext('2d');
   const v=getIGVerse();
-  let bg=S.igBg,tc=S.igTc;
-  if(_igMode==='template'){const t=IG_TEMPLATES[_igTemplate];bg=t.bg;tc=t.accent;}
-  const light=(()=>{if(!bg||bg.length<7)return false;const r=parseInt(bg.slice(1,3),16);const g2=parseInt(bg.slice(3,5),16);const b=parseInt(bg.slice(5,7),16);return(0.299*r+0.587*g2+0.114*b)>140;})();
-  const bodyC=light?'rgba(0,0,0,.85)':'rgba(255,255,255,.92)';
-  const subC=light?'rgba(0,0,0,.5)':'rgba(255,255,255,.55)';
+
   if(_igMode==='photo'&&_userPhoto){
     const img=new Image();
     img.onload=()=>{
-      const ir=img.width/img.height,cr=W/H;
+      const ir=img.width/img.height, cr=W/H;
       let sx=0,sy=0,sw=img.width,sh=img.height;
       if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}
       else{sh=img.width/cr;sy=(img.height-sh)/2;}
       ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
-      const ov=parseInt(g('overlay-slider')?.value||'55')/100;
-      ctx.fillStyle='rgba(0,0,0,'+ov+')';ctx.fillRect(0,0,W,H);
-      _drawContent(ctx,W,H,tc,'rgba(255,255,255,.95)','rgba(255,255,255,.65)',v);
+      const op=parseInt(document.getElementById('ig-opacity')?.value||'60')/100;
+      ctx.fillStyle=`rgba(0,0,0,${op})`;ctx.fillRect(0,0,W,H);
+      _drawIG(ctx,W,H,v,true);
     };
     img.src=_userPhoto;return;
   }
-  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-  _drawContent(ctx,W,H,tc,bodyC,subC,v);
+  ctx.fillStyle=_igBgColor||'#8b1a1a';ctx.fillRect(0,0,W,H);
+  _drawIG(ctx,W,H,v,false);
 }
 
-function _drawContent(ctx,W,H,tc,bodyC,subC,v){
+function _drawIG(ctx,W,H,v,isPhoto){
+  // Detect light bg
+  const hex=_igBgColor||'#8b1a1a';
+  const rr=parseInt(hex.slice(1,3),16)||0;
+  const gg=parseInt(hex.slice(3,5),16)||0;
+  const bb2=parseInt(hex.slice(5,7),16)||0;
+  const isLight=(0.299*rr+0.587*gg+0.114*bb2)>140&&!isPhoto;
+
+  const accentColor = isPhoto ? 'rgba(255,255,255,0.9)' : (isLight ? hex : 'rgba(255,255,255,0.9)');
+  const borderColor = isLight ? hex : 'rgba(255,255,255,0.85)';
+  const textColor   = isLight ? '#1a0800' : 'rgba(255,255,255,0.95)';
+  const refColor    = isLight ? hex : '#f5c870';
+  const enColor     = isLight ? '#4a2000' : 'rgba(255,255,255,0.6)';
+  const ftrBg       = isLight ? hex : (isPhoto ? 'rgba(0,0,0,0.75)' : 'rgba(0,0,0,0.4)');
+
   ctx.textAlign='center';
-  ctx.fillStyle=tc;ctx.fillRect(0,0,W,4);
-  // Church label
-  ctx.globalAlpha=.4;ctx.fillStyle=tc;
-  ctx.font='bold '+Math.round(W*0.022)+'px system-ui';
-  ctx.fillText('ELIM NEW JERUSALEM CHURCH',W/2,H*0.085);
-  ctx.globalAlpha=.18;ctx.fillRect(W/2-100,H*0.095,200,1.5);ctx.globalAlpha=1;
-  const mW=W*0.83;
-  function wrap(text,mw){const ww=text.split(' ');const ls=[];let l='';for(const w of ww){if(ctx.measureText(l+w+' ').width>mw&&l){ls.push(l.trim());l=w+' ';}else l+=w+' ';}if(l.trim())ls.push(l.trim());return ls;}
-  let y=H*0.13;
+
+  // TOP BAR
+  ctx.fillStyle=isLight?hex:'rgba(255,255,255,0.15)';
+  ctx.fillRect(0,0,W,Math.round(H*0.005));
+
+  // CHURCH NAME
+  ctx.fillStyle=isLight?hex:'rgba(255,220,180,0.85)';
+  ctx.font=`600 ${Math.round(W*0.022)}px DM Sans,system-ui,sans-serif`;
+  ctx.letterSpacing=Math.round(W*0.008)+'px';
+  ctx.fillText('ELIM NEW JERUSALEM CHURCH',W/2,Math.round(H*0.065));
+  ctx.letterSpacing='0px';
+
+  // TAMIL SUBTITLE
+  ctx.fillStyle=isLight?`${hex}88`:'rgba(255,200,150,0.45)';
+  ctx.font=`${Math.round(W*0.018)}px Noto Serif Tamil,serif`;
+  ctx.fillText('ஏலீம் புதிய எருசலேம் சபை',W/2,Math.round(H*0.085));
+
+  // DIVIDER
+  ctx.fillStyle=isLight?`${hex}33`:'rgba(255,255,255,0.15)';
+  ctx.fillRect(W/2-60,Math.round(H*0.096),120,1.5);
+
+  // VERSE BOX
+  const boxX=Math.round(W*0.08), boxW=Math.round(W*0.84);
+  const boxTop=Math.round(H*0.11), boxBot=Math.round(H*0.86);
+  const boxH=boxBot-boxTop;
+  const r2=Math.round(W*0.022);
+
+  // Box border
+  ctx.strokeStyle=isLight?`${hex}33`:'rgba(255,255,255,0.2)';
+  ctx.lineWidth=Math.round(W*0.002);
+  ctx.beginPath();
+  ctx.roundRect(boxX,boxTop,boxW,boxH,r2);
+  ctx.stroke();
+
+  // Corner marks
+  const cSize=Math.round(W*0.04), cW=Math.round(W*0.003);
+  ctx.strokeStyle=borderColor;ctx.lineWidth=cW;ctx.lineCap='square';
+  [[boxX,boxTop,1,1],[boxX+boxW,boxTop,-1,1],[boxX,boxTop+boxH,1,-1],[boxX+boxW,boxTop+boxH,-1,-1]].forEach(([x,y,dx,dy])=>{
+    ctx.beginPath();ctx.moveTo(x,y+dy*cSize);ctx.lineTo(x,y);ctx.lineTo(x+dx*cSize,y);ctx.stroke();
+  });
+
+  // VERSE TEXT — centred
+  const mW=boxW*0.82;
+  const fontStack=_igFont==='serif'?'Noto Serif Tamil,Georgia,serif':
+                  _igFont==='sans'?'DM Sans,system-ui,sans-serif':
+                  _igFont==='italic'?'Noto Serif Tamil,Georgia,serif':
+                  'Courier New,monospace';
+  const fontPrefix=_igFont==='italic'?'italic ':'';
+
+  function wrap(text,font,maxW){
+    ctx.font=font;
+    const words=text.split(' '),lines=[];let line='';
+    for(const w of words){
+      const t=line?line+' '+w:w;
+      if(ctx.measureText(t).width>maxW&&line){lines.push(line);line=w;}
+      else line=t;
+    }
+    if(line)lines.push(line);
+    return lines;
+  }
+
+  // Calculate content total height to centre vertically
+  const taFs=_igTaSize||52, taLh=taFs*1.65;
+  const enFs=_igEnSize||36, enLh=enFs*1.55;
+  const taFont=`${fontPrefix}${taFs}px ${fontStack}`;
+  const enFont=`${fontPrefix}italic ${enFs}px Georgia,serif`;
+  const taLines=v.ta?wrap('\u201c'+v.ta+'\u201d',taFont,mW):[];
+  const enLines=v.en?wrap('\u201c'+v.en+'\u201d',enFont,mW):[];
+  const totalH=(taLines.length*taLh)+(taFs*0.7)+(enFs*0.4)+(enLines.length*enLh)+(v.en?enFs*0.5:0)+30;
+  let y=boxTop+(boxH-totalH)/2+taFs;
+
+  // Tamil text
   if(v.ta){
-    const fs=Math.round(W*0.052),lh=fs*1.6;
-    ctx.font='italic '+fs+'px "Noto Serif Tamil",serif';ctx.fillStyle=bodyC;
-    wrap('\u201c'+v.ta+'\u201d',mW).forEach((l,i)=>ctx.fillText(l,W/2,y+i*lh));
-    y+=wrap('\u201c'+v.ta+'\u201d',mW).length*lh;
-    if(v.tref){y+=fs*0.55;ctx.font='bold '+Math.round(W*0.036)+'px "Noto Serif Tamil",system-ui';ctx.fillStyle=tc;ctx.fillText('\u2014 '+v.tref,W/2,y);y+=fs*0.65;}
+    ctx.font=taFont;ctx.fillStyle=textColor;
+    taLines.forEach(l=>{ctx.fillText(l,W/2,y);y+=taLh;});
+    // Tamil ref
+    y+=taFs*0.2;
+    ctx.font=`700 ${Math.round(taFs*0.65)}px ${fontStack}`;
+    ctx.fillStyle=refColor;
+    ctx.fillText('\u2014 '+(v.tref||''),W/2,y);
+    y+=taFs*0.5;
   }
-  if(v.ta&&v.en){y+=H*0.022;ctx.fillStyle=tc;ctx.globalAlpha=.14;ctx.fillRect(W*0.3,y,W*0.4,1.5);ctx.globalAlpha=1;y+=H*0.028;}
+
+  // Separator
+  if(v.ta&&v.en){
+    ctx.fillStyle='rgba(255,255,255,0.18)';
+    ctx.fillRect(W/2-50,y,100,1.5);
+    y+=enFs*0.5;
+  }
+
+  // English text
   if(v.en){
-    const fs=Math.round(W*0.036),lh=fs*1.55;
-    ctx.font='italic '+fs+'px Georgia,serif';ctx.fillStyle=subC;
-    wrap('\u201c'+v.en+'\u201d',mW).forEach((l,i)=>ctx.fillText(l,W/2,y+i*lh));
-    y+=wrap('\u201c'+v.en+'\u201d',mW).length*lh;
-    if(v.ref){y+=fs*0.45;ctx.font=Math.round(W*0.026)+'px system-ui';ctx.fillStyle=tc;ctx.globalAlpha=.65;ctx.fillText('\u2014 '+v.ref,W/2,y);ctx.globalAlpha=1;}
+    ctx.font=enFont;ctx.fillStyle=enColor;
+    enLines.forEach(l=>{ctx.fillText(l,W/2,y);y+=enLh;});
+    y+=enFs*0.3;
+    ctx.font=`${Math.round(enFs*0.7)}px DM Sans,system-ui,sans-serif`;
+    ctx.fillStyle=refColor;ctx.globalAlpha=.65;
+    ctx.fillText('\u2014 '+(v.ref||''),W/2,y);
+    ctx.globalAlpha=1;
   }
-  ctx.fillStyle=tc;ctx.globalAlpha=.15;ctx.fillRect(0,H-4,W,4);ctx.globalAlpha=.28;
-  ctx.font=Math.round(W*0.017)+'px system-ui';ctx.fillText('elimnewjerusalem.github.io/church/bible.html',W/2,H-Math.round(H*0.02));
+
+  // FOOTER
+  const ftH=Math.round(H*0.095);
+  ctx.fillStyle=ftrBg;
+  ctx.fillRect(0,H-ftH,W,ftH);
+
+  // Footer divider
+  ctx.fillStyle='rgba(255,255,255,0.1)';
+  ctx.fillRect(0,H-ftH,W,1);
+
+  // Social handles
+  const yt='youtube.com/@ElimNewJerusalemChurch';
+  const ig='/ElimNewJerusalemChurch';
+  const fSize=Math.round(W*0.018);
+  ctx.font=`${fSize}px DM Sans,system-ui,sans-serif`;
+
+  // YouTube row
+  const ytY=H-ftH+Math.round(ftH*0.38);
+  ctx.fillStyle='#ff0000';ctx.globalAlpha=.9;
+  ctx.fillRect(Math.round(W*0.06),ytY-fSize*.7,fSize,fSize);
   ctx.globalAlpha=1;
+  ctx.fillStyle='rgba(255,255,255,0.7)';
+  ctx.textAlign='left';
+  ctx.fillText(yt,Math.round(W*0.06+fSize*1.3),ytY);
+
+  // Instagram row
+  const igY=H-ftH+Math.round(ftH*0.72);
+  ctx.fillStyle='#e1306c';ctx.globalAlpha=.9;
+  ctx.fillRect(Math.round(W*0.06),igY-fSize*.7,fSize,fSize);
+  ctx.globalAlpha=1;
+  ctx.fillStyle='rgba(255,255,255,0.7)';
+  ctx.fillText(ig,Math.round(W*0.06+fSize*1.3),igY);
+  ctx.textAlign='center';
 }
 
+// ── DOWNLOAD ─────────────────────────────────────────────────────
 function dlIG(fmt){
-  const cv=g('igcv');if(!cv)return;
-  const a=document.createElement('a');a.download='enjc-verse.'+fmt;
-  a.href=cv.toDataURL(fmt==='png'?'image/png':'image/jpeg',0.93);a.click();
-  toast('\u2193 '+fmt.toUpperCase()+' Downloaded!');
+  const cv=document.getElementById('igcv');if(!cv)return;
+  const mime=fmt==='png'?'image/png':fmt==='webp'?'image/webp':'image/jpeg';
+  const a=document.createElement('a');
+  a.download=`enjc-verse-${_igSz.replace(':','x')}.${fmt}`;
+  a.href=cv.toDataURL(mime,0.93);a.click();
+  toast(`\u2193 ${fmt.toUpperCase()} Downloaded!`);
 }
-function shareIG(){
-  const cv=g('igcv');if(!cv)return;
+
+function shareToApp(app){
+  const cv=document.getElementById('igcv');if(!cv)return;
   cv.toBlob(blob=>{
     const f=new File([blob],'enjc-verse.jpg',{type:'image/jpeg'});
-    if(navigator.share&&navigator.canShare?.({files:[f]}))navigator.share({title:'ENJC Verse',files:[f]});
-    else dlIG('jpg');
+    if(navigator.share&&navigator.canShare?.({files:[f]})){
+      navigator.share({title:'ENJC Bible Verse',files:[f]});
+    }else{
+      // Fallback: download and guide
+      dlIG('jpg');
+      const msgs={wa:'WhatsApp-ல் share பண்ண: Save பண்ணி WhatsApp-ல் attach பண்ணுங்கள்',ig:'Instagram-ல் share பண்ண: Save பண்ணி Gallery-ல் இருந்து post பண்ணுங்கள்',yt:'YouTube Thumbnail-க்கு: Save பண்ணிய file-ஐ YouTube Studio-ல் upload பண்ணுங்கள்'};
+      toast(msgs[app]||'Downloaded!',4000);
+    }
   },'image/jpeg',0.93);
 }
+
+function copyImgToClipboard(){
+  const cv=document.getElementById('igcv');if(!cv)return;
+  cv.toBlob(async blob=>{
+    try{
+      await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);
+      toast('📋 Image copied to clipboard!');
+    }catch(e){dlIG('png');toast('📋 Saved — paste manually');}
+  },'image/png');
+}
+
+
 
 // ── SETTINGS ─────────────────────────────────────────────────────
 const THEMES={
