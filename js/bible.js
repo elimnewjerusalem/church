@@ -380,8 +380,8 @@ function loadVOTD(){
   const v=pool[day%pool.length];
   if(!v)return;
   window._vd=v;
-  const taText=v.ta||v.en||'';
-  const enText=v.en||v.ta||'';
+  const taText=v.ta||'';
+  const enText=v.en||v.text||v.ta||'';
   const taRef=v.tref||v.ref||'';
   const enRef=v.ref||v.tref||'';
   // Update all VOTD elements safely
