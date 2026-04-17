@@ -382,6 +382,8 @@ function updateChUI(){
   g('abar').style.display='flex';
   safe('apstat','வசனத்தை தொட்டு கேளுங்கள்');
   g('chprogf').style.width='0%';
+  // Auto-populate image gen verse
+  setTimeout(igAutoPopulate, 400);
 }
 
 function prevCh(){if(S.ch>1){S.ch--;g('ch-sel').value=S.ch;loadCh();}}
@@ -1295,21 +1297,14 @@ function igSetVerseDisplay(v){
   if(ref)ref.textContent='— '+taRef;
 }
 
-// Auto-update when chapter loads — set first verse in display
-const _origUpdateChUI=updateChUI;
-function updateChUI(){
-  _origUpdateChUI.call(this,...arguments);
-  // Auto-populate image gen with first verse
-  setTimeout(()=>{
-    if(S.verses.length){
-      _igVerseIdx=0;
-      igSetVerseDisplay(S.verses[0]);
-      const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+S.verses[0].num;
-      const enRef=S.bookName+' '+S.ch+':'+S.verses[0].num;
-      const enV=S.enVerses.find(e=>e.num===S.verses[0].num);
-      S.customVerse={ta:S.verses[0].text,tref:taRef,en:enV?.text||'',ref:enRef};
-    }
-  },300);
+// Auto-populate image gen after chapter loads — called from loadCh()
+function igAutoPopulate(){
+  if(!S.verses.length)return;
+  _igVerseIdx=0;
+  igSetVerseDisplay(S.verses[0]);
+  const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+S.verses[0].num;
+  const enV=S.enVerses.find(e=>e.num===S.verses[0].num);
+  S.customVerse={ta:S.verses[0].text,tref:taRef,en:enV?.text||'',ref:S.bookName+' '+S.ch+':'+S.verses[0].num};
 }
 
 // ── DRAW ─────────────────────────────────────────────────────────
