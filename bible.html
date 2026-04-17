@@ -2,987 +2,533 @@
 <html lang="ta">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>பரிசுத்த வேதாகமம் | ENJC</title>
-<meta property="og:title" content="பரிசுத்த வேதாகமம் | ENJC Bible">
-<meta property="og:description" content="தமிழ் & English Bible — 66 books, Audio, Image, Bookmark">
-<meta property="og:type" content="website">
-<meta name="description" content="Tamil & English Bible — 66 books, Audio, Image Generator, Bookmark | ENJC Tondiarpet Chennai">
-<meta name="description" content="Read the Bible in Tamil & English — Elim New Jerusalem Church">
+<meta name="description" content="Tamil & English Bible — 66 books, Audio, Image, Bookmark | ENJC Tondiarpet Chennai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Serif+Tamil:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE" defer></script>
 <style>
-:root{
-  --bg:#06080e;--bg1:#0a0e17;--bg2:#0f1520;--bg3:#141d2c;--bg4:#1a2535;
-  --gd:#d4920a;--gd2:#e8a820;--gd3:#f5c040;--gdg:linear-gradient(135deg,#d4920a,#f5c040);
-  --gdm:rgba(212,146,10,.1);--gdb:rgba(212,146,10,.2);--gds:rgba(212,146,10,.06);
-  --tx:#cdd5e8;--tx1:rgba(205,213,232,.75);--tx2:rgba(205,213,232,.45);--tx3:rgba(205,213,232,.2);
-  --bd:rgba(255,255,255,.055);--bd1:rgba(255,255,255,.1);--bd2:rgba(255,255,255,.16);
-  --r:6px;--rl:12px;--rxl:18px;--rxxl:24px;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
-  --tamil:'Noto Serif Tamil',serif;
-  --shadow:0 4px 24px rgba(0,0,0,.4);
-  --shadowl:0 2px 12px rgba(0,0,0,.3);
-}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--tx);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-a{text-decoration:none;color:inherit}
-button{font-family:var(--sans);cursor:pointer;border:none;background:none;-webkit-tap-highlight-color:transparent}
-input,select{font-family:var(--sans)}
-@media(max-width:768px){body{padding-bottom:66px}}
+:root{
+  --bg:#07090f;--bg2:#0c1018;--bg3:#111926;
+  --gd:#e8a020;--gd2:#f5bf50;--gdm:rgba(232,160,32,.12);--gdb:rgba(232,160,32,.28);
+  --tx:#dde4f0;--tx2:rgba(221,228,240,.6);--tx3:rgba(221,228,240,.3);
+  --bd:rgba(255,255,255,.06);--bd2:rgba(255,255,255,.14);
+  --tamil:'Noto Serif Tamil',serif;--serif:'Cormorant Garamond',serif;--sans:'DM Sans',sans-serif;
+  --r:10px;--rl:8px;--rx:14px;
+}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100vh;overflow-x:hidden}
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:var(--bg1)}
-::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px}
-::-webkit-scrollbar-thumb:hover{background:var(--gdb)}
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,9,15,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-circle{width:32px;height:32px;border:2px solid var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gd);font-weight:700;font-size:13px}
+.logo-text{font-size:13px;font-weight:600;color:var(--tx);letter-spacing:.5px}
+.logo-sub{font-size:9px;color:var(--tx3);letter-spacing:.3px}
+.nav-links{display:flex;gap:2px;align-items:center}
+.nav-links a{color:var(--tx3);text-decoration:none;font-size:12px;padding:6px 11px;border-radius:6px;transition:color .2s}
+.nav-links a:hover,.nav-links a.act{color:var(--tx)}
+.nav-links a.act{color:var(--gd)}
+.nav-cta{background:var(--gd);color:var(--bg);padding:7px 16px;border-radius:99px;font-size:12px;font-weight:500;text-decoration:none;margin-left:8px}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;border:none;background:none}
+.ham span{width:22px;height:2px;background:var(--tx2);border-radius:2px;transition:all .3s}
+.mob-menu{display:none;flex-direction:column;background:var(--bg2);border-top:1px solid var(--bd);padding:12px 16px;gap:4px}
+.mob-menu.open{display:flex}
+.mob-menu a{color:var(--tx2);text-decoration:none;font-size:13px;padding:8px 0;border-bottom:1px solid var(--bd)}
+@media(max-width:768px){.nav-links,.nav-cta{display:none}.ham{display:flex}}
 
-/* ─── HEADER NAV ─── */
-.container{width:92%;max-width:1180px;margin:0 auto;padding:0 16px}
-header{background:rgba(6,8,14,.92);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:900;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
-.nav{height:58px;display:flex;align-items:center;justify-content:space-between;gap:14px;position:relative}
-.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-mark{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--gd);display:flex;align-items:center;justify-content:center;color:var(--gd);font-family:var(--serif);font-size:14px;font-weight:600}
-.logo-text strong{display:block;color:white;font-size:13px;font-weight:500;letter-spacing:.2px;line-height:1.2}
-.logo-text span{color:var(--tx3);font-size:9.5px;letter-spacing:.3px}
-.nav-menu{list-style:none;display:flex;gap:1px}
-.nav-menu a{color:var(--tx2);font-size:11.5px;padding:6px 10px;border-radius:var(--r);transition:all .18s;display:block}
-.nav-menu a:hover{color:var(--tx);background:rgba(255,255,255,.05)}
-.nav-menu a.act{color:var(--gd2)}
-.nav-cta{background:var(--gd);color:var(--bg);padding:7px 16px;border-radius:var(--r);font-size:11.5px;font-weight:500;transition:all .2s;letter-spacing:.2px}
-.nav-cta:hover{background:var(--gd3)}
-.ham{display:none;flex-direction:column;gap:4.5px;padding:7px;cursor:pointer}
-.ham span{display:block;width:20px;height:1.5px;background:var(--tx);border-radius:2px;transition:all .3s}
-.ham.open span:first-child{transform:translateY(6px) rotate(45deg)}
-.ham.open span:nth-child(2){opacity:0}
-.ham.open span:last-child{transform:translateY(-6px) rotate(-45deg)}
+/* TICKER */
+.ticker-wrap{background:var(--gd);overflow:hidden;height:32px;display:flex;align-items:center}
+.ticker-inner{display:flex;animation:tick 22s linear infinite;white-space:nowrap}
+.ticker-item{font-size:11px;font-weight:600;color:var(--bg);padding:0 32px;letter-spacing:.8px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ─── TICKER ─── */
-.ticker{background:var(--gd);height:26px;overflow:hidden;display:flex;align-items:center;position:relative}
-.t-track{display:flex;animation:tick 35s linear infinite;white-space:nowrap}
-@keyframes tick{to{transform:translateX(-50%)}}
-.t-item{padding:0 20px;font-size:9.5px;font-weight:600;color:rgba(6,8,14,.8);letter-spacing:.7px;text-transform:uppercase;border-right:1px solid rgba(6,8,14,.12);height:26px;display:inline-flex;align-items:center;gap:7px;flex-shrink:0}
-.t-dot{width:3px;height:3px;border-radius:50%;background:rgba(6,8,14,.3)}
+/* HERO */
+.hero{background:var(--bg2);padding:36px 24px 28px;text-align:center;border-bottom:1px solid var(--bd)}
+.hero-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gd);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px}
+.hero-label::before,.hero-label::after{content:'';width:24px;height:1px;background:var(--gd)}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;color:var(--tx);margin-bottom:8px}
+.hero h1 em{color:var(--gd);font-style:italic}
+.hero p{color:var(--tx3);font-size:12px;letter-spacing:.3px}
 
-/* ─── PAGE HERO ─── */
-.page-hero{padding:40px 0 32px;border-bottom:1px solid var(--bd);position:relative;overflow:hidden;background:var(--bg1)}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 50% 130%,rgba(212,146,10,.07) 0%,transparent 65%)}
-.hero-eyebrow{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gd2);font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:9px}
-.hero-eyebrow::before{content:'';width:16px;height:1px;background:var(--gd)}
-.page-hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:600;color:white;line-height:1.1;margin-bottom:7px}
-.page-hero h1 em{color:var(--gd2);font-style:italic}
-.page-hero p{color:var(--tx2);font-size:.85rem;letter-spacing:.2px}
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:260px 1fr;max-width:1200px;margin:0 auto;min-height:calc(100vh - 200px)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
 
-/* ─── MAIN APP ─── */
-.bible-app{padding:20px 0 60px}
-.bible-shell{display:grid;grid-template-columns:272px 1fr;border:1px solid var(--bd);border-radius:var(--rxxl);overflow:hidden;background:var(--bg1);box-shadow:var(--shadow)}
-
-/* ─── SIDEBAR ─── */
-.b-sidebar{background:var(--bg);border-right:1px solid var(--bd);display:flex;flex-direction:column;gap:0;overflow-y:auto;max-height:calc(100vh - 100px);position:sticky;top:72px}
-.b-sidebar::-webkit-scrollbar{width:0}
-.sb-section{padding:16px 16px 0}
-.sb-section:last-child{padding-bottom:16px}
-.sb-label{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--tx3);font-weight:500;margin-bottom:7px}
-.sb-divider{height:1px;background:var(--bd);margin:14px 0}
-
-/* lang toggle */
-.lang-tog{display:flex;background:rgba(255,255,255,.035);border:1px solid var(--bd);border-radius:var(--r);padding:3px;gap:3px;margin-bottom:0}
-.lang-btn{flex:1;padding:8px 6px;border-radius:4px;font-size:12px;font-weight:500;color:var(--tx2);transition:all .2s;text-align:center;letter-spacing:.2px}
-.lang-btn.on{background:var(--gd);color:var(--bg);font-weight:600}
-
-/* book/ch selects */
-.b-select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:9px 30px 9px 11px;color:var(--tx);font-size:12.5px;font-family:var(--sans);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23d4920a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;transition:border .2s;margin-bottom:6px}
-.b-select:focus{outline:none;border-color:var(--gdb);background-color:rgba(255,255,255,.06)}
-.b-select option,.b-select optgroup{background:#0a0e17;color:var(--tx)}
-.read-btn{width:100%;background:var(--gd);color:var(--bg);border-radius:var(--r);padding:10px;font-weight:600;font-size:12.5px;transition:all .2s;letter-spacing:.2px;display:none}
-.read-btn:hover{background:var(--gd3)}
-.read-btn:active{transform:scale(.98)}
-
-/* font size */
-.fsz-row{display:flex;align-items:center;gap:5px}
-.fsz-btn{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-size:12.5px;font-weight:600;min-width:30px;text-align:center;transition:all .18s}
-.fsz-btn:hover{border-color:var(--gdb);color:var(--gd2)}
-#fszv{font-size:10.5px;color:var(--tx3);flex:1;text-align:center;letter-spacing:.3px}
-
-/* feature buttons */
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--bd);padding:18px 14px;background:var(--bg);position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+@media(max-width:900px){.sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--bd)}}
+.sb-label{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);display:block;margin-bottom:6px}
+.lang-tog{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:3px;gap:3px}
+.lang-btn{flex:1;padding:7px;border-radius:5px;font-size:11px;font-weight:500;border:none;background:transparent;color:var(--tx3);cursor:pointer;transition:all .2s;font-family:var(--sans)}
+.lang-btn.on{background:var(--gd);color:var(--bg)}
+select{width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);padding:8px 10px;color:var(--tx);font-size:12px;font-family:var(--sans);cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23e8a020' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:26px}
+.read-btn{width:100%;background:var(--gd);color:var(--bg);border:none;border-radius:var(--rl);padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);letter-spacing:.3px}
+.sb-div{height:1px;background:var(--bd)}
+.fsz-row{display:flex;align-items:center;gap:6px}
+.fsz-btn{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);padding:6px 10px;font-size:12px;color:var(--tx2);cursor:pointer;font-family:var(--sans);font-weight:600;transition:all .2s}
+.fsz-btn:hover{border-color:var(--bd2)}
+.fsz-val{font-size:11px;color:var(--tx3);flex:1;text-align:center}
 .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.feat-btn{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:var(--rl);padding:10px 6px;text-align:center;transition:all .18s;cursor:pointer}
-.feat-btn:hover{border-color:var(--bd1);background:rgba(255,255,255,.055)}
-.feat-btn.on{border-color:var(--gdb);background:var(--gdm)}
-.feat-icon{font-size:18px;display:block;margin-bottom:3px;line-height:1}
-.feat-lbl{font-size:9px;color:var(--tx2);letter-spacing:.3px}
-.feat-btn.on .feat-lbl{color:var(--gd2)}
+.feat-btn{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:var(--r);padding:11px 6px;text-align:center;cursor:pointer;transition:all .18s;font-family:var(--sans)}
+.feat-btn:hover{background:rgba(255,255,255,.06);border-color:var(--bd2)}
+.feat-btn.on{background:var(--gdm);border-color:var(--gdb)}
+.feat-icon{display:block;font-size:18px;margin-bottom:4px;line-height:1}
+.feat-lbl{font-size:10px;color:var(--tx3)}
+.feat-btn.on .feat-lbl{color:var(--gd)}
 
-/* ─── MAIN PANEL ─── */
-.b-main{display:flex;flex-direction:column;min-height:600px}
+/* MAIN */
+.main{display:flex;flex-direction:column;overflow:hidden}
 
-/* ─── VOTD ─── */
-.votd-card{padding:22px 24px 18px;position:relative;overflow:hidden;background:linear-gradient(160deg,#0d1c33 0%,#08111e 100%)}
-.votd-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gdg)}
-.votd-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--bd)}
-.votd-badge{display:inline-flex;align-items:center;gap:6px;margin-bottom:13px}
-.votd-star{color:var(--gd2);font-size:11px}
-.votd-badge-text{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gd2);font-weight:600}
-.votd-ta-text{font-family:var(--tamil);font-size:1.06rem;line-height:2;color:rgba(255,255,255,.9);margin-bottom:4px}
-.votd-ta-ref{font-size:.76rem;color:var(--gd2);font-weight:600;display:block;margin-bottom:10px;letter-spacing:.3px}
-.votd-en-text{font-family:var(--serif);font-size:.88rem;font-style:italic;color:var(--tx2);line-height:1.65;border-top:1px solid rgba(255,255,255,.06);padding-top:9px;margin-bottom:4px}
-.votd-en-ref{font-size:.72rem;color:var(--tx3);display:block;margin-bottom:13px}
-.votd-actions{display:flex;gap:5px;flex-wrap:wrap}
-.v-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:6px 13px;font-size:10.5px;color:var(--tx2);transition:all .18s;cursor:pointer;white-space:nowrap;letter-spacing:.1px}
-.v-pill:hover{color:white;border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.09)}
-.v-pill.gold{background:var(--gd);color:var(--bg);border-color:var(--gd);font-weight:500}
-.v-pill.gold:hover{background:var(--gd3)}
-.v-pill svg{width:9px;height:9px;flex-shrink:0}
+/* VOTD */
+.votd{background:linear-gradient(160deg,#0b1929,#07090f);padding:20px 22px 16px;border-bottom:1px solid var(--bd);position:relative}
+.votd::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gd),transparent)}
+.votd-badge{font-size:8px;color:var(--gd);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.votd-badge::before{content:'★'}
+.votd-ta{font-family:var(--tamil);font-size:1rem;line-height:1.95;color:rgba(255,255,255,.92);margin-bottom:4px}
+.votd-taref{font-size:10px;color:var(--gd);font-weight:600;display:block;margin-bottom:8px}
+.votd-en{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--tx3);margin-bottom:4px;line-height:1.7}
+.votd-enref{font-size:9px;color:var(--tx3);display:block;margin-bottom:12px}
+.votd-acts{display:flex;gap:5px;flex-wrap:wrap}
+.v-pill{background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:99px;padding:6px 13px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans);transition:all .2s;white-space:nowrap}
+.v-pill:hover{border-color:var(--bd2);color:var(--tx)}
+.v-pill.gold{background:var(--gdm);border-color:var(--gdb);color:var(--gd);font-weight:500}
 
-/* ─── FEATURE PANELS ─── */
-.feat-panel{display:none;padding:18px 22px;border-bottom:1px solid var(--bd);background:var(--bg)}
-.feat-panel.open{display:block}
-.panel-head{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--tx3);font-weight:500;margin-bottom:13px}
+/* CONTROLS */
+.ctrl-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;border-bottom:1px solid var(--bd);gap:10px;background:var(--bg2)}
+.para-toggle{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--tx3)}
+.toggle-btn{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:99px;padding:4px 12px;font-size:10px;color:var(--tx3);cursor:pointer;font-family:var(--sans);transition:all .2s}
+.toggle-btn.on{background:var(--gdm);border-color:var(--gdb);color:var(--gd)}
+.search-row{display:flex;gap:6px;padding:8px 18px;border-bottom:1px solid var(--bd);background:var(--bg2)}
+.search-inp{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:99px;padding:8px 16px;color:var(--tx);font-size:12px;font-family:var(--sans);outline:none;transition:border .2s}
+.search-inp:focus{border-color:var(--gdb)}
+.search-btn{background:var(--gd);border:none;border-radius:99px;width:36px;height:36px;cursor:pointer;font-size:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 
-/* topic pills */
-.topic-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.t-pill{border:1px solid var(--bd);border-radius:99px;padding:6px 13px;font-size:11.5px;color:var(--tx2);background:transparent;cursor:pointer;font-family:var(--sans);transition:all .18s;letter-spacing:.1px}
-.t-pill:hover,.t-pill.on{border-color:var(--gdb);color:var(--gd2);background:var(--gdm)}
+/* OFFLINE INFO */
+.offline-bar{padding:7px 18px;background:rgba(232,160,32,.06);border-bottom:1px solid var(--gdb);font-size:10px;color:var(--gd);display:none}
 
-/* plan */
-.plan-track{background:rgba(255,255,255,.06);border-radius:99px;height:3px;margin-bottom:14px;overflow:hidden}
-.plan-fill{height:3px;border-radius:99px;background:var(--gd);transition:width .4s cubic-bezier(.4,0,.2,1)}
-.plan-day{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--bd);border-radius:var(--rl);margin-bottom:5px;cursor:pointer;transition:all .18s}
-.plan-day:hover{border-color:var(--bd1)}
-.plan-day.done{border-color:var(--gdb);background:var(--gds)}
-.plan-check{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--bd1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10.5px;color:var(--gd2);transition:all .2s}
-.plan-day.done .plan-check{background:var(--gdm);border-color:var(--gdb)}
-.plan-info{flex:1;min-width:0}
-.plan-day-lbl{font-size:9px;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px}
-.plan-ch{font-size:.87rem;color:white;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.plan-day.done .plan-ch{color:var(--gd2)}
-.plan-go{background:transparent;border:1px solid var(--bd);border-radius:99px;padding:5px 12px;color:var(--tx3);font-size:10.5px;flex-shrink:0;transition:all .18s;font-family:var(--sans)}
-.plan-go:hover{color:white;border-color:var(--bd1)}
-
-/* image gen */
-.ig-label{font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:5px;margin-top:11px;display:block}
-.ig-label:first-child{margin-top:0}
-.sz-row{display:flex;gap:5px}
-.sz-btn{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:8px 4px;font-size:9.5px;color:var(--tx2);text-align:center;cursor:pointer;transition:all .18s;font-family:var(--sans);line-height:1.4}
-.sz-btn span{display:block;font-size:8px;color:var(--tx3);margin-top:2px}
-.sz-btn.on{background:var(--gdm);border-color:var(--gdb);color:var(--gd2);font-weight:600}
-.bg-swatches{display:flex;gap:5px;flex-wrap:wrap}
-.bg-sw{width:28px;height:28px;border-radius:7px;cursor:pointer;border:2.5px solid transparent;flex-shrink:0;transition:all .18s}
-.bg-sw.on{border-color:var(--gd);box-shadow:0 0 0 2px rgba(212,146,10,.3)}
-.tc-row{display:flex;gap:5px}
-.tc-btn{flex:1;border-radius:var(--r);padding:7px 3px;font-size:9.5px;font-weight:700;text-align:center;cursor:pointer;border:1.5px solid transparent;transition:all .18s;font-family:var(--sans)}
-.ig-verse-select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:7px 10px;color:var(--tx);font-size:11.5px;font-family:var(--sans);margin-bottom:6px;cursor:pointer}
-.ig-verse-select:focus{outline:none;border-color:var(--gdb)}
-.use-cur-btn{width:100%;border:1px solid var(--bd);border-radius:var(--r);padding:8px;color:var(--tx2);font-size:11.5px;background:transparent;margin-bottom:10px;font-family:var(--sans);transition:all .18s}
-.use-cur-btn:hover{border-color:var(--gdb);color:var(--gd2)}
-.ig-preview-wrap{border-radius:var(--rl);overflow:hidden;margin:10px 0;background:var(--bg);display:flex;align-items:center;justify-content:center;border:1px solid var(--bd)}
-.ig-preview-wrap canvas{display:block;max-width:100%;height:auto}
-.ig-dl-row{display:flex;gap:6px}
-.ig-dl{flex:1;background:var(--gd);color:var(--bg);border-radius:99px;padding:9px;font-size:11.5px;font-weight:600;text-align:center;cursor:pointer;transition:all .18s;font-family:var(--sans)}
-.ig-dl:hover{background:var(--gd3)}
-.ig-dl.outline{background:transparent;border:1px solid var(--gdb);color:var(--gd2)}
-.ig-dl.outline:hover{background:var(--gdm)}
-
-/* bookmarks list */
-.bm-empty{text-align:center;padding:28px;color:var(--tx3);font-size:.85rem;line-height:1.8}
-
-/* ─── SEARCH ─── */
-.search-bar{display:flex;gap:8px;padding:13px 20px;border-bottom:1px solid var(--bd);background:var(--bg1)}
-.search-inp{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:99px;padding:9px 16px;color:var(--tx);font-size:12.5px;font-family:var(--sans);transition:all .2s}
-.search-inp::placeholder{color:var(--tx3)}
-.search-inp:focus{outline:none;border-color:var(--gdb);background:rgba(255,255,255,.07)}
-.search-btn{background:var(--gd);color:var(--bg);border-radius:99px;padding:9px 18px;font-size:13px;font-weight:500;transition:all .18s;flex-shrink:0}
-.search-btn:hover{background:var(--gd3)}
-
-/* ─── TAMIL INFO ─── */
-.ta-info{padding:8px 20px;border-bottom:1px solid rgba(212,146,10,.1);background:rgba(212,146,10,.05);font-size:.75rem;color:var(--tx3);line-height:1.65;display:none}
-.ta-info strong{color:var(--gd2)}
-
-/* ─── AUDIO PLAYER ─── */
-.audio-player{display:flex;align-items:center;gap:11px;padding:11px 20px;background:rgba(212,146,10,.07);border-bottom:1px solid rgba(212,146,10,.14)}
-.aud-play-btn{width:36px;height:36px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;box-shadow:0 2px 8px rgba(212,146,10,.35)}
-.aud-play-btn:hover{background:var(--gd3);transform:scale(1.06)}
-.aud-play-btn:active{transform:scale(.96)}
-.aud-play-btn svg{width:12px;height:12px}
+/* AUDIO BAR */
+.audio-bar{display:none;align-items:center;gap:10px;padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--bd)}
+.aud-play-btn{width:34px;height:34px;border-radius:50%;background:var(--gd);border:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--bg)}
 .aud-info{flex:1;min-width:0}
-.aud-title{color:white;font-size:11.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.1px}
-.aud-status{color:var(--tx3);font-size:10px;margin-top:1px;letter-spacing:.2px}
-.aud-speed{background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:var(--r);padding:4px 8px;color:var(--tx);font-size:10.5px;font-family:var(--sans);cursor:pointer}
-.aud-speed:focus{outline:none}
-.aud-stop{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:99px;padding:6px 12px;color:var(--tx3);font-size:10.5px;transition:all .18s;letter-spacing:.1px}
-.aud-stop:hover{color:white}
+.aud-title{font-size:12px;color:var(--tx);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aud-stat{font-size:10px;color:var(--tx3);margin-top:1px}
+.aud-spd{background:var(--bg2);border:1px solid var(--bd);border-radius:6px;padding:4px 8px;font-size:11px;color:var(--tx2);font-family:var(--sans);cursor:pointer}
+.aud-stop{background:transparent;border:1px solid var(--bd);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--tx3);cursor:pointer;font-family:var(--sans)}
 
-/* ─── CHAPTER BAR ─── */
-.chapter-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid var(--bd);background:var(--bg)}
-.ch-title-group .ch-title{font-family:var(--serif);color:white;font-size:1.18rem;font-weight:600;line-height:1.2}
-.ch-title-group .ch-sub{font-size:10px;color:var(--tx3);margin-top:2px;letter-spacing:.2px}
-.ch-nav-btns{display:flex;gap:5px}
-.ch-nav-btn{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:99px;padding:7px 15px;color:var(--tx2);font-size:11px;transition:all .18s;letter-spacing:.1px}
-.ch-nav-btn:hover:not(:disabled){color:white;border-color:var(--bd1);background:rgba(255,255,255,.08)}
-.ch-nav-btn:disabled{opacity:.22;cursor:default}
-.ch-nav-btn.highlight{background:var(--gd);color:var(--bg);border-color:var(--gd);font-weight:500;padding:7px 18px}
-.ch-nav-btn.highlight:hover{background:var(--gd3)}
-/* progress bar */
-.ch-progress{height:2px;background:rgba(255,255,255,.05);overflow:hidden}
-.ch-progress-fill{height:2px;background:linear-gradient(90deg,var(--gd),var(--gd3));width:0%;transition:width .5s cubic-bezier(.4,0,.2,1)}
+/* CHAPTER BAR */
+.ch-bar{display:none;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:1px solid var(--bd);background:var(--bg2)}
+.ch-info .ch-title{font-size:14px;font-weight:600;color:var(--tx)}
+.ch-info .ch-sub{font-size:10px;color:var(--tx3);margin-top:2px}
+.ch-nav{display:flex;gap:5px}
+.ch-btn{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:99px;padding:6px 14px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans);transition:all .2s}
+.ch-btn:hover{border-color:var(--bd2)}
+.ch-btn.primary{background:var(--gd);color:var(--bg);border-color:var(--gd);font-weight:500}
+.ch-btn:disabled{opacity:.3;cursor:not-allowed}
+.ch-prog{height:2px;background:rgba(255,255,255,.06)}
+.ch-prog-fill{height:2px;background:var(--gd);width:0%;transition:width .3s}
 
-/* ─── VERSE LIST ─── */
-.verse-list-wrap{flex:1}
-.verse-list{display:flex;flex-direction:column}
-.verse-item{display:flex;padding:0 20px;cursor:pointer;transition:background .12s;position:relative}
-.verse-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2.5px;background:transparent;border-radius:0 2px 2px 0;transition:background .2s}
-.verse-item:hover{background:rgba(255,255,255,.022)}
-.verse-item:hover::before{background:rgba(212,146,10,.35)}
-.verse-item.v-playing{background:rgba(212,146,10,.06)}
-.verse-item.v-playing::before{background:var(--gd)}
-.verse-item.v-hl{background:rgba(251,191,36,.045)}
-.verse-item.v-hl::before{background:#fbbf24}
-.verse-inner{display:flex;gap:13px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04);width:100%;align-items:flex-start}
-.verse-item:last-child .verse-inner{border-bottom:none}
-.verse-num{color:var(--gd2);font-size:10.5px;font-weight:600;min-width:24px;padding-top:3px;flex-shrink:0;letter-spacing:.4px;font-family:var(--sans)}
-.verse-body{flex:1;min-width:0}
-.verse-text{color:var(--tx);line-height:1.9;font-family:var(--sans)}
-.verse-text.ta-text{font-family:var(--tamil);line-height:2.1;font-weight:400}
-.verse-parallel{display:block;font-family:var(--serif);font-style:italic;color:var(--tx3);font-size:.82rem;line-height:1.65;margin-top:6px;padding-top:7px;border-top:1px solid rgba(255,255,255,.05)}
-.verse-tag{font-size:9.5px;color:var(--gd2);margin-bottom:3px;font-weight:500;letter-spacing:.3px}
-.verse-actions{display:flex;gap:3px;flex-shrink:0;align-items:flex-start;padding-top:3px;opacity:0;transition:opacity .15s}
-.verse-item:hover .verse-actions{opacity:1}
-.v-act-btn{background:transparent;border:1px solid var(--bd);border-radius:6px;padding:5px 6px;font-size:11px;color:var(--tx3);transition:all .15s;line-height:1;cursor:pointer}
-.v-act-btn:hover{border-color:var(--bd1);color:white;background:rgba(255,255,255,.04)}
-.v-act-btn.saved{color:var(--gd2)!important;border-color:var(--gdb)!important;background:var(--gdm)!important}
-.v-act-btn.hi{color:#fbbf24!important;border-color:rgba(251,191,36,.3)!important;background:rgba(251,191,36,.07)!important}
-
-/* ─── STATES ─── */
-.b-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:13px;min-height:380px}
-.b-spinner{width:30px;height:30px;border:2.5px solid var(--bd);border-top-color:var(--gd);border-radius:50%;animation:spin .75s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.b-loading p{color:var(--tx3);font-size:.85rem;letter-spacing:.2px}
-.b-error{margin:18px 20px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.18);border-radius:var(--rl);padding:14px 16px;color:#fca5a5;font-size:.83rem;line-height:1.7}
-.b-empty{text-align:center;padding:28px;color:var(--tx3);font-size:.85rem}
-.b-start{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:10px;min-height:400px}
-.b-start .start-icon{font-size:2.2rem;opacity:.18;margin-bottom:4px}
-.b-start p{color:var(--tx3);font-size:.88rem}
-.b-start p:first-of-type{color:var(--tx2);font-size:.95rem}
-
-/* ─── VERSE MODAL ─── */
-.vmodal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.vmodal-backdrop.open{opacity:1;pointer-events:all}
-.vmodal-sheet{background:var(--bg2);border-radius:var(--rxxl) var(--rxxl) 0 0;width:100%;max-width:620px;border-top:1px solid var(--bd2);transform:translateY(16px);transition:transform .28s cubic-bezier(.4,0,.2,1);overflow:hidden}
-.vmodal-backdrop.open .vmodal-sheet{transform:translateY(0)}
-.vmodal-handle{width:32px;height:3px;background:rgba(255,255,255,.12);border-radius:99px;margin:12px auto 0}
-.vmodal-header{display:flex;align-items:center;justify-content:space-between;padding:13px 20px 9px}
-.vmodal-ref-text{font-size:10px;color:var(--gd2);font-weight:700;letter-spacing:.6px;text-transform:uppercase}
-.vmodal-close-btn{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--tx3);transition:all .18s}
-.vmodal-close-btn:hover{color:white;background:rgba(255,255,255,.12)}
-.vmodal-body{padding:2px 20px 14px}
-.vmodal-ta-text{font-family:var(--tamil);font-size:1.08rem;line-height:2;color:rgba(255,255,255,.92);margin-bottom:10px}
-.vmodal-en-text{font-family:var(--serif);font-size:.9rem;font-style:italic;color:var(--tx2);line-height:1.7;border-top:1px solid var(--bd);padding-top:10px}
-.vmodal-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 20px 18px;border-top:1px solid var(--bd)}
-.modal-act{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:12px 8px;text-align:center;cursor:pointer;transition:all .18s}
-.modal-act:hover{border-color:var(--bd1);background:rgba(255,255,255,.07)}
-.modal-act.gold-act{background:var(--gdm);border-color:var(--gdb)}
-.modal-act.gold-act:hover{background:rgba(212,146,10,.17)}
-.modal-act-icon{font-size:17px;display:block;margin-bottom:4px;line-height:1}
-.modal-act-label{font-size:10px;color:var(--tx2);letter-spacing:.2px}
-.modal-act.gold-act .modal-act-label{color:var(--gd2)}
-
-/* ─── TOAST ─── */
-.b-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(8px);background:rgba(6,8,14,.97);border:1px solid var(--gdb);color:var(--gd2);padding:9px 22px;border-radius:99px;font-size:11.5px;font-weight:500;opacity:0;transition:all .28s;pointer-events:none;z-index:9999;white-space:nowrap;letter-spacing:.2px;box-shadow:var(--shadowl)}
-.b-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* ─── FOOTER ─── */
-footer{background:var(--bg);border-top:1px solid var(--bd);padding:16px 0}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.footer-copy{color:var(--tx3);font-size:11px}
-.footer-links{display:flex;gap:14px}
-.footer-links a{color:var(--tx3);font-size:11px;transition:color .18s}
-.footer-links a:hover{color:var(--gd2)}
-
-/* ─── WA FLOAT ─── */
-.wa-float{position:fixed;bottom:80px;right:18px;z-index:800;opacity:.85;transition:opacity .2s}
-.wa-float:hover{opacity:1}
-.wa-float img{width:46px;filter:drop-shadow(0 3px 10px rgba(0,0,0,.4))}
-@media(max-width:768px){.wa-float{bottom:74px;right:12px}.wa-float img{width:40px}}
-
-/* ─── BOTTOM NAV ─── */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:950;background:rgba(6,8,14,.96);border-top:1px solid var(--gdb);height:62px;align-items:center;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 -4px 24px rgba(0,0,0,.5)}
-@media(max-width:768px){.bottom-nav{display:flex}}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px;text-decoration:none;-webkit-tap-highlight-color:transparent}
-.bn-icon{font-size:15px;line-height:1}
-.bn-label{font-size:8px;color:var(--tx3);letter-spacing:.3px;text-transform:uppercase;margin-top:2px}
-.bn-item.active .bn-label{color:var(--gd2)}
-.bn-center-wrap{flex:1;display:flex;justify-content:center}
-.bn-center{width:40px;height:40px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:-10px;box-shadow:0 4px 16px rgba(212,146,10,.4)}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:960px){
-  .bible-shell{grid-template-columns:1fr;border-radius:var(--rxl)}
-  .b-sidebar{max-height:none;position:static;border-right:none;border-bottom:1px solid var(--bd)}
-  .feat-grid{grid-template-columns:repeat(4,1fr)}
-  .verse-actions{opacity:1}
-}
-@media(max-width:768px){
-  .ham{display:flex}
-  .nav-menu{display:none;flex-direction:column;position:absolute;top:100%;left:-16px;right:-16px;background:rgba(6,8,14,.99);border-top:1px solid var(--bd);padding:8px 0;z-index:200;backdrop-filter:blur(24px)}
-  .nav-menu.open{display:flex}
-  .nav-menu li{width:100%}
-  .nav-menu a{display:block;padding:12px 20px;font-size:14px}
-  .nav-cta{display:none}
-  .nav{height:54px;position:relative}
-  .votd-card{padding:16px}
-  .search-bar{padding:10px 14px}
-  .audio-player{padding:9px 14px}
-  .chapter-bar{padding:10px 14px}
-  .verse-item{padding:0 14px}
-  .feat-panel{padding:14px}
-  .b-start{min-height:280px}
-  .footer-inner{flex-direction:column;text-align:center}
-  .footer-links{justify-content:center}
-}
-
-/* ── MULTI-COLOUR HIGHLIGHT ── */
-.vi.vhl{background:rgba(var(--hl-rgb,245,197,24),.06);border-left:2px solid;border-left-color:var(--hl-color,#f5c518)}
-.hlc{width:18px;height:18px;border-radius:50%;cursor:pointer;border:2px solid transparent;flex-shrink:0;transition:all .2s}
-.hlc.on{border-color:white;transform:scale(1.15)}
-.hl-picker{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--bd)}
-.hl-picker-lbl{font-size:9px;color:var(--tx3);flex-shrink:0}
-
-/* ── VERSE NOTES ── */
-.vnote-ind{font-size:11px;color:var(--gd);line-height:1.5;margin-top:6px;padding:4px 8px;background:var(--gdm);border-radius:var(--r);border-left:2px solid var(--gd);font-style:italic}
-.note-textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--bd2);border-radius:var(--r);padding:9px 12px;color:var(--tx);font-size:13px;font-family:var(--sans);resize:none;min-height:72px;line-height:1.6;margin-bottom:10px}
-.note-textarea:focus{outline:none;border-color:var(--gdb)}
-.note-textarea::placeholder{color:var(--tx3)}
-
-/* ── THEMES ── */
-body.sepia{--bg:#f8f1e4;--bg2:#f2e9d8;--bg3:#ede0c8;--tx:#2c1a0e;--tx2:rgba(44,26,14,.6);--tx3:rgba(44,26,14,.35);--bd:rgba(44,26,14,.1);--bd2:rgba(44,26,14,.2);--gd:#8b4513;--gd2:#a0522d;--gdm:rgba(139,69,19,.1);--gdb:rgba(139,69,19,.25)}
-body.light{--bg:#ffffff;--bg2:#f5f5f5;--bg3:#eeeeee;--tx:#111;--tx2:rgba(17,17,17,.55);--tx3:rgba(17,17,17,.3);--bd:rgba(0,0,0,.08);--bd2:rgba(0,0,0,.15);--gd:#b8860b;--gd2:#daa520;--gdm:rgba(184,134,11,.1);--gdb:rgba(184,134,11,.25)}
-.theme-btn{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:7px 10px;color:var(--tx2);font-size:11px;font-family:var(--sans);cursor:pointer;transition:all .2s}
-.theme-btn.on{border-color:var(--gdb);background:var(--gdm);color:var(--gd)}
-.font-btn{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:6px 10px;color:var(--tx2);font-size:11px;font-family:var(--sans);cursor:pointer;transition:all .2s}
-.font-btn.on{border-color:var(--gdb);background:var(--gdm);color:var(--gd)}
-
-/* ── IMAGE GEN MODES ── */
-.ig-mode-tabs{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:3px;gap:3px;margin-bottom:10px}
-.igmt{flex:1;padding:7px 4px;border-radius:4px;font-size:11px;color:var(--tx2);text-align:center;cursor:pointer;transition:all .2s;font-family:var(--sans)}
-.igmt.on{background:var(--gd);color:var(--bg);font-weight:500}
-.photo-upload-area{border:1.5px dashed var(--gdb);border-radius:var(--rl);padding:18px;text-align:center;background:var(--gdm);margin-bottom:10px;cursor:pointer;transition:all .2s}
-.photo-upload-area:hover{background:rgba(232,160,32,.18)}
-.ig-tpl{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:all .2s}
-.ig-tpl.on{border-color:var(--gdb)}
-.ig-tpl-preview{height:56px;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,.7);font-style:italic;position:relative}
-.ig-tpl-name{font-size:10px;color:var(--tx2);text-align:center;padding:5px;border-top:1px solid var(--bd)}
-.ig-tpl.on .ig-tpl-name{color:var(--gd)}
-.overlay-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.overlay-row input[type=range]{flex:1;accent-color:var(--gd)}
-.overlay-val{font-size:10px;color:var(--gd);font-weight:600;min-width:28px}
-
-/* ── RIGHT PANEL (PC) + BOTTOM SHEET (Mobile) ── */
-.panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:800;opacity:0;pointer-events:none;transition:opacity .25s}
-.panel-overlay.open{opacity:1;pointer-events:all}
-
-/* PC: right side panel */
-.side-panel{position:fixed;top:0;right:0;bottom:0;width:360px;background:var(--bg3);border-left:1px solid var(--bd2);z-index:801;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden}
-.side-panel.open{transform:translateX(0)}
-.sp-handle{display:none}
-
-/* Mobile: bottom sheet */
-@media(max-width:900px){
-  .side-panel{top:auto;right:0;left:0;bottom:0;width:100%;max-height:80vh;border-left:none;border-top:1px solid var(--bd2);border-radius:20px 20px 0 0;transform:translateY(100%)}
-  .side-panel.open{transform:translateY(0)}
-  .sp-handle{display:block;width:36px;height:3px;background:rgba(255,255,255,.15);border-radius:99px;margin:10px auto 0}
-}
-
-.sp-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid var(--bd)}
-.sp-title{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gd);font-weight:600}
-.sp-close{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--tx3);cursor:pointer;border:none;transition:all .2s}
-.sp-close:hover{background:rgba(255,255,255,.13);color:var(--tx)}
-.sp-body{flex:1;overflow-y:auto;padding:14px 18px;-webkit-overflow-scrolling:touch}
-
-/* Keep feat-panel class but now hidden — content moves to side-panel */
-.feat-panel{display:none!important}
-
-/* ── JS-generated class aliases ──────────────────────────────── */
+/* VERSES */
+#bcontent{flex:1;background:var(--bg)}
 .vlist{display:flex;flex-direction:column}
-.vi{display:flex;padding:0 20px;position:relative;cursor:pointer;transition:background .12s;border-bottom:1px solid rgba(255,255,255,.04)}
-.vi:last-child{border-bottom:none}
-.vi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s}
-.vi:hover{background:rgba(255,255,255,.025)}
-.vi:hover::before{background:rgba(232,160,32,.3)}
-.vplay{background:rgba(232,160,32,.06)!important}
-.vplay::before{background:var(--gd)!important}
-.vhl{background:rgba(251,191,36,.05)}
-.vhl::before{background:var(--hl-color,#f5c518)!important}
-.vi-ta .vtxt{font-family:var(--tamil);line-height:2.1}
-.vn{color:var(--gd);font-size:10.5px;font-weight:600;min-width:26px;padding-top:12px;flex-shrink:0;letter-spacing:.5px;padding-bottom:11px}
-.vb{flex:1;min-width:0;padding:11px 0}
-.vtxt{color:var(--tx);line-height:1.9;display:block}
-.ta-font{font-family:var(--tamil);line-height:2.1}
-.v-en-parallel{display:block;font-family:var(--serif);font-style:italic;color:var(--tx3);font-size:.83rem;line-height:1.65;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.05)}
-.vtag{font-size:10px;color:var(--gd);font-weight:500;letter-spacing:.3px;margin-bottom:3px;display:block}
-.vacts{display:flex;gap:3px;flex-shrink:0;align-items:flex-start;padding:11px 0 0;opacity:0;transition:opacity .15s}
-.vi:hover .vacts{opacity:1}
+.vi{display:flex;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;position:relative;transition:background .15s}
+.vi:hover{background:rgba(255,255,255,.02)}
+.vi.vplay{background:rgba(232,160,32,.05)}
+.vi.vplay::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2.5px;background:var(--gd)}
+.vi.vhl{background:rgba(245,197,24,.04)}
+.vi.vhl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2.5px;background:var(--hl-color,#f5c518)}
+.vn{color:var(--gd);font-size:10px;font-weight:700;min-width:24px;padding-top:2px;flex-shrink:0;letter-spacing:.3px}
+.vb{flex:1;min-width:0}
+.vtxt{color:var(--tx);line-height:1.85;display:block;font-size:17px}
+.vtxt.ta-font{font-family:var(--tamil);line-height:2.1}
+.v-en-para{display:block;font-family:var(--serif);font-style:italic;color:var(--tx3);font-size:13px;line-height:1.65;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.05)}
+.vnote-preview{display:block;font-size:11px;color:var(--gd);line-height:1.5;margin-top:6px;padding:5px 8px;background:var(--gdm);border-radius:4px;border-left:2px solid var(--gd);font-style:italic}
+.vacts{display:flex;gap:3px;padding-top:2px;flex-shrink:0;opacity:0;transition:opacity .15s}
+.vi:hover .vacts,.vi.vplay .vacts{opacity:1}
 @media(max-width:768px){.vacts{opacity:1}}
-.vbt{background:transparent;border:1px solid var(--bd);border-radius:6px;padding:5px 6px;font-size:11px;color:var(--tx3);transition:all .15s;line-height:1;cursor:pointer;font-family:var(--sans)}
-.vbt:hover{border-color:var(--bd2);color:var(--tx)}
-.vbt.bm{color:var(--gd)!important;border-color:var(--gdb)!important;background:var(--gdm)!important}
-.vbt.hl{color:#fbbf24!important;border-color:rgba(251,191,36,.3)!important;background:rgba(251,191,36,.07)!important}
-.vaplay,.vaimg{}
+.vact{background:transparent;border:1px solid var(--bd);border-radius:6px;padding:5px 7px;font-size:11px;color:var(--tx3);cursor:pointer;font-family:var(--sans);transition:all .15s;line-height:1}
+.vact:hover{border-color:var(--bd2);color:var(--tx)}
+.vact.bm-on{color:var(--gd);border-color:var(--gdb)}
+.vact.hl-on{color:#f5c518;border-color:rgba(245,197,24,.4)}
 
-/* Loading / Error states */
-.bload{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;gap:12px;min-height:360px}
-.bspin{width:30px;height:30px;border:2.5px solid var(--bd);border-top-color:var(--gd);border-radius:50%;animation:bspin .8s linear infinite}
-@keyframes bspin{to{transform:rotate(360deg)}}
-.bload p{color:var(--tx3);font-size:.85rem;letter-spacing:.2px}
-.berr{margin:16px 18px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.18);border-radius:12px;padding:14px;color:#fca5a5;font-size:.83rem;line-height:1.65}
-.bempty{text-align:center;padding:28px;color:var(--tx3);font-size:.85rem}
+/* STATES */
+.bload{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;gap:14px;min-height:300px}
+.bspin{width:28px;height:28px;border:2.5px solid var(--bd2);border-top-color:var(--gd);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bload p,.berr,.bempty{font-size:13px;color:var(--tx3);text-align:center;padding:40px 20px;line-height:1.7}
+.berr{color:#fca5a5;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.15);border-radius:var(--r);margin:16px;padding:16px}
 
-/* Toast */
-.btoast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(7,9,15,.97);border:1px solid var(--gdb);color:var(--gd);padding:9px 22px;border-radius:99px;font-size:11.5px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:9999;white-space:nowrap;letter-spacing:.2px}
-.btoast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* SIDE PANEL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:all}
+.panel{position:fixed;top:0;right:0;bottom:0;width:360px;background:var(--bg3);border-left:1px solid var(--bd2);z-index:501;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.panel.open{transform:translateX(0)}
+@media(max-width:900px){
+  .panel{top:auto;right:0;left:0;bottom:0;width:100%;max-height:82vh;border-left:none;border-top:1px solid var(--bd2);border-radius:20px 20px 0 0;transform:translateY(100%)}
+  .panel.open{transform:translateY(0)}
+  .panel-handle{display:block!important}
+}
+.panel-handle{display:none;width:36px;height:3px;background:rgba(255,255,255,.15);border-radius:99px;margin:10px auto 0}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid var(--bd)}
+.panel-title{font-size:9px;color:var(--gd);font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.panel-close{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.07);border:none;color:var(--tx3);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.panel-close:hover{background:rgba(255,255,255,.14);color:var(--tx)}
+.panel-body{flex:1;overflow-y:auto;padding:14px 16px;-webkit-overflow-scrolling:touch}
 
-/* Reading plan classes */
-.pday{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;margin-bottom:5px;cursor:pointer;transition:all .2s}
+/* PANEL INTERNALS */
+.p-section{margin-bottom:16px}
+.p-lbl{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);display:block;margin-bottom:7px}
+.p-row3{display:flex;gap:5px}
+.p-btn{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:8px 5px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans);transition:all .2s;text-align:center}
+.p-btn:hover{border-color:var(--bd2)}
+.p-btn.on{background:var(--gdm);border-color:var(--gdb);color:var(--gd)}
+.hl-dots{display:flex;gap:8px;align-items:center}
+.hldot{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;flex-shrink:0}
+.hldot.on{border-color:white;transform:scale(1.15)}
+.tpills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.tp{border:1px solid var(--bd);border-radius:99px;padding:6px 12px;font-size:11px;color:var(--tx3);cursor:pointer;background:transparent;font-family:var(--sans);transition:all .2s}
+.tp:hover{border-color:var(--bd2);color:var(--tx)}
+.tp.on{border-color:var(--gdb);background:var(--gdm);color:var(--gd)}
+.tv-item{padding:10px 0;border-bottom:1px solid var(--bd)}
+.tv-ref{font-size:9.5px;color:var(--gd);font-weight:600;margin-bottom:4px}
+.tv-txt{font-size:13px;color:var(--tx);line-height:1.75;font-family:var(--tamil)}
+.pday{display:flex;align-items:center;gap:9px;padding:10px 11px;border:1px solid var(--bd);border-radius:var(--rl);margin-bottom:5px;cursor:pointer;transition:all .2s}
 .pday:hover{border-color:var(--bd2)}
 .pday.done{border-color:var(--gdb);background:var(--gdm)}
 .pchk{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--gd)}
 .pday.done .pchk{background:var(--gdm);border-color:var(--gdb)}
 .pinfo{flex:1}
 .plbl{font-size:9px;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px}
-.pch{font-size:.88rem;color:var(--tx);margin-top:1px}
+.pch{font-size:12px;color:var(--tx);margin-top:2px}
 .pday.done .pch{color:var(--gd)}
-.pgo{background:transparent;border:1px solid var(--bd);border-radius:99px;padding:5px 12px;color:var(--tx3);font-size:10.5px;flex-shrink:0;transition:all .2s;font-family:var(--sans);cursor:pointer}
+.pgo{background:transparent;border:1px solid var(--bd);border-radius:99px;padding:5px 11px;color:var(--tx3);font-size:10px;flex-shrink:0;font-family:var(--sans);cursor:pointer;transition:all .2s}
 .pgo:hover{color:var(--tx);border-color:var(--bd2)}
+.bm-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.bm-text{flex:1}
+.bm-ref{font-size:10px;color:var(--gd);font-weight:600;margin-bottom:3px}
+.bm-v{font-size:12px;color:var(--tx);line-height:1.7;font-family:var(--tamil)}
+.bm-acts{display:flex;gap:4px}
+.p-act{background:transparent;border:1px solid var(--bd);border-radius:6px;padding:4px 8px;font-size:11px;color:var(--tx3);cursor:pointer}
 
+/* QUIZ */
+.quiz-q{font-size:14px;color:var(--tx);line-height:1.7;font-family:var(--tamil);margin-bottom:4px}
+.quiz-ref{font-size:10px;color:var(--gd);margin-bottom:14px}
+.quiz-opt{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:11px 14px;text-align:left;color:var(--tx);font-size:13px;font-family:var(--tamil);cursor:pointer;transition:all .18s;margin-bottom:6px;display:block}
+.quiz-opt:hover{border-color:var(--gdb)}
+.quiz-opt.correct{background:rgba(76,175,80,.15);border-color:#4caf50;color:#4caf50}
+.quiz-opt.wrong{background:rgba(248,113,113,.12);border-color:#f87171;color:#f87171}
+
+/* TRACKER */
+.track-book{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--bd)}
+.track-icon{font-size:12px;min-width:16px;text-align:center}
+.track-info{flex:1}
+.track-name{font-size:12px;color:var(--tx);font-family:var(--tamil)}
+.track-bar{height:2px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:3px}
+.track-fill{height:2px;border-radius:99px;background:var(--gd)}
+.track-pct{font-size:10px;font-weight:600;min-width:32px;text-align:right}
+
+/* IMAGE GEN */
+.ig-tabs{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:3px;gap:3px;margin-bottom:12px}
+.ig-tab{flex:1;padding:7px 4px;border-radius:6px;font-size:11px;color:var(--tx3);text-align:center;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.ig-tab.on{background:var(--gd);color:var(--bg);font-weight:500}
+.ig-sizes{display:flex;gap:4px;margin-bottom:10px}
+.sz-btn{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:7px 3px;font-size:10px;color:var(--tx3);cursor:pointer;text-align:center;font-family:var(--sans);transition:all .2s}
+.sz-btn.on{background:var(--gdm);border-color:var(--gdb);color:var(--gd)}
+.sz-btn span{display:block;font-size:8px;opacity:.6;margin-top:1px}
+.bg-swatches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.bgsw{width:26px;height:26px;border-radius:6px;cursor:pointer;border:2.5px solid transparent;transition:all .2s}
+.bgsw.on{border-color:white;transform:scale(1.1)}
+.tc-row{display:flex;gap:5px;margin-bottom:12px}
+.tc-btn{flex:1;border-radius:var(--rl);padding:7px 4px;font-size:11px;border:1.5px solid transparent;cursor:pointer;font-family:var(--sans);text-align:center}
+.ig-canvas-wrap{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden;margin-bottom:10px;display:flex;align-items:center;justify-content:center}
+canvas#igcv{max-width:100%;height:auto;display:block}
+.ig-dl-row{display:flex;gap:5px}
+.ig-dl-btn{flex:1;border-radius:99px;padding:9px;font-size:11px;font-weight:500;cursor:pointer;font-family:var(--sans);text-align:center;border:none}
+.ig-dl-btn.primary{background:var(--gd);color:var(--bg)}
+.ig-dl-btn.outline{background:transparent;border:1px solid var(--gdb);color:var(--gd)}
+.photo-upload-area{border:1.5px dashed var(--gdb);border-radius:var(--r);padding:16px;text-align:center;background:var(--gdm);cursor:pointer;margin-bottom:10px}
+.photo-upload-area img{max-width:100%;max-height:80px;border-radius:6px;object-fit:cover;margin-bottom:6px}
+.tpl-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.tpl-card{border:1.5px solid var(--bd);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:all .2s}
+.tpl-card.on{border-color:var(--gdb)}
+.tpl-preview{height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,.6)}
+.tpl-label{font-size:9px;color:var(--tx3);text-align:center;padding:4px;border-top:1px solid rgba(255,255,255,.06)}
+.tpl-card.on .tpl-label{color:var(--gd)}
+
+/* VERSE MODAL */
+.vmodal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:600;display:none;align-items:flex-end;justify-content:center}
+.vmodal-backdrop.open{display:flex}
+.vmodal-sheet{background:var(--bg3);border-radius:20px 20px 0 0;border-top:1px solid var(--bd2);width:100%;max-width:600px;max-height:85vh;overflow-y:auto;animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(20px);opacity:.8}to{transform:translateY(0);opacity:1}}
+.vmodal-handle{width:36px;height:3px;background:rgba(255,255,255,.15);border-radius:99px;margin:12px auto 0}
+.vmodal-ref{font-size:12px;color:var(--gd);font-weight:600;padding:14px 20px 0;display:block}
+.vmodal-ta{font-family:var(--tamil);font-size:15px;line-height:2;color:rgba(255,255,255,.9);padding:10px 20px;display:block}
+.vmodal-en{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--tx3);line-height:1.7;padding:0 20px 10px;display:block}
+.vmodal-note{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--bd2);border-radius:var(--rl);padding:10px 14px;color:var(--tx);font-size:13px;font-family:var(--sans);resize:none;line-height:1.6;display:block;margin:8px 20px;width:calc(100% - 40px)}
+.vmodal-note::placeholder{color:var(--tx3)}
+.vmodal-acts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px 20px 20px}
+.vmodal-act{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:11px 8px;text-align:center;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.vmodal-act:hover{background:rgba(255,255,255,.08);border-color:var(--bd2)}
+.vmodal-act .act-icon{display:block;font-size:17px;margin-bottom:4px}
+.vmodal-act .act-lbl{font-size:9.5px;color:var(--tx3)}
+.vmodal-act.bm-active .act-lbl{color:var(--gd)}
+
+/* TOAST */
+#toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(7,9,15,.97);border:1px solid var(--gdb);color:var(--gd);padding:9px 20px;border-radius:99px;font-size:11.5px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:999;white-space:nowrap}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* BOTTOM NAV */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,.97);border-top:1px solid rgba(232,160,32,.2);padding:6px 0 10px;z-index:200}
+@media(max-width:768px){.bottom-nav{display:flex}}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:4px}
+.bn-icon{font-size:18px;line-height:1}
+.bn-lbl{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.2px}
+.bn-item.act .bn-lbl{color:var(--gd)}
+.bn-cross{flex:1;display:flex;justify-content:center}
+.bn-cross-btn{width:40px;height:40px;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--bg);margin-top:-14px;text-decoration:none}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:70px;right:16px;width:46px;height:46px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:300;box-shadow:0 4px 12px rgba(0,0,0,.4);text-decoration:none}
+@media(max-width:768px){.wa-float{bottom:72px}}
+.wa-float svg{width:22px;height:22px;fill:white}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--bd);padding:24px;text-align:center;font-size:11px;color:var(--tx3);line-height:2}
+footer a{color:var(--tx3);text-decoration:none}
+footer a:hover{color:var(--gd)}
+
+@media(max-width:768px){body{padding-bottom:60px}}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<header>
-  <div class="container nav">
+<nav class="nav">
+  <div class="nav-inner">
     <a href="index.html" class="logo">
-      <div class="logo-mark">E</div>
-      <div class="logo-text"><strong>ENJC</strong><span>Elim New Jerusalem Church</span></div>
+      <div class="logo-circle">E</div>
+      <div><div class="logo-text">ENJC</div><div class="logo-sub">Elim New Jerusalem Church</div></div>
     </a>
-    <nav>
-      <ul class="nav-menu" id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="media.html">Media</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="ministries.html">Ministries</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="bible.html" class="act">Bible</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" rel="noopener" class="nav-cta">Visit Us</a>
-    <button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="media.html">Media</a>
+      <a href="gallery.html">Gallery</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a>
+      <a href="bible.html" class="act">Bible</a><a href="contact.html">Contact</a>
+      <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" class="nav-cta">Visit Us</a>
+    </div>
+    <button class="ham" onclick="toggleMobMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-</header>
+  <div class="mob-menu" id="mob-menu">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="media.html">Media</a>
+    <a href="gallery.html">Gallery</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a>
+    <a href="bible.html">Bible</a><a href="contact.html">Contact</a>
+    <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank">Visit Us</a>
+  </div>
+</nav>
 
 <!-- TICKER -->
-<div class="ticker">
-  <div class="t-track">
-    <span class="t-item"><span class="t-dot"></span>தமிழ் &amp; English Bible</span>
-    <span class="t-item"><span class="t-dot"></span>66 புத்தகங்கள்</span>
-    <span class="t-item"><span class="t-dot"></span>Audio · Image · Bookmark</span>
-    <span class="t-item"><span class="t-dot"></span>Tondiarpet, Chennai</span>
-    <span class="t-item"><span class="t-dot"></span>+91 94443 45102</span>
-    <span class="t-item"><span class="t-dot"></span>தமிழ் &amp; English Bible</span>
-    <span class="t-item"><span class="t-dot"></span>66 புத்தகங்கள்</span>
-    <span class="t-item"><span class="t-dot"></span>Audio · Image · Bookmark</span>
-    <span class="t-item"><span class="t-dot"></span>Tondiarpet, Chennai</span>
-    <span class="t-item"><span class="t-dot"></span>+91 94443 45102</span>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">66 புத்தகங்கள்</span><span class="ticker-item">· AUDIO · IMAGE · BOOKMARK ·</span>
+    <span class="ticker-item">TONDIARPET, CHENNAI</span><span class="ticker-item">· +91 94443 45102 ·</span>
+    <span class="ticker-item">தமிழ் & ENGLISH BIBLE</span><span class="ticker-item">· 66 புத்தகங்கள் ·</span>
+    <span class="ticker-item">AUDIO · IMAGE · BOOKMARK</span><span class="ticker-item">· TONDIARPET, CHENNAI ·</span>
+    <span class="ticker-item">+91 94443 45102</span><span class="ticker-item">· தமிழ் & ENGLISH BIBLE ·</span>
+    <span class="ticker-item">66 புத்தகங்கள்</span><span class="ticker-item">· AUDIO · IMAGE · BOOKMARK ·</span>
+    <span class="ticker-item">TONDIARPET, CHENNAI</span><span class="ticker-item">· +91 94443 45102 ·</span>
+    <span class="ticker-item">தமிழ் & ENGLISH BIBLE</span><span class="ticker-item">· 66 புத்தகங்கள் ·</span>
+    <span class="ticker-item">AUDIO · IMAGE · BOOKMARK</span><span class="ticker-item">· TONDIARPET, CHENNAI ·</span>
+    <span class="ticker-item">+91 94443 45102</span><span class="ticker-item">· தமிழ் & ENGLISH BIBLE ·</span>
   </div>
 </div>
 
 <!-- HERO -->
-<div class="page-hero">
-  <div class="container">
-    <div class="hero-eyebrow">God's Word</div>
-    <h1>பரிசுத்த <em>வேதாகமம்</em></h1>
-    <p>தமிழ் &amp; English &mdash; பழைய &amp; புதிய ஏற்பாடு &mdash; Audio &middot; Image &middot; Bookmark</p>
-  </div>
+<div class="hero">
+  <div class="hero-label">God's Word</div>
+  <h1>பரிசுத்த <em>வேதாகமம்</em></h1>
+  <p>தமிழ் & English — பழைய & புதிய ஏற்பாடு — Audio · Image · Bookmark</p>
 </div>
 
-<!-- APP -->
-<div class="bible-app">
-<div class="container">
-<div class="bible-shell">
+<!-- LAYOUT -->
+<div class="layout">
 
-  <!-- ══ SIDEBAR ════════════════════════════════════════════ -->
-  <aside class="b-sidebar">
-
-    <div class="sb-section">
-      <div class="sb-label">மொழி</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <span class="sb-label">மொழி</span>
       <div class="lang-tog">
-        <button class="lang-btn on" id="btn-ta" onclick="setLang('ta')">&#127470;&#127475; தமிழ்</button>
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')">&#127468;&#127463; English</button>
+        <button class="lang-btn on" id="btn-ta" onclick="setLang('ta')">🇮🇳 தமிழ்</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">🇬🇧 English</button>
       </div>
     </div>
-
-    <div class="sb-divider"></div>
-
-    <div class="sb-section">
-      <div class="sb-label">புத்தகம் &amp; அதிகாரம்</div>
-      <select class="b-select" id="book-sel" onchange="onBook()">
+    <div>
+      <span class="sb-label">புத்தகம் & அதிகாரம்</span>
+      <select id="book-sel" onchange="onBook()" style="margin-bottom:6px">
         <option value="">புத்தகம் தேர்வு செய்க...</option>
       </select>
-      <select class="b-select" id="ch-sel" onchange="onCh()" disabled>
-        <option value="">அதிகாரம்</option>
+      <select id="ch-sel" onchange="onCh()" disabled style="margin-bottom:8px">
+        <option>அதிகாரம்</option>
       </select>
-      <button class="read-btn" id="gobtn" onclick="loadCh()">&#128214; அதிகாரம் படி</button>
+      <button class="read-btn" id="gobtn" onclick="loadCh()" style="display:none">📖 அதிகாரம் படி</button>
     </div>
-
-    <div class="sb-divider"></div>
-
-    <div class="sb-section">
-      <div class="sb-label">எழுத்து அளவு</div>
+    <div class="sb-div"></div>
+    <div>
+      <span class="sb-label">எழுத்து அளவு</span>
       <div class="fsz-row">
-        <button class="fsz-btn" onclick="chFont(-1)">A&minus;</button>
-        <span id="fszv">18px</span>
+        <button class="fsz-btn" onclick="chFont(-1)">A−</button>
+        <span class="fsz-val" id="fszv">17px</span>
         <button class="fsz-btn" onclick="chFont(1)">A+</button>
-        <button class="fsz-btn" onclick="chFont(0)" style="font-size:10px;padding:5px 7px">&#8634;</button>
+        <button class="fsz-btn" onclick="chFont(0)" title="Reset">↺</button>
       </div>
     </div>
-
-    <div class="sb-divider"></div>
-
-    <div class="sb-section">
-      <div class="sb-label">Features</div>
+    <div class="sb-div"></div>
+    <div>
+      <span class="sb-label">Features</span>
       <div class="feat-grid">
-        <button class="feat-btn" id="qa-topics" onclick="togPanel('topics',this)">
-          <span class="feat-icon">&#127993;</span><div class="feat-lbl">Topics</div>
-        </button>
-        <button class="feat-btn" id="qa-plan" onclick="togPanel('plan',this)">
-          <span class="feat-icon">&#128197;</span><div class="feat-lbl">Plan</div>
-        </button>
-        <button class="feat-btn" id="qa-bm" onclick="togPanel('bm',this)">
-          <span class="feat-icon">&#9829;</span><div class="feat-lbl" id="bm-lbl">Saved</div>
-        </button>
-        <button class="feat-btn" id="qa-img" onclick="togPanel('img',this)">
-          <span class="feat-icon">&#128247;</span><div class="feat-lbl">Image</div>
-        </button>
-        <button class="feat-btn" id="qa-settings" onclick="togPanel('settings',this)">
-          <span class="feat-icon">&#9881;</span><div class="feat-lbl">Settings</div>
-        </button>
-        <button class="feat-btn" id="qa-quiz" onclick="togPanel('quiz',this);if(!document.getElementById('quiz-body').innerHTML)startQuiz()">
-          <span class="feat-icon">&#129504;</span><div class="feat-lbl">Quiz</div>
-        </button>
-        <button class="feat-btn" id="qa-tracker" onclick="togPanel('tracker',this);renderTracker()">
-          <span class="feat-icon">&#128202;</span><div class="feat-lbl" id="tracker-pct">Track</div>
-        </button>
-
+        <button class="feat-btn" id="fb-topics" onclick="openPanel('topics')"><span class="feat-icon">🌿</span><div class="feat-lbl">Topics</div></button>
+        <button class="feat-btn" id="fb-plan" onclick="openPanel('plan')"><span class="feat-icon">📅</span><div class="feat-lbl">Plan</div></button>
+        <button class="feat-btn" id="fb-bm" onclick="openPanel('bm')"><span class="feat-icon">♥</span><div class="feat-lbl" id="bm-lbl">Saved</div></button>
+        <button class="feat-btn" id="fb-img" onclick="openPanel('img')"><span class="feat-icon">🖼</span><div class="feat-lbl">Image</div></button>
+        <button class="feat-btn" id="fb-settings" onclick="openPanel('settings')"><span class="feat-icon">⚙</span><div class="feat-lbl">Settings</div></button>
+        <button class="feat-btn" id="fb-quiz" onclick="openPanel('quiz')"><span class="feat-icon">🧠</span><div class="feat-lbl">Quiz</div></button>
+        <button class="feat-btn" id="fb-tracker" onclick="openPanel('tracker')"><span class="feat-icon">📊</span><div class="feat-lbl" id="tracker-pct">Track</div></button>
       </div>
     </div>
-
   </aside>
 
-  <!-- ══ MAIN ═══════════════════════════════════════════════ -->
-  <main class="b-main">
+  <!-- MAIN -->
+  <main class="main">
 
     <!-- VOTD -->
-    <div class="votd-card">
-      <div class="votd-badge">
-        <span class="votd-star">&#9733;</span>
-        <span class="votd-badge-text">இன்றைய வேத வாக்கு</span>
-      </div>
-      <p class="votd-ta-text" id="votd-ta">ஏற்றுகிறோம்...</p>
-      <cite class="votd-ta-ref" id="votd-taref"></cite>
-      <p class="votd-en-text" id="votd-en"></p>
-      <cite class="votd-en-ref" id="votd-ref"></cite>
-      <div class="votd-actions">
-        <button class="v-pill gold" onclick="playVOTD('ta')">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>தமிழ்
-        </button>
-        <button class="v-pill gold" onclick="playVOTD('en')">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>English
-        </button>
-        <button class="v-pill" onclick="genVOTDImage()">&#128247; Image</button>
-        <button class="v-pill" onclick="copyVOTD()">&#128203; Copy</button>
-        <button class="v-pill" onclick="requestPushNotification()">&#128276; Notify</button>
-        <button class="v-pill" onclick="shareVOTD()">&#128279; Share</button>
+    <div class="votd">
+      <div class="votd-badge">இன்றைய வேத வாக்கு</div>
+      <p class="votd-ta" id="votd-ta">ஏற்றுகிறோம்...</p>
+      <cite class="votd-taref" id="votd-taref"></cite>
+      <p class="votd-en" id="votd-en"></p>
+      <cite class="votd-enref" id="votd-enref"></cite>
+      <div class="votd-acts">
+        <button class="v-pill gold" onclick="playVOTD('ta')">▶ தமிழ்</button>
+        <button class="v-pill gold" onclick="playVOTD('en')">▶ English</button>
+        <button class="v-pill" onclick="openPanel('img');setTimeout(()=>{useVOTDForImg();},200)">🖼 Image</button>
+        <button class="v-pill" onclick="copyVOTD()">📋 Copy</button>
+        <button class="v-pill" onclick="shareVOTD()">🔗 Share</button>
+        <button class="v-pill" onclick="reqNotify()">🔔 Notify</button>
       </div>
     </div>
 
-    <!-- TOPIC PANEL -->
-    <div class="feat-panel" id="panel-topics">
-      <div class="panel-head">Topic Search</div>
-      <div class="topic-pills">
-        <button class="t-pill" onclick="showTopic(this,'faith')">Faith &middot; விசுவாசம்</button>
-        <button class="t-pill" onclick="showTopic(this,'prayer')">Prayer &middot; ஜெபம்</button>
-        <button class="t-pill" onclick="showTopic(this,'love')">Love &middot; அன்பு</button>
-        <button class="t-pill" onclick="showTopic(this,'peace')">Peace &middot; சமாதானம்</button>
-        <button class="t-pill" onclick="showTopic(this,'healing')">Healing &middot; குணம்</button>
-        <button class="t-pill" onclick="showTopic(this,'salvation')">Salvation &middot; இரட்சிப்பு</button>
-        <button class="t-pill" onclick="showTopic(this,'strength')">Strength &middot; பெலன்</button>
-        <button class="t-pill" onclick="showTopic(this,'family')">Family &middot; குடும்பம்</button>
-        <button class="t-pill" onclick="showTopic(this,'hope')">Hope &middot; நம்பிக்கை</button>
-        <button class="t-pill" onclick="showTopic(this,'worship')">Worship &middot; ஆராதனை</button>
-      </div>
-      <div id="topic-res"></div>
-    <!-- Topic pills — cloned into side panel by renderPanelTopics() -->
-    <div class="tpills" style="display:none">
-      <span class="tp on" onclick="showTopic(this,'faith')">Faith · விசுவாசம்</span>
-      <span class="tp" onclick="showTopic(this,'prayer')">Prayer · ஜெபம்</span>
-      <span class="tp" onclick="showTopic(this,'love')">Love · அன்பு</span>
-      <span class="tp" onclick="showTopic(this,'peace')">Peace · சமாதானம்</span>
-      <span class="tp" onclick="showTopic(this,'healing')">Healing · குணம்</span>
-      <span class="tp" onclick="showTopic(this,'salvation')">Salvation · இரட்சிப்பு</span>
-      <span class="tp" onclick="showTopic(this,'strength')">Strength · பெலன்</span>
-      <span class="tp" onclick="showTopic(this,'family')">Family · குடும்பம்</span>
-      <span class="tp" onclick="showTopic(this,'hope')">Hope · நம்பிக்கை</span>
-      <span class="tp" onclick="showTopic(this,'worship')">Worship · ஆராதனை</span>
-    </div>
-    </div>
-
-    <!-- BOOKMARKS PANEL -->
-    <div class="feat-panel" id="panel-bm">
-      <div class="panel-head">&#9829; சேமிக்கப்பட்ட வரிகள்</div>
-      <div id="bmlist"></div>
-    </div>
-
-    <!-- PLAN PANEL -->
-    <div class="feat-panel" id="panel-plan">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px">
-        <div class="panel-head" style="margin:0">7-நாள் வாசிப்பு திட்டம்</div>
-        <span id="ppct" style="font-size:11px;color:var(--tx3)">0/7</span>
-      </div>
-      <div class="plan-track"><div class="plan-fill" id="pfill" style="width:0"></div></div>
-      <div id="pdays"></div>
-      <button onclick="resetPlan()" style="margin-top:10px;border:1px solid var(--bd);border-radius:99px;padding:6px 14px;color:var(--tx3);font-size:10.5px;background:transparent;font-family:var(--sans);transition:all .18s" onmouseover="this.style.borderColor='var(--bd1)'" onmouseout="this.style.borderColor='var(--bd)'">Reset</button>
-    </div>
-
-    <!-- IMAGE GEN PANEL -->
-
-    <!-- Settings Panel -->
-    <div class="feat-panel" id="panel-settings">
-      <div class="panel-head">&#9881; Settings</div>
-
-      <div style="margin-bottom:14px">
-        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Reading Theme</div>
-        <div style="display:flex;gap:6px">
-          <button class="theme-btn on" data-theme="dark" onclick="setTheme('dark')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">🌙 Dark</button>
-          <button class="theme-btn" data-theme="sepia" onclick="setTheme('sepia')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">📜 Sepia</button>
-          <button class="theme-btn" data-theme="light" onclick="setTheme('light')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:8px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">&#9728; Light</button>
-        </div>
-      </div>
-
-      <div style="margin-bottom:14px">
-        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Tamil Font</div>
-        <div style="display:flex;gap:6px">
-          <button class="font-btn on" data-font="noto" onclick="setFontFamily('noto')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Noto Serif</button>
-          <button class="font-btn" data-font="latha" onclick="setFontFamily('latha')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Latha</button>
-          <button class="font-btn" data-font="bamini" onclick="setFontFamily('bamini')" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Bamini</button>
-        </div>
-      </div>
-
-      <div style="margin-bottom:14px">
-        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Highlight Colours</div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <div class="hlc on" data-color="#f5c518" style="width:22px;height:22px;border-radius:50%;background:#f5c518;cursor:pointer;border:2.5px solid white;flex-shrink:0" onclick="setHlColor('#f5c518')"></div>
-          <div class="hlc" data-color="#4caf50" style="width:22px;height:22px;border-radius:50%;background:#4caf50;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#4caf50')"></div>
-          <div class="hlc" data-color="#60b0ff" style="width:22px;height:22px;border-radius:50%;background:#60b0ff;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#60b0ff')"></div>
-          <div class="hlc" data-color="#c850c8" style="width:22px;height:22px;border-radius:50%;background:#c850c8;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#c850c8')"></div>
-          <div class="hlc" data-color="#ff7043" style="width:22px;height:22px;border-radius:50%;background:#ff7043;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#ff7043')"></div>
-          <span style="font-size:10px;color:var(--tx3);margin-left:2px">tap to select</span>
-        </div>
-      </div>
-
-      <!-- Cache info -->
-      <div style="margin-bottom:14px;background:var(--bg3);border-radius:var(--r);padding:10px 12px">
-        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Offline Cache</div>
-        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px" id="cache-info">Loading...</div>
-        <button onclick="document.getElementById('cache-info').textContent=getCacheInfo()" style="background:transparent;border:1px solid var(--bd);border-radius:99px;padding:4px 12px;font-size:10px;color:var(--tx3);font-family:var(--sans);cursor:pointer;margin-right:6px">Refresh</button>
-        <button onclick="clearTaCache();document.getElementById('cache-info').textContent=getCacheInfo()" style="background:transparent;border:1px solid rgba(248,113,113,.3);border-radius:99px;padding:4px 12px;font-size:10px;color:#fca5a5;font-family:var(--sans);cursor:pointer">Clear</button>
-      </div>
-
-      <!-- Quick links to Quiz + Tracker from Settings -->
-      <div style="display:flex;gap:6px;margin-bottom:14px">
-        <button onclick="togPanel('quiz',this);if(!document.getElementById('quiz-body').innerHTML)startQuiz()" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:9px;font-size:12px;color:var(--tx2);font-family:var(--sans);cursor:pointer;transition:all .2s">&#129504; Bible Quiz</button>
-        <button onclick="togPanel('tracker',this);renderTracker()" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--r);padding:9px;font-size:12px;color:var(--tx2);font-family:var(--sans);cursor:pointer;transition:all .2s">&#128202; Progress</button>
-      </div>
-
-      <div>
-        <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Line Spacing</div>
-        <div style="display:flex;gap:6px">
-          <button onclick="setSpacing(1.6)" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Compact</button>
-          <button onclick="setSpacing(1.9)" style="flex:1;background:var(--gdm);border:1px solid var(--gdb);border-radius:6px;padding:7px;font-size:11px;color:var(--gd);cursor:pointer;font-family:var(--sans)">Normal</button>
-          <button onclick="setSpacing(2.4)" style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:11px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">Wide</button>
-        </div>
+    <!-- CONTROLS -->
+    <div class="ctrl-bar">
+      <div class="para-toggle">
+        <span>🇮🇳+🇬🇧 Parallel</span>
+        <button class="toggle-btn" id="para-btn" onclick="togParallel()">Off</button>
       </div>
     </div>
-
-    <!-- Quiz Panel -->
-    <div class="feat-panel" id="panel-quiz">
-      <div class="panel-head">&#129504; Bible Quiz</div>
-      <div id="quiz-body"></div>
+    <div class="search-row">
+      <input class="search-inp" id="sinp" type="text" placeholder="தேடுக — John 3:16, faith, அன்பு..." onkeydown="if(event.key==='Enter')doSearch()">
+      <button class="search-btn" onclick="doSearch()">🔍</button>
+    </div>
+    <div class="offline-bar" id="offline-bar">
+      <strong>Offline:</strong> John 1–6 · Psalms 23 · Matt 5 · Romans 8 · Phil 4
     </div>
 
-    <!-- Tracker Panel -->
-    <div class="feat-panel" id="panel-tracker">
-      <div class="panel-head">&#128202; Reading Progress</div>
-      <div id="tracker-body"></div>
-    </div>
-    <div class="feat-panel" id="panel-img">
-      <div class="panel-head">&#128247; Verse Image Generator</div>
-
-      <span class="ig-label">Size</span>
-      <div class="sz-row">
-        <button class="sz-btn on" onclick="setSz(this,'9:16')">9:16<span>Story</span></button>
-        <button class="sz-btn" onclick="setSz(this,'3:4')">3:4<span>Portrait</span></button>
-        <button class="sz-btn" onclick="setSz(this,'1:1')">1:1<span>Square</span></button>
-        <button class="sz-btn" onclick="setSz(this,'16:9')">16:9<span>Wide</span></button>
-      </div>
-
-      <span class="ig-label">Background</span>
-      <div style="display:flex;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:3px;gap:3px;margin-bottom:10px">
-        <div class="ig-mode-btn on" id="igmode-colour" onclick="setIGMode('colour')" style="flex:1;padding:7px 4px;border-radius:4px;font-size:11px;color:var(--bg);background:var(--gd);text-align:center;cursor:pointer;font-family:var(--sans);font-weight:500">&#127912; Colour</div>
-        <div class="ig-mode-btn" id="igmode-photo" onclick="setIGMode('photo')" style="flex:1;padding:7px 4px;border-radius:4px;font-size:11px;color:var(--tx2);text-align:center;cursor:pointer;font-family:var(--sans)">&#128247; My Photo</div>
-        <div class="ig-mode-btn" id="igmode-template" onclick="setIGMode('template')" style="flex:1;padding:7px 4px;border-radius:4px;font-size:11px;color:var(--tx2);text-align:center;cursor:pointer;font-family:var(--sans)">&#127748; Templates</div>
-      </div>
-
-      <!-- Colour BG -->
-      <div id="ig-colour-sec">
-        <div class="bg-swatches">
-          <div class="bg-sw on" style="background:#06080e" onclick="setBG(this,'#06080e')" title="Dark"></div>
-          <div class="bg-sw" style="background:#0b2545" onclick="setBG(this,'#0b2545')" title="Navy"></div>
-          <div class="bg-sw" style="background:#1a0b2e" onclick="setBG(this,'#1a0b2e')" title="Purple"></div>
-          <div class="bg-sw" style="background:#0d2b1a" onclick="setBG(this,'#0d2b1a')" title="Forest"></div>
-          <div class="bg-sw" style="background:#2d0f0f" onclick="setBG(this,'#2d0f0f')" title="Maroon"></div>
-          <div class="bg-sw" style="background:#fdf6ec;border:1px solid rgba(0,0,0,.12)" onclick="setBG(this,'#fdf6ec')" title="Cream"></div>
-          <div class="bg-sw" style="background:#fff;border:1px solid rgba(0,0,0,.12)" onclick="setBG(this,'#ffffff')" title="White"></div>
-          <div class="bg-sw" style="background:#1c1409" onclick="setBG(this,'#1c1409')" title="Brown"></div>
-        </div>
-      </div>
-
-      <!-- Photo Upload -->
-      <div id="ig-photo-sec" style="display:none">
-        <div onclick="triggerPhotoUpload()" style="border:1.5px dashed var(--gdb);border-radius:10px;padding:16px;text-align:center;background:var(--gdm);margin-bottom:10px;cursor:pointer">
-          <img id="ig-photo-thumb" style="display:none;width:100%;border-radius:6px;max-height:90px;object-fit:cover;margin-bottom:8px">
-          <div id="ig-photo-ph">
-            <div style="font-size:22px;margin-bottom:5px">&#128247;</div>
-            <div style="font-size:12px;color:var(--gd);font-weight:500;margin-bottom:2px">Upload Your Photo</div>
-            <div style="font-size:10px;color:var(--tx3)">Gallery / Camera / Files</div>
-          </div>
-          <button onclick="event.stopPropagation();triggerPhotoUpload()" style="margin-top:8px;background:var(--gd);color:var(--bg);border:none;border-radius:99px;padding:6px 16px;font-size:11px;font-weight:500;font-family:var(--sans);cursor:pointer">&#128448; Choose Photo</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-          <span style="font-size:10px;color:var(--tx3);white-space:nowrap">Dark overlay</span>
-          <input type="range" id="overlay-slider" min="0" max="90" value="55" step="5" oninput="document.getElementById('ov-val').textContent=this.value+'%';drawIG()" style="flex:1;accent-color:var(--gd)">
-          <span id="ov-val" style="font-size:10px;color:var(--gd);font-weight:600;min-width:28px">55%</span>
-        </div>
-      </div>
-
-      <!-- Templates -->
-      <div id="ig-template-sec" style="display:none">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
-          <div class="ig-tpl-btn on" data-tpl="cross" onclick="setIGTemplate('cross')" style="background:#0b1929;border:1.5px solid var(--gdb);border-radius:8px;overflow:hidden;cursor:pointer">
-            <div style="height:52px;display:flex;align-items:center;justify-content:center;position:relative">
-              <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#e8a020"></div>
-              <span style="font-size:10px;color:rgba(255,255,255,.7);font-style:italic">&#10013; Cross</span>
-            </div>
-            <div style="font-size:9px;color:var(--gd);text-align:center;padding:4px;border-top:1px solid rgba(255,255,255,.07)">Cross &#10003;</div>
-          </div>
-          <div class="ig-tpl-btn" data-tpl="sunrise" onclick="setIGTemplate('sunrise')" style="background:#2d1a05;border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;cursor:pointer">
-            <div style="height:52px;display:flex;align-items:center;justify-content:center;position:relative">
-              <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#f5a020"></div>
-              <span style="font-size:10px;color:rgba(255,220,160,.8);font-style:italic">&#127751; Sunrise</span>
-            </div>
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-align:center;padding:4px;border-top:1px solid rgba(255,255,255,.07)">Sunrise</div>
-          </div>
-          <div class="ig-tpl-btn" data-tpl="nature" onclick="setIGTemplate('nature')" style="background:#0d2010;border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;cursor:pointer">
-            <div style="height:52px;display:flex;align-items:center;justify-content:center;position:relative">
-              <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#4caf50"></div>
-              <span style="font-size:10px;color:rgba(200,240,200,.8);font-style:italic">&#127807; Nature</span>
-            </div>
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-align:center;padding:4px;border-top:1px solid rgba(255,255,255,.07)">Nature</div>
-          </div>
-          <div class="ig-tpl-btn" data-tpl="stars" onclick="setIGTemplate('stars')" style="background:#05051a;border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;cursor:pointer">
-            <div style="height:52px;display:flex;align-items:center;justify-content:center;position:relative">
-              <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#9c88ff"></div>
-              <span style="font-size:10px;color:rgba(220,215,255,.8);font-style:italic">&#11088; Starry Night</span>
-            </div>
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-align:center;padding:4px;border-top:1px solid rgba(255,255,255,.07)">Stars</div>
-          </div>
-        </div>
-      </div>
-
-      <span class="ig-label">Text Colour</span>
-      <div class="tc-row">
-        <button class="tc-btn on" style="background:rgba(232,160,32,.15);border-color:rgba(232,160,32,.4);color:#e8a020" onclick="setTC(this,'#e8a020')">&#9733; Gold</button>
-        <button class="tc-btn" style="background:rgba(192,192,192,.1);border-color:rgba(192,192,192,.3);color:#c0c0c0" onclick="setTC(this,'#c0c0c0')">&#9733; Silver</button>
-        <button class="tc-btn" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2);color:#fff" onclick="setTC(this,'#ffffff')">White</button>
-        <button class="tc-btn" style="background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.2);color:#111" onclick="setTC(this,'#111111')">Black</button>
-      </div>
-
-      <span class="ig-label">Verse</span>
-      <select class="ig-verse-select" id="igvsel" onchange="drawIG()"></select>
-      <button onclick="useCurrentVerse()" style="width:100%;border:1px solid var(--bd);border-radius:6px;padding:8px;color:var(--tx2);font-size:11px;background:transparent;margin-bottom:10px;font-family:var(--sans);cursor:pointer;transition:border .2s" onmouseover="this.style.borderColor='var(--gdb)'" onmouseout="this.style.borderColor='var(--bd)'">Use current / highlighted verse</button>
-
-      <div class="ig-preview-wrap"><canvas id="igcv"></canvas></div>
-      <div class="ig-dl-row">
-        <button class="ig-dl" onclick="dlIG('png')">&#8595; PNG</button>
-        <button class="ig-dl" onclick="dlIG('jpg')">&#8595; JPG</button>
-        <button class="ig-dl outline" onclick="shareIG()">&#128279; Share</button>
-      </div>
-    </div>
-
-
-    <!-- Parallel View Toggle -->
-    <div id="para-bar" style="display:flex;align-items:center;justify-content:space-between;padding:8px 18px;background:var(--bg2);border-bottom:1px solid var(--bd)">
-      <span style="font-size:11px;color:var(--tx2)">&#127470;&#127475; + &#127468;&#127463; Parallel view</span>
-      <button id="para-btn" onclick="togParallel()" style="background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:99px;padding:5px 14px;font-size:11px;color:var(--tx2);font-family:var(--sans);cursor:pointer;transition:all .2s">Off</button>
-    </div>
-    <!-- SEARCH -->
-    <div class="search-bar">
-      <input class="search-inp" id="sinp" type="text"
-        placeholder="தேடுக &mdash; John 3:16, faith, அன்பு..."
-        onkeydown="if(event.key==='Enter')doSearch()">
-      <button class="search-btn" onclick="doSearch()">&#128269;</button>
-    </div>
-
-    <!-- TAMIL INFO -->
-    <div class="ta-info" id="tainfo">
-      <strong>Offline:</strong> John 1&ndash;6,10&ndash;17,20 &middot; Psalms 1,22,23,27,46,51,91,121 &middot; Matt 5,6,11,28 &middot; Acts 1&ndash;2 &middot; Romans 3,5,8,10,12 &middot; 1Cor 13 &middot; Phil 4 &middot; Isa 40,43,53 &middot; Gen 1 &middot; Rev 21&ndash;22
-    </div>
-
-
-    <!-- Highlight Colour Picker -->
-    <div id="hl-picker" style="display:none;align-items:center;gap:7px;padding:8px 18px;background:var(--bg2);border-bottom:1px solid var(--bd)">
-      <span style="font-size:9px;color:var(--tx3)">Highlight:</span>
-      <div class="hlc on" data-color="#f5c518" style="width:18px;height:18px;border-radius:50%;background:#f5c518;cursor:pointer;border:2px solid white;flex-shrink:0" onclick="setHlColor('#f5c518')"></div>
-      <div class="hlc" data-color="#4caf50" style="width:18px;height:18px;border-radius:50%;background:#4caf50;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#4caf50')"></div>
-      <div class="hlc" data-color="#60b0ff" style="width:18px;height:18px;border-radius:50%;background:#60b0ff;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#60b0ff')"></div>
-      <div class="hlc" data-color="#c850c8" style="width:18px;height:18px;border-radius:50%;background:#c850c8;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#c850c8')"></div>
-      <div class="hlc" data-color="#ff7043" style="width:18px;height:18px;border-radius:50%;background:#ff7043;cursor:pointer;border:2px solid transparent;flex-shrink:0" onclick="setHlColor('#ff7043')"></div>
-    </div>
-    <!-- AUDIO PLAYER -->
-    <div class="audio-player" id="abar" style="display:none">
+    <!-- AUDIO BAR -->
+    <div class="audio-bar" id="abar">
       <button class="aud-play-btn" onclick="togPlay()">
-        <svg id="plic" viewBox="0 0 24 24" fill="#06080e"><polygon points="5,3 19,12 5,21"/></svg>
-        <svg id="puic" viewBox="0 0 24 24" fill="#06080e" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <span id="plic">▶</span><span id="puic" style="display:none">⏸</span>
       </button>
       <div class="aud-info">
-        <div class="aud-title" id="aptitle">Ready</div>
-        <div class="aud-status" id="apstat">வசனத்தை தொட்டு கேளுங்கள்</div>
+        <div class="aud-title" id="aptitle">ENJC Bible</div>
+        <div class="aud-stat" id="apstat">வசனத்தை தொட்டு கேளுங்கள்</div>
       </div>
-      <select class="aud-speed" id="aspd" onchange="chSpd()">
-        <option value="0.75">0.75&times;</option>
-        <option value="1" selected>1&times;</option>
-        <option value="1.25">1.25&times;</option>
-        <option value="1.5">1.5&times;</option>
+      <select class="aud-spd" id="aspd" onchange="chSpd()">
+        <option value="0.8">0.8×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
       </select>
-      <button class="aud-stop" onclick="stopAud()">&#9632; Stop</button>
+      <button class="aud-stop" onclick="stopAud()">■ Stop</button>
     </div>
 
     <!-- CHAPTER BAR -->
-    <div class="chapter-bar" id="chbar" style="display:none">
-      <div class="ch-title-group">
-        <div class="ch-title" id="chtitle"></div>
+    <div class="ch-bar" id="chbar">
+      <div class="ch-info">
+        <div class="ch-title" id="chtitle">—</div>
         <div class="ch-sub" id="chsub"></div>
       </div>
-      <div class="ch-nav-btns">
-        <button class="ch-nav-btn" id="prevb" onclick="prevCh()">&#8592; Prev</button>
-        <button class="ch-nav-btn highlight" onclick="playAll()">&#9654; Play All</button>
-        <button class="ch-nav-btn" id="nextb" onclick="nextCh()">Next &#8594;</button>
+      <div class="ch-nav">
+        <button class="ch-btn" id="prevb" onclick="prevCh()">← Prev</button>
+        <button class="ch-btn primary" onclick="playAll()">▶ Play All</button>
+        <button class="ch-btn" id="nextb" onclick="nextCh()">Next →</button>
       </div>
     </div>
-    <div class="ch-progress"><div class="ch-progress-fill" id="chprogf"></div></div>
+    <div class="ch-prog"><div class="ch-prog-fill" id="chprogf"></div></div>
 
     <!-- CONTENT -->
-    <div id="bcontent" class="verse-list-wrap">
-      <div class="b-start">
-        <div class="start-icon">&#128214;</div>
-        <p>புத்தகம் &amp; அதிகாரம் தேர்வு செய்க</p>
-        <p>or search for any verse above</p>
-      </div>
-    </div>
+    <div id="bcontent"><div class="bload"><div class="bspin"></div><p>புத்தகம் & அதிகாரம் தேர்வு செய்யுங்கள்</p></div></div>
 
   </main>
-</div><!-- bible-shell -->
-</div><!-- container -->
-</div><!-- bible-app -->
+</div>
+
+<!-- SIDE PANEL -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="panel" id="panel">
+  <div class="panel-handle"></div>
+  <div class="panel-head">
+    <span class="panel-title" id="panel-title">Panel</span>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
 
 <!-- VERSE MODAL -->
-<div class="vmodal-backdrop" id="vmodal-wrap" onclick="closeModal(event)">
-  <div class="vmodal-sheet" id="vmodal">
+<div class="vmodal-backdrop" id="vmodal" onclick="closeVModal(event)">
+  <div class="vmodal-sheet">
     <div class="vmodal-handle"></div>
-    <div class="vmodal-header">
-      <span class="vmodal-ref-text" id="vmodal-ref"></span>
-      <button class="vmodal-close-btn" onclick="closeVModal()">&#10005;</button>
-    </div>
-    <div class="vmodal-body">
-      <p class="vmodal-ta-text" id="vmodal-ta"></p>
-      <p class="vmodal-en-text" id="vmodal-en"></p>
-        <textarea id="note-ta" placeholder="&#128221; உங்கள் குறிப்பு... (Personal note)" rows="3"
-          style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--bd2);border-radius:6px;padding:8px 11px;color:var(--tx);font-size:12px;font-family:var(--sans);resize:none;line-height:1.6;margin-top:10px"
-          oninput="autoSaveNote(this.value)"></textarea>
-    </div>
-    <div class="vmodal-actions">
-      <button class="modal-act gold-act" onclick="modalAct('ta-audio')">
-        <span class="modal-act-icon">&#9654;</span><div class="modal-act-label">Tamil Audio</div>
-      </button>
-      <button class="modal-act gold-act" onclick="modalAct('en-audio')">
-        <span class="modal-act-icon">&#9654;</span><div class="modal-act-label">English Audio</div>
-      </button>
-      <button class="modal-act" onclick="modalAct('image')">
-        <span class="modal-act-icon">&#128247;</span><div class="modal-act-label">Make Image</div>
-      </button>
-      <button class="modal-act" onclick="modalAct('save')">
-        <span class="modal-act-icon" id="modal-bm-ic">&#9829;</span>
-        <div class="modal-act-label" id="modal-bm-lb">Save Verse</div>
-      </button>
-      <button class="modal-act" onclick="modalAct('copy')">
-        <span class="modal-act-icon">&#128203;</span><div class="modal-act-label">Copy</div>
-      </button>
-      <button class="modal-act" onclick="modalAct('share')">
-        <span class="modal-act-icon">&#128279;</span><div class="modal-act-label">Share</div>
-      </button>
+    <span class="vmodal-ref" id="vmodal-ref"></span>
+    <span class="vmodal-ta" id="vmodal-ta"></span>
+    <span class="vmodal-en" id="vmodal-en"></span>
+    <textarea class="vmodal-note" id="note-ta" rows="2" placeholder="📝 குறிப்பு எழுதுங்கள்..." oninput="autoSaveNote(this.value)"></textarea>
+    <div class="vmodal-acts">
+      <div class="vmodal-act" onclick="mAct('ta-audio')"><span class="act-icon">🔊</span><span class="act-lbl">Tamil Audio</span></div>
+      <div class="vmodal-act" onclick="mAct('en-audio')"><span class="act-icon">🔉</span><span class="act-lbl">English Audio</span></div>
+      <div class="vmodal-act" onclick="mAct('image')"><span class="act-icon">🖼</span><span class="act-lbl">Image</span></div>
+      <div class="vmodal-act" id="bm-act" onclick="mAct('save')"><span class="act-icon">♡</span><span class="act-lbl" id="bm-lbl2">Save</span></div>
+      <div class="vmodal-act" onclick="mAct('copy')"><span class="act-icon">📋</span><span class="act-lbl">Copy</span></div>
+      <div class="vmodal-act" onclick="mAct('share')"><span class="act-icon">🔗</span><span class="act-lbl">Share</span></div>
     </div>
   </div>
 </div>
 
-<footer>
-  <div class="container footer-inner">
-    <p class="footer-copy">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">YouTube</a>
-      <a href="https://www.facebook.com/ENJCChurch" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/enjcchurch" target="_blank">Instagram</a>
-      <a href="https://wa.me/919444345102" target="_blank">WhatsApp</a>
-    </div>
-  </div>
-</footer>
+<!-- TOAST -->
+<div id="toast"></div>
 
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-</a>
-
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <a href="index.html" class="bn-item"><span class="bn-icon">&#127968;</span><span class="bn-label">Home</span></a>
-  <a href="media.html" class="bn-item"><span class="bn-icon">&#128250;</span><span class="bn-label">Media</span></a>
-  <div class="bn-center-wrap"><a href="ministries.html" class="bn-center" aria-label="Ministries">&#10013;</a></div>
-  <a href="events.html" class="bn-item"><span class="bn-icon">&#128197;</span><span class="bn-label">Events</span></a>
-  <a href="bible.html" class="bn-item active"><span class="bn-icon">&#128214;</span><span class="bn-label" style="color:var(--gd2)">Bible</span></a>
+  <a href="index.html" class="bn-item"><span class="bn-icon">🏠</span><span class="bn-lbl">Home</span></a>
+  <a href="media.html" class="bn-item"><span class="bn-icon">📺</span><span class="bn-lbl">Media</span></a>
+  <div class="bn-cross"><a href="ministries.html" class="bn-cross-btn">✝</a></div>
+  <a href="events.html" class="bn-item"><span class="bn-icon">📅</span><span class="bn-lbl">Events</span></a>
+  <a href="bible.html" class="bn-item act"><span class="bn-icon">📖</span><span class="bn-lbl">Bible</span></a>
 </nav>
 
-<script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE"></script>
-<script src="js/bible.js"></script>
+<!-- WA FLOAT -->
+<a href="https://wa.me/919444345102" target="_blank" class="wa-float" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
 
-<!-- ── SIDE PANEL (PC right / Mobile bottom sheet) ── -->
-<div class="panel-overlay" id="panel-overlay" onclick="closePanel()"></div>
-<div class="side-panel" id="side-panel">
-  <div class="sp-handle"></div>
-  <div class="sp-head">
-    <span class="sp-title" id="sp-title">Panel</span>
-    <button class="sp-close" onclick="closePanel()">&#10005;</button>
-  </div>
-  <div class="sp-body" id="sp-body"></div>
-</div>
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Elim New Jerusalem Church, Tondiarpet, Chennai. All rights reserved.</p>
+  <p style="margin-top:6px">
+    <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank">YouTube</a> &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/elimnewjerusalemchurch/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+    <a href="https://wa.me/919444345102" target="_blank">WhatsApp</a>
+  </p>
+</footer>
+
+<script src="js/bible.js"></script>
 </body>
 </html>
