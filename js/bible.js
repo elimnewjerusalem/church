@@ -745,11 +745,16 @@ function useRVorTTS(text,lang,spd,cb){
     const voice=lang==='ta'?'Tamil Female':(navigator.userAgent.includes('Chrome')?'UK English Male':'en-IN Female');
     const alt=lang==='ta'?'Tamil Male':'UK English Female';
     if(apst)apst.textContent=lang==='ta'?'Tamil Female voice...':'English voice...';
+    let _rvDone=false;
+    function rvNext(){if(_rvDone)return;_rvDone=true;S.playing=false;updPBtn();if(cb)cb();}
+    // Fallback: estimate audio duration (~55ms/char) + 2s buffer
+    const _rvFallback=setTimeout(()=>{if(S.playing&&!_rvDone){console.warn('RV fallback');rvNext();}},Math.max(3000,text.length*55)+2000);
     responsiveVoice.speak(text,voice,{
       rate:spd,pitch:1,volume:1,
       onstart:()=>{S.playing=true;updPBtn();if(apst)apst.textContent=lang==='ta'?'இயங்குகிறது...':'Playing...';},
-      onend:()=>{S.playing=false;updPBtn();if(cb)cb();},
+      onend:()=>{clearTimeout(_rvFallback);rvNext();},
       onerror:()=>{
+        clearTimeout(_rvFallback);
         responsiveVoice.speak(text,alt,{
           rate:spd,pitch:1,volume:1,
           onstart:()=>{S.playing=true;updPBtn();},
@@ -784,9 +789,17 @@ function speakTTS(text,lang,cb){
     if(ev){u.voice=ev;u.lang=ev.lang;}
     else u.lang='en-IN';
   }
-  u.onstart=()=>{S.playing=true;updPBtn();};
-  u.onend=()=>{S.playing=false;updPBtn();if(cb)cb();};
-  u.onerror=(e)=>{S.playing=false;updPBtn();
+  let _ttsEnded=false;
+  function onTTSEnd(){if(_ttsEnded)return;_ttsEnded=true;S.playing=false;updPBtn();if(cb)cb();}
+  u.onend=onTTSEnd;
+  // Fallback for Chrome PC where onend sometimes doesn't fire
+  const estDur=Math.max(3000, text.length * 70);
+  const _ttsFallback=setTimeout(()=>{if(S.playing&&!_ttsEnded)onTTSEnd();}, estDur+2000);
+  u.onstart=()=>{S.playing=true;updPBtn();clearTimeout(_ttsFallback);
+    // Reset fallback from actual start
+    setTimeout(()=>{if(S.playing&&!_ttsEnded)onTTSEnd();}, estDur+2000);
+  };
+  u.onerror=(e)=>{clearTimeout(_ttsFallback);S.playing=false;updPBtn();
     if(e.error!=='interrupted'){
       const msg=S.lang==='ta'?
         'Tamil TTS இல்லை — Browser settings-ல் Tamil voice install பண்ணுங்கள்':
@@ -829,15 +842,39 @@ function playAll(){
 }
 
 function seqPlay(){
-  if(!S.playAllM||S.pIdx>=S.verses.length){S.playAllM=false;S.playing=false;updPBtn();
-    document.getElementById('apstat').textContent=(S.lang==='ta'?'முடிந்தது':'Finished');
+  if(!S.playAllM||S.pIdx>=S.verses.length){
+    S.playAllM=false;S.playing=false;updPBtn();
+    const st=document.getElementById('apstat');
+    if(st)st.textContent=(S.lang==='ta'?'முடிந்தது ✓':'Finished ✓');
     return;
   }
   const v=S.verses[S.pIdx];
   hlPlay(S.pIdx);
-  document.getElementById('apstat').textContent=(S.lang==='ta'?'வசனம் ':'Verse ')+v.num+' / '+S.verses.length;
+  const st=document.getElementById('apstat');
+  if(st)st.textContent=(S.lang==='ta'?'வசனம் ':'Verse ')+v.num+' / '+S.verses.length;
   document.getElementById('vi'+S.pIdx)?.scrollIntoView({behavior:'smooth',block:'center'});
-  speakNow(v.text,S.lang,()=>{S.pIdx++;seqPlay();});
+  
+  // Callback with timeout fallback — mobile SpeechSynthesis sometimes misses onend
+  let _cbCalled=false;
+  function nextVerse(){
+    if(_cbCalled)return;
+    _cbCalled=true;
+    S.pIdx++;
+    seqPlay();
+  }
+  // Estimate verse duration for fallback: ~65ms per character
+  const estMs=Math.max(2000, v.text.length * 65);
+  const fallbackTimer=setTimeout(()=>{
+    if(S.playAllM&&!_cbCalled){
+      console.warn('seqPlay fallback timer fired for verse',v.num);
+      nextVerse();
+    }
+  }, estMs + 1500);
+  
+  speakNow(v.text, S.lang, ()=>{
+    clearTimeout(fallbackTimer);
+    nextVerse();
+  });
 }
 
 function hlPlay(i){
@@ -986,18 +1023,8 @@ function chFont(d){
 }
 
 // ── PANEL TOGGLE ─────────────────────────────────────────────────
-function togPanel(id,btn){
-  ['topics','plan','bm','img','settings','quiz','tracker'].forEach(p=>{
-    const el=document.getElementById('panel-'+p);
-    const qa=document.getElementById('qa-'+p);
-    const open=p===id&&!el.classList.contains('open');
-    el.classList.toggle('open',open);
-    qa?.classList.toggle('on',open);
-    if(p==='bm'&&open)renderBmList();
-    if(p==='plan'&&open)renderPlan();
-    if(p==='img'&&open)setTimeout(drawIG,80);
-  });
-}
+// togPanel — defined above with openPanel
+
 
 // ── TOPIC SEARCH (Tamil) ──────────────────────────────────────────
 function showTopic(btn,topic){
