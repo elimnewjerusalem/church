@@ -817,14 +817,14 @@ const FONTS={
 function renderImgPanel(body){
   body.innerHTML=`
 <style>
-.ig-root{display:flex;flex-direction:column;gap:10px}
+.ig-root{display:flex;flex-direction:column;gap:8px}
 .ig-sec{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden}
 .ig-sec-head{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:7px;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx2)}
-.ig-sec-body{padding:12px}
+.ig-sec-body{padding:10px}
 
 /* Size */
 .ig-size-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
-.ig-sz{border:1.5px solid var(--bd);border-radius:6px;padding:7px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .18s;background:rgba(255,255,255,.02)}
+.ig-sz{border:1.5px solid var(--bd);border-radius:6px;padding:5px 3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .18s;background:rgba(255,255,255,.02)}
 .ig-sz:hover{border-color:var(--bd2);background:rgba(255,255,255,.04)}
 .ig-sz.on{border-color:var(--gdb);background:var(--gdm)}
 .ig-sz-vis{display:flex;align-items:flex-end;justify-content:center;height:22px}
@@ -841,7 +841,7 @@ function renderImgPanel(body){
 
 /* RGB */
 .ig-rgb-area{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
-.ig-wheel{width:88px;height:88px;border-radius:50%;background:conic-gradient(#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000);cursor:crosshair;position:relative;border:3px solid var(--bd2);flex-shrink:0}
+.ig-wheel{width:80px;height:80px;border-radius:50%;background:conic-gradient(#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000);cursor:crosshair;position:relative;border:3px solid var(--bd2);flex-shrink:0}
 .ig-wheel-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:white;border:2.5px solid rgba(0,0,0,.5);transform:translate(-50%,-50%);pointer-events:none;transition:left .1s,top .1s}
 .ig-rgb-prev{width:100%;height:28px;border-radius:6px;border:1px solid var(--bd2);cursor:pointer}
 .ig-rgb-hex{font-size:12px;color:var(--gd);font-family:monospace;font-weight:600}
@@ -862,7 +862,7 @@ function renderImgPanel(body){
 .ig-photo-thumb{max-width:100%;max-height:80px;border-radius:6px;object-fit:cover}
 
 /* Generic slider */
-.ig-gsl-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.ig-gsl-row{display:flex;align-items:center;gap:8px;margin-top:6px}
 .ig-gsl-lbl{font-size:10px;color:var(--tx2);min-width:52px}
 .ig-gsl{flex:1;-webkit-appearance:none;height:4px;border-radius:99px;background:rgba(255,255,255,.12);cursor:pointer;outline:none}
 .ig-gsl::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gd);border:2px solid rgba(0,0,0,.3)}
@@ -870,7 +870,7 @@ function renderImgPanel(body){
 
 /* Font */
 .ig-font-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.ig-fb{border:1.5px solid var(--bd);border-radius:6px;padding:9px 6px;cursor:pointer;text-align:center;transition:all .18s;background:rgba(255,255,255,.02)}
+.ig-fb{border:1.5px solid var(--bd);border-radius:6px;padding:7px 5px;cursor:pointer;text-align:center;transition:all .18s;background:rgba(255,255,255,.02)}
 .ig-fb:hover{border-color:var(--bd2)}
 .ig-fb.on{border-color:var(--gdb);background:var(--gdm)}
 .ig-fb-name{font-size:10.5px;color:var(--tx2);font-weight:500}
@@ -883,14 +883,14 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
 
 /* Export */
 .ig-export-primary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:6px}
-.ig-ex-btn{border-radius:99px;padding:9px 4px;font-size:10px;font-weight:600;cursor:pointer;text-align:center;border:none;font-family:var(--sans);display:flex;align-items:center;justify-content:center;gap:3px;transition:all .18s}
+.ig-ex-btn{border-radius:99px;padding:7px 4px;font-size:10px;font-weight:600;cursor:pointer;text-align:center;border:none;font-family:var(--sans);display:flex;align-items:center;justify-content:center;gap:3px;transition:all .18s}
 .ig-ex-btn:active{transform:scale(.97)}
 .ig-ex-p{background:var(--gd);color:var(--bg)}
 .ig-ex-p:hover{filter:brightness(1.1)}
 .ig-ex-o{background:transparent;border:1.5px solid var(--gdb);color:var(--gd)}
 .ig-ex-o:hover{background:var(--gdm)}
 .ig-share-row{display:flex;gap:4px}
-.ig-share-btn{flex:1;border-radius:6px;padding:8px 4px;font-size:9px;font-weight:500;cursor:pointer;text-align:center;display:flex;align-items:center;justify-content:center;gap:3px;border:1px solid var(--bd);background:rgba(255,255,255,.04);color:var(--tx2);transition:all .18s;font-family:var(--sans)}
+.ig-share-btn{flex:1;border-radius:6px;padding:6px 3px;font-size:9px;font-weight:500;cursor:pointer;text-align:center;display:flex;align-items:center;justify-content:center;gap:3px;border:1px solid var(--bd);background:rgba(255,255,255,.04);color:var(--tx2);transition:all .18s;font-family:var(--sans)}
 .ig-share-btn:hover{border-color:var(--bd2);background:rgba(255,255,255,.08)}
 .ig-wa{border-color:rgba(37,211,102,.3)!important;color:#25d366!important}
 .ig-ig{border-color:rgba(225,48,108,.3)!important;color:#e1306c!important}
@@ -1027,8 +1027,19 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
   <div class="ig-sec">
     <div class="ig-sec-head">📖 Verse</div>
     <div class="ig-sec-body">
-      <select class="ig-vsel" id="igvsel" onchange="drawIG()"></select>
-      <button class="ig-use-btn" onclick="useCurrentV()">Use current / highlighted verse</button>
+      <!-- Current verse display -->
+      <div id="ig-verse-display" style="background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:6px;padding:10px 12px;margin-bottom:8px;min-height:48px">
+        <div id="ig-verse-ta" style="font-size:12px;color:var(--tx);font-family:var(--tamil);line-height:1.7;margin-bottom:3px">chapter திறந்து verse தேர்ந்தெடுங்கள்...</div>
+        <div id="ig-verse-ref" style="font-size:10px;color:var(--gd);font-weight:600"></div>
+      </div>
+      <button class="ig-use-btn" onclick="igUseCurrentVerse()" id="ig-use-verse-btn">
+        ✓ Use current verse
+      </button>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">
+        <button onclick="igUseVOTD()" style="flex:1;border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:10px;color:var(--tx2);background:rgba(255,255,255,.03);cursor:pointer;font-family:var(--sans);transition:all .2s" onmouseover="this.style.borderColor='var(--gdb)'" onmouseout="this.style.borderColor='var(--bd)'">⭐ VOTD</button>
+        <button onclick="igPrevVerse()" style="flex:1;border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:10px;color:var(--tx2);background:rgba(255,255,255,.03);cursor:pointer;font-family:var(--sans);transition:all .2s" onmouseover="this.style.borderColor='var(--gdb)'" onmouseout="this.style.borderColor='var(--bd)'">← Prev</button>
+        <button onclick="igNextVerse()" style="flex:1;border:1px solid var(--bd);border-radius:6px;padding:7px;font-size:10px;color:var(--tx2);background:rgba(255,255,255,.03);cursor:pointer;font-family:var(--sans);transition:all .2s" onmouseover="this.style.borderColor='var(--gdb)'" onmouseout="this.style.borderColor='var(--bd)'">Next →</button>
+      </div>
       <!-- Info -->
       <div class="ig-info-row">
         <div class="ig-badge" id="ig-size-badge">Size <span>9:16 · 1080×1920</span></div>
@@ -1206,9 +1217,8 @@ function igUploadPhoto(){
 
 // ── VERSE INIT ───────────────────────────────────────────────────
 function initIGVerses(){
-  const sel=document.getElementById('igvsel');if(!sel)return;
   S.igVerses=IGVERSES;
-  sel.innerHTML=IGVERSES.map((v,i)=>`<option value="${i}">${v.tref} — ${v.ta.substring(0,30)}...</option>`).join('');
+  // No select needed — verse comes from current reading
 }
 
 function useCurrentV(){
@@ -1221,11 +1231,101 @@ function useCurrentV(){
   drawIG();toast('Using current verse');
 }
 
+// ── IG VERSE CONTROLS ─────────────────────────────────────────────
+let _igVerseIdx = 0; // index in S.verses
+
+function igUseCurrentVerse(){
+  if(!S.verses.length){toast('முதலில் ஒரு chapter திறங்கள்');return;}
+  // Use first highlighted verse or first verse
+  const hlk=S.book+S.ch;const hlm=S.hl[hlk]||{};
+  const hlNums=Object.keys(hlm).map(Number);
+  const v=hlNums.length?S.verses.find(vv=>vv.num===hlNums[0]):S.verses[_igVerseIdx||0];
+  if(!v)return;
+  _igVerseIdx=S.verses.indexOf(v);
+  igSetVerseDisplay(v);
+  const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num;
+  const enRef=S.bookName+' '+S.ch+':'+v.num;
+  const enV=S.enVerses.find(e=>e.num===v.num);
+  S.customVerse={ta:v.text,tref:taRef,en:enV?.text||'',ref:enRef};
+  drawIG();
+  toast('✓ Verse set for image');
+}
+
+function igUseVOTD(){
+  const v=window._vd;if(!v)return;
+  S.customVerse={ta:v.ta||'',tref:v.tref||'',en:v.en||v.text||'',ref:v.ref||''};
+  const disp=document.getElementById('ig-verse-ta');
+  const ref=document.getElementById('ig-verse-ref');
+  if(disp)disp.textContent=v.ta||v.en||'';
+  if(ref)ref.textContent=v.tref||v.ref||'';
+  drawIG();
+  toast('⭐ VOTD set for image');
+}
+
+function igNextVerse(){
+  if(!S.verses.length){toast('முதலில் ஒரு chapter திறங்கள்');return;}
+  _igVerseIdx=Math.min(_igVerseIdx+1,S.verses.length-1);
+  const v=S.verses[_igVerseIdx];
+  igSetVerseDisplay(v);
+  const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num;
+  const enRef=S.bookName+' '+S.ch+':'+v.num;
+  const enV=S.enVerses.find(e=>e.num===v.num);
+  S.customVerse={ta:v.text,tref:taRef,en:enV?.text||'',ref:enRef};
+  drawIG();
+}
+
+function igPrevVerse(){
+  if(!S.verses.length){toast('முதலில் ஒரு chapter திறங்கள்');return;}
+  _igVerseIdx=Math.max(_igVerseIdx-1,0);
+  const v=S.verses[_igVerseIdx];
+  igSetVerseDisplay(v);
+  const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num;
+  const enRef=S.bookName+' '+S.ch+':'+v.num;
+  const enV=S.enVerses.find(e=>e.num===v.num);
+  S.customVerse={ta:v.text,tref:taRef,en:enV?.text||'',ref:enRef};
+  drawIG();
+}
+
+function igSetVerseDisplay(v){
+  if(!v)return;
+  const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num;
+  const disp=document.getElementById('ig-verse-ta');
+  const ref=document.getElementById('ig-verse-ref');
+  if(disp)disp.textContent=v.text.substring(0,80)+(v.text.length>80?'...':'');
+  if(ref)ref.textContent='— '+taRef;
+}
+
+// Auto-update when chapter loads — set first verse in display
+const _origUpdateChUI=updateChUI;
+function updateChUI(){
+  _origUpdateChUI.call(this,...arguments);
+  // Auto-populate image gen with first verse
+  setTimeout(()=>{
+    if(S.verses.length){
+      _igVerseIdx=0;
+      igSetVerseDisplay(S.verses[0]);
+      const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+S.verses[0].num;
+      const enRef=S.bookName+' '+S.ch+':'+S.verses[0].num;
+      const enV=S.enVerses.find(e=>e.num===S.verses[0].num);
+      S.customVerse={ta:S.verses[0].text,tref:taRef,en:enV?.text||'',ref:enRef};
+    }
+  },300);
+}
+
 // ── DRAW ─────────────────────────────────────────────────────────
 function getIGVerse(){
   if(S.customVerse){const v=S.customVerse;S.customVerse=null;return v;}
-  const idx=parseInt(document.getElementById('igvsel')?.value||'0');
-  return(S.igVerses||IGVERSES)[idx]||IGVERSES[0];
+  // Use current verse if chapter is loaded
+  if(S.verses.length){
+    const v=S.verses[_igVerseIdx||0];
+    const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num;
+    const enV=S.enVerses.find(e=>e.num===v.num);
+    return{ta:v.text,tref:taRef,en:enV?.text||'',ref:S.bookName+' '+S.ch+':'+v.num};
+  }
+  // Fallback to VOTD
+  const vd=window._vd;
+  if(vd)return{ta:vd.ta||'',tref:vd.tref||'',en:vd.en||vd.text||'',ref:vd.ref||''};
+  return IGVERSES[0];
 }
 
 function drawIG(){
