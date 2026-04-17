@@ -1768,3 +1768,5 @@ function renderTracker(){
   `;
   initTrackerBadge();
 }
+
+

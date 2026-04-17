@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>பரிசுத்த வேதாகமம் | ENJC</title>
+<meta property="og:title" content="பரிசுத்த வேதாகமம் | ENJC Bible">
+<meta property="og:description" content="தமிழ் & English Bible — 66 books, Audio, Image, Bookmark">
+<meta property="og:type" content="website">
+<meta name="description" content="Tamil & English Bible — 66 books, Audio, Image Generator, Bookmark | ENJC Tondiarpet Chennai">
 <meta name="description" content="Read the Bible in Tamil & English — Elim New Jerusalem Church">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Serif+Tamil:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -399,6 +403,59 @@ body.light{--bg:#ffffff;--bg2:#f5f5f5;--bg3:#eeeeee;--tx:#111;--tx2:rgba(17,17,1
 
 /* Keep feat-panel class but now hidden — content moves to side-panel */
 .feat-panel{display:none!important}
+
+/* ── JS-generated class aliases ──────────────────────────────── */
+.vlist{display:flex;flex-direction:column}
+.vi{display:flex;padding:0 20px;position:relative;cursor:pointer;transition:background .12s;border-bottom:1px solid rgba(255,255,255,.04)}
+.vi:last-child{border-bottom:none}
+.vi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s}
+.vi:hover{background:rgba(255,255,255,.025)}
+.vi:hover::before{background:rgba(232,160,32,.3)}
+.vplay{background:rgba(232,160,32,.06)!important}
+.vplay::before{background:var(--gd)!important}
+.vhl{background:rgba(251,191,36,.05)}
+.vhl::before{background:var(--hl-color,#f5c518)!important}
+.vi-ta .vtxt{font-family:var(--tamil);line-height:2.1}
+.vn{color:var(--gd);font-size:10.5px;font-weight:600;min-width:26px;padding-top:12px;flex-shrink:0;letter-spacing:.5px;padding-bottom:11px}
+.vb{flex:1;min-width:0;padding:11px 0}
+.vtxt{color:var(--tx);line-height:1.9;display:block}
+.ta-font{font-family:var(--tamil);line-height:2.1}
+.v-en-parallel{display:block;font-family:var(--serif);font-style:italic;color:var(--tx3);font-size:.83rem;line-height:1.65;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.05)}
+.vtag{font-size:10px;color:var(--gd);font-weight:500;letter-spacing:.3px;margin-bottom:3px;display:block}
+.vacts{display:flex;gap:3px;flex-shrink:0;align-items:flex-start;padding:11px 0 0;opacity:0;transition:opacity .15s}
+.vi:hover .vacts{opacity:1}
+@media(max-width:768px){.vacts{opacity:1}}
+.vbt{background:transparent;border:1px solid var(--bd);border-radius:6px;padding:5px 6px;font-size:11px;color:var(--tx3);transition:all .15s;line-height:1;cursor:pointer;font-family:var(--sans)}
+.vbt:hover{border-color:var(--bd2);color:var(--tx)}
+.vbt.bm{color:var(--gd)!important;border-color:var(--gdb)!important;background:var(--gdm)!important}
+.vbt.hl{color:#fbbf24!important;border-color:rgba(251,191,36,.3)!important;background:rgba(251,191,36,.07)!important}
+.vaplay,.vaimg{}
+
+/* Loading / Error states */
+.bload{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;gap:12px;min-height:360px}
+.bspin{width:30px;height:30px;border:2.5px solid var(--bd);border-top-color:var(--gd);border-radius:50%;animation:bspin .8s linear infinite}
+@keyframes bspin{to{transform:rotate(360deg)}}
+.bload p{color:var(--tx3);font-size:.85rem;letter-spacing:.2px}
+.berr{margin:16px 18px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.18);border-radius:12px;padding:14px;color:#fca5a5;font-size:.83rem;line-height:1.65}
+.bempty{text-align:center;padding:28px;color:var(--tx3);font-size:.85rem}
+
+/* Toast */
+.btoast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(7,9,15,.97);border:1px solid var(--gdb);color:var(--gd);padding:9px 22px;border-radius:99px;font-size:11.5px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:9999;white-space:nowrap;letter-spacing:.2px}
+.btoast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Reading plan classes */
+.pday{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;margin-bottom:5px;cursor:pointer;transition:all .2s}
+.pday:hover{border-color:var(--bd2)}
+.pday.done{border-color:var(--gdb);background:var(--gdm)}
+.pchk{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--gd)}
+.pday.done .pchk{background:var(--gdm);border-color:var(--gdb)}
+.pinfo{flex:1}
+.plbl{font-size:9px;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px}
+.pch{font-size:.88rem;color:var(--tx);margin-top:1px}
+.pday.done .pch{color:var(--gd)}
+.pgo{background:transparent;border:1px solid var(--bd);border-radius:99px;padding:5px 12px;color:var(--tx3);font-size:10.5px;flex-shrink:0;transition:all .2s;font-family:var(--sans);cursor:pointer}
+.pgo:hover{color:var(--tx);border-color:var(--bd2)}
+
 </style>
 </head>
 <body>
@@ -512,6 +569,12 @@ body.light{--bg:#ffffff;--bg2:#f5f5f5;--bg3:#eeeeee;--tx:#111;--tx2:rgba(17,17,1
         </button>
         <button class="feat-btn" id="qa-settings" onclick="togPanel('settings',this)">
           <span class="feat-icon">&#9881;</span><div class="feat-lbl">Settings</div>
+        </button>
+        <button class="feat-btn" id="qa-quiz" onclick="togPanel('quiz',this);if(!document.getElementById('quiz-body').innerHTML)startQuiz()">
+          <span class="feat-icon">&#129504;</span><div class="feat-lbl">Quiz</div>
+        </button>
+        <button class="feat-btn" id="qa-tracker" onclick="togPanel('tracker',this);renderTracker()">
+          <span class="feat-icon">&#128202;</span><div class="feat-lbl" id="tracker-pct">Track</div>
         </button>
 
       </div>
