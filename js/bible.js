@@ -184,27 +184,49 @@ function openPanel(id){
 
   // Load content
   setTimeout(()=>{
-    if(id==='topics')renderPanelTopics(body);
-    else if(id==='bm'){renderBmList();body.appendChild(document.getElementById('bmlist'));}
-    else if(id==='plan'){renderPlan();body.appendChild(document.getElementById('pdays'));
-      const hdr=document.createElement('div');
-      hdr.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-bottom:12px';
-      hdr.innerHTML='<div class="pbar" style="flex:1;margin-right:12px"><div class="pfill" id="pfill2"></div></div><span id="ppct2" style="font-size:11px;color:var(--tx3)"></span>';
-      body.insertBefore(hdr,body.firstChild);
-      const d=getPD();
-      const pct2=document.getElementById('ppct2');
-      const pf2=document.getElementById('pfill2');
-      if(pct2)pct2.textContent=d.length+'/7';
-      if(pf2)pf2.style.width=Math.round(d.length/7*100)+'%';
+    try{
+      if(id==='topics'){
+        renderPanelTopics(body);
+      }else if(id==='bm'){
+        body.innerHTML='';
+        const bmel=document.getElementById('bmlist');
+        renderBmList();
+        if(bmel)body.appendChild(bmel);
+        else body.innerHTML='<div style="padding:20px;color:var(--tx3);text-align:center">சேமித்த வசனங்கள் இல்லை</div>';
+      }else if(id==='plan'){
+        body.innerHTML='';
+        const pct=document.getElementById('ppct');
+        const fill=document.getElementById('pfill');
+        const done=getPD();
+        const pPct=Math.round(done.length/7*100);
+        body.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:99px">
+            <div style="height:4px;background:var(--gd);border-radius:99px;width:${pPct}%;transition:width .4s"></div>
+          </div>
+          <span style="font-size:11px;color:var(--tx3)">${done.length}/7</span>
+        </div><div id="pdays-panel"></div>`;
+        renderPlanInto('pdays-panel');
+      }else if(id==='img'){
+        const igp=document.getElementById('panel-img');
+        if(igp){
+          body.innerHTML=igp.innerHTML;
+          // Re-init IG elements
+          setTimeout(()=>{initIGVerses();drawIG();},100);
+        }
+      }else if(id==='settings'){
+        renderPanelSettings(body);
+      }else if(id==='quiz'){
+        body.innerHTML='<div id="quiz-body"></div>';
+        startQuiz();
+      }else if(id==='tracker'){
+        body.innerHTML='<div id="tracker-body"></div>';
+        renderTracker();
+      }
+    }catch(err){
+      console.error('Panel render error:',err);
+      body.innerHTML='<div style="padding:20px;color:#f87171;font-size:12px">Error: '+err.message+'</div>';
     }
-    else if(id==='img'){
-      const igp=document.getElementById('panel-img');
-      if(igp){body.innerHTML=igp.innerHTML;setTimeout(drawIG,100);}
-    }
-    else if(id==='settings')renderPanelSettings(body);
-    else if(id==='quiz'){body.innerHTML='<div id="quiz-body"></div>';startQuiz();}
-    else if(id==='tracker'){body.innerHTML='<div id="tracker-body"></div>';renderTracker();}
-  },30);
+  },50);
 }
 
 function closePanel(){
@@ -234,19 +256,39 @@ function renderPanelTopics(body){
   wrap.appendChild(reswrap);
   body.innerHTML='';
   body.appendChild(wrap);
-  // Wire up topic pills
+  // Wire up topic pills — extract topic from onclick attribute
   wrap.querySelectorAll('.tp').forEach(tp=>{
-    tp.onclick=function(){
+    tp.onclick=function(e){
+      e.stopPropagation();
       wrap.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
       this.classList.add('on');
-      const topic=this.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
+      // Extract topic key from onclick="showTopic(this,'faith')"
+      const m=this.getAttribute('onclick')?.match(/showTopic\(this,'(\w+)'\)/);
+      const topic=m?m[1]:null;
       if(topic){
-        const tmpDiv=document.createElement('div');
-        showTopic(this,topic);
-        reswrap.innerHTML=document.getElementById('topic-res')?.innerHTML||'';
+        const vv=TOPICS[topic]||[];
+        reswrap.innerHTML=vv.length?vv.map((v,i)=>{
+          const sr=v.ref.replace(/'/g,"\'");
+          const st=(v.ta||v.text||'').replace(/'/g,"\'");
+          const srEN=(v.en||v.ref).replace(/'/g,"\'");
+          return `<div class="vi" style="margin-bottom:6px">
+            <span class="vn">${i+1}</span>
+            <div class="vb">
+              <div class="vtag">${v.ref}${v.en?' | '+v.en:''}</div>
+              <span class="vtxt ta-font" style="font-size:${S.fs}px">${v.ta||v.text||''}</span>
+            </div>
+            <div class="vacts" style="opacity:1">
+              <button class="vbt" onclick="cpV('${sr}','${st}')">&#128203;</button>
+              <button class="vbt" onclick="shrV('${srEN}','${st}','${sr}')">&#128279;</button>
+            </div>
+          </div>`;
+        }).join(''):'<div class="bempty">வசனங்கள் இல்லை</div>';
       }
     };
   });
+  // Auto-click first pill
+  const first=wrap.querySelector('.tp');
+  if(first)setTimeout(()=>first.click(),100);
 }
 
 function renderPanelSettings(body){
@@ -700,7 +742,7 @@ async function tryFCBH(bookNum,ch,lang){
 
 function speakNow(text,lang,cb){
   unlockAudio(); // ensure audio is unlocked on PC/iOS
-  stopAud();
+  stopAud(false); // don't reset playAllM — seqPlay needs it
   const lg=lang||S.lang;
   const spd=parseFloat(document.getElementById('aspd')?.value||'1');
   
@@ -896,14 +938,18 @@ function togPlay(){
   else if(S.verses.length)playAll();
 }
 
-function stopAud(){
+function stopAud(fullStop=true){
   try{if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();}catch(e){}
   if(S.audEl){S.audEl.pause();S.audEl.currentTime=0;S.audEl=null;}
   synth.cancel();
-  S.playing=false;S.playAllM=false;updPBtn();
-  document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vplay'));
-  const s=document.getElementById('apstat');
-  if(s)s.textContent=S.lang==='ta'?'நிறுத்தப்பட்டது':'Stopped';
+  S.playing=false;
+  if(fullStop){
+    S.playAllM=false;
+    document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vplay'));
+    const s=document.getElementById('apstat');
+    if(s)s.textContent=S.lang==='ta'?'நிறுத்தப்பட்டது':'Stopped';
+  }
+  updPBtn();
 }
 
 function updPBtn(){
@@ -1050,10 +1096,26 @@ function showTopic(btn,topic){
 function getPD(){return JSON.parse(localStorage.getItem('enjc_pd')||'[]');}
 function savePD(d){localStorage.setItem('enjc_pd',JSON.stringify(d));}
 
+function renderPlanInto(targetId){
+  const el=document.getElementById(targetId);if(!el)return;
+  const done=getPD();
+  el.innerHTML=PLAN.map((p,i)=>{
+    const isDone=done.includes(i);
+    return `<div class="pday${isDone?' done':''}" onclick="togPDay(${i})">
+<div class="pchk">${isDone?'&#10003;':''}</div>
+<div class="pinfo"><div class="plbl">${p.day||p.ta_day||'Day '+(i+1)}</div>
+<div class="pch">${p.ch||p.chapter} <span style="opacity:.5;font-size:.82em">— ${p.lbl||p.ta_label||p.label||''}</span></div></div>
+<button class="pgo" onclick="event.stopPropagation();goPlan(${i})">படி &rarr;</button>
+</div>`;
+  }).join('');
+}
+
 function renderPlan(){
   const done=getPD();const cnt=done.length;
-  document.getElementById('ppct').textContent=cnt+'/'+PLAN.length;
-  document.getElementById('pfill').style.width=Math.round(cnt/PLAN.length*100)+'%';
+  const ppct=document.getElementById('ppct');
+  const pfill=document.getElementById('pfill');
+  if(ppct)ppct.textContent=cnt+'/'+PLAN.length;
+  if(pfill)pfill.style.width=Math.round(cnt/PLAN.length*100)+'%';
   document.getElementById('pdays').innerHTML=PLAN.map((p,i)=>{
     const isDone=done.includes(i);
     return `<div class="pday${isDone?' done':''}" onclick="togPDay(${i})">
