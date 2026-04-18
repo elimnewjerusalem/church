@@ -772,3 +772,24 @@ textarea.form-field {
   .wa-float       { bottom: 28px; right: 24px; }
   .scroll-top-btn { bottom: 28px; right: 84px; }
 }
+
+/* Pulse animation for live indicator */
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Ministry card — hide gradient overlay once real image loads */
+.ministry-card__image img:not([src=""]) + .ministry-card__overlay {
+  display: none;
+}
