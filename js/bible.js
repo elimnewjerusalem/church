@@ -31,7 +31,7 @@ const S = {
   igVerses:[], customVerse:null,
   audEl:null, playing:false, playAllM:false, pIdx:0,
   showParallel:false, hlColor:'#f5c518',
-  theme: localStorage.getItem('enjc_theme')||'dark',
+  theme: localStorage.getItem('enjc-theme')||'dark',
   fontFamily: localStorage.getItem('enjc_font')||'noto',
   _unlocked:false, _voicesReady:false,
 };
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 // ── NAV ──────────────────────────────────────────────────────────
-function toggleMobMenu(){g('mob-menu').classList.toggle('open');}
+function toggleMobMenu(){var m=document.getElementById('mobile-menu');if(m)m.classList.toggle('is-open');}
 
 // ── LOAD DATA ────────────────────────────────────────────────────
 async function loadData(){
@@ -1540,14 +1540,39 @@ function copyImgToClipboard(){
 const THEMES={
   dark:{'--bg':'#07090f','--bg2':'#0c1018','--bg3':'#111926','--tx':'#dde4f0','--tx2':'rgba(221,228,240,.6)','--tx3':'rgba(221,228,240,.3)','--bd':'rgba(255,255,255,.06)','--bd2':'rgba(255,255,255,.14)','--gd':'#e8a020','--gd2':'#f5bf50','--gdm':'rgba(232,160,32,.12)','--gdb':'rgba(232,160,32,.28)'},
   sepia:{'--bg':'#f8f1e4','--bg2':'#f2e9d8','--bg3':'#ede0c8','--tx':'#2c1a0e','--tx2':'rgba(44,26,14,.6)','--tx3':'rgba(44,26,14,.35)','--bd':'rgba(44,26,14,.1)','--bd2':'rgba(44,26,14,.2)','--gd':'#8b4513','--gd2':'#a0522d','--gdm':'rgba(139,69,19,.1)','--gdb':'rgba(139,69,19,.25)'},
-  light:{'--bg':'#ffffff','--bg2':'#f5f5f5','--bg3':'#eeeeee','--tx':'#111111','--tx2':'rgba(17,17,17,.55)','--tx3':'rgba(17,17,17,.3)','--bd':'rgba(0,0,0,.08)','--bd2':'rgba(0,0,0,.15)','--gd':'#b8860b','--gd2':'#daa520','--gdm':'rgba(184,134,11,.1)','--gdb':'rgba(184,134,11,.25)'}
+  light:{'--bg':'#f8f6f1','--bg2':'#eeece6','--bg3':'#e4e0d8','--tx':'#1c1710','--tx2':'rgba(28,23,16,.62)','--tx3':'rgba(28,23,16,.38)','--bd':'rgba(28,23,16,.09)','--bd2':'rgba(28,23,16,.18)','--gd':'#9a6c0a','--gd2':'#daa520','--gdm':'rgba(154,108,10,.09)','--gdb':'rgba(154,108,10,.28)'}
 };
 
 function applyTheme(theme){
-  S.theme=theme;localStorage.setItem('enjc_theme',theme);
+  S.theme=theme;localStorage.setItem('enjc-theme',theme);
   const t=THEMES[theme]||THEMES.dark;
   const root=document.documentElement;
+
+  // Set bible short vars (--bg, --tx etc) for bible-specific CSS classes
   Object.entries(t).forEach(([k,v])=>root.style.setProperty(k,v));
+
+  // Sync data-theme attribute AND semantic vars so main.css nav/footer respond.
+  // The alias bridge in main.css :root (--bg: var(--color-bg)) is overridden
+  // by direct setProperty above, so we must also set semantic vars explicitly.
+  const SEMANTIC_MAP = {
+    '--bg':  '--color-bg',
+    '--bg2': '--color-bg-2',
+    '--bg3': '--color-bg-3',
+    '--tx':  '--color-text',
+    '--tx2': '--color-text-muted',
+    '--tx3': '--color-text-faint',
+    '--bd':  '--color-border',
+    '--bd2': '--color-border-mid',
+    '--gd':  '--color-gold',
+    '--gdb': '--color-gold-border',
+    '--gdm': '--color-gold-bg',
+  };
+  Object.entries(SEMANTIC_MAP).forEach(([short, long]) => {
+    if (t[short]) root.style.setProperty(long, t[short]);
+  });
+
+  if(theme==='light'){root.setAttribute('data-theme','light');}
+  else{root.removeAttribute('data-theme');}
 }
 function applyFont(fam){
   S.fontFamily=fam;localStorage.setItem('enjc_font',fam);
@@ -1788,3 +1813,11 @@ function getCacheInfo(){
   const kb=Math.round(keys.reduce((a,k)=>{try{return a+(localStorage.getItem(k)||'').length;}catch(e){return a;}},0)/1024);
   return keys.length+' chapters cached ('+kb+' KB)';
 }
+
+// ── THEME SYNC: Override site.js toggleTheme to also update bible CSS vars ──
+// Called when user clicks the nav theme button on the bible page
+window.toggleTheme = function() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  applyTheme(next); // updates both CSS vars AND data-theme attribute
+};

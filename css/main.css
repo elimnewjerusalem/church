@@ -39,6 +39,31 @@
   --max-width:    1240px;
   --radius-sm:    10px;
   --radius-md:    16px;
+  /* ── BIBLE PAGE BRIDGE VARS (alias → semantic tokens) ──────
+     These map bible's short CSS var names to the site's
+     semantic token values so one data-theme toggle works
+     across ALL pages including bible.html.                  */
+  --bg:   var(--color-bg);
+  --bg2:  var(--color-bg-2);
+  --bg3:  var(--color-bg-3);
+  --tx:   var(--color-text);
+  --tx2:  var(--color-text-muted);
+  --tx3:  var(--color-text-faint);
+  --bd:   var(--color-border);
+  --bd2:  var(--color-border-mid);
+  --gd:   var(--color-gold);
+  --gdb:  var(--color-gold-border);
+  --gdm:  var(--color-gold-bg);
+  /* Bible radius tokens */
+  --r:    10px;
+  --rl:   8px;
+  --rx:   14px;
+  /* Bible font tokens (already same as site) */
+  --serif: var(--font-heading);
+  --sans:  var(--font-body);
+  --tamil: var(--font-tamil);
+  /* gd2 — secondary gold (bible-only, no main.css equivalent) */
+  --gd2:  #f5bf50;
 }
 
 /* Light theme overrides */
@@ -54,6 +79,10 @@
   --color-gold:        #9a6c0a;
   --color-gold-bg:     rgba(154, 108, 10, .09);
   --color-gold-border: rgba(154, 108, 10, .28);
+  /* Bible bridge vars auto-update via alias — no overrides needed here.
+     --bg inherits from --color-bg, --tx from --color-text etc.
+     Only gd2 (no semantic equivalent) needs a direct override: */
+  --gd2: #daa520;
 }
 
 
@@ -1108,7 +1137,6 @@ footer a:hover{color:var(--gd)}
   --serif:'Playfair Display',Georgia,serif;
   --sans:'Poppins',system-ui,sans-serif;
 }
-[data-theme="light"] .nav{background:rgba(248,246,241,.92)}
 [data-theme="light"] .sidebar{background:var(--bg)}
 [data-theme="light"] select{background:var(--bg2);color:var(--tx)}
 [data-theme="light"] #bcontent{background:var(--bg)}
@@ -1131,7 +1159,6 @@ footer a:hover{color:var(--gd)}
 .nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .nav-theme{width:40px;height:24px;border-radius:99px;background:var(--bd2);border:none;cursor:pointer;position:relative;display:flex;align-items:center;padding:4px;flex-shrink:0}
 .nav-theme-dot{width:16px;height:16px;border-radius:50%;background:var(--gd);transition:transform .22s}
-[data-theme="light"] .nav-theme-dot{transform:translateX(16px)}
 .nav-visit{background:var(--gd);color:#07090f;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:700;text-decoration:none}
 .nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;flex-shrink:0}
 .nav-ham span{width:22px;height:2px;background:var(--tx2);border-radius:2px;display:block}
@@ -1142,7 +1169,6 @@ footer a:hover{color:var(--gd)}
 @media(max-width:900px){.nav-links,.nav-visit{display:none}.nav-ham{display:flex}}
 
 .bnav{display:none;position:fixed;bottom:0;left:0;right:0;height:64px;z-index:900;background:rgba(7,9,15,.97);border-top:1px solid rgba(232,160,32,.18);align-items:stretch}
-[data-theme="light"] .bnav{background:rgba(248,246,241,.97)}
 @media(max-width:900px){.bnav{display:flex!important}}
 .bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;padding:6px 0 8px}
 .bnav-icon{font-size:19px;line-height:1}
