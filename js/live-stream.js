@@ -13,8 +13,8 @@ const YOUTUBE_LIVE_IDS = {
 const LIVE_STREAMS = {
   mainChannel: {
     name: 'Elim New Jerusalem Church',
-    channelUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial',
-    liveUrl:    'https://www.youtube.com/@ElimNewJerusalemChurchOfficial/live',
+    channelUrl: 'https://www.youtube.com/@elimnewjerusalemchurch',
+    liveUrl:    'https://www.youtube.com/@elimnewjerusalemchurch/live',
     images: {
       friday: 'images/Live/friday-prayer.jpg',
       sunday: 'images/Live/sunday-worship.jpg'
@@ -28,8 +28,8 @@ const LIVE_STREAMS = {
   },
   shortsChannel: {
     name: 'ENJC Shorts',
-    channelUrl: 'https://www.youtube.com/@ENJCShorts',
-    liveUrl:    'https://www.youtube.com/@ENJCShorts/live',
+    channelUrl: 'https://www.youtube.com/@elimnewjerusalemchurch',
+    liveUrl:    'https://www.youtube.com/@elimnewjerusalemchurch/live',
     image: 'images/Live/night-prayer.jpg',
     schedule: [
       { day:'all', startTime:'22:30', endTime:'23:00', title:'Daily Night Prayer', description:'End your day with prayer and devotion' }
@@ -150,7 +150,7 @@ function displayLiveStream() {
       <div class="ls-offline-title">Join Us This Week</div>
       <div class="ls-offline-sub">We stream live on YouTube every service</div>
     </div>
-    <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="ls-offline-btn">
+    <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank" rel="noopener" class="ls-offline-btn">
       &#128250; Visit YouTube Channel
     </a>
   </div>

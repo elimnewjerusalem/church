@@ -1,145 +1,155 @@
-// ═══════════════════════════════════════════════════════════
-//  ENJC events.js — loads data/events.json into all sections
-// ═══════════════════════════════════════════════════════════
+/**
+ * ENJC — events.js
+ * Fetches data/events.json and renders all dynamic sections on events.html.
+ *
+ * Containers it populates:
+ *   #recent-streams-grid  ← recentStreams[]
+ *   #most-watched-grid    ← mostWatched[]
+ *   #verse-reels-row      ← verseReels[]
+ *   #testimonial-text     ← testimonials[] (carousel)
+ *   #testimonial-author
+ *
+ * To add/update a video: edit data/events.json — no HTML changes needed.
+ */
 
-async function loadEvents() {
-  try {
-    const res = await fetch('data/events.json');
-    if (!res.ok) throw new Error('JSON not found');
-    const data = await res.json();
+(function () {
+  'use strict';
+
+  /* ── FETCH ──────────────────────────────────────────────── */
+
+  async function loadEventsData() {
+    try {
+      const res = await fetch('data/events.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      console.error('events.js: could not load events.json —', err.message);
+      return null;
+    }
+  }
+
+  /* ── HELPERS ────────────────────────────────────────────── */
+
+  function cleanId(id) {
+    return (id || '').replace(/^\/+/, '');
+  }
+
+  function buildVideoCard(item, label) {
+    const id   = cleanId(item.videoId);
+    const meta = item.date || item.views || '';
+    return `
+      <article class="card video-card" style="overflow:hidden;">
+        <div class="video-card__embed" style="aspect-ratio:16/9;position:relative;background:var(--color-bg-3);">
+          <iframe src="https://www.youtube.com/embed/${id}" title="${item.title}"
+            frameborder="0" loading="lazy"
+            allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+            allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
+        </div>
+        <div class="video-card__body" style="padding:18px;">
+          <div style="font-size:10px;color:var(--color-gold);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;">${label}</div>
+          <h4 style="color:var(--color-text);margin-bottom:4px;font-size:14px;">${item.title}</h4>
+          <p style="font-size:12px;color:var(--color-text-faint);">${meta}</p>
+        </div>
+      </article>`;
+  }
+
+  function buildReelCard(item) {
+    const id = cleanId(item.videoId);
+    return `
+      <div class="reel" style="width:240px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;
+           background:var(--color-bg-2);border:1px solid var(--color-border);position:relative;flex-shrink:0;">
+        <iframe src="https://www.youtube.com/embed/${id}" title="${item.title}"
+          frameborder="0" loading="lazy"
+          allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+          allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
+      </div>`;
+  }
+
+  /* ── RENDERERS ──────────────────────────────────────────── */
+
+  function renderRecentStreams(items) {
+    const el = document.getElementById('recent-streams-grid');
+    if (!el || !items.length) return;
+    el.innerHTML = items.map(i => buildVideoCard(i, 'Recent Stream')).join('');
+  }
+
+  function renderMostWatched(items) {
+    const el = document.getElementById('most-watched-grid');
+    if (!el || !items.length) return;
+    el.innerHTML = items.map(i => buildVideoCard(i, i.views || 'Most Watched')).join('');
+  }
+
+  function renderVerseReels(items) {
+    const el = document.getElementById('verse-reels-row');
+    if (!el || !items.length) return;
+    el.innerHTML = items.map(buildReelCard).join('');
+  }
+
+  /* ── TESTIMONIALS CAROUSEL ──────────────────────────────── */
+
+  function initTestimonials(items) {
+    if (!items.length) return;
+    const textEl   = document.getElementById('testimonial-text');
+    const authorEl = document.getElementById('testimonial-author');
+    if (!textEl || !authorEl) return;
+
+    let currentIndex = 0;
+
+    function render() {
+      const { text, author } = items[currentIndex];
+      textEl.innerHTML     = `\u201c${text}\u201d`;
+      authorEl.textContent = `\u2014 ${author}`;
+    }
+
+    // Exposed globally for prev/next buttons in HTML
+    window.changeTestimonial = function (dir) {
+      currentIndex = (currentIndex + dir + items.length) % items.length;
+      render();
+    };
+
+    setInterval(() => window.changeTestimonial(1), 5000);
+    render();
+  }
+
+  /* ── COUNTDOWN ──────────────────────────────────────────── */
+
+  function startCountdown() {
+    function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+
+    function getNextSunday() {
+      const now = new Date();
+      const daysUntil = now.getDay() === 0 ? 7 : 7 - now.getDay();
+      const next = new Date(now);
+      next.setDate(now.getDate() + daysUntil);
+      next.setHours(5, 30, 0, 0);
+      return next;
+    }
+
+    function tick() {
+      const diff = getNextSunday() - Date.now();
+      if (diff < 0) return;
+      document.getElementById('cd-d').textContent = pad(diff / 86_400_000);
+      document.getElementById('cd-h').textContent = pad((diff % 86_400_000) / 3_600_000);
+      document.getElementById('cd-m').textContent = pad((diff % 3_600_000)  / 60_000);
+      document.getElementById('cd-s').textContent = pad((diff % 60_000)     / 1_000);
+    }
+
+    setInterval(tick, 1000);
+    tick();
+  }
+
+  /* ── INIT ───────────────────────────────────────────────── */
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    startCountdown();
+
+    const data = await loadEventsData();
+    if (!data) return;
 
     renderRecentStreams(data.recentStreams || []);
-    renderMostWatched(data.mostWatched   || []);
-    renderVerseReels(data.verseReels     || []);
-    renderSpecialEvents(data.specialEvents || []);
-    renderTestimonials(data.testimonials  || []);
+    renderMostWatched(data.mostWatched    || []);
+    renderVerseReels(data.verseReels      || []);
+    initTestimonials(data.testimonials    || []);
+  });
 
-  } catch (err) {
-    console.error('events.js error:', err);
-  }
-}
-
-// ── helpers ──────────────────────────────────────────────────
-
-function cleanId(id) {
-  // Strip any leading slash that crept into videoId
-  return (id || '').replace(/^\/+/, '');
-}
-
-function youtubeThumb(videoId) {
-  const id = cleanId(videoId);
-  return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-}
-
-function videoCard(item, tag) {
-  const id = cleanId(item.videoId);
-  const link = item.youtubeLink || `https://www.youtube.com/watch?v=${id}`;
-  return `
-<div class="ev-card">
-  <a href="${link}" target="_blank" rel="noopener" class="ev-thumb-link">
-    <div class="ev-thumb" style="background:linear-gradient(135deg,#0b2545,#050d1a)">
-      <img src="${youtubeThumb(id)}"
-           alt="${item.title}"
-           loading="lazy"
-           onerror="this.style.display='none'"
-           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7">
-      <div class="ev-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
-    </div>
-  </a>
-  <div class="ev-body">
-    <p class="ev-tag">${tag}</p>
-    <p class="ev-title">${item.title}</p>
-    <p class="ev-meta">${item.date || item.views || item.verse || ''}</p>
-    <a href="${link}" target="_blank" rel="noopener" class="ev-watch">Watch &#8594;</a>
-  </div>
-</div>`;
-}
-
-// ── renderers ─────────────────────────────────────────────────
-
-function renderRecentStreams(items) {
-  const el = document.getElementById('recent-streams-container');
-  if (!el || !items.length) return;
-  el.innerHTML = items.map(i => videoCard(i, 'Recent Stream')).join('');
-}
-
-function renderMostWatched(items) {
-  const el = document.getElementById('most-watched-container');
-  if (!el || !items.length) return;
-  el.innerHTML = items.map(i => videoCard(i, i.views || 'Most Watched')).join('');
-}
-
-function renderVerseReels(items) {
-  const el = document.getElementById('verse-reels-container');
-  if (!el || !items.length) return;
-  el.innerHTML = items.map(i => {
-    const id = cleanId(i.videoId);
-    const link = i.youtubeLink || `https://www.youtube.com/shorts/${id}`;
-    return `
-<div class="reel-card-js">
-  <span class="reel-icon">&#128214;</span>
-  <p class="reel-verse">${i.title}</p>
-  <p class="reel-ref">&#8212; ${i.verse}</p>
-  <a href="${link}" target="_blank" rel="noopener" class="reel-btn">Watch Reel &#8594;</a>
-</div>`;
-  }).join('');
-}
-
-function renderSpecialEvents(items) {
-  const el = document.getElementById('special-events-container');
-  if (!el || !items.length) return;
-  el.innerHTML = items.map(i => `
-<div class="spec-card-js fi">
-  <div class="spec-icon">${i.icon || '&#10013;'}</div>
-  <p class="spec-schedule">${i.schedule}</p>
-  <h4 class="spec-title">${i.title}</h4>
-  <p class="spec-desc">${i.description}</p>
-  ${i.time ? `<span class="spec-time">${i.time}</span>` : ''}
-</div>`).join('');
-}
-
-function renderTestimonials(items) {
-  const el = document.getElementById('testimonial-track');
-  if (!el || !items.length) return;
-  el.innerHTML = items.map(i => `
-<div class="test-card">
-  <p class="test-q">"${i.text}"</p>
-  <span class="test-a">&#8212; ${i.author}</span>
-</div>`).join('');
-}
-
-// ── also handle events-container (legacy events array) ────────
-async function loadLegacyEvents() {
-  try {
-    const res = await fetch('data/events.json');
-    const data = await res.json();
-    const el = document.getElementById('events-container');
-    if (!el) return;
-    const events = data.events || [];
-    if (!events.length) { el.style.display='none'; return; }
-    el.innerHTML = events.map(ev => {
-      const id = cleanId(ev.videoId);
-      return `
-<div class="event-card">
-  <div class="video-wrapper" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden">
-    <iframe style="position:absolute;top:0;left:0;width:100%;height:100%"
-      src="https://www.youtube.com/embed/${id}"
-      title="${ev.title}" frameborder="0"
-      allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
-      allowfullscreen></iframe>
-  </div>
-  <div class="event-content">
-    <h3>${ev.title}</h3>
-    <p><strong>&#128197; ${ev.schedule}</strong><br>${(ev.times||[]).join('<br>')}</p>
-    <p>${ev.description}</p>
-    <a href="${ev.youtubeLink||'#'}" class="btn ${ev.buttonClass||'register'}" target="_blank">${ev.buttonText||'Watch Live'}</a>
-  </div>
-</div>`;
-    }).join('');
-  } catch(e) {}
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  loadEvents();
-  loadLegacyEvents();
-});
+})();
