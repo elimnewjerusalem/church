@@ -1,828 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ENJC | Elim New Jerusalem Church</title>
-  <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday worship 5:30am, 8:30am & 11:30am. All are welcome.">
-  <meta property="og:title" content="ENJC | Elim New Jerusalem Church">
-  <meta property="og:description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday worship 5:30am, 8:30am & 11:30am. All are welcome.">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ENJC | Elim New Jerusalem Church</title>
+<meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30, 11:30am. Night Prayer 10:30pm daily. YouTube Live every Sunday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var t=localStorage.getItem('enjc-theme')||'dark';
+  if(t==='light')document.documentElement.setAttribute('data-theme','light');
+  window.toggleTheme=function(){
+    var c=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    if(c==='light')document.documentElement.setAttribute('data-theme','light');
+    else document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('enjc-theme',c);
+  };
+  window.toggleMenu=function(){
+    var m=document.getElementById('mob-menu');
+    if(m)m.classList.toggle('open');
+  };
+  window.addEventListener('scroll',function(){
+    var b=document.getElementById('scrolltop');
+    if(b)b.classList.toggle('show',window.scrollY>350);
+  },{passive:true});
+  window.goTop=function(){window.scrollTo({top:0,behavior:'smooth'});};
+})();
+</script>
 <style>
-  /* ══ DESIGN SYSTEM — consistent spacing & sizing ══ */
-  :root{
-    --font-heading:'Playfair Display',Georgia,serif;
-    --font-body:'Poppins',system-ui,sans-serif;
-    --font-tamil:'Noto Serif Tamil',serif;
-    --space-xs:8px; --space-sm:16px; --space-md:24px;
-    --space-lg:40px; --space-xl:64px;
-    --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
-    --text-xs:12px; --text-sm:14px; --text-base:16px;
-    --text-lg:18px; --text-xl:24px; --text-2xl:32px; --text-3xl:42px;
-  }
-  /* Button consistency */
-  button,a.btn,.btn{
-    font-family:var(--font-body)!important;
-    font-size:var(--text-sm)!important;
-    font-weight:500!important;
-    border-radius:99px!important;
-  }
-  /* Section title consistency */
-  .section-label{
-    font-size:11px!important;font-weight:600!important;
-    letter-spacing:2px!important;text-transform:uppercase!important;
-  }
-  /* Heading consistency */
-  h1{font-size:clamp(2rem,6vw,3.5rem)!important;line-height:1.15!important}
-  h2{font-size:clamp(1.5rem,4vw,2.2rem)!important;line-height:1.25!important}
-  h3{font-size:clamp(1.1rem,3vw,1.5rem)!important;line-height:1.35!important}
-  h1,h2,h3{font-family:var(--font-heading)!important;font-weight:700!important}
-  /* Body text */
-  p,li,span:not([class*="icon"]){
-    font-size:var(--text-base)!important;
-    line-height:1.75!important;
-    font-family:var(--font-body)!important;
-  }
-  /* Nav consistency */
-  nav a{font-family:var(--font-body)!important;font-size:var(--text-sm)!important}
-  /* Mobile type scale */
-  @media(max-width:768px){
-    h1{font-size:clamp(1.8rem,8vw,2.8rem)!important}
-    h2{font-size:clamp(1.3rem,5vw,1.8rem)!important}
-    p,li{font-size:15px!important}
-  }
 
-  /* ── FONT SYSTEM: Playfair Display + Poppins ── */
-  *{font-family:'Poppins',system-ui,sans-serif}
-  h1,h2,h3,h4,h5,h6,
-  .section-title,.hero-title,.page-title,
-  .card-title,.ministry-title,.event-title,
-  [class*="title"],[class*="heading"],[class*="headline"]{
-    font-family:'Playfair Display',Georgia,serif!important;
-  }
-  body{font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.7}
-  p,span,a,li,td,label,input,button,select,textarea{
-    font-family:'Poppins',system-ui,sans-serif;
-  }
-  /* Noto Serif Tamil for Tamil text */
-  [lang="ta"],.ta-text,.tamil{font-family:'Noto Serif Tamil',serif!important}
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --dark:#080c10;--dark2:#0d1520;--dark3:#111a26;
-  --navy:#0b2545;--navy2:#1a3a6b;
-  --gold:#f5a623;--gold2:#ffd166;--gold3:rgba(245,166,35,.12);
-  --text:#e8edf4;--muted:rgba(232,237,244,.45);--dim:rgba(232,237,244,.2);
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);
-  --radius:4px;--radius-lg:6px;
+  --bg:#07090f;--bg2:#0c1018;--bg3:#111926;
+  --tx:rgba(255,255,255,.92);--tx2:rgba(255,255,255,.58);--tx3:rgba(255,255,255,.28);
+  --bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.14);
+  --gd:#e8a020;--gd2:rgba(232,160,32,.12);--gdb:rgba(232,160,32,.3);
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Poppins',system-ui,sans-serif;
+  --fta:'Noto Serif Tamil',serif;
 }
-html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth}
-body{font-family:'Poppins',system-ui,sans-serif;background:var(--dark);color:var(--text);line-height:1.7}
-
+[data-theme="light"]{
+  --bg:#fafaf8;--bg2:#f2f0eb;--bg3:#e8e4db;
+  --tx:#1a1208;--tx2:rgba(26,18,8,.62);--tx3:rgba(26,18,8,.35);
+  --bd:rgba(26,18,8,.09);--bd2:rgba(26,18,8,.18);
+  --gd:#a07010;--gd2:rgba(160,112,16,.08);--gdb:rgba(160,112,16,.28);
+}
+body{background:var(--bg);color:var(--tx);font-family:var(--fb);font-size:16px;line-height:1.75;transition:background .3s,color .3s;padding-bottom:70px}
+@media(min-width:901px){body{padding-bottom:0}}
+h1,h2,h3{font-family:var(--fh);line-height:1.2;color:var(--tx)}
+h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700}
+h2{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700}
+h3{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600}
+p{color:var(--tx2);line-height:1.8}
 a{text-decoration:none;color:inherit}
+img{max-width:100%;height:auto}
 
-/* ── FADE IN ── */
-.fi{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-.fi.vis{opacity:1;transform:none}
-.fi:nth-child(1){transition-delay:.04s}.fi:nth-child(2){transition-delay:.1s}
-.fi:nth-child(3){transition-delay:.16s}.fi:nth-child(4){transition-delay:.22s}
-.fi:nth-child(5){transition-delay:.28s}.fi:nth-child(6){transition-delay:.34s}
+.nav{position:sticky;top:0;z-index:500;background:rgba(7,9,15,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+[data-theme="light"] .nav{background:rgba(250,250,248,.95)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-img{height:38px;width:auto}
+.nav-logo-fallback{height:38px;padding:0 11px;background:var(--gd);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#07090f;letter-spacing:-.5px}
+.nav-name{font-size:13px;font-weight:700;color:var(--tx);letter-spacing:.3px}
+.nav-sub{font-size:8.5px;color:var(--tx3);margin-top:1px}
+.nav-links{display:flex;gap:2px}
+.nav-a{font-size:13px;color:var(--tx2);padding:7px 12px;border-radius:6px;font-weight:500;transition:color .2s}
+.nav-a:hover{color:var(--tx)}
+.nav-a.act{color:var(--gd);font-weight:600}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-visit{background:var(--gd);color:#07090f;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:700}
+.nav-visit:hover{filter:brightness(1.08)}
+.theme-btn{width:38px;height:22px;border-radius:99px;background:var(--bd2);border:none;cursor:pointer;position:relative;display:flex;align-items:center;padding:3px}
+.theme-dot{width:16px;height:16px;border-radius:50%;background:var(--gd);transition:transform .25s}
+[data-theme="light"] .theme-dot{transform:translateX(16px)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.ham span{width:22px;height:2px;background:var(--tx2);border-radius:2px}
+.mob-menu{display:none;flex-direction:column;background:var(--bg2);border-top:1px solid var(--bd);padding:12px 20px;gap:0}
+.mob-menu.open{display:flex}
+.mob-menu a{color:var(--tx2);font-size:14px;padding:11px 0;border-bottom:1px solid var(--bd);font-weight:500}
+.mob-menu a.act{color:var(--gd)}
+@media(max-width:900px){.nav-links,.nav-visit{display:none}.ham{display:flex}}
 
-/* ── CONTAINER ── */
-.container{width:92%;max-width:1200px;margin:0 auto;padding:0 14px}
+.page-hero{background:linear-gradient(160deg,var(--bg2),var(--bg));padding:64px 32px 48px;border-bottom:1px solid var(--bd)}
+.page-hero-inner{max-width:1280px;margin:0 auto}
+.page-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gd);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.page-tag::before{content:'';width:24px;height:1.5px;background:var(--gd)}
+.page-hero p{font-size:15px;color:var(--tx3);max-width:500px;margin-top:10px}
 
-/* ── HEADER ── */
-header{background:rgba(8,12,16,.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:900;backdrop-filter:blur(12px)}
-.nav{height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-mark{width:34px;height:34px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;font-weight:700;font-family:'Playfair Display',serif;flex-shrink:0}
-.logo-text strong{display:block;font-size:14px;color:white;font-weight:600;letter-spacing:.3px;line-height:1.2}
-.logo-text span{display:block;font-size:10px;color:var(--muted);font-weight:400}
-.menu{list-style:none;display:flex;gap:2px;align-items:center}
-.menu a{color:var(--muted);font-size:12px;font-weight:500;padding:6px 12px;border-radius:var(--radius);transition:all .2s;white-space:nowrap}
-.menu a:hover{color:white;background:rgba(255,255,255,.06)}
-.menu a.active{color:white}
-.nav-cta{background:var(--gold);color:var(--dark);padding:8px 18px;border-radius:var(--radius);font-size:12px;font-weight:700;letter-spacing:.3px;transition:all .2s;white-space:nowrap}
-.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent}
-.hamburger span{display:block;width:22px;height:1.5px;background:white;border-radius:2px;transition:all .3s}
-.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.section{max-width:1280px;margin:0 auto;padding:64px 32px}
+.sec-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gd);font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-tag::before{content:'';width:20px;height:1.5px;background:var(--gd)}
+.sec-h2{font-family:var(--fh);color:var(--tx);margin-bottom:10px}
+.sec-h2 em{color:var(--gd);font-style:italic}
+.sec-sub{font-size:14px;color:var(--tx2);line-height:1.8;max-width:600px;margin-bottom:32px}
 
-/* ── TICKER ── */
-.ticker{background:var(--gold);height:34px;overflow:hidden;display:flex;align-items:center}
-.ticker-track{display:flex;animation:ticker 28s linear infinite;white-space:nowrap}
-.ticker-track:hover{animation-play-state:paused}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.tick-item{padding:0 28px;font-size:11px;font-weight:700;color:var(--dark);letter-spacing:.5px;text-transform:uppercase;border-right:1px solid rgba(8,12,16,.15);height:34px;display:inline-flex;align-items:center;gap:7px;flex-shrink:0}
-.tick-dot{width:4px;height:4px;border-radius:50%;background:var(--dark);opacity:.35;flex-shrink:0}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:14px}
 
-/* ── PAGE HERO ── */
-.page-hero{background:var(--navy);padding:52px 0 40px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
-.page-hero::before{content:'';position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,.4) 48px,rgba(255,255,255,.4) 49px)}
-.page-hero-eyebrow{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.page-hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);display:inline-block}
-.page-hero h1{font-family:'Playfair Display',Georgia,serif;color:white;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.15;position:relative;z-index:1}
-.page-hero h1 em{color:var(--gold);font-style:italic}
-.page-hero p{color:var(--muted);font-size:.93rem;margin-top:6px;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 26px;border-radius:99px;font-size:14px;font-weight:600;font-family:var(--fb);cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gd);color:#07090f}
+.btn-gold:hover{filter:brightness(1.08)}
+.btn-outline{background:transparent;border:1.5px solid var(--bd2);color:var(--tx2)}
+.btn-outline:hover{border-color:var(--gdb);color:var(--gd)}
 
-/* ── SECTION ── */
-.sec{padding:56px 0;border-bottom:1px solid var(--border)}
-.sec-dark{background:var(--dark)}
-.sec-dark2{background:var(--dark2)}
-.sec-dark3{background:var(--dark3)}
-.sec-navy{background:var(--navy)}
-.sec-label{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-.sec-label::before{content:'';width:20px;height:1px;background:var(--gold);display:inline-block;flex-shrink:0}
-.sec-title{font-family:'Playfair Display',Georgia,serif;color:white;font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:800;line-height:1.15;margin-bottom:6px}
-.sec-title em{color:var(--gold);font-style:italic}
-.sec-sub{color:var(--muted);font-size:.9rem;max-width:560px;line-height:1.7}
+footer{background:var(--bg2);border-top:1px solid var(--bd);padding:28px 32px}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:14px;font-weight:700;color:var(--tx)}
+.footer-copy{font-size:12px;color:var(--tx3)}
 
-/* ── BUTTONS ── */
-.btn-gold{display:inline-block;background:var(--gold);color:var(--dark);padding:11px 24px;border-radius:var(--radius);font-weight:700;font-size:13px;letter-spacing:.3px;transition:all .25s}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-1px)}
-.btn-outline{display:inline-block;border:1px solid var(--border2);color:var(--muted);padding:10px 22px;border-radius:var(--radius);font-size:13px;transition:all .25s}
-.btn-outline:hover{border-color:var(--gold);color:white}
-.btn-ghost{display:inline-block;color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.3px;transition:all .2s;display:flex;align-items:center;gap:6px}
-.btn-ghost::after{content:'→';transition:transform .2s}
-.btn-ghost:hover::after{transform:translateX(4px)}
-.btn-wa{display:inline-block;background:#25D366;color:white;padding:11px 24px;border-radius:var(--radius);font-weight:700;font-size:13px;transition:all .25s}
-.btn-wa:hover{background:#20ba5a;transform:translateY(-1px)}
+.scroll-top{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:#07090f;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:all .3s;z-index:400;border:none}
+.scroll-top.show{opacity:1;pointer-events:all}
+@media(min-width:901px){.scroll-top{bottom:28px}}
 
-/* ── CARDS ── */
-.card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all .3s}
-.card:hover{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.04)}
-.card-gold{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.06)}
-
-/* ── VERSE BLOCK ── */
-.verse-block{border-left:2px solid var(--gold);padding:18px 22px;background:rgba(245,166,35,.05)}
-.verse-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
-.verse-text{font-family:'Playfair Display',Georgia,serif;font-size:1.12rem;font-style:italic;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:8px}
-.verse-ref{font-size:.82rem;color:var(--muted)}
-
-/* ── SERVICE GRID ── */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.svc-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;transition:all .3s}
-.svc-card:hover,.svc-card.feat{border-color:rgba(245,166,35,.35);background:rgba(245,166,35,.06)}
-.svc-badge{font-size:8px;background:var(--gold);color:var(--dark);padding:2px 7px;border-radius:2px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;display:inline-block}
-.svc-day{color:white;font-size:13px;font-weight:600;margin-bottom:4px}
-.svc-time{color:var(--muted);font-size:11px;line-height:1.5}
-
-/* ── MIN GRID ── */
-.min-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.min-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 14px;text-align:center;transition:all .3s;cursor:pointer}
-.min-card:hover{border-color:rgba(245,166,35,.35);background:rgba(245,166,35,.05);transform:translateY(-3px)}
-.min-icon{font-size:22px;display:block;margin-bottom:10px}
-.min-name{color:rgba(255,255,255,.7);font-size:12px;font-weight:500}
-.min-desc{color:var(--muted);font-size:10px;margin-top:4px;line-height:1.5}
-.min-join{display:inline-block;margin-top:10px;border:1px solid var(--border2);color:var(--gold);padding:5px 12px;border-radius:var(--radius);font-size:10px;font-weight:600;transition:all .2s}
-.min-join:hover{background:var(--gold);color:var(--dark)}
-
-/* ── VIDEO GRID ── */
-.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.video-card{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s}
-.video-card:hover{border-color:rgba(245,166,35,.3);transform:translateY(-3px)}
-.video-thumb{height:110px;background:linear-gradient(135deg,var(--navy),var(--dark2));display:flex;align-items:center;justify-content:center;position:relative}
-.play-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
-.video-body{padding:12px}
-.video-tag{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:600;margin-bottom:4px}
-.video-title{font-size:.85rem;color:white;font-weight:500;line-height:1.35;margin-bottom:5px}
-.video-meta{font-size:11px;color:var(--muted)}
-
-/* ── TESTIMONIALS ── */
-.test-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;background:rgba(255,255,255,.03)}
-.test-q{font-style:italic;color:rgba(255,255,255,.75);font-size:.88rem;line-height:1.75;margin-bottom:12px}
-.test-a{color:var(--gold);font-size:.8rem;font-weight:600}
-
-/* ── COUNTDOWN ── */
-.cd-box{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.2);border-radius:var(--radius-lg);padding:12px 16px;text-align:center;min-width:60px}
-.cd-n{color:var(--gold);font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;line-height:1;display:block}
-.cd-l{color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:.5px;display:block;margin-top:4px}
-
-/* ── FOOTER ── */
-.footer{background:var(--dark);border-top:1px solid var(--border);padding:18px 0}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-copy{color:var(--dim);font-size:11px}
-.footer-links{display:flex;gap:16px}
-.footer-links a{color:var(--dim);font-size:11px;transition:color .2s}
-.footer-links a:hover{color:var(--gold)}
-
-/* ── WA FLOAT ── */
-.wa-float{position:fixed;bottom:26px;right:20px;z-index:800;transition:transform .3s}
-.wa-float:hover{transform:scale(1.1)}
-.wa-float img{width:54px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
-@media(max-width:768px){.wa-float{bottom:74px;right:14px}.wa-float img{width:48px}}
-
-
-
-@media(max-width:768px){}
-
-
-.bn-label{font-size:8px;color:var(--dim);font-weight:500;letter-spacing:.3px;text-transform:uppercase}
-.bn-item.active .bn-label{color:var(--gold)}
-.bn-center-wrap{flex:1;display:flex;justify-content:center}
-
-.bn-center:hover{transform:scale(1.08)}
-
-/* ── MOBILE ── */
-@media(max-width:768px){
-  .hamburger{display:flex}
-  .menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(8,12,16,.98);border-top:1px solid var(--border);padding:8px 0;z-index:1000;backdrop-filter:blur(12px)}
-  .menu.open{display:flex}
-  .menu li{width:100%}
-  .menu a{display:block;padding:13px 20px;border-radius:0;font-size:15px}
-  .nav{position:relative;height:58px}
-  .nav-cta{display:none}
-  .svc-grid{grid-template-columns:1fr 1fr}
-  .min-grid{grid-template-columns:1fr 1fr 1fr}
-  .video-grid{grid-template-columns:1fr}
-  .sec{padding:40px 0}
-  .footer-inner{flex-direction:column;text-align:center}
-  .footer-links{justify-content:center}
-}
-@media(max-width:480px){
-  .svc-grid{grid-template-columns:1fr 1fr}
-  .min-grid{grid-template-columns:1fr 1fr}
-}
-
-/* ══ BOTTOM NAV ══════════════════════════════════════ */
-.bottom-nav{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;
-  background:rgba(7,9,15,.97);
-  border-top:1px solid rgba(232,160,32,.25);
-  height:62px;
-  z-index:9999;
-  align-items:stretch;
-  padding:0;
-}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,.97);border-top:1px solid rgba(232,160,32,.2);height:64px;z-index:450;align-items:stretch}
+[data-theme="light"] .bottom-nav{background:rgba(250,250,248,.97)}
 @media(max-width:900px){.bottom-nav{display:flex!important}}
-.bn-item{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:3px;text-decoration:none;
-  padding:6px 0 8px;
-  color:rgba(255,255,255,.4);
-}
-.bn-item.act{color:#e8a020}
-.bn-icon{font-size:20px;line-height:1;display:block}
-.bn-lbl{font-size:9px;letter-spacing:.2px;display:block}
-.bn-center{
-  flex:1;display:flex;
-  align-items:center;justify-content:center;
-  padding-bottom:4px;
-}
-.bn-center-btn{
-  width:52px;height:52px;
-  background:#e8a020;
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;
-  color:#07090f;
-  text-decoration:none;
-  margin-top:-20px;
-  box-shadow:0 4px 16px rgba(232,160,32,.5),0 0 0 3px rgba(7,9,15,.97);
-  flex-shrink:0;
-}
-@media(max-width:900px){body{padding-bottom:70px!important}}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none}
+.bn-icon{font-size:19px;line-height:1}
+.bn-lbl{font-size:9px;color:var(--tx3)}
+.bn-item.act .bn-lbl{color:var(--gd)}
+.bn-center{flex:1;display:flex;align-items:center;justify-content:center;padding-bottom:4px}
+.bn-center-btn{width:52px;height:52px;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:#07090f;margin-top:-20px;text-decoration:none;box-shadow:0 4px 16px rgba(232,160,32,.4),0 0 0 3px var(--bg)}
 
-</style>
-<style>
-/* ═══════════════════════════════════════════
-   ENJC — MOBILE IMPROVEMENTS (≤768px)
-   Covers all 7 pages systematically
-═══════════════════════════════════════════ */
 
-/* ── NAV ── */
+/* ── HOME SPECIFIC ───────────────────── */
+
+/* HERO SLIDESHOW */
+.hero-slide{position:relative;width:100%;height:100vh;min-height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.slide-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.slide-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:1}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:900px}
+.hero-verse-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(232,160,32,.8);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
+.hero-verse-label::before,.hero-verse-label::after{content:"";width:28px;height:1px;background:var(--gd);opacity:.6}
+.hero-h1{font-family:var(--fh);font-size:clamp(1.8rem,5vw,3rem);font-weight:700;color:white;line-height:1.25;margin-bottom:10px}
+.hero-h1 em{color:var(--gd);font-style:italic}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:6px}
+.hero-ref{font-size:12px;color:rgba(232,160,32,.7);font-style:italic;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* Slide arrows */
+.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2);color:white;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .2s;user-select:none}
+.slide-arrow:hover{background:var(--gd);color:#07090f;border-color:var(--gd)}
+.slide-prev{left:20px}.slide-next{right:20px}
+.slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.slide-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .25s}
+.slide-dot.on{background:var(--gd);transform:scale(1.2)}
+
+/* VOTD */
+.votd-section{background:var(--bg2);border-top:1px solid var(--bd);padding:32px}
+.votd-inner{max-width:900px;margin:0 auto;text-align:center}
+.votd-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gd);font-weight:700;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:10px}
+.votd-label::before,.votd-label::after{content:"";width:20px;height:1px;background:var(--gd)}
+.votd-border{border-left:3px solid var(--gd);padding-left:20px;text-align:left;display:inline-block;max-width:760px}
+.votd-text{font-family:var(--fh);font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:var(--tx);line-height:1.8;margin-bottom:8px}
+.votd-ref{font-size:11px;color:var(--gd);font-weight:600}
+
+/* SERVICE TIMINGS */
+.svc-section{padding:64px 32px;background:var(--bg)}
+.svc-inner{max-width:1100px;margin:0 auto}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.svc-card{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:24px;text-align:center;transition:border-color .2s}
+.svc-card:hover{border-color:var(--gdb)}
+.svc-card.main{border-color:var(--gdb);background:var(--gd2)}
+.svc-badge{display:inline-block;background:var(--gd);color:#07090f;font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.svc-day{font-size:16px;font-weight:700;color:var(--tx);margin-bottom:8px;font-family:var(--fh)}
+.svc-time{font-size:13px;color:var(--tx2);line-height:1.9}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:80px;right:18px;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:600;box-shadow:0 4px 16px rgba(0,0,0,.35);text-decoration:none;transition:transform .2s}
+.wa-float:hover{transform:scale(1.08)}
+@media(min-width:901px){.wa-float{bottom:24px}}
+
 @media(max-width:768px){
-  .nav{height:56px;padding:0 16px}
-  .logo-mark{width:30px;height:30px;font-size:12px}
-  .logo-text strong{font-size:13px}
-  .logo-text span{font-size:9px}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc-section{padding:40px 16px}
+  .votd-section{padding:24px 16px}
 }
-
-/* ── TICKER ── */
-@media(max-width:768px){
-  .ticker{height:30px}
-  .ticker-track{animation-duration:45s}
-  .tick-item{font-size:11px;padding:0 18px;height:30px;letter-spacing:.2px}
-}
-
-/* ── PAGE HERO (inner pages) ── */
-@media(max-width:768px){
-  .page-hero{padding:32px 0 24px}
-  .page-hero h1{font-size:1.8rem}
-  .page-hero p{font-size:.85rem}
-  .page-hero-eyebrow{font-size:9px}
-}
-
-/* ── SECTIONS ── */
-@media(max-width:768px){
-  .sec{padding:32px 0}
-  .container{width:100%;padding:0 16px}
-  .sec-title{font-size:1.5rem}
-  .sec-label{font-size:9px;letter-spacing:2px}
-  .sec-sub{font-size:.85rem}
-}
-
-/* ── HOME HERO ── */
-
-
-/* ── VERSE BLOCK ── */
-@media(max-width:768px){
-  .verse-block{padding:14px 16px}
-  .verse-text{font-size:1rem}
-}
-
-/* ── SERVICE GRID ── */
-@media(max-width:768px){
-  .svc-grid{grid-template-columns:1fr 1fr!important;gap:8px}
-  .svc-card{padding:14px 12px}
-  .svc-day{font-size:12px}
-  .svc-time{font-size:10px}
-}
-@media(max-width:400px){
-  .svc-grid{grid-template-columns:1fr!important}
-}
-
-/* ── MINISTRY GRID ── */
-@media(max-width:768px){
-  .min-grid{grid-template-columns:1fr 1fr!important;gap:8px}
-  .min-card{padding:16px 10px}
-  .min-icon{font-size:18px!important;margin-bottom:7px}
-  .min-name{font-size:11px}
-  .min-desc{font-size:9px}
-}
-
-/* ── VIDEO GRID ── */
-@media(max-width:768px){
-  .video-grid{grid-template-columns:1fr!important;gap:10px}
-  .video-thumb{height:130px}
-}
-
-/* ── TESTIMONIALS ── */
-@media(max-width:768px){
-  #testimonial-track{grid-template-columns:1fr!important}
-}
-
-/* ── GIVE SECTION (index) ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:1fr 1fr"][style*="gap:40px"]{
-    grid-template-columns:1fr!important;
-    gap:20px!important
-  }
-}
-
-/* ── PLAN YOUR VISIT ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:1fr 1fr"][style*="gap:40px"]{
-    grid-template-columns:1fr!important;
-    gap:20px!important
-  }
-}
-
-/* ── ABOUT — pastor grid ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:280px 1fr"]{
-    grid-template-columns:1fr!important;
-    gap:20px!important
-  }
-  div[style*="width:140px;height:140px"]{
-    width:110px!important;
-    height:110px!important
-  }
-}
-
-/* ── ABOUT — mission vision ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:1fr 1fr"][style*="max-width:960px"]{
-    grid-template-columns:1fr!important
-  }
-}
-
-/* ── CONTACT — 4-col info cards ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:repeat(4,1fr)"][style*="gap:12px"]{
-    grid-template-columns:1fr 1fr!important;
-    gap:8px!important
-  }
-}
-
-/* ── CONTACT — form + times 2-col ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:1fr 1fr"][style*="gap:24px"]{
-    grid-template-columns:1fr!important;
-    gap:16px!important
-  }
-}
-
-/* ── CONTACT — inline form input grids ── */
-@media(max-width:768px){
-  form div[style*="grid-template-columns:1fr 1fr"]{
-    grid-template-columns:1fr!important
-  }
-  input,textarea{
-    padding:12px 14px!important;
-    font-size:16px!important;
-    min-height:44px
-  }
-  textarea{min-height:100px!important}
-  button[type=submit]{
-    padding:14px!important;
-    font-size:15px!important;
-    min-height:48px
-  }
-}
-
-/* ── EVENTS — countdown grid ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:1fr 1fr"][style*="gap:32px"]{
-    grid-template-columns:1fr!important;
-    gap:16px!important
-  }
-  .cd-box{padding:10px 12px;min-width:auto;flex:1}
-  .cd-n{font-size:1.4rem!important}
-  .cd-l{font-size:7px}
-}
-
-/* ── EVENTS — verse reels grid ── */
-@media(max-width:768px){
-  #verse-reels-container{grid-template-columns:1fr!important}
-  #special-events-container{grid-template-columns:1fr!important}
-}
-
-/* ── EVENTS — testimonial buttons ── */
-@media(max-width:768px){
-  button[onclick="prevT()"],button[onclick="nextT()"]{
-    padding:10px 20px!important;
-    font-size:1.1rem!important;
-    min-height:44px;
-    min-width:48px
-  }
-}
-
-/* ── MINISTRIES — stats strip ── */
-@media(max-width:768px){
-  div[style*="grid-template-columns:repeat(4,1fr)"][style*="background:var(--gold)"]{
-    grid-template-columns:1fr 1fr!important
-  }
-}
-
-/* ── MINISTRIES — join banner ── */
-@media(max-width:768px){
-  div[style*="display:flex"][style*="align-items:center"][style*="justify-content:space-between"]{
-    flex-direction:column!important;
-    align-items:flex-start!important;
-    gap:12px!important
-  }
-}
-
-/* ── MEDIA — social cards ── */
-@media(max-width:768px){
-  div[style*="repeat(auto-fit,minmax(260px,1fr))"]{
-    grid-template-columns:1fr!important
-  }
-}
-
-/* ── GALLERY ── */
-@media(max-width:768px){
-  div[style*="auto-fill,minmax(260px,1fr)"]{
-    grid-template-columns:1fr 1fr!important;
-    gap:8px!important
-  }
-}
-
-
-  
-  
-  .bn-label{font-size:8px;letter-spacing:0}
-  
-}
-
-/* ── WA FLOAT ── */
-@media(max-width:768px){
-  .wa-float{bottom:72px;right:12px}
-  .wa-float img{width:46px}
-}
-
-/* ── FOOTER ── */
-@media(max-width:768px){
-  .footer{padding:14px 0}
-  .footer-inner{gap:8px}
-  .footer-copy{font-size:10px}
-  .footer-links a{font-size:10px}
-}
-
-/* ── GLOBAL TOUCH TARGETS ── */
-@media(max-width:768px){
-  .btn-gold,.btn-outline,.btn-wa,.btn-ghost{
-    min-height:44px;
-    display:inline-flex!important;
-    align-items:center;
-    justify-content:center;
-    padding:11px 20px!important;
-    font-size:13px!important
-  }
-  .min-join{
-    min-height:36px;
-    display:inline-flex!important;
-    align-items:center
-  }
-  a[class*="btn"]{min-height:44px}
-}
-
-/* ── HEADINGS SCALE ── */
 @media(max-width:480px){
-  .sec-title{font-size:1.3rem}
-  .page-hero h1{font-size:1.6rem}
+  .svc-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-<header>
-  <div class="container nav">
-    <a href="index.html" class="logo-wrap">
-      <div class="logo-mark">E</div>
-      <div class="logo-text"><strong>ENJC</strong><span>Elim New Jerusalem Church</span></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ENJC Logo">
+      <div class="nav-logo-fallback" style="display:none">ENJC</div>
+      <div><div class="nav-name">ENJC</div><div class="nav-sub">Elim New Jerusalem Church</div></div>
     </a>
-    <nav><ul class="menu" id="menu"><li><a href="index.html" class="active">Home</a></li><li><a href="about.html" >About</a></li><li><a href="media.html" >Media</a></li><li><a href="gallery.html" >Gallery</a></li><li><a href="ministries.html" >Ministries</a></li><li><a href="events.html" >Events</a></li><li><a href="contact.html" >Contact</a></li><li><a href="bible.html" >Bible</a></li></ul></nav>
-    <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" rel="noopener" class="nav-cta">&#128205; Visit Us</a>
-    <button class="hamburger" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html" class="nav-a act">Home</a>
+      <a href="about.html" class="nav-a">About</a>
+      <a href="gallery.html" class="nav-a">Gallery</a>
+      <a href="ministries.html" class="nav-a">Ministries</a>
+      <a href="events.html" class="nav-a">Events</a>
+      <a href="contact.html" class="nav-a">Contact</a>
+      <a href="bible.html" class="nav-a">Bible</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme"><div class="theme-dot"></div></button>
+      <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" class="nav-visit">📍 Visit Us</a>
+    </div>
+    <button class="ham" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-</header>
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="tick-item"><span class="tick-dot"></span>Tondiarpet, Chennai</span>
-    <span class="tick-item"><span class="tick-dot"></span>Sunday 5:30 · 8:30 · 11:30am</span>
-    <span class="tick-item"><span class="tick-dot"></span>YouTube Live every Sunday</span>
-    <span class="tick-item"><span class="tick-dot"></span>+91 94443 45102</span>
-    <span class="tick-item"><span class="tick-dot"></span>Night Prayer 10:30pm daily</span>
-    <span class="tick-item"><span class="tick-dot"></span>Elim New Jerusalem Church</span>
-    <span class="tick-item"><span class="tick-dot"></span>Tondiarpet, Chennai</span>
-    <span class="tick-item"><span class="tick-dot"></span>Sunday 5:30 · 8:30 · 11:30am</span>
-    <span class="tick-item"><span class="tick-dot"></span>YouTube Live every Sunday</span>
-    <span class="tick-item"><span class="tick-dot"></span>+91 94443 45102</span>
-    <span class="tick-item"><span class="tick-dot"></span>Night Prayer 10:30pm daily</span>
-    <span class="tick-item"><span class="tick-dot"></span>Elim New Jerusalem Church</span>
+  <div class="mob-menu" id="mob-menu">
+    <a href="index.html" class="act">Home</a>
+    <a href="about.html">About</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="ministries.html">Ministries</a>
+    <a href="events.html">Events</a>
+    <a href="contact.html">Contact</a>
+    <a href="bible.html">Bible</a>
+  </div>
+</nav>
+
+<!-- HERO SLIDESHOW -->
+<section class="hero-slide" id="hero">
+  <img src="images/home/slide1.jpg" class="slide-img" id="slide-img" alt="ENJC Worship">
+  <div class="slide-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-verse-label" id="slide-label">Isaiah 43:4 &nbsp;·&nbsp; Elim New Jerusalem Church</div>
+    <h1 class="hero-h1" id="slide-h1">Because you are <em>precious</em><br>in my sight,</h1>
+    <p class="hero-sub" id="slide-sub">You are honoured and I love you</p>
+    <p class="hero-ref" id="slide-ref">— Isaiah 43:4</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/919444345102?text=Hi%2C+I+would+like+to+visit+ENJC" target="_blank" class="btn btn-gold">Join Us Today</a>
+      <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank" class="btn btn-outline">Watch Live →</a>
+    </div>
+  </div>
+  <button class="slide-arrow slide-prev" onclick="changeSlide(-1)">&#8249;</button>
+  <button class="slide-arrow slide-next" onclick="changeSlide(1)">&#8250;</button>
+  <div class="slide-dots" id="slide-dots"></div>
+</section>
+
+<!-- VOTD -->
+<div class="votd-section">
+  <div class="votd-inner">
+    <div class="votd-label">Verse of the Week</div>
+    <div style="display:flex;justify-content:center">
+      <div class="votd-border">
+        <p class="votd-text" id="votd-en">&#8220;But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.&#8221;</p>
+        <div class="votd-ref">— Isaiah 40:31</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ═══ HERO — Full bleed image, content over lower half ═══ -->
-<!-- ═══ UNIFIED HERO — overlay on all screens ═══ -->
-<section id="hero" style="position:relative;width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:#050810">
+<!-- SERVICE TIMINGS -->
+<section class="svc-section">
+  <div class="svc-inner">
+    <div class="sec-tag">When We Meet</div>
+    <h2 class="sec-h2">Service <em>Timings</em></h2>
+    <div style="width:48px;height:2px;background:var(--gd);margin:12px 0 0"></div>
+    <div class="svc-grid">
 
-  <!-- Desktop image (PC + landscape) -->
-  <img src="images/home/slide1.jpg"
-       id="hero-img-desk"
-       alt="Father, Son, Holy Spirit"
-       loading="eager"
-       fetchpriority="high"
-       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0">
-
-  <!-- Mobile image (portrait phones) — hidden on desktop via CSS -->
-  <img src="images/home/slide2.jpg"
-       id="hero-img-mob"
-       alt="Father, Son, Holy Spirit"
-       loading="eager"
-       style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0">
-
-  <!-- Dark gradient — bottom heavy so text is always readable -->
-  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(
-    to bottom,
-    rgba(5,8,16,.05) 0%,
-    rgba(5,8,16,.15) 30%,
-    rgba(5,8,16,.65) 58%,
-    rgba(5,8,16,.92) 78%,
-    rgba(5,8,16,1)   100%
-  )"></div>
-
-  <!-- Content — overlaid on image on ALL screen sizes -->
-  <div class="container hero-content" style="position:relative;z-index:3;padding-bottom:52px;padding-top:0">
-
-    <!-- Eyebrow -->
-    <div style="color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px;background:none;border:none;text-decoration:none">
-      <span style="width:28px;height:1px;background:var(--gold);display:inline-block;flex-shrink:0"></span>Isaiah 43:4 &nbsp;&middot;&nbsp; Elim New Jerusalem Church
-    </div>
-
-    <!-- Verse heading — updated text -->
-    <h1 style="font-family:'Playfair Display',Georgia,serif;color:white;font-size:clamp(2rem,5vw,4.2rem);font-weight:800;line-height:1.15;margin-bottom:8px;max-width:720px">
-      Because you are <em style="color:var(--gold);font-style:italic">precious</em><br>
-      in my sight,<br>
-      <span style="font-size:.72em;font-weight:700;color:rgba(255,255,255,.85)">You are honoured and I love you</span>
-    </h1>
-
-    <!-- Reference -->
-    <p style="color:rgba(255,255,255,.45);font-size:.88rem;letter-spacing:1px;margin-bottom:28px;font-style:italic">— Isaiah 43:4</p>
-
-    <!-- CTAs -->
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px">
-      <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20visiting%20ENJC%20this%20Sunday!" target="_blank" class="btn-gold">Join Us Today</a>
-      <a href="events.html" class="btn-outline">Watch Live &rarr;</a>
-    </div>
-
-    <!-- Stats -->
-    <div style="display:flex;gap:0;border-top:1px solid rgba(255,255,255,.1);padding-top:22px;flex-wrap:wrap">
-      <div style="padding-right:28px;border-right:1px solid rgba(255,255,255,.1);margin-right:28px">
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:800;line-height:1">3</div>
-        <div style="color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Sunday services</div>
-      </div>
-      <div style="padding-right:28px;border-right:1px solid rgba(255,255,255,.1);margin-right:28px">
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:800;line-height:1">6+</div>
-        <div style="color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Ministries</div>
-      </div>
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:800;line-height:1">7</div>
-        <div style="color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Days of prayer</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-/* ── Kill any blue highlight/selection inside hero ── */
-#hero ::selection{background:transparent}
-#hero div{background-color:transparent}
-#hero div[style]{background-color:revert}
-
-/* ── MOBILE: swap to portrait image, keep overlay style ── */
-@media(max-width:768px){
-  #hero{min-height:100svh;min-height:100vh}
-  #hero-img-desk{display:none!important}
-  #hero-img-mob{display:block!important}
-  .hero-content{padding-bottom:32px!important}
-  .hero-content h1{font-size:1.75rem!important;line-height:1.2!important}
-  .hero-content .btn-gold,
-  .hero-content .btn-outline{flex:1;text-align:center;padding:11px 14px!important;font-size:13px!important}
-  .hero-content div[style*="padding-right:28px"]{padding-right:18px!important;margin-right:18px!important}
-}
-@media(max-width:400px){
-  .hero-content h1{font-size:1.5rem!important}
-}
-</style>
-
-<section class="sec sec-dark">
-  <div class="container">
-    <div class="verse-block fi"><p class="verse-label">Verse of the Week</p><blockquote class="verse-text">"For I know the plans I have for you, declares the Lord &mdash; plans for welfare and not for evil, to give you a future and a hope."</blockquote><cite class="verse-ref">&mdash; Jeremiah 29:11</cite></div>
-  </div>
-</section>
-
-<section class="sec sec-dark3">
-  <div class="container">
-    <div class="mob-stack-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
-      <div class="fi">
-        <div class="sec-label">First Time Visiting?</div>
-        <h2 class="sec-title">Plan Your <em>Visit</em></h2>
-        <p style="color:var(--muted);font-size:.92rem;line-height:1.85;margin:14px 0 20px">We want your first Sunday at ENJC to feel like coming home. No pressure, no dress code — just open arms, powerful worship, and the presence of God.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
-          <div style="display:flex;gap:12px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">1</div>
-            <div><div style="color:white;font-size:.92rem;font-weight:600;margin-bottom:2px">Pick a service time</div><div style="color:var(--muted);font-size:.83rem">Sunday at 5:30am, 8:30am or 11:30am — all identical.</div></div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">2</div>
-            <div><div style="color:white;font-size:.92rem;font-weight:600;margin-bottom:2px">Find us easily</div><div style="color:var(--muted);font-size:.83rem">No.110E, Ellaya Mudali Street, Tondiarpet — near Bedestha Swimming Pool.</div></div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">3</div>
-            <div><div style="color:white;font-size:.92rem;font-weight:600;margin-bottom:2px">Let us know you're coming</div><div style="color:var(--muted);font-size:.83rem">WhatsApp us — we'll have someone at the door to welcome you personally.</div></div>
-          </div>
-        </div>
-        <a href="https://wa.me/919444345102?text=Hi%2C%20I%27m%20planning%20to%20visit%20ENJC%20this%20Sunday!" target="_blank" class="btn-gold">I'm Visiting This Sunday &#8594;</a>
-      </div>
-      <div class="fi" style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.18);border-radius:var(--radius-lg);padding:28px">
-        <h3 style="font-family:'Playfair Display',serif;color:white;font-size:1.1rem;margin-bottom:18px;font-weight:700">What to <em style="color:var(--gold)">expect</em></h3>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">🎵</span><div><div style="color:white;font-size:.85rem;font-weight:600">Spirit-filled worship</div><div style="color:var(--muted);font-size:.78rem">Powerful praise and prayer</div></div></div>
-          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">📖</span><div><div style="color:white;font-size:.85rem;font-weight:600">Word-based message</div><div style="color:var(--muted);font-size:.78rem">Practical, life-changing preaching</div></div></div>
-          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">🤝</span><div><div style="color:white;font-size:.85rem;font-weight:600">Warm community</div><div style="color:var(--muted);font-size:.78rem">You'll be welcomed from the first moment</div></div></div>
-          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius)"><span style="font-size:18px">⏱️</span><div><div style="color:white;font-size:.85rem;font-weight:600">About 2 hours</div><div style="color:var(--muted);font-size:.78rem">Each service runs approximately 2 hours</div></div></div>
+      <div class="svc-card main">
+        <span class="svc-badge">Main Services</span>
+        <div class="svc-day">Sunday</div>
+        <div class="svc-time">
+          05:30am – 07:30am<br>
+          08:30am – 10:30am<br>
+          11:30am – 01:30pm
         </div>
       </div>
+
+      <div class="svc-card">
+        <div style="height:30px"></div>
+        <div class="svc-day">Friday</div>
+        <div class="svc-time">11:00am – 01:30pm</div>
+      </div>
+
+      <div class="svc-card">
+        <div style="height:30px"></div>
+        <div class="svc-day">Saturday</div>
+        <div class="svc-time">06:00pm – 07:00pm</div>
+      </div>
+
+      <div class="svc-card">
+        <div style="height:30px"></div>
+        <div class="svc-day">2nd Saturday</div>
+        <div class="svc-time">06:00am – 06:00pm<br><span style="font-size:11px;color:var(--tx3)">(All Day)</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div style="height:30px"></div>
+        <div class="svc-day">Night Prayer</div>
+        <div class="svc-time">10:30pm – 11:00pm<br><span style="font-size:11px;color:var(--gd);font-weight:600">Daily</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div style="height:30px"></div>
+        <div class="svc-day">Deliverance Meeting</div>
+        <div class="svc-time">06:00pm – 08:30pm<br><span style="font-size:11px;color:var(--tx3)">Weekly</span></div>
+      </div>
+
     </div>
-  </div>
-</section>
-<section class="sec sec-dark2">
-  <div class="container">
-    <div class="sec-label fi">When We Meet</div>
-    <h2 class="sec-title fi">Service <em>Timings</em></h2>
-    <div class="svc-grid" style="margin-top:24px">
-      <div class="svc-card card-gold fi"><span class="svc-badge">Main Services</span><div class="svc-day">Sunday</div><div class="svc-time">05:30am &ndash; 07:30am<br>08:30am &ndash; 10:30am<br>11:30am &ndash; 01:30pm</div></div>
-      <div class="svc-card fi"><div class="svc-day">Friday</div><div class="svc-time">11:00am &ndash; 01:30pm</div></div>
-      <div class="svc-card fi"><div class="svc-day">Saturday</div><div class="svc-time">06:00pm &ndash; 07:00pm</div></div>
-      <div class="svc-card fi"><div class="svc-day">2nd Saturday</div><div class="svc-time">06:00am &ndash; 06:00pm (All Day)</div></div>
-      <div class="svc-card fi"><div class="svc-day">Night Prayer</div><div class="svc-time">10:30pm &ndash; 11:00pm (Daily)</div></div>
-      <div class="svc-card fi"><div class="svc-day">Deliverance Meeting</div><div class="svc-time">06:00pm &ndash; 08:30pm (Weekly)</div></div>
+
+    <div style="text-align:center;margin-top:32px">
+      <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank" class="btn btn-gold" style="margin-right:12px">▶ YouTube Live</a>
+      <a href="contact.html" class="btn btn-outline">Get Directions</a>
     </div>
   </div>
 </section>
 
-<section class="sec sec-dark3">
-  <div class="container">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px">
-      <div><div class="sec-label fi">Get Involved</div><h2 class="sec-title fi">Our <em>Ministries</em></h2></div>
-      <a href="ministries.html" class="btn-ghost fi" style="margin-top:8px">View All</a>
-    </div>
-    <div class="min-grid">
-      <a href="ministries.html#youth" class="min-card fi"><span class="min-icon">&#128102;</span><div class="min-name">Youth Ministry</div><div class="min-desc">Ages 13&ndash;25 &middot; Weekly meetings</div></a>
-      <a href="ministries.html#women" class="min-card fi"><span class="min-icon">&#128105;</span><div class="min-name">Women's Fellowship</div><div class="min-desc">Bible study &middot; Prayer &amp; support</div></a>
-      <a href="ministries.html#prayer" class="min-card fi"><span class="min-icon">&#128591;</span><div class="min-name">Prayer Ministry</div><div class="min-desc">Daily Night Prayer &middot; Open to all</div></a>
-      <a href="ministries.html#deliverance" class="min-card fi"><span class="min-icon">&#10013;</span><div class="min-name">Deliverance</div><div class="min-desc">Weekly &middot; Healing prayer</div></a>
-      <a href="ministries.html#worship" class="min-card fi"><span class="min-icon">&#127925;</span><div class="min-name">Worship Team</div><div class="min-desc">Musicians &middot; Singers &middot; Sound</div></a>
-      <a href="ministries.html#men" class="min-card fi"><span class="min-icon">&#128104;</span><div class="min-name">Men's Fellowship</div><div class="min-desc">Brotherhood &middot; Bible &amp; prayer</div></a>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-dark">
-  <div class="container">
-    <div class="mob-stack-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
-      <div class="fi">
-        <div class="sec-label">Give &amp; Support</div>
-        <h2 class="sec-title">Support the <em>Ministry</em></h2>
-        <p style="color:var(--muted);font-size:.9rem;margin:12px 0 20px;font-style:italic">"God loves a cheerful giver." &mdash; 2 Corinthians 9:7</p>
-        <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:20px">
-          <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px"><span style="font-size:18px">&#128154;</span><div><div style="font-size:13px;font-weight:600;color:white">Google Pay / PhonePe / UPI</div><div style="font-size:11px;color:var(--muted)">Instant digital transfer</div></div></div>
-          <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px"><span style="font-size:18px">&#128241;</span><div><div style="font-size:13px;font-weight:600;color:white">WhatsApp us</div><div style="font-size:11px;color:var(--muted)">Bank transfer details on request</div></div></div>
-          <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px"><span style="font-size:18px">&#127963;</span><div><div style="font-size:13px;font-weight:600;color:white">In person</div><div style="font-size:11px;color:var(--muted)">Offering at any Sunday service</div></div></div>
-        </div>
-      </div>
-      <div class="fi" style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.2);border-radius:var(--radius-lg);padding:28px;text-align:center">
-        <h3 style="font-family:'Playfair Display',serif;color:white;font-size:1.2rem;margin-bottom:8px">Give Online</h3>
-        <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px">Send directly via UPI &mdash; fast, safe, and easy.</p>
-        <div style="background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 16px;font-family:monospace;font-size:.97rem;color:var(--gold);margin-bottom:14px;letter-spacing:.5px">Scan QR or ask via WhatsApp</div>
-        <a href="https://wa.me/919444345102?text=I%20would%20like%20to%20give%20to%20ENJC" target="_blank" class="btn-wa" style="display:block">Give via WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</section>
-<footer class="footer">
-  <div class="container footer-inner">
-    <p class="footer-copy">&copy; 2026 Elim New Jerusalem Church. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank">YouTube</a>
-      <a href="https://www.facebook.com/ENJCChurch" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/enjcchurch" target="_blank">Instagram</a>
-      <a href="https://wa.me/919444345102" target="_blank">WhatsApp</a>
-    </div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">ENJC — Elim New Jerusalem Church</div>
+    <div class="footer-copy">© 2026 · Tondiarpet, Chennai · +91 94443 45102</div>
   </div>
 </footer>
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-</a>
-<nav class="bottom-nav">
-  <a href="index.html" class="bn-item  act">
-    <span class="bn-icon">🏠</span><span class="bn-lbl">Home</span>
-  </a>
-  <a href="about.html" class="bn-item">
-    <span class="bn-icon">✝</span><span class="bn-lbl">About</span>
-  </a>
-  <div class="bn-center">
-    <a href="bible.html" class="bn-center-btn" title="Bible">📖</a>
-  </div>
-  <a href="events.html" class="bn-item">
-    <span class="bn-icon">📅</span><span class="bn-lbl">Events</span>
-  </a>
-  <a href="contact.html" class="bn-item">
-    <span class="bn-icon">✉</span><span class="bn-lbl">Contact</span>
-  </a>
-</nav>
-<script>
-  function toggleMenu(){
-    document.getElementById('menu').classList.toggle('open');
-    document.getElementById('ham').classList.toggle('open');
-  }
-  document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{
-    document.getElementById('menu').classList.remove('open');
-    document.getElementById('ham').classList.remove('open');
-  }));
-  const obs=new IntersectionObserver(e=>e.forEach(x=>{
-    if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}
-  }),{threshold:.1});
-  document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
-</script>
+<button class="scroll-top" id="scrolltop" onclick="goTop()" aria-label="Back to top">↑</button>
 
+<!-- WA FLOAT -->
+<a href="https://wa.me/919444345102" target="_blank" class="wa-float" title="WhatsApp us">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="bn-item act"><span class="bn-icon">🏠</span><span class="bn-lbl">Home</span></a>
+  <a href="about.html" class="bn-item"><span class="bn-icon">✝</span><span class="bn-lbl">About</span></a>
+  <div class="bn-center"><a href="bible.html" class="bn-center-btn">📖</a></div>
+  <a href="events.html" class="bn-item"><span class="bn-icon">📅</span><span class="bn-lbl">Events</span></a>
+  <a href="contact.html" class="bn-item"><span class="bn-icon">✉</span><span class="bn-lbl">Contact</span></a>
+</nav>
+<button class="scroll-top" id="scrolltop" onclick="goTop()">↑</button>
+
+<!-- SLIDESHOW JS -->
 <script>
+var SLIDES=[
+  {img:'images/home/slide1.jpg',label:'Isaiah 43:4 · Elim New Jerusalem Church',h1:'Because you are <em style="color:#e8a020">precious</em><br>in my sight,',sub:'You are honoured and I love you',ref:'— Isaiah 43:4'},
+  {img:'images/home/slide2.jpg',label:'Matthew 28:19 · Elim New Jerusalem Church',h1:'Father, <em style="color:#e8a020">Son,</em><br>Holy Spirit',sub:'Go and make disciples of all nations',ref:'— Matthew 28:19'}
+];
+var _si=0,_timer;
+function renderSlide(i){
+  var s=SLIDES[i];
+  document.getElementById('slide-img').src=s.img;
+  document.getElementById('slide-label').innerHTML=s.label;
+  document.getElementById('slide-h1').innerHTML=s.h1;
+  document.getElementById('slide-sub').textContent=s.sub;
+  document.getElementById('slide-ref').textContent=s.ref;
+  document.querySelectorAll('.slide-dot').forEach(function(d,j){d.classList.toggle('on',j===i);});
+}
+function changeSlide(d){
+  clearInterval(_timer);
+  _si=(_si+d+SLIDES.length)%SLIDES.length;
+  renderSlide(_si);
+  startAuto();
+}
+function startAuto(){_timer=setInterval(function(){_si=(_si+1)%SLIDES.length;renderSlide(_si);},5000);}
 (function(){
-  var verses=[
-    {text:'"For I know the plans I have for you, declares the Lord — plans for welfare and not for evil, to give you a future and a hope."',ref:'— Jeremiah 29:11'},
-    {text:'"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways acknowledge Him, and He will make your paths straight."',ref:'— Proverbs 3:5-6'},
-    {text:'"I can do all things through Christ who strengthens me."',ref:'— Philippians 4:13'},
-    {text:'"The Lord is my shepherd; I shall not want."',ref:'— Psalm 23:1'},
-    {text:'"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."',ref:'— Joshua 1:9'},
-    {text:'"Come to me, all you who are weary and burdened, and I will give you rest."',ref:'— Matthew 11:28'},
-    {text:'"But those who hope in the Lord will renew their strength. They will soar on wings like eagles."',ref:'— Isaiah 40:31'}
-  ];
-  var d=new Date().getDay();
-  var v=verses[d];
-  var tEl=document.querySelector('.verse-text');
-  var rEl=document.querySelector('.verse-ref');
-  if(tEl&&v)tEl.textContent=v.text;
-  if(rEl&&v)rEl.textContent=v.ref;
+  var dots=document.getElementById('slide-dots');
+  SLIDES.forEach(function(_,i){
+    var d=document.createElement('div');
+    d.className='slide-dot'+(i===0?' on':'');
+    d.onclick=function(){clearInterval(_timer);_si=i;renderSlide(i);startAuto();};
+    dots.appendChild(d);
+  });
+  startAuto();
 })();
 </script>
 </body>
