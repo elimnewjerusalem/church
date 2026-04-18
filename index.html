@@ -1,597 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Home | ENJC</title>
-<meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday 5:30, 8:30, 11:30am. Night Prayer 10:30pm daily.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
-<script>
-(function(){
-  var saved=localStorage.getItem('enjc-theme')||'dark';
-  if(saved==='light')document.documentElement.setAttribute('data-theme','light');
-  window.toggleTheme=function(){
-    var c=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
-    if(c==='light')document.documentElement.setAttribute('data-theme','light');
-    else document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('enjc-theme',c);
-  };
-  window.toggleMenu=function(){
-    var m=document.getElementById('mob-menu');
-    if(m)m.classList.toggle('open');
-  };
-  window.addEventListener('scroll',function(){
-    var b=document.getElementById('st');
-    if(b)b.classList.toggle('show',window.scrollY>320);
-  },{passive:true});
-  window.goTop=function(){window.scrollTo({top:0,behavior:'smooth'});};
-})();
-</script>
-<style>
-/* ═══════════════════════════════════════════
-   RESET + TOKENS
-═══════════════════════════════════════════ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  /* Colors — dark (default) */
-  --bg:   #07090f;
-  --bg2:  #0d1119;
-  --bg3:  #131b27;
-  --bg4:  #192233;
-  --tx:   #f0ece4;
-  --tx2:  rgba(240,236,228,.65);
-  --tx3:  rgba(240,236,228,.35);
-  --bd:   rgba(255,255,255,.07);
-  --bd2:  rgba(255,255,255,.13);
-  --gd:   #e8a020;
-  --gd2:  rgba(232,160,32,.10);
-  --gdb:  rgba(232,160,32,.28);
-  --fh:   'Playfair Display',Georgia,serif;
-  --fb:   'Poppins',system-ui,sans-serif;
-  --fta:  'Noto Serif Tamil',serif;
-  --nav-h: 64px;
-  --max:  1240px;
-  --r:    10px;
-  --rl:   16px;
-}
-[data-theme="light"]{
-  --bg:   #f8f6f1;
-  --bg2:  #eeece6;
-  --bg3:  #e4e0d8;
-  --bg4:  #d9d4ca;
-  --tx:   #1c1710;
-  --tx2:  rgba(28,23,16,.62);
-  --tx3:  rgba(28,23,16,.38);
-  --bd:   rgba(28,23,16,.09);
-  --bd2:  rgba(28,23,16,.18);
-  --gd:   #9a6c0a;
-  --gd2:  rgba(154,108,10,.09);
-  --gdb:  rgba(154,108,10,.28);
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | ENJC — Elim New Jerusalem Church</title>
+  <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily.">
 
-/* ═══════════════════════════════════════════
-   BASE
-═══════════════════════════════════════════ */
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--tx);
-  font-family:var(--fb);
-  font-size:16px;
-  line-height:1.75;
-  -webkit-font-smoothing:antialiased;
-  padding-bottom:68px;
-  transition:background .25s,color .25s;
-}
-@media(min-width:901px){body{padding-bottom:0}}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
 
-h1,h2,h3,h4{font-family:var(--fh);color:var(--tx);line-height:1.2;font-weight:700}
-h1{font-size:clamp(2.2rem,5vw,3.6rem)}
-h2{font-size:clamp(1.7rem,3.5vw,2.4rem)}
-h3{font-size:clamp(1.1rem,2vw,1.4rem)}
-h4{font-size:1rem;font-family:var(--fb)}
-p{color:var(--tx2);line-height:1.85;font-size:15px}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
+  <!-- Theme applied before paint to prevent flash -->
+  <script src="js/site.js"></script>
 
-/* ═══════════════════════════════════════════
-   LAYOUT
-═══════════════════════════════════════════ */
-.container{max-width:var(--max);margin:0 auto;padding:0 32px}
-@media(max-width:600px){.container{padding:0 18px}}
-.section{padding:72px 0}
-.section-sm{padding:48px 0}
-@media(max-width:768px){.section{padding:48px 0}.section-sm{padding:32px 0}}
-.divider{height:1px;background:var(--bd);width:100%}
-
-/* ═══════════════════════════════════════════
-   NAV
-═══════════════════════════════════════════ */
-.nav{
-  position:sticky;top:0;z-index:999;
-  height:var(--nav-h);
-  background:rgba(7,9,15,.92);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--bd);
-  transition:background .25s;
-}
-[data-theme="light"] .nav{background:rgba(248,246,241,.92)}
-.nav .container{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.nav-logo-img{height:36px;width:auto;object-fit:contain}
-.nav-logo-fb{height:36px;padding:0 12px;background:var(--gd);border-radius:6px;display:none;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#07090f;letter-spacing:-.5px}
-.nav-logo-name{font-size:14px;font-weight:700;color:var(--tx);letter-spacing:.3px;line-height:1.3}
-.nav-logo-sub{font-size:9px;color:var(--tx3);letter-spacing:.5px}
-.nav-links{display:flex;gap:0;align-items:center}
-.nav-a{font-size:13px;font-weight:500;color:var(--tx2);padding:6px 13px;border-radius:6px;transition:color .15s;white-space:nowrap}
-.nav-a:hover{color:var(--tx)}
-.nav-a.act{color:var(--gd);font-weight:600}
-.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.nav-theme{width:40px;height:24px;border-radius:99px;background:var(--bd2);border:none;cursor:pointer;position:relative;display:flex;align-items:center;padding:4px;flex-shrink:0}
-.nav-theme-dot{width:16px;height:16px;border-radius:50%;background:var(--gd);transition:transform .22s}
-[data-theme="light"] .nav-theme-dot{transform:translateX(16px)}
-.nav-visit{background:var(--gd);color:#07090f;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:700;white-space:nowrap;transition:filter .15s}
-.nav-visit:hover{filter:brightness(1.09)}
-.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;flex-shrink:0}
-.nav-ham span{width:22px;height:2px;background:var(--tx2);border-radius:2px;transition:all .25s;display:block}
-.mob-menu{display:none;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--bd)}
-.mob-menu.open{display:flex}
-.mob-menu a{color:var(--tx2);font-size:14px;font-weight:500;padding:13px 20px;border-bottom:1px solid var(--bd)}
-.mob-menu a:last-child{border-bottom:none}
-.mob-menu a.act{color:var(--gd)}
-@media(max-width:900px){.nav-links,.nav-visit{display:none}.nav-ham{display:flex}}
-
-/* ═══════════════════════════════════════════
-   PAGE HERO
-═══════════════════════════════════════════ */
-.page-hero{
-  background:linear-gradient(170deg,var(--bg2) 0%,var(--bg) 100%);
-  border-bottom:1px solid var(--bd);
-  padding:64px 0 52px;
-}
-.page-tag{
-  display:flex;align-items:center;gap:10px;
-  font-size:10px;font-weight:700;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--gd);
-  margin-bottom:14px;
-}
-.page-tag::before{content:'';width:24px;height:1.5px;background:var(--gd);flex-shrink:0}
-.page-hero p{font-size:15px;color:var(--tx3);margin-top:10px;max-width:480px}
-
-/* ═══════════════════════════════════════════
-   SECTION LABELS
-═══════════════════════════════════════════ */
-.sec-tag{
-  display:flex;align-items:center;gap:10px;
-  font-size:10px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:var(--gd);
-  margin-bottom:12px;
-}
-.sec-tag::before{content:'';width:20px;height:1.5px;background:var(--gd);flex-shrink:0}
-.sec-h2{color:var(--tx);margin-bottom:10px}
-.sec-h2 em,.page-hero h1 em{color:var(--gd);font-style:italic}
-.sec-sub{font-size:14px;color:var(--tx2);max-width:580px;line-height:1.85;margin-bottom:36px}
-
-/* ═══════════════════════════════════════════
-   CARDS
-═══════════════════════════════════════════ */
-.card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);transition:border-color .2s}
-.card:hover{border-color:var(--bd2)}
-.card-gold{background:var(--gd2);border-color:var(--gdb)}
-
-/* ═══════════════════════════════════════════
-   BUTTONS
-═══════════════════════════════════════════ */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:12px 28px;border-radius:99px;
-  font-size:14px;font-weight:600;font-family:var(--fb);
-  cursor:pointer;border:none;transition:all .2s;
-  text-decoration:none;white-space:nowrap;line-height:1;
-}
-.btn-gold{background:var(--gd);color:#07090f}
-.btn-gold:hover{filter:brightness(1.08)}
-.btn-outline{background:transparent;border:1.5px solid var(--bd2);color:var(--tx2)}
-.btn-outline:hover{border-color:var(--gdb);color:var(--gd)}
-@media(max-width:480px){.btn{padding:11px 22px;font-size:13px}}
-
-/* ═══════════════════════════════════════════
-   FORM ELEMENTS
-═══════════════════════════════════════════ */
-.form-input{
-  width:100%;background:var(--bg);
-  border:1px solid var(--bd2);border-radius:var(--r);
-  padding:13px 16px;color:var(--tx);
-  font-size:14px;font-family:var(--fb);
-  outline:none;transition:border-color .2s;
-  -webkit-appearance:none;
-}
-.form-input::placeholder{color:var(--tx3)}
-.form-input:focus{border-color:var(--gdb)}
-[data-theme="light"] .form-input{background:var(--bg3)}
-textarea.form-input{resize:vertical;min-height:120px}
-
-/* ═══════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════ */
-footer{background:var(--bg2);border-top:1px solid var(--bd);padding:28px 0}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:14px;font-weight:700;color:var(--tx)}
-.footer-copy{font-size:12px;color:var(--tx3)}
-@media(max-width:600px){.footer-inner{flex-direction:column;text-align:center}}
-
-/* ═══════════════════════════════════════════
-   BOTTOM NAV
-═══════════════════════════════════════════ */
-.bnav{
-  display:none;position:fixed;
-  bottom:0;left:0;right:0;
-  height:64px;z-index:900;
-  background:rgba(7,9,15,.97);
-  border-top:1px solid rgba(232,160,32,.18);
-  align-items:stretch;
-}
-[data-theme="light"] .bnav{background:rgba(248,246,241,.97)}
-@media(max-width:900px){.bnav{display:flex!important}}
-.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;padding:6px 0 8px;transition:opacity .15s}
-.bnav-icon{font-size:19px;line-height:1}
-.bnav-lbl{font-size:9px;color:var(--tx3);letter-spacing:.2px;font-family:var(--fb)}
-.bnav-item.act .bnav-lbl{color:var(--gd)}
-.bnav-center{flex:1;display:flex;align-items:center;justify-content:center;padding-bottom:4px}
-.bnav-btn{
-  width:52px;height:52px;background:var(--gd);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:22px;color:#07090f;
-  margin-top:-20px;text-decoration:none;
-  box-shadow:0 4px 18px rgba(232,160,32,.45),0 0 0 3px var(--bg);
-  transition:transform .2s;
-}
-.bnav-btn:hover{transform:scale(1.07)}
-
-/* ═══════════════════════════════════════════
-   WA FLOAT + SCROLL TOP
-═══════════════════════════════════════════ */
-.wa-float{
-  position:fixed;bottom:80px;right:18px;
-  width:50px;height:50px;background:#25d366;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  z-index:800;box-shadow:0 4px 16px rgba(0,0,0,.4);
-  text-decoration:none;transition:transform .2s;
-}
-.wa-float:hover{transform:scale(1.09)}
-.scroll-top{
-  position:fixed;bottom:80px;right:76px;
-  width:44px;height:44px;background:var(--gd);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:18px;color:#07090f;font-weight:700;
-  cursor:pointer;border:none;
-  box-shadow:0 4px 14px rgba(0,0,0,.35);
-  opacity:0;pointer-events:none;transition:all .25s;z-index:800;
-}
-.scroll-top.show{opacity:1;pointer-events:all}
-@media(min-width:901px){
-  .wa-float{bottom:28px;right:24px}
-  .scroll-top{bottom:28px;right:84px}
-}
-
-/* ═══════════════════════════════════════════
-   BADGE / TAG PILL
-═══════════════════════════════════════════ */
-.badge{display:inline-block;font-size:10px;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:.5px;text-transform:uppercase}
-.badge-gold{background:var(--gd2);color:var(--gd);border:1px solid var(--gdb)}
-.badge-blue{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.25)}
-.badge-green{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
-
-/* ═══════════════════════════════════════════
-   GRID HELPERS
-═══════════════════════════════════════════ */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-@media(max-width:900px){.grid-3{grid-template-columns:1fr}}
-@media(max-width:768px){.grid-2{grid-template-columns:1fr;gap:20px}}
-</style>
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-<nav class="nav">
-<div class="container">
-  <a href="index.html" class="nav-logo">
-    <img src="images/logo.png" class="nav-logo-img" alt="ENJC" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div class="nav-logo-fb">ENJC</div>
-    <div>
-      <div class="nav-logo-name">ENJC</div>
-      <div class="nav-logo-sub">Elim New Jerusalem Church</div>
+
+  <!-- ══════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════ -->
+  <header>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="container">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo" aria-label="ENJC home">
+          <img
+            src="images/logo/logo.png"
+            class="nav-logo__img"
+            alt="ENJC logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+          >
+          <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
+          <div>
+            <div class="nav-logo__name">ENJC</div>
+            <div class="nav-logo__sub">Elim New Jerusalem Church</div>
+          </div>
+        </a>
+
+        <!-- Desktop links -->
+        <div class="nav-links" role="list">
+          <a href="index.html"       class="nav-link nav-link--active" role="listitem">Home</a>
+          <a href="about.html"       class="nav-link" role="listitem">About</a>
+          <a href="gallery.html"     class="nav-link" role="listitem">Gallery</a>
+          <a href="ministries.html"  class="nav-link" role="listitem">Ministries</a>
+          <a href="events.html"      class="nav-link" role="listitem">Events</a>
+          <a href="contact.html"     class="nav-link" role="listitem">Contact</a>
+          <a href="bible.html"       class="nav-link" role="listitem">Bible</a>
+        </div>
+
+        <!-- Theme toggle + Visit Us -->
+        <div class="nav-controls">
+          <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+            <div class="theme-toggle__dot"></div>
+          </button>
+          <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" rel="noopener" class="nav-visit-btn">
+            📍 Visit Us
+          </a>
+        </div>
+
+        <!-- Hamburger (mobile) -->
+        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false">
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+        </button>
+
+      </div><!-- /.container -->
+
+      <!-- Mobile dropdown -->
+      <div class="mobile-menu" id="mobile-menu" role="menu">
+        <a href="index.html"       class="mobile-menu__link is-active" role="menuitem">Home</a>
+        <a href="about.html"       class="mobile-menu__link" role="menuitem">About</a>
+        <a href="gallery.html"     class="mobile-menu__link" role="menuitem">Gallery</a>
+        <a href="ministries.html"  class="mobile-menu__link" role="menuitem">Ministries</a>
+        <a href="events.html"      class="mobile-menu__link" role="menuitem">Events</a>
+        <a href="contact.html"     class="mobile-menu__link" role="menuitem">Contact</a>
+        <a href="bible.html"       class="mobile-menu__link" role="menuitem">Bible</a>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+    <section class="hero" aria-label="Hero banner">
+
+      <!-- Desktop background image -->
+      <img
+        src="images/home/slide1.jpg"
+        alt="ENJC Sunday worship"
+        class="hero__image hero__image--desktop"
+      >
+      <!-- Mobile background image (swapped via CSS at ≤600 px) -->
+      <img
+        src="images/home/slide2.jpg"
+        alt="ENJC church gathering"
+        class="hero__image hero__image--mobile"
+      >
+
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow">Isaiah 43:4</p>
+        <h1 class="hero__title">
+          Because you are <em>precious</em> in my sight,<br>
+          You are honoured and I love you
+        </h1>
+        <p class="hero__ref">— Isaiah 43:4</p>
+        <div class="hero__actions">
+          <a href="https://wa.me/919444345102?text=Hi%2C+I+would+like+to+visit+ENJC"
+             target="_blank" rel="noopener"
+             class="btn btn--gold">
+            Join Us Today
+          </a>
+          <a href="https://www.youtube.com/@elimnewjerusalemchurch"
+             target="_blank" rel="noopener"
+             class="btn btn--ghost">
+            ▶ Watch Live
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         WORSHIP SERVICES
+    ══════════════════════════════════════════════ -->
+    <section class="section" aria-labelledby="services-heading">
+      <div class="container">
+
+        <p class="section-tag">When We Meet</p>
+        <h2 class="section-heading" id="services-heading">
+          Church Worship &amp; <em>Service Times</em>
+        </h2>
+        <div class="section-rule" aria-hidden="true"></div>
+
+        <!-- Sunday — highlighted gold card -->
+        <article class="card card--gold" style="padding: 32px; margin-bottom: 20px;">
+          <header style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <div style="width: 42px; height: 42px; background: var(--color-gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;" aria-hidden="true">📅</div>
+            <div>
+              <h3 style="font-size: 1.15rem; margin-bottom: 2px;">Sunday — ENJC Family Gathering</h3>
+              <p style="font-size: 12px; color: var(--color-text-faint);">Three services every Sunday</p>
+            </div>
+          </header>
+          <div class="grid-3">
+            <div class="service-slot">
+              <div class="service-slot__label">1st Service</div>
+              <div class="service-slot__time">5:30 AM</div>
+            </div>
+            <div class="service-slot">
+              <div class="service-slot__label">2nd Service</div>
+              <div class="service-slot__time">8:30 AM</div>
+            </div>
+            <div class="service-slot">
+              <div class="service-slot__label">3rd Service</div>
+              <div class="service-slot__time">12:00 PM</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Weekly meetings — 2-column grid -->
+        <div class="grid-2" style="margin-bottom: 20px;">
+
+          <article class="card" style="padding: 26px;">
+            <div class="activity-card__icon" aria-hidden="true">🙏</div>
+            <h3 style="font-size: 1rem; margin-bottom: 6px;">Friday Prayer Meeting</h3>
+            <p style="font-size: 13px; margin-bottom: 10px;">ENJC Family Blessing Prayer</p>
+            <div class="activity-card__time" style="font-family: var(--font-heading); font-size: 1.1rem;">11:00 AM – 1:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Family blessing prayer every Friday</p>
+          </article>
+
+          <article class="card" style="padding: 26px;">
+            <div class="activity-card__icon" aria-hidden="true">✝️</div>
+            <h3 style="font-size: 1rem; margin-bottom: 6px;">Missionary Vision Meeting</h3>
+            <p style="font-size: 13px; margin-bottom: 10px;">3rd Friday of every month</p>
+            <div class="activity-card__time" style="font-family: var(--font-heading); font-size: 1.1rem;">6:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Special gathering for ministry workers</p>
+          </article>
+
+        </div>
+
+        <!-- Ministry outreach — 3-column grid -->
+        <div class="grid-3" style="margin-bottom: 20px;">
+
+          <article class="card" style="padding: 24px;">
+            <div class="activity-card__icon" aria-hidden="true">👩</div>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Sisters' Village Ministry</h3>
+            <div class="activity-card__time">3rd Saturday</div>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Monthly village outreach for sisters</p>
+          </article>
+
+          <article class="card" style="padding: 24px;">
+            <div class="activity-card__icon" aria-hidden="true">👨</div>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Brothers' Village Ministry</h3>
+            <div class="activity-card__time">4th Saturday</div>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Monthly village outreach for brothers</p>
+          </article>
+
+          <article class="card" style="padding: 24px;">
+            <div class="activity-card__icon" aria-hidden="true">📢</div>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Gospel Ministry</h3>
+            <div class="activity-card__time">Every Sunday · 3:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Weekly gospel outreach every Sunday afternoon</p>
+          </article>
+
+        </div>
+
+        <!-- Fasting + Deliverance — 2-column grid -->
+        <div class="grid-2">
+
+          <article class="card" style="padding: 24px;">
+            <div class="activity-card__icon" aria-hidden="true">⏰</div>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Fasting Prayer</h3>
+            <div class="activity-card__time">6:00 AM – 6:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint);">All-day fasting and prayer</p>
+          </article>
+
+          <article class="card" style="padding: 24px;">
+            <div class="activity-card__icon" aria-hidden="true">🔥</div>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Deliverance Meetings</h3>
+            <div class="activity-card__time">New Moon Day · 6:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Every new moon day — prayer &amp; deliverance</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- ══════════════════════════════════════════════
+         CHURCH PROGRAMMES
+    ══════════════════════════════════════════════ -->
+    <section class="section-alt" aria-labelledby="programmes-heading">
+      <div class="container">
+
+        <p class="section-tag">More Activities</p>
+        <h2 class="section-heading" id="programmes-heading">Church <em>Programmes</em></h2>
+        <div class="section-rule" aria-hidden="true"></div>
+
+        <div class="grid-3">
+
+          <article class="card" style="padding: 28px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 14px;" aria-hidden="true">⭐</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Promise Worship</h3>
+            <div class="activity-card__time" style="margin-bottom: 6px;">1st of Every Month · 5:30 AM</div>
+            <p style="font-size: 13px; color: var(--color-text-faint);">Special worship on the first day of each month</p>
+          </article>
+
+          <article class="card" style="padding: 28px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 14px;" aria-hidden="true">📚</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Sunday School</h3>
+            <div class="activity-card__time" style="margin-bottom: 6px;">Every Sunday · 6:30 – 9:30 AM</div>
+            <p style="font-size: 13px; color: var(--color-text-faint);">Bible education for children every Sunday morning</p>
+          </article>
+
+          <article class="card" style="padding: 28px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 14px;" aria-hidden="true">🎉</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Vacation Bible School</h3>
+            <div class="activity-card__time" style="margin-bottom: 6px;">Every May · 6 Days</div>
+            <p style="font-size: 13px; color: var(--color-text-faint);">Annual VBS held once a year in May for children and youth</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- ══════════════════════════════════════════════
+         DELIVERANCE DATES 2026
+    ══════════════════════════════════════════════ -->
+    <section class="section" aria-labelledby="dates-heading">
+      <div class="container">
+
+        <p class="section-tag">2026 Schedule</p>
+        <h2 class="section-heading" id="dates-heading">
+          Deliverance Meeting <em>Dates 2026</em>
+        </h2>
+        <p style="font-size: 14px; color: var(--color-text-muted); margin: 14px 0 36px; max-width: 560px;">
+          Every New Moon Day at 6:00 PM — a powerful time of prayer, healing, and deliverance open to all.
+        </p>
+
+        <div class="grid-4">
+          <!-- Each month rendered as a date-card -->
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">January</div>
+            <div class="date-card__date">18 Jan 2026 · Sunday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">February</div>
+            <div class="date-card__date">17 Feb 2026 · Tuesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">March</div>
+            <div class="date-card__date">18 Mar 2026 · Wednesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">April</div>
+            <div class="date-card__date">17 Apr 2026 · Friday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">May</div>
+            <div class="date-card__date">16 May 2026 · Saturday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">June</div>
+            <div class="date-card__date">14 Jun 2026 · Saturday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">July</div>
+            <div class="date-card__date">14 Jul 2026 · Tuesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">August</div>
+            <div class="date-card__date">12 Aug 2026 · Wednesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">September</div>
+            <div class="date-card__date">10 Sep 2026 · Thursday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">October</div>
+            <div class="date-card__date">10 Oct 2026 · Saturday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">November</div>
+            <div class="date-card__date">08 Nov 2026 · Sunday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">December</div>
+            <div class="date-card__date">08 Dec 2026 · Tuesday</div>
+          </article>
+        </div>
+
+        <p style="margin-top: 28px; padding: 16px 22px; background: var(--color-gold-bg); border: 1px solid var(--color-gold-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--color-text-muted);">
+          🔥 <strong style="color: var(--color-text);">All are welcome</strong> — Bring your family and friends.
+          God's power to set people free is for everyone.
+        </p>
+
+      </div>
+    </section>
+
+  </main><!-- /main -->
+
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__logo">ENJC — Elim New Jerusalem Church</div>
+        <div class="site-footer__copy">© 2026 · Tondiarpet, Chennai · +91 94443 45102</div>
+      </div>
     </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════════
+       FLOATING ACTIONS
+  ══════════════════════════════════════════════ -->
+  <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
+     class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
   </a>
-  <nav class="nav-links"><a href="index.html" class="nav-a act">Home</a><a href="about.html" class="nav-a">About</a><a href="gallery.html" class="nav-a">Gallery</a><a href="ministries.html" class="nav-a">Ministries</a><a href="events.html" class="nav-a">Events</a><a href="contact.html" class="nav-a">Contact</a><a href="bible.html" class="nav-a">Bible</a></nav>
-  <div class="nav-right">
-    <button class="nav-theme" onclick="toggleTheme()" aria-label="Toggle theme">
-      <div class="nav-theme-dot"></div>
-    </button>
-    <a href="https://maps.app.goo.gl/QUGpNoohYrcihMkR7" target="_blank" class="nav-visit">📍 Visit Us</a>
-  </div>
-  <button class="nav-ham" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</div>
-<div class="mob-menu" id="mob-menu"><a href="index.html" class="act">Home</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="contact.html">Contact</a><a href="bible.html">Bible</a></div>
-</nav>
 
-<!-- HERO -->
-<section style="position:relative;width:100%;height:100svh;min-height:520px;overflow:hidden;display:flex;align-items:center;justify-content:center">
-  <!-- Desktop image -->
-  <img src="images/home/slide1.jpg" alt="ENJC Church" class="hero-desk"
-    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0">
-  <!-- Mobile image -->
-  <img src="images/home/slide2.jpg" alt="ENJC Church" class="hero-mob"
-    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:none">
-  <!-- Dark overlay -->
-  <div style="position:absolute;inset:0;background:rgba(0,0,0,.52);z-index:1"></div>
-  <!-- Text -->
-  <div style="position:relative;z-index:2;text-align:center;padding:0 28px;max-width:720px">
-    <p style="font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(232,160,32,.85);margin-bottom:18px">Isaiah 43:4</p>
-    <h1 style="font-family:var(--fh);font-size:clamp(1.9rem,5vw,3.4rem);font-weight:700;color:#fff;line-height:1.25;margin-bottom:16px">
-      Because you are <em style="color:#e8a020">precious</em> in my sight,<br>
-      You are honoured and I love you
-    </h1>
-    <p style="font-size:14px;color:rgba(255,255,255,.6);font-style:italic;margin-bottom:36px">— Isaiah 43:4</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="https://wa.me/919444345102?text=Hi%2C+I+would+like+to+visit+ENJC" target="_blank" class="btn btn-gold">Join Us Today</a>
-      <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.8)">▶ Watch Live</a>
+  <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
+
+
+  <!-- ══════════════════════════════════════════════
+       MOBILE BOTTOM NAV
+  ══════════════════════════════════════════════ -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"   class="bottom-nav__item is-active">
+      <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="about.html"   class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">✝</span>
+      <span class="bottom-nav__label">About</span>
+    </a>
+    <div class="bottom-nav__center">
+      <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
     </div>
-  </div>
-</section>
-<style>
-@media(max-width:600px){.hero-desk{display:none!important}.hero-mob{display:block!important}}
-</style>
+    <a href="events.html"  class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">📅</span>
+      <span class="bottom-nav__label">Events</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">✉</span>
+      <span class="bottom-nav__label">Contact</span>
+    </a>
+  </nav>
 
-<!-- WORSHIP SERVICES -->
-<div class="section">
-  <div class="container">
-    <div class="sec-tag">When We Meet</div>
-    <h2 class="sec-h2">Church Worship &amp; <em>Service Times</em></h2>
-    <div style="width:44px;height:2px;background:var(--gd);border-radius:2px;margin:14px 0 44px"></div>
-
-    <!-- Sunday -->
-    <div class="card card-gold" style="padding:32px;margin-bottom:20px">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-        <div style="width:42px;height:42px;background:var(--gd);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📅</div>
-        <div>
-          <h3 style="font-size:1.15rem;margin-bottom:2px">Sunday — ENJC Family Gathering</h3>
-          <p style="font-size:12px;color:var(--tx3)">Three services every Sunday</p>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:16px;text-align:center">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">1st Service</div>
-          <div style="font-family:var(--fh);font-size:1.5rem;font-weight:700;color:#fff">5:30 AM</div>
-        </div>
-        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:16px;text-align:center">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">2nd Service</div>
-          <div style="font-family:var(--fh);font-size:1.5rem;font-weight:700;color:#fff">8:30 AM</div>
-        </div>
-        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:16px;text-align:center">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">3rd Service</div>
-          <div style="font-family:var(--fh);font-size:1.5rem;font-weight:700;color:#fff">12:00 PM</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Other weekly services -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
-
-      <div class="card" style="padding:26px">
-        <div style="font-size:20px;margin-bottom:12px">🙏</div>
-        <h3 style="font-size:1rem;margin-bottom:6px">Friday Prayer Meeting</h3>
-        <p style="font-size:13px;margin-bottom:10px">ENJC Family Blessing Prayer</p>
-        <div style="font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--gd)">11:00 AM – 1:00 PM</div>
-        <p style="font-size:12px;color:var(--tx3);margin-top:6px">Family blessing prayer every Friday</p>
-      </div>
-
-      <div class="card" style="padding:26px">
-        <div style="font-size:20px;margin-bottom:12px">✝️</div>
-        <h3 style="font-size:1rem;margin-bottom:6px">Missionary Vision Meeting</h3>
-        <p style="font-size:13px;margin-bottom:10px">3rd Friday of every month</p>
-        <div style="font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--gd)">6:00 PM</div>
-        <p style="font-size:12px;color:var(--tx3);margin-top:6px">Special gathering for ministry workers</p>
-      </div>
-
-    </div>
-
-    <!-- Ministry activities -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
-
-      <div class="card" style="padding:24px">
-        <div style="font-size:20px;margin-bottom:10px">👩</div>
-        <h3 style="font-size:.95rem;margin-bottom:6px">Sisters' Village Ministry</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">3rd Saturday</div>
-        <p style="font-size:12px;color:var(--tx3)">Monthly village outreach for sisters</p>
-      </div>
-
-      <div class="card" style="padding:24px">
-        <div style="font-size:20px;margin-bottom:10px">👨</div>
-        <h3 style="font-size:.95rem;margin-bottom:6px">Brothers' Village Ministry</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">4th Saturday</div>
-        <p style="font-size:12px;color:var(--tx3)">Monthly village outreach for brothers</p>
-      </div>
-
-      <div class="card" style="padding:24px">
-        <div style="font-size:20px;margin-bottom:10px">📢</div>
-        <h3 style="font-size:.95rem;margin-bottom:6px">Gospel Ministry</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">Every Sunday · 3:00 PM</div>
-        <p style="font-size:12px;color:var(--tx3)">Weekly gospel outreach every Sunday afternoon</p>
-      </div>
-
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-
-      <div class="card" style="padding:24px">
-        <div style="font-size:20px;margin-bottom:10px">⏰</div>
-        <h3 style="font-size:.95rem;margin-bottom:6px">Fasting Prayer</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">6:00 AM – 6:00 PM</div>
-        <p style="font-size:12px;color:var(--tx3)">All-day fasting and prayer</p>
-      </div>
-
-      <div class="card" style="padding:24px">
-        <div style="font-size:20px;margin-bottom:10px">🔥</div>
-        <h3 style="font-size:.95rem;margin-bottom:6px">Deliverance Meetings</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">New Moon Day · 6:00 PM</div>
-        <p style="font-size:12px;color:var(--tx3)">Every new moon day — prayer &amp; deliverance</p>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ADDITIONAL ACTIVITIES -->
-<div class="section" style="background:var(--bg2)">
-  <div class="container">
-    <div class="sec-tag">More Activities</div>
-    <h2 class="sec-h2">Church <em>Programmes</em></h2>
-    <div style="width:44px;height:2px;background:var(--gd);border-radius:2px;margin:14px 0 40px"></div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
-
-      <div class="card" style="padding:28px;text-align:center">
-        <div style="font-size:28px;margin-bottom:14px">⭐</div>
-        <h3 style="font-size:1rem;margin-bottom:8px">Promise Worship</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:700;margin-bottom:6px">1st of Every Month</div>
-        <p style="font-size:13px;color:var(--tx3)">Special worship service on the first day of each month at 5:30 AM</p>
-      </div>
-
-      <div class="card" style="padding:28px;text-align:center">
-        <div style="font-size:28px;margin-bottom:14px">📚</div>
-        <h3 style="font-size:1rem;margin-bottom:8px">Sunday School</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:700;margin-bottom:6px">Every Sunday · 6:30 – 9:30 AM</div>
-        <p style="font-size:13px;color:var(--tx3)">Bible education for children every Sunday morning</p>
-      </div>
-
-      <div class="card" style="padding:28px;text-align:center">
-        <div style="font-size:28px;margin-bottom:14px">🎉</div>
-        <h3 style="font-size:1rem;margin-bottom:8px">Vacation Bible School</h3>
-        <div style="font-size:12px;color:var(--gd);font-weight:700;margin-bottom:6px">Every May · 6 Days</div>
-        <p style="font-size:13px;color:var(--tx3)">Annual VBS held once a year in May for children and youth</p>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- DELIVERANCE DATES 2026 -->
-<div class="section">
-  <div class="container">
-    <div class="sec-tag">2026 Schedule</div>
-    <h2 class="sec-h2">Deliverance Meeting <em>Dates 2026</em></h2>
-    <p style="font-size:14px;color:var(--tx2);margin:14px 0 36px;max-width:560px">Every New Moon Day at 6:00 PM — a powerful time of prayer, healing, and deliverance open to all.</p>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    January</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">18 Jan 2026 · Sunday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    February</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">17 Feb 2026 · Tuesday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    March</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">18 Mar 2026 · Wednesday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    April</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">17 Apr 2026 · Friday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    May</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">16 May 2026 · Saturday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    June</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">14 June 2026 · Saturday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    July</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">14 Jul 2026 · Tuesday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    August</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">12 Aug 2026 · Wednesday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    September</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">10 Sep 2026 · Thursday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    October</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">10 Oct 2026 · Saturday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    November</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">08 Nov 2026 · Sunday</div>
-</div>
-<div class="card" style="padding:18px;text-align:center">
-  <div
-    style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">
-    December</div>
-  <div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">08 Dec 2026 · Tuesday</div>
-</div>
-    </div>
-    <div style="margin-top:28px;padding:16px 22px;background:var(--gd2);border:1px solid var(--gdb);border-radius:var(--r);font-size:13px;color:var(--tx2)">
-      🔥 <strong style="color:var(--tx)">All are welcome</strong> — Bring your family and friends. God&#39;s power to set people free is for everyone.
-    </div>
-  </div>
-</div>
-
-<style>
-@media(max-width:900px){
-  div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr 1fr!important}
-  div[style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr!important}
-  div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
-}
-@media(max-width:480px){
-  div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}
-  div[style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr!important}
-}
-</style>
-
-<footer>
-<div class="container">
-  <div class="footer-inner">
-    <div class="footer-logo">ENJC — Elim New Jerusalem Church</div>
-    <div class="footer-copy">© 2026 · Tondiarpet, Chennai · +91 94443 45102</div>
-  </div>
-</div>
-</footer><a href="https://wa.me/919444345102" target="_blank" class="wa-float" title="WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a><nav class="bnav">
-  <a href="index.html" class="bnav-item act"><span class="bnav-icon">🏠</span><span class="bnav-lbl">Home</span></a>
-  <a href="about.html" class="bnav-item"><span class="bnav-icon">✝</span><span class="bnav-lbl">About</span></a>
-  <div class="bnav-center"><a href="bible.html" class="bnav-btn">📖</a></div>
-  <a href="events.html" class="bnav-item"><span class="bnav-icon">📅</span><span class="bnav-lbl">Events</span></a>
-  <a href="contact.html" class="bnav-item"><span class="bnav-icon">✉</span><span class="bnav-lbl">Contact</span></a>
-</nav><button class="scroll-top" id="st" onclick="goTop()" aria-label="Back to top">↑</button>
-</body></html>
+</body>
+</html>
