@@ -6,16 +6,24 @@
 <title>பரிசுத்த வேதாகமம் | ENJC</title>
 <meta name="description" content="Tamil & English Bible — 66 books, Audio, Image, Bookmark | ENJC Tondiarpet Chennai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE" defer></script>
 <style>
+  /* ── FONT SYSTEM: Playfair Display + Poppins ── */
+  body,*:not(.ta-font):not([class*="ta-"]):not(.votd-ta):not(.votd-taref){
+    font-family:'Poppins',system-ui,sans-serif;
+  }
+  h1,h2,h3,.hero h1,.panel-title,.sec-head,.feat-lbl{
+    font-family:'Playfair Display',Georgia,serif!important;
+  }
+
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#07090f;--bg2:#0c1018;--bg3:#111926;
   --gd:#e8a020;--gd2:#f5bf50;--gdm:rgba(232,160,32,.12);--gdb:rgba(232,160,32,.28);
   --tx:#dde4f0;--tx2:rgba(221,228,240,.6);--tx3:rgba(221,228,240,.3);
   --bd:rgba(255,255,255,.06);--bd2:rgba(255,255,255,.14);
-  --tamil:'Noto Serif Tamil',serif;--serif:'Cormorant Garamond',serif;--sans:'DM Sans',sans-serif;
+  --tamil:'Noto Serif Tamil',serif;--serif:'Playfair Display',Georgia,serif;--sans:'Poppins',system-ui,sans-serif;
   --r:10px;--rl:8px;--rx:14px;
 }
 body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100vh;overflow-x:hidden}
@@ -285,14 +293,14 @@ canvas#igcv{max-width:100%;height:auto;display:block}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* BOTTOM NAV */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,.97);border-top:1px solid rgba(232,160,32,.2);padding:6px 0 10px;z-index:200}
-@media(max-width:768px){.bottom-nav{display:flex}}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:4px}
-.bn-icon{font-size:18px;line-height:1}
-.bn-lbl{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.2px}
-.bn-item.act .bn-lbl{color:var(--gd)}
-.bn-cross{flex:1;display:flex;justify-content:center}
-.bn-cross-btn{width:48px;height:48px;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--bg);margin-top:-18px;text-decoration:none;box-shadow:0 4px 14px rgba(232,160,32,.4)}
+
+@media(max-width:768px){}
+
+
+
+.bn-item.act 
+
+
 
 /* WA FLOAT */
 .wa-float{position:fixed;bottom:70px;right:16px;width:46px;height:46px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:300;box-shadow:0 4px 12px rgba(0,0,0,.4);text-decoration:none}
@@ -304,7 +312,49 @@ footer{background:var(--bg2);border-top:1px solid var(--bd);padding:24px;text-al
 footer a{color:var(--tx3);text-decoration:none}
 footer a:hover{color:var(--gd)}
 
-@media(max-width:768px){body{padding-bottom:68px}}
+
+
+/* ══ BOTTOM NAV ══════════════════════════════════════ */
+.bottom-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(7,9,15,.97);
+  border-top:1px solid rgba(232,160,32,.25);
+  height:62px;
+  z-index:9999;
+  align-items:stretch;
+  padding:0;
+}
+@media(max-width:900px){.bottom-nav{display:flex!important}}
+.bn-item{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:3px;text-decoration:none;
+  padding:6px 0 8px;
+  color:rgba(255,255,255,.4);
+}
+.bn-item.act{color:#e8a020}
+.bn-icon{font-size:20px;line-height:1;display:block}
+.bn-lbl{font-size:9px;letter-spacing:.2px;display:block}
+.bn-center{
+  flex:1;display:flex;
+  align-items:center;justify-content:center;
+  padding-bottom:4px;
+}
+.bn-center-btn{
+  width:52px;height:52px;
+  background:#e8a020;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+  color:#07090f;
+  text-decoration:none;
+  margin-top:-20px;
+  box-shadow:0 4px 16px rgba(232,160,32,.5),0 0 0 3px rgba(7,9,15,.97);
+  flex-shrink:0;
+}
+@media(max-width:900px){body{padding-bottom:70px!important}}
+
 </style>
 </head>
 <body>
@@ -512,11 +562,21 @@ footer a:hover{color:var(--gd)}
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <a href="index.html" class="bn-item"><span class="bn-icon">🏠</span><span class="bn-lbl">Home</span></a>
-  <a href="about.html" class="bn-item"><span class="bn-icon">✝</span><span class="bn-lbl">About</span></a>
-  <div class="bn-cross"><a href="bible.html" class="bn-cross-btn">📖</a></div>
-  <a href="events.html" class="bn-item"><span class="bn-icon">📅</span><span class="bn-lbl">Events</span></a>
-  <a href="contact.html" class="bn-item"><span class="bn-icon">✉</span><span class="bn-lbl">Contact</span></a>
+  <a href="index.html" class="bn-item">
+    <span class="bn-icon">🏠</span><span class="bn-lbl">Home</span>
+  </a>
+  <a href="about.html" class="bn-item">
+    <span class="bn-icon">✝</span><span class="bn-lbl">About</span>
+  </a>
+  <div class="bn-center">
+    <a href="bible.html" class="bn-center-btn" title="Bible">📖</a>
+  </div>
+  <a href="events.html" class="bn-item">
+    <span class="bn-icon">📅</span><span class="bn-lbl">Events</span>
+  </a>
+  <a href="contact.html" class="bn-item">
+    <span class="bn-icon">✉</span><span class="bn-lbl">Contact</span>
+  </a>
 </nav>
 
 <!-- WA FLOAT -->
