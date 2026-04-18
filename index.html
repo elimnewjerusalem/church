@@ -318,113 +318,194 @@ footer{background:var(--bg2);border-top:1px solid var(--bd);padding:28px 0}
 <div class="mob-menu" id="mob-menu"><a href="index.html" class="act">Home</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="contact.html">Contact</a><a href="bible.html">Bible</a></div>
 </nav>
 
-<!-- HERO SLIDESHOW -->
-<section id="hero" style="position:relative;width:100%;height:100svh;min-height:520px;overflow:hidden;display:flex;align-items:center;justify-content:center">
-  <img id="slide-img" src="images/home/slide1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:opacity .6s">
-  <div style="position:absolute;inset:0;background:rgba(0,0,0,.48);z-index:1"></div>
-  <div style="position:relative;z-index:2;text-align:center;padding:0 24px;max-width:860px;width:100%">
-    <div id="slide-tag" style="display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(232,160,32,.85);margin-bottom:20px">
-      <span style="width:24px;height:1px;background:currentColor;display:inline-block"></span>
-      Isaiah 43:4 · Elim New Jerusalem Church
-      <span style="width:24px;height:1px;background:currentColor;display:inline-block"></span>
-    </div>
-    <h1 id="slide-h1" style="font-size:clamp(2rem,5.5vw,3.6rem);color:#fff;line-height:1.2;margin-bottom:12px;font-weight:800">
-      Because you are <em style="color:#e8a020">precious</em><br>in my sight,
+<!-- HERO -->
+<section style="position:relative;width:100%;height:100svh;min-height:520px;overflow:hidden;display:flex;align-items:center;justify-content:center">
+  <!-- Desktop image -->
+  <img src="images/home/slide1.jpg" alt="ENJC Church" class="hero-desk"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0">
+  <!-- Mobile image -->
+  <img src="images/home/slide2.jpg" alt="ENJC Church" class="hero-mob"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:none">
+  <!-- Dark overlay -->
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,.52);z-index:1"></div>
+  <!-- Text -->
+  <div style="position:relative;z-index:2;text-align:center;padding:0 28px;max-width:720px">
+    <p style="font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(232,160,32,.85);margin-bottom:18px">Isaiah 43:4</p>
+    <h1 style="font-family:var(--fh);font-size:clamp(1.9rem,5vw,3.4rem);font-weight:700;color:#fff;line-height:1.25;margin-bottom:16px">
+      Because you are <em style="color:#e8a020">precious</em> in my sight,<br>
+      You are honoured and I love you
     </h1>
-    <p id="slide-sub" style="font-size:15px;color:rgba(255,255,255,.65);margin-bottom:6px">You are honoured and I love you</p>
-    <p id="slide-ref" style="font-size:13px;color:rgba(232,160,32,.75);font-style:italic;margin-bottom:36px">— Isaiah 43:4</p>
+    <p style="font-size:14px;color:rgba(255,255,255,.6);font-style:italic;margin-bottom:36px">— Isaiah 43:4</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <a href="https://wa.me/919444345102?text=Hi%2C+I+would+like+to+visit+ENJC" target="_blank" class="btn btn-gold">Join Us Today</a>
       <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.8)">▶ Watch Live</a>
     </div>
   </div>
-  <button onclick="changeSlide(-1)" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='rgba(232,160,32,.8)'" onmouseout="this.style.background='rgba(0,0,0,.38)'">&#8249;</button>
-  <button onclick="changeSlide(1)" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='rgba(232,160,32,.8)'" onmouseout="this.style.background='rgba(0,0,0,.38)'">&#8250;</button>
-  <div id="dots" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3"></div>
 </section>
+<style>
+@media(max-width:600px){.hero-desk{display:none!important}.hero-mob{display:block!important}}
+</style>
 
-<!-- VOTD -->
-<div style="background:var(--bg2);border-bottom:1px solid var(--bd)">
-  <div class="container" style="padding-top:36px;padding-bottom:36px">
-    <div style="max-width:780px;margin:0 auto;display:flex;gap:24px;align-items:flex-start">
-      <div style="width:3px;background:var(--gd);border-radius:99px;flex-shrink:0;align-self:stretch;min-height:60px"></div>
-      <div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gd);margin-bottom:12px">★ Verse of the Week</div>
-        <p style="font-family:var(--fta);font-size:clamp(14px,2vw,16px);line-height:2;color:var(--tx);font-style:italic;margin-bottom:8px">
-          &#8220;கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்; கழுகுகளைப்போல சிறகடித்து ஏறுவார்கள்; அவர்கள் ஓடினாலும் இளைப்படையார்கள்.&#8221;
-        </p>
-        <p style="font-size:13px;color:var(--tx3);font-style:italic;margin-bottom:6px">
-          &#8220;But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary.&#8221;
-        </p>
-        <div style="font-size:11px;color:var(--gd);font-weight:700">— Isaiah 40:31 / ஏசாயா 40:31</div>
+<!-- WORSHIP SERVICES -->
+<div class="section">
+  <div class="container">
+    <div class="sec-tag">When We Meet</div>
+    <h2 class="sec-h2">Church Worship &amp; <em>Service Times</em></h2>
+    <div style="width:44px;height:2px;background:var(--gd);border-radius:2px;margin:14px 0 44px"></div>
+
+    <!-- Sunday -->
+    <div class="card card-gold" style="padding:32px;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+        <div style="width:42px;height:42px;background:var(--gd);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📅</div>
+        <div>
+          <h3 style="font-size:1.15rem;margin-bottom:2px">Sunday — ENJC Family Gathering</h3>
+          <p style="font-size:12px;color:var(--tx3)">Three services every Sunday</p>
+        </div>
       </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">1st Service</div>
+          <div style="font-family:var(--fh);font-size:1.5rem;font-weight:700;color:#fff">5:30 AM</div>
+        </div>
+        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">2nd Service</div>
+          <div style="font-family:var(--fh);font-size:1.5rem;font-weight:700;color:#fff">8:30 AM</div>
+        </div>
+        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">3rd Service</div>
+          <div style="font-family:var(--fh);font-size:1.5rem;font-weight:700;color:#fff">12:00 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other weekly services -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+
+      <div class="card" style="padding:26px">
+        <div style="font-size:20px;margin-bottom:12px">🙏</div>
+        <h3 style="font-size:1rem;margin-bottom:6px">Friday Prayer Meeting</h3>
+        <p style="font-size:13px;margin-bottom:10px">ENJC Family Blessing Prayer</p>
+        <div style="font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--gd)">11:00 AM – 1:00 PM</div>
+        <p style="font-size:12px;color:var(--tx3);margin-top:6px">Family blessing prayer every Friday</p>
+      </div>
+
+      <div class="card" style="padding:26px">
+        <div style="font-size:20px;margin-bottom:12px">✝️</div>
+        <h3 style="font-size:1rem;margin-bottom:6px">Missionary Vision Meeting</h3>
+        <p style="font-size:13px;margin-bottom:10px">3rd Friday of every month</p>
+        <div style="font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--gd)">6:00 PM</div>
+        <p style="font-size:12px;color:var(--tx3);margin-top:6px">Special gathering for ministry workers</p>
+      </div>
+
+    </div>
+
+    <!-- Ministry activities -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
+
+      <div class="card" style="padding:24px">
+        <div style="font-size:20px;margin-bottom:10px">👩</div>
+        <h3 style="font-size:.95rem;margin-bottom:6px">Sisters' Village Ministry</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">3rd Saturday</div>
+        <p style="font-size:12px;color:var(--tx3)">Monthly village outreach for sisters</p>
+      </div>
+
+      <div class="card" style="padding:24px">
+        <div style="font-size:20px;margin-bottom:10px">👨</div>
+        <h3 style="font-size:.95rem;margin-bottom:6px">Brothers' Village Ministry</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">4th Saturday</div>
+        <p style="font-size:12px;color:var(--tx3)">Monthly village outreach for brothers</p>
+      </div>
+
+      <div class="card" style="padding:24px">
+        <div style="font-size:20px;margin-bottom:10px">📢</div>
+        <h3 style="font-size:.95rem;margin-bottom:6px">Gospel Ministry</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">Every Sunday · 3:00 PM</div>
+        <p style="font-size:12px;color:var(--tx3)">Weekly gospel outreach every Sunday afternoon</p>
+      </div>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+      <div class="card" style="padding:24px">
+        <div style="font-size:20px;margin-bottom:10px">⏰</div>
+        <h3 style="font-size:.95rem;margin-bottom:6px">Fasting Prayer</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">6:00 AM – 6:00 PM</div>
+        <p style="font-size:12px;color:var(--tx3)">All-day fasting and prayer</p>
+      </div>
+
+      <div class="card" style="padding:24px">
+        <div style="font-size:20px;margin-bottom:10px">🔥</div>
+        <h3 style="font-size:.95rem;margin-bottom:6px">Deliverance Meetings</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:600;margin-bottom:4px">New Moon Day · 6:00 PM</div>
+        <p style="font-size:12px;color:var(--tx3)">Every new moon day — prayer &amp; deliverance</p>
+      </div>
+
     </div>
   </div>
 </div>
 
-<!-- SERVICE TIMINGS -->
-<div class="section">
+<div class="divider"></div>
+
+<!-- ADDITIONAL ACTIVITIES -->
+<div class="section" style="background:var(--bg2)">
   <div class="container">
-    <div class="sec-tag">When We Meet</div>
-    <h2 class="sec-h2">Service <em>Timings</em></h2>
-    <div style="width:44px;height:2px;background:var(--gd);margin:14px 0 40px;border-radius:2px"></div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div class="sec-tag">More Activities</div>
+    <h2 class="sec-h2">Church <em>Programmes</em></h2>
+    <div style="width:44px;height:2px;background:var(--gd);border-radius:2px;margin:14px 0 40px"></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
 
-      <div class="card card-gold" style="padding:28px;text-align:center">
-        <div class="badge badge-gold" style="margin-bottom:16px">Main Services</div>
-        <h3 style="font-size:1.2rem;margin-bottom:12px">Sunday</h3>
-        <div style="font-size:13px;color:var(--tx2);line-height:2.1">
-          05:30am – 07:30am<br>08:30am – 10:30am<br>11:30am – 01:30pm
-        </div>
+      <div class="card" style="padding:28px;text-align:center">
+        <div style="font-size:28px;margin-bottom:14px">⭐</div>
+        <h3 style="font-size:1rem;margin-bottom:8px">Promise Worship</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:700;margin-bottom:6px">1st of Every Month</div>
+        <p style="font-size:13px;color:var(--tx3)">Special worship service on the first day of each month at 5:30 AM</p>
       </div>
 
       <div class="card" style="padding:28px;text-align:center">
-        <div style="height:34px"></div>
-        <h3 style="font-size:1.2rem;margin-bottom:12px">Friday</h3>
-        <div style="font-size:13px;color:var(--tx2)">11:00am – 01:30pm</div>
+        <div style="font-size:28px;margin-bottom:14px">📚</div>
+        <h3 style="font-size:1rem;margin-bottom:8px">Sunday School</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:700;margin-bottom:6px">Every Sunday · 6:30 – 9:30 AM</div>
+        <p style="font-size:13px;color:var(--tx3)">Bible education for children every Sunday morning</p>
       </div>
 
       <div class="card" style="padding:28px;text-align:center">
-        <div style="height:34px"></div>
-        <h3 style="font-size:1.2rem;margin-bottom:12px">Saturday</h3>
-        <div style="font-size:13px;color:var(--tx2)">06:00pm – 07:00pm</div>
-      </div>
-
-      <div class="card" style="padding:28px;text-align:center">
-        <div style="height:34px"></div>
-        <h3 style="font-size:1.2rem;margin-bottom:12px">2nd Saturday</h3>
-        <div style="font-size:13px;color:var(--tx2)">06:00am – 06:00pm<br><span style="font-size:11px;color:var(--tx3)">(All Day Prayer)</span></div>
-      </div>
-
-      <div class="card card-gold" style="padding:28px;text-align:center">
-        <div style="height:34px"></div>
-        <h3 style="font-size:1.2rem;color:var(--gd);margin-bottom:12px">Night Prayer</h3>
-        <div style="font-size:13px;color:var(--tx2)">10:30pm – 11:00pm</div>
-        <div class="badge badge-green" style="margin-top:12px">Daily</div>
-      </div>
-
-      <div class="card" style="padding:28px;text-align:center">
-        <div style="height:34px"></div>
-        <h3 style="font-size:1.2rem;margin-bottom:12px">Deliverance</h3>
-        <div style="font-size:13px;color:var(--tx2)">06:00pm – 08:30pm<br><span style="font-size:11px;color:var(--tx3)">(Weekly)</span></div>
+        <div style="font-size:28px;margin-bottom:14px">🎉</div>
+        <h3 style="font-size:1rem;margin-bottom:8px">Vacation Bible School</h3>
+        <div style="font-size:12px;color:var(--gd);font-weight:700;margin-bottom:6px">Every May · 6 Days</div>
+        <p style="font-size:13px;color:var(--tx3)">Annual VBS held once a year in May for children and youth</p>
       </div>
 
     </div>
+  </div>
+</div>
 
-    <div style="text-align:center;margin-top:36px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank" class="btn btn-gold">▶ YouTube Live</a>
-      <a href="contact.html" class="btn btn-outline">Get Directions →</a>
+<div class="divider"></div>
+
+<!-- DELIVERANCE DATES 2026 -->
+<div class="section">
+  <div class="container">
+    <div class="sec-tag">2026 Schedule</div>
+    <h2 class="sec-h2">Deliverance Meeting <em>Dates 2026</em></h2>
+    <p style="font-size:14px;color:var(--tx2);margin:14px 0 36px;max-width:560px">Every New Moon Day at 6:00 PM — a powerful time of prayer, healing, and deliverance open to all.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+<div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">January</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">18 Jan 2026 · Sunday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">February</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">17 Feb 2026 · Tuesday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">March</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">18 Mar 2026 · Wednesday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">April</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">17 Apr 2026 · Friday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">May</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">16 May 2026 · Saturday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">July</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">14 Jul 2026 · Tuesday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">August</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">12 Aug 2026 · Wednesday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">September</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">10 Sep 2026 · Thursday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">October</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">10 Oct 2026 · Saturday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">November</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">08 Nov 2026 · Sunday</div></div><div class="card" style="padding:18px;text-align:center"><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gd);margin-bottom:8px">December</div><div style="font-family:var(--fh);font-size:1rem;font-weight:600;color:var(--tx)">08 Dec 2026 · Tuesday</div></div>
+    </div>
+    <div style="margin-top:28px;padding:16px 22px;background:var(--gd2);border:1px solid var(--gdb);border-radius:var(--r);font-size:13px;color:var(--tx2)">
+      🔥 <strong style="color:var(--tx)">All are welcome</strong> — Bring your family and friends. God&#39;s power to set people free is for everyone.
     </div>
   </div>
 </div>
 
 <style>
 @media(max-width:900px){
-  #hero .container{padding:0 16px}
   div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr 1fr!important}
+  div[style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr!important}
+  div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
 }
 @media(max-width:480px){
   div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}
+  div[style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr!important}
 }
 </style>
 
@@ -442,39 +523,4 @@ footer{background:var(--bg2);border-top:1px solid var(--bd);padding:28px 0}
   <a href="events.html" class="bnav-item"><span class="bnav-icon">📅</span><span class="bnav-lbl">Events</span></a>
   <a href="contact.html" class="bnav-item"><span class="bnav-icon">✉</span><span class="bnav-lbl">Contact</span></a>
 </nav><button class="scroll-top" id="st" onclick="goTop()" aria-label="Back to top">↑</button>
-
-<script>
-var SLIDES=[
-  {img:'images/home/slide1.jpg',tag:'Isaiah 43:4 · Elim New Jerusalem Church',h1:'Because you are <em style="color:#e8a020">precious</em><br>in my sight,',sub:'You are honoured and I love you',ref:'— Isaiah 43:4'},
-  {img:'images/home/slide2.jpg',tag:'Matthew 28:19 · Elim New Jerusalem Church',h1:'Father, <em style="color:#e8a020">Son,</em><br>Holy Spirit',sub:'Go and make disciples of all nations',ref:'— Matthew 28:19'}
-];
-var si=0,timer;
-function renderSlide(i){
-  var s=SLIDES[i];
-  var img=document.getElementById('slide-img');
-  img.style.opacity='0';
-  setTimeout(function(){img.src=s.img;img.style.opacity='1';},300);
-  document.getElementById('slide-tag').childNodes[2].textContent=s.tag;
-  document.getElementById('slide-h1').innerHTML=s.h1;
-  document.getElementById('slide-sub').textContent=s.sub;
-  document.getElementById('slide-ref').textContent=s.ref;
-  document.querySelectorAll('.sd').forEach(function(d,j){
-    d.style.background=j===i?'#e8a020':'rgba(255,255,255,.35)';
-    d.style.transform=j===i?'scale(1.2)':'scale(1)';
-  });
-}
-function changeSlide(d){clearInterval(timer);si=(si+d+SLIDES.length)%SLIDES.length;renderSlide(si);startAuto();}
-function startAuto(){timer=setInterval(function(){si=(si+1)%SLIDES.length;renderSlide(si);},5500);}
-(function(){
-  var c=document.getElementById('dots');
-  SLIDES.forEach(function(_,i){
-    var d=document.createElement('div');
-    d.className='sd';
-    d.style.cssText='width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .25s;background:'+(i===0?'#e8a020':'rgba(255,255,255,.35)');
-    d.onclick=function(){clearInterval(timer);si=i;renderSlide(i);startAuto();};
-    c.appendChild(d);
-  });
-  startAuto();
-})();
-</script>
 </body></html>
