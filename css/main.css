@@ -849,12 +849,12 @@ body,*:not(.ta-font):not([class*="ta-"]):not(.votd-ta):not(.votd-taref){
 @media(max-width:768px){.nav-links,.nav-cta{display:none}.ham{display:flex}}
 
 /* HERO */
-.hero{background:var(--bg2);padding:36px 24px 28px;text-align:center;border-bottom:1px solid var(--bd)}
+.bible-hero{background:var(--bg2);padding:36px 24px 28px;text-align:center;border-bottom:1px solid var(--bd)}
 .hero-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gd);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px}
 .hero-label::before,.hero-label::after{content:'';width:24px;height:1px;background:var(--gd)}
-.hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;color:var(--tx);margin-bottom:8px}
-.hero h1 em{color:var(--gd);font-style:italic}
-.hero p{color:var(--tx3);font-size:12px;letter-spacing:.3px}
+.bible-hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;color:var(--tx);margin-bottom:8px}
+.bible-hero h1 em{color:var(--gd);font-style:italic}
+.bible-hero p{color:var(--tx3);font-size:12px;letter-spacing:.3px}
 
 /* LAYOUT */
 .layout{display:grid;grid-template-columns:300px 1fr;max-width:1200px;margin:0 auto;min-height:calc(100vh - 200px)}
