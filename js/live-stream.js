@@ -13,7 +13,7 @@ const YOUTUBE_LIVE_IDS = {
 const LIVE_STREAMS = {
   mainChannel: {
     name: 'Elim New Jerusalem Church',
-    channelUrl: 'https://www.youtube.com/@elimnewjerusalemchurch',
+    channelUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial',
     liveUrl:    'https://www.youtube.com/@elimnewjerusalemchurch/live',
     images: {
       friday: 'images/Live/friday-prayer.jpg',
@@ -28,8 +28,8 @@ const LIVE_STREAMS = {
   },
   shortsChannel: {
     name: 'ENJC Shorts',
-    channelUrl: 'https://www.youtube.com/@elimnewjerusalemchurch',
-    liveUrl:    'https://www.youtube.com/@elimnewjerusalemchurch/live',
+    channelUrl: 'https://www.youtube.com/@ENJCShorts',
+    liveUrl:    'https://www.youtube.com/@ENJCShorts/live',
     image: 'images/Live/night-prayer.jpg',
     schedule: [
       { day:'all', startTime:'22:30', endTime:'23:00', title:'Daily Night Prayer', description:'End your day with prayer and devotion' }
