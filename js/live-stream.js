@@ -14,7 +14,7 @@ const LIVE_STREAMS = {
   mainChannel: {
     name: 'Elim New Jerusalem Church',
     channelUrl: 'https://www.youtube.com/@ElimNewJerusalemChurchOfficial',
-    liveUrl:    'https://www.youtube.com/@elimnewjerusalemchurch/live',
+    liveUrl:    'https://www.youtube.com/@ElimNewJerusalemChurchOfficial/live',
     images: {
       friday: 'images/Live/friday-prayer.jpg',
       sunday: 'images/Live/sunday-worship.jpg'
