@@ -29,6 +29,7 @@ const S = {
   tamilDB:{}, bibleData:{},
   igSz:'9:16', igBg:'#080c10', igTc:'#e8a020',
   igVerses:[], customVerse:null,
+  igBgMode:'solid', igBgImg:null, igUnsOverlay:0.5,
   audEl:null, playing:false, playAllM:false, pIdx:0,
   showParallel:false, hlColor:'#f5c518',
   theme: localStorage.getItem('enjc-theme')||'dark',
@@ -384,6 +385,8 @@ function updateChUI(){
   g('chprogf').style.width='0%';
   // Auto-populate image gen verse
   setTimeout(igAutoPopulate, 400);
+
+  updateBMChapterBtn();
 }
 
 function prevCh(){if(S.ch>1){S.ch--;g('ch-sel').value=S.ch;loadCh();}}
@@ -642,6 +645,39 @@ function updateBmBadge(){
   const el=g('bm-lbl');if(el)el.textContent=n?'Saved ('+n+')':'Saved';
 }
 function rmBM(i){const bms=getBM();bms.splice(i,1);saveBM(bms);updateBmBadge();openPanel('bm');}
+
+
+// ── BOOKMARK CHAPTER ─────────────────────────────────────────────
+function togBMChapter(){
+  const book = S.books[S.bookIdx];
+  if(!book) return;
+  const key  = 'bmc_' + book.id + '_' + S.ch;
+  const bms  = getBM();
+  // Check if already bookmarked
+  const already = bms.findIndex(b => b.refEN === key);
+  if(already >= 0){
+    bms.splice(already, 1);
+    saveBM(bms);
+    toast('🔖 Chapter bookmark removed');
+    g('bmchbtn') && (g('bmchbtn').style.color = '');
+  } else {
+    const label = (S.lang==='ta' ? book.ta : book.en) + ' ' + S.ch + ' (full chapter)';
+    bms.unshift({ refEN: key, text: label, refTA: label, isChapter: true });
+    saveBM(bms);
+    toast('🔖 Chapter saved!');
+    g('bmchbtn') && (g('bmchbtn').style.color = 'var(--gd)');
+  }
+  updateBmBadge();
+}
+
+function updateBMChapterBtn(){
+  const book = S.books[S.bookIdx];
+  if(!book || !g('bmchbtn')) return;
+  const key = 'bmc_' + book.id + '_' + S.ch;
+  const bms = getBM();
+  const saved = bms.some(b => b.refEN === key);
+  g('bmchbtn').style.color = saved ? 'var(--gd)' : '';
+}
 
 // ── FONT SIZE ─────────────────────────────────────────────────────
 function chFont(d){
@@ -948,6 +984,7 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
       <div class="ig-bg-tabs">
         <div class="ig-bgtab on" id="igtab-solid" onclick="igSetBgMode('solid')">🎨 Solid Colour</div>
         <div class="ig-bgtab" id="igtab-photo" onclick="igSetBgMode('photo')">📷 My Photo</div>
+        <div class="ig-bgtab" id="igtab-unsplash" onclick="igSetBgMode('unsplash')">🌄 Photos</div>
       </div>
 
       <!-- SOLID -->
@@ -999,6 +1036,22 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
           <span class="ig-gsl-val" id="ig-opval">60%</span>
         </div>
       </div>
+
+      <!-- UNSPLASH BACKGROUNDS -->
+      <div id="ig-unsplash-sec" style="display:none">
+        <div style="font-size:10px;color:var(--tx3);margin-bottom:8px;line-height:1.6">
+          🌐 Free nature &amp; worship photos — tap any to use as background
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px" id="uns-grid">
+          ${renderUnsplashGrid()}
+        </div>
+        <div class="ig-gsl-row" style="margin-top:10px">
+          <span class="ig-gsl-lbl">Overlay</span>
+          <input type="range" class="ig-gsl" id="ig-uns-opacity" min="0" max="80" value="50" oninput="S.ig.unsOverlay=this.value/100;g('ig-uns-opval').textContent=this.value+'%';drawIG()">
+          <span class="ig-gsl-val" id="ig-uns-opval">50%</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1052,7 +1105,7 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
 
   <!-- CANVAS -->
   <div class="ig-canvas-wrap">
-    <canvas id="igcv"></canvas>
+    <canvas id="igcv" ontouchstart="igTouchStart(event)" ontouchend="igTouchEnd(event)"></canvas>
   </div>
 
   <!-- EXPORT -->
@@ -1190,6 +1243,62 @@ function igWheelMove(e){
   igRGBSlider();
 }
 
+
+// ── UNSPLASH BACKGROUNDS ─────────────────────────────────────────
+// Free Unsplash Source API — no key needed, 1080px quality
+const IG_UNSPLASH = [
+  { label:'🌅 Nature',    query:'nature+sky+sunrise',      color:'#0d1e2e' },
+  { label:'⛰️ Mountains', query:'mountains+landscape',      color:'#1a1a2e' },
+  { label:'🌊 Ocean',     query:'ocean+waves+sea',          color:'#0d1e3a' },
+  { label:'✨ Stars',     query:'stars+galaxy+night+sky',   color:'#07090f' },
+  { label:'🌸 Flowers',   query:'flowers+nature+garden',    color:'#2e1a1a' },
+  { label:'🕊️ Peace',    query:'peaceful+calm+light',      color:'#1a2e1a' },
+  { label:'🌿 Forest',    query:'forest+trees+green',       color:'#0d2e0d' },
+  { label:'☁️ Clouds',    query:'clouds+sky+heaven',        color:'#1a1a3e' },
+  { label:'🌾 Field',     query:'wheat+field+golden',       color:'#2e2a0d' },
+  { label:'🏙️ City',      query:'city+lights+night',        color:'#0d1219' },
+  { label:'💧 Rain',      query:'rain+drops+water',         color:'#0d1a2e' },
+  { label:'🌙 Moon',      query:'moon+night+sky',           color:'#07090f' },
+];
+let igUnsplashIdx = 0;
+
+function igLoadUnsplash(idx){
+  igUnsplashIdx = idx;
+  const cat = IG_UNSPLASH[idx];
+  if(!cat) return;
+  // Picsum Photos — reliable, fast, no API key needed
+  const seeds=[10,15,20,25,30,35,42,50,60,65,70,75,80,85,90,95,100,110,120,130];
+  const seed = seeds[idx % seeds.length];
+  const url = 'https://picsum.photos/seed/'+(seed+idx*7)+'/1080/1080';
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  toast('⏳ Loading...');
+  img.onload = function(){
+    S.igBgImg = img;
+    S.igBgMode = 'unsplash';
+    _igMode = 'unsplash';
+    drawIG();
+    toast('✅ '+cat.label+' loaded');
+    document.querySelectorAll('.ig-uns-btn').forEach(function(b,i){
+      b.classList.toggle('on', i===idx);
+    });
+  };
+  img.onerror = function(){ toast('⚠️ Photo failed — try another'); };
+  img.src = url;
+}
+
+function renderUnsplashGrid(){
+  return IG_UNSPLASH.map((cat,i)=>
+    `<button class="ig-uns-btn${igUnsplashIdx===i?' on':''}" onclick="igLoadUnsplash(${i})" 
+     style="border:1px solid var(--bd);border-radius:8px;padding:7px 5px;font-size:11px;
+     background:rgba(255,255,255,.03);cursor:pointer;text-align:center;transition:all .18s;
+     color:var(--tx2);font-family:var(--sans);line-height:1.4">
+      <div style="font-size:15px">${cat.label.split(' ')[0]}</div>
+      <div style="font-size:9px;margin-top:2px;opacity:.7">${cat.label.split(' ').slice(1).join(' ')}</div>
+    </button>`
+  ).join('');
+}
+
 // ── FONT ─────────────────────────────────────────────────────────
 function igSetFont(el, font){
   _igFont = font;
@@ -1307,6 +1416,15 @@ function igAutoPopulate(){
   S.customVerse={ta:S.verses[0].text,tref:taRef,en:enV?.text||'',ref:S.bookName+' '+S.ch+':'+S.verses[0].num};
 }
 
+
+// ── SWIPE VERSE IMAGES ───────────────────────────────────────────
+let igTouchX = 0;
+function igTouchStart(e){ igTouchX = e.touches[0].clientX; }
+function igTouchEnd(e){
+  const dx = e.changedTouches[0].clientX - igTouchX;
+  if(Math.abs(dx) > 40){ dx < 0 ? igNextVerse() : igPrevVerse(); }
+}
+
 // ── DRAW ─────────────────────────────────────────────────────────
 function getIGVerse(){
   if(S.customVerse){const v=S.customVerse;S.customVerse=null;return v;}
@@ -1330,20 +1448,32 @@ function drawIG(){
   const ctx=cv.getContext('2d');
   const v=getIGVerse();
 
+  function drawWithImg(img,opacity){
+    const ir=img.width/img.height,cr=W/H;
+    let sx=0,sy=0,sw=img.width,sh=img.height;
+    if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}
+    else{sh=img.width/cr;sy=(img.height-sh)/2;}
+    ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
+    ctx.fillStyle='rgba(0,0,0,'+opacity+')';
+    ctx.fillRect(0,0,W,H);
+    _drawIG(ctx,W,H,v,true);
+  }
+
   if(_igMode==='photo'&&_userPhoto){
     const img=new Image();
     img.onload=()=>{
-      const ir=img.width/img.height, cr=W/H;
-      let sx=0,sy=0,sw=img.width,sh=img.height;
-      if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}
-      else{sh=img.width/cr;sy=(img.height-sh)/2;}
-      ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
       const op=parseInt(document.getElementById('ig-opacity')?.value||'60')/100;
-      ctx.fillStyle=`rgba(0,0,0,${op})`;ctx.fillRect(0,0,W,H);
-      _drawIG(ctx,W,H,v,true);
+      drawWithImg(img,op);
     };
     img.src=_userPhoto;return;
   }
+
+  if((_igMode==='unsplash')&&S.igBgImg){
+    const op=S.igUnsOverlay||0.5;
+    drawWithImg(S.igBgImg,op);
+    return;
+  }
+
   ctx.fillStyle=_igBgColor||'#8b1a1a';ctx.fillRect(0,0,W,H);
   _drawIG(ctx,W,H,v,false);
 }
@@ -1540,7 +1670,7 @@ function copyImgToClipboard(){
 const THEMES={
   dark:{'--bg':'#07090f','--bg2':'#0c1018','--bg3':'#111926','--tx':'#dde4f0','--tx2':'rgba(221,228,240,.6)','--tx3':'rgba(221,228,240,.3)','--bd':'rgba(255,255,255,.06)','--bd2':'rgba(255,255,255,.14)','--gd':'#e8a020','--gd2':'#f5bf50','--gdm':'rgba(232,160,32,.12)','--gdb':'rgba(232,160,32,.28)'},
   sepia:{'--bg':'#f8f1e4','--bg2':'#f2e9d8','--bg3':'#ede0c8','--tx':'#2c1a0e','--tx2':'rgba(44,26,14,.6)','--tx3':'rgba(44,26,14,.35)','--bd':'rgba(44,26,14,.1)','--bd2':'rgba(44,26,14,.2)','--gd':'#8b4513','--gd2':'#a0522d','--gdm':'rgba(139,69,19,.1)','--gdb':'rgba(139,69,19,.25)'},
-  light:{'--bg':'#f8f6f1','--bg2':'#eeece6','--bg3':'#e4e0d8','--tx':'#1c1710','--tx2':'rgba(28,23,16,.62)','--tx3':'rgba(28,23,16,.38)','--bd':'rgba(28,23,16,.09)','--bd2':'rgba(28,23,16,.18)','--gd':'#9a6c0a','--gd2':'#daa520','--gdm':'rgba(154,108,10,.09)','--gdb':'rgba(154,108,10,.28)'}
+  light:{'--bg':'#f8f6f1','--bg2':'#eeece6','--bg3':'#e4e0d8','--tx':'#1c1710','--tx2':'rgba(28,23,16,.62)','--tx3':'rgba(28,23,16,.38)','--bd':'rgba(28,23,16,.09)','--bd2':'rgba(28,23,16,.18)','--gd':'#8a6009','--gd2':'#daa520','--gdm':'rgba(138,96,9,.09)','--gdb':'rgba(138,96,9,.28)'}
 };
 
 function applyTheme(theme){

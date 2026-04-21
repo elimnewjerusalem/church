@@ -189,7 +189,9 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
         <option value="1.25">1.25×</option>
         <option value="1.5">1.5×</option>
       </select>
+      <button class="ch-btn" onclick="prevCh();playAll()" title="Previous chapter" style="background:rgba(255,255,255,.07);border:1px solid var(--bd);border-radius:6px;padding:5px 10px;font-size:11px;color:var(--tx2);cursor:pointer">⏮</button>
       <button class="aud-stop" onclick="stopAud()">■ Stop</button>
+      <button class="ch-btn" onclick="nextCh();playAll()" title="Next chapter" style="background:rgba(255,255,255,.07);border:1px solid var(--bd);border-radius:6px;padding:5px 10px;font-size:11px;color:var(--tx2);cursor:pointer">⏭</button>
     </div>
 
     <!-- CHAPTER BAR -->
@@ -201,6 +203,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
       <div class="ch-nav">
         <button class="ch-btn" id="prevb" onclick="prevCh()">← Prev</button>
         <button class="ch-btn primary" onclick="playAll()">▶ Play All</button>
+        <button class="ch-btn" id="bmchbtn" onclick="togBMChapter()" title="Bookmark this chapter">🔖</button>
         <button class="ch-btn" id="nextb" onclick="nextCh()">Next →</button>
       </div>
     </div>
