@@ -15,7 +15,9 @@ const C = {
   taAPI2: 'https://bolls.life/get-text/TAMBL98/',
   taAPI3: 'https://api.getbible.net/v2/tamil/',
   data:   'data/',
-  ms:     9000
+  ms:     9000,
+  // Local Bible data (loaded once at startup)
+  EN_LOCAL: 'data/english_kjv.json',
 };
 
 // ── STATE ────────────────────────────────────────────────────────
@@ -26,7 +28,7 @@ const S = {
   hl: JSON.parse(localStorage.getItem('enjc_hl')||'{}'),
   bm: JSON.parse(localStorage.getItem('enjc_bm')||'[]'),
   notes: JSON.parse(localStorage.getItem('enjc_notes')||'{}'),
-  tamilDB:{}, bibleData:{},
+  tamilDB:{}, bibleData:{}, enDB:{},
   igSz:'9:16', igBg:'#080c10', igTc:'#e8a020',
   igVerses:[], customVerse:null,
   igBgMode:'solid', igBgImg:null, igUnsOverlay:0.5,
@@ -162,12 +164,18 @@ function toggleMobMenu(){var m=document.getElementById('mobile-menu');if(m)m.cla
 // ── LOAD DATA ────────────────────────────────────────────────────
 async function loadData(){
   try{
-    const [bd,tb]=await Promise.allSettled([
+    const [bd,tb,enRes]=await Promise.allSettled([
       fetchT(C.data+'bible-data.json').then(r=>r.json()),
-      fetchT(C.data+'tamil-bible.json').then(r=>r.json())
+      fetchT(C.data+'tamil-bible.json').then(r=>r.json()),
+      fetchT(C.EN_LOCAL).then(r=>r.json())
     ]);
     if(bd.status==='fulfilled'&&bd.value)S.bibleData=bd.value;
     if(tb.status==='fulfilled'&&tb.value)S.tamilDB=tb.value;
+    if(enRes.status==='fulfilled'&&enRes.value){
+      S.enDB=enRes.value;
+      const cnt=Object.keys(S.enDB).length;
+      console.log('English KJV loaded: '+cnt+' books');
+    }
   }catch(e){}
   loadVOTD(); // reload with remote data if available
   initIGVerses();
@@ -306,33 +314,71 @@ async function loadCh(){
 
 async function loadTA(){
   const key=S.bookNum+'_'+S.ch;
-  // Embedded DB
-  if(S.tamilDB[key])return S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
-  // Cache
+
+  // ── 1. Embedded local DB (pre-loaded chapters) ────────────────
+  if(S.tamilDB[key]){
+    const vv=S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
+    return vv;
+  }
+
+  // ── 2. localStorage cache (previously fetched chapters) ───────
   const ck='enjc_ta_'+key;
-  try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
-  // Fetch
-  for(const url of[C.taAPI1+S.bookNum+'/'+S.ch+'/',C.taAPI2+S.bookNum+'/'+S.ch+'/',C.taAPI3+S.bookNum+'/'+S.ch+'.json']){
+  try{
+    const c=localStorage.getItem(ck);
+    if(c){const p=JSON.parse(c);if(p?.length)return p;}
+  }catch(e){}
+
+  // ── 3. Fetch from APIs — try all 3 sources ────────────────────
+  const apis=[
+    C.taAPI1+S.bookNum+'/'+S.ch+'/',
+    C.taAPI2+S.bookNum+'/'+S.ch+'/',
+    C.taAPI3+S.bookNum+'/'+S.ch+'.json'
+  ];
+  for(const url of apis){
     try{
       const r=await fetchT(url);if(!r.ok)continue;
       const d=await r.json();
       let vv=null;
-      if(Array.isArray(d)&&d.length)vv=d.map(v=>({num:v.verse,text:v.text}));
-      else if(d.verses?.length)vv=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
+      if(Array.isArray(d)&&d.length){
+        // bolls.life format: [{verse:1, text:"..."}, ...]
+        if(d[0]?.verse!==undefined) vv=d.map(v=>({num:v.verse,text:v.text}));
+        // getbible format: [[1,"text"], ...]
+        else if(Array.isArray(d[0])) vv=d.map(v=>({num:v[0],text:v[1]}));
+      } else if(d.verses?.length){
+        vv=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
+      }
       if(vv?.length){
+        // Cache for offline use
         try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+        toast('📥 '+S.bookTaName+' '+S.ch+' சேமிக்கப்பட்டது');
         return vv;
       }
     }catch(e){continue;}
   }
-  throw new Error('Tamil offline இல்லை. Internet தேவை.');
+  throw new Error('⚠ Tamil verses unavailable. Check internet connection.');
 }
 
 async function loadEN(){
+  // ── 1. Local KJV JSON (instant, no network) ──────────────────
+  const localBook = S.enDB[S.bookNum];
+  if(localBook){
+    const localCh = localBook[S.ch];
+    if(localCh && localCh.length){
+      return localCh.map((text,i)=>({num:i+1, text: text||''}));
+    }
+  }
+  // ── 2. Fallback: remote API (with cache) ─────────────────────
+  const ck='enjc_en_'+S.bookNum+'_'+S.ch;
+  try{
+    const cached=localStorage.getItem(ck);
+    if(cached){const p=JSON.parse(cached);if(p?.length)return p;}
+  }catch(e){}
   const r=await fetchT(C.enAPI+S.book+'+'+S.ch+'?translation=kjv');
   const d=await r.json();
   if(d.error)throw new Error(d.error);
-  return(d.verses||[]).map(v=>({num:v.verse,text:v.text.trim().replace(/\n/g,' ')}));
+  const vv=(d.verses||[]).map(v=>({num:v.verse,text:v.text.trim().replace(/\n/g,' ')}));
+  try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+  return vv;
 }
 
 // ── RENDER ───────────────────────────────────────────────────────
