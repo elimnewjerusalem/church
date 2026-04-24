@@ -1438,6 +1438,8 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
     <button class="nx-read-btn" onclick="loadCh()">
       ☐ அதிகாரம் படி
     </button>
+    <!-- compat id for bible.js -->
+    <button id="gobtn" onclick="loadCh()" style="display:none">படி</button>
   </div>
 
 </div>
@@ -1480,32 +1482,32 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 
 <!-- ROW 3: FEATURES BAR -->
 <div class="nx-feat-bar">
-  <button class="nx-feat" id="fb-topics" onclick="openPanel('topics')">
+  <button class="nx-feat feat-btn" id="fb-topics" onclick="openPanel('topics')">
     <span class="nx-feat-icon">✏️</span>
     <span class="nx-feat-lbl">Topics</span>
   </button>
-  <button class="nx-feat" id="fb-plan" onclick="openPanel('plan')">
+  <button class="nx-feat feat-btn" id="fb-plan" onclick="openPanel('plan')">
     <span class="nx-feat-icon">📅</span>
     <span class="nx-feat-lbl">Plan</span>
   </button>
-  <button class="nx-feat" id="fb-bm" onclick="openPanel('bm')">
+  <button class="nx-feat feat-btn" id="fb-bm" onclick="openPanel('bm')">
     <span class="nx-feat-icon">❤️</span>
     <span class="nx-feat-lbl" id="bm-lbl">Saved</span>
     <span class="feat-badge" id="bm-badge">0</span>
   </button>
-  <button class="nx-feat" id="fb-img" onclick="openPanel('img')">
+  <button class="nx-feat feat-btn" id="fb-img" onclick="openPanel('img')">
     <span class="nx-feat-icon">🖼️</span>
     <span class="nx-feat-lbl">Image</span>
   </button>
-  <button class="nx-feat" id="fb-settings" onclick="openPanel('settings')">
+  <button class="nx-feat feat-btn" id="fb-settings" onclick="openPanel('settings')">
     <span class="nx-feat-icon">⚙️</span>
     <span class="nx-feat-lbl">Settings</span>
   </button>
-  <button class="nx-feat" id="fb-quiz" onclick="openPanel('quiz')">
+  <button class="nx-feat feat-btn" id="fb-quiz" onclick="openPanel('quiz')">
     <span class="nx-feat-icon">🧠</span>
     <span class="nx-feat-lbl">Quiz</span>
   </button>
-  <button class="nx-feat" id="fb-tracker" onclick="openPanel('tracker')">
+  <button class="nx-feat feat-btn" id="fb-tracker" onclick="openPanel('tracker')">
     <span class="nx-feat-icon">📊</span>
     <span class="nx-feat-lbl" id="tracker-pct">Track 1%</span>
   </button>
@@ -1559,6 +1561,17 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   </div>
 </div>
 
+
+<!-- ── SIDE PANEL ──────────────────────────────────────── -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="panel"   id="panel">
+  <div class="panel-handle"></div>
+  <div class="panel-head">
+    <span class="panel-title" id="panel-title">Panel</span>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
 
 <!-- ── BOTTOM SHEET (verse actions) ───────────────────── -->
 <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeVModal()"></div>

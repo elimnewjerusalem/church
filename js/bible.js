@@ -2059,28 +2059,20 @@ function getCacheInfo(){
 function togParallelNew(){
   const chk   = document.getElementById('para-chk');
   const state = document.getElementById('para-state');
-  const btn   = document.getElementById('para-btn'); // compat
-  if(chk){
-    S.showParallel = chk.checked;
-    const label = chk.checked ? 'On ✓' : 'Off';
-    if(state){ state.textContent = label; state.className = 'nx-para-state' + (chk.checked ? ' on' : ''); }
-    if(btn)   { btn.textContent  = label; btn.classList.toggle('on', chk.checked); }
-    if(S.verses && S.verses.length) renderVerses();
+  const btn   = document.getElementById('para-btn');
+  if(!chk) return;
+  S.showParallel = chk.checked;
+  const label = chk.checked ? 'On ✓' : 'Off';
+  if(state){ state.textContent = label; state.className = 'nx-para-state' + (chk.checked ? ' on' : ''); }
+  if(btn)  { btn.textContent  = label; btn.classList.toggle('on', chk.checked); }
+  // Only re-render if chapter is already loaded
+  if(S.verses && S.verses.length > 0){
+    try{ renderVerses(); }catch(e){ console.warn('renderVerses:', e); }
   }
 }
 
 // Sync old togParallel to also update checkbox
-const _origTogParallel = togParallel;
-function togParallel(){
-  _origTogParallel && _origTogParallel();
-  const chk = document.getElementById('para-chk');
-  if(chk) chk.checked = S.showParallel;
-  const state = document.getElementById('para-state');
-  if(state){
-    state.textContent = S.showParallel ? 'On ✓' : 'Off';
-    state.className = 'nx-para-state' + (S.showParallel ? ' on' : '');
-  }
-}
+
 
 // ── THEME SYNC: Override site.js toggleTheme to also update bible CSS vars ──
 // Called when user clicks the nav theme button on the bible page
