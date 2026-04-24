@@ -164,17 +164,25 @@ function toggleMobMenu(){var m=document.getElementById('mobile-menu');if(m)m.cla
 // ── LOAD DATA ────────────────────────────────────────────────────
 async function loadData(){
   try{
-    const [bd,tb,enRes]=await Promise.allSettled([
+    const [bd,tb,enRes,tfRes]=await Promise.allSettled([
       fetchT(C.data+'bible-data.json').then(r=>r.json()),
       fetchT(C.data+'tamil-bible.json').then(r=>r.json()),
-      fetchT(C.EN_LOCAL).then(r=>r.json())
+      fetchT(C.EN_LOCAL).then(r=>r.json()),
+      fetchT(C.data+'tamil_full.json').then(r=>r.json()).catch(()=>null)
     ]);
     if(bd.status==='fulfilled'&&bd.value)S.bibleData=bd.value;
-    if(tb.status==='fulfilled'&&tb.value)S.tamilDB=tb.value;
+    // Merge tamil-bible.json + tamil_full.json (full overrides partial)
+    if(tfRes.status==='fulfilled'&&tfRes.value){
+      S.tamilDB = tfRes.value;
+      const cnt = Object.keys(S.tamilDB).length;
+      console.log('Tamil Bible loaded: '+cnt+' chapters (full local)');
+    } else if(tb.status==='fulfilled'&&tb.value){
+      S.tamilDB=tb.value;
+      console.log('Tamil Bible partial: '+Object.keys(S.tamilDB).length+' chapters');
+    }
     if(enRes.status==='fulfilled'&&enRes.value){
       S.enDB=enRes.value;
-      const cnt=Object.keys(S.enDB).length;
-      console.log('English KJV loaded: '+cnt+' books');
+      console.log('English KJV loaded: '+Object.keys(S.enDB).length+' books');
     }
   }catch(e){}
   loadVOTD(); // reload with remote data if available
@@ -355,7 +363,9 @@ async function loadTA(){
       }
     }catch(e){continue;}
   }
-  throw new Error('⚠ Tamil verses unavailable. Check internet connection.');
+  const bk = S.books[S.bookIdx]?.ta || '';
+  toast('⚠ '+bk+' '+S.ch+' — இணையம் தேவை. முதல் முறை API-ல் இருந்து பெறப்படும்.');
+  throw new Error('Tamil offline: '+key);
 }
 
 async function loadEN(){
@@ -1918,56 +1928,110 @@ let _mv=null;
 
 function openVModal(i){
   const v=S.verses[i];if(!v)return;
+  // Build _mv state (used by mAct)
   _mv={i,v,
     ref:S.bookName+' '+S.ch+':'+v.num,
     taRef:(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num,
     ta:(S.taVerses.find(t=>t.num===v.num)||{}).text||(S.lang==='ta'?v.text:''),
     en:(S.enVerses.find(e=>e.num===v.num)||{}).text||(S.lang==='en'?v.text:'')
   };
-  safe('vmodal-ref',_mv.taRef+(_mv.ref!==_mv.taRef?' · '+_mv.ref:''));
-  safe('vmodal-ta',_mv.ta?'\u201c'+_mv.ta+'\u201d':'');
-  safe('vmodal-en',_mv.en?'\u201c'+_mv.en+'\u201d':'');
-  g('vmodal-en').style.display=_mv.en?'block':'none';
+
+  // ── Populate bottom sheet ────────────────────────────
+  const sheet     = document.getElementById('verse-sheet');
+  const backdrop  = document.getElementById('sheet-backdrop');
+  if(!sheet) return;
+
+  // Reference pill
+  const refText = _mv.taRef+(_mv.ref!==_mv.taRef?' · '+_mv.ref:'');
+  const el=document.getElementById('vs-ref');
+  if(el) el.textContent = refText;
+
+  // Tamil verse
+  const taEl = document.getElementById('vs-ta');
+  if(taEl){
+    taEl.textContent = _mv.ta ? '\u201c'+_mv.ta+'\u201d' : '';
+    taEl.style.cssText = ''; // reset highlight
+  }
+
+  // English verse
+  const enEl = document.getElementById('vs-en');
+  if(enEl){
+    enEl.textContent = _mv.en ? '\u201c'+_mv.en+'\u201d' : '';
+    enEl.style.display = _mv.en ? 'block' : 'none';
+  }
+
   // Note
   const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
-  const noteEl=g('note-ta');if(noteEl)noteEl.value=notes[_mv.ref]||'';
+  const noteEl=document.getElementById('vs-note');
+  if(noteEl) noteEl.value = notes[_mv.ref]||'';
+
   // Bookmark state
   const isBm=getBM().some(b=>b.ref===_mv.ref);
-  g('bm-act').querySelector('.act-icon').textContent=isBm?'♥':'♡';
-  safe('bm-lbl2',isBm?'Saved ✓':'Save');
-  // Show
-  g('vmodal').classList.add('open');
+  const bmBtn=document.getElementById('sheet-bm-btn');
+  if(bmBtn) bmBtn.classList.toggle('saved', isBm);
+
+  // Reset highlight dots
+  document.querySelectorAll('.hldot').forEach(d=>d.classList.remove('on'));
+
+  // Hide highlight row
+  const hlRow=document.getElementById('vs-hl-row');
+  if(hlRow) hlRow.style.display='none';
+
+  // Open sheet
+  sheet.classList.add('open');
+  if(backdrop) backdrop.classList.add('open');
   document.body.style.overflow='hidden';
 }
 
 function closeVModal(e){
-  if(!e||e.target===g('vmodal')){
-    g('vmodal').classList.remove('open');
-    document.body.style.overflow='';
-  }
+  // Delegate to closeSheet
+  const sheet    = document.getElementById('verse-sheet');
+  const backdrop = document.getElementById('sheet-backdrop');
+  if(sheet)    sheet.classList.remove('open');
+  if(backdrop) backdrop.classList.remove('open');
+  document.body.style.overflow='';
 }
 
 function mAct(action){
   if(!_mv)return;
-  if(action==='ta-audio'){speak(_mv.ta||_mv.v.text,'ta');toast('▶ Tamil audio...');}
-  else if(action==='en-audio'){speak(_mv.en||_mv.v.text,'en');toast('▶ English audio...');}
+
+  if(action==='ta-audio'){
+    speak(_mv.ta||_mv.v.text,'ta');
+    toast('▶ Tamil audio...');
+  }
+  else if(action==='en-audio'){
+    speak(_mv.en||_mv.v.text,'en');
+    toast('▶ English audio...');
+  }
   else if(action==='image'){
     S.customVerse={ta:_mv.ta,tref:_mv.taRef,en:_mv.en,ref:_mv.ref};
-    g('vmodal').classList.remove('open');document.body.style.overflow='';
+    closeVModal();
     openPanel('img');setTimeout(drawIG,100);
   }
   else if(action==='save'){
-    const bms=getBM();const fi=bms.findIndex(b=>b.ref===_mv.ref);
-    if(fi>=0){bms.splice(fi,1);saveBM(bms);g('bm-act').querySelector('.act-icon').textContent='♡';safe('bm-lbl2','Save');toast('Removed');}
-    else{bms.unshift({ref:_mv.ref,refTA:_mv.taRef,text:_mv.ta||_mv.en});saveBM(bms);g('bm-act').querySelector('.act-icon').textContent='♥';safe('bm-lbl2','Saved ✓');toast('\u2665 Saved!');}
+    const bms=getBM();
+    const fi=bms.findIndex(b=>b.ref===_mv.ref);
+    if(fi>=0){
+      bms.splice(fi,1);saveBM(bms);
+      const bmBtn=document.getElementById('sheet-bm-btn');
+      if(bmBtn)bmBtn.classList.remove('saved');
+      toast('Removed');
+    } else {
+      bms.unshift({ref:_mv.ref,refTA:_mv.taRef,text:_mv.ta||_mv.en});
+      saveBM(bms);
+      const bmBtn=document.getElementById('sheet-bm-btn');
+      if(bmBtn)bmBtn.classList.add('saved');
+      toast('\u2665 Saved!');
+    }
     updateBmBadge();
   }
   else if(action==='copy'){
     const out=(_mv.taRef?_mv.taRef+'\n'+_mv.ta+'\n':'')+_mv.ref+'\n'+(_mv.en||_mv.ta);
-    navigator.clipboard?.writeText(out);toast('📋 Copied!');
+    navigator.clipboard?.writeText(out);
+    toast('📋 Copied!');
   }
   else if(action==='share'){
-    const msg=_mv.ref+'\n'+(_mv.en||_mv.ta)+'\n\nhttps://elimnewjerusalem.github.io/church/bible.html';
+    const msg=(_mv.taRef+'\n'+_mv.ta+'\n\n'+_mv.ref+'\n'+(_mv.en||'')+'\n\nhttps://elimnewjerusalem.github.io/church/bible.html').trim();
     if(navigator.share)navigator.share({title:'ENJC Bible',text:msg});
     else{navigator.clipboard?.writeText(msg);toast('Copied!');}
   }
