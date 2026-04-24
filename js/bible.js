@@ -2054,6 +2054,35 @@ function getCacheInfo(){
   return keys.length+' chapters cached ('+kb+' KB)';
 }
 
+
+// ── NX PARALLEL TOGGLE (checkbox version) ────────────────
+function togParallelNew(){
+  const chk = document.getElementById('para-chk');
+  const state = document.getElementById('para-state');
+  if(chk){
+    S.showParallel = chk.checked;
+    if(state){
+      state.textContent = chk.checked ? 'On ✓' : 'Off';
+      state.className = 'nx-para-state' + (chk.checked ? ' on' : '');
+    }
+    // re-render if chapter loaded
+    if(S.verses && S.verses.length) renderVerses();
+  }
+}
+
+// Sync old togParallel to also update checkbox
+const _origTogParallel = togParallel;
+function togParallel(){
+  _origTogParallel && _origTogParallel();
+  const chk = document.getElementById('para-chk');
+  if(chk) chk.checked = S.showParallel;
+  const state = document.getElementById('para-state');
+  if(state){
+    state.textContent = S.showParallel ? 'On ✓' : 'Off';
+    state.className = 'nx-para-state' + (S.showParallel ? ' on' : '');
+  }
+}
+
 // ── THEME SYNC: Override site.js toggleTheme to also update bible CSS vars ──
 // Called when user clicks the nav theme button on the bible page
 window.toggleTheme = function() {
