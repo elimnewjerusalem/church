@@ -832,6 +832,9 @@ textarea.form-field {
   display: grid;
   grid-template-columns: 1fr 300px;
   border-bottom: 1px solid #222;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
 }
 @media(max-width:900px) { .nx-top { grid-template-columns: 1fr; } }
 
@@ -957,6 +960,9 @@ textarea.form-field {
   display: grid;
   grid-template-columns: 1fr 300px;
   border-bottom: 1px solid #222;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
 }
 @media(max-width:900px) { .nx-mid { grid-template-columns: 1fr; } }
 
@@ -1058,6 +1064,9 @@ textarea.form-field {
   grid-template-columns: repeat(7, 1fr);
   border-bottom: 1px solid #222;
   background: #1a1a1a;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
 }
 @media(max-width:700px) {
   .nx-feat-bar { grid-template-columns: repeat(4, 1fr); }
@@ -1089,8 +1098,13 @@ textarea.form-field {
 }
 
 /* ── PATCH: hide old hero + old sidebar layout ── */
-.bible-hero { display: none !important; }
+.bible-hero  { display: none !important; }
 .bl-layout   { display: none !important; }
+#bcontent    { max-width: var(--max-width); margin: 0 auto; width: 100%; }
+.ch-bar      { max-width: var(--max-width); margin: 0 auto; width: 100%; }
+.ch-prog     { max-width: var(--max-width); margin: 0 auto; width: 100%; }
+.audio-bar   { max-width: var(--max-width); margin: 0 auto; width: 100%; }
+.offline-bar { max-width: var(--max-width); margin: 0 auto; width: 100%; }
 
 /* ═══════════════════════════════════════════════════════
    BIBLE PAGE STYLES

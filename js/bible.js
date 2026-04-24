@@ -2057,15 +2057,14 @@ function getCacheInfo(){
 
 // ── NX PARALLEL TOGGLE (checkbox version) ────────────────
 function togParallelNew(){
-  const chk = document.getElementById('para-chk');
+  const chk   = document.getElementById('para-chk');
   const state = document.getElementById('para-state');
+  const btn   = document.getElementById('para-btn'); // compat
   if(chk){
     S.showParallel = chk.checked;
-    if(state){
-      state.textContent = chk.checked ? 'On ✓' : 'Off';
-      state.className = 'nx-para-state' + (chk.checked ? ' on' : '');
-    }
-    // re-render if chapter loaded
+    const label = chk.checked ? 'On ✓' : 'Off';
+    if(state){ state.textContent = label; state.className = 'nx-para-state' + (chk.checked ? ' on' : ''); }
+    if(btn)   { btn.textContent  = label; btn.classList.toggle('on', chk.checked); }
     if(S.verses && S.verses.length) renderVerses();
   }
 }
