@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ── GOOGLE FONTS ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap');
 
 
 /* ── DESIGN TOKENS ────────────────────────────────────────── */
@@ -835,6 +835,65 @@ textarea.form-field {
 .ministry-card__image img:not([src=""]) + .ministry-card__overlay {
   display: none;
 }
+
+
+/* ── BIBLE PAGE FONT SYSTEM ─────────────────────────────────
+   Playfair Display → headings & VOTD
+   Poppins          → UI, labels, buttons
+   Noto Serif Tamil → Tamil verse text
+   ────────────────────────────────────────────────────────── */
+
+/* Tamil verse text */
+.ta-font,
+.vtxt.ta-font,
+.nx-votd-ta,
+.votd-ta,
+.vs-ta,
+.tv-txt,
+.bm-v,
+.quiz-q,
+.quiz-opt,
+.track-name {
+  font-family: var(--font-tamil) !important;
+  font-weight: 600;
+}
+
+/* Main verse text — bolder and larger line height */
+.vtxt.ta-font {
+  font-weight: 600;
+  line-height: 2.1;
+  letter-spacing: .01em;
+}
+
+/* VOTD Tamil — prominent bold */
+.nx-votd-ta,
+.votd-ta {
+  font-weight: 700;
+  line-height: 2;
+}
+
+/* Headings use Playfair */
+.bible-hero h1,
+.panel-title,
+.ch-title,
+.votd-badge { font-family: var(--font-heading); }
+
+/* English italic uses Playfair */
+.votd-en,
+.v-en-para,
+.vs-en { font-family: var(--font-heading); font-style: italic; }
+
+/* All UI elements use Poppins */
+.nx-lang-btn, .nx-lbl, .nx-sel, .nx-read-btn,
+.nx-fsz-btn, .nx-fsz-reset, .nx-fsz-val,
+.nx-search-inp, .nx-para-lbl, .nx-para-state,
+.nx-pill, .nx-feat-lbl,
+.ch-btn, .v-pill, .vact, .toggle-btn,
+.lang-btn, .feat-lbl, .panel-close,
+.vs-act-lbl, .vs-note-inp, .vs-hint,
+.p-btn, .tp, .pday, .quiz-opt,
+.aud-title, .aud-stat, .aud-spd,
+button, select, input, textarea { font-family: var(--font-body); }
 
 /* ═══════════════════════════════════════════════
    NX LAYOUT — New 2026 UI (top-grid pattern)
