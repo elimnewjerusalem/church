@@ -7,6 +7,7 @@
       "youtubeLink": "https://www.youtube.com/watch?v=6F-sbXwdrjI",
       "date": "February 21, 2026",
       "channel": "shorts",
+      "topic": "prayer",
       "description": "End your day with faith and encouragement"
     },
     {
@@ -16,6 +17,7 @@
       "youtubeLink": "https://www.youtube.com/watch?v=BqOLXeAVEZs",
       "date": "February 22, 2026",
       "channel": "main",
+      "topic": "worship",
       "description": "Powerful message about God Honour You"
     },
     {
@@ -25,6 +27,7 @@
       "youtubeLink": "https://www.youtube.com/watch?v=ofwLCN2mWDk",
       "date": "February 7, 2026",
       "channel": "main",
+      "topic": "prayer",
       "description": "Coming together in prayer and worship"
     }
   ],
@@ -36,6 +39,7 @@
       "youtubeLink": "https://www.youtube.com/watch?v=5LJt7R7G0xk",
       "views": "21K views",
       "channel": "shorts",
+      "topic": "message",
       "description": "Watch the live on Youtube"
     },
     {
@@ -45,6 +49,7 @@
       "youtubeLink": "https://www.youtube.com/watch?v=5AxMYxuA2Do",
       "views": "16K views",
       "channel": "main",
+      "topic": "message",
       "description": "Discover how faith can transform your life"
     },
     {
@@ -54,6 +59,7 @@
       "youtubeLink": "https://www.youtube.com/watch?v=XeNwZHjO2DQ",
       "views": "15K views",
       "channel": "main",
+      "topic": "worship",
       "description": "Overcoming life's challenges with God's strength"
     }
   ],
@@ -64,14 +70,16 @@
       "videoId": "3T9-1IZIqA8",
       "youtubeLink": "https://www.youtube.com/shorts/3T9-1IZIqA8",
       "verse": "Philippians 4:13",
+      "topic": "shorts",
       "description": "Strength through Christ"
     },
     {
       "id": 2,
-      "title": "Therefore I will praise You, O LORD, among the nations; I will sing praises to Your name",
+      "title": "Therefore I will praise You, O LORD",
       "videoId": "TheMCk-NDuA",
       "youtubeLink": "https://www.youtube.com/shorts/TheMCk-NDuA",
       "verse": "Psalm 23:1",
+      "topic": "shorts",
       "description": "God's guidance and protection"
     },
     {
@@ -80,6 +88,7 @@
       "videoId": "7E3z_df7LcM",
       "youtubeLink": "https://www.youtube.com/shorts/7E3z_df7LcM",
       "verse": "John 5:24",
+      "topic": "shorts",
       "description": "Hope and a future"
     }
   ],
@@ -135,6 +144,7 @@
       "youtubeLink": "https://www.youtube.com/live/P7tvLwUQ_tg",
       "schedule": "Every Sunday",
       "times": ["05:30am – 07:30am", "08:30am – 10:30am", "11:30am – 01:30pm"],
+      "topic": "worship",
       "description": "Join us for powerful worship, inspiring messages, and fellowship with believers.",
       "buttonText": "Watch Live",
       "buttonClass": "register"
@@ -147,6 +157,7 @@
       "youtubeLink": "https://www.youtube.com/live/ysSagRBRE1A",
       "schedule": "Every Friday",
       "times": ["11:00am – 01:30pm"],
+      "topic": "prayer",
       "description": "Come together in unity and power as we lift our voices in prayer.",
       "buttonText": "Watch Live",
       "buttonClass": "call"
@@ -159,6 +170,7 @@
       "youtubeLink": "https://www.youtube.com/live/p2doONT8Q2s",
       "schedule": "Every Saturday",
       "times": ["06:00pm – 07:00pm"],
+      "topic": "message",
       "description": "Dynamic gatherings for young people to grow in faith and build friendships.",
       "buttonText": "Watch Live",
       "buttonClass": "join"

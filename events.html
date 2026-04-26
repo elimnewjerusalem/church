@@ -21,6 +21,46 @@
   <meta name="twitter:description" content="Upcoming events, deliverance meetings, and programmes at Elim New Jerusalem Church, Chennai.">
   <meta name="twitter:image"      content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
 
+
+  <style>
+    /* ── Search + Filter bar ── */
+    .enjc-search-bar {
+      max-width: 700px; margin: 0 auto 20px; display: flex;
+      align-items: center; gap: 10px;
+      background: var(--color-bg-2);
+      border: 1.5px solid var(--color-border);
+      border-radius: 50px; padding: 8px 16px;
+    }
+    .enjc-search-bar input {
+      flex: 1; background: none; border: none; outline: none;
+      font-size: 14px; color: var(--color-text);
+    }
+    .enjc-search-bar input::placeholder { color: var(--color-text-faint); }
+    .enjc-search-icon { font-size: 16px; }
+    #search-clear-btn {
+      display: none; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--color-text-faint); color: #fff;
+      border: none; cursor: pointer; font-size: 12px; flex-shrink: 0;
+    }
+    .enjc-filter-row {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center; margin-bottom: 32px;
+    }
+    .enjc-filter-btn {
+      padding: 6px 18px; border-radius: 99px; border: 1.5px solid var(--color-border);
+      background: var(--color-bg-2); color: var(--color-text-muted);
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .enjc-filter-btn:hover { border-color: var(--color-gold); color: var(--color-gold); }
+    .enjc-filter-active {
+      background: var(--color-gold) !important;
+      color: #111 !important;
+      border-color: var(--color-gold) !important;
+    }
+    #search-results-section { display: none; }
+  </style>
 </head>
 <body>
   <header>
@@ -65,8 +105,36 @@
     </div>
   </section>
 
+
+  <!-- Search + Topic Filter -->
+  <section class="section-sm" style="padding-bottom:0;" aria-label="Search and filter videos">
+    <div class="container">
+      <div class="enjc-search-bar">
+        <span class="enjc-search-icon">🔍</span>
+        <input type="search" id="video-search-input"
+          placeholder="Search sermons, prayers, worship..." autocomplete="off" />
+        <button id="search-clear-btn" aria-label="Clear search">✕</button>
+      </div>
+      <div class="enjc-filter-row" role="group" aria-label="Filter by topic">
+        <button class="enjc-filter-btn enjc-filter-active" data-filter="all">🎬 All</button>
+        <button class="enjc-filter-btn" data-filter="worship"  style="--tc:#7c6cf0;">🙏 Worship</button>
+        <button class="enjc-filter-btn" data-filter="prayer"   style="--tc:#059669;">✝️ Prayer</button>
+        <button class="enjc-filter-btn" data-filter="message"  style="--tc:#d97706;">📢 Message</button>
+        <button class="enjc-filter-btn" data-filter="shorts"   style="--tc:#dc2626;">📱 Shorts</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results (shown when filtering/searching) -->
+  <section id="search-results-section" class="section" aria-live="polite">
+    <div class="container">
+      <p id="search-result-count" class="section-tag" style="margin-bottom:20px;"></p>
+      <div class="grid-3" id="search-results-grid"></div>
+    </div>
+  </section>
+
   <!-- Live Stream — rendered by js/live-stream.js -->
-  <section id="live-stream-section" class="section-sm" aria-labelledby="live-heading">
+  <section id="live-stream-section" class="section-sm normal-section" aria-labelledby="live-heading">
     <div class="container">
       <p class="section-tag">Live Stream</p>
       <h2 class="section-heading" id="live-heading" style="margin-bottom:24px;">Join Us <em>This Week</em></h2>
@@ -83,7 +151,7 @@
   <div class="divider"></div>
 
   <!-- Countdown -->
-  <section class="section-sm" style="background:var(--color-bg-2);" aria-label="Countdown to next service">
+  <section class="section-sm normal-section" style="background:var(--color-bg-2);" aria-label="Countdown to next service">
     <div class="container">
       <div style="max-width:640px;margin:0 auto;">
         <p class="section-tag">Coming Up</p>
@@ -105,7 +173,7 @@
   <div class="divider"></div>
 
   <!-- Recent Live Streams -->
-  <section class="section" aria-labelledby="streams-heading">
+  <section class="section normal-section" aria-labelledby="streams-heading">
     <div class="container">
       <p class="section-tag">Watch Again</p>
       <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent Live <em>Streams</em></h2>
@@ -121,7 +189,7 @@
   <div class="divider"></div>
 
   <!-- Most Watched -->
-  <section class="section-alt" aria-labelledby="popular-heading">
+  <section class="section-alt normal-section" aria-labelledby="popular-heading">
     <div class="container">
       <p class="section-tag">Popular</p>
       <h2 class="section-heading" id="popular-heading" style="margin-bottom:8px;">🔥 Most Watched <em>Messages</em></h2>
@@ -134,7 +202,7 @@
   <div class="divider"></div>
 
   <!-- Verse Reels -->
-  <section class="section" aria-labelledby="reels-heading">
+  <section class="section normal-section" aria-labelledby="reels-heading">
     <div class="container">
       <p class="section-tag">Short Videos</p>
       <h2 class="section-heading" id="reels-heading" style="margin-bottom:8px;">📖 Verse <em>Reels</em></h2>
@@ -150,7 +218,7 @@
   <div class="divider"></div>
 
   <!-- Community Testimonials -->
-  <section class="section-alt" aria-labelledby="testimonials-heading">
+  <section class="section-alt normal-section" aria-labelledby="testimonials-heading">
     <div class="container">
       <div style="max-width:800px;margin:0 auto;text-align:center;">
         <p class="section-tag" style="justify-content:center;">Community</p>
