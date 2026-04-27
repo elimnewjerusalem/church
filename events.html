@@ -118,6 +118,9 @@
       <div class="enjc-filter-row" role="group" aria-label="Filter by topic">
         <button class="enjc-filter-btn enjc-filter-active" data-filter="all">🎬 All</button>
         <button class="enjc-filter-btn" data-filter="live">🔴 Live</button>
+        <button class="enjc-filter-btn" data-filter="sunday">🙏 Sunday</button>
+        <button class="enjc-filter-btn" data-filter="friday">✝️ Friday</button>
+        <button class="enjc-filter-btn" data-filter="promise">🎯 Promise</button>
         <button class="enjc-filter-btn" data-filter="deliverance">🔥 Deliverance</button>
         <button class="enjc-filter-btn" data-filter="testimony">💬 Testimony</button>
         <button class="enjc-filter-btn" data-filter="shorts">📱 Shorts</button>
@@ -194,7 +197,33 @@
       <p class="section-tag">Every Week</p>
       <h2 class="section-heading" style="margin-bottom:8px;">Our Regular <em>Services</em></h2>
       <p class="section-sub">Join us in-person or watch live on YouTube</p>
-      <div class="grid-3" id="services-grid"></div>
+
+      <!-- Sunday Service -->
+      <div style="margin-bottom:48px;">
+        <h3 style="color:var(--color-text);font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <span style="background:#7c6cf0;color:#fff;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:700;">🙏 SUNDAY SERVICE</span>
+          <span style="font-size:12px;color:var(--color-text-faint);">Every Sunday • 5:30 / 8:30 / 11:30 AM</span>
+        </h3>
+        <div id="sunday-section"></div>
+      </div>
+
+      <!-- Friday Prayer -->
+      <div style="margin-bottom:48px;">
+        <h3 style="color:var(--color-text);font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <span style="background:#059669;color:#fff;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:700;">✝️ FRIDAY PRAYER</span>
+          <span style="font-size:12px;color:var(--color-text-faint);">Every Friday • 11:00 AM – 1:30 PM</span>
+        </h3>
+        <div id="friday-section"></div>
+      </div>
+
+      <!-- Promise Service -->
+      <div>
+        <h3 style="color:var(--color-text);font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <span style="background:#0369a1;color:#fff;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:700;">🎯 PROMISE SERVICE</span>
+          <span style="font-size:12px;color:var(--color-text-faint);">Special Sessions</span>
+        </h3>
+        <div id="promise-section"></div>
+      </div>
     </div>
   </section>
 
