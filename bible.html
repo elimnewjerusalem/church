@@ -2019,10 +2019,12 @@ function openImageStudio(){
 function openImageStudioWithVerse(){
   if(!window._mv){ openImageStudio(); return; }
   const mv = window._mv;
-  const p = new URLSearchParams({
-    ta: mv.ta||'', tref: mv.taRef||'',
-    en: mv.en||'',  ref: mv.ref||''
-  });
+  // Fallback: if ta empty, try from current verse display
+  const ta  = mv.ta  || document.getElementById('vs-ta')?.textContent?.replace(/[""]/g,'').trim() || '';
+  const en  = mv.en  || document.getElementById('vs-en')?.textContent?.replace(/[""]/g,'').trim() || '';
+  const tref= mv.taRef || '';
+  const ref = mv.ref || '';
+  const p = new URLSearchParams({ ta, tref, en, ref });
   window.open('imagegen.html?' + p.toString(), '_blank');
 }
 

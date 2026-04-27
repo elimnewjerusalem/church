@@ -336,6 +336,18 @@ canvas#igcv{
 }
 @media(min-width:901px){.mob-tabs,.mob-panel{display:none !important;}}
 
+
+/* Verse list */
+.vlist-item{
+  padding:10px 10px;border-bottom:1px solid var(--bd);cursor:pointer;
+  border-radius:6px;transition:all .15s;margin-bottom:2px;
+  border-left:2px solid transparent;
+}
+.vlist-item:hover{background:rgba(240,192,64,.06);border-left-color:rgba(240,192,64,.3);}
+.vlist-active{background:rgba(240,192,64,.1) !important;border-left-color:var(--gd) !important;}
+.vlist-ref{font-size:10px;color:var(--gd);font-weight:600;margin-bottom:3px;}
+.vlist-ta{font-size:11px;color:var(--tx2);line-height:1.65;font-family:var(--tamil);}
+
 /* Btn group */
 .btn-group{display:flex;gap:4px;}
 .grp-btn{
@@ -700,14 +712,36 @@ const UNSPLASH_CATS = [
 ];
 
 const VERSES = [
-  { ta:'தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார்.', tref:'யோவான் 3:16', en:'For God so loved the world, that He gave His only Son.', ref:'John 3:16' },
+  { ta:'தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார், அதனால் தம்முடைய ஒரே பேறான குமாரனை அனுப்பினார்.', tref:'யோவான் 3:16', en:'For God so loved the world, that He gave His only begotten Son.', ref:'John 3:16' },
   { ta:'என்னை பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்.', tref:'பிலிப்பியர் 4:13', en:'I can do all things through Christ who strengthens me.', ref:'Philippians 4:13' },
   { ta:'கர்த்தர் என் மேய்ப்பர்; எனக்கு குறைவுண்டாவதில்லை.', tref:'சங்கீதம் 23:1', en:'The Lord is my shepherd; I shall not want.', ref:'Psalm 23:1' },
   { ta:'நீ என் கண்களுக்கு அருமையானவன்; நான் உன்னை நேசிக்கிறேன்.', tref:'ஏசாயா 43:4', en:'You are precious in my sight, and I love you.', ref:'Isaiah 43:4' },
-  { ta:'கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்.', tref:'ஏசாயா 40:31', en:'They who wait for the Lord shall renew their strength.', ref:'Isaiah 40:31' },
+  { ta:'கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்; கழுகுகளைப்போல சிறகடித்து ஏறுவார்கள்.', tref:'ஏசாயா 40:31', en:'They who wait for the Lord shall renew their strength; they shall mount up with wings like eagles.', ref:'Isaiah 40:31' },
   { ta:'வருத்தப்பட்டு பாரஞ்சுமக்கிறவர்களே, என்னிடத்தில் வாருங்கள்; நான் உங்களுக்கு இளைப்பாறுதல் தருவேன்.', tref:'மத்தேயு 11:28', en:'Come to me, all who labour and are heavy laden, and I will give you rest.', ref:'Matthew 11:28' },
   { ta:'உன் சம்பூர்ண இருதயத்தோடே கர்த்தரில் நம்பிக்கைவை; உன் சொந்த அறிவை நம்பாதே.', tref:'நீதிமொழிகள் 3:5', en:'Trust in the Lord with all your heart, and do not lean on your own understanding.', ref:'Proverbs 3:5' },
-  { ta:'சமாதானத்தை உங்களுக்கு வைத்துவிடுகிறேன்.', tref:'யோவான் 14:27', en:'Peace I leave with you; my peace I give to you.', ref:'John 14:27' },
+  { ta:'சமாதானத்தை உங்களுக்கு வைத்துவிடுகிறேன்; என் சமாதானத்தை உங்களுக்கு கொடுக்கிறேன்.', tref:'யோவான் 14:27', en:'Peace I leave with you; my peace I give to you.', ref:'John 14:27' },
+  { ta:'என்னால் நினைக்கப்படுகிற நினைவுகளை நான் அறிவேன்; அவைகள் சமாதானத்திற்கான நினைவுகளே.', tref:'எரேமியா 29:11', en:'For I know the plans I have for you — plans for welfare and not for evil, to give you a future and a hope.', ref:'Jeremiah 29:11' },
+  { ta:'திடமனதாயிரு, தைரியமாயிரு; கர்த்தர் நீ போகும் எவ்விடத்திலும் உன்னோடிருக்கிறார்.', tref:'யோசுவா 1:9', en:'Be strong and courageous. The Lord your God is with you wherever you go.', ref:'Joshua 1:9' },
+  { ta:'கர்த்தரிடத்தில் மகிழ்ந்திரு; அவர் உன் இருதயத்தின் வேண்டுதல்களை உனக்கு அருள்வார்.', tref:'சங்கீதம் 37:4', en:'Delight yourself in the Lord, and he will give you the desires of your heart.', ref:'Psalm 37:4' },
+  { ta:'கர்த்தர் என் வெளிச்சமும் என் இரட்சிப்புமாயிருக்கிறார்; யாருக்கு பயப்படுவேன்?', tref:'சங்கீதம் 27:1', en:'The Lord is my light and my salvation; whom shall I fear?', ref:'Psalm 27:1' },
+  { ta:'நான் உங்களை விட்டு விலகுவதில்லை; உங்களை கைவிடுவதுமில்லை.', tref:'எபிரெயர் 13:5', en:'I will never leave you nor forsake you.', ref:'Hebrews 13:5' },
+  { ta:'தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும்.', tref:'ரோமர் 8:28', en:'For those who love God all things work together for good.', ref:'Romans 8:28' },
+  { ta:'அன்பு நீடிய பொறுமையுள்ளது; அன்பு தயவுள்ளது; அன்பு பொறாமைப்படாது.', tref:'1 கொரிந்தியர் 13:4', en:'Love is patient and kind; love does not envy or boast.', ref:'1 Corinthians 13:4' },
+  { ta:'விசுவாசமானது நம்பப்படுகிறவைகளின் உறுதியும், காணப்படாதவைகளின் நிச்சயமுமாயிருக்கிறது.', tref:'எபிரெயர் 11:1', en:'Faith is the assurance of things hoped for, the conviction of things not seen.', ref:'Hebrews 11:1' },
+  { ta:'என் கிருபை உனக்குப் போதும்; என் பெலன் பலவீனத்திலே பூரணமாகும்.', tref:'2 கொரிந்தியர் 12:9', en:'My grace is sufficient for you, for my power is made perfect in weakness.', ref:'2 Corinthians 12:9' },
+  { ta:'இடைவிடாமல் ஜெபம் பண்ணுங்கள்.', tref:'1 தெசலோனிக்கேயர் 5:17', en:'Pray without ceasing.', ref:'1 Thessalonians 5:17' },
+  { ta:'தேவன் நமக்கு அடைக்கலமும் பெலனுமாயிருக்கிறார்; ஆபத்துக்காலத்தில் அவர் உதவி எளிதில் கிடைக்கும்.', tref:'சங்கீதம் 46:1', en:'God is our refuge and strength, a very present help in trouble.', ref:'Psalm 46:1' },
+  { ta:'நான்தான் வழியும் சத்தியமும் ஜீவனுமாயிருக்கிறேன்.', tref:'யோவான் 14:6', en:'I am the way, and the truth, and the life.', ref:'John 14:6' },
+  { ta:'கிருபையினாலே விசுவாசத்தைக்கொண்டு இரட்சிக்கப்பட்டீர்கள்; இது தேவனுடைய ஈவு.', tref:'எபேசியர் 2:8', en:'For by grace you have been saved through faith. This is the gift of God.', ref:'Ephesians 2:8' },
+  { ta:'ஒன்றினிமித்தமும் கவலைப்படாமல், எல்லாவற்றிலேயும் ஸ்தோத்திரத்தோடு கூடிய விண்ணப்பங்களால் உங்கள் அபேட்சைகளை தேவனுக்கு தெரியப்படுத்துங்கள்.', tref:'பிலிப்பியர் 4:6', en:'Do not be anxious about anything, but in everything by prayer and thanksgiving let your requests be made known to God.', ref:'Philippians 4:6' },
+  { ta:'இயேசு கிறிஸ்துவே நேற்றும் இன்றும் என்றும் மாறாதவர்.', tref:'எபிரெயர் 13:8', en:'Jesus Christ is the same yesterday and today and forever.', ref:'Hebrews 13:8' },
+  { ta:'கர்த்தருடைய கிருபைகள் தீர்ந்துபோவதில்லை; அவருடைய இரக்கங்கள் காலைதோறும் புதியவைகளாகும்.', tref:'புலம்பல் 3:22-23', en:'The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning.', ref:'Lamentations 3:22-23' },
+  { ta:'நம்பிக்கையின் தேவன் விசுவாசத்தினால் உங்களை சகல சந்தோஷத்தினாலும் சமாதானத்தினாலும் நிரப்புவாராக.', tref:'ரோமர் 15:13', en:'May the God of hope fill you with all joy and peace in believing.', ref:'Romans 15:13' },
+  { ta:'ஏசாயா 53:5 — அவர் நம்முடைய மீறுதல்களினிமித்தம் காயப்பட்டு; அவருடைய தழும்புகளால் குணமாகிறோம்.', tref:'ஏசாயா 53:5', en:'He was wounded for our transgressions; with his stripes we are healed.', ref:'Isaiah 53:5' },
+  { ta:'உங்கள் கவலைகளையெல்லாம் அவர்மேல் போடுங்கள்; அவர் உங்களை விசாரிக்கிறார்.', tref:'1 பேதுரு 5:7', en:'Cast all your anxieties on him, because he cares for you.', ref:'1 Peter 5:7' },
+  { ta:'என்னோடே இரு; நான் உன்னை ஆசீர்வதிப்பேன்.', tref:'ஆதியாகமம் 26:3', en:'I will be with you and will bless you.', ref:'Genesis 26:3' },
+  { ta:'ஸ்தோத்திரத்தோடே அவருடைய வாசல்களிலும், துதியோடே அவருடைய பிரகாரங்களிலும் பிரவேசியுங்கள்.', tref:'சங்கீதம் 100:4', en:'Enter his gates with thanksgiving, and his courts with praise.', ref:'Psalm 100:4' },
+  { ta:'நீதிமானுடைய வேண்டுதல் மிகவும் பெலனுள்ளதாய் வல்லமையாய் நடக்கிறது.', tref:'யாக்கோபு 5:16', en:'The prayer of a righteous person has great power as it is working.', ref:'James 5:16' },
 ];
 
 // ── INIT ──────────────────────────────────────────────────────
@@ -941,13 +975,27 @@ function useVOTD(){
 function buildFeaturedVerses(){
   const el=g('featured-verses');
   if(!el) return;
-  el.innerHTML = VERSES.map((v,i)=>`
-    <div style="padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer;transition:all .15s"
-         onmouseover="this.style.paddingLeft='6px'" onmouseout="this.style.paddingLeft='0'"
-         onclick="setVerse(${i});draw()">
-      <div style="font-size:10px;color:var(--gd);font-weight:600;margin-bottom:2px">${v.tref}</div>
-      <div style="font-size:11px;color:var(--tx2);line-height:1.6;font-family:var(--tamil)">${v.ta.substring(0,60)}${v.ta.length>60?'...':''}</div>
+  renderVerseList(el);
+}
+
+function renderVerseList(container){
+  if(!container) return;
+  container.innerHTML = VERSES.map((v,i)=>`
+    <div class="vlist-item${ST.verseIdx===i?' vlist-active':''}" id="vitem-${i}"
+         onclick="selectVerse(${i})" data-idx="${i}">
+      <div class="vlist-ref">${v.tref} <span style="opacity:.5;font-size:8px">· ${v.ref}</span></div>
+      <div class="vlist-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
     </div>`).join('');
+}
+
+function selectVerse(i){
+  setVerse(i);
+  draw();
+  // Highlight selected
+  document.querySelectorAll('.vlist-item').forEach((el,j)=>el.classList.toggle('vlist-active',j===i));
+  // Scroll selected into view
+  document.getElementById('vitem-'+i)?.scrollIntoView({behavior:'smooth',block:'nearest'});
+  toast('✓ '+VERSES[i].tref+' selected');
 }
 
 // ── QUICK TEMPLATES ────────────────────────────────────────────
@@ -973,9 +1021,18 @@ function updateInfoRow(){
 function loadFromURL(){
   const p=new URLSearchParams(location.search);
   if(p.get('ta')){
-    const custom={ta:p.get('ta'),tref:p.get('tref')||'',en:p.get('en')||'',ref:p.get('ref')||''};
+    const custom={
+      ta:  decodeURIComponent(p.get('ta')||''),
+      tref:decodeURIComponent(p.get('tref')||''),
+      en:  decodeURIComponent(p.get('en')||''),
+      ref: decodeURIComponent(p.get('ref')||'')
+    };
+    // Remove duplicate if same ref already exists
+    const existing = VERSES.findIndex(v=>v.tref===custom.tref);
+    if(existing>=0) VERSES.splice(existing,1);
     VERSES.unshift(custom);
-    ST.verseIdx=0;
+    ST.verseIdx = 0;
+    ST.verse = custom; // set immediately
   }
 }
 
@@ -1357,12 +1414,10 @@ function syncMobile(){
     </div>
     <p class="sec-lbl">All Verses</p>
     ${VERSES.map((v,i)=>`
-      <div style="padding:10px 8px;border-bottom:1px solid var(--bd);cursor:pointer;border-radius:6px;transition:all .15s;margin-bottom:2px"
-           onclick="setVerse(${i});draw();updateMobVerseDisplay()"
-           onmouseover="this.style.background='rgba(240,192,64,.08)'"
-           onmouseout="this.style.background=''">
-        <div style="font-size:10px;color:var(--gd);font-weight:600;margin-bottom:3px">${v.tref} · ${v.ref}</div>
-        <div style="font-size:12px;color:var(--tx2);line-height:1.7;font-family:'Noto Serif Tamil',serif">${v.ta.substring(0,80)}${v.ta.length>80?'...':''}</div>
+      <div class="vlist-item${ST.verseIdx===i?' vlist-active':''}" id="mvitem-${i}"
+           onclick="selectVerse(${i});updateMobVerseDisplay()">
+        <div class="vlist-ref">${v.tref} <span style="opacity:.5;font-size:8px">· ${v.ref}</span></div>
+        <div class="vlist-ta">${v.ta.substring(0,80)}${v.ta.length>80?'…':''}</div>
       </div>`).join('')}`;
 
   // ── Mobile: Export panel ──
