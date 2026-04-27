@@ -1019,21 +1019,42 @@ function updateInfoRow(){
 
 // ── URL PARAMS (from bible.html) ───────────────────────────────
 function loadFromURL(){
-  const p=new URLSearchParams(location.search);
-  if(p.get('ta')){
-    const custom={
-      ta:  decodeURIComponent(p.get('ta')||''),
-      tref:decodeURIComponent(p.get('tref')||''),
-      en:  decodeURIComponent(p.get('en')||''),
-      ref: decodeURIComponent(p.get('ref')||'')
-    };
-    // Remove duplicate if same ref already exists
-    const existing = VERSES.findIndex(v=>v.tref===custom.tref);
-    if(existing>=0) VERSES.splice(existing,1);
-    VERSES.unshift(custom);
-    ST.verseIdx = 0;
-    ST.verse = custom; // set immediately
-  }
+  // Primary: localStorage (set by bible.html before opening this tab)
+  try{
+    const stored = localStorage.getItem('enjc_ig_verse');
+    if(stored){
+      const custom = JSON.parse(stored);
+      if(custom && custom.ta){
+        // Remove duplicate
+        const existing = VERSES.findIndex(v=>v.tref===custom.tref);
+        if(existing>=0) VERSES.splice(existing,1);
+        VERSES.unshift(custom);
+        ST.verseIdx = 0;
+        ST.verse    = custom;
+        localStorage.removeItem('enjc_ig_verse'); // clean up
+        return;
+      }
+    }
+  }catch(e){}
+
+  // Fallback: URL params
+  try{
+    const p = new URLSearchParams(location.search);
+    const ta = p.get('ta');
+    if(ta){
+      const custom = {
+        ta:   decodeURIComponent(ta),
+        tref: decodeURIComponent(p.get('tref')||''),
+        en:   decodeURIComponent(p.get('en')||''),
+        ref:  decodeURIComponent(p.get('ref')||'')
+      };
+      const existing = VERSES.findIndex(v=>v.tref===custom.tref);
+      if(existing>=0) VERSES.splice(existing,1);
+      VERSES.unshift(custom);
+      ST.verseIdx = 0;
+      ST.verse    = custom;
+    }
+  }catch(e){}
 }
 
 // ── TOUCH SWIPE ────────────────────────────────────────────────

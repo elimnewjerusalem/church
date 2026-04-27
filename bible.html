@@ -2005,27 +2005,32 @@ document.addEventListener('keydown', e => {
 
 function openImageStudio(){
   const v = window._vd;
-  let url = 'imagegen.html';
   if(v){
-    const p = new URLSearchParams({
-      ta: v.ta||'', tref: v.tref||'',
-      en: v.en||v.text||'', ref: v.ref||''
-    });
-    url += '?' + p.toString();
+    const verse = { ta: v.ta||'', tref: v.tref||'', en: v.en||v.text||'', ref: v.ref||'' };
+    try{ localStorage.setItem('enjc_ig_verse', JSON.stringify(verse)); }catch(e){}
   }
-  window.open(url, '_blank');
+  window.open('imagegen.html', '_blank');
 }
 
 function openImageStudioWithVerse(){
-  if(!window._mv){ openImageStudio(); return; }
   const mv = window._mv;
-  // Fallback: if ta empty, try from current verse display
-  const ta  = mv.ta  || document.getElementById('vs-ta')?.textContent?.replace(/[""]/g,'').trim() || '';
-  const en  = mv.en  || document.getElementById('vs-en')?.textContent?.replace(/[""]/g,'').trim() || '';
-  const tref= mv.taRef || '';
-  const ref = mv.ref || '';
-  const p = new URLSearchParams({ ta, tref, en, ref });
-  window.open('imagegen.html?' + p.toString(), '_blank');
+  let verse = null;
+  if(mv){
+    const ta   = mv.ta   || document.getElementById('vs-ta')?.textContent?.replace(/["“”]/g,'').trim() || '';
+    const en   = mv.en   || document.getElementById('vs-en')?.textContent?.replace(/["“”]/g,'').trim() || '';
+    const tref = mv.taRef || '';
+    const ref  = mv.ref  || '';
+    if(ta) verse = { ta, tref, en, ref };
+  }
+  if(!verse){
+    // Fallback to VOTD
+    const v = window._vd;
+    if(v) verse = { ta: v.ta||'', tref: v.tref||'', en: v.en||'', ref: v.ref||'' };
+  }
+  if(verse){
+    try{ localStorage.setItem('enjc_ig_verse', JSON.stringify(verse)); }catch(e){}
+  }
+  window.open('imagegen.html', '_blank');
 }
 
 </script>
