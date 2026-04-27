@@ -363,8 +363,7 @@ async function loadTA(){
       }
     }catch(e){continue;}
   }
-  const bk = S.books[S.bookIdx]?.ta || '';
-  toast('⚠ '+bk+' '+S.ch+' — இணையம் தேவை. முதல் முறை API-ல் இருந்து பெறப்படும்.');
+  toast('⚠ '+S.bookTaName+' '+S.ch+' — இணையம் தேவை. முதல் முறை API-ல் இருந்து பெறப்படும்.');
   throw new Error('Tamil offline: '+key);
 }
 
@@ -705,31 +704,30 @@ function rmBM(i){const bms=getBM();bms.splice(i,1);saveBM(bms);updateBmBadge();o
 
 // ── BOOKMARK CHAPTER ─────────────────────────────────────────────
 function togBMChapter(){
-  const book = S.books[S.bookIdx];
-  if(!book) return;
-  const key  = 'bmc_' + book.id + '_' + S.ch;
-  const bms  = getBM();
-  // Check if already bookmarked
+  if(!S.book) return;
+  const bk = BOOKS.find(b => b.id === S.book);
+  if(!bk) return;
+  const key = 'bmc_' + S.book + '_' + S.ch;
+  const bms = getBM();
   const already = bms.findIndex(b => b.refEN === key);
   if(already >= 0){
     bms.splice(already, 1);
     saveBM(bms);
     toast('🔖 Chapter bookmark removed');
-    g('bmchbtn') && (g('bmchbtn').style.color = '');
+    if(g('bmchbtn')) g('bmchbtn').style.color = '';
   } else {
-    const label = (S.lang==='ta' ? book.ta : book.en) + ' ' + S.ch + ' (full chapter)';
+    const label = (S.lang==='ta' ? bk.ta : bk.name) + ' ' + S.ch + ' (full chapter)';
     bms.unshift({ refEN: key, text: label, refTA: label, isChapter: true });
     saveBM(bms);
     toast('🔖 Chapter saved!');
-    g('bmchbtn') && (g('bmchbtn').style.color = 'var(--gd)');
+    if(g('bmchbtn')) g('bmchbtn').style.color = 'var(--gd)';
   }
   updateBmBadge();
 }
 
 function updateBMChapterBtn(){
-  const book = S.books[S.bookIdx];
-  if(!book || !g('bmchbtn')) return;
-  const key = 'bmc_' + book.id + '_' + S.ch;
+  if(!S.book || !g('bmchbtn')) return;
+  const key = 'bmc_' + S.book + '_' + S.ch;
   const bms = getBM();
   const saved = bms.some(b => b.refEN === key);
   g('bmchbtn').style.color = saved ? 'var(--gd)' : '';
@@ -1103,7 +1101,7 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
         </div>
         <div class="ig-gsl-row" style="margin-top:10px">
           <span class="ig-gsl-lbl">Overlay</span>
-          <input type="range" class="ig-gsl" id="ig-uns-opacity" min="0" max="80" value="50" oninput="S.ig.unsOverlay=this.value/100;g('ig-uns-opval').textContent=this.value+'%';drawIG()">
+          <input type="range" class="ig-gsl" id="ig-uns-opacity" min="0" max="80" value="50" oninput="S.igUnsOverlay=this.value/100;g('ig-uns-opval').textContent=this.value+'%';drawIG()">
           <span class="ig-gsl-val" id="ig-uns-opval">50%</span>
         </div>
       </div>
@@ -1201,12 +1199,15 @@ function igSetSize(el, sz){
 // ── BG MODE ──────────────────────────────────────────────────────
 function igSetBgMode(mode){
   _igMode = mode;
-  document.getElementById('igtab-solid').classList.toggle('on', mode==='solid');
-  document.getElementById('igtab-photo').classList.toggle('on', mode==='photo');
-  const ss = document.getElementById('ig-solid-sec');
-  const ps = document.getElementById('ig-photo-sec');
-  if(ss) ss.style.display = mode==='solid'?'block':'none';
-  if(ps) ps.style.display = mode==='photo'?'block':'none';
+  document.getElementById('igtab-solid')?.classList.toggle('on', mode==='solid');
+  document.getElementById('igtab-photo')?.classList.toggle('on', mode==='photo');
+  document.getElementById('igtab-unsplash')?.classList.toggle('on', mode==='unsplash');
+  const ss  = document.getElementById('ig-solid-sec');
+  const ps  = document.getElementById('ig-photo-sec');
+  const us  = document.getElementById('ig-unsplash-sec');
+  if(ss) ss.style.display   = mode==='solid'    ? 'block' : 'none';
+  if(ps) ps.style.display   = mode==='photo'    ? 'block' : 'none';
+  if(us) us.style.display   = mode==='unsplash' ? 'block' : 'none';
   drawIG();
 }
 
