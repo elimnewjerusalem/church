@@ -1633,26 +1633,29 @@ function draw(){
     ctx.fillStyle='rgba(255,255,255,.45)';
     ctx.fillText('CHURCH',LX+LSZ/2,LY+LSZ*.78);
 
-    // Church name — right of logo, vertically centred
-    const NX=LX+LSZ+Math.round(W*0.035);
-    const NW=W-NX-PAD;
+    // Church name — right of logo
+    const NX=LX+LSZ+Math.round(W*0.03);
+    const NW=W-NX-PAD*1.2; // strict right boundary
     ctx.textAlign='left';
+    ctx.save();
+    ctx.rect(NX, LY, NW, LSZ); // clip to available name area
+    ctx.clip();
 
-    // Name font — scale to fit width
-    let nameFs=Math.round(W*0.042);
+    // Scale font to fit
+    let nameFs=Math.round(W*0.038);
     ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
-    // Shrink if too wide
-    while(ctx.measureText(wmName).width>NW && nameFs>Math.round(W*0.022)){
-      nameFs--;
+    while(ctx.measureText(wmName).width > NW && nameFs > Math.round(W*0.018)){
+      nameFs -= 1;
       ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
     }
     ctx.fillStyle='rgba(255,255,255,.92)';
-    ctx.fillText(wmName,NX,LY+LSZ*.46);
+    ctx.fillText(wmName, NX, LY+LSZ*.48);
 
     // Sub text
-    ctx.font=`400 ${Math.round(nameFs*.62)}px Inter,sans-serif`;
-    ctx.fillStyle='rgba(255,255,255,.48)';
-    ctx.fillText(wmSub,NX,LY+LSZ*.76);
+    ctx.font=`400 ${Math.round(nameFs*.6)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.45)';
+    ctx.fillText(wmSub, NX, LY+LSZ*.76);
+    ctx.restore();
 
     // Gold divider
     ctx.strokeStyle='rgba(245,200,80,.3)';
@@ -1692,9 +1695,13 @@ function draw(){
   ctx.textAlign='left';
   ctx.font=`600 ${FSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.85)';
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',PAD+ICW+Math.round(W*0.022),YTY);
-  // Subscribe btn
+  // Clip YT text to not overlap Subscribe button
   const SUBW=Math.round(W*0.21);
+  const ytTxtX=PAD+ICW+Math.round(W*0.022);
+  const ytTxtMaxW=W-ytTxtX-SUBW-PAD-Math.round(W*0.025);
+  ctx.save();ctx.rect(ytTxtX,YTY-FSZ,ytTxtMaxW,FSZ*1.4);ctx.clip();
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',ytTxtX,YTY);
+  ctx.restore();
   ctx.fillStyle='#ff0000';
   ctx.beginPath();ctx.roundRect(W-PAD-SUBW,YTY-BTH*.76,SUBW,BTH,BTH/2);ctx.fill();
   ctx.font=`700 ${Math.round(FSZ*.68)}px Inter,sans-serif`;
@@ -1713,9 +1720,13 @@ function draw(){
   ctx.textAlign='left';
   ctx.font=`600 ${FSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.85)';
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',PAD+ICW+Math.round(W*0.022),IGY);
-  // Follow btn
   const FOLW=Math.round(W*0.17);
+  const igTxtX=PAD+ICW+Math.round(W*0.022);
+  const igTxtMaxW=W-igTxtX-FOLW-PAD-Math.round(W*0.025);
+  ctx.save();ctx.rect(igTxtX,IGY-FSZ,igTxtMaxW,FSZ*1.4);ctx.clip();
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',igTxtX,IGY);
+  ctx.restore();
+  // Follow btn
   const folG=ctx.createLinearGradient(W-PAD-FOLW,IGY,W-PAD,IGY);
   folG.addColorStop(0,'#f58529');folG.addColorStop(1,'#8134af');
   ctx.fillStyle=folG;
@@ -1757,8 +1768,11 @@ function draw(){
   const TW=Math.round(BW*0.80);
   const TX=W/2; // centered
 
-  const taFs=Math.min(parseInt(g('ta-size')?.value||52), Math.round(W*0.065));
-  const enFs=Math.min(parseInt(g('en-size')?.value||32), Math.round(W*0.042));
+  // Cap font sizes so text fits within TW
+  const rawTaFs=parseInt(g('ta-size')?.value||52);
+  const rawEnFs=parseInt(g('en-size')?.value||32);
+  const taFs=Math.min(rawTaFs, Math.round(W*0.058));
+  const enFs=Math.min(rawEnFs, Math.round(W*0.038));
   const taLh=taFs*1.72;
   const enLh=enFs*1.62;
   const tc=ST.txColor||'#fff';
@@ -1787,6 +1801,11 @@ function draw(){
 
   // Vertical center inside box
   let cy=BTOP+(BH-totalH)/2+taFs;
+
+  // Clip all verse text to box bounds
+  ctx.save();
+  ctx.rect(BX+Math.round(W*0.02), BTOP+Math.round(H*0.01), BW-Math.round(W*0.04), BH-Math.round(H*0.02));
+  ctx.clip();
 
   // Glow
   if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.5)';ctx.shadowBlur=Math.round(W*0.016);}
@@ -1832,6 +1851,7 @@ function draw(){
   }
 
   ctx.shadowBlur=0;ctx.shadowColor='transparent';
+  ctx.restore(); // end verse clip
 
   // ── INSTAGRAM SAFE ZONE ─────────────────────────────
   if(ST.safeZone&&ST.sz==='9:16'){
