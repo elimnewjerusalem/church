@@ -138,27 +138,27 @@
       </article>`;
   }
 
-  /* ── SERVICE SECTION (latest 1 + playlist link) ── */
+  /* ── SERVICE SECTION (latest 1 card + playlist button) ── */
 
   function renderServiceSection(elId, video, type, playlistId, title) {
     const el = document.getElementById(elId);
     if (!el) return;
-    const color = COLORS[type];
-    const plUrl = `https://www.youtube.com/playlist?list=${playlistId}`;
+    const color  = COLORS[type];
+    const plUrl  = `https://www.youtube.com/playlist?list=${playlistId}`;
+    const cardHtml = video ? buildCard(video, type)
+      : `<div class="card" style="aspect-ratio:16/9;display:flex;align-items:center;
+           justify-content:center;color:var(--color-text-faint);">No video found</div>`;
 
     el.innerHTML = `
-      <div style="max-width:480px;margin:0 auto;">
-        ${video ? buildCard(video, type) : `<div style="text-align:center;padding:40px;color:var(--color-text-faint);">Loading...</div>`}
-        <div style="text-align:center;margin-top:16px;">
+      <div style="display:grid;grid-template-columns:1fr;max-width:420px;">
+        ${cardHtml}
+        <div style="margin-top:14px;">
           <a href="${plUrl}" target="_blank" rel="noopener"
              style="display:inline-flex;align-items:center;gap:8px;
                     padding:10px 24px;border-radius:99px;
                     background:${color};color:#fff;
-                    font-size:13px;font-weight:700;text-decoration:none;
-                    transition:opacity 0.2s;"
-             onmouseover="this.style.opacity='.8'"
-             onmouseout="this.style.opacity='1'">
-            ▶ View Full ${title} Playlist
+                    font-size:13px;font-weight:700;text-decoration:none;">
+            ▶ View Full Playlist
           </a>
         </div>
       </div>`;
