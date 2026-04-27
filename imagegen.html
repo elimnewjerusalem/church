@@ -1798,34 +1798,32 @@ function draw(){
   ctx.strokeStyle='rgba(245,200,80,.4)';ctx.lineWidth=Math.round(H*0.0018);
   ctx.beginPath();ctx.moveTo(Math.round(W*0.05),ftY);ctx.lineTo(Math.round(W*0.95),ftY);ctx.stroke();
 
-  const fSz=Math.round(W*0.035); // larger font
-  const pad=Math.round(W*0.055);
-  const rowH=Math.round(ftH*0.44);
+  const fSz=Math.round(W*0.035);
+  const ftPad=Math.round(W*0.055);
   const iconSz=Math.round(fSz*1.05);
   const btnH=Math.round(fSz*1.1);
-  const btnPad=Math.round(W*0.04);
 
   // ── YouTube row ──
   const ytY=ftY+Math.round(ftH*0.3);
   // YT icon pill
   ctx.fillStyle='#ff0000';
-  ctx.beginPath();ctx.roundRect(pad,ytY-iconSz*.7,iconSz*1.6,iconSz*.9,3);ctx.fill();
+  ctx.beginPath();ctx.roundRect(ftPad,ytY-iconSz*.7,iconSz*1.6,iconSz*.9,3);ctx.fill();
   ctx.fillStyle='#fff';
   ctx.font=`700 ${Math.round(iconSz*.55)}px Inter,sans-serif`;
   ctx.textAlign='center';
-  ctx.fillText('▶',pad+iconSz*.8,ytY-iconSz*.12);
+  ctx.fillText('▶',ftPad+iconSz*.8,ytY-iconSz*.12);
   // YT handle
   ctx.textAlign='left';
   ctx.font=`600 ${fSz}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.88)';
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',pad+iconSz*1.9,ytY);
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',ftPad+iconSz*1.9,ytY);
   // Subscribe button
   const subW=Math.round(W*0.22);
   ctx.fillStyle='#ff0000';
-  ctx.beginPath();ctx.roundRect(W-pad-subW,ytY-btnH*.78,subW,btnH,btnH/2);ctx.fill();
+  ctx.beginPath();ctx.roundRect(W-ftPad-subW,ytY-btnH*.78,subW,btnH,btnH/2);ctx.fill();
   ctx.font=`700 ${Math.round(fSz*.75)}px Inter,sans-serif`;
   ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('🔔 SUBSCRIBE',W-pad-subW/2,ytY);
+  ctx.fillText('🔔 SUBSCRIBE',W-ftPad-subW/2,ytY);
 
   // ── Instagram row ──
   const igY=ftY+Math.round(ftH*0.78);
@@ -1833,24 +1831,24 @@ function draw(){
   const igG=ctx.createLinearGradient(pad,igY,pad+iconSz*1.6,igY);
   igG.addColorStop(0,'#f58529');igG.addColorStop(.5,'#dd2a7b');igG.addColorStop(1,'#8134af');
   ctx.fillStyle=igG;
-  ctx.beginPath();ctx.roundRect(pad,igY-iconSz*.7,iconSz*1.6,iconSz*.9,4);ctx.fill();
+  ctx.beginPath();ctx.roundRect(ftPad,igY-iconSz*.7,iconSz*1.6,iconSz*.9,4);ctx.fill();
   ctx.font=`700 ${Math.round(iconSz*.58)}px serif`;
   ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('📷',pad+iconSz*.8,igY-iconSz*.08);
+  ctx.fillText('📷',ftPad+iconSz*.8,igY-iconSz*.08);
   // IG handle
   ctx.textAlign='left';
   ctx.font=`600 ${fSz}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.88)';
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',pad+iconSz*1.9,igY);
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',ftPad+iconSz*1.9,igY);
   // Follow button
   const folW=Math.round(W*0.18);
   const folGrad=ctx.createLinearGradient(W-pad-folW,igY,W-pad,igY);
   folGrad.addColorStop(0,'#f58529');folGrad.addColorStop(1,'#8134af');
   ctx.fillStyle=folGrad;
-  ctx.beginPath();ctx.roundRect(W-pad-folW,igY-btnH*.78,folW,btnH,btnH/2);ctx.fill();
+  ctx.beginPath();ctx.roundRect(W-ftPad-folW,igY-btnH*.78,folW,btnH,btnH/2);ctx.fill();
   ctx.font=`700 ${Math.round(fSz*.75)}px Inter,sans-serif`;
   ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('Follow',W-pad-folW/2,igY);
+  ctx.fillText('Follow',W-ftPad-folW/2,igY);
 
   ctx.textAlign='center';
 
