@@ -1,47 +1,48 @@
 /**
- * ENJC — events.js v3
- * YouTube Data API v3 integration — auto-fetches latest videos from channel.
+ * ENJC — events.js v4
+ * Fetches LIVE STREAMS from main channel using YouTube Search API.
+ * Channel: @ElimNewJerusalemChurchOfficial
  * Falls back to events.json if API fails.
  */
 
 (function () {
   'use strict';
 
-  const YT_API_KEY    = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
-  const CHANNEL_ID    = 'UCdSmNWW5RWg9ZAhMO9RUL9g';
-  const SHORTS_HANDLE = 'ENJCShorts';
-  const MAX_RESULTS   = 12;
+  const YT_API_KEY = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+  const CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w'; // ElimNewJerusalemChurchOfficial
+  const MAX_RESULTS = 12;
 
   let allVideos    = [];
   let activeFilter = 'all';
   let searchQuery  = '';
 
-  /* ── YOUTUBE API ── */
+  /* ── YOUTUBE API: fetch completed live streams ── */
 
-  async function fetchChannelVideos(channelId, maxResults) {
+  async function fetchLiveStreams() {
     try {
-      // Step 1: get uploads playlist ID
-      const chanRes = await fetch(
-        `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${YT_API_KEY}`
-      );
-      const chanData = await chanRes.json();
-      const uploadsId = chanData?.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
-      if (!uploadsId) throw new Error('No uploads playlist');
+      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet`
+        + `&channelId=${CHANNEL_ID}`
+        + `&eventType=completed`
+        + `&type=video`
+        + `&order=date`
+        + `&maxResults=${MAX_RESULTS}`
+        + `&key=${YT_API_KEY}`;
 
-      // Step 2: get videos from playlist
-      const playRes = await fetch(
-        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=${maxResults}&key=${YT_API_KEY}`
-      );
-      const playData = await playRes.json();
-      return (playData.items || []).map(item => ({
-        id:          item.snippet.resourceId.videoId,
+      const res  = await fetch(url);
+      const data = await res.json();
+
+      if (data.error) throw new Error(data.error.message);
+
+      return (data.items || []).map(item => ({
+        videoId:     item.id.videoId,
         title:       item.snippet.title,
         description: item.snippet.description,
-        date:        new Date(item.snippet.publishedAt).toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' }),
+        date:        new Date(item.snippet.publishedAt).toLocaleDateString('en-IN', {
+                       day: 'numeric', month: 'long', year: 'numeric'
+                     }),
         thumbnail:   item.snippet.thumbnails?.medium?.url || '',
-        videoId:     item.snippet.resourceId.videoId,
         topic:       guessTopic(item.snippet.title, item.snippet.description),
-        _label:      'Latest Video',
+        _label:      'Live Stream',
         _source:     'youtube'
       }));
     } catch (err) {
@@ -52,13 +53,13 @@
 
   function guessTopic(title, desc) {
     const t = (title + ' ' + desc).toLowerCase();
-    if (/worship|praise|song|sing|glory|hallelujah/.test(t)) return 'worship';
-    if (/prayer|pray|fast|intercession|night prayer/.test(t)) return 'prayer';
-    if (/short|reel|verse|scripture/.test(t))                 return 'shorts';
+    if (/worship|praise|song|sing|glory|hallelujah|ஆராதனை/.test(t)) return 'worship';
+    if (/prayer|pray|fast|intercession|night prayer|ஜெபம்/.test(t)) return 'prayer';
+    if (/short|reel|verse|scripture/.test(t))                        return 'shorts';
     return 'message';
   }
 
-  /* ── FALLBACK: events.json ── */
+  /* ── FALLBACK ── */
 
   async function loadEventsData() {
     try {
@@ -66,14 +67,12 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.json();
     } catch (err) {
-      console.error('events.js: could not load events.json —', err.message);
+      console.error('events.js: fallback failed —', err.message);
       return null;
     }
   }
 
-  /* ── HELPERS ── */
-
-  function cleanId(id) { return (id || '').replace(/^\/+/, ''); }
+  /* ── CARD BUILDERS ── */
 
   function topicColor(topic) {
     return { worship:'#7c6cf0', prayer:'#059669', message:'#d97706', shorts:'#dc2626' }[topic] || '#6b7280';
@@ -84,22 +83,22 @@
   }
 
   function buildVideoCard(item, label) {
-    const id   = cleanId(item.videoId);
-    const meta = item.date || item.views || item.verse || '';
+    const id    = (item.videoId || '').replace(/^\/+/, '');
+    const meta  = item.date || item.views || '';
     const badge = item.topic
-      ? `<span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:9px;font-weight:700;
-             text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;
+      ? `<span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:9px;
+             font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;
              background:${topicColor(item.topic)};color:#fff;">${topicLabel(item.topic)}</span><br>`
       : '';
 
-    // Use thumbnail if available (YouTube API), else iframe
     const media = item.thumbnail
       ? `<a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"
             style="display:block;position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;">
            <img src="${item.thumbnail}" alt="${item.title}"
-                style="width:100%;height:100%;object-fit:cover;opacity:0.85;">
+                style="width:100%;height:100%;object-fit:cover;opacity:0.9;"
+                loading="lazy">
            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-             <div style="width:52px;height:52px;background:rgba(255,0,0,0.85);border-radius:50%;
+             <div style="width:52px;height:52px;background:rgba(255,0,0,0.9);border-radius:50%;
                   display:flex;align-items:center;justify-content:center;">
                <span style="color:#fff;font-size:20px;margin-left:4px;">▶</span>
              </div>
@@ -113,11 +112,12 @@
          </div>`;
 
     return `
-      <article class="card video-card" style="overflow:hidden;cursor:pointer;">
+      <article class="card video-card" style="overflow:hidden;">
         ${media}
         <div style="padding:16px;">
           ${badge}
-          <div style="font-size:10px;color:var(--color-gold);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">${label}</div>
+          <div style="font-size:10px;color:var(--color-gold);font-weight:700;
+               letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">${label}</div>
           <h4 style="color:var(--color-text);margin-bottom:4px;font-size:13px;line-height:1.4;">${item.title}</h4>
           <p style="font-size:11px;color:var(--color-text-faint);">${meta}</p>
         </div>
@@ -125,10 +125,11 @@
   }
 
   function buildReelCard(item) {
-    const id = cleanId(item.videoId);
+    const id = (item.videoId || '').replace(/^\/+/, '');
     return `
       <div style="width:200px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;
-           background:var(--color-bg-2);border:1px solid var(--color-border);position:relative;flex-shrink:0;">
+           background:var(--color-bg-2);border:1px solid var(--color-border);
+           position:relative;flex-shrink:0;">
         <iframe src="https://www.youtube.com/embed/${id}" title="${item.title}"
           frameborder="0" loading="lazy"
           allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
@@ -147,8 +148,7 @@
       const matchTopic = f === 'all' || item.topic === f;
       const matchQuery = !q ||
         (item.title       || '').toLowerCase().includes(q) ||
-        (item.description || '').toLowerCase().includes(q) ||
-        (item.verse       || '').toLowerCase().includes(q);
+        (item.description || '').toLowerCase().includes(q);
       return matchTopic && matchQuery;
     });
 
@@ -167,7 +167,8 @@
       : `Results for "<strong>${q}</strong>"`;
 
     const countEl = document.getElementById('search-result-count');
-    if (countEl) countEl.innerHTML = `${results.length} video${results.length !== 1 ? 's' : ''} — ${label}`;
+    if (countEl) countEl.innerHTML =
+      `${results.length} video${results.length !== 1 ? 's' : ''} — ${label}`;
 
     grid.innerHTML = results.length
       ? results.map(i => buildVideoCard(i, i._label || 'Video')).join('')
@@ -216,28 +217,30 @@
   /* ── RENDER SECTIONS ── */
 
   function renderYouTubeVideos(videos) {
-    // Recent (latest 3)
     const recentEl = document.getElementById('recent-streams-grid');
-    if (recentEl) recentEl.innerHTML = videos.slice(0, 3).map(i => buildVideoCard(i, 'Latest Upload')).join('');
-
-    // Most watched = next 3
+    if (recentEl) {
+      recentEl.innerHTML = videos.slice(0, 3)
+        .map(i => buildVideoCard(i, 'Live Stream')).join('');
+    }
     const watchedEl = document.getElementById('most-watched-grid');
-    if (watchedEl) watchedEl.innerHTML = videos.slice(3, 6).map(i => buildVideoCard(i, 'From Channel')).join('');
-
-    // Update section headings
-    const recentHead = document.getElementById('streams-heading');
-    if (recentHead) recentHead.innerHTML = '📺 Latest <em>Uploads</em>';
-    const watchedHead = document.getElementById('popular-heading');
-    if (watchedHead) watchedHead.innerHTML = '🔥 More <em>Videos</em>';
+    if (watchedEl) {
+      watchedEl.innerHTML = videos.slice(3, 6)
+        .map(i => buildVideoCard(i, 'Live Stream')).join('');
+    }
+    // Update headings
+    const h1 = document.getElementById('streams-heading');
+    if (h1) h1.innerHTML = '📺 Recent Live <em>Streams</em>';
+    const h2 = document.getElementById('popular-heading');
+    if (h2) h2.innerHTML = '🔥 More Live <em>Sessions</em>';
   }
 
-  function renderFallbackSections(data) {
+  function renderFallback(data) {
     const recentEl = document.getElementById('recent-streams-grid');
-    if (recentEl) recentEl.innerHTML = (data.recentStreams||[]).map(i => buildVideoCard(i, 'Recent Stream')).join('');
+    if (recentEl) recentEl.innerHTML =
+      (data.recentStreams || []).map(i => buildVideoCard(i, 'Recent Stream')).join('');
     const watchedEl = document.getElementById('most-watched-grid');
-    if (watchedEl) watchedEl.innerHTML = (data.mostWatched||[]).map(i => buildVideoCard(i, i.views||'Most Watched')).join('');
-    const reelsEl = document.getElementById('verse-reels-row');
-    if (reelsEl) reelsEl.innerHTML = (data.verseReels||[]).map(buildReelCard).join('');
+    if (watchedEl) watchedEl.innerHTML =
+      (data.mostWatched || []).map(i => buildVideoCard(i, i.views || 'Most Watched')).join('');
   }
 
   function renderVerseReels(items) {
@@ -258,7 +261,9 @@
       textEl.innerHTML     = `\u201c${items[idx].text}\u201d`;
       authorEl.textContent = `\u2014 ${items[idx].author}`;
     }
-    window.changeTestimonial = dir => { idx = (idx + dir + items.length) % items.length; render(); };
+    window.changeTestimonial = dir => {
+      idx = (idx + dir + items.length) % items.length; render();
+    };
     setInterval(() => window.changeTestimonial(1), 5000);
     render();
   }
@@ -268,10 +273,10 @@
   function startCountdown() {
     function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
     function getNextSunday() {
-      const now = new Date();
-      const d   = now.getDay() === 0 ? 7 : 7 - now.getDay();
+      const now  = new Date();
+      const days = now.getDay() === 0 ? 7 : 7 - now.getDay();
       const next = new Date(now);
-      next.setDate(now.getDate() + d);
+      next.setDate(now.getDate() + days);
       next.setHours(5, 30, 0, 0);
       return next;
     }
@@ -291,32 +296,31 @@
   document.addEventListener('DOMContentLoaded', async function () {
     startCountdown();
 
-    // Load fallback data (for reels + testimonials always)
+    // Always load fallback for reels + testimonials
     const data = await loadEventsData();
     if (data) {
       initTestimonials(data.testimonials || []);
       renderVerseReels(data.verseReels   || []);
     }
 
-    // Try YouTube API first
-    const ytVideos = await fetchChannelVideos(CHANNEL_ID, MAX_RESULTS);
+    // Fetch live streams from YouTube
+    const streams = await fetchLiveStreams();
 
-    if (ytVideos && ytVideos.length) {
-      renderYouTubeVideos(ytVideos);
+    if (streams && streams.length) {
+      renderYouTubeVideos(streams);
       allVideos = [
-        ...ytVideos.map(i => ({ ...i, _label: 'YouTube Video' })),
+        ...streams.map(i => ({ ...i, _label: 'Live Stream' })),
         ...(data?.verseReels || []).map(i => ({ ...i, _label: 'Verse Reel', topic: 'shorts' })),
       ];
-      console.log(`✅ YouTube API: loaded ${ytVideos.length} videos`);
+      console.log(`✅ YouTube API: ${streams.length} live streams loaded`);
     } else {
-      // Fallback to events.json
-      if (data) renderFallbackSections(data);
+      if (data) renderFallback(data);
       allVideos = [
         ...(data?.recentStreams || []).map(i => ({ ...i, _label: 'Recent Stream' })),
         ...(data?.mostWatched   || []).map(i => ({ ...i, _label: i.views || 'Most Watched' })),
         ...(data?.verseReels    || []).map(i => ({ ...i, _label: 'Verse Reel', topic: 'shorts' })),
       ];
-      console.warn('⚠️ Using fallback events.json data');
+      console.warn('⚠️ Fallback: using events.json');
     }
 
     initFilterButtons();
