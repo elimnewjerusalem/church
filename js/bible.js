@@ -1930,11 +1930,16 @@ let _mv=null;
 function openVModal(i){
   const v=S.verses[i];if(!v)return;
   // Build _mv state (used by mAct)
+  // Build cross-language verse data for sheet
+  const _taVerse = S.taVerses.find(t=>t.num===v.num);
+  const _enVerse = S.enVerses.find(e=>e.num===v.num);
   _mv={i,v,
     ref:S.bookName+' '+S.ch+':'+v.num,
     taRef:(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num,
-    ta:(S.taVerses.find(t=>t.num===v.num)||{}).text||(S.lang==='ta'?v.text:''),
-    en:(S.enVerses.find(e=>e.num===v.num)||{}).text||(S.lang==='en'?v.text:'')
+    // Tamil: from taVerses → if reading in Tamil use verse text → else empty
+    ta: (_taVerse?.text) || (S.lang==='ta' ? v.text : ''),
+    // English: from enVerses → if reading in English use verse text → else empty
+    en: (_enVerse?.text) || (S.lang==='en' ? v.text : '')
   };
 
   // ── Populate bottom sheet ────────────────────────────
@@ -2038,14 +2043,19 @@ function mAct(action){
   }
 }
 
+let _noteDebounce;
 function autoSaveNote(text){
   if(!_mv)return;
-  const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
-  if(text.trim())notes[_mv.ref]=text.trim();else delete notes[_mv.ref];
-  localStorage.setItem('enjc_notes',JSON.stringify(notes));
-  S.notes=notes;
-  // Update inline preview
-  if(S.verses.length)renderVerses();
+  // Debounce — save after 800ms of inactivity, don't re-render on every keystroke
+  clearTimeout(_noteDebounce);
+  _noteDebounce = setTimeout(()=>{
+    const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
+    if(text.trim())notes[_mv.ref]=text.trim();else delete notes[_mv.ref];
+    localStorage.setItem('enjc_notes',JSON.stringify(notes));
+    S.notes=notes;
+    // Update inline preview only after debounce
+    if(S.verses.length) renderVerses();
+  }, 800);
 }
 
 // ── CACHE UTILS ──────────────────────────────────────────────────
