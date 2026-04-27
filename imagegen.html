@@ -916,6 +916,10 @@ function setVerse(idx){
   ST.verseIdx = Math.max(0, Math.min(idx, VERSES.length-1));
   ST.verse = VERSES[ST.verseIdx];
   updateVerseDisplay();
+  // Update mobile display if present
+  const mta=g('mvd-ta'), mref=g('mvd-ref');
+  if(mta && ST.verse) mta.textContent=ST.verse.ta.substring(0,80)+(ST.verse.ta.length>80?'...':'');
+  if(mref && ST.verse) mref.textContent='— '+ST.verse.tref;
 }
 
 function updateVerseDisplay(){
@@ -1245,23 +1249,192 @@ function mobTab(el, panelId){
 }
 
 function syncMobile(){
-  // Copy desktop content to mobile panels
-  const map={
-    'mob-tpl':  g('tpl-grid')?.outerHTML,
-    'mob-bg':   [g('solid-sec'),g('photo-sec'),g('unsplash-sec')].map(e=>e?.outerHTML||'').join(''),
-    'mob-txt':  g('tab-txt')?.innerHTML,
-    'mob-verse':g('tab-verse')?.innerHTML,
-    'mob-export':`
-      <div class="exp-grid">
-        <button class="exp-btn exp-png" onclick="dlIG('png')">↓ PNG</button>
-        <button class="exp-btn exp-jpg" onclick="dlIG('jpg')">↓ JPG</button>
+  // ── Mobile: Template panel ──
+  g('mob-tpl').innerHTML = `
+    <p class="sec-lbl" style="margin-bottom:8px">Templates</p>
+    <div class="tpl-grid">${TEMPLATES.map(t=>`
+      <div class="tpl" onclick='applyTemplate(${JSON.stringify(t)})' title="${t.desc}">
+        <div class="tpl-preview" style="background:${t.bg}">
+          <div style="font-size:10px;color:${t.accent};font-weight:700;text-align:center;font-family:'Noto Serif Tamil',serif">வேதம்</div>
+          <div style="width:16px;height:1px;background:${t.accent};margin:3px auto"></div>
+          <div style="font-size:7px;color:rgba(255,255,255,.5);text-align:center">Bible Verse</div>
+        </div>
+        <div class="tpl-name">${t.name}</div>
+      </div>`).join('')}
+    </div>`;
+
+  // ── Mobile: BG panel ──
+  g('mob-bg').innerHTML = `
+    <p class="sec-lbl" style="margin-bottom:8px">Background Type</p>
+    <div class="btn-group" style="margin-bottom:12px">
+      <button class="grp-btn on" id="mbgm-solid" onclick="setBgMode('solid');syncBGTabs()">🎨 Colour</button>
+      <button class="grp-btn" id="mbgm-photo" onclick="setBgMode('photo');syncBGTabs()">📷 Photo</button>
+      <button class="grp-btn" id="mbgm-unsplash" onclick="setBgMode('unsplash');syncBGTabs()">🌄 Gallery</button>
+    </div>
+    <div id="mob-solid-sec">
+      <p class="sec-lbl">Colour Presets</p>
+      <div class="color-presets" style="margin-bottom:10px">
+        ${PRESETS.map(c=>`<div class="cp" style="background:${c}" onclick="setColorHex('${c}')"></div>`).join('')}
       </div>
-      <div class="share-row" style="margin-top:6px">
-        <button class="sh-btn sh-wa" onclick="shareWA()">🟢 WhatsApp</button>
-        <button class="sh-btn sh-ig" onclick="shareApp('ig')">📸 Instagram</button>
-      </div>`,
-  };
-  // Mobile doesn't clone — events won't work. Instead show simplified controls.
+      <div class="color-preview-bar" id="mob-color-prev" style="background:${ST.bgColor}"></div>
+      <div class="hex-display" id="mob-hex" style="margin:4px 0">${ST.bgColor.toUpperCase()}</div>
+      <div class="rgb-sliders">
+        <div class="sl-row"><span class="sl-lbl" style="color:#f87171">R</span><input type="range" class="csl r" id="msl-r" min="0" max="255" value="26" oninput="onMobRGB()"><span class="sl-num" id="msl-rval">26</span></div>
+        <div class="sl-row"><span class="sl-lbl" style="color:#4ade80">G</span><input type="range" class="csl g" id="msl-g" min="0" max="255" value="10" oninput="onMobRGB()"><span class="sl-num" id="msl-gval">10</span></div>
+        <div class="sl-row"><span class="sl-lbl" style="color:#60a5fa">B</span><input type="range" class="csl b" id="msl-b" min="0" max="255" value="58" oninput="onMobRGB()"><span class="sl-num" id="msl-bval">58</span></div>
+      </div>
+    </div>
+    <div id="mob-photo-sec" style="display:none">
+      <div class="photo-drop" onclick="uploadPhoto()">
+        <div style="font-size:28px;margin-bottom:6px">📷</div>
+        <div style="font-size:12px;color:var(--gd);font-weight:500">Tap to upload photo</div>
+      </div>
+      <div class="gsl-row" style="margin-top:8px">
+        <span class="gsl-lbl">Overlay</span>
+        <input type="range" class="gsl" id="msl-opacity" min="0" max="90" value="55" step="5" oninput="g('msl-opval').textContent=this.value+'%';g('sl-opacity').value=this.value;draw()">
+        <span class="gsl-val" id="msl-opval">55%</span>
+      </div>
+    </div>
+    <div id="mob-uns-sec" style="display:none">
+      <div class="uns-grid">
+        ${UNSPLASH_CATS.map((c,i)=>`
+          <div class="uns-btn" onclick="loadUnsplash(${i})">
+            <span>${c.label}</span><small>${c.name}</small>
+          </div>`).join('')}
+      </div>
+      <div class="gsl-row" style="margin-top:8px">
+        <span class="gsl-lbl">Overlay</span>
+        <input type="range" class="gsl" id="msl-uns-op" min="0" max="80" value="50" oninput="g('msl-uns-opval').textContent=this.value+'%';g('sl-uns-op').value=this.value;draw()">
+        <span class="gsl-val" id="msl-uns-opval">50%</span>
+      </div>
+    </div>`;
+
+  // ── Mobile: Text panel ──
+  g('mob-txt').innerHTML = `
+    <p class="sec-lbl" style="margin-bottom:8px">Font Style</p>
+    <div class="font-grid" style="margin-bottom:12px">
+      ${Object.entries(FONTS).map(([k,f])=>`
+        <div class="fb${ST.font===k?' on':''}" onclick="setFont('${k}')">
+          <div class="fb-name" style="font-family:${f.family}">${f.label}</div>
+          <div class="fb-hint">${f.hint}</div>
+        </div>`).join('')}
+    </div>
+    <p class="sec-lbl">Tamil Size</p>
+    <div class="gsl-row" style="margin-bottom:10px">
+      <input type="range" class="gsl" id="msl-tafs" min="28" max="80" value="52"
+        oninput="g('msl-tafsval').textContent=this.value+'px';g('sl-tafs').value=this.value;draw()">
+      <span class="gsl-val" id="msl-tafsval">52px</span>
+    </div>
+    <p class="sec-lbl">English Size</p>
+    <div class="gsl-row" style="margin-bottom:10px">
+      <input type="range" class="gsl" id="msl-enfs" min="18" max="52" value="34"
+        oninput="g('msl-enfsval').textContent=this.value+'px';g('sl-enfs').value=this.value;draw()">
+      <span class="gsl-val" id="msl-enfsval">34px</span>
+    </div>
+    <p class="sec-lbl">Text Colour</p>
+    <div class="tc-dots" style="margin-bottom:12px">
+      ${TC_COLORS.map(c=>`
+        <div class="tcd${ST.txColor===c?' on':''}" style="background:${c}" data-c="${c}" onclick="setTC('${c}')"></div>`).join('')}
+    </div>
+    <p class="sec-lbl">Options</p>
+    <div class="tog-row"><div class="tog-lbl">Show Tamil</div><div class="mini-tog${ST.showTa?' on':''}" onclick="togOpt(this,'showTa')"></div></div>
+    <div class="tog-row"><div class="tog-lbl">Show English</div><div class="mini-tog${ST.showEn?' on':''}" onclick="togOpt(this,'showEn')"></div></div>
+    <div class="tog-row"><div class="tog-lbl">Show Reference</div><div class="mini-tog${ST.showRef?' on':''}" onclick="togOpt(this,'showRef')"></div></div>
+    <div class="tog-row"><div class="tog-lbl">ENJC Watermark</div><div class="mini-tog${ST.showWM?' on':''}" onclick="togOpt(this,'showWM')"></div></div>
+    <div class="tog-row"><div class="tog-lbl">Text Glow</div><div class="mini-tog${ST.textGlow?' on':''}" onclick="togOpt(this,'textGlow')"></div></div>`;
+
+  // ── Mobile: Verse panel ──
+  g('mob-verse').innerHTML = `
+    <p class="sec-lbl" style="margin-bottom:8px">Select Verse</p>
+    <div class="verse-display" style="margin-bottom:8px">
+      <div class="verse-ta" id="mvd-ta">${ST.verse?.ta?.substring(0,80)||''}${(ST.verse?.ta?.length||0)>80?'...':''}</div>
+      <div class="verse-ref" id="mvd-ref">— ${ST.verse?.tref||''}</div>
+    </div>
+    <div class="verse-nav" style="margin-bottom:14px">
+      <button class="vnav-btn" onclick="prevVerse()">← Prev</button>
+      <button class="vnav-btn primary" onclick="useVOTD()">⭐ VOTD</button>
+      <button class="vnav-btn" onclick="nextVerse()">Next →</button>
+    </div>
+    <p class="sec-lbl">All Verses</p>
+    ${VERSES.map((v,i)=>`
+      <div style="padding:10px 8px;border-bottom:1px solid var(--bd);cursor:pointer;border-radius:6px;transition:all .15s;margin-bottom:2px"
+           onclick="setVerse(${i});draw();updateMobVerseDisplay()"
+           onmouseover="this.style.background='rgba(240,192,64,.08)'"
+           onmouseout="this.style.background=''">
+        <div style="font-size:10px;color:var(--gd);font-weight:600;margin-bottom:3px">${v.tref} · ${v.ref}</div>
+        <div style="font-size:12px;color:var(--tx2);line-height:1.7;font-family:'Noto Serif Tamil',serif">${v.ta.substring(0,80)}${v.ta.length>80?'...':''}</div>
+      </div>`).join('')}`;
+
+  // ── Mobile: Export panel ──
+  g('mob-export').innerHTML = `
+    <p class="sec-lbl" style="margin-bottom:8px">Download</p>
+    <div class="exp-grid" style="margin-bottom:10px">
+      <button class="exp-btn exp-png" onclick="dlIG('png')">↓ PNG</button>
+      <button class="exp-btn exp-jpg" onclick="dlIG('jpg')">↓ JPG</button>
+      <button class="exp-btn exp-webp" onclick="dlIG('webp')">↓ WebP</button>
+      <button class="exp-btn exp-copy" onclick="copyImg()">📋 Copy</button>
+    </div>
+    <p class="sec-lbl" style="margin-bottom:8px">Share</p>
+    <div class="share-row">
+      <button class="sh-btn sh-wa" onclick="shareWA()">🟢 WhatsApp</button>
+      <button class="sh-btn sh-ig" onclick="shareApp('ig')">📸 Instagram</button>
+      <button class="sh-btn sh-yt" onclick="shareApp('yt')">▶ YouTube</button>
+      <button class="sh-btn sh-gen" onclick="shareNative()">↗ Share</button>
+    </div>
+    <p class="sec-lbl" style="margin-top:12px;margin-bottom:8px">Canvas Size</p>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      ${Object.entries(SIZES).map(([k,s])=>`
+        <button class="grp-btn${ST.sz===k?' on':''}" onclick="setSzMob(this,'${k}')" data-sz="${k}">
+          ${k} <span style="font-size:9px;opacity:.6;margin-left:4px">${s.label}</span>
+        </button>`).join('')}
+    </div>`;
+}
+
+function syncBGTabs(){
+  const m=ST.bgMode;
+  ['solid','photo','unsplash'].forEach(mode=>{
+    const btn=g('mbgm-'+mode);
+    if(btn) btn.classList.toggle('on', mode===m);
+  });
+  const ss=g('mob-solid-sec'), ps=g('mob-photo-sec'), us=g('mob-uns-sec');
+  if(ss) ss.style.display = m==='solid'?'block':'none';
+  if(ps) ps.style.display = m==='photo'?'block':'none';
+  if(us) us.style.display = m==='unsplash'?'block':'none';
+}
+
+function onMobRGB(){
+  const r=parseInt(g('msl-r')?.value||0);
+  const gv=parseInt(g('msl-g')?.value||0);
+  const b=parseInt(g('msl-b')?.value||0);
+  if(g('msl-rval')) g('msl-rval').textContent=r;
+  if(g('msl-gval')) g('msl-gval').textContent=gv;
+  if(g('msl-bval')) g('msl-bval').textContent=b;
+  const hex='#'+[r,gv,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+  ST.bgColor=hex;
+  if(g('mob-color-prev')) g('mob-color-prev').style.background=hex;
+  if(g('mob-hex')) g('mob-hex').textContent=hex.toUpperCase();
+  // Sync desktop
+  if(g('sl-r')) g('sl-r').value=r;
+  if(g('sl-g')) g('sl-g').value=gv;
+  if(g('sl-b')) g('sl-b').value=b;
+  if(g('color-prev')) g('color-prev').style.background=hex;
+  if(g('hex-display')) g('hex-display').textContent=hex.toUpperCase();
+  draw();
+}
+
+function setSzMob(el, sz){
+  ST.sz=sz;
+  document.querySelectorAll('[data-sz]').forEach(b=>b.classList.toggle('on',b.dataset.sz===sz));
+  updateInfoRow(); draw();
+}
+
+function updateMobVerseDisplay(){
+  const v=ST.verse; if(!v) return;
+  const ta=g('mvd-ta'), ref=g('mvd-ref');
+  if(ta) ta.textContent=v.ta.substring(0,80)+(v.ta.length>80?'...':'');
+  if(ref) ref.textContent='— '+v.tref;
+  // Also update desktop
+  updateVerseDisplay();
 }
 
 // ── START ──────────────────────────────────────────────────────
