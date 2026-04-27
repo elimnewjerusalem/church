@@ -350,25 +350,47 @@ canvas#igcv{
 /* ── MOBILE ── */
 @media(max-width:900px){
   .lp,.rp{display:none;}
-  .studio{grid-template-columns:1fr;grid-template-rows:1fr;}
-  html,body{overflow:auto;}
-  .canvas-area{padding:10px 10px 130px;}
-  canvas#igcv{max-height:60vw!important;max-width:100%;}
-  .mob-tabs{display:flex!important;}
-  .mob-panel{display:none;}
-  .mob-panel.on{display:block;}
+  /* Mobile: full page scroll, canvas + controls stacked */
+  .studio{
+    display:flex;flex-direction:column;
+    position:static;height:auto;
+    overflow:visible;
+  }
+  html,body{overflow:auto;height:auto;}
+  .canvas-area{
+    height:auto;padding:14px 14px 10px;
+    position:static;
+    background:var(--bg0);
+  }
+  canvas#igcv{
+    max-height:none!important;
+    width:100%!important;
+    height:auto!important;
+    display:block;
+  }
+  .canvas-hint{position:static;transform:none;text-align:center;margin-top:8px;display:block;}
+  .mob-tabs{display:block!important;}
   .tb-sizes{display:none;}
   .tb-logo span{display:none;}
+  /* push content above bottom tab bar */
+  .canvas-area{padding-bottom:0;}
 }
-@media(min-width:901px){.mob-tabs,.mob-panel{display:none!important;}}
+@media(min-width:901px){.mob-tabs{display:none!important;}.mob-panel-wrap{display:none!important;}}
 
 /* Mobile bottom tabs */
 .mob-tabs{
-  display:none;position:fixed;bottom:0;left:0;right:0;
-  background:rgba(10,10,15,.97);border-top:1px solid var(--bd);
+  display:none;
+  background:var(--bg0);
+  border-top:1px solid var(--bd);
+  position:static;
+}
+.mob-tab-row{
+  display:flex;
+  position:sticky;bottom:0;
+  background:rgba(10,10,15,.97);
+  border-top:1px solid var(--bd);
   z-index:100;
 }
-.mob-tab-row{display:flex;}
 .mob-tab{
   flex:1;padding:8px 4px;font-size:9px;color:var(--tx3);
   text-align:center;cursor:pointer;border-top:2px solid transparent;
@@ -376,9 +398,11 @@ canvas#igcv{
 .mob-tab.on{color:var(--gd);border-top-color:var(--gd);}
 .mob-tab span{display:block;font-size:18px;margin-bottom:2px;}
 .mob-panel-wrap{
-  position:fixed;bottom:52px;left:0;right:0;z-index:99;
-  background:var(--bg1);border-top:1px solid var(--bd);
-  max-height:50vh;overflow-y:auto;padding:14px;
+  position:static;
+  background:var(--bg1);
+  border-top:1px solid var(--bd);
+  padding:14px;
+  min-height:60vh;
 }
 
 /* Tab content */
