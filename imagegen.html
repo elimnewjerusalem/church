@@ -1569,153 +1569,201 @@ function draw(){
   const ctx=cv.getContext('2d');
   const v=ST.verse||QUICK_VERSES[0];
 
-  // ── BACKGROUND ──
+  // ── BACKGROUND ──────────────────────────────────────
   if(ST.bgMode==='photo'&&ST.userPhoto){
-    const op=parseInt(g('photo-ov')?.value||55)/100;
-    drawBgImage(ctx,ST.userPhoto,W,H,op);
+    drawBgImage(ctx,ST.userPhoto,W,H,parseInt(g('photo-ov')?.value||55)/100);
   } else if(ST.bgMode==='gallery'&&ST.galImg){
-    const op=parseInt(g('gal-ov')?.value||50)/100;
-    drawBgImage(ctx,ST.galImg,W,H,op);
+    drawBgImage(ctx,ST.galImg,W,H,parseInt(g('gal-ov')?.value||50)/100);
   } else if(ST.bgMode==='gradient'){
-    // 2-color gradient
-    const angleRad=(ST.gradAngle||135)*Math.PI/180;
-    const cx=W/2, cy=H/2;
-    const dist=Math.sqrt(W*W+H*H)/2;
-    const x1=cx-Math.cos(angleRad)*dist, y1=cy-Math.sin(angleRad)*dist;
-    const x2=cx+Math.cos(angleRad)*dist, y2=cy+Math.sin(angleRad)*dist;
-    const grad=ctx.createLinearGradient(x1,y1,x2,y2);
-    grad.addColorStop(0,ST.grad1||'#1a0a3a');
-    grad.addColorStop(1,ST.grad2||'#0a1a3a');
-    ctx.fillStyle=grad; ctx.fillRect(0,0,W,H);
-    // Vignette overlay
-    const vg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*.7);
-    vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.3)');
-    ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
+    const ar=(ST.gradAngle||135)*Math.PI/180;
+    const d=Math.sqrt(W*W+H*H)/2;
+    const grd=ctx.createLinearGradient(W/2-Math.cos(ar)*d,H/2-Math.sin(ar)*d,W/2+Math.cos(ar)*d,H/2+Math.sin(ar)*d);
+    grd.addColorStop(0,ST.grad1||'#1a0a3a');
+    grd.addColorStop(1,ST.grad2||'#0a1a3a');
+    ctx.fillStyle=grd; ctx.fillRect(0,0,W,H);
+    // vignette
+    const vg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*.75);
+    vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.28)');
+    ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
   } else {
-    // Solid with depth
-    const hex=ST.bgColor;
-    const rr=parseInt(hex.slice(1,3),16)||0;
-    const gg=parseInt(hex.slice(3,5),16)||0;
-    const bb=parseInt(hex.slice(5,7),16)||0;
-    ctx.fillStyle=hex; ctx.fillRect(0,0,W,H);
-    const rg=ctx.createRadialGradient(W/2,H*.35,0,W/2,H*.35,W*.9);
-    rg.addColorStop(0,`rgba(${Math.min(rr+20,255)},${Math.min(gg+20,255)},${Math.min(bb+20,255)},.18)`);
-    rg.addColorStop(1,'rgba(0,0,0,.35)');
-    ctx.fillStyle=rg; ctx.fillRect(0,0,W,H);
-    const bg2=ctx.createLinearGradient(0,H*.6,0,H);
-    bg2.addColorStop(0,'rgba(0,0,0,0)');
-    bg2.addColorStop(1,'rgba(0,0,0,.5)');
-    ctx.fillStyle=bg2; ctx.fillRect(0,H*.6,W,H*.4);
+    const hex=ST.bgColor||'#1a0a3a';
+    ctx.fillStyle=hex;ctx.fillRect(0,0,W,H);
+    const r=parseInt(hex.slice(1,3),16)||0,gv=parseInt(hex.slice(3,5),16)||0,b=parseInt(hex.slice(5,7),16)||0;
+    const rg=ctx.createRadialGradient(W/2,H*.3,0,W/2,H*.3,W*.85);
+    rg.addColorStop(0,`rgba(${Math.min(r+25,255)},${Math.min(gv+25,255)},${Math.min(b+25,255)},.2)`);
+    rg.addColorStop(1,'rgba(0,0,0,.3)');
+    ctx.fillStyle=rg;ctx.fillRect(0,0,W,H);
+    const dg=ctx.createLinearGradient(0,H*.55,0,H);
+    dg.addColorStop(0,'rgba(0,0,0,0)');dg.addColorStop(1,'rgba(0,0,0,.45)');
+    ctx.fillStyle=dg;ctx.fillRect(0,H*.55,W,H*.45);
   }
 
-  ctx.textAlign='left';
+  // ── HEADER ──────────────────────────────────────────
+  const HDR=Math.round(H*0.10);  // header height zone
+  const PAD=Math.round(W*0.055); // horizontal padding
 
-  // ── HEADER — Image 2 style: logo box left + church name right ──
   if(ST.showWM){
     const wmName=(g('wm-name')?.value||'ELIM NEW JERUSALEM CHURCH').toUpperCase();
     const wmSub =g('wm-sub')?.value||'Tondiarpet, Chennai';
 
-    // Header bar gradient
-    const hg=ctx.createLinearGradient(0,0,0,H*0.115);
-    hg.addColorStop(0,'rgba(0,0,0,.75)');hg.addColorStop(1,'rgba(0,0,0,.0)');
-    ctx.fillStyle=hg; ctx.fillRect(0,0,W,H*0.115);
+    // Header dark overlay
+    const hg=ctx.createLinearGradient(0,0,0,HDR*1.2);
+    hg.addColorStop(0,'rgba(0,0,0,.72)');hg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=hg;ctx.fillRect(0,0,W,HDR*1.2);
 
-    const hH=Math.round(H*0.095); // header height
-    const pad=Math.round(W*0.055);
-    const logoSz=Math.round(hH*0.76);
-    const logoX=pad;
-    const logoY=Math.round(H*0.012);
+    // Logo box dimensions — square, vertically centred in header
+    const LSZ=Math.round(HDR*0.72);
+    const LX=PAD;
+    const LY=Math.round((HDR-LSZ)/2);
 
-    // ── ENJC Logo box ──
-    const lbPad=Math.round(logoSz*0.12);
-    // Gold border box
-    ctx.strokeStyle='rgba(245,200,80,.85)';
-    ctx.lineWidth=Math.round(W*0.003);
-    ctx.strokeRect(logoX,logoY,logoSz,logoSz);
+    // Gold border
+    ctx.strokeStyle='rgba(245,200,80,.9)';
+    ctx.lineWidth=Math.round(W*0.004);
+    ctx.strokeRect(LX,LY,LSZ,LSZ);
     // Box bg
-    ctx.fillStyle='rgba(0,0,20,.6)';
-    ctx.fillRect(logoX+1,logoY+1,logoSz-2,logoSz-2);
-    // ENJC text inside box
-    ctx.font=`800 ${Math.round(logoSz*.38)}px Inter,sans-serif`;
-    ctx.fillStyle=ST.bgMode==='gradient'?'#f5c842':'rgba(245,200,80,.95)';
+    ctx.fillStyle='rgba(0,0,20,.55)';
+    ctx.fillRect(LX+2,LY+2,LSZ-4,LSZ-4);
+    // ENJC text
     ctx.textAlign='center';
-    ctx.fillText('ENJC',logoX+logoSz/2,logoY+logoSz*.52);
-    // Subtitle in box
-    ctx.font=`500 ${Math.round(logoSz*.12)}px Inter,sans-serif`;
-    ctx.fillStyle='rgba(255,255,255,.5)';
-    ctx.fillText('CHURCH',logoX+logoSz/2,logoY+logoSz*.75);
+    ctx.font=`800 ${Math.round(LSZ*.4)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(245,200,80,.95)';
+    ctx.fillText('ENJC',LX+LSZ/2,LY+LSZ*.54);
+    // CHURCH sub
+    ctx.font=`500 ${Math.round(LSZ*.14)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.45)';
+    ctx.fillText('CHURCH',LX+LSZ/2,LY+LSZ*.78);
 
-    // ── Church name right of logo ──
-    const nameX=logoX+logoSz+Math.round(W*0.03);
-    const nameMaxW=W-nameX-pad;
-    const nameFs=Math.round(W*0.038);
+    // Church name — right of logo, vertically centred
+    const NX=LX+LSZ+Math.round(W*0.035);
+    const NW=W-NX-PAD;
     ctx.textAlign='left';
-    ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
-    ctx.fillStyle='rgba(255,255,255,.92)';
-    // Wrap if needed
-    const nameWords=wmName.split(' ');
-    let nameLine='';const nameLines=[];
-    for(const w of nameWords){
-      const t=nameLine?nameLine+' '+w:w;
-      if(ctx.measureText(t).width>nameMaxW&&nameLine){nameLines.push(nameLine);nameLine=w;}
-      else nameLine=t;
-    }
-    if(nameLine)nameLines.push(nameLine);
-    const nameLineH=nameFs*1.25;
-    const nameStartY=logoY+logoSz*0.35+(nameLines.length===1?nameFs*0.5:0);
-    nameLines.forEach((l,i)=>ctx.fillText(l,nameX,nameStartY+i*nameLineH));
-    // Tamil sub text
-    ctx.font=`500 ${Math.round(nameFs*.72)}px 'Noto Serif Tamil',serif`;
-    ctx.fillStyle='rgba(255,255,255,.5)';
-    ctx.fillText(wmSub,nameX,nameStartY+nameLines.length*nameLineH+Math.round(nameFs*.3));
 
-    // ── Gold divider line under header ──
-    ctx.strokeStyle='rgba(245,200,80,.35)';
-    ctx.lineWidth=1.5;
+    // Name font — scale to fit width
+    let nameFs=Math.round(W*0.042);
+    ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
+    // Shrink if too wide
+    while(ctx.measureText(wmName).width>NW && nameFs>Math.round(W*0.022)){
+      nameFs--;
+      ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
+    }
+    ctx.fillStyle='rgba(255,255,255,.92)';
+    ctx.fillText(wmName,NX,LY+LSZ*.46);
+
+    // Sub text
+    ctx.font=`400 ${Math.round(nameFs*.62)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.48)';
+    ctx.fillText(wmSub,NX,LY+LSZ*.76);
+
+    // Gold divider
+    ctx.strokeStyle='rgba(245,200,80,.3)';
+    ctx.lineWidth=Math.round(H*0.0015);
     ctx.beginPath();
-    ctx.moveTo(pad,logoY+logoSz+Math.round(H*0.012));
-    ctx.lineTo(W-pad,logoY+logoSz+Math.round(H*0.012));
+    ctx.moveTo(PAD,HDR);ctx.lineTo(W-PAD,HDR);
     ctx.stroke();
   }
 
-  // ── VERSE BOX ──
-  const pad=Math.round(W*0.065);
-  const bx=pad, bw=W-pad*2;
-  const bTop=Math.round(H*(ST.showWM?0.11:0.06));
-  const bBot=Math.round(H*0.87);
-  const bh=bBot-bTop;
-  const br=Math.round(W*0.024);
+  // ── FOOTER ──────────────────────────────────────────
+  const FTH=Math.round(H*0.115);
+  const FTY=H-FTH;
+
+  // Footer bg
+  const fg=ctx.createLinearGradient(0,FTY-Math.round(H*0.04),0,H);
+  fg.addColorStop(0,'rgba(0,0,0,0)');
+  fg.addColorStop(.3,'rgba(0,0,0,.68)');
+  fg.addColorStop(1,'rgba(0,0,0,.9)');
+  ctx.fillStyle=fg;ctx.fillRect(0,FTY-Math.round(H*0.04),W,FTH+Math.round(H*0.04));
+
+  // Gold top line
+  ctx.strokeStyle='rgba(245,200,80,.38)';
+  ctx.lineWidth=Math.round(H*0.0016);
+  ctx.beginPath();ctx.moveTo(Math.round(W*0.05),FTY);ctx.lineTo(Math.round(W*0.95),FTY);ctx.stroke();
+
+  const FSZ=Math.round(W*0.034);
+  const ICW=Math.round(FSZ*1.45), ICH=Math.round(FSZ*.9);
+  const BTH=Math.round(FSZ*1.08);
+
+  // YT row
+  const YTY=FTY+Math.round(FTH*0.31);
+  ctx.fillStyle='#ff0000';
+  ctx.beginPath();ctx.roundRect(PAD,YTY-ICH*.76,ICW,ICH,Math.round(ICH*.2));ctx.fill();
+  ctx.font=`700 ${Math.round(FSZ*.5)}px Inter,sans-serif`;
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.fillText('▶',PAD+ICW/2,YTY-ICH*.18);
+  ctx.textAlign='left';
+  ctx.font=`600 ${FSZ}px Inter,sans-serif`;
+  ctx.fillStyle='rgba(255,255,255,.85)';
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',PAD+ICW+Math.round(W*0.022),YTY);
+  // Subscribe btn
+  const SUBW=Math.round(W*0.21);
+  ctx.fillStyle='#ff0000';
+  ctx.beginPath();ctx.roundRect(W-PAD-SUBW,YTY-BTH*.76,SUBW,BTH,BTH/2);ctx.fill();
+  ctx.font=`700 ${Math.round(FSZ*.68)}px Inter,sans-serif`;
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.fillText('🔔 SUBSCRIBE',W-PAD-SUBW/2,YTY);
+
+  // IG row
+  const IGY=FTY+Math.round(FTH*0.76);
+  const igG2=ctx.createLinearGradient(PAD,IGY,PAD+ICW,IGY);
+  igG2.addColorStop(0,'#f58529');igG2.addColorStop(.5,'#dd2a7b');igG2.addColorStop(1,'#8134af');
+  ctx.fillStyle=igG2;
+  ctx.beginPath();ctx.roundRect(PAD,IGY-ICH*.76,ICW,ICH,Math.round(ICH*.2));ctx.fill();
+  ctx.font=`500 ${Math.round(FSZ*.62)}px serif`;
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.fillText('📷',PAD+ICW/2,IGY-ICH*.15);
+  ctx.textAlign='left';
+  ctx.font=`600 ${FSZ}px Inter,sans-serif`;
+  ctx.fillStyle='rgba(255,255,255,.85)';
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',PAD+ICW+Math.round(W*0.022),IGY);
+  // Follow btn
+  const FOLW=Math.round(W*0.17);
+  const folG=ctx.createLinearGradient(W-PAD-FOLW,IGY,W-PAD,IGY);
+  folG.addColorStop(0,'#f58529');folG.addColorStop(1,'#8134af');
+  ctx.fillStyle=folG;
+  ctx.beginPath();ctx.roundRect(W-PAD-FOLW,IGY-BTH*.76,FOLW,BTH,BTH/2);ctx.fill();
+  ctx.font=`700 ${Math.round(FSZ*.68)}px Inter,sans-serif`;
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.fillText('Follow',W-PAD-FOLW/2,IGY);
+
+  // ── VERSE AREA ──────────────────────────────────────
+  // Box between header and footer
+  const BX=PAD, BW=W-PAD*2;
+  const BTOP=ST.showWM ? Math.round(HDR*1.04) : Math.round(H*0.04);
+  const BBOT=FTY - Math.round(H*0.015);
+  const BH=BBOT-BTOP;
+  const BR=Math.round(W*0.022);
 
   // Subtle box bg
-  ctx.fillStyle='rgba(255,255,255,.03)';
-  ctx.beginPath();ctx.roundRect(bx,bTop,bw,bh,br);ctx.fill();
-
+  ctx.fillStyle='rgba(255,255,255,.025)';
+  ctx.beginPath();ctx.roundRect(BX,BTOP,BW,BH,BR);ctx.fill();
   // Box border
-  ctx.strokeStyle='rgba(255,255,255,.12)';
-  ctx.lineWidth=Math.round(W*0.0018);
-  ctx.beginPath();ctx.roundRect(bx,bTop,bw,bh,br);ctx.stroke();
-
-  // Corner accents — gold
-  const cs=Math.round(W*0.048), cw=Math.round(W*0.0028);
-  ctx.strokeStyle='rgba(245,200,80,.75)';
-  ctx.lineWidth=cw;ctx.lineCap='square';
-  [[bx,bTop,1,1],[bx+bw,bTop,-1,1],[bx,bTop+bh,1,-1],[bx+bw,bTop+bh,-1,-1]].forEach(([x,y,dx,dy])=>{
-    ctx.beginPath();ctx.moveTo(x,y+dy*cs);ctx.lineTo(x,y);ctx.lineTo(x+dx*cs,y);ctx.stroke();
+  ctx.strokeStyle='rgba(255,255,255,.1)';
+  ctx.lineWidth=Math.round(W*0.0016);
+  ctx.beginPath();ctx.roundRect(BX,BTOP,BW,BH,BR);ctx.stroke();
+  // Gold corner marks
+  const CS=Math.round(W*0.046), CW=Math.round(W*0.003);
+  ctx.strokeStyle='rgba(245,200,80,.7)';
+  ctx.lineWidth=CW;ctx.lineCap='square';
+  [[BX,BTOP,1,1],[BX+BW,BTOP,-1,1],[BX,BBOT,1,-1],[BX+BW,BBOT,-1,-1]].forEach(([x,y,dx,dy])=>{
+    ctx.beginPath();ctx.moveTo(x,y+dy*CS);ctx.lineTo(x,y);ctx.lineTo(x+dx*CS,y);ctx.stroke();
   });
 
-  // ── VERSE TEXT ──
+  // ── VERSE TEXT ──────────────────────────────────────
   const fontSpec=FONTS[ST.font];
-  const fam=fontSpec?.fam||FONTS.serif.fam;
-  const isItalic=ST.font==='italic';
+  const fam=(fontSpec?.fam||FONTS.serif.fam).replace(/^700 /,'');
   const isBold=ST.font==='bold';
-  const mW=bw*0.80;
-  const taFs=parseInt(g('ta-size')?.value||52);
-  const enFs=parseInt(g('en-size')?.value||32);
+  const isItalic=ST.font==='italic';
+
+  // Use 80% of box width for text
+  const TW=Math.round(BW*0.80);
+  const TX=W/2; // centered
+
+  const taFs=Math.min(parseInt(g('ta-size')?.value||52), Math.round(W*0.065));
+  const enFs=Math.min(parseInt(g('en-size')?.value||32), Math.round(W*0.042));
   const taLh=taFs*1.72;
   const enLh=enFs*1.62;
   const tc=ST.txColor||'#fff';
 
-  function wrapText(text,font,maxW){
+  function wrapText(text, font, maxW){
     ctx.font=font;
     const words=text.split(' ');
     const lines=[];let line='';
@@ -1728,158 +1776,77 @@ function draw(){
     return lines;
   }
 
-  const taFontStr=`${isItalic?'italic ':isBold?'700 ':''}${taFs}px ${fam.replace(/^700 /,'')}`;
-  const enFontStr=`italic ${enFs}px 'Playfair Display',Georgia,serif`;
-  const taLines=ST.showTa&&v.ta?wrapText('\u201c'+v.ta+'\u201d',taFontStr,mW):[];
-  const enLines=ST.showEn&&v.en?wrapText('\u201c'+v.en+'\u201d',enFontStr,mW):[];
-  const refH=ST.showRef?(taFs*0.65+10):0;
-  const sepH=(ST.showTa&&ST.showEn&&v.en)?(enFs*0.55):0;
-  const taH=taLines.length*taLh+(taLines.length?10:0);
-  const enH=enLines.length*enLh+(enLines.length?10:0);
-  const totalH=taH+refH+sepH+enH;
-  let cy=bTop+(bh-totalH)/2+taFs;
+  const taFont=`${isBold?'700 ':isItalic?'italic ':''}${taFs}px ${fam}`;
+  const enFont=`italic ${enFs}px 'Playfair Display',Georgia,serif`;
+  const taLines=ST.showTa&&v.ta ? wrapText('“'+v.ta+'”', taFont, TW) : [];
+  const enLines=ST.showEn&&v.en ? wrapText('“'+v.en+'”', enFont, TW) : [];
+
+  const refH=ST.showRef ? taFs*0.62+8 : 0;
+  const sepH=(taLines.length&&enLines.length) ? enFs*0.5+6 : 0;
+  const totalH=taLines.length*taLh+(taLines.length?8:0)+refH+sepH+enLines.length*enLh+(enLines.length?8:0);
+
+  // Vertical center inside box
+  let cy=BTOP+(BH-totalH)/2+taFs;
 
   // Glow
-  if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.55)';ctx.shadowBlur=Math.round(W*0.018);}
+  if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.5)';ctx.shadowBlur=Math.round(W*0.016);}
 
   // Tamil
-  if(ST.showTa&&v.ta){
-    ctx.font=taFontStr; ctx.fillStyle=tc;
-    taLines.forEach(l=>{ctx.fillText(l,W/2,cy);cy+=taLh;});
+  if(taLines.length){
+    ctx.textAlign='center';
+    ctx.font=taFont;
+    ctx.fillStyle=tc;
+    taLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=taLh;});
     if(ST.showRef&&v.tref){
-      cy+=8;
-      ctx.shadowBlur=0;
-      ctx.font=`600 ${Math.round(taFs*0.52)}px Inter,sans-serif`;
-      ctx.fillStyle='rgba(245,200,80,.85)';
-      ctx.fillText('\u2014 '+v.tref,W/2,cy);
-      cy+=taFs*0.52+6;
-      if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.55)';ctx.shadowBlur=Math.round(W*0.014);}
+      cy+=8;ctx.shadowBlur=0;
+      ctx.font=`600 ${Math.round(taFs*.52)}px Inter,sans-serif`;
+      ctx.fillStyle='rgba(245,200,80,.88)';
+      ctx.fillText('— '+v.tref,TX,cy);
+      cy+=Math.round(taFs*.52)+6;
+      if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.5)';ctx.shadowBlur=Math.round(W*0.012);}
     }
   }
 
   // Separator
-  if(ST.showTa&&ST.showEn&&v.ta&&v.en){
+  if(taLines.length&&enLines.length){
     ctx.shadowBlur=0;
-    ctx.strokeStyle='rgba(255,255,255,.14)';
+    ctx.strokeStyle='rgba(255,255,255,.13)';
     ctx.lineWidth=1.5;
-    ctx.beginPath();ctx.moveTo(W/2-55,cy);ctx.lineTo(W/2+55,cy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(TX-Math.round(W*0.06),cy);ctx.lineTo(TX+Math.round(W*0.06),cy);ctx.stroke();
     cy+=sepH;
-    if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.55)';ctx.shadowBlur=Math.round(W*0.012);}
+    if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.5)';ctx.shadowBlur=Math.round(W*0.01);}
   }
 
   // English
-  if(ST.showEn&&v.en){
-    ctx.font=enFontStr;
-    ctx.fillStyle=tc==='#ffffff'?'rgba(255,255,255,.72)':tc;
-    enLines.forEach(l=>{ctx.fillText(l,W/2,cy);cy+=enLh;});
+  if(enLines.length){
+    ctx.textAlign='center';
+    ctx.font=enFont;
+    ctx.fillStyle=tc==='#ffffff'?'rgba(255,255,255,.7)':tc;
+    enLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=enLh;});
     if(ST.showRef&&v.ref){
-      cy+=6;
-      ctx.shadowBlur=0;
-      ctx.font=`${Math.round(enFs*0.62)}px Inter,sans-serif`;
+      cy+=6;ctx.shadowBlur=0;
+      ctx.font=`${Math.round(enFs*.6)}px Inter,sans-serif`;
       ctx.fillStyle='rgba(245,200,80,.62)';
-      ctx.fillText('\u2014 '+v.ref,W/2,cy);
+      ctx.fillText('— '+v.ref,TX,cy);
     }
   }
 
   ctx.shadowBlur=0;ctx.shadowColor='transparent';
 
-  // ── FOOTER — Image 2 style: YT + IG rows with Subscribe/Follow buttons ──
-  const ftH=Math.round(H*0.115);
-  const ftY=H-ftH;
-
-  // Footer bg gradient
-  const fg=ctx.createLinearGradient(0,ftY-Math.round(H*0.03),0,H);
-  fg.addColorStop(0,'rgba(0,0,0,0)');
-  fg.addColorStop(.25,'rgba(0,0,0,.72)');
-  fg.addColorStop(1,'rgba(0,0,0,.92)');
-  ctx.fillStyle=fg; ctx.fillRect(0,ftY-Math.round(H*0.03),W,ftH+Math.round(H*0.03));
-
-  // Gold top border of footer
-  ctx.strokeStyle='rgba(245,200,80,.4)';ctx.lineWidth=Math.round(H*0.0018);
-  ctx.beginPath();ctx.moveTo(Math.round(W*0.05),ftY);ctx.lineTo(Math.round(W*0.95),ftY);ctx.stroke();
-
-  const fSz=Math.round(W*0.035);
-  const ftPad=Math.round(W*0.055);
-  const iconSz=Math.round(fSz*1.05);
-  const btnH=Math.round(fSz*1.1);
-
-  // ── YouTube row ──
-  const ytY=ftY+Math.round(ftH*0.3);
-  // YT icon pill
-  ctx.fillStyle='#ff0000';
-  ctx.beginPath();ctx.roundRect(ftPad,ytY-iconSz*.7,iconSz*1.6,iconSz*.9,3);ctx.fill();
-  ctx.fillStyle='#fff';
-  ctx.font=`700 ${Math.round(iconSz*.55)}px Inter,sans-serif`;
-  ctx.textAlign='center';
-  ctx.fillText('▶',ftPad+iconSz*.8,ytY-iconSz*.12);
-  // YT handle
-  ctx.textAlign='left';
-  ctx.font=`600 ${fSz}px Inter,sans-serif`;
-  ctx.fillStyle='rgba(255,255,255,.88)';
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',ftPad+iconSz*1.9,ytY);
-  // Subscribe button
-  const subW=Math.round(W*0.22);
-  ctx.fillStyle='#ff0000';
-  ctx.beginPath();ctx.roundRect(W-ftPad-subW,ytY-btnH*.78,subW,btnH,btnH/2);ctx.fill();
-  ctx.font=`700 ${Math.round(fSz*.75)}px Inter,sans-serif`;
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('🔔 SUBSCRIBE',W-ftPad-subW/2,ytY);
-
-  // ── Instagram row ──
-  const igY=ftY+Math.round(ftH*0.78);
-  // IG gradient icon
-  const igG=ctx.createLinearGradient(pad,igY,pad+iconSz*1.6,igY);
-  igG.addColorStop(0,'#f58529');igG.addColorStop(.5,'#dd2a7b');igG.addColorStop(1,'#8134af');
-  ctx.fillStyle=igG;
-  ctx.beginPath();ctx.roundRect(ftPad,igY-iconSz*.7,iconSz*1.6,iconSz*.9,4);ctx.fill();
-  ctx.font=`700 ${Math.round(iconSz*.58)}px serif`;
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('📷',ftPad+iconSz*.8,igY-iconSz*.08);
-  // IG handle
-  ctx.textAlign='left';
-  ctx.font=`600 ${fSz}px Inter,sans-serif`;
-  ctx.fillStyle='rgba(255,255,255,.88)';
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',ftPad+iconSz*1.9,igY);
-  // Follow button
-  const folW=Math.round(W*0.18);
-  const folGrad=ctx.createLinearGradient(W-pad-folW,igY,W-pad,igY);
-  folGrad.addColorStop(0,'#f58529');folGrad.addColorStop(1,'#8134af');
-  ctx.fillStyle=folGrad;
-  ctx.beginPath();ctx.roundRect(W-ftPad-folW,igY-btnH*.78,folW,btnH,btnH/2);ctx.fill();
-  ctx.font=`700 ${Math.round(fSz*.75)}px Inter,sans-serif`;
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('Follow',W-ftPad-folW/2,igY);
-
-  ctx.textAlign='center';
-
-  // ── INSTAGRAM SAFE ZONE GUIDES ──
-  if(ST.safeZone && ST.sz==='9:16'){
-    // Instagram story safe zone: 250px top+bottom on 1920px = ~13%
-    const safeTop=Math.round(H*0.13);
-    const safeBot=Math.round(H*0.13);
-    const safeH=H-safeTop-safeBot;
-    // Dimmed overlay outside safe zone
-    ctx.fillStyle='rgba(255,0,80,.12)';
-    ctx.fillRect(0,0,W,safeTop);
-    ctx.fillRect(0,H-safeBot,W,safeBot);
-    // Safe zone border
-    ctx.strokeStyle='rgba(255,100,100,.7)';
+  // ── INSTAGRAM SAFE ZONE ─────────────────────────────
+  if(ST.safeZone&&ST.sz==='9:16'){
+    const sT=Math.round(H*0.13),sB=Math.round(H*0.13);
+    ctx.fillStyle='rgba(255,0,80,.1)';
+    ctx.fillRect(0,0,W,sT);ctx.fillRect(0,H-sB,W,sB);
+    ctx.strokeStyle='rgba(255,80,80,.65)';
     ctx.lineWidth=Math.round(W*0.003);
     ctx.setLineDash([Math.round(W*0.02),Math.round(W*0.015)]);
-    ctx.strokeRect(0,safeTop,W,safeH);
+    ctx.strokeRect(1,sT,W-2,H-sT-sB);
     ctx.setLineDash([]);
-    // Label
     ctx.font=`600 ${Math.round(W*0.022)}px Inter,sans-serif`;
-    ctx.fillStyle='rgba(255,100,100,.8)';
-    ctx.textAlign='center';
-    ctx.fillText('▲ SAFE ZONE ▲',W/2,safeTop-Math.round(W*0.012));
-    ctx.fillText('▼ SAFE ZONE ▼',W/2,H-safeBot+Math.round(W*0.026));
-    // Center line
-    ctx.strokeStyle='rgba(255,255,255,.12)';
-    ctx.lineWidth=1.5;
-    ctx.setLineDash([8,8]);
-    ctx.beginPath();ctx.moveTo(0,H/2);ctx.lineTo(W,H/2);ctx.stroke();
-    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(255,80,80,.75)';ctx.textAlign='center';
+    ctx.fillText('▲ SAFE ZONE',W/2,sT-Math.round(W*0.01));
+    ctx.fillText('▼ SAFE ZONE',W/2,H-sB+Math.round(W*0.028));
   }
 }
 
