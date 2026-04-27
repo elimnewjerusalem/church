@@ -337,6 +337,35 @@ canvas#igcv{
 @media(min-width:901px){.mob-tabs,.mob-panel{display:none !important;}}
 
 
+
+/* Bible Index */
+.bi-book{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;border-bottom:1px solid var(--bd);
+  cursor:pointer;border-radius:6px;transition:all .15s;
+  border-left:3px solid transparent;
+}
+.bi-book:hover{background:rgba(240,192,64,.06);border-left-color:rgba(240,192,64,.3);}
+.bi-book.active{background:rgba(240,192,64,.1);border-left-color:var(--gd);}
+.bi-book-num{font-size:9px;color:var(--tx3);min-width:18px;text-align:center;}
+.bi-book-ta{font-size:12px;color:var(--tx);font-family:'Noto Serif Tamil',serif;}
+.bi-book-en{font-size:9px;color:var(--tx3);margin-left:auto;}
+.bi-ch-btn{
+  padding:7px 4px;border:1px solid var(--bd);border-radius:6px;
+  font-size:11px;font-weight:600;color:var(--tx2);text-align:center;
+  cursor:pointer;background:rgba(255,255,255,.03);transition:all .15s;
+}
+.bi-ch-btn:hover{border-color:var(--gdb);color:var(--gd);background:var(--gdm);}
+.bi-ch-btn.active{background:var(--gd);color:#09090f;border-color:var(--gd);}
+.bi-v-item{
+  padding:8px 10px;border-bottom:1px solid var(--bd);cursor:pointer;
+  border-radius:5px;transition:all .15s;border-left:3px solid transparent;
+}
+.bi-v-item:hover{background:rgba(240,192,64,.06);border-left-color:rgba(240,192,64,.3);}
+.bi-v-item.active{background:rgba(240,192,64,.1);border-left-color:var(--gd);}
+.bi-v-num{font-size:9px;color:var(--gd);font-weight:700;margin-bottom:2px;}
+.bi-v-txt{font-size:11px;color:var(--tx2);line-height:1.6;font-family:'Noto Serif Tamil',serif;}
+
 /* Verse list */
 .vlist-item{
   padding:10px 10px;border-bottom:1px solid var(--bd);cursor:pointer;
@@ -550,13 +579,14 @@ canvas#igcv{
       </div>
     </div>
 
-    <!-- VERSE TAB -->
+    <!-- VERSE TAB — Bible Index -->
     <div class="ptab-content" id="tab-verse">
+
+      <!-- Current verse display -->
       <div class="sec">
-        <span class="sec-lbl">Current Verse</span>
-        <div class="verse-display">
-          <div class="verse-ta" id="vd-ta">Loading...</div>
-          <div class="verse-ref" id="vd-ref"></div>
+        <div class="verse-display" style="margin-bottom:8px">
+          <div class="verse-ta" id="vd-ta" style="font-family:var(--tamil);font-size:12px;line-height:1.8">Select a verse below...</div>
+          <div class="verse-ref" id="vd-ref" style="font-size:10px;color:var(--gd);font-weight:600;margin-top:4px"></div>
         </div>
         <div class="verse-nav">
           <button class="vnav-btn" onclick="prevVerse()">← Prev</button>
@@ -564,9 +594,47 @@ canvas#igcv{
           <button class="vnav-btn" onclick="nextVerse()">Next →</button>
         </div>
       </div>
-      <div class="sec" style="margin-top:12px">
-        <span class="sec-lbl">Featured Verses</span>
-        <div id="featured-verses"></div>
+
+      <!-- Bible Index -->
+      <div class="sec" style="margin-top:10px">
+        <!-- Search -->
+        <div style="position:relative;margin-bottom:8px">
+          <input class="inp" id="bi-search" type="search"
+            placeholder="🔍 Book search — Genesis, யோவான்..."
+            oninput="biSearch(this.value)" autocomplete="off">
+        </div>
+
+        <!-- OT / NT toggle -->
+        <div class="btn-group" style="margin-bottom:8px" id="bi-testament-btns">
+          <button class="grp-btn on" id="bi-all" onclick="biFilter('all')">All 66</button>
+          <button class="grp-btn" id="bi-ot" onclick="biFilter('OT')">OT 39</button>
+          <button class="grp-btn" id="bi-nt" onclick="biFilter('NT')">NT 27</button>
+        </div>
+
+        <!-- Book list -->
+        <div id="bi-book-list" style="max-height:300px;overflow-y:auto;scrollbar-width:thin"></div>
+
+        <!-- Chapter grid (shown after book selected) -->
+        <div id="bi-ch-area" style="display:none;margin-top:8px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+            <button onclick="biBackToBooks()" style="background:transparent;border:1px solid var(--bd);border-radius:6px;padding:4px 10px;font-size:10px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">← Books</button>
+            <span id="bi-ch-title" style="font-size:12px;font-weight:600;color:var(--gd)"></span>
+          </div>
+          <div id="bi-ch-grid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;max-height:220px;overflow-y:auto"></div>
+        </div>
+
+        <!-- Verse grid (shown after chapter selected) -->
+        <div id="bi-verse-area" style="display:none;margin-top:8px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+            <button onclick="biBackToCh()" style="background:transparent;border:1px solid var(--bd);border-radius:6px;padding:4px 10px;font-size:10px;color:var(--tx2);cursor:pointer;font-family:var(--sans)">← Chapters</button>
+            <span id="bi-v-title" style="font-size:12px;font-weight:600;color:var(--gd)"></span>
+          </div>
+          <div id="bi-v-loading" style="text-align:center;padding:20px;color:var(--tx3);display:none">
+            <div style="width:20px;height:20px;border:2px solid var(--bd2);border-top-color:var(--gd);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 8px"></div>
+            Loading...
+          </div>
+          <div id="bi-verse-list" style="max-height:240px;overflow-y:auto"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -744,6 +812,80 @@ const VERSES = [
   { ta:'நீதிமானுடைய வேண்டுதல் மிகவும் பெலனுள்ளதாய் வல்லமையாய் நடக்கிறது.', tref:'யாக்கோபு 5:16', en:'The prayer of a righteous person has great power as it is working.', ref:'James 5:16' },
 ];
 
+
+// ── 66 BOOKS INDEX ─────────────────────────────────────────────
+const BOOKS = [
+  {id:'genesis',n:1,ta:'ஆதியாகமம்',en:'Genesis',ch:50,t:'OT'},
+  {id:'exodus',n:2,ta:'யாத்திராகமம்',en:'Exodus',ch:40,t:'OT'},
+  {id:'leviticus',n:3,ta:'லேவியராகமம்',en:'Leviticus',ch:27,t:'OT'},
+  {id:'numbers',n:4,ta:'எண்ணாகமம்',en:'Numbers',ch:36,t:'OT'},
+  {id:'deuteronomy',n:5,ta:'உபாகமம்',en:'Deuteronomy',ch:34,t:'OT'},
+  {id:'joshua',n:6,ta:'யோசுவா',en:'Joshua',ch:24,t:'OT'},
+  {id:'judges',n:7,ta:'நியாயாதிபதிகள்',en:'Judges',ch:21,t:'OT'},
+  {id:'ruth',n:8,ta:'ரூத்',en:'Ruth',ch:4,t:'OT'},
+  {id:'1samuel',n:9,ta:'1 சாமுவேல்',en:'1 Samuel',ch:31,t:'OT'},
+  {id:'2samuel',n:10,ta:'2 சாமுவேல்',en:'2 Samuel',ch:24,t:'OT'},
+  {id:'1kings',n:11,ta:'1 இராஜாக்கள்',en:'1 Kings',ch:22,t:'OT'},
+  {id:'2kings',n:12,ta:'2 இராஜாக்கள்',en:'2 Kings',ch:25,t:'OT'},
+  {id:'1chronicles',n:13,ta:'1 நாளாகமம்',en:'1 Chronicles',ch:29,t:'OT'},
+  {id:'2chronicles',n:14,ta:'2 நாளாகமம்',en:'2 Chronicles',ch:36,t:'OT'},
+  {id:'ezra',n:15,ta:'எஸ்றா',en:'Ezra',ch:10,t:'OT'},
+  {id:'nehemiah',n:16,ta:'நெகேமியா',en:'Nehemiah',ch:13,t:'OT'},
+  {id:'esther',n:17,ta:'எஸ்தர்',en:'Esther',ch:10,t:'OT'},
+  {id:'job',n:18,ta:'யோபு',en:'Job',ch:42,t:'OT'},
+  {id:'psalms',n:19,ta:'சங்கீதம்',en:'Psalms',ch:150,t:'OT'},
+  {id:'proverbs',n:20,ta:'நீதிமொழிகள்',en:'Proverbs',ch:31,t:'OT'},
+  {id:'ecclesiastes',n:21,ta:'பிரசங்கி',en:'Ecclesiastes',ch:12,t:'OT'},
+  {id:'songofsolomon',n:22,ta:'உன்னதப்பாட்டு',en:'Song of Solomon',ch:8,t:'OT'},
+  {id:'isaiah',n:23,ta:'ஏசாயா',en:'Isaiah',ch:66,t:'OT'},
+  {id:'jeremiah',n:24,ta:'எரேமியா',en:'Jeremiah',ch:52,t:'OT'},
+  {id:'lamentations',n:25,ta:'புலம்பல்',en:'Lamentations',ch:5,t:'OT'},
+  {id:'ezekiel',n:26,ta:'எசேக்கியேல்',en:'Ezekiel',ch:48,t:'OT'},
+  {id:'daniel',n:27,ta:'தானியேல்',en:'Daniel',ch:12,t:'OT'},
+  {id:'hosea',n:28,ta:'ஓசியா',en:'Hosea',ch:14,t:'OT'},
+  {id:'joel',n:29,ta:'யோவேல்',en:'Joel',ch:3,t:'OT'},
+  {id:'amos',n:30,ta:'ஆமோஸ்',en:'Amos',ch:9,t:'OT'},
+  {id:'obadiah',n:31,ta:'ஒபதியா',en:'Obadiah',ch:1,t:'OT'},
+  {id:'jonah',n:32,ta:'யோனா',en:'Jonah',ch:4,t:'OT'},
+  {id:'micah',n:33,ta:'மீகா',en:'Micah',ch:7,t:'OT'},
+  {id:'nahum',n:34,ta:'நாகூம்',en:'Nahum',ch:3,t:'OT'},
+  {id:'habakkuk',n:35,ta:'ஆபகூக்',en:'Habakkuk',ch:3,t:'OT'},
+  {id:'zephaniah',n:36,ta:'செப்பனியா',en:'Zephaniah',ch:3,t:'OT'},
+  {id:'haggai',n:37,ta:'ஆகாய்',en:'Haggai',ch:2,t:'OT'},
+  {id:'zechariah',n:38,ta:'சகரியா',en:'Zechariah',ch:14,t:'OT'},
+  {id:'malachi',n:39,ta:'மல்கியா',en:'Malachi',ch:4,t:'OT'},
+  {id:'matthew',n:40,ta:'மத்தேயு',en:'Matthew',ch:28,t:'NT'},
+  {id:'mark',n:41,ta:'மாற்கு',en:'Mark',ch:16,t:'NT'},
+  {id:'luke',n:42,ta:'லூக்கா',en:'Luke',ch:24,t:'NT'},
+  {id:'john',n:43,ta:'யோவான்',en:'John',ch:21,t:'NT'},
+  {id:'acts',n:44,ta:'அப்போஸ்தலர்',en:'Acts',ch:28,t:'NT'},
+  {id:'romans',n:45,ta:'ரோமர்',en:'Romans',ch:16,t:'NT'},
+  {id:'1corinthians',n:46,ta:'1 கொரிந்தியர்',en:'1 Corinthians',ch:16,t:'NT'},
+  {id:'2corinthians',n:47,ta:'2 கொரிந்தியர்',en:'2 Corinthians',ch:13,t:'NT'},
+  {id:'galatians',n:48,ta:'கலாத்தியர்',en:'Galatians',ch:6,t:'NT'},
+  {id:'ephesians',n:49,ta:'எபேசியர்',en:'Ephesians',ch:6,t:'NT'},
+  {id:'philippians',n:50,ta:'பிலிப்பியர்',en:'Philippians',ch:4,t:'NT'},
+  {id:'colossians',n:51,ta:'கொலோசெயர்',en:'Colossians',ch:4,t:'NT'},
+  {id:'1thessalonians',n:52,ta:'1 தெசலோனிக்கேயர்',en:'1 Thessalonians',ch:5,t:'NT'},
+  {id:'2thessalonians',n:53,ta:'2 தெசலோனிக்கேயர்',en:'2 Thessalonians',ch:3,t:'NT'},
+  {id:'1timothy',n:54,ta:'1 தீமோத்தேயு',en:'1 Timothy',ch:6,t:'NT'},
+  {id:'2timothy',n:55,ta:'2 தீமோத்தேயு',en:'2 Timothy',ch:4,t:'NT'},
+  {id:'titus',n:56,ta:'தீத்து',en:'Titus',ch:3,t:'NT'},
+  {id:'philemon',n:57,ta:'பிலேமோன்',en:'Philemon',ch:1,t:'NT'},
+  {id:'hebrews',n:58,ta:'எபிரெயர்',en:'Hebrews',ch:13,t:'NT'},
+  {id:'james',n:59,ta:'யாக்கோபு',en:'James',ch:5,t:'NT'},
+  {id:'1peter',n:60,ta:'1 பேதுரு',en:'1 Peter',ch:5,t:'NT'},
+  {id:'2peter',n:61,ta:'2 பேதுரு',en:'2 Peter',ch:3,t:'NT'},
+  {id:'1john',n:62,ta:'1 யோவான்',en:'1 John',ch:5,t:'NT'},
+  {id:'2john',n:63,ta:'2 யோவான்',en:'2 John',ch:1,t:'NT'},
+  {id:'3john',n:64,ta:'3 யோவான்',en:'3 John',ch:1,t:'NT'},
+  {id:'jude',n:65,ta:'யூதா',en:'Jude',ch:1,t:'NT'},
+  {id:'revelation',n:66,ta:'வெளிப்படுத்தல்',en:'Revelation',ch:22,t:'NT'},
+];
+
+// Bible index state
+const BI = { book: null, ch: null, verse: null, loading: false };
+
 // ── INIT ──────────────────────────────────────────────────────
 function g(id){ return document.getElementById(id); }
 
@@ -763,7 +905,7 @@ function init(){
   buildUnsplash();
   buildSzBtns();
   buildQuickTpl();
-  buildFeaturedVerses();
+  biInit();
   loadFromURL();
   setVerse(ST.verseIdx);
   applyTemplate(TEMPLATES[0]);
@@ -1423,23 +1565,59 @@ function syncMobile(){
 
   // ── Mobile: Verse panel ──
   g('mob-verse').innerHTML = `
-    <p class="sec-lbl" style="margin-bottom:8px">Select Verse</p>
+    <p class="sec-lbl" style="margin-bottom:8px">Current Verse</p>
     <div class="verse-display" style="margin-bottom:8px">
-      <div class="verse-ta" id="mvd-ta">${ST.verse?.ta?.substring(0,80)||''}${(ST.verse?.ta?.length||0)>80?'...':''}</div>
-      <div class="verse-ref" id="mvd-ref">— ${ST.verse?.tref||''}</div>
+      <div class="verse-ta" id="mvd-ta" style="font-family:'Noto Serif Tamil',serif;font-size:12px;line-height:1.8">${ST.verse?.ta?.substring(0,80)||'Select a verse...'}${(ST.verse?.ta?.length||0)>80?'…':''}</div>
+      <div class="verse-ref" id="mvd-ref" style="font-size:10px;color:var(--gd);font-weight:600;margin-top:4px">${ST.verse?.tref?'— '+ST.verse.tref:''}</div>
     </div>
     <div class="verse-nav" style="margin-bottom:14px">
       <button class="vnav-btn" onclick="prevVerse()">← Prev</button>
       <button class="vnav-btn primary" onclick="useVOTD()">⭐ VOTD</button>
       <button class="vnav-btn" onclick="nextVerse()">Next →</button>
     </div>
-    <p class="sec-lbl">All Verses</p>
-    ${VERSES.map((v,i)=>`
-      <div class="vlist-item${ST.verseIdx===i?' vlist-active':''}" id="mvitem-${i}"
-           onclick="selectVerse(${i});updateMobVerseDisplay()">
-        <div class="vlist-ref">${v.tref} <span style="opacity:.5;font-size:8px">· ${v.ref}</span></div>
-        <div class="vlist-ta">${v.ta.substring(0,80)}${v.ta.length>80?'…':''}</div>
-      </div>`).join('')}`;
+    <p class="sec-lbl" style="margin-bottom:6px">Bible Index</p>
+    <input class="inp" type="search" placeholder="🔍 Search book..."
+      oninput="biSearch(this.value)" style="margin-bottom:8px">
+    <div class="btn-group" style="margin-bottom:8px">
+      <button class="grp-btn on" onclick="biFilter('all')">All 66</button>
+      <button class="grp-btn" onclick="biFilter('OT')">OT</button>
+      <button class="grp-btn" onclick="biFilter('NT')">NT</button>
+    </div>
+    <div id="mob-bi-books" style="max-height:260px;overflow-y:auto">
+      ${BOOKS.map(b=>`
+        <div class="bi-book" onclick="biSelectBook('${b.id}');mobTab(document.querySelector('.mob-tab.on'),'mob-verse')">
+          <span class="bi-book-num">${b.n}</span>
+          <div><div class="bi-book-ta">${b.ta}</div></div>
+          <span class="bi-book-en">${b.en} ›</span>
+        </div>`).join('')}
+    </div>
+    <div id="mob-bi-ch" style="display:none;margin-top:8px">
+      <button onclick="g('mob-bi-books').style.display='block';g('mob-bi-ch').style.display='none'"
+        style="background:transparent;border:1px solid var(--bd);border-radius:6px;padding:4px 10px;font-size:10px;color:var(--tx2);cursor:pointer;font-family:var(--sans);margin-bottom:8px">← Books</button>
+      <div id="mob-bi-ch-title" style="font-size:12px;font-weight:600;color:var(--gd);margin-bottom:8px"></div>
+      <div id="mob-bi-ch-grid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px"></div>
+    </div>
+    <div id="mob-bi-verses" style="display:none;margin-top:8px">
+      <button onclick="g('mob-bi-ch').style.display='block';g('mob-bi-verses').style.display='none'"
+        style="background:transparent;border:1px solid var(--bd);border-radius:6px;padding:4px 10px;font-size:10px;color:var(--tx2);cursor:pointer;font-family:var(--sans);margin-bottom:8px">← Chapters</button>
+      <div id="mob-bi-v-title" style="font-size:12px;font-weight:600;color:var(--gd);margin-bottom:8px"></div>
+      <div id="mob-bi-verse-list" style="max-height:240px;overflow-y:auto"></div>
+    </div>`;
+
+  // Wire mobile book clicks
+  document.querySelectorAll('#mob-bi-books .bi-book').forEach((el,idx)=>{
+    el.onclick = async function(){
+      const bk = BOOKS[idx];
+      BI.book=bk;
+      g('mob-bi-books').style.display='none';
+      g('mob-bi-ch').style.display='block';
+      g('mob-bi-verses').style.display='none';
+      g('mob-bi-ch-title').textContent=bk.ta+' ('+bk.en+')';
+      const grid=g('mob-bi-ch-grid');
+      grid.innerHTML=Array.from({length:bk.ch},(_,i)=>`
+        <div class="bi-ch-btn" onclick="mobBiCh(${i+1})">${i+1}</div>`).join('');
+    };
+  });
 
   // ── Mobile: Export panel ──
   g('mob-export').innerHTML = `
@@ -1511,6 +1689,210 @@ function updateMobVerseDisplay(){
   if(ref) ref.textContent='— '+v.tref;
   // Also update desktop
   updateVerseDisplay();
+}
+
+
+// ═══════════════════════════════════════════════
+//  BIBLE INDEX
+// ═══════════════════════════════════════════════
+let _biFilter = 'all';
+let _biSearch = '';
+
+function biInit(){
+  biRenderBooks();
+}
+
+function biFilter(f){
+  _biFilter = f;
+  ['all','ot','nt'].forEach(x=>g('bi-'+x)?.classList.toggle('on', x===f.toLowerCase()||f==='all'&&x==='all'));
+  biRenderBooks();
+}
+
+function biSearch(q){
+  _biSearch = q.trim().toLowerCase();
+  biRenderBooks();
+  // Show book list, hide ch/verse
+  g('bi-book-list').style.display='block';
+  g('bi-ch-area').style.display='none';
+  g('bi-verse-area').style.display='none';
+}
+
+function biRenderBooks(){
+  const list = g('bi-book-list'); if(!list) return;
+  const filtered = BOOKS.filter(b=>{
+    if(_biFilter!=='all' && b.t!==_biFilter) return false;
+    if(_biSearch){
+      return b.ta.includes(_biSearch)||b.en.toLowerCase().includes(_biSearch);
+    }
+    return true;
+  });
+
+  if(!filtered.length){
+    list.innerHTML='<div style="padding:16px;text-align:center;color:var(--tx3);font-size:12px">No books found</div>';
+    return;
+  }
+
+  // Group by testament if showing all
+  let html='';
+  if(_biFilter==='all'&&!_biSearch){
+    ['OT','NT'].forEach(t=>{
+      const group=filtered.filter(b=>b.t===t);
+      if(!group.length) return;
+      html+=`<div style="padding:4px 10px;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+        color:var(--gd);font-weight:700;background:var(--bg3);border-bottom:1px solid var(--bd)">
+        ${t==='OT'?'பழைய ஏற்பாடு — Old Testament':'புதிய ஏற்பாடு — New Testament'}
+      </div>`;
+      group.forEach(b=>{ html+=biBookHTML(b); });
+    });
+  } else {
+    filtered.forEach(b=>{ html+=biBookHTML(b); });
+  }
+  list.innerHTML=html;
+}
+
+function biBookHTML(b){
+  return `<div class="bi-book${BI.book?.id===b.id?' active':''}" onclick="biSelectBook('${b.id}')">
+    <span class="bi-book-num">${b.n}</span>
+    <div>
+      <div class="bi-book-ta">${b.ta}</div>
+    </div>
+    <span class="bi-book-en">${b.en} ›</span>
+  </div>`;
+}
+
+function biSelectBook(bookId){
+  const bk = BOOKS.find(b=>b.id===bookId); if(!bk) return;
+  BI.book = bk; BI.ch = null; BI.verse = null;
+
+  // Update active in book list
+  document.querySelectorAll('.bi-book').forEach(el=>{
+    el.classList.toggle('active', el.onclick?.toString().includes(bookId));
+  });
+
+  // Show chapter grid
+  g('bi-book-list').style.display='none';
+  g('bi-ch-area').style.display='block';
+  g('bi-verse-area').style.display='none';
+  g('bi-ch-title').textContent=bk.ta+' ('+bk.en+')';
+
+  const grid=g('bi-ch-grid');
+  grid.innerHTML=Array.from({length:bk.ch},(_,i)=>`
+    <div class="bi-ch-btn" onclick="biSelectCh(${i+1})">${i+1}</div>
+  `).join('');
+}
+
+function biBackToBooks(){
+  g('bi-book-list').style.display='block';
+  g('bi-ch-area').style.display='none';
+  g('bi-verse-area').style.display='none';
+}
+
+async function biSelectCh(ch){
+  if(!BI.book) return;
+  BI.ch=ch; BI.verse=null;
+
+  // Highlight chapter btn
+  document.querySelectorAll('.bi-ch-btn').forEach((b,i)=>b.classList.toggle('active',i+1===ch));
+
+  // Show verse area
+  g('bi-ch-area').style.display='none';
+  g('bi-verse-area').style.display='block';
+  g('bi-v-title').textContent=BI.book.ta+' '+ch+' ('+BI.book.en+' '+ch+')';
+
+  // Load verses
+  const vlist=g('bi-verse-list');
+  const loading=g('bi-v-loading');
+  vlist.innerHTML=''; loading.style.display='block';
+
+  try{
+    const verses = await fetchBiVerses(BI.book, ch);
+    loading.style.display='none';
+    if(!verses.length){
+      vlist.innerHTML='<div style="padding:16px;text-align:center;color:var(--tx3)">No verses found. Check internet.</div>';
+      return;
+    }
+    vlist.innerHTML = verses.map((v,i)=>`
+      <div class="bi-v-item" onclick="biSelectVerse(${i})" id="bvi-${i}">
+        <div class="bi-v-num">${v.num}</div>
+        <div class="bi-v-txt">${v.text}</div>
+      </div>`).join('');
+    BI._verses = verses;
+  }catch(e){
+    loading.style.display='none';
+    vlist.innerHTML='<div style="padding:16px;text-align:center;color:#fca5a5">Failed to load. Check internet connection.</div>';
+  }
+}
+
+function biBackToCh(){
+  g('bi-ch-area').style.display='block';
+  g('bi-verse-area').style.display='none';
+}
+
+async function fetchBiVerses(book, ch){
+  // Try Tamil API first (bolls.life)
+  const apiUrl=`https://bolls.life/get-text/TAMOVR/${book.n}/${ch}/`;
+  try{
+    const r=await fetch(apiUrl);
+    if(r.ok){
+      const d=await r.json();
+      if(Array.isArray(d)&&d.length){
+        return d.map(v=>({num:v.verse,text:v.text}));
+      }
+    }
+  }catch(e){}
+
+  // Fallback: English bible-api.com
+  const enId=book.en.toLowerCase().replace(/ /g,'+');
+  const r2=await fetch(`https://bible-api.com/${enId}+${ch}?translation=kjv`);
+  const d2=await r2.json();
+  if(d2.verses?.length){
+    return d2.verses.map(v=>({num:v.verse,text:v.text.trim()}));
+  }
+  return [];
+}
+
+function biSelectVerse(i){
+  const v = BI._verses?.[i]; if(!v) return;
+  const bk = BI.book;
+  const tref = bk.ta+' '+BI.ch+':'+v.num;
+  const ref  = bk.en+' '+BI.ch+':'+v.num;
+
+  // Highlight
+  document.querySelectorAll('.bi-v-item').forEach((el,j)=>el.classList.toggle('active',j===i));
+
+  // Set as custom verse and draw
+  const verse = { ta: v.text, tref, en: '', ref };
+  ST.verse = verse;
+  updateVerseDisplay();
+  draw();
+  toast('✓ '+tref+' selected');
+
+  // Update desktop verse display
+  const vdTa=g('vd-ta'), vdRef=g('vd-ref');
+  if(vdTa) vdTa.textContent=v.text.substring(0,80)+(v.text.length>80?'…':'');
+  if(vdRef) vdRef.textContent='— '+tref;
+}
+
+
+async function mobBiCh(ch){
+  if(!BI.book) return;
+  BI.ch=ch;
+  g('mob-bi-ch').style.display='none';
+  g('mob-bi-verses').style.display='block';
+  g('mob-bi-v-title').textContent=BI.book.ta+' '+ch;
+  const vlist=g('mob-bi-verse-list');
+  vlist.innerHTML='<div style="text-align:center;padding:16px;color:var(--tx3)">Loading...</div>';
+  try{
+    const verses=await fetchBiVerses(BI.book,ch);
+    BI._verses=verses;
+    vlist.innerHTML=verses.map((v,i)=>`
+      <div class="bi-v-item" onclick="biSelectVerse(${i});updateMobVerseDisplay()">
+        <div class="bi-v-num">${v.num}</div>
+        <div class="bi-v-txt">${v.text}</div>
+      </div>`).join('');
+  }catch(e){
+    vlist.innerHTML='<div style="padding:16px;text-align:center;color:#fca5a5">Failed. Check internet.</div>';
+  }
 }
 
 // ── START ──────────────────────────────────────────────────────
