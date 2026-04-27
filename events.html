@@ -117,10 +117,11 @@
       </div>
       <div class="enjc-filter-row" role="group" aria-label="Filter by topic">
         <button class="enjc-filter-btn enjc-filter-active" data-filter="all">🎬 All</button>
-        <button class="enjc-filter-btn" data-filter="worship"  style="--tc:#7c6cf0;">🙏 Worship</button>
-        <button class="enjc-filter-btn" data-filter="prayer"   style="--tc:#059669;">✝️ Prayer</button>
-        <button class="enjc-filter-btn" data-filter="message"  style="--tc:#d97706;">📢 Message</button>
-        <button class="enjc-filter-btn" data-filter="shorts"   style="--tc:#dc2626;">📱 Shorts</button>
+        <button class="enjc-filter-btn" data-filter="worship">🙏 Worship</button>
+        <button class="enjc-filter-btn" data-filter="prayer">✝️ Prayer</button>
+        <button class="enjc-filter-btn" data-filter="deliverance">🔥 Deliverance</button>
+        <button class="enjc-filter-btn" data-filter="testimony">💬 Testimony</button>
+        <button class="enjc-filter-btn" data-filter="message">📢 Message</button>
       </div>
     </div>
   </section>
@@ -188,14 +189,49 @@
 
   <div class="divider"></div>
 
-  <!-- Most Watched -->
-  <section class="section-alt normal-section" aria-labelledby="popular-heading">
+  <!-- Regular Services -->
+  <section class="section-alt normal-section" aria-label="Regular Services">
     <div class="container">
-      <p class="section-tag">Popular</p>
-      <h2 class="section-heading" id="popular-heading" style="margin-bottom:8px;">🔥 Most Watched <em>Messages</em></h2>
-      <p class="section-sub">Popular sermons and devotionals that touched hearts</p>
-            <!-- Populated by js/events.js from data/events.json → mostWatched[] -->
-      <div class="grid-3" id="most-watched-grid"></div>
+      <p class="section-tag">Every Week</p>
+      <h2 class="section-heading" style="margin-bottom:8px;">Our Regular <em>Services</em></h2>
+      <p class="section-sub">Join us in-person or watch live on YouTube</p>
+      <div class="grid-3" id="services-grid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Deliverance Meetings -->
+  <section class="section normal-section" aria-label="Deliverance Meetings">
+    <div class="container">
+      <p class="section-tag">🔥 Power & Freedom</p>
+      <h2 class="section-heading" style="margin-bottom:8px;">Deliverance <em>Meetings</em></h2>
+      <p class="section-sub">Experience God's power through special deliverance sessions</p>
+      <div class="grid-3" id="deliverance-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-faint);">Loading...</div>
+      </div>
+      <div style="text-align:center;margin-top:24px;">
+        <a href="https://www.youtube.com/playlist?list=PLcsOT9w6kTBUbVgaE9w9rP6lA_EWwqPTj"
+           target="_blank" rel="noopener" class="btn btn--gold">View Full Playlist ▶</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Believers Testimony -->
+  <section class="section-alt normal-section" aria-label="Believers Testimony">
+    <div class="container">
+      <p class="section-tag">💬 Glory to God</p>
+      <h2 class="section-heading" style="margin-bottom:8px;">Believers <em>Testimony</em></h2>
+      <p class="section-sub">Hear how God has transformed lives in our community</p>
+      <div class="grid-3" id="testimony-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-faint);">Loading...</div>
+      </div>
+      <div style="text-align:center;margin-top:24px;">
+        <a href="https://youtube.com/playlist?list=PLcsOT9w6kTBXwTSQuvtQDI7gq3nZjIbxJ"
+           target="_blank" rel="noopener" class="btn btn--gold">View Full Playlist ▶</a>
+      </div>
     </div>
   </section>
 
