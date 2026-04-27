@@ -523,7 +523,13 @@ function speak(text,lang,cb){
           await S.audEl.play();S.playing=true;updPBtn();return;
         }
       }
-      // ResponsiveVoice
+      // ResponsiveVoice — wait up to 3s for it to initialize
+      if(typeof responsiveVoice!=='undefined'){
+        // Wait for RV ready if not yet initialized
+        if(!responsiveVoice.voiceSupport()){
+          await new Promise(res=>setTimeout(res,600));
+        }
+      }
       if(typeof responsiveVoice!=='undefined'&&responsiveVoice.voiceSupport()){
         const voice=lg==='ta'?'Tamil Female':(navigator.userAgent.includes('Chrome')?'UK English Male':'en-IN Female');
         if(apst)apst.textContent=lg==='ta'?'இயங்குகிறது...':'Playing...';

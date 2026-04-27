@@ -501,6 +501,7 @@ canvas#igcv{
         <div class="lp-lbl">Type</div>
         <div class="bgmode-btns">
           <button class="bgmode-btn on" id="bgm-solid"    onclick="setBG('solid')">🎨 Colour</button>
+          <button class="bgmode-btn"    id="bgm-gradient" onclick="setBG('gradient')">🌈 Gradient</button>
           <button class="bgmode-btn"    id="bgm-photo"    onclick="setBG('photo')">📷 Photo</button>
           <button class="bgmode-btn"    id="bgm-gallery"  onclick="setBG('gallery')">🌄 Gallery</button>
         </div>
@@ -527,6 +528,57 @@ canvas#igcv{
             <span class="sl-lbl" style="color:#60a5fa">B</span>
             <input type="range" class="csl b" id="sl-b" min="0" max="255" value="58" oninput="onRGB()">
             <span class="sl-num" id="sl-bv">58</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gradient -->
+      <div id="bg-gradient" style="display:none">
+        <div class="lp-sec">
+          <div class="lp-lbl">Gradient</div>
+          <!-- Preview -->
+          <div id="grad-preview" style="height:48px;border-radius:8px;border:1px solid var(--bd2);margin-bottom:10px;transition:all .3s"></div>
+          <!-- Color 1 -->
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <div id="grad-c1-dot" style="width:22px;height:22px;border-radius:50%;background:#1a0a3a;border:2px solid var(--bd2);cursor:pointer;flex-shrink:0" onclick="g('grad-c1-inp').click()"></div>
+            <span style="font-size:11px;color:var(--tx2);flex:1">Colour 1</span>
+            <span id="grad-c1-hex" style="font-size:10px;color:var(--gd);font-family:monospace">#1A0A3A</span>
+            <input type="color" id="grad-c1-inp" value="#1a0a3a" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(1,this.value)">
+          </div>
+          <!-- Color 2 -->
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+            <div id="grad-c2-dot" style="width:22px;height:22px;border-radius:50%;background:#0a1a3a;border:2px solid var(--bd2);cursor:pointer;flex-shrink:0" onclick="g('grad-c2-inp').click()"></div>
+            <span style="font-size:11px;color:var(--tx2);flex:1">Colour 2</span>
+            <span id="grad-c2-hex" style="font-size:10px;color:var(--gd);font-family:monospace">#0A1A3A</span>
+            <input type="color" id="grad-c2-inp" value="#0a1a3a" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(2,this.value)">
+          </div>
+          <!-- Angle -->
+          <div class="lp-lbl">Direction</div>
+          <div class="ov-row" style="margin-top:0">
+            <input type="range" class="ov-sl" id="grad-angle" min="0" max="360" value="135" oninput="onGradAngle(this.value)">
+            <span class="ov-val" id="grad-angle-v">135°</span>
+          </div>
+          <!-- Presets -->
+          <div class="lp-lbl" style="margin-top:10px">Presets</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">
+            ${[
+              ['#1a0a3a','#3a0a1a','Evening'],
+              ['#0a1a3a','#0a3a1a','Ocean'],
+              ['#1a0a00','#3a1a00','Sunset'],
+              ['#0a0a1a','#1a0a3a','Night'],
+              ['#1a3a0a','#0a1a3a','Aurora'],
+              ['#3a0a0a','#1a0a3a','Flame'],
+              ['#0a0a0a','#1a1a3a','Dark'],
+              ['#2a1a00','#0a2a1a','Forest'],
+            ].map(([c1,c2,name])=>`
+              <div onclick="setGradPreset('${c1}','${c2}')"
+                style="height:32px;border-radius:6px;cursor:pointer;
+                background:linear-gradient(135deg,${c1},${c2});
+                border:1.5px solid var(--bd);transition:all .18s;position:relative"
+                title="${name}"
+                onmouseover="this.style.borderColor='var(--gdb)'"
+                onmouseout="this.style.borderColor='var(--bd)'">
+              </div>`).join('')}
           </div>
         </div>
       </div>
@@ -606,6 +658,13 @@ canvas#igcv{
         <div class="tog-row">
           <div><div class="tog-lbl">Text Glow</div></div>
           <div class="tog" id="tog-glow" onclick="togOpt(this,'textGlow')"></div>
+        </div>
+        <div class="tog-row">
+          <div>
+            <div class="tog-lbl">Instagram Safe Zone</div>
+            <div class="tog-sub">Shows crop guides for Stories</div>
+          </div>
+          <div class="tog" id="tog-safe" onclick="togOpt(this,'safeZone')"></div>
         </div>
       </div>
       <div class="lp-sec">
@@ -901,6 +960,10 @@ const ST={
   bgImg:null, galImg:null, userPhoto:null, galIdx:-1,
   verse:QUICK_VERSES[0], verseIdx:0,
   activeTpl:'royal',
+  // Gradient
+  gradMode:false, grad1:'#1a0a3a', grad2:'#0a1a3a', gradAngle:135,
+  // Safe zone
+  safeZone:false,
 };
 const BI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
 
@@ -924,11 +987,85 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildQuickVerses();
   biRenderBooks();
   readURL();
-  applyTemplate(TEMPLATES[0], false);
+  loadSavedDesign(); // auto-restore last design
   updateBadges();
   draw();
   syncMobile();
+  // Auto-save on any draw
+  setInterval(saveDesign, 3000);
 });
+
+
+// ── AUTO-SAVE DESIGN ────────────────────────────────────────────
+function saveDesign(){
+  try{
+    const state={
+      sz:ST.sz, bgMode:ST.bgMode, bgColor:ST.bgColor,
+      font:ST.font, taSize:parseInt(g('ta-size')?.value||52),
+      enSize:parseInt(g('en-size')?.value||32),
+      txColor:ST.txColor, showTa:ST.showTa, showEn:ST.showEn,
+      showRef:ST.showRef, showWM:ST.showWM, textGlow:ST.textGlow,
+      activeTpl:ST.activeTpl, verseIdx:ST.verseIdx,
+      wmName:g('wm-name')?.value||'', wmSub:g('wm-sub')?.value||'',
+      gradMode:ST.gradMode||false,
+      grad1:ST.grad1||'#1a0a3a', grad2:ST.grad2||'#0a1a3a', gradAngle:ST.gradAngle||135,
+      safeZone:ST.safeZone||false,
+    };
+    localStorage.setItem('enjc_studio_state', JSON.stringify(state));
+  }catch(e){}
+}
+
+function loadSavedDesign(){
+  try{
+    const saved = localStorage.getItem('enjc_studio_state');
+    if(!saved){ applyTemplate(TEMPLATES[0], false); return; }
+    const s = JSON.parse(saved);
+
+    // Restore size
+    if(s.sz){
+      ST.sz = s.sz;
+      document.querySelectorAll('[data-sz]').forEach(b=>b.classList.toggle('on',b.dataset.sz===s.sz));
+    }
+    // Restore bg color
+    if(s.bgColor) setColorHex(s.bgColor, false);
+    // Restore bgMode
+    if(s.bgMode) setBG(s.bgMode, false);
+    // Restore font
+    if(s.font) setFont(s.font);
+    // Restore text color
+    if(s.txColor) setTC(s.txColor);
+    // Restore toggles
+    if(s.showTa!==undefined){ ST.showTa=s.showTa; g('tog-ta')?.classList.toggle('on',s.showTa); }
+    if(s.showEn!==undefined){ ST.showEn=s.showEn; g('tog-en')?.classList.toggle('on',s.showEn); }
+    if(s.showRef!==undefined){ ST.showRef=s.showRef; g('tog-ref')?.classList.toggle('on',s.showRef); }
+    if(s.showWM!==undefined){ ST.showWM=s.showWM; g('tog-wm')?.classList.toggle('on',s.showWM); }
+    if(s.textGlow!==undefined){ ST.textGlow=s.textGlow; g('tog-glow')?.classList.toggle('on',s.textGlow); }
+    // Restore size sliders
+    if(s.taSize&&g('ta-size')){ g('ta-size').value=s.taSize; g('ta-size-v').textContent=s.taSize+'px'; }
+    if(s.enSize&&g('en-size')){ g('en-size').value=s.enSize; g('en-size-v').textContent=s.enSize+'px'; }
+    // Restore watermark text
+    if(s.wmName&&g('wm-name')) g('wm-name').value=s.wmName;
+    if(s.wmSub&&g('wm-sub'))   g('wm-sub').value=s.wmSub;
+    // Restore gradient
+    if(s.gradMode!==undefined) ST.gradMode=s.gradMode;
+    if(s.grad1) ST.grad1=s.grad1;
+    if(s.grad2) ST.grad2=s.grad2;
+    if(s.gradAngle) ST.gradAngle=s.gradAngle;
+    // Restore safe zone
+    if(s.safeZone!==undefined) ST.safeZone=s.safeZone;
+    // Restore template highlight
+    if(s.activeTpl){
+      ST.activeTpl=s.activeTpl;
+      document.querySelectorAll('.tpl').forEach(el=>el.classList.toggle('on',el.id==='tpl-'+s.activeTpl));
+    }
+    // Restore verse
+    if(s.verseIdx!==undefined&&QUICK_VERSES[s.verseIdx]){
+      ST.verseIdx=s.verseIdx;
+      ST.verse=QUICK_VERSES[s.verseIdx];
+    }
+    toast('🔄 Last design restored',1500);
+  }catch(e){ applyTemplate(TEMPLATES[0], false); }
+}
 
 // ── URL PARAM (verse passed from bible.html) ──────────────────────
 function readURL(){
@@ -1050,9 +1187,10 @@ function onRGB(){
 // ── BG MODE ───────────────────────────────────────────────────────
 function setBG(mode, redraw=true){
   ST.bgMode=mode;
-  ['solid','photo','gallery'].forEach(m=>{
+  ['solid','gradient','photo','gallery'].forEach(m=>{
     g('bgm-'+m)?.classList.toggle('on',m===mode);
-    g('bg-'+m)?.style&&(g('bg-'+m).style.display=m===mode?'block':'none');
+    const el=g('bg-'+m);
+    if(el) el.style.display=m===mode?'block':'none';
   });
   if(redraw) draw();
 }
@@ -1164,6 +1302,36 @@ function selVerse(i){
   document.querySelectorAll('.vi').forEach((el,j)=>el.classList.toggle('on',j===i));
   g('qv-'+i)?.scrollIntoView({behavior:'smooth',block:'nearest'});
   toast('✓ '+QUICK_VERSES[i].tref);
+}
+
+
+// ── GRADIENT ────────────────────────────────────────────────────
+function onGradColor(n, hex){
+  if(n===1){ ST.grad1=hex; const d=g('grad-c1-dot'); if(d)d.style.background=hex; const h=g('grad-c1-hex'); if(h)h.textContent=hex.toUpperCase(); }
+  else     { ST.grad2=hex; const d=g('grad-c2-dot'); if(d)d.style.background=hex; const h=g('grad-c2-hex'); if(h)h.textContent=hex.toUpperCase(); }
+  updateGradPreview(); draw();
+}
+
+function onGradAngle(val){
+  ST.gradAngle=parseInt(val);
+  const el=g('grad-angle-v'); if(el) el.textContent=val+'°';
+  updateGradPreview(); draw();
+}
+
+function updateGradPreview(){
+  const el=g('grad-preview');
+  if(el) el.style.background=`linear-gradient(${ST.gradAngle}deg,${ST.grad1},${ST.grad2})`;
+}
+
+function setGradPreset(c1,c2){
+  ST.grad1=c1; ST.grad2=c2;
+  const inp1=g('grad-c1-inp'), inp2=g('grad-c2-inp');
+  if(inp1)inp1.value=c1; if(inp2)inp2.value=c2;
+  const d1=g('grad-c1-dot'), d2=g('grad-c2-dot');
+  if(d1)d1.style.background=c1; if(d2)d2.style.background=c2;
+  const h1=g('grad-c1-hex'), h2=g('grad-c2-hex');
+  if(h1)h1.textContent=c1.toUpperCase(); if(h2)h2.textContent=c2.toUpperCase();
+  updateGradPreview(); draw();
 }
 
 // ── BIBLE INDEX ────────────────────────────────────────────────────
@@ -1279,6 +1447,112 @@ function onTE(e){
   if(Math.abs(dx)>40){dx<0?nextVerse():prevVerse();}
 }
 
+
+// ── MOBILE BIBLE INDEX ──────────────────────────────────────────
+const MBI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
+
+function mbiFilter(f){
+  MBI._filter=f;
+  ['all','ot','nt'].forEach(x=>g('mbi-'+x)?.classList.toggle('on',x===f.toLowerCase()||(f==='all'&&x==='all')));
+  mbiRenderBooks();
+}
+function mbiSearch(q){MBI._search=q.toLowerCase();mbiRenderBooks();}
+
+function mbiRenderBooks(){
+  const el=g('mbi-books');if(!el)return;
+  const filtered=BOOKS.filter(b=>{
+    if(MBI._filter!=='all'&&b.t!==MBI._filter)return false;
+    if(MBI._search)return b.ta.includes(MBI._search)||b.en.toLowerCase().includes(MBI._search);
+    return true;
+  });
+  let html='';
+  if(MBI._filter==='all'&&!MBI._search){
+    ['OT','NT'].forEach(t=>{
+      const grp=filtered.filter(b=>b.t===t);
+      if(!grp.length)return;
+      html+=`<div style="padding:3px 8px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gd);font-weight:700;background:var(--bg3)">${t==='OT'?'பழைய ஏற்பாடு':'புதிய ஏற்பாடு'}</div>`;
+      grp.forEach(b=>{html+=mbiBookHTML(b);});
+    });
+  } else filtered.forEach(b=>{html+=mbiBookHTML(b);});
+  el.innerHTML=html||'<div style="padding:12px;text-align:center;color:var(--tx3);font-size:11px">No books</div>';
+  el.querySelectorAll('[data-mbid]').forEach(el=>el.addEventListener('click',()=>mbiSelBook(el.dataset.mbid)));
+}
+
+function mbiBookHTML(b){
+  return `<div class="vi" data-mbid="${b.id}" style="display:flex;align-items:center;gap:8px">
+    <span style="font-size:9px;color:var(--tx3);min-width:18px">${b.n}</span>
+    <div style="flex:1"><div style="font-size:12px;color:var(--tx);font-family:var(--tamil)">${b.ta}</div></div>
+    <span style="font-size:9px;color:var(--tx3)">${b.en} ›</span>
+  </div>`;
+}
+
+function mbiSelBook(id){
+  MBI.book=BOOKS.find(b=>b.id===id);if(!MBI.book)return;
+  g('mbi-books').style.display='none';
+  g('mbi-ch-area').style.display='block';
+  g('mbi-v-area').style.display='none';
+  g('mbi-ch-title').textContent=MBI.book.ta+' ('+MBI.book.en+')';
+  g('mbi-ch-grid').innerHTML=Array.from({length:MBI.book.ch},(_,i)=>`
+    <div class="bgmode-btn" style="padding:6px 4px;font-size:11px;font-weight:600;cursor:pointer;text-align:center"
+         onclick="mbiSelCh(${i+1})">${i+1}</div>`).join('');
+}
+
+function mbiBackBooks(){
+  g('mbi-books').style.display='';
+  g('mbi-ch-area').style.display='none';
+}
+
+async function mbiSelCh(ch){
+  MBI.ch=ch;
+  g('mbi-ch-area').style.display='none';
+  g('mbi-v-area').style.display='block';
+  g('mbi-v-title').textContent=MBI.book.ta+' '+ch+' ('+MBI.book.en+' '+ch+')';
+  const vlist=g('mbi-v-list'),loading=g('mbi-v-loading');
+  vlist.innerHTML=''; loading.style.display='block';
+  try{
+    const r=await fetch(`https://bolls.life/get-text/TAMOVR/${MBI.book.n}/${ch}/`);
+    if(!r.ok)throw new Error();
+    const d=await r.json();
+    MBI._verses=d.map(v=>({num:v.verse,text:v.text}));
+  }catch{
+    try{
+      const r=await fetch(`https://bible-api.com/${MBI.book.en.toLowerCase().replace(/ /g,'+')}+${ch}?translation=kjv`);
+      const d=await r.json();
+      MBI._verses=(d.verses||[]).map(v=>({num:v.verse,text:v.text.trim()}));
+    }catch{MBI._verses=[];}
+  }
+  loading.style.display='none';
+  if(!MBI._verses.length){
+    vlist.innerHTML='<div style="padding:12px;text-align:center;color:var(--tx3)">No verses. Check internet.</div>';
+    return;
+  }
+  vlist.innerHTML=MBI._verses.map((v,i)=>`
+    <div class="vi" onclick="mbiSelVerse(${i})">
+      <div class="vi-ref">${v.num}</div>
+      <div class="vi-ta">${v.text}</div>
+    </div>`).join('');
+}
+
+function mbiBackCh(){
+  g('mbi-ch-area').style.display='block';
+  g('mbi-v-area').style.display='none';
+}
+
+function mbiSelVerse(i){
+  const v=MBI._verses[i];if(!v)return;
+  const verse={
+    ta:v.text, tref:MBI.book.ta+' '+MBI.ch+':'+v.num,
+    en:'',     ref:MBI.book.en+' '+MBI.ch+':'+v.num
+  };
+  QUICK_VERSES.unshift(verse);
+  ST.verseIdx=0;
+  setVerse(verse,0);
+  // Refresh mobile panel
+  const el=g('mbi-v-list');
+  if(el) el.querySelectorAll('.vi').forEach((el,j)=>el.classList.toggle('on',j===i));
+  toast('✓ '+verse.tref);
+}
+
 // ── DRAW ─────────────────────────────────────────────────────────
 function draw(){
   const cv=g('igcv');if(!cv)return;
@@ -1295,19 +1569,32 @@ function draw(){
   } else if(ST.bgMode==='gallery'&&ST.galImg){
     const op=parseInt(g('gal-ov')?.value||50)/100;
     drawBgImage(ctx,ST.galImg,W,H,op);
+  } else if(ST.bgMode==='gradient'){
+    // 2-color gradient
+    const angleRad=(ST.gradAngle||135)*Math.PI/180;
+    const cx=W/2, cy=H/2;
+    const dist=Math.sqrt(W*W+H*H)/2;
+    const x1=cx-Math.cos(angleRad)*dist, y1=cy-Math.sin(angleRad)*dist;
+    const x2=cx+Math.cos(angleRad)*dist, y2=cy+Math.sin(angleRad)*dist;
+    const grad=ctx.createLinearGradient(x1,y1,x2,y2);
+    grad.addColorStop(0,ST.grad1||'#1a0a3a');
+    grad.addColorStop(1,ST.grad2||'#0a1a3a');
+    ctx.fillStyle=grad; ctx.fillRect(0,0,W,H);
+    // Vignette overlay
+    const vg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*.7);
+    vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.3)');
+    ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
   } else {
-    // Rich gradient background — not flat!
+    // Solid with depth
     const hex=ST.bgColor;
     const rr=parseInt(hex.slice(1,3),16)||0;
     const gg=parseInt(hex.slice(3,5),16)||0;
     const bb=parseInt(hex.slice(5,7),16)||0;
     ctx.fillStyle=hex; ctx.fillRect(0,0,W,H);
-    // Radial vignette for depth
     const rg=ctx.createRadialGradient(W/2,H*.35,0,W/2,H*.35,W*.9);
     rg.addColorStop(0,`rgba(${Math.min(rr+20,255)},${Math.min(gg+20,255)},${Math.min(bb+20,255)},.18)`);
     rg.addColorStop(1,'rgba(0,0,0,.35)');
     ctx.fillStyle=rg; ctx.fillRect(0,0,W,H);
-    // Bottom darkening
     const bg2=ctx.createLinearGradient(0,H*.6,0,H);
     bg2.addColorStop(0,'rgba(0,0,0,0)');
     bg2.addColorStop(1,'rgba(0,0,0,.5)');
@@ -1447,36 +1734,83 @@ function draw(){
 
   ctx.shadowBlur=0;ctx.shadowColor='transparent';
 
-  // ── FOOTER ──
-  const ftH=Math.round(H*0.088);
+  // ── FOOTER — centered, bold, with cross logo ──
+  const ftH=Math.round(H*0.11);
   const fg=ctx.createLinearGradient(0,H-ftH,0,H);
-  fg.addColorStop(0,'rgba(0,0,0,.55)');fg.addColorStop(1,'rgba(0,0,0,.8)');
+  fg.addColorStop(0,'rgba(0,0,0,0)');
+  fg.addColorStop(.2,'rgba(0,0,0,.65)');
+  fg.addColorStop(1,'rgba(0,0,0,.88)');
   ctx.fillStyle=fg; ctx.fillRect(0,H-ftH,W,ftH);
-  ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(0,H-ftH);ctx.lineTo(W,H-ftH);ctx.stroke();
 
-  const fSz=Math.round(W*0.018);
-  ctx.font=`${fSz}px Inter,system-ui,sans-serif`;
-  ctx.textAlign='left';
-  const lx=Math.round(W*0.055);
+  // Thin gold separator line
+  ctx.strokeStyle='rgba(245,200,80,.25)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(W*.1,H-ftH+4);ctx.lineTo(W*.9,H-ftH+4);ctx.stroke();
 
-  // YouTube
-  const ytY=H-ftH+Math.round(ftH*0.38);
+  const fSz=Math.round(W*0.019);
+  ctx.textAlign='center';
+
+  // ✝ Cross symbol centered
+  const crossY=H-ftH+Math.round(ftH*0.28);
+  ctx.font=`${Math.round(fSz*1.4)}px serif`;
+  ctx.fillStyle='rgba(245,200,80,.7)';
+  ctx.fillText('✝', W/2, crossY);
+
+  // YouTube row — centered
+  const ytY=H-ftH+Math.round(ftH*0.54);
+  ctx.font=`600 ${fSz}px Inter,system-ui,sans-serif`;
+  // YT icon
   ctx.fillStyle='rgba(255,50,50,.9)';
-  const ytW=fSz*1.3,ytH=fSz;
-  ctx.beginPath();ctx.roundRect(lx,ytY-ytH*.75,ytW,ytH,2);ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,.7)';
-  ctx.fillText('youtube.com/@ElimNewJerusalemChurchOfficial',lx+ytW+6,ytY);
+  const iconW=Math.round(fSz*1.3), iconH=Math.round(fSz*0.85);
+  const ytTextW=ctx.measureText('youtube.com/@ElimNewJerusalemChurchOfficial').width;
+  const rowW=iconW+6+ytTextW;
+  const rowX=(W-rowW)/2;
+  ctx.beginPath();ctx.roundRect(rowX,ytY-iconH*.78,iconW,iconH,2);ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,.8)';
+  ctx.textAlign='left';
+  ctx.fillText('youtube.com/@ElimNewJerusalemChurchOfficial',rowX+iconW+6,ytY);
 
-  // Instagram
-  const igY=H-ftH+Math.round(ftH*0.72);
-  const igG=ctx.createLinearGradient(lx,igY,lx+fSz,igY);
+  // Instagram row — centered
+  const igY=H-ftH+Math.round(ftH*0.8);
+  const igTextW=ctx.measureText('@elimnewjerusalemchurch').width;
+  const igRowW=iconW+6+igTextW;
+  const igRowX=(W-igRowW)/2;
+  const igG=ctx.createLinearGradient(igRowX,igY,igRowX+iconW,igY);
   igG.addColorStop(0,'#f58529');igG.addColorStop(.5,'#dd2a7b');igG.addColorStop(1,'#8134af');
   ctx.fillStyle=igG;
-  ctx.beginPath();ctx.roundRect(lx,igY-ytH*.75,ytW,ytH,3);ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,.7)';
-  ctx.fillText('@elimnewjerusalemchurch',lx+ytW+6,igY);
+  ctx.beginPath();ctx.roundRect(igRowX,igY-iconH*.78,iconW,iconH,3);ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,.8)';
+  ctx.fillText('@elimnewjerusalemchurch',igRowX+iconW+6,igY);
   ctx.textAlign='center';
+
+  // ── INSTAGRAM SAFE ZONE GUIDES ──
+  if(ST.safeZone && ST.sz==='9:16'){
+    // Instagram story safe zone: 250px top+bottom on 1920px = ~13%
+    const safeTop=Math.round(H*0.13);
+    const safeBot=Math.round(H*0.13);
+    const safeH=H-safeTop-safeBot;
+    // Dimmed overlay outside safe zone
+    ctx.fillStyle='rgba(255,0,80,.12)';
+    ctx.fillRect(0,0,W,safeTop);
+    ctx.fillRect(0,H-safeBot,W,safeBot);
+    // Safe zone border
+    ctx.strokeStyle='rgba(255,100,100,.7)';
+    ctx.lineWidth=Math.round(W*0.003);
+    ctx.setLineDash([Math.round(W*0.02),Math.round(W*0.015)]);
+    ctx.strokeRect(0,safeTop,W,safeH);
+    ctx.setLineDash([]);
+    // Label
+    ctx.font=`600 ${Math.round(W*0.022)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,100,100,.8)';
+    ctx.textAlign='center';
+    ctx.fillText('▲ SAFE ZONE ▲',W/2,safeTop-Math.round(W*0.012));
+    ctx.fillText('▼ SAFE ZONE ▼',W/2,H-safeBot+Math.round(W*0.026));
+    // Center line
+    ctx.strokeStyle='rgba(255,255,255,.12)';
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([8,8]);
+    ctx.beginPath();ctx.moveTo(0,H/2);ctx.lineTo(W,H/2);ctx.stroke();
+    ctx.setLineDash([]);
+  }
 }
 
 function drawBgImage(ctx,img,W,H,opacity){
@@ -1635,23 +1969,52 @@ function syncMobile(){
 
   // Verse
   g('m-verse').innerHTML=`
-    <div class="vd">
+    <div class="vd" style="margin-bottom:10px">
       <div class="vd-ta" id="mvd-ta">${ST.verse?.ta?.substring(0,80)||'Select verse...'}</div>
       <div class="vd-ref" id="mvd-ref">${ST.verse?.tref?'— '+ST.verse.tref:''}</div>
     </div>
-    <div style="display:flex;gap:5px;margin-bottom:12px">
+    <div style="display:flex;gap:5px;margin-bottom:14px">
       <button class="bgmode-btn" onclick="prevVerse()">← Prev</button>
       <button class="bgmode-btn on" onclick="useVOTD()">⭐ VOTD</button>
       <button class="bgmode-btn" onclick="nextVerse()">Next →</button>
     </div>
+
+    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">📖 Bible Index</p>
+    <input class="inp" id="mbi-search" type="search" placeholder="🔍 Book search — Genesis, யோவான்..."
+      oninput="mbiSearch(this.value)" style="margin-bottom:8px" autocomplete="off">
+    <div style="display:flex;gap:4px;margin-bottom:8px">
+      <button class="bgmode-btn on" id="mbi-all" onclick="mbiFilter('all')">All 66</button>
+      <button class="bgmode-btn" id="mbi-ot"  onclick="mbiFilter('OT')">OT 39</button>
+      <button class="bgmode-btn" id="mbi-nt"  onclick="mbiFilter('NT')">NT 27</button>
+    </div>
+    <div id="mbi-books" style="max-height:220px;overflow-y:auto;margin-bottom:10px"></div>
+    <div id="mbi-ch-area" style="display:none;margin-bottom:10px">
+      <button onclick="mbiBackBooks()" class="bgmode-btn" style="margin-bottom:8px;width:auto;padding:5px 12px;font-size:10px">← Books</button>
+      <div id="mbi-ch-title" style="font-size:11px;font-weight:600;color:var(--gd);margin-bottom:8px"></div>
+      <div id="mbi-ch-grid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;max-height:160px;overflow-y:auto"></div>
+    </div>
+    <div id="mbi-v-area" style="display:none;margin-bottom:10px">
+      <button onclick="mbiBackCh()" class="bgmode-btn" style="margin-bottom:8px;width:auto;padding:5px 12px;font-size:10px">← Chapters</button>
+      <div id="mbi-v-title" style="font-size:11px;font-weight:600;color:var(--gd);margin-bottom:8px"></div>
+      <div id="mbi-v-loading" style="text-align:center;padding:16px;color:var(--tx3);display:none">
+        <div style="width:16px;height:16px;border:2px solid var(--bd2);border-top-color:var(--gd);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 6px"></div>Loading...
+      </div>
+      <div id="mbi-v-list" style="max-height:220px;overflow-y:auto"></div>
+    </div>
+
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Quick Verses</p>
-    <div style="max-height:280px;overflow-y:auto">
+    <div>
       ${QUICK_VERSES.map((v,i)=>`
         <div class="vi" onclick="selVerse(${i})">
-          <div class="vi-ref">${v.tref}</div>
+          <div class="vi-ref">${v.tref} · ${v.ref}</div>
           <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
         </div>`).join('')}
     </div>`;
+
+  // Wire mobile bible index after render
+  setTimeout(()=>{
+    mbiRenderBooks();
+  }, 50);
 
   // Export
   g('m-export').innerHTML=`
