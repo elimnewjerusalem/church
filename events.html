@@ -117,11 +117,10 @@
       </div>
       <div class="enjc-filter-row" role="group" aria-label="Filter by topic">
         <button class="enjc-filter-btn enjc-filter-active" data-filter="all">🎬 All</button>
-        <button class="enjc-filter-btn" data-filter="worship">🙏 Worship</button>
-        <button class="enjc-filter-btn" data-filter="prayer">✝️ Prayer</button>
+        <button class="enjc-filter-btn" data-filter="live">🔴 Live</button>
         <button class="enjc-filter-btn" data-filter="deliverance">🔥 Deliverance</button>
         <button class="enjc-filter-btn" data-filter="testimony">💬 Testimony</button>
-        <button class="enjc-filter-btn" data-filter="message">📢 Message</button>
+        <button class="enjc-filter-btn" data-filter="shorts">📱 Shorts</button>
       </div>
     </div>
   </section>
@@ -177,7 +176,7 @@
   <section class="section normal-section" aria-labelledby="streams-heading">
     <div class="container">
       <p class="section-tag">Watch Again</p>
-      <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent Live <em>Streams</em></h2>
+      <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent <em>Live Streams</em></h2>
       <p class="section-sub">Catch up on our latest worship services and devotionals</p>
       <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
       <div class="grid-3" id="recent-streams-grid"></div>
@@ -237,16 +236,18 @@
 
   <div class="divider"></div>
 
-  <!-- Verse Reels -->
-  <section class="section normal-section" aria-labelledby="reels-heading">
+  <!-- Shorts -->
+  <section class="section normal-section" aria-label="Shorts">
     <div class="container">
-      <p class="section-tag">Short Videos</p>
-      <h2 class="section-heading" id="reels-heading" style="margin-bottom:8px;">📖 Verse <em>Reels</em></h2>
-      <p class="section-sub">Daily scripture encouragement in short videos</p>
-      <!-- Populated by js/events.js from data/events.json → verseReels[] -->
-      <div class="reels-row" id="verse-reels-row" style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;"></div>
-      <div style="text-align:center;margin-top:32px;">
-        <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">More Reels on YouTube</a>
+      <p class="section-tag">📱 Quick & Powerful</p>
+      <h2 class="section-heading" style="margin-bottom:8px;">ENJC <em>Shorts</em></h2>
+      <p class="section-sub">Short powerful clips from our ministry</p>
+      <div class="grid-3" id="shorts-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-faint);">Loading...</div>
+      </div>
+      <div style="text-align:center;margin-top:24px;">
+        <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial/shorts"
+           target="_blank" rel="noopener" class="btn btn--gold">View All Shorts ▶</a>
       </div>
     </div>
   </section>
