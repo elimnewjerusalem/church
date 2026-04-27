@@ -560,26 +560,7 @@ canvas#igcv{
           </div>
           <!-- Presets -->
           <div class="lp-lbl" style="margin-top:10px">Presets</div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">
-            ${[
-              ['#1a0a3a','#3a0a1a','Evening'],
-              ['#0a1a3a','#0a3a1a','Ocean'],
-              ['#1a0a00','#3a1a00','Sunset'],
-              ['#0a0a1a','#1a0a3a','Night'],
-              ['#1a3a0a','#0a1a3a','Aurora'],
-              ['#3a0a0a','#1a0a3a','Flame'],
-              ['#0a0a0a','#1a1a3a','Dark'],
-              ['#2a1a00','#0a2a1a','Forest'],
-            ].map(([c1,c2,name])=>`
-              <div onclick="setGradPreset('${c1}','${c2}')"
-                style="height:32px;border-radius:6px;cursor:pointer;
-                background:linear-gradient(135deg,${c1},${c2});
-                border:1.5px solid var(--bd);transition:all .18s;position:relative"
-                title="${name}"
-                onmouseover="this.style.borderColor='var(--gdb)'"
-                onmouseout="this.style.borderColor='var(--bd)'">
-              </div>`).join('')}
-          </div>
+          <div id="grad-presets-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px"></div>
         </div>
       </div>
 
@@ -982,6 +963,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildTCdots();
   buildPresets();
   buildGallery();
+  buildGradPresets();
   buildSzBtns();
   buildQuickTpl();
   buildQuickVerses();
@@ -1305,6 +1287,31 @@ function selVerse(i){
 }
 
 
+
+function buildGradPresets(){
+  const presets=[
+    ['#1a0a3a','#3a0a1a','Evening'],
+    ['#0a1a3a','#0a3a1a','Ocean'],
+    ['#1a0a00','#3a1a00','Sunset'],
+    ['#0a0a1a','#1a0a3a','Night'],
+    ['#1a3a0a','#0a1a3a','Aurora'],
+    ['#3a0a0a','#1a0a3a','Flame'],
+    ['#0a0a0a','#1a1a3a','Dark'],
+    ['#2a1a00','#0a2a1a','Forest'],
+  ];
+  const el=g('grad-presets-grid');
+  if(!el)return;
+  el.innerHTML=presets.map(([c1,c2,name])=>`
+    <div onclick="setGradPreset('${c1}','${c2}')"
+      style="height:32px;border-radius:6px;cursor:pointer;
+             background:linear-gradient(135deg,${c1},${c2});
+             border:1.5px solid var(--bd);transition:all .18s"
+      title="${name}"
+      onmouseover="this.style.borderColor='var(--gdb)';this.style.transform='scale(1.05)'"
+      onmouseout="this.style.borderColor='var(--bd)';this.style.transform='scale(1)'">
+    </div>`).join('');
+}
+
 // ── GRADIENT ────────────────────────────────────────────────────
 function onGradColor(n, hex){
   if(n===1){ ST.grad1=hex; const d=g('grad-c1-dot'); if(d)d.style.background=hex; const h=g('grad-c1-hex'); if(h)h.textContent=hex.toUpperCase(); }
@@ -1601,32 +1608,74 @@ function draw(){
     ctx.fillStyle=bg2; ctx.fillRect(0,H*.6,W,H*.4);
   }
 
-  ctx.textAlign='center';
+  ctx.textAlign='left';
 
-  // ── HEADER WATERMARK ──
+  // ── HEADER — Image 2 style: logo box left + church name right ──
   if(ST.showWM){
     const wmName=(g('wm-name')?.value||'ELIM NEW JERUSALEM CHURCH').toUpperCase();
     const wmSub =g('wm-sub')?.value||'Tondiarpet, Chennai';
-    const fTop=Math.round(W*0.026);
-    // Subtle top gradient
-    const hg=ctx.createLinearGradient(0,0,0,H*0.12);
-    hg.addColorStop(0,'rgba(0,0,0,.4)');hg.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=hg; ctx.fillRect(0,0,W,H*0.12);
-    // Church name
-    ctx.font=`700 ${fTop}px Inter,system-ui,sans-serif`;
-    ctx.letterSpacing=Math.round(W*0.009)+'px';
-    ctx.fillStyle='rgba(255,255,255,.88)';
-    ctx.fillText(wmName,W/2,Math.round(H*0.063));
-    ctx.letterSpacing='0px';
-    // Sub text
-    ctx.font=`${Math.round(fTop*.72)}px Inter,sans-serif`;
-    ctx.fillStyle='rgba(255,255,255,.42)';
-    ctx.fillText(wmSub,W/2,Math.round(H*0.085));
-    // Thin gold line
-    const lw=Math.round(W*0.1);
-    ctx.strokeStyle=`rgba(255,200,80,.4)`;
+
+    // Header bar gradient
+    const hg=ctx.createLinearGradient(0,0,0,H*0.115);
+    hg.addColorStop(0,'rgba(0,0,0,.75)');hg.addColorStop(1,'rgba(0,0,0,.0)');
+    ctx.fillStyle=hg; ctx.fillRect(0,0,W,H*0.115);
+
+    const hH=Math.round(H*0.095); // header height
+    const pad=Math.round(W*0.055);
+    const logoSz=Math.round(hH*0.76);
+    const logoX=pad;
+    const logoY=Math.round(H*0.012);
+
+    // ── ENJC Logo box ──
+    const lbPad=Math.round(logoSz*0.12);
+    // Gold border box
+    ctx.strokeStyle='rgba(245,200,80,.85)';
+    ctx.lineWidth=Math.round(W*0.003);
+    ctx.strokeRect(logoX,logoY,logoSz,logoSz);
+    // Box bg
+    ctx.fillStyle='rgba(0,0,20,.6)';
+    ctx.fillRect(logoX+1,logoY+1,logoSz-2,logoSz-2);
+    // ENJC text inside box
+    ctx.font=`800 ${Math.round(logoSz*.38)}px Inter,sans-serif`;
+    ctx.fillStyle=ST.bgMode==='gradient'?'#f5c842':'rgba(245,200,80,.95)';
+    ctx.textAlign='center';
+    ctx.fillText('ENJC',logoX+logoSz/2,logoY+logoSz*.52);
+    // Subtitle in box
+    ctx.font=`500 ${Math.round(logoSz*.12)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    ctx.fillText('CHURCH',logoX+logoSz/2,logoY+logoSz*.75);
+
+    // ── Church name right of logo ──
+    const nameX=logoX+logoSz+Math.round(W*0.03);
+    const nameMaxW=W-nameX-pad;
+    const nameFs=Math.round(W*0.038);
+    ctx.textAlign='left';
+    ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.92)';
+    // Wrap if needed
+    const nameWords=wmName.split(' ');
+    let nameLine='';const nameLines=[];
+    for(const w of nameWords){
+      const t=nameLine?nameLine+' '+w:w;
+      if(ctx.measureText(t).width>nameMaxW&&nameLine){nameLines.push(nameLine);nameLine=w;}
+      else nameLine=t;
+    }
+    if(nameLine)nameLines.push(nameLine);
+    const nameLineH=nameFs*1.25;
+    const nameStartY=logoY+logoSz*0.35+(nameLines.length===1?nameFs*0.5:0);
+    nameLines.forEach((l,i)=>ctx.fillText(l,nameX,nameStartY+i*nameLineH));
+    // Tamil sub text
+    ctx.font=`500 ${Math.round(nameFs*.72)}px 'Noto Serif Tamil',serif`;
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    ctx.fillText(wmSub,nameX,nameStartY+nameLines.length*nameLineH+Math.round(nameFs*.3));
+
+    // ── Gold divider line under header ──
+    ctx.strokeStyle='rgba(245,200,80,.35)';
     ctx.lineWidth=1.5;
-    ctx.beginPath();ctx.moveTo(W/2-lw,Math.round(H*0.097));ctx.lineTo(W/2+lw,Math.round(H*0.097));ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(pad,logoY+logoSz+Math.round(H*0.012));
+    ctx.lineTo(W-pad,logoY+logoSz+Math.round(H*0.012));
+    ctx.stroke();
   }
 
   // ── VERSE BOX ──
@@ -1734,52 +1783,75 @@ function draw(){
 
   ctx.shadowBlur=0;ctx.shadowColor='transparent';
 
-  // ── FOOTER — centered, bold, with cross logo ──
-  const ftH=Math.round(H*0.11);
-  const fg=ctx.createLinearGradient(0,H-ftH,0,H);
+  // ── FOOTER — Image 2 style: YT + IG rows with Subscribe/Follow buttons ──
+  const ftH=Math.round(H*0.115);
+  const ftY=H-ftH;
+
+  // Footer bg gradient
+  const fg=ctx.createLinearGradient(0,ftY-Math.round(H*0.03),0,H);
   fg.addColorStop(0,'rgba(0,0,0,0)');
-  fg.addColorStop(.2,'rgba(0,0,0,.65)');
-  fg.addColorStop(1,'rgba(0,0,0,.88)');
-  ctx.fillStyle=fg; ctx.fillRect(0,H-ftH,W,ftH);
+  fg.addColorStop(.25,'rgba(0,0,0,.72)');
+  fg.addColorStop(1,'rgba(0,0,0,.92)');
+  ctx.fillStyle=fg; ctx.fillRect(0,ftY-Math.round(H*0.03),W,ftH+Math.round(H*0.03));
 
-  // Thin gold separator line
-  ctx.strokeStyle='rgba(245,200,80,.25)';ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(W*.1,H-ftH+4);ctx.lineTo(W*.9,H-ftH+4);ctx.stroke();
+  // Gold top border of footer
+  ctx.strokeStyle='rgba(245,200,80,.4)';ctx.lineWidth=Math.round(H*0.0018);
+  ctx.beginPath();ctx.moveTo(Math.round(W*0.05),ftY);ctx.lineTo(Math.round(W*0.95),ftY);ctx.stroke();
 
-  const fSz=Math.round(W*0.019);
+  const fSz=Math.round(W*0.035); // larger font
+  const pad=Math.round(W*0.055);
+  const rowH=Math.round(ftH*0.44);
+  const iconSz=Math.round(fSz*1.05);
+  const btnH=Math.round(fSz*1.1);
+  const btnPad=Math.round(W*0.04);
+
+  // ── YouTube row ──
+  const ytY=ftY+Math.round(ftH*0.3);
+  // YT icon pill
+  ctx.fillStyle='#ff0000';
+  ctx.beginPath();ctx.roundRect(pad,ytY-iconSz*.7,iconSz*1.6,iconSz*.9,3);ctx.fill();
+  ctx.fillStyle='#fff';
+  ctx.font=`700 ${Math.round(iconSz*.55)}px Inter,sans-serif`;
   ctx.textAlign='center';
-
-  // ✝ Cross symbol centered
-  const crossY=H-ftH+Math.round(ftH*0.28);
-  ctx.font=`${Math.round(fSz*1.4)}px serif`;
-  ctx.fillStyle='rgba(245,200,80,.7)';
-  ctx.fillText('✝', W/2, crossY);
-
-  // YouTube row — centered
-  const ytY=H-ftH+Math.round(ftH*0.54);
-  ctx.font=`600 ${fSz}px Inter,system-ui,sans-serif`;
-  // YT icon
-  ctx.fillStyle='rgba(255,50,50,.9)';
-  const iconW=Math.round(fSz*1.3), iconH=Math.round(fSz*0.85);
-  const ytTextW=ctx.measureText('youtube.com/@ElimNewJerusalemChurchOfficial').width;
-  const rowW=iconW+6+ytTextW;
-  const rowX=(W-rowW)/2;
-  ctx.beginPath();ctx.roundRect(rowX,ytY-iconH*.78,iconW,iconH,2);ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,.8)';
+  ctx.fillText('▶',pad+iconSz*.8,ytY-iconSz*.12);
+  // YT handle
   ctx.textAlign='left';
-  ctx.fillText('youtube.com/@ElimNewJerusalemChurchOfficial',rowX+iconW+6,ytY);
+  ctx.font=`600 ${fSz}px Inter,sans-serif`;
+  ctx.fillStyle='rgba(255,255,255,.88)';
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',pad+iconSz*1.9,ytY);
+  // Subscribe button
+  const subW=Math.round(W*0.22);
+  ctx.fillStyle='#ff0000';
+  ctx.beginPath();ctx.roundRect(W-pad-subW,ytY-btnH*.78,subW,btnH,btnH/2);ctx.fill();
+  ctx.font=`700 ${Math.round(fSz*.75)}px Inter,sans-serif`;
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.fillText('🔔 SUBSCRIBE',W-pad-subW/2,ytY);
 
-  // Instagram row — centered
-  const igY=H-ftH+Math.round(ftH*0.8);
-  const igTextW=ctx.measureText('@elimnewjerusalemchurch').width;
-  const igRowW=iconW+6+igTextW;
-  const igRowX=(W-igRowW)/2;
-  const igG=ctx.createLinearGradient(igRowX,igY,igRowX+iconW,igY);
+  // ── Instagram row ──
+  const igY=ftY+Math.round(ftH*0.78);
+  // IG gradient icon
+  const igG=ctx.createLinearGradient(pad,igY,pad+iconSz*1.6,igY);
   igG.addColorStop(0,'#f58529');igG.addColorStop(.5,'#dd2a7b');igG.addColorStop(1,'#8134af');
   ctx.fillStyle=igG;
-  ctx.beginPath();ctx.roundRect(igRowX,igY-iconH*.78,iconW,iconH,3);ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,.8)';
-  ctx.fillText('@elimnewjerusalemchurch',igRowX+iconW+6,igY);
+  ctx.beginPath();ctx.roundRect(pad,igY-iconSz*.7,iconSz*1.6,iconSz*.9,4);ctx.fill();
+  ctx.font=`700 ${Math.round(iconSz*.58)}px serif`;
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.fillText('📷',pad+iconSz*.8,igY-iconSz*.08);
+  // IG handle
+  ctx.textAlign='left';
+  ctx.font=`600 ${fSz}px Inter,sans-serif`;
+  ctx.fillStyle='rgba(255,255,255,.88)';
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',pad+iconSz*1.9,igY);
+  // Follow button
+  const folW=Math.round(W*0.18);
+  const folGrad=ctx.createLinearGradient(W-pad-folW,igY,W-pad,igY);
+  folGrad.addColorStop(0,'#f58529');folGrad.addColorStop(1,'#8134af');
+  ctx.fillStyle=folGrad;
+  ctx.beginPath();ctx.roundRect(W-pad-folW,igY-btnH*.78,folW,btnH,btnH/2);ctx.fill();
+  ctx.font=`700 ${Math.round(fSz*.75)}px Inter,sans-serif`;
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.fillText('Follow',W-pad-folW/2,igY);
+
   ctx.textAlign='center';
 
   // ── INSTAGRAM SAFE ZONE GUIDES ──
