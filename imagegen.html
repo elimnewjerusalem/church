@@ -651,7 +651,7 @@ canvas#igcv{
       <div class="lp-sec">
         <div class="lp-lbl">Church Name</div>
         <input class="inp" id="wm-name" type="text" value="ELIM NEW JERUSALEM CHURCH" oninput="draw()" style="margin-bottom:6px">
-        <input class="inp" id="wm-sub"  type="text" value="Tondiarpet, Chennai"         oninput="draw()">
+        <input class="inp" id="wm-sub"  type="text" value="110e, Elaya Street, Tondiarpet, Chennai, 600 081"         oninput="draw()">
       </div>
     </div>
 
@@ -1598,71 +1598,63 @@ function draw(){
     ctx.fillStyle=dg;ctx.fillRect(0,H*.55,W,H*.45);
   }
 
-  // ── HEADER ──────────────────────────────────────────
-  const HDR=Math.round(H*0.10);  // header height zone
-  const PAD=Math.round(W*0.055); // horizontal padding
+  // ── HEADER — centered: logo + church name + address ──
+  const HDR=Math.round(H*0.105);
+  const PAD=Math.round(W*0.055);
 
   if(ST.showWM){
     const wmName=(g('wm-name')?.value||'ELIM NEW JERUSALEM CHURCH').toUpperCase();
-    const wmSub =g('wm-sub')?.value||'Tondiarpet, Chennai';
+    const wmSub=g('wm-sub')?.value||'110e, Elaya Street, Tondiarpet, Chennai, 600 081';
 
     // Header dark overlay
-    const hg=ctx.createLinearGradient(0,0,0,HDR*1.2);
-    hg.addColorStop(0,'rgba(0,0,0,.72)');hg.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=hg;ctx.fillRect(0,0,W,HDR*1.2);
+    const hg=ctx.createLinearGradient(0,0,0,HDR*1.3);
+    hg.addColorStop(0,'rgba(0,0,0,.78)');hg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=hg;ctx.fillRect(0,0,W,HDR*1.3);
 
-    // Logo box dimensions — square, vertically centred in header
-    const LSZ=Math.round(HDR*0.72);
-    const LX=PAD;
+    const LSZ=Math.round(HDR*0.68);
     const LY=Math.round((HDR-LSZ)/2);
 
-    // Gold border
+    // Total content width = logo + gap + text block
+    // First measure text
+    let nameFs=Math.round(W*0.036);
+    ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
+    const nameW=ctx.measureText(wmName).width;
+    const gap=Math.round(W*0.028);
+    const totalW=LSZ+gap+nameW;
+    const startX=Math.round((W-totalW)/2); // center everything
+
+    // ── Logo box ──
+    const LX=startX;
     ctx.strokeStyle='rgba(245,200,80,.9)';
-    ctx.lineWidth=Math.round(W*0.004);
+    ctx.lineWidth=Math.round(W*0.0038);
     ctx.strokeRect(LX,LY,LSZ,LSZ);
-    // Box bg
-    ctx.fillStyle='rgba(0,0,20,.55)';
+    ctx.fillStyle='rgba(0,0,20,.5)';
     ctx.fillRect(LX+2,LY+2,LSZ-4,LSZ-4);
-    // ENJC text
     ctx.textAlign='center';
     ctx.font=`800 ${Math.round(LSZ*.4)}px Inter,sans-serif`;
     ctx.fillStyle='rgba(245,200,80,.95)';
     ctx.fillText('ENJC',LX+LSZ/2,LY+LSZ*.54);
-    // CHURCH sub
-    ctx.font=`500 ${Math.round(LSZ*.14)}px Inter,sans-serif`;
-    ctx.fillStyle='rgba(255,255,255,.45)';
-    ctx.fillText('CHURCH',LX+LSZ/2,LY+LSZ*.78);
+    ctx.font=`500 ${Math.round(LSZ*.135)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.42)';
+    ctx.fillText('CHURCH',LX+LSZ/2,LY+LSZ*.79);
 
-    // Church name — right of logo
-    const NX=LX+LSZ+Math.round(W*0.03);
-    const NW=W-NX-PAD*1.2; // strict right boundary
+    // ── Church name ──
+    const NX=LX+LSZ+gap;
     ctx.textAlign='left';
-    ctx.save();
-    ctx.rect(NX, LY, NW, LSZ); // clip to available name area
-    ctx.clip();
-
-    // Scale font to fit
-    let nameFs=Math.round(W*0.038);
     ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
-    while(ctx.measureText(wmName).width > NW && nameFs > Math.round(W*0.018)){
-      nameFs -= 1;
-      ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
-    }
     ctx.fillStyle='rgba(255,255,255,.92)';
-    ctx.fillText(wmName, NX, LY+LSZ*.48);
+    ctx.fillText(wmName,NX,LY+LSZ*.46);
 
-    // Sub text
-    ctx.font=`400 ${Math.round(nameFs*.6)}px Inter,sans-serif`;
-    ctx.fillStyle='rgba(255,255,255,.45)';
-    ctx.fillText(wmSub, NX, LY+LSZ*.76);
-    ctx.restore();
+    // ── Address sub text ──
+    const subFs=Math.round(nameFs*.58);
+    ctx.font=`400 ${subFs}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.44)';
+    ctx.fillText(wmSub,NX,LY+LSZ*.76);
 
     // Gold divider
-    ctx.strokeStyle='rgba(245,200,80,.3)';
-    ctx.lineWidth=Math.round(H*0.0015);
-    ctx.beginPath();
-    ctx.moveTo(PAD,HDR);ctx.lineTo(W-PAD,HDR);
-    ctx.stroke();
+    ctx.strokeStyle='rgba(245,200,80,.28)';
+    ctx.lineWidth=Math.round(H*0.0014);
+    ctx.beginPath();ctx.moveTo(PAD,HDR);ctx.lineTo(W-PAD,HDR);ctx.stroke();
   }
 
   // ── FOOTER ──────────────────────────────────────────
