@@ -1757,6 +1757,11 @@ h1,h2,h3 { font-family: var(--serif) !important; }
   word-break: keep-all;
   overflow-wrap: break-word;
 }
+@media(max-width:700px) {
+  .vtxt { text-align: center; }
+  .vtxt.ta-font { text-align: center; }
+  .vb { text-align: center; }
+}
 .v-en-para {
   display: block;
   font-family: var(--serif);
@@ -1792,8 +1797,7 @@ h1,h2,h3 { font-family: var(--serif) !important; }
 }
 .vi:hover .vacts, .vi.vplay .vacts, .vi.vopen .vacts { opacity: 1; }
 @media(max-width:700px) { 
-  .vacts { opacity: 0; }
-  .vi.vopen .vacts { opacity: 1; }
+  .vacts { display: none !important; }
 }
 .vact {
   background: transparent;

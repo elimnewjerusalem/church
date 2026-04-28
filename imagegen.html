@@ -650,7 +650,7 @@ canvas#igcv{
       </div>
       <div class="lp-sec">
         <div class="lp-lbl">Church Name</div>
-        <input class="inp" id="wm-name" type="text" value="ELIM NEW JERUSALEM CHURCH" oninput="draw()" style="margin-bottom:6px">
+        <input class="inp" id="wm-name" type="text" value="ELIM NEW JERUSALEM CHURCH" oninput="draw()" style="margin-bottom:6px" placeholder="Church name">
         <input class="inp" id="wm-sub"  type="text" value="110e, Elaya Street, Tondiarpet, Chennai, 600 081"         oninput="draw()">
       </div>
     </div>
@@ -808,6 +808,7 @@ const SIZES={
 };
 
 const TEMPLATES=[
+  {id:'shorts',  name:'Sunday Shorts',bg:'#000000',accent:'#f5c842',tc:'#fff',shorts:true},
   {id:'royal',   name:'Royal Dark',   bg:'#0d0621',accent:'#f5c842',tc:'#fff'},
   {id:'fire',    name:'Fire & Faith', bg:'#1a0500',accent:'#ff7020',tc:'#fff'},
   {id:'ocean',   name:'Ocean Grace',  bg:'#020d1a',accent:'#38bdf8',tc:'#e0f2fe'},
@@ -1564,6 +1565,191 @@ function mbiSelVerse(i){
   toast('✓ '+verse.tref);
 }
 
+// ── SUNDAY SHORTS TEMPLATE DRAW ──────────────────────────────────
+function drawShortsTemplate(ctx, W, H, v){
+  // Black background
+  ctx.fillStyle='#000000';
+  ctx.fillRect(0,0,W,H);
+
+  const PAD = Math.round(W*0.065);
+
+  // ── TOP: Logo + Church name ──────────────────────────────────
+  const LOGO_SZ = Math.round(H*0.1);
+  const LY = Math.round(H*0.032);
+
+  // Draw logo
+  if(window._logoImg&&window._logoImg.complete&&window._logoImg.naturalWidth>0){
+    ctx.drawImage(window._logoImg, PAD, LY, LOGO_SZ, LOGO_SZ);
+  } else {
+    // Fallback logo box
+    ctx.strokeStyle='#f5c842';
+    ctx.lineWidth=Math.round(W*0.004);
+    ctx.strokeRect(PAD, LY, LOGO_SZ, LOGO_SZ);
+    ctx.font=`800 ${Math.round(LOGO_SZ*.42)}px Inter,sans-serif`;
+    ctx.fillStyle='#f5c842';
+    ctx.textAlign='center';
+    ctx.fillText('ENJC', PAD+LOGO_SZ/2, LY+LOGO_SZ*.58);
+    ctx.font=`500 ${Math.round(LOGO_SZ*.14)}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    ctx.fillText('CHURCH', PAD+LOGO_SZ/2, LY+LOGO_SZ*.82);
+  }
+
+  // Church name — English (bold, large)
+  const nameX = PAD + LOGO_SZ + Math.round(W*0.04);
+  const enFs = Math.round(W*0.065);
+  ctx.textAlign='left';
+  ctx.font=`900 ${enFs}px Inter,system-ui,sans-serif`;
+  ctx.fillStyle='#ffffff';
+  // Wrap if needed
+  const maxNameW = W - nameX - PAD;
+  const enName = 'ELIM NEW JERUSALEM CHURCH';
+  const enWords = enName.split(' ');
+  let line1='', line2='';
+  for(const w of enWords){
+    const t = line1 ? line1+' '+w : w;
+    if(ctx.measureText(t).width > maxNameW && line1){ line2 = enWords.slice(enWords.indexOf(w)).join(' '); break; }
+    line1 = t;
+  }
+  const nameY1 = LY + Math.round(LOGO_SZ*0.42);
+  ctx.fillText(line1, nameX, nameY1);
+  if(line2){ ctx.fillText(line2, nameX, nameY1 + enFs*1.1); }
+
+  // Tamil name below
+  const taFs = Math.round(W*0.058);
+  ctx.font=`700 ${taFs}px 'Noto Serif Tamil',serif`;
+  ctx.fillStyle='#ffffff';
+  const taName = 'ஏலீம் புதிய எருசலேம் சபை';
+  const taY = line2 ? nameY1 + enFs*2.3 : nameY1 + enFs*1.3;
+  ctx.fillText(taName, nameX, taY);
+
+  // ── VERSE TEXT — centered in middle ──────────────────────────
+  const fontSpec = FONTS[ST.font];
+  const fam = (fontSpec?.fam||FONTS.serif.fam).replace(/^700 /,'');
+  const isBold = ST.font==='bold';
+  const isItalic = ST.font==='italic';
+
+  const TW = Math.round(W*0.82);
+  const TX = W/2;
+
+  const taFs2 = parseInt(g('ta-size')?.value||52);
+  const enFs2 = parseInt(g('en-size')?.value||32);
+  const taLh = taFs2*1.72;
+  const enLh = enFs2*1.62;
+  const taFont = `${isBold?'700 ':isItalic?'italic ':''}${taFs2}px ${fam}`;
+  const enFont = `italic ${enFs2}px 'Playfair Display',Georgia,serif`;
+
+  function wrapText(text, font, maxW){
+    ctx.font=font;
+    const words=text.split(' ');
+    const lines=[];let line='';
+    for(const w of words){
+      const t=line?line+' '+w:w;
+      if(ctx.measureText(t).width>maxW&&line){lines.push(line);line=w;}
+      else line=t;
+    }
+    if(line)lines.push(line);
+    return lines;
+  }
+
+  const taLines = ST.showTa&&v.ta ? wrapText('"'+v.ta+'"', taFont, TW) : [];
+  const enLines = ST.showEn&&v.en ? wrapText('"'+v.en+'"', enFont, TW) : [];
+
+  const refH = ST.showRef ? taFs2*0.62+8 : 0;
+  const sepH = (taLines.length&&enLines.length) ? enFs2*0.5+6 : 0;
+  const totalH = taLines.length*taLh+(taLines.length?8:0)+refH+sepH+enLines.length*enLh+(enLines.length?8:0);
+
+  // Center vertically in middle section (between header and footer)
+  const headerBot = LY + LOGO_SZ + Math.round(H*0.04);
+  const footerTop = H - Math.round(H*0.18);
+  const midH = footerTop - headerBot;
+  let cy = headerBot + (midH - totalH)/2 + taFs2;
+
+  ctx.textAlign='center';
+
+  // Glow
+  if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.5)';ctx.shadowBlur=Math.round(W*0.016);}
+
+  // Tamil text
+  if(taLines.length){
+    ctx.font=taFont;
+    ctx.fillStyle=ST.txColor||'#fff';
+    taLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=taLh;});
+    if(ST.showRef&&v.tref){
+      cy+=8;ctx.shadowBlur=0;
+      ctx.font=`600 ${Math.round(taFs2*.52)}px Inter,sans-serif`;
+      ctx.fillStyle='rgba(245,200,80,.88)';
+      ctx.fillText('— '+v.tref,TX,cy);
+      cy+=Math.round(taFs2*.52)+6;
+      if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.5)';ctx.shadowBlur=Math.round(W*0.012);}
+    }
+  }
+
+  // Separator
+  if(taLines.length&&enLines.length){
+    ctx.shadowBlur=0;
+    ctx.strokeStyle='rgba(255,255,255,.13)';
+    ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(TX-Math.round(W*0.06),cy);ctx.lineTo(TX+Math.round(W*0.06),cy);ctx.stroke();
+    cy+=sepH;
+    if(ST.textGlow){ctx.shadowColor='rgba(255,215,80,.5)';ctx.shadowBlur=Math.round(W*0.01);}
+  }
+
+  // English
+  if(enLines.length){
+    ctx.font=enFont;
+    ctx.fillStyle='rgba(255,255,255,.7)';
+    enLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=enLh;});
+    if(ST.showRef&&v.ref){
+      cy+=6;ctx.shadowBlur=0;
+      ctx.font=`${Math.round(enFs2*.6)}px Inter,sans-serif`;
+      ctx.fillStyle='rgba(245,200,80,.62)';
+      ctx.fillText('— '+v.ref,TX,cy);
+    }
+  }
+
+  ctx.shadowBlur=0;ctx.shadowColor='transparent';
+  ctx.textAlign='center';
+
+  // ── FOOTER: YT + IG icons ────────────────────────────────────
+  const FTH = Math.round(H*0.16);
+  const FTY = H - FTH;
+  const FSZ = Math.round(W*0.048);
+  const ICO = Math.round(FSZ*1.1);
+
+  // YouTube row
+  const YTY = FTY + Math.round(FTH*0.32);
+  // YT icon circle
+  ctx.fillStyle='#ff0000';
+  ctx.beginPath();ctx.roundRect(PAD,YTY-ICO*.78,ICO,ICO,Math.round(ICO*.22));ctx.fill();
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.font=`700 ${Math.round(ICO*.65)}px sans-serif`;
+  ctx.fillText('▶',PAD+ICO/2,YTY-ICO*.12);
+  // YT text
+  ctx.textAlign='left';
+  ctx.font=`700 ${FSZ}px Inter,system-ui,sans-serif`;
+  ctx.fillStyle='#ffffff';
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA', PAD+ICO+Math.round(W*0.03), YTY);
+
+  // IG row
+  const IGY = FTY + Math.round(FTH*0.72);
+  // IG gradient circle
+  const igG=ctx.createLinearGradient(PAD,IGY-ICO,PAD+ICO,IGY);
+  igG.addColorStop(0,'#f58529');igG.addColorStop(.5,'#dd2a7b');igG.addColorStop(1,'#8134af');
+  ctx.fillStyle=igG;
+  ctx.beginPath();ctx.roundRect(PAD,IGY-ICO*.78,ICO,ICO,Math.round(ICO*.22));ctx.fill();
+  // IG icon (simplified camera)
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.font=`${Math.round(ICO*.72)}px serif`;
+  ctx.fillText('◉',PAD+ICO/2,IGY-ICO*.08);
+  // IG text
+  ctx.textAlign='left';
+  ctx.font=`700 ${FSZ}px Inter,system-ui,sans-serif`;
+  ctx.fillStyle='#ffffff';
+  ctx.fillText('/ELIM NEW JERUSALEM CHURCH', PAD+ICO+Math.round(W*0.03), IGY);
+
+  ctx.textAlign='center';
+}
+
 // ── DRAW ─────────────────────────────────────────────────────────
 function draw(){
   const cv=g('igcv');if(!cv)return;
@@ -1602,6 +1788,14 @@ function draw(){
     ctx.fillStyle=dg;ctx.fillRect(0,H*.55,W,H*.45);
   }
 
+  // ── SUNDAY SHORTS TEMPLATE ──────────────────────────────────
+  const isShortsTemplate = ST.activeTpl === 'shorts';
+
+  if(isShortsTemplate){
+    drawShortsTemplate(ctx, W, H, v);
+    return;
+  }
+
   // ── HEADER — centered: logo + church name + address ──
   const HDR=Math.round(H*0.105);
   const PAD=Math.round(W*0.055);
@@ -1615,7 +1809,7 @@ function draw(){
     hg.addColorStop(0,'rgba(0,0,0,.78)');hg.addColorStop(1,'rgba(0,0,0,0)');
     ctx.fillStyle=hg;ctx.fillRect(0,0,W,HDR*1.3);
 
-    const LSZ=Math.round(HDR*0.68);
+    const LSZ=Math.round(HDR*0.85); // bigger logo
     const LY=Math.round((HDR-LSZ)/2);
 
     // Total content width = logo + gap + text block
