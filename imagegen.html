@@ -1657,75 +1657,64 @@ function draw(){
     ctx.beginPath();ctx.moveTo(PAD,HDR);ctx.lineTo(W-PAD,HDR);ctx.stroke();
   }
 
-  // ── FOOTER ──────────────────────────────────────────
-  const FTH=Math.round(H*0.115);
+  // ── FOOTER — centered: YT + IG handles, no buttons ──
+  const FTH=Math.round(H*0.1);
   const FTY=H-FTH;
 
   // Footer bg
-  const fg=ctx.createLinearGradient(0,FTY-Math.round(H*0.04),0,H);
+  const fg=ctx.createLinearGradient(0,FTY-Math.round(H*0.03),0,H);
   fg.addColorStop(0,'rgba(0,0,0,0)');
-  fg.addColorStop(.3,'rgba(0,0,0,.68)');
-  fg.addColorStop(1,'rgba(0,0,0,.9)');
-  ctx.fillStyle=fg;ctx.fillRect(0,FTY-Math.round(H*0.04),W,FTH+Math.round(H*0.04));
+  fg.addColorStop(.25,'rgba(0,0,0,.7)');
+  fg.addColorStop(1,'rgba(0,0,0,.92)');
+  ctx.fillStyle=fg;ctx.fillRect(0,FTY-Math.round(H*0.03),W,FTH+Math.round(H*0.03));
 
   // Gold top line
-  ctx.strokeStyle='rgba(245,200,80,.38)';
-  ctx.lineWidth=Math.round(H*0.0016);
-  ctx.beginPath();ctx.moveTo(Math.round(W*0.05),FTY);ctx.lineTo(Math.round(W*0.95),FTY);ctx.stroke();
+  ctx.strokeStyle='rgba(245,200,80,.32)';
+  ctx.lineWidth=Math.round(H*0.0014);
+  ctx.beginPath();ctx.moveTo(Math.round(W*0.08),FTY);ctx.lineTo(Math.round(W*0.92),FTY);ctx.stroke();
 
-  const FSZ=Math.round(W*0.034);
-  const ICW=Math.round(FSZ*1.45), ICH=Math.round(FSZ*.9);
-  const BTH=Math.round(FSZ*1.08);
+  const FSZ=Math.round(W*0.03);
+  const ICW=Math.round(FSZ*1.3), ICH=Math.round(FSZ*.85);
 
-  // YT row
-  const YTY=FTY+Math.round(FTH*0.31);
+  // ── YouTube row — centered ──
+  const YTY=FTY+Math.round(FTH*0.32);
+  const ytHandle='youtube.com/@ElimNewJerusalemChurchOfficial';
+  ctx.font=`500 ${FSZ}px Inter,sans-serif`;
+  const ytTW=ctx.measureText(ytHandle).width;
+  const ytRowW=ICW+Math.round(W*0.018)+ytTW;
+  const ytStartX=Math.round((W-ytRowW)/2);
+  // YT icon
   ctx.fillStyle='#ff0000';
-  ctx.beginPath();ctx.roundRect(PAD,YTY-ICH*.76,ICW,ICH,Math.round(ICH*.2));ctx.fill();
-  ctx.font=`700 ${Math.round(FSZ*.5)}px Inter,sans-serif`;
+  ctx.beginPath();ctx.roundRect(ytStartX,YTY-ICH*.78,ICW,ICH,3);ctx.fill();
+  ctx.font=`700 ${Math.round(ICH*.7)}px sans-serif`;
   ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('▶',PAD+ICW/2,YTY-ICH*.18);
-  ctx.textAlign='left';
-  ctx.font=`600 ${FSZ}px Inter,sans-serif`;
-  ctx.fillStyle='rgba(255,255,255,.85)';
-  // Clip YT text to not overlap Subscribe button
-  const SUBW=Math.round(W*0.21);
-  const ytTxtX=PAD+ICW+Math.round(W*0.022);
-  const ytTxtMaxW=W-ytTxtX-SUBW-PAD-Math.round(W*0.025);
-  ctx.save();ctx.rect(ytTxtX,YTY-FSZ,ytTxtMaxW,FSZ*1.4);ctx.clip();
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH MEDIA',ytTxtX,YTY);
-  ctx.restore();
-  ctx.fillStyle='#ff0000';
-  ctx.beginPath();ctx.roundRect(W-PAD-SUBW,YTY-BTH*.76,SUBW,BTH,BTH/2);ctx.fill();
-  ctx.font=`700 ${Math.round(FSZ*.68)}px Inter,sans-serif`;
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('🔔 SUBSCRIBE',W-PAD-SUBW/2,YTY);
+  ctx.fillText('▶',ytStartX+ICW/2,YTY-ICH*.15);
+  // YT text
+  ctx.font=`500 ${FSZ}px Inter,sans-serif`;
+  ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
+  ctx.fillText(ytHandle,ytStartX+ICW+Math.round(W*0.018),YTY);
 
-  // IG row
-  const IGY=FTY+Math.round(FTH*0.76);
-  const igG2=ctx.createLinearGradient(PAD,IGY,PAD+ICW,IGY);
+  // ── Instagram row — centered ──
+  const IGY=FTY+Math.round(FTH*0.74);
+  const igHandle='@elimnewjerusalemchurch';
+  ctx.font=`500 ${FSZ}px Inter,sans-serif`;
+  const igTW=ctx.measureText(igHandle).width;
+  const igRowW=ICW+Math.round(W*0.018)+igTW;
+  const igStartX=Math.round((W-igRowW)/2);
+  // IG gradient icon
+  const igG2=ctx.createLinearGradient(igStartX,IGY,igStartX+ICW,IGY);
   igG2.addColorStop(0,'#f58529');igG2.addColorStop(.5,'#dd2a7b');igG2.addColorStop(1,'#8134af');
   ctx.fillStyle=igG2;
-  ctx.beginPath();ctx.roundRect(PAD,IGY-ICH*.76,ICW,ICH,Math.round(ICH*.2));ctx.fill();
-  ctx.font=`500 ${Math.round(FSZ*.62)}px serif`;
+  ctx.beginPath();ctx.roundRect(igStartX,IGY-ICH*.78,ICW,ICH,4);ctx.fill();
+  ctx.font=`${Math.round(ICH*.72)}px serif`;
   ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('📷',PAD+ICW/2,IGY-ICH*.15);
-  ctx.textAlign='left';
-  ctx.font=`600 ${FSZ}px Inter,sans-serif`;
-  ctx.fillStyle='rgba(255,255,255,.85)';
-  const FOLW=Math.round(W*0.17);
-  const igTxtX=PAD+ICW+Math.round(W*0.022);
-  const igTxtMaxW=W-igTxtX-FOLW-PAD-Math.round(W*0.025);
-  ctx.save();ctx.rect(igTxtX,IGY-FSZ,igTxtMaxW,FSZ*1.4);ctx.clip();
-  ctx.fillText('/ELIM NEW JERUSALEM CHURCH',igTxtX,IGY);
-  ctx.restore();
-  // Follow btn
-  const folG=ctx.createLinearGradient(W-PAD-FOLW,IGY,W-PAD,IGY);
-  folG.addColorStop(0,'#f58529');folG.addColorStop(1,'#8134af');
-  ctx.fillStyle=folG;
-  ctx.beginPath();ctx.roundRect(W-PAD-FOLW,IGY-BTH*.76,FOLW,BTH,BTH/2);ctx.fill();
-  ctx.font=`700 ${Math.round(FSZ*.68)}px Inter,sans-serif`;
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.fillText('Follow',W-PAD-FOLW/2,IGY);
+  ctx.fillText('◉',igStartX+ICW/2,IGY-ICH*.1);
+  // IG text
+  ctx.font=`500 ${FSZ}px Inter,sans-serif`;
+  ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
+  ctx.fillText(igHandle,igStartX+ICW+Math.round(W*0.018),IGY);
+
+  ctx.textAlign='center';
 
   // ── VERSE AREA ──────────────────────────────────────
   // Box between header and footer
