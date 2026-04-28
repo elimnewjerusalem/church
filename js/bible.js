@@ -641,29 +641,8 @@ function speak(text,lang,cb){
           await S.audEl.play();S.playing=true;updPBtn();return;
         }
       }
-      // ResponsiveVoice — wait up to 3s for it to initialize
-      // Try Web Speech API first (works on PC Chrome/Edge without external lib)
-      if(typeof SpeechSynthesisUtterance!=='undefined' && window.speechSynthesis){
-        const voices=window.speechSynthesis.getVoices();
-        const taVoice=voices.find(v=>v.lang==='ta-IN'||v.lang.startsWith('ta'));
-        const enVoice=voices.find(v=>v.lang==='en-IN'||v.lang==='en-GB'||v.lang.startsWith('en'));
-        const targetVoice=lg==='ta'?taVoice:enVoice;
-        if(targetVoice||voices.length>0){
-          const utt=new SpeechSynthesisUtterance(text);
-          utt.voice=targetVoice||voices[0];
-          utt.lang=lg==='ta'?'ta-IN':'en-IN';
-          utt.rate=spd||1;
-          utt.onstart=()=>{S.playing=true;updPBtn();if(apst)apst.textContent='Playing...';};
-          utt.onend=()=>{S.playing=false;updPBtn();done&&done();};
-          utt.onerror=()=>{window.speechSynthesis.cancel();useRV(text,lg,spd,done);};
-          window.speechSynthesis.cancel();
-          window.speechSynthesis.speak(utt);
-          S.playing=true;updPBtn();
-          S.audSynth=utt;
-          return;
-        }
-      }
-      // ResponsiveVoice fallback
+
+      // ResponsiveVoice — best Tamil support on mobile
       if(typeof responsiveVoice!=='undefined'){
         if(!responsiveVoice.voiceSupport()){
           await new Promise(res=>setTimeout(res,800));
@@ -680,7 +659,79 @@ function speak(text,lang,cb){
         });
         return;
       }
-      // SpeechSynthesis
+
+      // Web Speech API — PC Chrome/Edge + Android fallback
+      if(typeof SpeechSynthesisUtterance!=='undefined'&&window.speechSynthesis){
+        // Wait for voices to load (important on PC)
+        let voices=window.speechSynthesis.getVoices();
+        if(!voices.length){
+          await new Promise(res=>{
+            if(window.speechSynthesis.onvoiceschanged!==undefined){
+              window.speechSynthesis.onvoiceschanged=()=>{res();};
+            }else setTimeout(res,500);
+          });
+          voices=window.speechSynthesis.getVoices();
+        }
+        const taVoice=voices.find(v=>v.lang==='ta-IN'||v.lang==='ta'||v.name.toLowerCase().includes('tamil'));
+        const enVoice=voices.find(v=>v.lang==='en-GB')||voices.find(v=>v.lang==='en-IN')||voices.find(v=>v.lang.startsWith('en'));
+        const targetVoice=lg==='ta'?taVoice:enVoice;
+
+        // PC: only use Web Speech if correct language voice available
+        // Mobile/App: use any voice (Android TTS handles Tamil)
+        const isPC=!navigator.userAgent.includes('Android')&&!navigator.userAgent.includes('iPhone');
+        if(isPC&&lg==='ta'&&!taVoice){
+          // PC has no Tamil voice — skip Web Speech, show message
+          if(apst)apst.textContent='PC-ல் Tamil audio இல்லை. Mobile-ல் கேளுங்கள்.';
+          S.playing=false;updPBtn();if(cb)cb();
+          clearTimeout(fallback);_done=true;
+          return;
+        }
+
+        const utt=new SpeechSynthesisUtterance(text);
+        if(targetVoice){utt.voice=targetVoice;utt.lang=targetVoice.lang;}
+        else{utt.lang=lg==='ta'?'ta-IN':'en-GB';}
+        utt.rate=Math.min(spd||1, 0.9); // slightly slower for Tamil clarity
+        utt.pitch=1;
+
+        // Android Chrome bug: onend fires early for long text
+        // Fix: use boundary events to track real completion
+        let _lastCharIdx=0;
+        utt.onboundary=e=>{if(e.charIndex)_lastCharIdx=e.charIndex;};
+        utt.onstart=()=>{S.playing=true;updPBtn();if(apst)apst.textContent='Playing...';};
+        utt.onend=()=>{
+          // Check if we actually finished (charIndex near text end)
+          const finished=_lastCharIdx>=(text.length-10)||_lastCharIdx===0;
+          if(finished){done();}
+          else{
+            // Resume from where it stopped — Android early-end bug
+            const remaining=text.substring(_lastCharIdx);
+            if(remaining.trim().length>5){
+              const utt2=new SpeechSynthesisUtterance(remaining);
+              if(targetVoice)utt2.voice=targetVoice;
+              utt2.lang=utt.lang;utt2.rate=utt.rate;utt2.pitch=1;
+              utt2.onend=done;utt2.onerror=done;
+              window.speechSynthesis.speak(utt2);
+            }else done();
+          }
+        };
+        utt.onerror=(e)=>{
+          if(e.error==='interrupted')return;
+          useRV(text,lg,spd,done);
+        };
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utt);
+        S.playing=true;updPBtn();
+        S.audSynth=utt;
+
+        // Android keep-alive: speechSynthesis pauses after ~15s
+        S._keepAlive=setInterval(()=>{
+          if(!window.speechSynthesis.speaking){clearInterval(S._keepAlive);return;}
+          window.speechSynthesis.resume();
+        },10000);
+        return;
+      }
+
+      // Final fallback
       useTTS(text,lg,spd,done);
     }catch(e){useTTS(text,lg,spd,done);}
   },50);
@@ -771,6 +822,7 @@ function togPlay(){
 function stopAud(){
   try{if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();}catch(e){}
   if(S.audEl){S.audEl.pause();S.audEl.currentTime=0;S.audEl=null;}
+  if(S._keepAlive){clearInterval(S._keepAlive);S._keepAlive=null;}
   synth.cancel();
   S.playing=false;S.playAllM=false;updPBtn();
   document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vplay'));
