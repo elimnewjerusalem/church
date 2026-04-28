@@ -278,25 +278,29 @@ function toggleMobMenu(){var m=document.getElementById('mobile-menu');if(m)m.cla
 // ── LOAD DATA ────────────────────────────────────────────────────
 async function loadData(){
   try{
-    const [bd,tb,enRes,tfRes]=await Promise.allSettled([
+    // Detect if running in Android WebView — skip heavy 13MB file
+    const isWebView = /wv|WebView/.test(navigator.userAgent) || 
+                      (navigator.userAgent.includes('Android') && !navigator.userAgent.includes('Chrome/'));
+    
+    const [bd,tb,enRes]=await Promise.allSettled([
       fetchT(C.data+'bible-data.json').then(r=>r.json()),
       fetchT(C.data+'tamil-bible.json').then(r=>r.json()),
-      fetchT(C.EN_LOCAL).then(r=>r.json()),
-      fetchT(C.data+'tamil_full.json').then(r=>r.json()).catch(()=>null)
+      isWebView ? Promise.reject('skip') : fetchT(C.EN_LOCAL).then(r=>r.json()),
     ]);
     if(bd.status==='fulfilled'&&bd.value)S.bibleData=bd.value;
-    // Merge tamil-bible.json + tamil_full.json (full overrides partial)
-    if(tfRes.status==='fulfilled'&&tfRes.value){
-      S.tamilDB = tfRes.value;
-      const cnt = Object.keys(S.tamilDB).length;
-      console.log('Tamil Bible loaded: '+cnt+' chapters (full local)');
-    } else if(tb.status==='fulfilled'&&tb.value){
+    if(tb.status==='fulfilled'&&tb.value){
       S.tamilDB=tb.value;
-      console.log('Tamil Bible partial: '+Object.keys(S.tamilDB).length+' chapters');
+      console.log('Tamil Bible loaded: '+Object.keys(S.tamilDB).length+' chapters');
     }
     if(enRes.status==='fulfilled'&&enRes.value){
       S.enDB=enRes.value;
       console.log('English KJV loaded: '+Object.keys(S.enDB).length+' books');
+    }
+    // Load full Tamil Bible only on non-WebView (PC/mobile browser)
+    if(!isWebView){
+      fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
+        if(tf){S.tamilDB=tf;console.log('Full Tamil loaded: '+Object.keys(tf).length+' chapters');}
+      }).catch(()=>{});
     }
   }catch(e){}
   loadVOTD(); // reload with remote data if available
