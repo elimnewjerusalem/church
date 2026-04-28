@@ -2132,6 +2132,11 @@ function openVModal(i){
   };
 
   // ── Populate bottom sheet ────────────────────────────
+  // Toggle vopen class for mobile action buttons
+  document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vopen'));
+  const viEl = document.getElementById('vi'+i);
+  if(viEl) viEl.classList.add('vopen');
+
   const sheet     = document.getElementById('verse-sheet');
   const backdrop  = document.getElementById('sheet-backdrop');
   if(!sheet) return;
