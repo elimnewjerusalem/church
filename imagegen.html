@@ -1631,16 +1631,8 @@ function draw(){
     const LX=startX;
     // Draw logo image if loaded, else fallback to text box
     if(window._logoImg&&window._logoImg.complete&&window._logoImg.naturalWidth>0){
-      // White rounded bg for logo
-      ctx.fillStyle='rgba(255,255,255,.95)';
-      ctx.beginPath();ctx.roundRect(LX,LY,LSZ,LSZ,Math.round(LSZ*.1));ctx.fill();
-      // Gold border
-      ctx.strokeStyle='rgba(245,200,80,.9)';
-      ctx.lineWidth=Math.round(W*0.0038);
-      ctx.beginPath();ctx.roundRect(LX,LY,LSZ,LSZ,Math.round(LSZ*.1));ctx.stroke();
-      // Draw logo centered in box
-      const lPad=Math.round(LSZ*.08);
-      ctx.drawImage(window._logoImg,LX+lPad,LY+lPad,LSZ-lPad*2,LSZ-lPad*2);
+      // Draw logo — no box, full size, just the logo
+      ctx.drawImage(window._logoImg,LX,LY,LSZ,LSZ);
     } else {
       // Fallback: text box
       ctx.strokeStyle='rgba(245,200,80,.9)';
