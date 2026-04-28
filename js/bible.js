@@ -642,14 +642,15 @@ function speak(text,lang,cb){
         }
       }
 
-      // ResponsiveVoice — best Tamil support on mobile
+      // ResponsiveVoice — use for Tamil always (best cross-platform Tamil TTS)
+      // Use for English on mobile too
       if(typeof responsiveVoice!=='undefined'){
         if(!responsiveVoice.voiceSupport()){
           await new Promise(res=>setTimeout(res,800));
         }
       }
       if(typeof responsiveVoice!=='undefined'&&responsiveVoice.voiceSupport()){
-        const voice=lg==='ta'?'Tamil Female':(navigator.userAgent.includes('Chrome')?'UK English Male':'en-IN Female');
+        const voice=lg==='ta'?'Tamil Female':(navigator.userAgent.includes('Chrome')?'UK English Male':'UK English Female');
         if(apst)apst.textContent=lg==='ta'?'இயங்குகிறது...':'Playing...';
         responsiveVoice.speak(text,voice,{
           rate:spd,pitch:1,volume:1,
@@ -660,7 +661,7 @@ function speak(text,lang,cb){
         return;
       }
 
-      // Web Speech API — PC Chrome/Edge + Android fallback
+      // Web Speech API — fallback when ResponsiveVoice not available
       if(typeof SpeechSynthesisUtterance!=='undefined'&&window.speechSynthesis){
         // Wait for voices to load (important on PC)
         let voices=window.speechSynthesis.getVoices();
@@ -676,16 +677,7 @@ function speak(text,lang,cb){
         const enVoice=voices.find(v=>v.lang==='en-GB')||voices.find(v=>v.lang==='en-IN')||voices.find(v=>v.lang.startsWith('en'));
         const targetVoice=lg==='ta'?taVoice:enVoice;
 
-        // PC: only use Web Speech if correct language voice available
-        // Mobile/App: use any voice (Android TTS handles Tamil)
-        const isPC=!navigator.userAgent.includes('Android')&&!navigator.userAgent.includes('iPhone');
-        if(isPC&&lg==='ta'&&!taVoice){
-          // PC has no Tamil voice — skip Web Speech, show message
-          if(apst)apst.textContent='PC-ல் Tamil audio இல்லை. Mobile-ல் கேளுங்கள்.';
-          S.playing=false;updPBtn();if(cb)cb();
-          clearTimeout(fallback);_done=true;
-          return;
-        }
+        // Use Web Speech for English on PC, or as last resort
 
         const utt=new SpeechSynthesisUtterance(text);
         if(targetVoice){utt.voice=targetVoice;utt.lang=targetVoice.lang;}
