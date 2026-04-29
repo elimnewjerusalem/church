@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Verse Studio — ENJC</title>
+<meta name="description" content="Create beautiful Bible verse images for Instagram, WhatsApp and YouTube Shorts — ENJC Verse Studio.">
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://elimnewjerusalem.github.io/church/imagegen.html">
+<meta property="og:title"       content="Verse Studio — ENJC">
+<meta property="og:description" content="Create beautiful Bible verse images for Instagram, WhatsApp and YouTube Shorts.">
+<meta property="og:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta name="twitter:card"       content="summary">
+<meta name="twitter:title"      content="Verse Studio — ENJC">
+<meta name="twitter:image"      content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta name="description" content="Create beautiful Tamil Bible verse images for Instagram, WhatsApp and YouTube. ENJC Verse Studio.">
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://elimnewjerusalem.github.io/church/imagegen.html">
+<meta property="og:title"       content="Verse Studio — ENJC">
+<meta property="og:description" content="Create beautiful Tamil Bible verse images for sharing.">
+<meta property="og:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta name="twitter:card"       content="summary">
+<meta name="twitter:title"      content="Verse Studio — ENJC">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 <style>
@@ -957,10 +974,17 @@ function toast(msg,dur=2500){
 }
 
 // ── INIT ──────────────────────────────────────────────────────────
+let _drawPending=false;
+function debounceDraw(){
+  if(_drawPending)return;
+  _drawPending=true;
+  requestAnimationFrame(()=>{_drawPending=false;draw();});
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   // Preload ENJC logo for canvas header
   window._logoImg = new Image();
-  window._logoImg.onload = ()=>draw && draw();
+  window._logoImg.onload = ()=>debounceDraw();
   window._logoImg.src = 'images/logo/logo.png';
 
   buildTemplates();
@@ -1174,6 +1198,8 @@ function onRGB(){
 // ── BG MODE ───────────────────────────────────────────────────────
 function setBG(mode, redraw=true){
   ST.bgMode=mode;
+  // Also sync local _igMode for draw()
+  if(mode==='gradient') ST.gradMode=true; else ST.gradMode=false;
   ['solid','gradient','photo','gallery'].forEach(m=>{
     g('bgm-'+m)?.classList.toggle('on',m===mode);
     const el=g('bg-'+m);
@@ -1913,11 +1939,11 @@ let _mobActive = null;
 
 function mobOpen(el, title){
   const panelId = el.dataset.panel;
-  // If same tab tapped again → close
-  if(_mobActive === panelId){
-    mobClose(); return;
-  }
+  if(_mobActive === panelId){ mobClose(); return; }
   _mobActive = panelId;
+  // Re-sync mobile content so state reflects latest changes
+  if(panelId === 'm-style') syncMobileStyle();
+  if(panelId === 'm-text')  syncMobileText();
   // Highlight tab
   document.querySelectorAll('.mob-tab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
@@ -1964,6 +1990,21 @@ function mobClose(){
   });
 })();
 
+function syncMobileStyle(){
+  const el=g('m-style');if(!el)return;
+  el.querySelectorAll('[onclick*="applyTemplate"]').forEach((btn,i)=>{
+    const tId=TEMPLATES[i]?.id;
+    if(tId)btn.style.borderColor=ST.activeTpl===tId?'var(--gd)':'var(--bd)';
+  });
+}
+function syncMobileText(){
+  const el=g('m-text');if(!el)return;
+  // Update toggle states to match current ST
+  const toggs=el.querySelectorAll('.tog');
+  if(toggs[0])toggs[0].classList.toggle('on',ST.showTa);
+  if(toggs[1])toggs[1].classList.toggle('on',ST.showEn);
+  if(toggs[2])toggs[2].classList.toggle('on',ST.showWM);
+}
 function syncMobile(){
   // Style
   g('m-style').innerHTML=`
@@ -2029,7 +2070,7 @@ function syncMobile(){
       <button class="bgmode-btn" onclick="nextVerse()">Next →</button>
     </div>
 
-    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">📖 Bible Index</p>
+    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">📖 Bible Index — all 66 books</p>
     <input class="inp" id="mbi-search" type="search" placeholder="🔍 Book search — Genesis, யோவான்..."
       oninput="mbiSearch(this.value)" style="margin-bottom:8px" autocomplete="off">
     <div style="display:flex;gap:4px;margin-bottom:8px">
@@ -2052,7 +2093,7 @@ function syncMobile(){
       <div id="mbi-v-list" style="max-height:220px;overflow-y:auto"></div>
     </div>
 
-    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Quick Verses</p>
+    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin:14px 0 8px;padding-top:10px;border-top:1px solid var(--bd)">⭐ Quick Verses</p>
     <div>
       ${QUICK_VERSES.map((v,i)=>`
         <div class="vi" onclick="selVerse(${i})">
@@ -2082,6 +2123,7 @@ function syncMobile(){
       <button class="sh sh-yt" onclick="shareApp('yt')">▶ YouTube</button>
       <button class="sh sh-nat" onclick="shareNative()">↗ Share</button>
     </div>
+    <button onclick="if(confirm('Reset design to default?')){localStorage.removeItem('enjc_studio_state');location.reload();}" style="width:100%;border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:8px;font-size:11px;color:#fca5a5;background:transparent;cursor:pointer;font-family:var(--sans);margin-bottom:10px">↺ Reset Design</button>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Canvas Size</p>
     <div style="display:flex;flex-direction:column;gap:4px">
       ${Object.entries(SIZES).map(([k,s])=>`

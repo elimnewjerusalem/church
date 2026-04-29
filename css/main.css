@@ -1761,6 +1761,8 @@ h1,h2,h3 { font-family: var(--serif) !important; }
   .vtxt { text-align: center; }
   .vtxt.ta-font { text-align: center; }
   .vb { text-align: center; }
+  .mob-hide-vn { display: none; }
+  .vi { justify-content: center; }
 }
 .v-en-para {
   display: block;

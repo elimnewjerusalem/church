@@ -527,7 +527,7 @@ function renderVerses(){
     return `<div class="vi${isHl?' vhl':''}${isTa?' vi-ta':''}" id="vi${i}"
       style="${isHl?'--hl-color:'+(hlm[v.num]||S.hlColor)+';':''}"
       onclick="openVModal(${i})">
-      <span class="vn" onclick="playV(${i});event.stopPropagation()">${v.num}</span>
+      <span class="vn mob-hide-vn" onclick="playV(${i});event.stopPropagation()">${v.num}</span>
       <div class="vb">
         <span class="vtxt${isTa?' ta-font':''}" style="font-size:${S.fs}px">${v.text}</span>
         ${S.showParallel&&enMap[v.num]?`<span class="v-en-para">${enMap[v.num]}</span>`:''}
@@ -656,7 +656,17 @@ function speak(text,lang,cb){
           rate:spd,pitch:1,volume:1,
           onstart:()=>{S.playing=true;updPBtn();},
           onend:done,
-          onerror:()=>useTTS(text,lg,spd,done)
+          onerror:()=>{
+            // RV error — may be rate limited (FREE key)
+            const apst=g('apstat');
+            useTTS(text,lg,spd,(result)=>{
+              // If TTS also fails, show friendly message
+              if(!S.playing&&apst&&apst.textContent==='நிறுத்தப்பட்டது'){
+                apst.textContent=lg==='ta'?'Audio limit — சற்று நேரம் பிறகு முயற்சிக்கவும்':'Audio unavailable — try again later';
+              }
+              done(result);
+            });
+          }
         });
         return;
       }
@@ -716,6 +726,7 @@ function speak(text,lang,cb){
         S.audSynth=utt;
 
         // Android keep-alive: speechSynthesis pauses after ~15s
+        if(S._keepAlive){clearInterval(S._keepAlive);S._keepAlive=null;}
         S._keepAlive=setInterval(()=>{
           if(!window.speechSynthesis.speaking){clearInterval(S._keepAlive);return;}
           window.speechSynthesis.resume();
@@ -787,7 +798,8 @@ function seqPlay(){
   }
   const v=S.verses[S.pIdx];
   hlPlay(S.pIdx);
-  safe('apstat',(S.lang==='ta'?'வசனம் ':'Verse ')+v.num+' / '+S.verses.length);
+  const pct2=Math.round((S.pIdx+1)/S.verses.length*100);
+  safe('apstat',(S.lang==='ta'?'வசனம் ':'Verse ')+v.num+' / '+S.verses.length+' · '+pct2+'%');
   g('vi'+S.pIdx)?.scrollIntoView({behavior:'smooth',block:'center'});
   speak(v.text,S.lang,()=>{
     if(S.playAllM){S.pIdx++;seqPlay();}
@@ -815,6 +827,7 @@ function stopAud(){
   try{if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();}catch(e){}
   if(S.audEl){S.audEl.pause();S.audEl.currentTime=0;S.audEl=null;}
   if(S._keepAlive){clearInterval(S._keepAlive);S._keepAlive=null;}
+  if(S.audSynth){try{synth.cancel();}catch(e){} S.audSynth=null;}
   synth.cancel();
   S.playing=false;S.playAllM=false;updPBtn();
   document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vplay'));
@@ -933,6 +946,8 @@ function chFont(d){
 // ── SEARCH ───────────────────────────────────────────────────────
 async function doSearch(){
   const q=g('sinp').value.trim();if(!q)return;
+  // Hint if no chapter loaded yet
+  if(!S.book){toast('முதலில் ஒரு புத்தகம் தேர்ந்தெடுங்கள் — Select a book first');return;}
   stopAud();
   g('chbar').style.display='none';
   g('bcontent').innerHTML='<div class="bload"><div class="bspin"></div><p>தேடுகிறது...</p></div>';
@@ -1673,7 +1688,7 @@ function igTouchEnd(e){
 
 // ── DRAW ─────────────────────────────────────────────────────────
 function getIGVerse(){
-  if(S.customVerse){const v=S.customVerse;S.customVerse=null;return v;}
+  if(S.customVerse){return S.customVerse;}  // keep until user picks new verse
   // Use current verse if chapter is loaded
   if(S.verses.length){
     const v=S.verses[_igVerseIdx||0];
@@ -2184,12 +2199,13 @@ function openVModal(i){
 }
 
 function closeVModal(e){
-  // Delegate to closeSheet
   const sheet    = document.getElementById('verse-sheet');
   const backdrop = document.getElementById('sheet-backdrop');
   if(sheet)    sheet.classList.remove('open');
   if(backdrop) backdrop.classList.remove('open');
   document.body.style.overflow='';
+  // Remove vopen so action buttons hide again on mobile
+  document.querySelectorAll('.vi.vopen').forEach(el=>el.classList.remove('vopen'));
 }
 
 function mAct(action){
@@ -2261,20 +2277,6 @@ function getCacheInfo(){
 
 
 // ── NX PARALLEL TOGGLE (checkbox version) ────────────────
-function togParallelNew(){
-  const chk   = document.getElementById('para-chk');
-  const state = document.getElementById('para-state');
-  const btn   = document.getElementById('para-btn');
-  if(!chk) return;
-  S.showParallel = chk.checked;
-  const label = chk.checked ? 'On ✓' : 'Off';
-  if(state){ state.textContent = label; state.className = 'nx-para-state' + (chk.checked ? ' on' : ''); }
-  if(btn)  { btn.textContent  = label; btn.classList.toggle('on', chk.checked); }
-  // Only re-render if chapter is already loaded
-  if(S.verses && S.verses.length > 0){
-    try{ renderVerses(); }catch(e){ console.warn('renderVerses:', e); }
-  }
-}
 
 // Sync old togParallel to also update checkbox
 
