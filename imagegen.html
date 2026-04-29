@@ -1709,7 +1709,7 @@ function draw(){
     }
 
     // ── Church name ──
-    const NX=LX+actualLogoW+gap;
+    const NX=LX+LSZ+gap;
     ctx.textAlign='left';
     ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
     ctx.fillStyle='rgba(255,255,255,.92)';
@@ -1819,14 +1819,11 @@ function draw(){
   const TW=Math.round(BW*0.80);
   const TX=W/2; // centered
 
-  // Cap font sizes — scale based on box height AND width
+  // Cap font sizes so text fits within TW
   const rawTaFs=parseInt(g('ta-size')?.value||52);
   const rawEnFs=parseInt(g('en-size')?.value||32);
-  // Max Tamil size: never more than 10% of box height or 5.8% of width
-  const taFsCap=Math.min(Math.round(BH*0.10), Math.round(W*0.058));
-  const enFsCap=Math.min(Math.round(BH*0.07), Math.round(W*0.038));
-  const taFs=Math.min(rawTaFs, taFsCap);
-  const enFs=Math.min(rawEnFs, enFsCap);
+  const taFs=Math.min(rawTaFs, Math.round(W*0.058));
+  const enFs=Math.min(rawEnFs, Math.round(W*0.038));
   const taLh=taFs*1.72;
   const enLh=enFs*1.62;
   const tc=ST.txColor||'#fff';
@@ -1851,17 +1848,10 @@ function draw(){
 
   const refH=ST.showRef ? taFs*0.62+8 : 0;
   const sepH=(taLines.length&&enLines.length) ? enFs*0.5+6 : 0;
-  let totalH=taLines.length*taLh+(taLines.length?8:0)+refH+sepH+enLines.length*enLh+(enLines.length?8:0);
-
-  // Safety: if text overflows box, clamp cy to keep it inside
-  const maxTextH = BH * 0.92;
-  const scale = totalH > maxTextH ? maxTextH / totalH : 1;
-  const taLhS = taLh * scale;
-  const enLhS = enLh * scale;
-  totalH = totalH * scale;
+  const totalH=taLines.length*taLh+(taLines.length?8:0)+refH+sepH+enLines.length*enLh+(enLines.length?8:0);
 
   // Vertical center inside box
-  let cy=BTOP+(BH-totalH)/2+taFs*scale;
+  let cy=BTOP+(BH-totalH)/2+taFs;
 
   // Clip all verse text to box bounds
   ctx.save();
@@ -1876,7 +1866,7 @@ function draw(){
     ctx.textAlign='center';
     ctx.font=taFont;
     ctx.fillStyle=tc;
-    taLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=taLhS;});
+    taLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=taLh;});
     if(ST.showRef&&v.tref){
       cy+=8;ctx.shadowBlur=0;
       ctx.font=`600 ${Math.round(taFs*.52)}px Inter,sans-serif`;
@@ -1902,7 +1892,7 @@ function draw(){
     ctx.textAlign='center';
     ctx.font=enFont;
     ctx.fillStyle=tc==='#ffffff'?'rgba(255,255,255,.7)':tc;
-    enLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=enLhS;});
+    enLines.forEach(l=>{ctx.fillText(l,TX,cy);cy+=enLh;});
     if(ST.showRef&&v.ref){
       cy+=6;ctx.shadowBlur=0;
       ctx.font=`${Math.round(enFs*.6)}px Inter,sans-serif`;
