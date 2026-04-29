@@ -1658,8 +1658,21 @@ function draw(){
     const LX=startX;
     // Draw logo image if loaded, else fallback to text box
     if(window._logoImg&&window._logoImg.complete&&window._logoImg.naturalWidth>0){
-      // Draw logo — no box, full size, just the logo
-      ctx.drawImage(window._logoImg,LX,LY,LSZ,LSZ);
+      // Draw logo — maintain aspect ratio (logo is 1315x815, ratio ~1.61)
+      const lRatio = window._logoImg.naturalWidth / window._logoImg.naturalHeight;
+      let lW, lH;
+      if(lRatio >= 1){
+        // Landscape logo — fit width
+        lW = LSZ;
+        lH = Math.round(LSZ / lRatio);
+      } else {
+        // Portrait logo — fit height
+        lH = LSZ;
+        lW = Math.round(LSZ * lRatio);
+      }
+      // Center vertically in logo slot
+      const lOffY = Math.round((LSZ - lH) / 2);
+      ctx.drawImage(window._logoImg, LX, LY + lOffY, lW, lH);
     } else {
       // Fallback: text box
       ctx.strokeStyle='rgba(245,200,80,.9)';
