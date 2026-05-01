@@ -278,26 +278,33 @@ function toggleMobMenu(){var m=document.getElementById('mobile-menu');if(m)m.cla
 // ── LOAD DATA ────────────────────────────────────────────────────
 async function loadData(){
   try{
-    // Detect if running in Android WebView — skip heavy 13MB file
-    const isWebView = /wv|WebView/.test(navigator.userAgent) || 
+    // Device detection
+    const isWebView = /wv|WebView/.test(navigator.userAgent) ||
                       (navigator.userAgent.includes('Android') && !navigator.userAgent.includes('Chrome/'));
-    
-    const [bd,tb,enRes]=await Promise.allSettled([
+    const isMobile  = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isPC      = !isMobile;
+
+    // Load bible-data + tamil — always needed
+    const [bd,tb]=await Promise.allSettled([
       fetchT(C.data+'bible-data.json').then(r=>r.json()),
       fetchT(C.data+'tamil-bible.json').then(r=>r.json()),
-      isWebView ? Promise.reject('skip') : fetchT(C.EN_LOCAL).then(r=>r.json()),
     ]);
     if(bd.status==='fulfilled'&&bd.value)S.bibleData=bd.value;
     if(tb.status==='fulfilled'&&tb.value){
       S.tamilDB=tb.value;
       console.log('Tamil Bible loaded: '+Object.keys(S.tamilDB).length+' chapters');
     }
-    if(enRes.status==='fulfilled'&&enRes.value){
-      S.enDB=enRes.value;
-      console.log('English KJV loaded: '+Object.keys(S.enDB).length+' books');
+
+    // English KJV (4.1MB) — load only on PC at startup
+    // On mobile/app: lazy-load when user first taps EN button
+    if(isPC){
+      fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
+        if(en){S.enDB=en;console.log('English KJV loaded: '+Object.keys(en).length+' books');}
+      }).catch(()=>{});
     }
-    // Load full Tamil Bible only on non-WebView (PC/mobile browser)
-    if(!isWebView){
+
+    // Full Tamil (13MB) — load only on PC, background
+    if(isPC){
       fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
         if(tf){S.tamilDB=tf;console.log('Full Tamil loaded: '+Object.keys(tf).length+' chapters');}
       }).catch(()=>{});
@@ -371,6 +378,20 @@ function setLang(l){
   g('btn-ta').classList.toggle('on',l==='ta');
   g('btn-en').classList.toggle('on',l==='en');
   stopAud();
+  // Lazy-load English KJV on mobile when user first taps EN
+  if(l==='en' && !Object.keys(S.enDB).length){
+    toast('📖 English Bible loading...');
+    fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
+      if(en){
+        S.enDB=en;
+        console.log('English KJV lazy-loaded: '+Object.keys(en).length+' books');
+        if(S.book)loadCh();
+      }
+    }).catch(()=>{
+      toast('⚠ English Bible load failed — check internet');
+    });
+    return; // loadCh called after EN loads
+  }
   if(S.book)loadCh();
 }
 
@@ -2147,8 +2168,9 @@ function openVModal(i){
   };
 
   // ── Populate bottom sheet ────────────────────────────
-  // Toggle vopen class for mobile action buttons
-  document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vopen'));
+  // Toggle vopen class — remove from previously open verse only
+  const prevOpen = document.querySelector('.vi.vopen');
+  if(prevOpen) prevOpen.classList.remove('vopen');
   const viEl = document.getElementById('vi'+i);
   if(viEl) viEl.classList.add('vopen');
 
