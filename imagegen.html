@@ -1287,10 +1287,15 @@ function setVerse(v, idx){
   const ta=g('vd-ta'),ref=g('vd-ref');
   if(ta) ta.textContent=v.ta?.substring(0,90)+(v.ta?.length>90?'…':'');
   if(ref) ref.textContent='— '+(v.tref||v.ref||'');
-  // Update mobile
+  // Update mobile verse display
   const mta=g('mvd-ta'),mref=g('mvd-ref');
   if(mta) mta.textContent=v.ta?.substring(0,90)+(v.ta?.length>90?'…':'');
   if(mref) mref.textContent='— '+(v.tref||v.ref||'');
+  // Update mobile quick verses highlight
+  const mverseList=g('m-verse')?.querySelector('[id*="verse"]');
+  if(mverseList){
+    mverseList.parentElement?.querySelectorAll('.vi').forEach((el,i)=>el.classList.toggle('on',i===idx));
+  }
   draw();
 }
 
@@ -2014,7 +2019,24 @@ function mobOpen(el, title){
   _mobActive = panelId;
   // Re-sync mobile content so state reflects latest changes
   if(panelId === 'm-style') syncMobileStyle();
+  if(panelId === 'm-bg')   { 
+    // Sync bg mode and color buttons
+    el.querySelectorAll('.bgmode-btn').forEach(btn=>{
+      const mode=btn.textContent.includes('Colour')?'solid':btn.textContent.includes('Gradient')?'gradient':btn.textContent.includes('Photo')?'photo':'gallery';
+      btn.classList.toggle('on',ST.bgMode===mode);
+    });
+  }
   if(panelId === 'm-text')  syncMobileText();
+  if(panelId === 'm-verse') {
+    // Sync verse display
+    const mvd=g('m-verse');
+    if(mvd){
+      const ta=mvd.querySelector('#mvd-ta');
+      const ref=mvd.querySelector('#mvd-ref');
+      if(ta)ta.textContent=ST.verse?.ta?.substring(0,90)+(ST.verse?.ta?.length>90?'…':'');
+      if(ref)ref.textContent='— '+(ST.verse?.tref||ST.verse?.ref||'');
+    }
+  }
   // Highlight tab
   document.querySelectorAll('.mob-tab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
@@ -2067,6 +2089,10 @@ function syncMobileStyle(){
     const tId=TEMPLATES[i]?.id;
     if(tId)btn.style.borderColor=ST.activeTpl===tId?'var(--gd)':'var(--bd)';
   });
+  // Also sync glow and safe zone toggles
+  const toggs=el.querySelectorAll('.tog');
+  if(toggs[0])toggs[0].classList.toggle('on',ST.textGlow);
+  if(toggs[1])toggs[1].classList.toggle('on',ST.safeZone);
 }
 function syncMobileText(){
   const el=g('m-text');if(!el)return;
@@ -2074,7 +2100,14 @@ function syncMobileText(){
   const toggs=el.querySelectorAll('.tog');
   if(toggs[0])toggs[0].classList.toggle('on',ST.showTa);
   if(toggs[1])toggs[1].classList.toggle('on',ST.showEn);
-  if(toggs[2])toggs[2].classList.toggle('on',ST.showWM);
+  if(toggs[2])toggs[2].classList.toggle('on',ST.showRef);
+  if(toggs[3])toggs[3].classList.toggle('on',ST.showWM);
+  if(toggs[4])toggs[4].classList.toggle('on',ST.textGlow);
+  // Update text size values
+  const taInput=el.querySelector('input[type="range"][min="28"]');
+  const enInput=el.querySelector('input[type="range"][min="16"]');
+  if(taInput) taInput.value=parseInt(g('ta-size')?.value||52);
+  if(enInput) enInput.value=parseInt(g('en-size')?.value||32);
 }
 function syncMobile(){
   // Style
@@ -2104,11 +2137,11 @@ function syncMobile(){
     </div>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Colour Presets</p>
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">
-      ${PRESETS.map(c=>`<div onclick="setColorHex('${c}')" style="width:24px;height:24px;border-radius:4px;background:${c};cursor:pointer;border:2px solid transparent"></div>`).join('')}
+      ${PRESETS.map(c=>`<div onclick="setColorHex('${c}')" style="width:24px;height:24px;border-radius:4px;background:${c};cursor:pointer;border:2px solid ${ST.bgColor.toLowerCase()===c.toLowerCase()?'var(--gd)':'transparent'};transition:all .18s"></div>`).join('')}
     </div>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Gallery</p>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
-      ${GALLERY.map((c,i)=>`<div onclick="loadGal(${i})" style="border:1.5px solid var(--bd);border-radius:6px;padding:6px 4px;cursor:pointer;text-align:center">
+      ${GALLERY.map((c,i)=>`<div onclick="loadGal(${i})" style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};border-radius:6px;padding:6px 4px;cursor:pointer;text-align:center;background:${ST.galIdx===i?'var(--gdm)':'transparent'};transition:all .15s">
         <div style="font-size:14px">${c.label}</div>
         <div style="font-size:8px;color:var(--tx3)">${c.name}</div>
       </div>`).join('')}
@@ -2129,11 +2162,11 @@ function syncMobile(){
       ${TC_COLORS.map(c=>`<div onclick="setTC('${c}')" style="width:24px;height:24px;border-radius:50%;background:${c};cursor:pointer;border:2px solid transparent"></div>`).join('')}
     </div>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Options</p>
-    <div onclick="document.getElementById('tog-ta').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show Tamil</span><div class="tog on"></div></div>
-    <div onclick="document.getElementById('tog-en').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show English</span><div class="tog on"></div></div>
-    <div onclick="document.getElementById('tog-ref').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show Reference</span><div class="tog on"></div></div>
-    <div onclick="document.getElementById('tog-wm').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">ENJC Watermark</span><div class="tog on"></div></div>
-    <div onclick="document.getElementById('tog-glow').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Text Glow</span><div class="tog on"></div></div>
+    <div onclick="document.getElementById('tog-ta').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show Tamil</span><div class="tog${ST.showTa?' on':''}"></div></div>
+    <div onclick="document.getElementById('tog-en').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show English</span><div class="tog${ST.showEn?' on':''}"></div></div>
+    <div onclick="document.getElementById('tog-ref').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show Reference</span><div class="tog${ST.showRef?' on':''}"></div></div>
+    <div onclick="document.getElementById('tog-wm').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">ENJC Watermark</span><div class="tog${ST.showWM?' on':''}"></div></div>
+    <div onclick="document.getElementById('tog-glow').click()" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Text Glow</span><div class="tog${ST.textGlow?' on':''}"></div></div>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin:12px 0 8px">Text Size</p>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
       <span style="font-size:11px;color:var(--tx2);min-width:50px">Tamil</span>
@@ -2216,10 +2249,10 @@ function syncMobile(){
       <button class="sh sh-nat" onclick="shareNative()">↗ Share</button>
     </div>
     <button onclick="if(confirm('Reset design to default?')){localStorage.removeItem('enjc_studio_state');location.reload();}" style="width:100%;border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:8px;font-size:11px;color:#fca5a5;background:transparent;cursor:pointer;font-family:var(--sans);margin-bottom:10px">↺ Reset Design</button>
-    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Canvas Size</p>
+    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">📐 Canvas Size</p>
     <div style="display:flex;flex-direction:column;gap:4px">
       ${Object.entries(SIZES).map(([k,s])=>`
-        <button data-sz="${k}" onclick="setSz(this,'${k}')" style="border-radius:8px;padding:8px 10px;font-size:11px;border:1.5px solid var(--bd);background:transparent;color:var(--tx2);cursor:pointer;font-family:var(--sans);text-align:left;display:flex;justify-content:space-between">
+        <button data-sz="${k}" onclick="setSz(this,'${k}')" style="border-radius:8px;padding:8px 10px;font-size:11px;border:1.5px solid ${ST.sz===k?'var(--gd)':'var(--bd)'};background:${ST.sz===k?'var(--gdm)':'transparent'};color:${ST.sz===k?'var(--gd)':'var(--tx2)'};cursor:pointer;font-family:var(--sans);text-align:left;display:flex;justify-content:space-between;transition:all .15s">
           <span>${k} ${s.label}</span><span style="opacity:.5;font-size:9px">${s.hint}</span>
         </button>`).join('')}
     </div>`;
