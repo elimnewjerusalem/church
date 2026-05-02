@@ -1638,9 +1638,8 @@ function draw(){
 
   // ── HEADER — centered: logo + church name + address ──
   // 16:9 needs taller header since H is small (1080px vs 1920px)
-  // Portrait formats need more height for watermark
   const isLandscape = W > H;
-  const HDR=Math.round(H*(isLandscape ? 0.155 : 0.13));
+  const HDR=Math.round(H*(isLandscape ? 0.155 : 0.105));
   const PAD=Math.round(W*0.055);
 
   if(ST.showWM){
@@ -1659,18 +1658,9 @@ function draw(){
     // First measure text
     // Scale font to header height for better 16:9 fit
     let nameFs=Math.round(HDR*(isLandscape ? 0.34 : 0.32));
-    const gap=Math.round(W*0.028);
-    const maxTextW = W - LSZ - gap - PAD*2;
-    
-    // Check if text overflows and scale down if needed
     ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
-    let nameW=ctx.measureText(wmName).width;
-    while(nameW > maxTextW && nameFs > 20){
-      nameFs = Math.round(nameFs * 0.92);
-      ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
-      nameW=ctx.measureText(wmName).width;
-    }
-    
+    const nameW=ctx.measureText(wmName).width;
+    const gap=Math.round(W*0.028);
     const totalW=LSZ+gap+nameW;
     const startX=Math.round((W-totalW)/2); // center everything
 
