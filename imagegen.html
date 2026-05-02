@@ -1604,6 +1604,20 @@ function mbiSelVerse(i){
 }
 
 // ── DRAW ─────────────────────────────────────────────────────────
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
 function draw(){
   const cv=g('igcv');if(!cv)return;
   const sz=SIZES[ST.sz]||SIZES['9:16'];
@@ -1771,7 +1785,7 @@ function draw(){
   
   // YT icon
   ctx.fillStyle='#ff0000';
-  ctx.beginPath();ctx.roundRect(ytStartX,YTY-ICH*.78,ICW,ICH,3);ctx.fill();
+  roundRect(ctx, ytStartX, YTY - ICH * 0.78, ICW, ICH, 3); ctx.fill();
   ctx.font=`700 ${Math.round(ICH*.7)}px sans-serif`;
   ctx.fillStyle='#fff';ctx.textAlign='center';
   ctx.fillText('▶',ytStartX+ICW/2,YTY-ICH*.15);
@@ -1805,7 +1819,7 @@ function draw(){
   const igG2=ctx.createLinearGradient(igStartX,IGY,igStartX+ICW,IGY);
   igG2.addColorStop(0,'#f58529');igG2.addColorStop(.5,'#dd2a7b');igG2.addColorStop(1,'#8134af');
   ctx.fillStyle=igG2;
-  ctx.beginPath();ctx.roundRect(igStartX,IGY-ICH*.78,ICW,ICH,4);ctx.fill();
+  roundRect(ctx, igStartX, IGY - ICH * 0.78, ICW, ICH, 4); ctx.fill();
   ctx.font=`${Math.round(ICH*.72)}px serif`;
   ctx.fillStyle='#fff';ctx.textAlign='center';
   ctx.fillText('◉',igStartX+ICW/2,IGY-ICH*.1);
@@ -1830,11 +1844,11 @@ function draw(){
 
   // Subtle box bg
   ctx.fillStyle='rgba(255,255,255,.025)';
-  ctx.beginPath();ctx.roundRect(BX,BTOP,BW,BH,BR);ctx.fill();
+  roundRect(ctx, BX, BTOP, BW, BH, BR); ctx.fill();
   // Box border
   ctx.strokeStyle='rgba(255,255,255,.1)';
   ctx.lineWidth=Math.round(W*0.0016);
-  ctx.beginPath();ctx.roundRect(BX,BTOP,BW,BH,BR);ctx.stroke();
+  roundRect(ctx, BX, BTOP, BW, BH, BR); ctx.stroke();
   // Gold corner marks
   const CS=Math.round(W*0.046), CW=Math.round(W*0.003);
   ctx.strokeStyle='rgba(245,200,80,.7)';
