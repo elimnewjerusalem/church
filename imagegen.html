@@ -1657,15 +1657,26 @@ function draw(){
     // Total content width = logo + gap + text block
     // First measure text
     // Scale font to header height for better 16:9 fit
-    let nameFs=Math.round(HDR*(isLandscape ? 0.34 : 0.32));
-    ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
-    const nameW=ctx.measureText(wmName).width;
+    const maxHdrWidth = W - Math.round(W*0.08); // leave 4% margin on each side
     const gap=Math.round(W*0.028);
-    const totalW=LSZ+gap+nameW;
-    const startX=Math.round((W-totalW)/2); // center everything
+    
+    // Start with target font size
+    let nameFs=Math.round(HDR*(isLandscape ? 0.34 : 0.32));
+    let textBoxW = maxHdrWidth - LSZ - gap; // available width for text
+    
+    // Ensure text fits by reducing font if needed
+    while(nameFs > Math.round(HDR*0.18)){
+      ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
+      const nameW=ctx.measureText(wmName).width;
+      if(nameW <= textBoxW) break;
+      nameFs = Math.round(nameFs * 0.92);
+    }
+    
+    const gap2=Math.round(W*0.028);
+    const startX=Math.round(W*0.04); // fixed left margin
+    const LX=startX;
 
     // ── Logo box — use actual logo image ──
-    const LX=startX;
     // Draw logo image if loaded, else fallback to text box
     if(window._logoImg&&window._logoImg.complete&&window._logoImg.naturalWidth>0){
       // Draw logo — maintain aspect ratio
@@ -1691,10 +1702,15 @@ function draw(){
     }
 
     // ── Church name ──
-    const NX = LX + LSZ + gap;
+    const NX = LX + LSZ + gap2;
+    const maxTextW = maxHdrWidth - (NX - W*0.04); // max width for name/sub
     ctx.textAlign='left';
     ctx.font=`700 ${nameFs}px Inter,system-ui,sans-serif`;
     ctx.fillStyle='rgba(255,255,255,.92)';
+    // Clip text to max width if needed
+    ctx.save();
+    ctx.rect(NX, LY, maxTextW, LSZ);
+    ctx.clip();
     ctx.fillText(wmName,NX,LY+LSZ*.46);
 
     // ── Address sub text ──
@@ -1702,6 +1718,7 @@ function draw(){
     ctx.font=`400 ${subFs}px Inter,sans-serif`;
     ctx.fillStyle='rgba(255,255,255,.44)';
     ctx.fillText(wmSub,NX,LY+LSZ*.76);
+    ctx.restore();
 
     // Gold divider
     ctx.strokeStyle='rgba(245,200,80,.28)';

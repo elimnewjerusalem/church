@@ -242,49 +242,6 @@ function g(id){return document.getElementById(id);}
 function safe(id,txt){const el=g(id);if(el)el.textContent=txt;}
 
 async function fetchT(url){
-  const isAndroidWebView = /wv|WebView|Android/.test(navigator.userAgent);
-  
-  // For Android WebView, use XMLHttpRequest instead of fetch for local files
-  if(isAndroidWebView && (url.startsWith('data/') || !url.startsWith('http'))){
-    return new Promise((resolve, reject)=>{
-      const xhr = new XMLHttpRequest();
-      const t = setTimeout(()=>{xhr.abort();reject(new Error('Timeout'));}, C.ms);
-      
-      xhr.onreadystatechange = ()=>{
-        if(xhr.readyState === 4){
-          clearTimeout(t);
-          if(xhr.status === 200 || xhr.status === 0){
-            // Wrap response in a fetch-like Response object
-            const blob = new Blob([xhr.responseText], {type: 'application/json'});
-            const fakeResponse = {
-              ok: true, status: 200,
-              json: async()=>JSON.parse(xhr.responseText),
-              text: async()=>xhr.responseText,
-              blob: async()=>blob
-            };
-            resolve(fakeResponse);
-          } else {
-            reject(new Error(`HTTP ${xhr.status}`));
-          }
-        }
-      };
-      
-      xhr.onerror = ()=>{
-        clearTimeout(t);
-        reject(new Error('Network error'));
-      };
-      
-      xhr.onabort = ()=>{
-        clearTimeout(t);
-        reject(new Error('Request aborted'));
-      };
-      
-      xhr.open('GET', url, true);
-      xhr.send();
-    });
-  }
-  
-  // For non-Android or online resources, use standard fetch
   const c=new AbortController();
   const t=setTimeout(()=>c.abort(),C.ms);
   try{const r=await fetch(url,{signal:c.signal});clearTimeout(t);return r;}
@@ -327,45 +284,32 @@ async function loadData(){
     const isMobile  = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isPC      = !isMobile;
 
-    console.log('Device - WebView:'+isWebView+' Mobile:'+isMobile+' PC:'+isPC);
-
     // Load bible-data + tamil — always needed
     const [bd,tb]=await Promise.allSettled([
-      fetchT(C.data+'bible-data.json').then(r=>r.json()).catch(e=>{console.warn('bible-data.json failed:',e);throw e;}),
-      fetchT(C.data+'tamil-bible.json').then(r=>r.json()).catch(e=>{console.warn('tamil-bible.json failed:',e);throw e;}),
+      fetchT(C.data+'bible-data.json').then(r=>r.json()),
+      fetchT(C.data+'tamil-bible.json').then(r=>r.json()),
     ]);
-    
-    if(bd.status==='fulfilled'&&bd.value){
-      S.bibleData=bd.value;
-      console.log('✓ Bible data loaded');
-    }else{
-      console.warn('✗ Bible data failed:', bd.reason);
-    }
-    
+    if(bd.status==='fulfilled'&&bd.value)S.bibleData=bd.value;
     if(tb.status==='fulfilled'&&tb.value){
       S.tamilDB=tb.value;
-      console.log('✓ Tamil Bible loaded: '+Object.keys(S.tamilDB).length+' chapters');
-    }else{
-      console.warn('✗ Tamil Bible failed:', tb.reason);
+      console.log('Tamil Bible loaded: '+Object.keys(S.tamilDB).length+' chapters');
     }
 
     // English KJV (4.1MB) — load only on PC at startup
     // On mobile/app: lazy-load when user first taps EN button
     if(isPC){
       fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
-        if(en){S.enDB=en;console.log('✓ English KJV loaded: '+Object.keys(en).length+' books');}
-      }).catch(e=>{console.warn('English KJV lazy-load will happen on demand');});
+        if(en){S.enDB=en;console.log('English KJV loaded: '+Object.keys(en).length+' books');}
+      }).catch(()=>{});
     }
 
     // Full Tamil (13MB) — load only on PC, background
     if(isPC){
       fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
-        if(tf){S.tamilDB=tf;console.log('✓ Full Tamil loaded: '+Object.keys(tf).length+' chapters');}
-      }).catch(e=>{console.warn('Full Tamil skipped');});
+        if(tf){S.tamilDB=tf;console.log('Full Tamil loaded: '+Object.keys(tf).length+' chapters');}
+      }).catch(()=>{});
     }
-  }catch(e){
-    console.error('loadData error:',e);
-  }
+  }catch(e){}
   loadVOTD(); // reload with remote data if available
   initIGVerses();
 }
