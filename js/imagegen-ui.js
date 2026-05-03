@@ -653,26 +653,6 @@ export function syncMobileBG(){
     </div>`;
 }
 
-export function onGradColor(idx, color){
-  ST[`grad${idx}`] = color;
-  debounceDraw();
-  syncMobileBG();
-}
-
-export function onGradAngle(angle){
-  ST.gradAngle = parseInt(angle);
-  debounceDraw();
-  syncMobileBG();
-}
-
-export function setPhotoOverlay(val){
-  g('photo-ov').value = val;
-  g('photo-ov-v').textContent = val + '%';
-  debounceDraw();
-}
-
-
-
 
 // ── MISSING FUNCTIONS ─────────────────────────────────────────────
 
