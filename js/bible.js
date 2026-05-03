@@ -405,6 +405,10 @@ function togParallel(){
   if(S.verses.length)renderVerses();
 }
 
+function togParallelNew(){
+  togParallel();
+}
+
 // ── BOOKS ────────────────────────────────────────────────────────
 function populateBooks(){
   const sel=g('book-sel');let lt='';
