@@ -361,22 +361,22 @@ export function syncMobile(){
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Gradient</p>
       <div id="m-grad-preview" style="height:56px;border-radius:12px;border:1px solid var(--bd2);margin-bottom:10px;background:linear-gradient(${ST.gradAngle}deg,${ST.grad1},${ST.grad2})"></div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-        <div onclick="g('m-grad-c1-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad1};border:2px solid var(--bd2);cursor:pointer"></div>
+        <div id="m-grad-c1-dot" onclick="g('m-grad-c1-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad1};border:2px solid var(--bd2);cursor:pointer"></div>
         <span style="font-size:11px;color:var(--tx2);flex:1">Colour 1</span>
-        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad1.toUpperCase()}</span>
+        <span id="m-grad-c1-hex" style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad1.toUpperCase()}</span>
         <input type="color" id="m-grad-c1-inp" value="${ST.grad1}" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(1,this.value)">
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-        <div onclick="g('m-grad-c2-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad2};border:2px solid var(--bd2);cursor:pointer"></div>
+        <div id="m-grad-c2-dot" onclick="g('m-grad-c2-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad2};border:2px solid var(--bd2);cursor:pointer"></div>
         <span style="font-size:11px;color:var(--tx2);flex:1">Colour 2</span>
-        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad2.toUpperCase()}</span>
+        <span id="m-grad-c2-hex" style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad2.toUpperCase()}</span>
         <input type="color" id="m-grad-c2-inp" value="${ST.grad2}" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(2,this.value)">
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
         <span style="font-size:11px;color:var(--tx2);flex:1">Direction</span>
-        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.gradAngle}°</span>
+        <span id="m-grad-angle-v" style="font-size:10px;color:var(--gd);font-family:monospace">${ST.gradAngle}°</span>
       </div>
-      <input type="range" min="0" max="360" value="${ST.gradAngle}" oninput="onGradAngle(this.value)" style="width:100%;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+      <input id="m-grad-angle-sl" type="range" min="0" max="360" value="${ST.gradAngle}" oninput="onGradAngle(this.value)" style="width:100%;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
     </div>
     <div id="m-bg-photo" class="m-bg-section" data-mode="photo" style="display:${ST.bgMode==='photo'?'block':'none'}">
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Upload</p>
@@ -540,16 +540,23 @@ export function setSz(el, sz){
 
 export function setBG(mode, redraw=true){
   ST.bgMode = mode;
-  // Update desktop buttons
+  // Update ALL bgmode-btn buttons (desktop + mobile)
   document.querySelectorAll('.bgmode-btn').forEach(btn=>{
-    const btnMode = btn.textContent.includes('Colour') ? 'solid' :
-                    btn.textContent.includes('Gradient') ? 'gradient' :
-                    btn.textContent.includes('Photo') ? 'photo' : 'gallery';
-    btn.classList.toggle('on', btnMode === mode);
+    const t = btn.textContent;
+    const btnMode = t.includes('Colour') ? 'solid' :
+                    t.includes('Gradient') ? 'gradient' :
+                    t.includes('Photo') ? 'photo' :
+                    t.includes('Gallery') ? 'gallery' : null;
+    if(btnMode) btn.classList.toggle('on', btnMode === mode);
   });
-  // Show/hide sections
+  // Show/hide desktop sections
   ['solid','gradient','photo','gallery'].forEach(m=>{
-    const el = g(`bg-${m}`);
+    const el = g('bg-'+m);
+    if(el) el.style.display = m === mode ? 'block' : 'none';
+  });
+  // Show/hide mobile sections (exist when BG sheet is open)
+  ['solid','gradient','photo','gallery'].forEach(m=>{
+    const el = g('m-bg-'+m);
     if(el) el.style.display = m === mode ? 'block' : 'none';
   });
   if(redraw) debounceDraw();
@@ -564,23 +571,22 @@ export function togOpt(togEl, key){
 export function prevVerse(){
   ST.verseIdx = ST.verseIdx > 0 ? ST.verseIdx - 1 : QUICK_VERSES.length - 1;
   ST.verse = QUICK_VERSES[ST.verseIdx];
+  updateVerseDisplay();
   debounceDraw();
-  syncMobile();
 }
 
 export function nextVerse(){
   ST.verseIdx = (ST.verseIdx + 1) % QUICK_VERSES.length;
   ST.verse = QUICK_VERSES[ST.verseIdx];
+  updateVerseDisplay();
   debounceDraw();
-  syncMobile();
 }
 
 export function useVOTD(){
-  // Use first verse as VOTD for now
   ST.verseIdx = 0;
   ST.verse = QUICK_VERSES[0];
+  updateVerseDisplay();
   debounceDraw();
-  syncMobile();
 }
 
 export function syncMobileBG(){
@@ -604,22 +610,22 @@ export function syncMobileBG(){
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Gradient</p>
       <div id="m-grad-preview" style="height:56px;border-radius:12px;border:1px solid var(--bd2);margin-bottom:10px;background:linear-gradient(${ST.gradAngle}deg,${ST.grad1},${ST.grad2})"></div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-        <div onclick="g('m-grad-c1-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad1};border:2px solid var(--bd2);cursor:pointer"></div>
+        <div id="m-grad-c1-dot" onclick="g('m-grad-c1-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad1};border:2px solid var(--bd2);cursor:pointer"></div>
         <span style="font-size:11px;color:var(--tx2);flex:1">Colour 1</span>
-        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad1.toUpperCase()}</span>
+        <span id="m-grad-c1-hex" style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad1.toUpperCase()}</span>
         <input type="color" id="m-grad-c1-inp" value="${ST.grad1}" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(1,this.value)">
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-        <div onclick="g('m-grad-c2-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad2};border:2px solid var(--bd2);cursor:pointer"></div>
+        <div id="m-grad-c2-dot" onclick="g('m-grad-c2-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad2};border:2px solid var(--bd2);cursor:pointer"></div>
         <span style="font-size:11px;color:var(--tx2);flex:1">Colour 2</span>
-        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad2.toUpperCase()}</span>
+        <span id="m-grad-c2-hex" style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad2.toUpperCase()}</span>
         <input type="color" id="m-grad-c2-inp" value="${ST.grad2}" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(2,this.value)">
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
         <span style="font-size:11px;color:var(--tx2);flex:1">Direction</span>
-        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.gradAngle}°</span>
+        <span id="m-grad-angle-v" style="font-size:10px;color:var(--gd);font-family:monospace">${ST.gradAngle}°</span>
       </div>
-      <input type="range" min="0" max="360" value="${ST.gradAngle}" oninput="onGradAngle(this.value)" style="width:100%;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+      <input id="m-grad-angle-sl" type="range" min="0" max="360" value="${ST.gradAngle}" oninput="onGradAngle(this.value)" style="width:100%;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
     </div>
     <div id="m-bg-photo" class="m-bg-section" data-mode="photo" style="display:${ST.bgMode==='photo'?'block':'none'}">
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Upload</p>
@@ -710,9 +716,24 @@ export function updateBadges(){
   const el = g('info-badges');
   if(!el) return;
   const sz = SIZES[ST.sz]||SIZES['9:16'];
-  el.innerHTML = `
-    <span class="badge">${sz.w}×${sz.h}</span>
-    <span class="badge">${sz.label}</span>`;
+  el.innerHTML = '<span class="badge">'+sz.w+'×'+sz.h+'</span><span class="badge">'+sz.label+'</span>';
+}
+
+// Update all verse display widgets without full panel rebuild
+export function updateVerseDisplay(){
+  const v = ST.verse;
+  if(!v) return;
+  const ta = v.ta||''; const ref = v.tref||v.ref||'';
+  // Desktop verse card
+  const vdTa=g('vd-ta'); if(vdTa) vdTa.textContent=ta;
+  const vdRef=g('vd-ref'); if(vdRef) vdRef.textContent='— '+ref;
+  // Mobile verse card (if sheet is open)
+  const mvdTa=g('mvd-ta'); if(mvdTa) mvdTa.textContent=ta.substring(0,90)+(ta.length>90?'…':'');
+  const mvdRef=g('mvd-ref'); if(mvdRef) mvdRef.textContent='— '+ref;
+  // Quick verse list highlight
+  document.querySelectorAll('#quick-verses .vi, #m-verse .vi').forEach((el,i)=>
+    el.classList.toggle('on', i===ST.verseIdx)
+  );
 }
 
 // ── CANVAS TOUCH ──────────────────────────────────────────────────
@@ -958,19 +979,21 @@ export function loadGal(idx){
   ST.galIdx = idx;
   const galItem = GALLERY[idx];
   if(!galItem) return;
-  // Use picsum with seed for deterministic images
   const img = new Image();
   img.crossOrigin='anonymous';
   img.onload = ()=>{ ST.galImg = img; debounceDraw(); };
   img.onerror = ()=>toast('⚠ Could not load gallery image');
-  img.src = `https://picsum.photos/seed/${galItem.seed}/1080/1920`;
+  img.src = 'https://picsum.photos/seed/'+galItem.seed+'/1080/1920';
   setBG('gallery');
   toast('🌄 Loading '+galItem.name+'…');
-  syncMobileBG();
-  // Update desktop gallery grid selection
-  document.querySelectorAll('#gal-grid .gi, #gal-grid [onclick]').forEach((el,i)=>{
-    el.classList?.toggle('on', i===idx);
-    if(el.style) el.style.borderColor = i===idx ? 'var(--gd)' : 'var(--bd)';
+  // Update gallery item selection in-place for BOTH desktop and mobile grids
+  ['gal-grid','m-bg-gallery'].forEach(gridId=>{
+    const grid = g(gridId);
+    if(!grid) return;
+    grid.querySelectorAll('[onclick*="loadGal"]').forEach((el,i)=>{
+      el.style.borderColor = i===idx ? 'var(--gd)' : 'var(--bd)';
+      el.style.background  = i===idx ? 'var(--gdm)' : 'transparent';
+    });
   });
 }
 
@@ -1018,8 +1041,9 @@ export function setGradPreset(c1,c2){
 }
 
 export function updateGradPreview(){
-  const pr = g('grad-preview');
-  if(pr) pr.style.background=`linear-gradient(${ST.gradAngle||135}deg,${ST.grad1},${ST.grad2})`;
+  const grad = 'linear-gradient('+( ST.gradAngle||135)+'deg,'+ST.grad1+','+ST.grad2+')';
+  const pr = g('grad-preview'); if(pr) pr.style.background=grad;
+  const mpr = g('m-grad-preview'); if(mpr) mpr.style.background=grad;
 }
 
 export function onRGB(){
@@ -1035,15 +1059,25 @@ export function onRGB(){
 
 export function onGradColor(idx, color){
   ST['grad'+idx]=color;
+  // Update desktop pickers
   const dot=g('grad-c'+idx+'-dot'); if(dot) dot.style.background=color;
   const hex=g('grad-c'+idx+'-hex'); if(hex) hex.textContent=color.toUpperCase();
+  // Update mobile pickers in-place (avoid full rebuild)
+  const mdot=g('m-grad-c'+idx+'-dot'); if(mdot) mdot.style.background=color;
+  const mhex=g('m-grad-c'+idx+'-hex'); if(mhex) mhex.textContent=color.toUpperCase();
+  const minp=g('m-grad-c'+idx+'-inp'); if(minp) minp.value=color;
   updateGradPreview();
   debounceDraw();
 }
 
 export function onGradAngle(val){
   ST.gradAngle=parseInt(val);
+  // Desktop label
   const lbl=g('grad-angle-v'); if(lbl) lbl.textContent=val+'°';
+  // Mobile angle label in-place
+  const mlbl=g('m-grad-angle-v'); if(mlbl) mlbl.textContent=val+'°';
+  // Sync mobile range slider value
+  const msl=g('m-grad-angle-sl'); if(msl) msl.value=val;
   updateGradPreview();
   debounceDraw();
 }
