@@ -1,3 +1,5 @@
+import { g, SIZES, ST, FONTS, QUICK_VERSES, PRESETS, GALLERY } from "./imagegen-data.js";
+
 // ── INIT ──────────────────────────────────────────────────────────
 // ── THEME TOGGLE ──────────────────────────────────────────────────
 export let _studioTheme = localStorage.getItem('enjc_studio_theme') || 'dark';
@@ -52,24 +54,7 @@ export function initStudio(){
   setInterval(saveDesign, 3000);
 }
 
-export function setSz(el, sz) {
-  ST.sz = sz;
-  document.querySelectorAll('[data-sz]').forEach(b => b.classList.toggle('on', b.dataset.sz === sz));
-  draw();
-}
 
-export function setBG(mode, noDraw = false) {
-  ST.bgMode = mode;
-  document.querySelectorAll('.bgmode-btn').forEach(b => b.classList.toggle('on', b.onclick.toString().includes(mode)));
-  if (!noDraw) draw();
-}
-export function togOpt(el) {
-  const key = el.dataset.key;
-  ST[key] = !ST[key];
-  el.classList.toggle('on', ST[key]);
-  document.querySelectorAll(`.tog[data-key="${key}"]`).forEach(t => t.classList.toggle('on', ST[key]));
-  draw();
-}
 // ── AUTO-SAVE DESIGN ────────────────────────────────────────────
 export function saveDesign(){
   try{
@@ -242,9 +227,7 @@ export function setColorHex(hex, redraw=true){
     const bg=el.style.backgroundColor;
     const elhex='#'+[...new Array(3)].map((_,i)=>parseInt(bg.split(',')[i]?.replace(/\D/g,'')||0).toString(16).padStart(2,'0')).join('');
     el.classList.toggle('on', elhex.toLowerCase()===hex.toLowerCase());
-  });
-}
-
+  
 // ── MOBILE SYNC ───────────────────────────────────────────────────
 export let _mobActive = null;
 
@@ -533,4 +516,179 @@ export function syncMobile(){
           <span>${k} ${s.label}</span><span style="opacity:.5;font-size:9px">${s.hint}</span>
         </button>`).join('')}
     </div>`;
+}
+
+// ── MISSING FUNCTIONS ──────────────────────────────────────────────────────────
+
+export function setSz(el, sz){
+  ST.sz = sz;
+  // Update topbar buttons
+  document.querySelectorAll('.tb-sz').forEach(btn=>{
+    btn.classList.toggle('on', btn.dataset.sz === sz);
+  });
+  // Update mobile buttons
+  document.querySelectorAll('[data-sz]').forEach(btn=>{
+    btn.style.borderColor = btn.dataset.sz === sz ? 'var(--gd)' : 'var(--bd)';
+    btn.style.background = btn.dataset.sz === sz ? 'var(--gdm)' : 'transparent';
+    btn.style.color = btn.dataset.sz === sz ? 'var(--gd)' : 'var(--tx2)';
+  });
+  debounceDraw();
+}
+
+export function switchTab(el){
+  const tab = el.dataset.tab;
+  // Update tab buttons
+  document.querySelectorAll('.lp-tab').forEach(t=>{
+    t.classList.toggle('on', t === el);
+  });
+  // Show/hide panels
+  document.querySelectorAll('.lp-panel').forEach(p=>{
+    p.style.display = p.id === `lp-${tab}` ? 'block' : 'none';
+  });
+}
+
+export function setBG(mode, redraw=true){
+  ST.bgMode = mode;
+  // Update desktop buttons
+  document.querySelectorAll('.bgmode-btn').forEach(btn=>{
+    const btnMode = btn.textContent.includes('Colour') ? 'solid' :
+                    btn.textContent.includes('Gradient') ? 'gradient' :
+                    btn.textContent.includes('Photo') ? 'photo' : 'gallery';
+    btn.classList.toggle('on', btnMode === mode);
+  });
+  // Show/hide sections
+  ['solid','gradient','photo','gallery'].forEach(m=>{
+    const el = g(`bg-${m}`);
+    if(el) el.style.display = m === mode ? 'block' : 'none';
+  });
+  if(redraw) debounceDraw();
+}
+
+export function togOpt(togEl, key){
+  const on = togEl.classList.toggle('on');
+  ST[key] = on;
+  debounceDraw();
+}
+
+export function prevVerse(){
+  ST.verseIdx = ST.verseIdx > 0 ? ST.verseIdx - 1 : QUICK_VERSES.length - 1;
+  ST.verse = QUICK_VERSES[ST.verseIdx];
+  debounceDraw();
+  syncMobile();
+}
+
+export function nextVerse(){
+  ST.verseIdx = (ST.verseIdx + 1) % QUICK_VERSES.length;
+  ST.verse = QUICK_VERSES[ST.verseIdx];
+  debounceDraw();
+  syncMobile();
+}
+
+export function useVOTD(){
+  // Use first verse as VOTD for now
+  ST.verseIdx = 0;
+  ST.verse = QUICK_VERSES[0];
+  debounceDraw();
+  syncMobile();
+}
+
+export function syncMobileBG(){
+  const el = g('m-bg');
+  if(!el) return;
+  // Rebuild the BG panel HTML with current ST values
+  el.innerHTML = `
+    <div style="display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap">
+      <button class="bgmode-btn${ST.bgMode==='solid'?' on':''}" onclick="setBG('solid')">🎨 Colour</button>
+      <button class="bgmode-btn${ST.bgMode==='gradient'?' on':''}" onclick="setBG('gradient')">🌈 Gradient</button>
+      <button class="bgmode-btn${ST.bgMode==='photo'?' on':''}" onclick="setBG('photo')">📷 Photo</button>
+      <button class="bgmode-btn${ST.bgMode==='gallery'?' on':''}" onclick="setBG('gallery')">🌄 Gallery</button>
+    </div>
+    <div id="m-bg-solid" class="m-bg-section" data-mode="solid" style="display:${ST.bgMode==='solid'?'block':'none'}">
+      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Colour Presets</p>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">
+        ${PRESETS.map(c=>`<div onclick="setColorHex('${c}')" style="width:24px;height:24px;border-radius:4px;background:${c};cursor:pointer;border:2px solid ${ST.bgColor.toLowerCase()===c.toLowerCase()?'var(--gd)':'transparent'};transition:all .18s"></div>`).join('')}
+      </div>
+    </div>
+    <div id="m-bg-gradient" class="m-bg-section" data-mode="gradient" style="display:${ST.bgMode==='gradient'?'block':'none'}">
+      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Gradient</p>
+      <div id="m-grad-preview" style="height:56px;border-radius:12px;border:1px solid var(--bd2);margin-bottom:10px;background:linear-gradient(${ST.gradAngle}deg,${ST.grad1},${ST.grad2})"></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <div onclick="g('m-grad-c1-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad1};border:2px solid var(--bd2);cursor:pointer"></div>
+        <span style="font-size:11px;color:var(--tx2);flex:1">Colour 1</span>
+        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad1.toUpperCase()}</span>
+        <input type="color" id="m-grad-c1-inp" value="${ST.grad1}" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(1,this.value)">
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <div onclick="g('m-grad-c2-inp').click()" style="width:22px;height:22px;border-radius:50%;background:${ST.grad2};border:2px solid var(--bd2);cursor:pointer"></div>
+        <span style="font-size:11px;color:var(--tx2);flex:1">Colour 2</span>
+        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.grad2.toUpperCase()}</span>
+        <input type="color" id="m-grad-c2-inp" value="${ST.grad2}" style="opacity:0;width:0;height:0;position:absolute" oninput="onGradColor(2,this.value)">
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:11px;color:var(--tx2);flex:1">Direction</span>
+        <span style="font-size:10px;color:var(--gd);font-family:monospace">${ST.gradAngle}°</span>
+      </div>
+      <input type="range" min="0" max="360" value="${ST.gradAngle}" oninput="onGradAngle(this.value)" style="width:100%;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+    </div>
+    <div id="m-bg-photo" class="m-bg-section" data-mode="photo" style="display:${ST.bgMode==='photo'?'block':'none'}">
+      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Upload</p>
+      <div style="margin-bottom:12px">
+        <div class="photo-drop" onclick="pickPhoto()" style="cursor:pointer">
+          <img id="m-photo-thumb" class="photo-thumb" style="display:${ST.userPhoto?'block':'none'}">
+          <div style="font-size:26px;margin-bottom:6px">📷</div>
+          <div style="font-size:11px;color:var(--gd);font-weight:500">Tap to choose photo</div>
+          <div style="font-size:9px;color:var(--tx3);margin-top:3px">Gallery · Camera · Files</div>
+        </div>
+        <div class="ov-row" style="margin-top:10px">
+          <span class="ov-lbl">Overlay</span>
+          <input type="range" class="ov-sl" id="m-photo-ov" min="0" max="90" value="${parseInt(g('photo-ov')?.value||55)}" step="5" oninput="setPhotoOverlay(this.value)">
+          <span class="ov-val" id="m-photo-ov-v">${parseInt(g('photo-ov')?.value||55)}%</span>
+        </div>
+      </div>
+    </div>
+    <div id="m-bg-gallery" class="m-bg-section" data-mode="gallery" style="display:${ST.bgMode==='gallery'?'block':'none'}">
+      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Nature Photos</p>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
+        ${GALLERY.map((c,i)=>`<div onclick="loadGal(${i})" style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};border-radius:6px;padding:6px 4px;cursor:pointer;text-align:center;background:${ST.galIdx===i?'var(--gdm)':'transparent'};transition:all .15s">
+          <div style="font-size:14px">${c.label}</div>
+          <div style="font-size:8px;color:var(--tx3)">${c.name}</div>
+        </div>`).join('')}
+      </div>
+      <div class="ov-row" style="margin-top:10px">
+        <span class="ov-lbl">Overlay</span>
+        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';draw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+        <span class="ov-val" id="m-gal-ov-v">${parseInt(g('gal-ov')?.value||50)}%</span>
+      </div>
+    </div>`;
+}
+
+export function onGradColor(idx, color){
+  ST[`grad${idx}`] = color;
+  debounceDraw();
+  syncMobileBG();
+}
+
+export function onGradAngle(angle){
+  ST.gradAngle = parseInt(angle);
+  debounceDraw();
+  syncMobileBG();
+}
+
+export function setPhotoOverlay(val){
+  g('photo-ov').value = val;
+  g('photo-ov-v').textContent = val + '%';
+  debounceDraw();
+}
+
+export function loadGal(idx){
+  ST.galIdx = idx;
+  // Assume there's a function to load gallery image
+  // For now, just update UI
+  syncMobileBG();
+  debounceDraw();
+}
+
+export function pickPhoto(){
+  // Placeholder for photo picker
+  alert('Photo picker not implemented yet');
 }
