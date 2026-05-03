@@ -8,6 +8,10 @@ Object.assign(window, DATA, UI, EXPORTER, CANVAS);
 window._logoImg = new Image();
 window._logoImg.onload = () => window.debounceDraw?.();
 
-window.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', () => {
+    window.initStudio?.();
+  });
+} else {
   window.initStudio?.();
-});
+}
