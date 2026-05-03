@@ -1,27 +1,25 @@
-import { g, ST } from "./imagegen-data.js";
-import { draw } from "./imagegen-canvas.js";
 // ── EXPORT ───────────────────────────────────────────────────────
-export function dlIG(fmt){
+window.dlIG = function(fmt){
   const cv=g('igcv');if(!cv)return;
   const mime=fmt==='png'?'image/png':fmt==='webp'?'image/webp':'image/jpeg';
   const a=document.createElement('a');
   a.download=`enjc-verse-${ST.sz.replace(':','x')}.${fmt}`;
   a.href=cv.toDataURL(mime,0.93);a.click();
-  toast('\u2193 '+fmt.toUpperCase()+' downloaded!');
+  toast('↓ '+fmt.toUpperCase()+' downloaded!');
 }
-export function copyImg(){
+window.copyImg = function(){
   const cv=g('igcv');if(!cv)return;
   cv.toBlob(async blob=>{
     try{
       await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);
-      toast('\uD83D\uDCCB Copied!');
+      toast('📋 Copied!');
     }catch{dlIG('png');toast('\uD83D\uDCCB Saved!');}
   },'image/png');
 }
-export function shareWA(){shareFile();}
-export function shareApp(app){shareFile();}
-export function shareNative(){shareFile();}
-export function shareFile(){
+window.shareWA = function(){shareFile();};
+window.shareApp = function(app){shareFile();};
+window.shareNative = function(){shareFile();};
+window.shareFile = function(){
   const cv=g('igcv');if(!cv)return;
   cv.toBlob(blob=>{
     const f=new File([blob],'enjc-verse.jpg',{type:'image/jpeg'});

@@ -1,6 +1,5 @@
-import { g, SIZES, ST, FONTS, QUICK_VERSES } from "./imagegen-data.js";
 // ── DRAW ─────────────────────────────────────────────────────────
-export function roundRect(ctx, x, y, w, h, r) {
+window.roundRect = function(ctx, x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
   ctx.lineTo(x + w - r, y);
@@ -14,7 +13,7 @@ export function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-export function draw(){
+window.draw = function(){
   const cv=g('igcv');if(!cv)return;
   const sz=SIZES[ST.sz]||SIZES['9:16'];
   const W=sz.w, H=sz.h;
@@ -375,7 +374,7 @@ export function draw(){
   }
 }
 
-export function drawBgImage(ctx,img,W,H,opacity){
+window.drawBgImage = function(ctx,img,W,H,opacity){
   const ir=img.width/img.height, cr=W/H;
   let sx=0,sy=0,sw=img.width,sh=img.height;
   if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}
