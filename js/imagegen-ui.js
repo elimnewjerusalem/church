@@ -242,7 +242,9 @@ export function setColorHex(hex, redraw=true){
     const bg=el.style.backgroundColor;
     const elhex='#'+[...new Array(3)].map((_,i)=>parseInt(bg.split(',')[i]?.replace(/\D/g,'')||0).toString(16).padStart(2,'0')).join('');
     el.classList.toggle('on', elhex.toLowerCase()===hex.toLowerCase());
-  
+  });
+}
+
 // ── MOBILE SYNC ───────────────────────────────────────────────────
 export let _mobActive = null;
 
