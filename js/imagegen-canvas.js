@@ -1,4 +1,4 @@
-import { g, SIZES, ST, FONTS } from "./imagegen-data.js";
+import { g, SIZES, ST, FONTS, QUICK_VERSES } from "./imagegen-data.js";
 // ── DRAW ─────────────────────────────────────────────────────────
 export function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();

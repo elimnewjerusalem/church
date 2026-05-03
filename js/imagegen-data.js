@@ -2,6 +2,8 @@
 'use strict';
 
 // ── DATA ─────────────────────────────────────────────────────────
+export const g = id => document.getElementById(id);
+
 export const SIZES={
   '9:16':{w:1080,h:1920,label:'Story / Reel',hint:'1080×1920'},
   '3:4': {w:900, h:1200,label:'Portrait Post',hint:'900×1200'},

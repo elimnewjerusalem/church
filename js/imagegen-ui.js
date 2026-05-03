@@ -52,7 +52,24 @@ export function initStudio(){
   setInterval(saveDesign, 3000);
 }
 
+export function setSz(el, sz) {
+  ST.sz = sz;
+  document.querySelectorAll('[data-sz]').forEach(b => b.classList.toggle('on', b.dataset.sz === sz));
+  draw();
+}
 
+export function setBG(mode, noDraw = false) {
+  ST.bgMode = mode;
+  document.querySelectorAll('.bgmode-btn').forEach(b => b.classList.toggle('on', b.onclick.toString().includes(mode)));
+  if (!noDraw) draw();
+}
+export function togOpt(el) {
+  const key = el.dataset.key;
+  ST[key] = !ST[key];
+  el.classList.toggle('on', ST[key]);
+  document.querySelectorAll(`.tog[data-key="${key}"]`).forEach(t => t.classList.toggle('on', ST[key]));
+  draw();
+}
 // ── AUTO-SAVE DESIGN ────────────────────────────────────────────
 export function saveDesign(){
   try{
