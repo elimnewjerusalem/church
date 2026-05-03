@@ -33,3 +33,4 @@ window.shareFile = function(){
 }
 export function goBack(){window.location.href='bible.html';}
 
+

@@ -1,17 +1,14 @@
 import * as DATA from './imagegen-data.js';
 import * as UI from './imagegen-ui.js';
 import * as EXPORTER from './imagegen-export.js';
-import * as CANVAS from './imagegen-canvas.js';
+import './imagegen-canvas.js'; // sets window.draw, window.drawBgImage, window.roundRect
 
-Object.assign(window, DATA, UI, EXPORTER, CANVAS);
+// Expose everything to window so inline onclick handlers work
+Object.assign(window, DATA, UI, EXPORTER);
 
-window._logoImg = new Image();
-window._logoImg.onload = () => window.debounceDraw?.();
-
+// Kick off init once DOM is ready (initStudio handles logo preload internally)
 if (document.readyState === 'loading') {
-  window.addEventListener('DOMContentLoaded', () => {
-    window.initStudio?.();
-  });
+  window.addEventListener('DOMContentLoaded', () => window.initStudio?.());
 } else {
   window.initStudio?.();
 }

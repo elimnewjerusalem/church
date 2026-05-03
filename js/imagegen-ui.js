@@ -1,4 +1,3 @@
-import { g, SIZES, ST, FONTS, QUICK_VERSES, PRESETS, GALLERY } from "./imagegen-data.js";
 
 // ── INIT ──────────────────────────────────────────────────────────
 // ── THEME TOGGLE ──────────────────────────────────────────────────
@@ -227,7 +226,10 @@ export function setColorHex(hex, redraw=true){
     const bg=el.style.backgroundColor;
     const elhex='#'+[...new Array(3)].map((_,i)=>parseInt(bg.split(',')[i]?.replace(/\D/g,'')||0).toString(16).padStart(2,'0')).join('');
     el.classList.toggle('on', elhex.toLowerCase()===hex.toLowerCase());
-  
+  });
+  if(redraw) debounceDraw();
+}
+
 // ── MOBILE SYNC ───────────────────────────────────────────────────
 export let _mobActive = null;
 
@@ -535,17 +537,6 @@ export function setSz(el, sz){
   debounceDraw();
 }
 
-export function switchTab(el){
-  const tab = el.dataset.tab;
-  // Update tab buttons
-  document.querySelectorAll('.lp-tab').forEach(t=>{
-    t.classList.toggle('on', t === el);
-  });
-  // Show/hide panels
-  document.querySelectorAll('.lp-panel').forEach(p=>{
-    p.style.display = p.id === `lp-${tab}` ? 'block' : 'none';
-  });
-}
 
 export function setBG(mode, redraw=true){
   ST.bgMode = mode;
@@ -680,15 +671,405 @@ export function setPhotoOverlay(val){
   debounceDraw();
 }
 
-export function loadGal(idx){
-  ST.galIdx = idx;
-  // Assume there's a function to load gallery image
-  // For now, just update UI
-  syncMobileBG();
+
+
+
+// ── MISSING FUNCTIONS ─────────────────────────────────────────────
+
+export function buildSzBtns(){
+  const el = g('sz-btns');
+  if(!el) return;
+  el.innerHTML = Object.entries(SIZES).map(([k,s])=>`
+    <button data-sz="${k}" onclick="setSz(this,'${k}')"
+      class="${ST.sz===k?'on':''}"
+      style="border-radius:8px;padding:8px 10px;font-size:11px;
+             border:1.5px solid ${ST.sz===k?'var(--gd)':'var(--bd)'};
+             background:${ST.sz===k?'var(--gdm)':'transparent'};
+             color:${ST.sz===k?'var(--gd)':'var(--tx2)'};
+             cursor:pointer;font-family:var(--sans);width:100%;
+             text-align:left;display:flex;justify-content:space-between;
+             margin-bottom:4px;transition:all .15s">
+      <span>${k} — ${s.label}</span>
+      <span style="opacity:.5;font-size:9px">${s.hint}</span>
+    </button>`).join('');
+}
+
+export function buildQuickTpl(){
+  // Quick-template strip (not currently used in HTML, safe no-op if el absent)
+  const el = g('quick-tpl');
+  if(!el) return;
+  el.innerHTML = TEMPLATES.map(t=>`
+    <div class="tpl${ST.activeTpl===t.id?' on':''}" id="qtpl-${t.id}"
+         onclick='applyTemplate(${JSON.stringify(t)})'>
+      <div style="width:32px;height:40px;background:${t.bg};border-radius:4px;
+                  display:flex;align-items:center;justify-content:center;
+                  font-size:8px;color:${t.accent}">${t.name}</div>
+    </div>`).join('');
+}
+
+export function buildQuickVerses(){
+  const el = g('quick-verses');
+  if(!el) return;
+  el.innerHTML = QUICK_VERSES.map((v,i)=>`
+    <div class="vi${ST.verseIdx===i?' on':''}" onclick="selVerse(${i})">
+      <div class="vi-ref">${v.tref} · ${v.ref}</div>
+      <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
+    </div>`).join('');
+}
+
+export function selVerse(i){
+  ST.verseIdx = i;
+  ST.verse = QUICK_VERSES[i];
+  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = ST.verse.ta;
+  const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+(ST.verse.tref||ST.verse.ref||'');
+  document.querySelectorAll('.vi').forEach((el,idx)=>el.classList.toggle('on',idx===i));
   debounceDraw();
 }
 
+export function updateBadges(){
+  const el = g('info-badges');
+  if(!el) return;
+  const sz = SIZES[ST.sz]||SIZES['9:16'];
+  el.innerHTML = `
+    <span class="badge">${sz.w}×${sz.h}</span>
+    <span class="badge">${sz.label}</span>`;
+}
+
+// ── CANVAS TOUCH ──────────────────────────────────────────────────
+let _tsX=0, _tsT=0;
+export function onTS(e){
+  _tsX = e.touches[0]?.clientX||0;
+  _tsT = Date.now();
+}
+export function onTE(e){
+  const dx = (e.changedTouches[0]?.clientX||0) - _tsX;
+  const dt = Date.now() - _tsT;
+  if(dt < 400 && Math.abs(dx) > 40){
+    dx < 0 ? nextVerse() : prevVerse();
+  } else if(dt < 300 && Math.abs(dx) < 15){
+    nextVerse(); // tap = cycle
+  }
+}
+
+// ── BIBLE INDEX (desktop) ─────────────────────────────────────────
+export function biRenderBooks(){
+  const el = g('bi-books');
+  if(!el) return;
+  const filter = BI._filter||'all';
+  const search = (BI._search||'').toLowerCase();
+  const list = BOOKS.filter(b=>{
+    if(filter==='OT' && b.t!=='OT') return false;
+    if(filter==='NT' && b.t!=='NT') return false;
+    if(search && !b.en.toLowerCase().includes(search) && !b.ta.includes(search)) return false;
+    return true;
+  });
+  el.innerHTML = list.map(b=>`
+    <div class="bi-book" onclick="biSelectBook('${b.id}')"
+         style="display:flex;justify-content:space-between;padding:6px 8px;
+                border-radius:6px;cursor:pointer;font-size:11px;
+                border-bottom:1px solid var(--bd);transition:background .15s"
+         onmouseover="this.style.background='var(--bg2)'"
+         onmouseout="this.style.background='transparent'">
+      <span style="color:var(--tx)">${b.ta}</span>
+      <span style="color:var(--tx3);font-size:10px">${b.en}</span>
+    </div>`).join('');
+}
+
+export function biSearch(q){
+  BI._search = q;
+  biRenderBooks();
+}
+
+export function biFilter(f){
+  BI._filter = f;
+  ['all','OT','NT'].forEach(k=>{
+    const btn = g('bi-'+k.toLowerCase());
+    if(btn) btn.classList.toggle('on', k===f||k.toLowerCase()===f);
+  });
+  biRenderBooks();
+}
+
+export function biSelectBook(bookId){
+  BI.book = BOOKS.find(b=>b.id===bookId);
+  if(!BI.book) return;
+  g('bi-books').parentElement.style.display='none';
+  const ca = g('bi-ch-area'); if(ca) ca.style.display='block';
+  const ct = g('bi-ch-title'); if(ct) ct.textContent = BI.book.ta+' — '+BI.book.en;
+  const cg = g('bi-ch-grid');
+  if(cg){
+    cg.innerHTML = Array.from({length:BI.book.ch},(_,i)=>`
+      <button onclick="biSelectCh(${i+1})"
+        style="border:1px solid var(--bd);border-radius:6px;padding:6px;
+               font-size:11px;color:var(--tx2);background:transparent;
+               cursor:pointer;font-family:var(--sans);transition:all .15s"
+        onmouseover="this.style.background='var(--bg2)'"
+        onmouseout="this.style.background='transparent'">${i+1}</button>`).join('');
+  }
+}
+
+export function biBackBooks(){
+  const ca = g('bi-ch-area'); if(ca) ca.style.display='none';
+  const va = g('bi-v-area'); if(va) va.style.display='none';
+  const bb = g('bi-books'); if(bb) bb.parentElement.style.display='';
+}
+
+export function biSelectCh(ch){
+  BI.ch = ch;
+  g('bi-ch-area').style.display='none';
+  const va = g('bi-v-area'); if(va) va.style.display='block';
+  const vt = g('bi-v-title'); if(vt) vt.textContent = BI.book.ta+' '+ch;
+  const vl = g('bi-v-list'); if(vl) vl.innerHTML='';
+  const vld = g('bi-v-loading'); if(vld) vld.style.display='block';
+  // Fetch from bible-api.com
+  fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
+    .then(r=>r.json())
+    .then(data=>{
+      if(vld) vld.style.display='none';
+      const verses = data.verses||[];
+      if(vl) vl.innerHTML = verses.map(v=>`
+        <div class="vi" onclick="biUseVerse('${BI.book.id}',${ch},${v.verse},\`${v.text.replace(/`/g,"'")}\`,'${BI.book.en}')"
+             style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
+          <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
+          ${v.text.trim()}
+        </div>`).join('');
+    }).catch(()=>{
+      if(vld) vld.style.display='none';
+      if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
+    });
+}
+
+export function biBackCh(){
+  const va = g('bi-v-area'); if(va) va.style.display='none';
+  const ca = g('bi-ch-area'); if(ca) ca.style.display='block';
+}
+
+export function biUseVerse(bookId, ch, v, enText, enBook){
+  const book = BOOKS.find(b=>b.id===bookId);
+  const ref = `${enBook} ${ch}:${v}`;
+  const tref = `${book?.ta||enBook} ${ch}:${v}`;
+  const verse = {ta:'', tref, en:enText.trim(), ref};
+  QUICK_VERSES.unshift(verse);
+  ST.verse = verse; ST.verseIdx = 0;
+  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = verse.en;
+  const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+ref;
+  debounceDraw();
+  toast('📖 '+ref+' loaded!');
+}
+
+// ── BIBLE INDEX (mobile, mbi*) ─────────────────────────────────────
+export function mbiRenderBooks(){
+  const el = g('mbi-books');
+  if(!el) return;
+  const filter = BI._filter||'all';
+  const search = (BI._search||'').toLowerCase();
+  const list = BOOKS.filter(b=>{
+    if(filter==='OT' && b.t!=='OT') return false;
+    if(filter==='NT' && b.t!=='NT') return false;
+    if(search && !b.en.toLowerCase().includes(search) && !b.ta.includes(search)) return false;
+    return true;
+  });
+  el.innerHTML = list.map(b=>`
+    <div onclick="mbiSelectBook('${b.id}')"
+         style="display:flex;justify-content:space-between;padding:7px 6px;
+                border-radius:6px;cursor:pointer;font-size:11px;
+                border-bottom:1px solid var(--bd)">
+      <span style="color:var(--tx)">${b.ta}</span>
+      <span style="color:var(--tx3);font-size:10px">${b.en}</span>
+    </div>`).join('');
+}
+
+export function mbiSearch(q){
+  BI._search = q;
+  mbiRenderBooks();
+}
+
+export function mbiFilter(f){
+  BI._filter = f;
+  ['all','OT','NT'].forEach(k=>{
+    const btn = g('mbi-'+k.toLowerCase());
+    if(btn) btn.classList.toggle('on', k===f||k.toLowerCase()===f);
+  });
+  mbiRenderBooks();
+}
+
+export function mbiSelectBook(bookId){
+  BI.book = BOOKS.find(b=>b.id===bookId);
+  if(!BI.book) return;
+  const el = g('mbi-books'); if(el) el.style.display='none';
+  const ca = g('mbi-ch-area'); if(ca) ca.style.display='block';
+  const ct = g('mbi-ch-title'); if(ct) ct.textContent = BI.book.ta+' — '+BI.book.en;
+  const cg = g('mbi-ch-grid');
+  if(cg){
+    cg.innerHTML = Array.from({length:BI.book.ch},(_,i)=>`
+      <button onclick="mbiSelectCh(${i+1})"
+        style="border:1px solid var(--bd);border-radius:6px;padding:6px;
+               font-size:11px;color:var(--tx2);background:transparent;
+               cursor:pointer;font-family:var(--sans)">${i+1}</button>`).join('');
+  }
+}
+
+export function mbiBackBooks(){
+  const el = g('mbi-books'); if(el) el.style.display='';
+  const ca = g('mbi-ch-area'); if(ca) ca.style.display='none';
+  const va = g('mbi-v-area'); if(va) va.style.display='none';
+}
+
+export function mbiSelectCh(ch){
+  BI.ch = ch;
+  const ca = g('mbi-ch-area'); if(ca) ca.style.display='none';
+  const va = g('mbi-v-area'); if(va) va.style.display='block';
+  const vt = g('mbi-v-title'); if(vt) vt.textContent = BI.book.ta+' '+ch;
+  const vl = g('mbi-v-list'); if(vl) vl.innerHTML='';
+  const vld = g('mbi-v-loading'); if(vld) vld.style.display='block';
+  fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
+    .then(r=>r.json())
+    .then(data=>{
+      if(vld) vld.style.display='none';
+      const verses = data.verses||[];
+      if(vl) vl.innerHTML = verses.map(v=>`
+        <div class="vi" onclick="mbiUseVerse('${BI.book.id}',${ch},${v.verse},\`${v.text.replace(/`/g,"'")}\`,'${BI.book.en}')"
+             style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
+          <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
+          ${v.text.trim()}
+        </div>`).join('');
+    }).catch(()=>{
+      if(vld) vld.style.display='none';
+      if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
+    });
+}
+
+export function mbiBackCh(){
+  const va = g('mbi-v-area'); if(va) va.style.display='none';
+  const ca = g('mbi-ch-area'); if(ca) ca.style.display='block';
+}
+
+export function mbiUseVerse(bookId, ch, v, enText, enBook){
+  biUseVerse(bookId, ch, v, enText, enBook);
+}
+
+// ── PHOTO UPLOAD ──────────────────────────────────────────────────
 export function pickPhoto(){
-  // Placeholder for photo picker
-  alert('Photo picker not implemented yet');
+  const inp = document.createElement('input');
+  inp.type='file'; inp.accept='image/*';
+  inp.onchange = e=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev=>{
+      const img = new Image();
+      img.onload = ()=>{
+        ST.userPhoto = img;
+        // Show thumbs
+        ['photo-thumb','m-photo-thumb'].forEach(id=>{
+          const th = g(id);
+          if(th){ th.src = ev.target.result; th.style.display='block'; }
+        });
+        setBG('photo');
+        debounceDraw();
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+  inp.click();
+}
+
+export function loadGal(idx){
+  ST.galIdx = idx;
+  const galItem = GALLERY[idx];
+  if(!galItem) return;
+  // Use picsum with seed for deterministic images
+  const img = new Image();
+  img.crossOrigin='anonymous';
+  img.onload = ()=>{ ST.galImg = img; debounceDraw(); };
+  img.onerror = ()=>toast('⚠ Could not load gallery image');
+  img.src = `https://picsum.photos/seed/${galItem.seed}/1080/1920`;
+  setBG('gallery');
+  toast('🌄 Loading '+galItem.name+'…');
+  syncMobileBG();
+  // Update desktop gallery grid selection
+  document.querySelectorAll('#gal-grid .gi, #gal-grid [onclick]').forEach((el,i)=>{
+    el.classList?.toggle('on', i===idx);
+    if(el.style) el.style.borderColor = i===idx ? 'var(--gd)' : 'var(--bd)';
+  });
+}
+
+export function buildGallery(){
+  const el = g('gal-grid');
+  if(!el) return;
+  el.innerHTML = GALLERY.map((c,i)=>`
+    <div onclick="loadGal(${i})"
+         style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};
+                border-radius:6px;padding:8px 4px;cursor:pointer;text-align:center;
+                background:${ST.galIdx===i?'var(--gdm)':'transparent'};transition:all .15s">
+      <div style="font-size:18px">${c.label}</div>
+      <div style="font-size:9px;color:var(--tx3)">${c.name}</div>
+    </div>`).join('');
+}
+
+export function buildGradPresets(){
+  const el = g('grad-presets-grid');
+  if(!el) return;
+  const presets=[
+    ['#1a0a3a','#0a1a3a'],['#1a0500','#3a0a00'],['#020d1a','#0a2a1a'],
+    ['#020208','#1a0820'],['#1a1500','#3a2a00'],['#0a0a1a','#1a0a2a'],
+    ['#0d2447','#1a0a3a'],['#14451f','#061009'],
+  ];
+  el.innerHTML = presets.map(([c1,c2])=>`
+    <div onclick="setGradPreset('${c1}','${c2}')"
+         style="height:32px;border-radius:6px;cursor:pointer;
+                border:1px solid var(--bd);
+                background:linear-gradient(135deg,${c1},${c2});
+                transition:all .15s"
+         onmouseover="this.style.borderColor='var(--gd)'"
+         onmouseout="this.style.borderColor='var(--bd)'"></div>`).join('');
+}
+
+export function setGradPreset(c1,c2){
+  ST.grad1=c1; ST.grad2=c2;
+  const i1=g('grad-c1-inp'); if(i1) i1.value=c1;
+  const i2=g('grad-c2-inp'); if(i2) i2.value=c2;
+  const d1=g('grad-c1-dot'); if(d1) d1.style.background=c1;
+  const d2=g('grad-c2-dot'); if(d2) d2.style.background=c2;
+  const h1=g('grad-c1-hex'); if(h1) h1.textContent=c1.toUpperCase();
+  const h2=g('grad-c2-hex'); if(h2) h2.textContent=c2.toUpperCase();
+  updateGradPreview();
+  debounceDraw();
+}
+
+export function updateGradPreview(){
+  const pr = g('grad-preview');
+  if(pr) pr.style.background=`linear-gradient(${ST.gradAngle||135}deg,${ST.grad1},${ST.grad2})`;
+}
+
+export function onRGB(){
+  const r=parseInt(g('sl-r')?.value||0);
+  const gv=parseInt(g('sl-g')?.value||0);
+  const b=parseInt(g('sl-b')?.value||0);
+  if(g('sl-rv')) g('sl-rv').textContent=r;
+  if(g('sl-gv')) g('sl-gv').textContent=gv;
+  if(g('sl-bv')) g('sl-bv').textContent=b;
+  const hex='#'+[r,gv,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+  setColorHex(hex);
+}
+
+export function onGradColor(idx, color){
+  ST['grad'+idx]=color;
+  const dot=g('grad-c'+idx+'-dot'); if(dot) dot.style.background=color;
+  const hex=g('grad-c'+idx+'-hex'); if(hex) hex.textContent=color.toUpperCase();
+  updateGradPreview();
+  debounceDraw();
+}
+
+export function onGradAngle(val){
+  ST.gradAngle=parseInt(val);
+  const lbl=g('grad-angle-v'); if(lbl) lbl.textContent=val+'°';
+  updateGradPreview();
+  debounceDraw();
+}
+
+export function setPhotoOverlay(val){
+  const inp=g('photo-ov'); if(inp) inp.value=val;
+  const lbl=g('photo-ov-v'); if(lbl) lbl.textContent=val+'%';
+  debounceDraw();
 }
