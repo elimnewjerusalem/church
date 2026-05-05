@@ -35,11 +35,47 @@
 
   /* ── MOBILE MENU ────────────────────────────────────────── */
 
-  /** Toggle the mobile dropdown menu open/closed. */
+  function getMenuBtn() { return document.querySelector('.nav-hamburger'); }
+  function getMenu()    { return document.getElementById('mobile-menu'); }
+
+  /** Open or close the mobile dropdown menu. Updates aria-expanded. */
   window.toggleMenu = function () {
-    const menu = document.getElementById('mobile-menu');
-    if (menu) menu.classList.toggle('is-open');
+    const menu = getMenu();
+    const btn  = getMenuBtn();
+    if (!menu) return;
+
+    const opening = !menu.classList.contains('is-open');
+    menu.classList.toggle('is-open', opening);
+
+    if (btn) btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
   };
+
+  /** Close the mobile menu (used by outside-click and Escape). */
+  function closeMenu() {
+    const menu = getMenu();
+    const btn  = getMenuBtn();
+    if (!menu || !menu.classList.contains('is-open')) return;
+    menu.classList.remove('is-open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+
+  // Wire up close behaviours once DOM is ready.
+  document.addEventListener('DOMContentLoaded', function () {
+    // Close on Escape key.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close when clicking anywhere outside the nav (hamburger + menu).
+    document.addEventListener('click', function (e) {
+      const menu = getMenu();
+      const btn  = getMenuBtn();
+      if (!menu || !menu.classList.contains('is-open')) return;
+      // If click is inside the menu or on the button, don't close.
+      if (menu.contains(e.target) || (btn && btn.contains(e.target))) return;
+      closeMenu();
+    });
+  });
 
 
   /* ── SCROLL-TO-TOP ──────────────────────────────────────── */

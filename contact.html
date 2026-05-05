@@ -45,7 +45,7 @@
             📍 Visit Us
           </a>
         </div>
-        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
+        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
           <span class="nav-hamburger__line"></span>
           <span class="nav-hamburger__line"></span>
           <span class="nav-hamburger__line"></span>
@@ -338,19 +338,26 @@ function sendViaWhatsApp() {
   if (!name)    { alert('Please enter your name'); return; }
   if (!message) { alert('Please enter your message'); return; }
 
-  // Build formatted WhatsApp message
-  let text = '*New Message from ENJC Website*%0A%0A';
-  text += `*Name:* ${encodeURIComponent(name)}%0A`;
-  if (email)   text += `*Email:* ${encodeURIComponent(email)}%0A`;
-  if (phone)   text += `*Phone:* ${encodeURIComponent(phone)}%0A`;
-  if (subject) text += `*Subject:* ${encodeURIComponent(subject)}%0A`;
-  text += `%0A*Message:*%0A${encodeURIComponent(message)}`;
+  // Build raw text, then encode the whole string once
+  let raw = '*New Message from ENJC Website*
 
-  window.open(`https://wa.me/919444345102?text=${text}`, '_blank', 'noopener');
+';
+  raw += `*Name:* ${name}
+`;
+  if (email)   raw += `*Email:* ${email}
+`;
+  if (phone)   raw += `*Phone:* ${phone}
+`;
+  if (subject) raw += `*Subject:* ${subject}
+`;
+  raw += `
+*Message:*
+${message}`;
+
+  window.open(`https://wa.me/919444345102?text=${encodeURIComponent(raw)}`, '_blank', 'noopener');
 }
 </script>
 
-<script src="js/site.js"></script>
 <script src="js/premium-upgrade.js" defer></script>
 
 </body></html>

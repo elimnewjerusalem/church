@@ -443,3 +443,9 @@ canvas#igcv{
 
 /* Spin animation */
 @keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── Mobile bottom-nav clearance ───────────────────────────── */
+@media(max-width:900px) {
+  /* Push main content above the 62px fixed bottom nav */
+  body { padding-bottom: 62px; }
+}
