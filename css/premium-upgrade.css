@@ -1201,3 +1201,84 @@ blockquote.card--gold footer {
     animation: none;
   }
 }
+
+/* ══════════════════════════════════════════════════════
+   FIX 1 — Light theme font colors
+   Overrides rgba(255,255,255,x) tints that become
+   invisible on light backgrounds.
+══════════════════════════════════════════════════════ */
+
+[data-theme="light"] {
+  /* Re-anchor the studio bridge vars to dark-on-light values */
+  --tx:  #1a1814;
+  --tx2: rgba(26, 24, 20, .68);
+  --tx3: rgba(26, 24, 20, .42);
+  --tx4: rgba(26, 24, 20, .32);
+  --bd:  rgba(0, 0, 0, .09);
+  --bd2: rgba(0, 0, 0, .16);
+}
+
+/* Studio left/right panel text */
+[data-theme="light"] .lp-tab         { color: rgba(26,24,20,.5); }
+[data-theme="light"] .lp-tab.on      { color: var(--color-gold); }
+[data-theme="light"] .lp-lbl         { color: rgba(26,24,20,.4); }
+[data-theme="light"] .rp-head        { color: rgba(26,24,20,.55); }
+[data-theme="light"] .rp-body        { color: #1a1814; }
+
+/* Verse list */
+[data-theme="light"] .vi-ta          { color: rgba(26,24,20,.72); }
+[data-theme="light"] .vi-ref         { color: var(--color-gold); }
+[data-theme="light"] .vd-ta          { color: #1a1814; }
+
+/* Canvas hint & toolbar buttons */
+[data-theme="light"] .canvas-hint    { color: rgba(26,24,20,.4); }
+[data-theme="light"] .tb-sz          { color: rgba(26,24,20,.55); border-color: rgba(0,0,0,.14); }
+[data-theme="light"] .tb-sz.on       { color: #09090f; }
+
+/* Right panel cards */
+[data-theme="light"] .rp-card        {
+  background: #fff;
+  border-color: rgba(0,0,0,.1);
+}
+[data-theme="light"] .rp-card p,
+[data-theme="light"] .rp-card span,
+[data-theme="light"] .rp-card small  { color: #1a1814; }
+
+/* Generic panel/card text that uses rgba(255,255,255,x) */
+[data-theme="light"] .badge          { color: #1a1814; }
+[data-theme="light"] .sl-num,
+[data-theme="light"] .gsl-val,
+[data-theme="light"] .ov-val         { color: var(--color-gold); }
+
+/* Left panel section backgrounds */
+[data-theme="light"] .lp             { background: var(--color-bg-2); }
+[data-theme="light"] .lp-tabs        { background: var(--color-bg); }
+
+/* Input fields */
+[data-theme="light"] .inp            {
+  background: rgba(0,0,0,.04);
+  border-color: rgba(0,0,0,.14);
+  color: #1a1814;
+}
+[data-theme="light"] .inp::placeholder { color: rgba(26,24,20,.38); }
+
+/* Template cards */
+[data-theme="light"] .tpl-name       { background: rgba(255,255,255,.85); color: #1a1814; }
+[data-theme="light"] .tpl-ta         { color: #1a1814; }
+
+/* ══════════════════════════════════════════════════════
+   FIX 2 — Mobile: lift WhatsApp + scroll-to-top buttons
+   above the 58px bottom nav bar
+══════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .wa-float {
+    bottom: 72px;   /* 58px bar + 14px breathing room */
+    right: 16px;
+  }
+
+  .scroll-top-btn {
+    bottom: 128px;  /* sits 56px above WA float */
+    right: 16px;
+  }
+}
