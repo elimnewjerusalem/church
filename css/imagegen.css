@@ -23,7 +23,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg0);color:var(--tx);font
 /* ── TOP BAR ── */
 .topbar{
   position:fixed;top:0;left:0;right:0;height:var(--bar);
-  background:rgba(10,10,15,.95);border-bottom:1px solid var(--bd);
+  background:var(--bg0);border-bottom:1px solid var(--bd);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   display:flex;align-items:center;gap:10px;padding:0 14px;z-index:100;
 }
@@ -364,7 +364,7 @@ canvas#igcv{
 .mob-bar{
   display:none;
   position:fixed;bottom:0;left:0;right:0;
-  background:rgba(10,10,15,.97);
+  background:var(--bg1);
   border-top:1px solid var(--bd);
   backdrop-filter:blur(12px);
   z-index:200;height:58px;
@@ -434,7 +434,7 @@ canvas#igcv{
 #toast{
   position:fixed;bottom:70px;left:50%;
   transform:translateX(-50%) translateY(6px);
-  background:rgba(10,10,15,.97);border:1px solid var(--gdb);
+  background:var(--bg1);border:1px solid var(--gdb);
   color:var(--gd);padding:8px 20px;border-radius:var(--r99);
   font-size:12px;font-weight:500;opacity:0;
   transition:all .25s;pointer-events:none;z-index:999;white-space:nowrap;
@@ -449,3 +449,53 @@ canvas#igcv{
   /* Push main content above the 62px fixed bottom nav */
   body { padding-bottom: 62px; }
 }
+
+/* ── LIGHT THEME ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg0: #f5f3ee;
+  --bg1: #edeae3;
+  --bg2: #e5e2da;
+  --bg3: #dad6cc;
+  --bg4: #cec9be;
+  --tx:  #1a1814;
+  --tx2: rgba(26,24,20,.65);
+  --tx3: rgba(26,24,20,.38);
+  --gd:  #8a6009;
+  --gdb: rgba(138,96,9,.28);
+  --gdm: rgba(138,96,9,.08);
+  --bd:  rgba(0,0,0,.09);
+  --bd2: rgba(0,0,0,.16);
+}
+
+/* Toolbar & panels in light mode */
+[data-theme="light"] .topbar {
+  background: rgba(245,243,238,.95);
+  border-bottom-color: var(--bd2);
+}
+[data-theme="light"] .left-panel  { background: var(--bg1); border-right-color: var(--bd2); }
+[data-theme="light"] .right-panel { background: var(--bg1); border-left-color: var(--bd2); }
+[data-theme="light"] .lp-tabs     { background: var(--bg0); border-bottom-color: var(--bd); }
+[data-theme="light"] .rp-card     { background: var(--bg2); border-color: var(--bd2); }
+
+/* Mobile bottom sheet */
+[data-theme="light"] .mob-sheet   { background: var(--bg1); border-top-color: var(--bd2); }
+[data-theme="light"] .mob-tabs    { background: var(--bg0); border-bottom-color: var(--bd); }
+
+/* Buttons */
+[data-theme="light"] .tb-sz       { border-color: var(--bd2); color: var(--tx2); }
+[data-theme="light"] .tb-sz:hover { border-color: var(--gdb); color: var(--gd); }
+[data-theme="light"] .btn-back    { border-color: var(--bd2); color: var(--tx3); }
+[data-theme="light"] .btn-back:hover { color: var(--tx); border-color: var(--bd2); }
+
+/* Template & bg-mode buttons */
+[data-theme="light"] .tpl         { border-color: var(--bd2); }
+[data-theme="light"] .tpl:hover   { border-color: var(--gdb); }
+[data-theme="light"] .bgmode-btn  { border-color: var(--bd2); color: var(--tx2); }
+
+/* Inputs & controls */
+[data-theme="light"] .hex-inp     { background: var(--bg2); border-color: var(--bd2); color: var(--tx); }
+[data-theme="light"] .sl-row input[type="range"] { accent-color: var(--gd); }
+
+/* Gallery thumbnails */
+[data-theme="light"] .photo-drop  { border-color: var(--gdb); background: var(--gdm); }
+

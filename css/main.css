@@ -96,6 +96,8 @@
   --nx-tog-off:   #cbd5e0;          /* Light gray track */
   --nx-tog-dot:   #a0aec0;          /* Light gray dot */
   --tx4:          rgba(28,23,16,.38);
+  /* bg4 — deepest surface (used by bible NX layout) */
+  --bg4:  #dad6cc;
 }
 
 
@@ -529,7 +531,7 @@ img {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text);
 }
 
 /* Activity mini-card icon row */
@@ -669,8 +671,8 @@ textarea.form-field {
   right: 0;
   height: 64px;
   z-index: 900;
-  background: rgba(7, 9, 15, .97);
-  border-top: 1px solid rgba(232, 160, 32, .18);
+  background: var(--color-bg-2);
+  border-top: 1px solid var(--color-gold-border);
   align-items: stretch;
 }
 
@@ -1242,6 +1244,35 @@ button, select, input, textarea { font-family: var(--font-body); }
 [data-theme="light"] .vs-act-btn  { background: var(--bg3); border-color: var(--bd); }
 [data-theme="light"] .vs-note-inp { background: var(--bg3); border-color: var(--bd2); color: var(--tx); }
 
+/* ── LIGHT MODE: remaining component fixes ─────────────────── */
+/* Elements that use rgba(255,255,255,x) tints — flip to dark-on-light */
+[data-theme="light"] .nx-pill           { background: var(--bg3); }
+[data-theme="light"] .bl-item:hover     { background: var(--bg3); }
+[data-theme="light"] .bk-tag            { background: var(--bg3); border-color: var(--bd2); color: var(--tx2); }
+[data-theme="light"] .sett-row:hover    { background: var(--bg3); }
+[data-theme="light"] .ig-tab            { background: var(--bg3); color: var(--tx2); }
+[data-theme="light"] .ig-tab.on         { background: var(--gd); color: #fff; }
+[data-theme="light"] .ig-bgtab.on       { background: var(--gd); color: #fff; }
+[data-theme="light"] .nx-lang-btn       { background: var(--bg3); }
+
+/* Service slot time — needs to be readable on light card backgrounds */
+[data-theme="light"] .service-slot      { background: var(--color-bg-3); }
+[data-theme="light"] .service-slot__label { color: var(--color-text-muted); }
+
+/* Fix subtle row/item backgrounds */
+[data-theme="light"] .aud-row:hover,
+[data-theme="light"] .ch-item:hover     { background: var(--bg3); }
+[data-theme="light"] .ch-prog           { background: var(--bd); }
+
+/* Toast notification */
+[data-theme="light"] #toast             { background: var(--color-bg-2); color: var(--gd); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+
+/* Bottom nav border */
+[data-theme="light"] .bottom-nav        { border-top-color: var(--color-border-mid); }
+[data-theme="light"] .bottom-nav__item  { color: var(--color-text-muted); }
+[data-theme="light"] .bottom-nav__item.is-active { color: var(--color-gold); }
+[data-theme="light"] .bottom-nav__label { color: inherit; }
+
 /* ── PATCH: hide old hero + old sidebar layout ── */
 .bible-hero  { display: none !important; }
 .bl-layout   { display: none !important; }
@@ -1692,7 +1723,7 @@ h1,h2,h3 { font-family: var(--serif) !important; }
 }
 .ch-btn:disabled { opacity: .3; cursor: not-allowed; }
 .ch-btn.bm-on { color: var(--gd); border-color: var(--gdb); background: var(--gdm); }
-.ch-prog { height: 2px; background: rgba(255,255,255,.05); }
+.ch-prog { height: 2px; background: var(--bd); }
 .ch-prog-fill { height: 2px; background: var(--gd); width: 0%; transition: width .5s; }
 
 /* ── VERSE LIST ──────────────────────────────── */
@@ -2375,7 +2406,7 @@ h1,h2,h3 { font-family: var(--serif) !important; }
   bottom: 90px;
   left: 50%;
   transform: translateX(-50%) translateY(8px);
-  background: rgba(7,9,15,.97);
+  background: var(--color-bg-2);
   border: 1px solid var(--gdb);
   color: var(--gd);
   padding: 9px 22px;
@@ -2398,8 +2429,8 @@ h1,h2,h3 { font-family: var(--serif) !important; }
   display: none;
   position: fixed;
   bottom: 0; left: 0; right: 0;
-  background: rgba(7,9,15,.97);
-  border-top: 1px solid rgba(255,213,74,.15);
+  background: var(--color-bg-2);
+  border-top: 1px solid var(--color-gold-border);
   height: 62px;
   z-index: 600;
   align-items: stretch;
@@ -2538,7 +2569,7 @@ h1,h2,h3 { font-family: var(--serif) !important; }
 .track-icon  { font-size: 12px; min-width: 16px; text-align: center; }
 .track-info  { flex: 1; }
 .track-name  { font-size: 12px; color: var(--tx); font-family: var(--tamil); }
-.track-bar   { height: 2px; background: rgba(255,255,255,.07); border-radius: 99px; margin-top: 3px; }
+.track-bar   { height: 2px; background: var(--bd2); border-radius: 99px; margin-top: 3px; }
 .track-fill  { height: 2px; border-radius: 99px; background: var(--gd); }
 .track-pct   { font-size: 10px; font-weight: 600; color: var(--gd); min-width: 32px; text-align: right; }
 
@@ -2569,7 +2600,7 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 .tpl-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
 .tpl-card  { border: 1.5px solid var(--bd); border-radius: 10px; overflow: hidden; cursor: pointer; transition: all .18s; }
 .tpl-card.on { border-color: var(--gdb); }
-.tpl-preview { height: 48px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: rgba(255,255,255,.6); }
+.tpl-preview { height: 48px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--tx2); }
 .tpl-label { font-size: 9px; color: var(--tx3); text-align: center; padding: 4px; border-top: 1px solid rgba(255,255,255,.06); }
 .tpl-card.on .tpl-label { color: var(--gd); }
 .ig-gsl-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
@@ -2587,22 +2618,7 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 .notif-btn:hover { background: var(--gd); color: #07090f; }
 .abar-show { display: flex !important; }
 
-/* ── LIGHT THEME ─────────────────────────────── */
-[data-theme="light"] {
-  --bg:   #f5f3ee;
-  --bg2:  #edeae3;
-  --bg3:  #e5e2da;
-  --bg4:  #dedad0;
-  --tx:   #1a1814;
-  --tx2:  rgba(26,24,20,.65);
-  --tx3:  rgba(26,24,20,.38);
-  --gd:   #8a6009;
-  --gd2:  #a07010;
-  --gdb:  rgba(138,96,9,.28);
-  --gdm:  rgba(138,96,9,.08);
-  --bd:   rgba(0,0,0,.08);
-  --bd2:  rgba(0,0,0,.14);
-}
+/* [data-theme="light"] root vars consolidated into first block above */
 
 /* ── NX LAYOUT (New 2026 top section) ─────────────────────── */
 .nx-top {

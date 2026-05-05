@@ -36,6 +36,9 @@
     <button class="tb-btn btn-wa" onclick="shareWA()">🟢 WhatsApp</button>
     <button class="tb-btn btn-dl" onclick="dlIG('png')">⬇ Download</button>
     <button class="tb-btn btn-back" onclick="goBack()">← Bible</button>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme" style="margin-left:6px;width:36px;height:22px;border-radius:99px;background:var(--bd2);border:none;cursor:pointer;position:relative;display:flex;align-items:center;padding:3px;flex-shrink:0;">
+      <div class="theme-toggle__dot" style="width:14px;height:14px;border-radius:50%;background:var(--gd);transition:transform .22s;"></div>
+    </button>
   </div>
 </div>
 
@@ -356,6 +359,7 @@
 
 <div id="toast"></div>
 
+<script src="js/site.js"></script>
 <script type="module" src="js/imagegen-main.js"></script>
 <script src="js/premium-upgrade.js" defer></script>
 
