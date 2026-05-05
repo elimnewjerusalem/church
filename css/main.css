@@ -195,6 +195,33 @@ img {
   background: rgba(248, 246, 241, .92);
 }
 
+/* Light theme hero visibility fixes */
+[data-theme="light"] .hero__overlay {
+  background: rgba(0, 0, 0, .25);
+}
+
+[data-theme="light"] .hero__title {
+  color: var(--color-text);
+}
+
+[data-theme="light"] .hero__ref {
+  color: var(--color-text-muted);
+}
+
+[data-theme="light"] .hero__eyebrow {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .btn--ghost {
+  border: 1.5px solid var(--color-border-mid);
+  color: var(--color-text);
+}
+
+[data-theme="light"] .btn--ghost:hover {
+  border-color: var(--color-gold-border);
+  color: var(--color-gold);
+}
+
 .site-nav .container {
   height: 100%;
   display: flex;
