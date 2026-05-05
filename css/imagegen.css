@@ -404,7 +404,7 @@ canvas#igcv{
 }
 .mob-sheet.on{transform:translateY(0);}
 .mob-sheet-handle{
-  width:36px;height:4px;background:rgba(255,255,255,.15);
+  width:36px;height:4px;background:var(--bd2);
   border-radius:99px;margin:10px auto 0;flex-shrink:0;
 }
 .mob-sheet-head{
@@ -414,7 +414,7 @@ canvas#igcv{
 .mob-sheet-title{font-size:12px;font-weight:600;color:var(--gd);letter-spacing:.5px;}
 .mob-sheet-close{
   width:26px;height:26px;border-radius:50%;
-  background:rgba(255,255,255,.07);border:none;
+  background:var(--bd);border:none;
   color:var(--tx3);font-size:14px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
 }
@@ -444,11 +444,6 @@ canvas#igcv{
 /* Spin animation */
 @keyframes spin{to{transform:rotate(360deg);}}
 
-/* ── Mobile bottom-nav clearance ───────────────────────────── */
-@media(max-width:900px) {
-  /* Push main content above the 62px fixed bottom nav */
-  body { padding-bottom: 62px; }
-}
 
 /* ── LIGHT THEME ──────────────────────────────────────────── */
 [data-theme="light"] {
