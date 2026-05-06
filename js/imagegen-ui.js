@@ -41,7 +41,11 @@ export function initStudio(){
   buildGallery();
   buildGradPresets();
   buildSzBtns();
+  // Defaults for new state fields
+  if(ST.textPos===undefined) ST.textPos=0.5;
+  if(ST.autoFit===undefined) ST.autoFit=true;
   buildQuickTpl();
+  buildVerseTags();
   buildQuickVerses();
   biRenderBooks();
   readURL();
@@ -68,6 +72,8 @@ export function saveDesign(){
       gradMode:ST.gradMode||false,
       grad1:ST.grad1||'#1a0a3a', grad2:ST.grad2||'#0a1a3a', gradAngle:ST.gradAngle||135,
       safeZone:ST.safeZone||false,
+      textPos:ST.textPos||0.5,
+      autoFit:ST.autoFit!==false,
     };
     localStorage.setItem('enjc_studio_state', JSON.stringify(state));
   }catch(e){}
@@ -111,6 +117,11 @@ export function loadSavedDesign(){
     if(s.gradAngle) ST.gradAngle=s.gradAngle;
     // Restore safe zone
     if(s.safeZone!==undefined) ST.safeZone=s.safeZone;
+    if(s.autoFit!==undefined){ ST.autoFit=s.autoFit; g('tog-autofit')?.classList.toggle('on',s.autoFit); }
+    if(s.textPos!==undefined){
+      ST.textPos=s.textPos;
+      const sl=g('text-pos-sl'); if(sl) sl.value=Math.round(s.textPos*100);
+    }
     // Restore template highlight
     if(s.activeTpl){
       ST.activeTpl=s.activeTpl;
@@ -169,7 +180,36 @@ export function buildTemplates(){
     </div>`).join('');
 }
 
+export function snapshotST(){
+  ST._prev = JSON.stringify({
+    activeTpl:ST.activeTpl, bgColor:ST.bgColor, bgMode:ST.bgMode,
+    txColor:ST.txColor, grad1:ST.grad1, grad2:ST.grad2, gradAngle:ST.gradAngle,
+    font:ST.font, showTa:ST.showTa, showEn:ST.showEn, showRef:ST.showRef,
+    showWM:ST.showWM, textGlow:ST.textGlow, textPos:ST.textPos||0.5,
+  });
+}
+
+export function undoLast(){
+  if(!ST._prev){ toast('Nothing to undo'); return; }
+  const p = JSON.parse(ST._prev);
+  Object.assign(ST, p);
+  setColorHex(ST.bgColor, false);
+  setFont(ST.font);
+  setTC(ST.txColor);
+  document.querySelectorAll('.tpl').forEach(el=>el.classList.toggle('on',el.id==='tpl-'+ST.activeTpl));
+  ['tog-ta','tog-en','tog-ref','tog-wm'].forEach((id,i)=>{
+    const keys=['showTa','showEn','showRef','showWM'];
+    g(id)?.classList.toggle('on', ST[keys[i]]);
+  });
+  g('tog-glow')?.classList.toggle('on', ST.textGlow);
+  if(g('text-pos-sl')) g('text-pos-sl').value = Math.round((ST.textPos||0.5)*100);
+  ST._prev = null;
+  draw();
+  toast('↩ Undone');
+}
+
 export function applyTemplate(t, doToast=true){
+  snapshotST();
   ST.activeTpl=t.id;
   setColorHex(t.bg, false);
   ST.txColor=t.tc||'#fff';
@@ -222,6 +262,8 @@ export function setColorHex(hex, redraw=true){
   if(bi){bi.value=b;g('sl-bv').textContent=b;}
   const cp=g('col-prev');if(cp)cp.style.background=hex;
   const hv=g('hex-val');if(hv)hv.textContent=hex.toUpperCase();
+  const hi=g('hex-inp');if(hi)hi.value=hex.toUpperCase();
+  const cw=g('col-wheel');if(cw)cw.value=hex;
   document.querySelectorAll('.pdot').forEach(el=>{
     const bg=el.style.backgroundColor;
     const elhex='#'+[...new Array(3)].map((_,i)=>parseInt(bg.split(',')[i]?.replace(/\D/g,'')||0).toString(16).padStart(2,'0')).join('');
@@ -451,10 +493,22 @@ export function syncMobile(){
       <div class="vd-ta" id="mvd-ta">${ST.verse?.ta?.substring(0,80)||'Select verse...'}</div>
       <div class="vd-ref" id="mvd-ref">${ST.verse?.tref?'— '+ST.verse.tref:''}</div>
     </div>
-    <div style="display:flex;gap:5px;margin-bottom:14px">
+    <div style="display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap">
       <button class="bgmode-btn" onclick="prevVerse()">← Prev</button>
       <button class="bgmode-btn on" onclick="useVOTD()">⭐ VOTD</button>
       <button class="bgmode-btn" onclick="nextVerse()">Next →</button>
+      <button class="bgmode-btn" onclick="shuffleVerse()" title="Random verse">🔀</button>
+    </div>
+
+    <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Custom Verse</p>
+    <textarea id="custom-ta" placeholder="Tamil verse text..." rows="2"
+      style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;font-family:var(--tamil);resize:none;margin-bottom:5px;outline:none"></textarea>
+    <input id="custom-en" type="text" placeholder="English verse (optional)..."
+      style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;margin-bottom:5px;outline:none">
+    <div style="display:flex;gap:5px;margin-bottom:14px">
+      <input id="custom-ref" type="text" placeholder="Reference (e.g. John 3:16)"
+        style="flex:1;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;outline:none">
+      <button class="bgmode-btn on" onclick="useCustomVerse()" style="white-space:nowrap">✅ Use</button>
     </div>
 
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">📖 Bible Index — all 66 books</p>
@@ -481,8 +535,11 @@ export function syncMobile(){
     </div>
 
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin:14px 0 8px;padding-top:10px;border-top:1px solid var(--bd)">⭐ Quick Verses</p>
-    <div>
-      ${QUICK_VERSES.map((v,i)=>`
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+      ${VERSE_TAGS.map(t=>`<button class="bgmode-btn m-vtag${(ST._verseTag||'All')===t?' on':''}" data-tag="${t}" onclick="setVerseTag('${t}',this)">${t}</button>`).join('')}
+    </div>
+    <div id="m-verse-list">
+      ${QUICK_VERSES.filter(v=>(ST._verseTag||'All')==='All'||(v.tags&&v.tags.includes(ST._verseTag||'All'))).map((v,i)=>`
         <div class="vi" onclick="selVerse(${i})">
           <div class="vi-ref">${v.tref} · ${v.ref}</div>
           <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
@@ -693,11 +750,68 @@ export function buildQuickTpl(){
     </div>`).join('');
 }
 
+export function buildVerseTags(){
+  const el = g('verse-tag-row');
+  if(!el) return;
+  el.innerHTML = VERSE_TAGS.map(t=>`
+    <button class="bgmode-btn vtag${(ST._verseTag||'All')===t?' on':''}"
+      onclick="setVerseTag('${t}',this)">${t}</button>`).join('');
+}
+
 export function buildQuickVerses(){
   const el = g('quick-verses');
   if(!el) return;
-  el.innerHTML = QUICK_VERSES.map((v,i)=>`
+  const activeTag = ST._verseTag||'All';
+  const filtered = QUICK_VERSES.map((v,i)=>({v,i})).filter(({v})=>
+    activeTag==='All' || (v.tags&&v.tags.includes(activeTag))
+  );
+  el.innerHTML = filtered.map(({v,i})=>`
     <div class="vi${ST.verseIdx===i?' on':''}" onclick="selVerse(${i})">
+      <div class="vi-ref">${v.tref} · ${v.ref}</div>
+      <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
+    </div>`).join('');
+}
+
+export function setVerseTag(tag, el){
+  ST._verseTag = tag;
+  document.querySelectorAll('.vtag').forEach(b=>b.classList.remove('on'));
+  if(el) el.classList.add('on');
+  buildQuickVerses();
+  // sync mobile
+  document.querySelectorAll('.m-vtag').forEach(b=>b.classList.toggle('on', b.dataset.tag===tag));
+  rebuildMobileVerseList();
+}
+
+export function shuffleVerse(){
+  const tag = ST._verseTag||'All';
+  const pool = tag==='All' ? QUICK_VERSES : QUICK_VERSES.filter(v=>v.tags&&v.tags.includes(tag));
+  if(!pool.length) return;
+  const pick = Math.floor(Math.random()*pool.length);
+  const idx  = QUICK_VERSES.indexOf(pool[pick]);
+  selVerse(idx>=0?idx:0);
+  toast('🔀 Random verse!');
+}
+
+export function useCustomVerse(){
+  const ta  = (g('custom-ta')?.value||'').trim();
+  const en  = (g('custom-en')?.value||'').trim();
+  const ref = (g('custom-ref')?.value||'').trim();
+  if(!ta && !en){ toast('⚠ Enter Tamil or English text'); return; }
+  const v = {ta, tref:ref, en, ref, tags:[]};
+  QUICK_VERSES.unshift(v);
+  selVerse(0);
+  toast('✅ Custom verse applied!');
+}
+
+function rebuildMobileVerseList(){
+  const el = g('m-verse-list');
+  if(!el) return;
+  const tag = ST._verseTag||'All';
+  const filtered = QUICK_VERSES.map((v,i)=>({v,i})).filter(({v})=>
+    tag==='All' || (v.tags&&v.tags.includes(tag))
+  );
+  el.innerHTML = filtered.map(({v,i})=>`
+    <div class="vi" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
       <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
     </div>`).join('');
@@ -983,7 +1097,7 @@ export function loadGal(idx){
   img.crossOrigin='anonymous';
   img.onload = ()=>{ ST.galImg = img; debounceDraw(); };
   img.onerror = ()=>toast('⚠ Could not load gallery image');
-  img.src = 'https://picsum.photos/seed/'+galItem.seed+'/1080/1920';
+  img.src = galItem.url || ('https://picsum.photos/seed/'+galItem.seed+'/1080/1920');
   setBG('gallery');
   toast('🌄 Loading '+galItem.name+'…');
   // Update gallery item selection in-place for BOTH desktop and mobile grids
@@ -1003,10 +1117,13 @@ export function buildGallery(){
   el.innerHTML = GALLERY.map((c,i)=>`
     <div onclick="loadGal(${i})"
          style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};
-                border-radius:6px;padding:8px 4px;cursor:pointer;text-align:center;
-                background:${ST.galIdx===i?'var(--gdm)':'transparent'};transition:all .15s">
-      <div style="font-size:18px">${c.label}</div>
-      <div style="font-size:9px;color:var(--tx3)">${c.name}</div>
+                border-radius:6px;cursor:pointer;overflow:hidden;
+                background:var(--bg3);transition:all .15s;aspect-ratio:9/16;position:relative">
+      <img src="${c.url}" loading="lazy" alt="${c.name}"
+        style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85">
+      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);
+                  font-size:8px;color:#fff;text-align:center;padding:3px 2px;font-weight:500">${c.name}</div>
+      ${ST.galIdx===i?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
     </div>`).join('');
 }
 
@@ -1044,6 +1161,14 @@ export function updateGradPreview(){
   const grad = 'linear-gradient('+( ST.gradAngle||135)+'deg,'+ST.grad1+','+ST.grad2+')';
   const pr = g('grad-preview'); if(pr) pr.style.background=grad;
   const mpr = g('m-grad-preview'); if(mpr) mpr.style.background=grad;
+}
+
+export function onHexInput(val){
+  val = val.trim().replace(/[^0-9a-fA-F#]/g,'');
+  if(!val.startsWith('#')) val='#'+val;
+  if(/^#[0-9a-fA-F]{6}$/.test(val)){
+    setColorHex(val);
+  }
 }
 
 export function onRGB(){

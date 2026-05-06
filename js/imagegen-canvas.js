@@ -268,8 +268,28 @@ window.draw = function(){
   // Max Tamil size: never more than 10% of box height or 5.8% of width
   const taFsCap=Math.min(Math.round(BH*0.10), Math.round(W*0.058));
   const enFsCap=Math.min(Math.round(BH*0.07), Math.round(W*0.038));
-  const taFs=Math.min(rawTaFs, taFsCap);
-  const enFs=Math.min(rawEnFs, enFsCap);
+  let taFs=Math.min(rawTaFs, taFsCap);
+  let enFs=Math.min(rawEnFs, enFsCap);
+  // Auto-fit: shrink Tamil font until all lines fit within 88% of canvas width
+  if(ST.autoFit!==false && v.ta){
+    const testFont = (fs)=>`${isBold?'700 ':isItalic?'italic ':''}${fs}px ${fam}`;
+    const maxFitW = Math.round(BW*0.88);
+    let fitFs = taFs;
+    while(fitFs > 18){
+      ctx.font = testFont(fitFs);
+      const words = ('"'+(v.ta||'')+'"').split(' ');
+      let maxLineW = 0, line = '';
+      for(const w of words){
+        const t = line?line+' '+w:w;
+        if(ctx.measureText(t).width > maxFitW && line){ maxLineW=Math.max(maxLineW,ctx.measureText(line).width); line=w; }
+        else line=t;
+      }
+      maxLineW = Math.max(maxLineW, ctx.measureText(line).width);
+      if(maxLineW <= maxFitW) break;
+      fitFs = Math.round(fitFs*0.93);
+    }
+    taFs = Math.min(taFs, fitFs);
+  }
   const taLh=taFs*1.72;
   const enLh=enFs*1.62;
   const tc=ST.txColor||'#fff';
@@ -303,8 +323,11 @@ window.draw = function(){
   const enLhS = enLh * scale;
   totalH = totalH * scale;
 
-  // Vertical center inside box
-  let cy=BTOP+(BH-totalH)/2+taFs*scale;
+  // Vertical position inside box — textPos: 0=top 0.5=centre 1=bottom
+  const tp = ST.textPos!==undefined ? ST.textPos : 0.5;
+  const vPad = Math.round(BH*0.04);
+  const availH = BH - vPad*2;
+  let cy = BTOP + vPad + tp*(availH-totalH) + taFs*scale;
 
   // Clip all verse text to box bounds
   ctx.save();

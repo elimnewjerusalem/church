@@ -38,15 +38,18 @@ window.PRESETS=[
 ];
 
 window.GALLERY=[
-  {label:'🌅',name:'Sunrise',   seed:42},
-  {label:'⛰️',name:'Mountains',seed:15},
-  {label:'🌊',name:'Ocean',     seed:30},
-  {label:'✨',name:'Stars',     seed:70},
-  {label:'🌸',name:'Flowers',  seed:55},
-  {label:'🌿',name:'Forest',   seed:82},
-  {label:'☁️',name:'Clouds',   seed:20},
-  {label:'🌾',name:'Fields',   seed:90},
-  {label:'🌙',name:'Moon',     seed:65},
+  {seed:'dawn',    name:'Sunrise',  label:'🌅', url:'https://picsum.photos/seed/dawn/1080/1920'},
+  {seed:'ocean1',  name:'Ocean',    label:'🌊', url:'https://picsum.photos/seed/ocean1/1080/1920'},
+  {seed:'forest3', name:'Forest',   label:'🌲', url:'https://picsum.photos/seed/forest3/1080/1920'},
+  {seed:'mount2',  name:'Mountain', label:'⛰', url:'https://picsum.photos/seed/mount2/1080/1920'},
+  {seed:'sky77',   name:'Sky',      label:'☁', url:'https://picsum.photos/seed/sky77/1080/1920'},
+  {seed:'wheat1',  name:'Harvest',  label:'🌾', url:'https://picsum.photos/seed/wheat1/1080/1920'},
+  {seed:'river4',  name:'River',    label:'🏞', url:'https://picsum.photos/seed/river4/1080/1920'},
+  {seed:'flower9', name:'Flowers',  label:'🌸', url:'https://picsum.photos/seed/flower9/1080/1920'},
+  {seed:'desert2', name:'Desert',   label:'🏜', url:'https://picsum.photos/seed/desert2/1080/1920'},
+  {seed:'night3',  name:'Night',    label:'🌙', url:'https://picsum.photos/seed/night3/1080/1920'},
+  {seed:'dove1',   name:'Dove',     label:'🕊', url:'https://picsum.photos/seed/dove1/1080/1920'},
+  {seed:'cross7',  name:'Light',    label:'✨', url:'https://picsum.photos/seed/cross7/1080/1920'},
 ];
 
 export const BOOKS=[
@@ -187,22 +190,29 @@ window.BOOKS=[
   {id:'revelation',n:66,ta:'வெளிப்படுத்தல்',en:'Revelation',ch:22,t:'NT'},
 ];
 
+window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
+
 window.QUICK_VERSES=[
-  {ta:'தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார்.',tref:'யோவான் 3:16',en:'For God so loved the world.',ref:'John 3:16'},
-  {ta:'என்னை பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்.',tref:'பிலிப்பியர் 4:13',en:'I can do all things through Christ who strengthens me.',ref:'Philippians 4:13'},
-  {ta:'கர்த்தர் என் மேய்ப்பர்; எனக்கு குறைவுண்டாவதில்லை.',tref:'சங்கீதம் 23:1',en:'The Lord is my shepherd; I shall not want.',ref:'Psalm 23:1'},
-  {ta:'நீ என் கண்களுக்கு அருமையானவன்; நான் உன்னை நேசிக்கிறேன்.',tref:'ஏசாயா 43:4',en:'You are precious in my sight, and I love you.',ref:'Isaiah 43:4'},
-  {ta:'கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்.',tref:'ஏசாயா 40:31',en:'They who wait for the Lord shall renew their strength.',ref:'Isaiah 40:31'},
-  {ta:'வருத்தப்பட்டு பாரஞ்சுமக்கிறவர்களே, என்னிடத்தில் வாருங்கள்.',tref:'மத்தேயு 11:28',en:'Come to me, all who labour and are heavy laden.',ref:'Matthew 11:28'},
-  {ta:'உன் சம்பூர்ண இருதயத்தோடே கர்த்தரில் நம்பிக்கைவை.',tref:'நீதிமொழிகள் 3:5',en:'Trust in the Lord with all your heart.',ref:'Proverbs 3:5'},
-  {ta:'சமாதானத்தை உங்களுக்கு வைத்துவிடுகிறேன்.',tref:'யோவான் 14:27',en:'Peace I leave with you; my peace I give to you.',ref:'John 14:27'},
-  {ta:'என்னால் நினைக்கப்படுகிற நினைவுகளை நான் அறிவேன்.',tref:'எரேமியா 29:11',en:'For I know the plans I have for you.',ref:'Jeremiah 29:11'},
-  {ta:'திடமனதாயிரு, தைரியமாயிரு; கர்த்தர் உன்னோடிருக்கிறார்.',tref:'யோசுவா 1:9',en:'Be strong and courageous. The Lord your God is with you.',ref:'Joshua 1:9'},
-  {ta:'கர்த்தர் என் வெளிச்சமும் என் இரட்சிப்புமாயிருக்கிறார்.',tref:'சங்கீதம் 27:1',en:'The Lord is my light and my salvation; whom shall I fear?',ref:'Psalm 27:1'},
-  {ta:'என் கிருபை உனக்குப் போதும்.',tref:'2 கொரிந்தியர் 12:9',en:'My grace is sufficient for you.',ref:'2 Corinthians 12:9'},
-  {ta:'தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும்.',tref:'ரோமர் 8:28',en:'For those who love God all things work together for good.',ref:'Romans 8:28'},
-  {ta:'இயேசு கிறிஸ்துவே நேற்றும் இன்றும் என்றும் மாறாதவர்.',tref:'எபிரெயர் 13:8',en:'Jesus Christ is the same yesterday and today and forever.',ref:'Hebrews 13:8'},
-  {ta:'கர்த்தருடைய கிருபைகள் தீர்ந்துபோவதில்லை.',tref:'புலம்பல் 3:22',en:'The steadfast love of the Lord never ceases.',ref:'Lamentations 3:22'},
+  {ta:'தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார்.',tref:'யோவான் 3:16',en:'For God so loved the world.',ref:'John 3:16',tags:['Love','Faith']},
+  {ta:'என்னை பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்.',tref:'பிலிப்பியர் 4:13',en:'I can do all things through Christ who strengthens me.',ref:'Philippians 4:13',tags:['Strength','Faith']},
+  {ta:'கர்த்தர் என் மேய்ப்பர்; எனக்கு குறைவுண்டாவதில்லை.',tref:'சங்கீதம் 23:1',en:'The Lord is my shepherd; I shall not want.',ref:'Psalm 23:1',tags:['Peace','Faith']},
+  {ta:'நீ என் கண்களுக்கு அருமையானவன்; நான் உன்னை நேசிக்கிறேன்.',tref:'ஏசாயா 43:4',en:'You are precious in my sight, and I love you.',ref:'Isaiah 43:4',tags:['Love']},
+  {ta:'கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்.',tref:'ஏசாயா 40:31',en:'They who wait for the Lord shall renew their strength.',ref:'Isaiah 40:31',tags:['Strength','Hope']},
+  {ta:'வருத்தப்பட்டு பாரஞ்சுமக்கிறவர்களே, என்னிடத்தில் வாருங்கள்.',tref:'மத்தேயு 11:28',en:'Come to me, all who labour and are heavy laden.',ref:'Matthew 11:28',tags:['Peace','Healing']},
+  {ta:'உன் சம்பூர்ண இருதயத்தோடே கர்த்தரில் நம்பிக்கைவை.',tref:'நீதிமொழிகள் 3:5',en:'Trust in the Lord with all your heart.',ref:'Proverbs 3:5',tags:['Faith']},
+  {ta:'சமாதானத்தை உங்களுக்கு வைத்துவிடுகிறேன்.',tref:'யோவான் 14:27',en:'Peace I leave with you; my peace I give to you.',ref:'John 14:27',tags:['Peace']},
+  {ta:'என்னால் நினைக்கப்படுகிற நினைவுகளை நான் அறிவேன்.',tref:'எரேமியா 29:11',en:'For I know the plans I have for you.',ref:'Jeremiah 29:11',tags:['Hope','Faith']},
+  {ta:'திடமனதாயிரு, தைரியமாயிரு; கர்த்தர் உன்னோடிருக்கிறார்.',tref:'யோசுவா 1:9',en:'Be strong and courageous. The Lord your God is with you.',ref:'Joshua 1:9',tags:['Strength','Faith']},
+  {ta:'கர்த்தர் என் வெளிச்சமும் என் இரட்சிப்புமாயிருக்கிறார்.',tref:'சங்கீதம் 27:1',en:'The Lord is my light and my salvation; whom shall I fear?',ref:'Psalm 27:1',tags:['Faith','Hope']},
+  {ta:'என் கிருபை உனக்குப் போதும்.',tref:'2 கொரிந்தியர் 12:9',en:'My grace is sufficient for you.',ref:'2 Corinthians 12:9',tags:['Healing','Faith']},
+  {ta:'தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும்.',tref:'ரோமர் 8:28',en:'For those who love God all things work together for good.',ref:'Romans 8:28',tags:['Hope','Faith']},
+  {ta:'இயேசு கிறிஸ்துவே நேற்றும் இன்றும் என்றும் மாறாதவர்.',tref:'எபிரெயர் 13:8',en:'Jesus Christ is the same yesterday and today and forever.',ref:'Hebrews 13:8',tags:['Faith']},
+  {ta:'கர்த்தருடைய கிருபைகள் தீர்ந்துபோவதில்லை.',tref:'புலம்பல் 3:22',en:'The steadfast love of the Lord never ceases.',ref:'Lamentations 3:22',tags:['Love','Hope']},
+  {ta:'உங்கள் சரீரங்களை பரிசுத்தமான ஜீவபலியாக ஒப்புக்கொடுங்கள்.',tref:'ரோமர் 12:1',en:'Present your bodies as a living sacrifice, holy and acceptable to God.',ref:'Romans 12:1',tags:['Faith']},
+  {ta:'கர்த்தருக்கு நன்றி சொல்லுங்கள்; அவர் நல்லவர்.',tref:'சங்கீதம் 107:1',en:'Give thanks to the Lord, for He is good.',ref:'Psalm 107:1',tags:['Faith','Hope']},
+  {ta:'அன்பே தேவன்.',tref:'1 யோவான் 4:8',en:'God is love.',ref:'1 John 4:8',tags:['Love']},
+  {ta:'கர்த்தர் என் கோட்டையும் என் கன்மலையும் என் இரட்சகரும் ஆவார்.',tref:'சங்கீதம் 18:2',en:'The Lord is my rock and my fortress and my deliverer.',ref:'Psalm 18:2',tags:['Strength','Faith']},
+  {ta:'இதோ, நான் உங்களுக்கு ஆரோக்கியத்தையும் சுகத்தையும் கொடுப்பேன்.',tref:'எரேமியா 33:6',en:'I will bring health and healing to them.',ref:'Jeremiah 33:6',tags:['Healing']},
 ];
 
 // ── STATE ─────────────────────────────────────────────────────────
