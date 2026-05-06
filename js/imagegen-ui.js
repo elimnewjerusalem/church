@@ -960,15 +960,32 @@ export function biBackCh(){
 
 export function biUseVerse(bookId, ch, v, enText, enBook){
   const book = BOOKS.find(b=>b.id===bookId);
-  const ref = `${enBook} ${ch}:${v}`;
+  const ref  = `${enBook} ${ch}:${v}`;
   const tref = `${book?.ta||enBook} ${ch}:${v}`;
+  // Show English immediately while Tamil loads
   const verse = {ta:'', tref, en:enText.trim(), ref};
   QUICK_VERSES.unshift(verse);
   ST.verse = verse; ST.verseIdx = 0;
-  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = verse.en;
+  buildQuickVerses();
+  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = enText.trim();
   const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+ref;
   debounceDraw();
-  toast('📖 '+ref+' loaded!');
+  toast('📖 '+ref+' — fetching Tamil…');
+
+  // Fetch Tamil from bolls.life (TAMILBSI)
+  const bkIdx = BOOKS.findIndex(b=>b.id===bookId) + 1;
+  fetch(`https://bolls.life/get-text/TAMILBSI/${bkIdx}/${ch}/${v}/`)
+    .then(r=>r.json())
+    .then(d=>{
+      const taText = d.text || d[0]?.text || '';
+      if(taText){
+        verse.ta = taText.replace(/<[^>]+>/g,'').trim();
+        if(ST.verse===verse){ debounceDraw(); }
+        const vdTa2=g('vd-ta'); if(vdTa2) vdTa2.textContent=verse.ta;
+        toast('✅ '+tref+' loaded with Tamil!');
+      }
+    })
+    .catch(()=>{ /* Tamil unavailable — English already shown */ });
 }
 
 // ── BIBLE INDEX (mobile, mbi*) ─────────────────────────────────────
@@ -1112,19 +1129,49 @@ export function loadGal(idx){
 }
 
 export function buildGallery(){
-  const el = g('gal-grid');
+  const wrap = g('gal-wrap');
+  const el   = g('gal-grid');
   if(!el) return;
-  el.innerHTML = GALLERY.map((c,i)=>`
+
+  // Build group tabs if not yet built
+  if(wrap && !wrap.querySelector('.gal-group-tabs')){
+    const groups = window.GALLERY_GROUPS||['All'];
+    const tabsEl = document.createElement('div');
+    tabsEl.className = 'gal-group-tabs';
+    tabsEl.style.cssText = 'display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px';
+    tabsEl.innerHTML = groups.map(g=>`
+      <button class="bgmode-btn gal-gtab${(ST._galGroup||'All')===g?' on':''}"
+        data-group="${g}" onclick="setGalGroup('${g}')">${g==='Faith'?'✝ '+g:'🌿 '+g}</button>`
+    ).join('');
+    wrap.insertBefore(tabsEl, el);
+  } else if(wrap) {
+    // Sync tab active state
+    wrap.querySelectorAll('.gal-gtab').forEach(b=>
+      b.classList.toggle('on', b.dataset.group===(ST._galGroup||'All'))
+    );
+  }
+
+  const activeGroup = ST._galGroup||'All';
+  const filtered = GALLERY.map((c,i)=>({c,i}))
+    .filter(({c})=> activeGroup==='All' || c.group===activeGroup);
+
+  el.innerHTML = filtered.map(({c,i})=>`
     <div onclick="loadGal(${i})"
          style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};
                 border-radius:6px;cursor:pointer;overflow:hidden;
                 background:var(--bg3);transition:all .15s;aspect-ratio:9/16;position:relative">
       <img src="${c.url}" loading="lazy" alt="${c.name}"
-        style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85">
-      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);
-                  font-size:8px;color:#fff;text-align:center;padding:3px 2px;font-weight:500">${c.name}</div>
+        style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85"
+        onerror="this.parentElement.style.opacity='.4'">
+      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);
+                  font-size:8px;color:#fff;text-align:center;padding:3px 2px;font-weight:500">${c.label} ${c.name}</div>
       ${ST.galIdx===i?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
     </div>`).join('');
+}
+
+export function setGalGroup(group){
+  ST._galGroup = group;
+  buildGallery();
 }
 
 export function buildGradPresets(){

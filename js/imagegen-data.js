@@ -38,19 +38,29 @@ window.PRESETS=[
 ];
 
 window.GALLERY=[
-  {seed:'dawn',    name:'Sunrise',  label:'🌅', url:'https://picsum.photos/seed/dawn/1080/1920'},
-  {seed:'ocean1',  name:'Ocean',    label:'🌊', url:'https://picsum.photos/seed/ocean1/1080/1920'},
-  {seed:'forest3', name:'Forest',   label:'🌲', url:'https://picsum.photos/seed/forest3/1080/1920'},
-  {seed:'mount2',  name:'Mountain', label:'⛰', url:'https://picsum.photos/seed/mount2/1080/1920'},
-  {seed:'sky77',   name:'Sky',      label:'☁', url:'https://picsum.photos/seed/sky77/1080/1920'},
-  {seed:'wheat1',  name:'Harvest',  label:'🌾', url:'https://picsum.photos/seed/wheat1/1080/1920'},
-  {seed:'river4',  name:'River',    label:'🏞', url:'https://picsum.photos/seed/river4/1080/1920'},
-  {seed:'flower9', name:'Flowers',  label:'🌸', url:'https://picsum.photos/seed/flower9/1080/1920'},
-  {seed:'desert2', name:'Desert',   label:'🏜', url:'https://picsum.photos/seed/desert2/1080/1920'},
-  {seed:'night3',  name:'Night',    label:'🌙', url:'https://picsum.photos/seed/night3/1080/1920'},
-  {seed:'dove1',   name:'Dove',     label:'🕊', url:'https://picsum.photos/seed/dove1/1080/1920'},
-  {seed:'cross7',  name:'Light',    label:'✨', url:'https://picsum.photos/seed/cross7/1080/1920'},
+  /* ── Nature ── */
+  {seed:'dawn',    name:'Sunrise',  label:'🌅', url:'https://picsum.photos/seed/dawn/1080/1920',    group:'Nature'},
+  {seed:'ocean1',  name:'Ocean',    label:'🌊', url:'https://picsum.photos/seed/ocean1/1080/1920',  group:'Nature'},
+  {seed:'forest3', name:'Forest',   label:'🌲', url:'https://picsum.photos/seed/forest3/1080/1920', group:'Nature'},
+  {seed:'mount2',  name:'Mountain', label:'⛰', url:'https://picsum.photos/seed/mount2/1080/1920',  group:'Nature'},
+  {seed:'sky77',   name:'Sky',      label:'☁', url:'https://picsum.photos/seed/sky77/1080/1920',   group:'Nature'},
+  {seed:'wheat1',  name:'Harvest',  label:'🌾', url:'https://picsum.photos/seed/wheat1/1080/1920',  group:'Nature'},
+  {seed:'river4',  name:'River',    label:'🏞', url:'https://picsum.photos/seed/river4/1080/1920',  group:'Nature'},
+  {seed:'flower9', name:'Flowers',  label:'🌸', url:'https://picsum.photos/seed/flower9/1080/1920', group:'Nature'},
+  {seed:'desert2', name:'Desert',   label:'🏜', url:'https://picsum.photos/seed/desert2/1080/1920', group:'Nature'},
+  {seed:'night3',  name:'Night Sky',label:'🌙', url:'https://picsum.photos/seed/night3/1080/1920',  group:'Nature'},
+  {seed:'dove1',   name:'Dove',     label:'🕊', url:'https://picsum.photos/seed/dove1/1080/1920',   group:'Nature'},
+  {seed:'light9',  name:'Sunlight', label:'✨', url:'https://picsum.photos/seed/light9/1080/1920',  group:'Nature'},
+  /* ── Bible / Faith ── */
+  {seed:'bible1',  name:'Open Bible',   label:'📖', url:'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'cross1',  name:'Cross',        label:'✝',  url:'https://images.unsplash.com/photo-1531913964703-f7a1c2a1b8c9?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'pray1',   name:'Prayer',       label:'🙏', url:'https://images.unsplash.com/photo-1457269449834-928af64c684d?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'church1', name:'Church',       label:'⛪', url:'https://images.unsplash.com/photo-1520803941685-7f2c71cf1a28?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'candle1', name:'Candle',       label:'🕯', url:'https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'dove2',   name:'Holy Spirit',  label:'🌟', url:'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1080&h=1920&fit=crop', group:'Faith'},
 ];
+
+window.GALLERY_GROUPS=['All','Nature','Faith'];
 
 export const BOOKS=[
   {id:'genesis',n:1,ta:'ஆதியாகமம்',en:'Genesis',ch:50,t:'OT'},

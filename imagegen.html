@@ -160,8 +160,10 @@
       <!-- Gallery -->
       <div id="bg-gallery" style="display:none">
         <div class="lp-sec">
-          <div class="lp-lbl">Nature Photos</div>
-          <div class="gal-grid" id="gal-grid"></div>
+          <div class="lp-lbl">Gallery <span style="font-size:9px;color:var(--tx3);font-weight:400;margin-left:4px">Nature · Faith ✝</span></div>
+          <div id="gal-wrap">
+            <div class="gal-grid" id="gal-grid"></div>
+          </div>
           <div class="ov-row">
             <span class="ov-lbl">Overlay</span>
             <input type="range" class="ov-sl" id="gal-ov" min="0" max="80" value="50" oninput="g('gal-ov-v').textContent=this.value+'%';draw()">
