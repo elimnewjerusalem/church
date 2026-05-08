@@ -1,5 +1,5 @@
 // ── EXPORT ───────────────────────────────────────────────────────
-window.dlIG = function(fmt){
+export function dlIG(fmt){
   const cv=g('igcv');if(!cv)return;
   const mime=fmt==='png'?'image/png':fmt==='webp'?'image/webp':'image/jpeg';
   const a=document.createElement('a');
@@ -7,7 +7,7 @@ window.dlIG = function(fmt){
   a.href=cv.toDataURL(mime,0.93);a.click();
   toast('↓ '+fmt.toUpperCase()+' downloaded!');
 }
-window.copyImg = function(){
+export function copyImg(){
   const cv=g('igcv');if(!cv)return;
   cv.toBlob(async blob=>{
     try{
@@ -16,10 +16,10 @@ window.copyImg = function(){
     }catch{dlIG('png');toast('\uD83D\uDCCB Saved!');}
   },'image/png');
 }
-window.shareWA = function(){shareFile();};
-window.shareApp = function(app){shareFile();};
-window.shareNative = function(){shareFile();};
-window.shareFile = function(){
+export function shareWA(){shareFile();}
+export function shareApp(app){shareFile();}
+export function shareNative(){shareFile();}
+export function shareFile(){
   const cv=g('igcv');if(!cv)return;
   cv.toBlob(blob=>{
     const f=new File([blob],'enjc-verse.jpg',{type:'image/jpeg'});

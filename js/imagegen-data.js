@@ -131,74 +131,7 @@ export const BOOKS=[
   {id:'revelation',n:66,ta:'வெளிப்படுத்தல்',en:'Revelation',ch:22,t:'NT'},
 ];
 
-window.BOOKS=[
-  {id:'genesis',n:1,ta:'ஆதியாகமம்',en:'Genesis',ch:50,t:'OT'},
-  {id:'exodus',n:2,ta:'யாத்திராகமம்',en:'Exodus',ch:40,t:'OT'},
-  {id:'leviticus',n:3,ta:'லேவியராகமம்',en:'Leviticus',ch:27,t:'OT'},
-  {id:'numbers',n:4,ta:'எண்ணாகமம்',en:'Numbers',ch:36,t:'OT'},
-  {id:'deuteronomy',n:5,ta:'உபாகமம்',en:'Deuteronomy',ch:34,t:'OT'},
-  {id:'joshua',n:6,ta:'யோசுவா',en:'Joshua',ch:24,t:'OT'},
-  {id:'judges',n:7,ta:'நியாயாதிபதிகள்',en:'Judges',ch:21,t:'OT'},
-  {id:'ruth',n:8,ta:'ரூத்',en:'Ruth',ch:4,t:'OT'},
-  {id:'1samuel',n:9,ta:'1 சாமுவேல்',en:'1 Samuel',ch:31,t:'OT'},
-  {id:'2samuel',n:10,ta:'2 சாமுவேல்',en:'2 Samuel',ch:24,t:'OT'},
-  {id:'1kings',n:11,ta:'1 இராஜாக்கள்',en:'1 Kings',ch:22,t:'OT'},
-  {id:'2kings',n:12,ta:'2 இராஜாக்கள்',en:'2 Kings',ch:25,t:'OT'},
-  {id:'1chronicles',n:13,ta:'1 நாளாகமம்',en:'1 Chronicles',ch:29,t:'OT'},
-  {id:'2chronicles',n:14,ta:'2 நாளாகமம்',en:'2 Chronicles',ch:36,t:'OT'},
-  {id:'ezra',n:15,ta:'எஸ்றா',en:'Ezra',ch:10,t:'OT'},
-  {id:'nehemiah',n:16,ta:'நெகேமியா',en:'Nehemiah',ch:13,t:'OT'},
-  {id:'esther',n:17,ta:'எஸ்தர்',en:'Esther',ch:10,t:'OT'},
-  {id:'job',n:18,ta:'யோபு',en:'Job',ch:42,t:'OT'},
-  {id:'psalms',n:19,ta:'சங்கீதம்',en:'Psalms',ch:150,t:'OT'},
-  {id:'proverbs',n:20,ta:'நீதிமொழிகள்',en:'Proverbs',ch:31,t:'OT'},
-  {id:'ecclesiastes',n:21,ta:'பிரசங்கி',en:'Ecclesiastes',ch:12,t:'OT'},
-  {id:'songofsolomon',n:22,ta:'உன்னதப்பாட்டு',en:'Song of Solomon',ch:8,t:'OT'},
-  {id:'isaiah',n:23,ta:'ஏசாயா',en:'Isaiah',ch:66,t:'OT'},
-  {id:'jeremiah',n:24,ta:'எரேமியா',en:'Jeremiah',ch:52,t:'OT'},
-  {id:'lamentations',n:25,ta:'புலம்பல்',en:'Lamentations',ch:5,t:'OT'},
-  {id:'ezekiel',n:26,ta:'எசேக்கியேல்',en:'Ezekiel',ch:48,t:'OT'},
-  {id:'daniel',n:27,ta:'தானியேல்',en:'Daniel',ch:12,t:'OT'},
-  {id:'hosea',n:28,ta:'ஓசியா',en:'Hosea',ch:14,t:'OT'},
-  {id:'joel',n:29,ta:'யோவேல்',en:'Joel',ch:3,t:'OT'},
-  {id:'amos',n:30,ta:'ஆமோஸ்',en:'Amos',ch:9,t:'OT'},
-  {id:'obadiah',n:31,ta:'ஒபதியா',en:'Obadiah',ch:1,t:'OT'},
-  {id:'jonah',n:32,ta:'யோனா',en:'Jonah',ch:4,t:'OT'},
-  {id:'micah',n:33,ta:'மீகா',en:'Micah',ch:7,t:'OT'},
-  {id:'nahum',n:34,ta:'நாகூம்',en:'Nahum',ch:3,t:'OT'},
-  {id:'habakkuk',n:35,ta:'ஆபகூக்',en:'Habakkuk',ch:3,t:'OT'},
-  {id:'zephaniah',n:36,ta:'செப்பனியா',en:'Zephaniah',ch:3,t:'OT'},
-  {id:'haggai',n:37,ta:'ஆகாய்',en:'Haggai',ch:2,t:'OT'},
-  {id:'zechariah',n:38,ta:'சகரியா',en:'Zechariah',ch:14,t:'OT'},
-  {id:'malachi',n:39,ta:'மல்கியா',en:'Malachi',ch:4,t:'OT'},
-  {id:'matthew',n:40,ta:'மத்தேயு',en:'Matthew',ch:28,t:'NT'},
-  {id:'mark',n:41,ta:'மாற்கு',en:'Mark',ch:16,t:'NT'},
-  {id:'luke',n:42,ta:'லூக்கா',en:'Luke',ch:24,t:'NT'},
-  {id:'john',n:43,ta:'யோவான்',en:'John',ch:21,t:'NT'},
-  {id:'acts',n:44,ta:'அப்போஸ்தலர்',en:'Acts',ch:28,t:'NT'},
-  {id:'romans',n:45,ta:'ரோமர்',en:'Romans',ch:16,t:'NT'},
-  {id:'1corinthians',n:46,ta:'1 கொரிந்தியர்',en:'1 Corinthians',ch:16,t:'NT'},
-  {id:'2corinthians',n:47,ta:'2 கொரிந்தியர்',en:'2 Corinthians',ch:13,t:'NT'},
-  {id:'galatians',n:48,ta:'கலாத்தியர்',en:'Galatians',ch:6,t:'NT'},
-  {id:'ephesians',n:49,ta:'எபேசியர்',en:'Ephesians',ch:6,t:'NT'},
-  {id:'philippians',n:50,ta:'பிலிப்பியர்',en:'Philippians',ch:4,t:'NT'},
-  {id:'colossians',n:51,ta:'கொலோசெயர்',en:'Colossians',ch:4,t:'NT'},
-  {id:'1thessalonians',n:52,ta:'1 தெசலோனிக்கேயர்',en:'1 Thessalonians',ch:5,t:'NT'},
-  {id:'2thessalonians',n:53,ta:'2 தெசலோனிக்கேயர்',en:'2 Thessalonians',ch:3,t:'NT'},
-  {id:'1timothy',n:54,ta:'1 தீமோத்தேயு',en:'1 Timothy',ch:6,t:'NT'},
-  {id:'2timothy',n:55,ta:'2 தீமோத்தேயு',en:'2 Timothy',ch:4,t:'NT'},
-  {id:'titus',n:56,ta:'தீத்து',en:'Titus',ch:3,t:'NT'},
-  {id:'philemon',n:57,ta:'பிலேமோன்',en:'Philemon',ch:1,t:'NT'},
-  {id:'hebrews',n:58,ta:'எபிரெயர்',en:'Hebrews',ch:13,t:'NT'},
-  {id:'james',n:59,ta:'யாக்கோபு',en:'James',ch:5,t:'NT'},
-  {id:'1peter',n:60,ta:'1 பேதுரு',en:'1 Peter',ch:5,t:'NT'},
-  {id:'2peter',n:61,ta:'2 பேதுரு',en:'2 Peter',ch:3,t:'NT'},
-  {id:'1john',n:62,ta:'1 யோவான்',en:'1 John',ch:5,t:'NT'},
-  {id:'2john',n:63,ta:'2 யோவான்',en:'2 John',ch:1,t:'NT'},
-  {id:'3john',n:64,ta:'3 யோவான்',en:'3 John',ch:1,t:'NT'},
-  {id:'jude',n:65,ta:'யூதா',en:'Jude',ch:1,t:'NT'},
-  {id:'revelation',n:66,ta:'வெளிப்படுத்தல்',en:'Revelation',ch:22,t:'NT'},
-];
+// BOOKS exported via ES module (imagegen-main.js Object.assign puts it on window)
 
 window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
 
@@ -237,6 +170,8 @@ window.ST={
   gradMode:false, grad1:'#1a0a3a', grad2:'#0a1a3a', gradAngle:135,
   // Safe zone
   safeZone:false,
+  // Text layout
+  textPos:0.5, autoFit:true,
 };
 window.BI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
 
@@ -244,7 +179,9 @@ window.BI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
 window.g=function(id){return document.getElementById(id);}
 window._tt;
 window.toast=function(msg,dur=2500){
-  const el=window.g('toast');el.textContent=msg;el.classList.add('show');
+  const el=window.g('toast');
+  if(!el) return; // guard: DOM not ready
+  el.textContent=msg;el.classList.add('show');
   clearTimeout(window._tt);window._tt=setTimeout(()=>el.classList.remove('show'),dur);
 }
 

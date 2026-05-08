@@ -54,7 +54,9 @@ export function initStudio(){
   draw();
   syncMobile();
   // Auto-save on any draw
-  setInterval(saveDesign, 3000);
+  // B17: guard against multiple intervals if initStudio() is called twice
+  if(window._saveTimer) clearInterval(window._saveTimer);
+  window._saveTimer = setInterval(saveDesign, 3000);
 }
 
 
@@ -127,10 +129,15 @@ export function loadSavedDesign(){
       ST.activeTpl=s.activeTpl;
       document.querySelectorAll('.tpl').forEach(el=>el.classList.toggle('on',el.id==='tpl-'+s.activeTpl));
     }
-    // Restore verse
-    if(s.verseIdx!==undefined&&QUICK_VERSES[s.verseIdx]){
-      ST.verseIdx=s.verseIdx;
-      ST.verse=QUICK_VERSES[s.verseIdx];
+    // B14: Restore verse by reference string (index is stale after unshift)
+    if(s.verseRef){
+      const found = QUICK_VERSES.find(v=>(v.tref||'')+'|'+(v.ref||'')===s.verseRef);
+      if(found){ ST.verse=found; ST.verseIdx=QUICK_VERSES.indexOf(found); }
+      else if(s.verseIdx!==undefined&&QUICK_VERSES[s.verseIdx]){
+        ST.verseIdx=s.verseIdx; ST.verse=QUICK_VERSES[s.verseIdx];
+      }
+    } else if(s.verseIdx!==undefined&&QUICK_VERSES[s.verseIdx]){
+      ST.verseIdx=s.verseIdx; ST.verse=QUICK_VERSES[s.verseIdx];
     }
     toast('🔄 Last design restored',1500);
   }catch(e){ applyTemplate(TEMPLATES[0], false); }
@@ -194,6 +201,7 @@ export function undoLast(){
   const p = JSON.parse(ST._prev);
   Object.assign(ST, p);
   setColorHex(ST.bgColor, false);
+  setBG(ST.bgMode, false); // B09: restore correct BG panel + mode
   setFont(ST.font);
   setTC(ST.txColor);
   document.querySelectorAll('.tpl').forEach(el=>el.classList.toggle('on',el.id==='tpl-'+ST.activeTpl));
@@ -446,7 +454,7 @@ export function syncMobile(){
       </div>
       <div class="ov-row" style="margin-top:10px">
         <span class="ov-lbl">Overlay</span>
-        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';draw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';debounceDraw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
         <span class="ov-val" id="m-gal-ov-v">${parseInt(g('gal-ov')?.value||50)}%</span>
       </div>
     </div>`;
@@ -501,23 +509,23 @@ export function syncMobile(){
     </div>
 
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Custom Verse</p>
-    <textarea id="custom-ta" placeholder="Tamil verse text..." rows="2"
+    <textarea id="m-custom-ta" placeholder="Tamil verse text..." rows="2"
       style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;font-family:var(--tamil);resize:none;margin-bottom:5px;outline:none"></textarea>
-    <input id="custom-en" type="text" placeholder="English verse (optional)..."
+    <input id="m-custom-en" type="text" placeholder="English verse (optional)..."
       style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;margin-bottom:5px;outline:none">
     <div style="display:flex;gap:5px;margin-bottom:14px">
-      <input id="custom-ref" type="text" placeholder="Reference (e.g. John 3:16)"
+      <input id="m-custom-ref" type="text" placeholder="Reference (e.g. John 3:16)"
         style="flex:1;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;outline:none">
-      <button class="bgmode-btn on" onclick="useCustomVerse()" style="white-space:nowrap">✅ Use</button>
+      <button class="bgmode-btn on" onclick="mUseCustomVerse()" style="white-space:nowrap">✅ Use</button>
     </div>
 
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">📖 Bible Index — all 66 books</p>
     <input class="inp" id="mbi-search" type="search" placeholder="🔍 Book search — Genesis, யோவான்..."
       oninput="mbiSearch(this.value)" style="margin-bottom:8px" autocomplete="off">
     <div style="display:flex;gap:4px;margin-bottom:8px">
-      <button class="bgmode-btn on" id="mbi-all" onclick="mbiFilter('all')">All 66</button>
-      <button class="bgmode-btn" id="mbi-ot"  onclick="mbiFilter('OT')">OT 39</button>
-      <button class="bgmode-btn" id="mbi-nt"  onclick="mbiFilter('NT')">NT 27</button>
+      <button class="bgmode-btn${(BI._filter||'all')==='all'?' on':''}" id="mbi-all" onclick="mbiFilter('all')">All 66</button>
+      <button class="bgmode-btn${BI._filter==='OT'?' on':''}" id="mbi-ot"  onclick="mbiFilter('OT')">OT 39</button>
+      <button class="bgmode-btn${BI._filter==='NT'?' on':''}" id="mbi-nt"  onclick="mbiFilter('NT')">NT 27</button>
     </div>
     <div id="mbi-books" style="max-height:220px;overflow-y:auto;margin-bottom:10px"></div>
     <div id="mbi-ch-area" style="display:none;margin-bottom:10px">
@@ -599,11 +607,14 @@ export function setBG(mode, redraw=true){
   ST.bgMode = mode;
   // Update ALL bgmode-btn buttons (desktop + mobile)
   document.querySelectorAll('.bgmode-btn').forEach(btn=>{
-    const t = btn.textContent;
-    const btnMode = t.includes('Colour') ? 'solid' :
-                    t.includes('Gradient') ? 'gradient' :
-                    t.includes('Photo') ? 'photo' :
-                    t.includes('Gallery') ? 'gallery' : null;
+    // B11: prefer data-mode attribute; fallback to textContent parsing
+    const btnMode = btn.dataset.mode || (()=>{
+      const t = btn.textContent;
+      return t.includes('Colour') ? 'solid' :
+             t.includes('Gradient') ? 'gradient' :
+             t.includes('Photo') ? 'photo' :
+             t.includes('Gallery') ? 'gallery' : null;
+    })();
     if(btnMode) btn.classList.toggle('on', btnMode === mode);
   });
   // Show/hide desktop sections
@@ -710,7 +721,7 @@ export function syncMobileBG(){
       </div>
       <div class="ov-row" style="margin-top:10px">
         <span class="ov-lbl">Overlay</span>
-        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';draw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';debounceDraw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
         <span class="ov-val" id="m-gal-ov-v">${parseInt(g('gal-ov')?.value||50)}%</span>
       </div>
     </div>`;
@@ -766,7 +777,7 @@ export function buildQuickVerses(){
     activeTag==='All' || (v.tags&&v.tags.includes(activeTag))
   );
   el.innerHTML = filtered.map(({v,i})=>`
-    <div class="vi${ST.verseIdx===i?' on':''}" onclick="selVerse(${i})">
+    <div class="vi${ST.verseIdx===i?' on':''}" data-vidx="${i}" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
       <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
     </div>`).join('');
@@ -803,6 +814,18 @@ export function useCustomVerse(){
   toast('✅ Custom verse applied!');
 }
 
+export function mUseCustomVerse(){
+  // Mobile has different IDs to avoid duplicate-ID conflict with desktop
+  const ta  = (g('m-custom-ta')?.value||'').trim();
+  const en  = (g('m-custom-en')?.value||'').trim();
+  const ref = (g('m-custom-ref')?.value||'').trim();
+  if(!ta && !en){ toast('⚠ Enter Tamil or English text'); return; }
+  const v = {ta, tref:ref, en, ref, tags:[]};
+  QUICK_VERSES.unshift(v);
+  selVerse(0);
+  toast('✅ Custom verse applied!');
+}
+
 function rebuildMobileVerseList(){
   const el = g('m-verse-list');
   if(!el) return;
@@ -820,9 +843,13 @@ function rebuildMobileVerseList(){
 export function selVerse(i){
   ST.verseIdx = i;
   ST.verse = QUICK_VERSES[i];
-  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = ST.verse.ta;
+  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = ST.verse.ta||ST.verse.en;
   const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+(ST.verse.tref||ST.verse.ref||'');
-  document.querySelectorAll('.vi').forEach((el,idx)=>el.classList.toggle('on',idx===i));
+  // Use data-vidx for highlight — works correctly even with tag filters active
+  document.querySelectorAll('.vi').forEach(el=>{
+    const vidx = parseInt(el.dataset.vidx);
+    el.classList.toggle('on', vidx===i);
+  });
   debounceDraw();
 }
 
@@ -907,7 +934,7 @@ export function biFilter(f){
 export function biSelectBook(bookId){
   BI.book = BOOKS.find(b=>b.id===bookId);
   if(!BI.book) return;
-  g('bi-books').parentElement.style.display='none';
+  g('bi-books').style.display='none';
   const ca = g('bi-ch-area'); if(ca) ca.style.display='block';
   const ct = g('bi-ch-title'); if(ct) ct.textContent = BI.book.ta+' — '+BI.book.en;
   const cg = g('bi-ch-grid');
@@ -925,7 +952,7 @@ export function biSelectBook(bookId){
 export function biBackBooks(){
   const ca = g('bi-ch-area'); if(ca) ca.style.display='none';
   const va = g('bi-v-area'); if(va) va.style.display='none';
-  const bb = g('bi-books'); if(bb) bb.parentElement.style.display='';
+  const bb = g('bi-books'); if(bb) bb.style.display='';
 }
 
 export function biSelectCh(ch){
@@ -973,7 +1000,7 @@ export function biUseVerse(bookId, ch, v, enText, enBook){
   toast('📖 '+ref+' — fetching Tamil…');
 
   // Fetch Tamil from bolls.life (TAMILBSI)
-  const bkIdx = BOOKS.findIndex(b=>b.id===bookId) + 1;
+  const bkIdx = BOOKS.find(b=>b.id===bookId)?.n || (BOOKS.findIndex(b=>b.id===bookId) + 1); // B15: use .n field
   fetch(`https://bolls.life/get-text/TAMILBSI/${bkIdx}/${ch}/${v}/`)
     .then(r=>r.json())
     .then(d=>{

@@ -273,7 +273,7 @@ window.draw = function(){
   // Auto-fit: shrink Tamil font until all lines fit within 88% of canvas width
   if(ST.autoFit!==false && v.ta){
     const testFont = (fs)=>`${isBold?'700 ':isItalic?'italic ':''}${fs}px ${fam}`;
-    const maxFitW = Math.round(BW*0.88);
+    const maxFitW = Math.round(BW*0.80); // B13: match wrapText's TW threshold
     let fitFs = taFs;
     while(fitFs > 18){
       ctx.font = testFont(fitFs);
@@ -328,6 +328,8 @@ window.draw = function(){
   const vPad = Math.round(BH*0.04);
   const availH = BH - vPad*2;
   let cy = BTOP + vPad + tp*(availH-totalH) + taFs*scale;
+  // B12: clamp cy — prevent text from rendering above the verse box
+  cy = Math.max(BTOP + vPad + taFs*scale, cy);
 
   // Clip all verse text to box bounds
   ctx.save();
