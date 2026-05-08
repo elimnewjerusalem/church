@@ -161,7 +161,7 @@ window.QUICK_VERSES=[
 // ── STATE ─────────────────────────────────────────────────────────
 window.ST={
   sz:'9:16', bgMode:'solid', bgColor:'#1a0a3a',
-  font:'serif', taSize:52, enSize:32,  // canvas reads slider DOM directly; these are fallbacks txColor:'#ffffff',
+  font:'serif', taSize:52, enSize:32, txColor:'#ffffff',
   showTa:true, showEn:true, showRef:true, showWM:true, textGlow:false,
   bgImg:null, galImg:null, userPhoto:null, galIdx:-1,
   verse:window.QUICK_VERSES[0], verseIdx:0,
