@@ -266,10 +266,12 @@ window.draw = function(){
   const rawTaFs=parseInt(g('ta-size')?.value||52);
   const rawEnFs=parseInt(g('en-size')?.value||32);
   // Max Tamil size: never more than 10% of box height or 5.8% of width
-  const taFsCap=Math.min(Math.round(BH*0.10), Math.round(W*0.058));
-  const enFsCap=Math.min(Math.round(BH*0.07), Math.round(W*0.038));
-  let taFs=Math.min(rawTaFs, taFsCap);
-  let enFs=Math.min(rawEnFs, enFsCap);
+  // Font size: cap loosely so slider value is respected (user can go large)
+  // W*0.13 ≈ 140px at 1080w — generous enough for display use
+  const taFsCap = Math.min(rawTaFs, Math.round(W * 0.13));
+  const enFsCap = Math.min(rawEnFs, Math.round(W * 0.09));
+  let taFs = taFsCap;
+  let enFs = enFsCap;
   // Auto-fit: shrink Tamil font until all lines fit within 88% of canvas width
   if(ST.autoFit!==false && v.ta){
     const testFont = (fs)=>`${isBold?'700 ':isItalic?'italic ':''}${fs}px ${fam}`;

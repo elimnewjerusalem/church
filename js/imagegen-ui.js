@@ -237,6 +237,7 @@ export function buildFonts(){
     </div>`).join('');
 }
 export function setFont(k){
+  if(k !== ST.font) snapshotST();
   ST.font=k;
   document.querySelectorAll('.fb').forEach((el,i)=>el.classList.toggle('on',Object.keys(FONTS)[i]===k));
   draw();
@@ -244,10 +245,20 @@ export function setFont(k){
 
 // ── TEXT COLORS ───────────────────────────────────────────────────
 export function buildTCdots(){
-  g('tc-row').innerHTML=TC_COLORS.map(c=>`
-    <div class="tcd${ST.txColor===c?' on':''}" style="background:${c}" data-c="${c}" onclick="setTC('${c}')"></div>`).join('');
+  const row = g('tc-row');
+  if(!row) return;
+  row.innerHTML=TC_COLORS.map(c=>`
+    <div class="tcd${ST.txColor===c?' on':''}" data-c="${c}" onclick="setTC('${c}')"
+      style="background:${c};width:26px;height:26px;border-radius:50%;cursor:pointer;
+             border:2px solid ${ST.txColor===c?'var(--gd)':'transparent'};
+             box-shadow:${ST.txColor===c?'0 0 0 2px var(--bg0), inset 0 0 0 1px var(--bd2)':''};
+             transition:all .15s;display:inline-block"></div>`).join('');
+  // Sync colour wheel + hex display to current selection
+  const tcw = g('tc-wheel'); if(tcw) tcw.value = ST.txColor||'#ffffff';
+  const hxd = g('tc-hex-display'); if(hxd) hxd.textContent = (ST.txColor||'#ffffff').toUpperCase();
 }
 export function setTC(c){
+  if(c !== ST.txColor) snapshotST();
   ST.txColor=c;
   document.querySelectorAll('.tcd').forEach(d=>d.classList.toggle('on',d.dataset.c===c));
   draw();
@@ -260,7 +271,11 @@ export function buildPresets(){
 }
 
 export function setColorHex(hex, redraw=true){
+  if(redraw && hex !== ST.bgColor) snapshotST(); // snapshot before color change
   ST.bgColor=hex;
+  // Sync hex-inp text field and colour wheel
+  const hi = g('hex-inp');  if(hi)  hi.value  = hex.toUpperCase();
+  const cw = g('col-wheel'); if(cw) cw.value  = hex;
   const r=parseInt(hex.slice(1,3),16)||0;
   const gv=parseInt(hex.slice(3,5),16)||0;
   const b=parseInt(hex.slice(5,7),16)||0;
@@ -445,11 +460,15 @@ export function syncMobile(){
       </div>
     </div>
     <div id="m-bg-gallery" class="m-bg-section" data-mode="gallery" style="display:${ST.bgMode==='gallery'?'block':'none'}">
-      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Nature Photos</p>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
-        ${GALLERY.map((c,i)=>`<div onclick="loadGal(${i})" style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};border-radius:6px;padding:6px 4px;cursor:pointer;text-align:center;background:${ST.galIdx===i?'var(--gdm)':'transparent'};transition:all .15s">
-          <div style="font-size:14px">${c.label}</div>
-          <div style="font-size:8px;color:var(--tx3)">${c.name}</div>
+      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Photos</p>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+        ${(window.GALLERY_GROUPS||['All','Nature','Faith']).map(grp=>`<button class="bgmode-btn${(ST._galGroup||'All')===grp?' on':''}" onclick="setGalGroup('${grp}')">${grp==='Faith'?'✝ '+grp:'🌿 '+grp}</button>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+        ${GALLERY.filter(c=>(ST._galGroup||'All')==='All'||c.group===(ST._galGroup||'All')).map((c,i)=>`<div onclick="loadGal(${GALLERY.indexOf(c)})" style="border:1.5px solid ${ST.galIdx===GALLERY.indexOf(c)?'var(--gd)':'var(--bd)'};border-radius:6px;cursor:pointer;overflow:hidden;aspect-ratio:9/16;position:relative;background:var(--bg3)">
+          <img src="${c.url}" loading="lazy" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85" onerror="this.style.display='none'">
+          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);font-size:7px;color:#fff;text-align:center;padding:2px;font-weight:500">${c.name}</div>
+          ${ST.galIdx===GALLERY.indexOf(c)?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
         </div>`).join('')}
       </div>
       <div class="ov-row" style="margin-top:10px">
@@ -470,15 +489,21 @@ export function syncMobile(){
         </div>`).join('')}
     </div>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Text Colour</p>
-    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
-      ${TC_COLORS.map(c=>`<div onclick="setTC('${c}')" style="width:24px;height:24px;border-radius:50%;background:${c};cursor:pointer;border:2px solid transparent"></div>`).join('')}
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+      ${TC_COLORS.map(c=>`<div onclick="setTC('${c}')" style="width:26px;height:26px;border-radius:50%;background:${c};cursor:pointer;border:2px solid ${ST.txColor===c?'var(--gd)':'transparent'};transition:all .15s"></div>`).join('')}
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:10px;color:var(--tx3)">Custom:</span>
+      <input type="color" id="m-tc-wheel" value="${ST.txColor||'#ffffff'}"
+        oninput="setTC(this.value)"
+        style="width:36px;height:30px;border:1px solid var(--bd2);border-radius:var(--r6);cursor:pointer;padding:2px;background:var(--bg2);flex-shrink:0">
+      <span style="font-size:11px;color:var(--gd);font-family:monospace">${(ST.txColor||'#fff').toUpperCase()}</span>
     </div>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Options</p>
     <div onclick="togOpt(this.querySelector('.tog'),'showTa')" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show Tamil</span><div class="tog${ST.showTa?' on':''}" data-key="showTa"></div></div>
     <div onclick="togOpt(this.querySelector('.tog'),'showEn')" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show English</span><div class="tog${ST.showEn?' on':''}" data-key="showEn"></div></div>
     <div onclick="togOpt(this.querySelector('.tog'),'showRef')" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Show Reference</span><div class="tog${ST.showRef?' on':''}" data-key="showRef"></div></div>
-    <div onclick="togOpt(this.querySelector('.tog'),'showWM')" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">ENJC Watermark</span><div class="tog${ST.showWM?' on':''}" data-key="showWM"></div></div>
-    <div onclick="togOpt(this.querySelector('.tog'),'textGlow')" style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer"><span style="font-size:12px;color:var(--tx)">Text Glow</span><div class="tog${ST.textGlow?' on':''}" data-key="textGlow"></div></div>
+    <div onclick="togOpt(this.querySelector('.tog'),'textGlow')" style="display:flex;justify-content:space-between;padding:8px 0;cursor:pointer"><span style="font-size:12px;color:var(--tx)">Text Glow</span><div class="tog${ST.textGlow?' on':''}" data-key="textGlow"></div></div>
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin:12px 0 8px">Text Size</p>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
       <span style="font-size:11px;color:var(--tx2);min-width:50px">Tamil</span>
@@ -550,7 +575,7 @@ export function syncMobile(){
       ${QUICK_VERSES.filter(v=>(ST._verseTag||'All')==='All'||(v.tags&&v.tags.includes(ST._verseTag||'All'))).map((v,i)=>`
         <div class="vi" onclick="selVerse(${i})">
           <div class="vi-ref">${v.tref} · ${v.ref}</div>
-          <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
+          <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
         </div>`).join('')}
     </div>`;
 
@@ -631,6 +656,7 @@ export function setBG(mode, redraw=true){
 }
 
 export function togOpt(togEl, key){
+  snapshotST(); // snapshot before toggle so undo can reverse it
   const on = togEl.classList.toggle('on');
   ST[key] = on;
   debounceDraw();
@@ -712,11 +738,15 @@ export function syncMobileBG(){
       </div>
     </div>
     <div id="m-bg-gallery" class="m-bg-section" data-mode="gallery" style="display:${ST.bgMode==='gallery'?'block':'none'}">
-      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Nature Photos</p>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
-        ${GALLERY.map((c,i)=>`<div onclick="loadGal(${i})" style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};border-radius:6px;padding:6px 4px;cursor:pointer;text-align:center;background:${ST.galIdx===i?'var(--gdm)':'transparent'};transition:all .15s">
-          <div style="font-size:14px">${c.label}</div>
-          <div style="font-size:8px;color:var(--tx3)">${c.name}</div>
+      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Photos</p>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+        ${(window.GALLERY_GROUPS||['All','Nature','Faith']).map(grp=>`<button class="bgmode-btn${(ST._galGroup||'All')===grp?' on':''}" onclick="setGalGroup('${grp}')">${grp==='Faith'?'✝ '+grp:'🌿 '+grp}</button>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+        ${GALLERY.filter(c=>(ST._galGroup||'All')==='All'||c.group===(ST._galGroup||'All')).map((c,i)=>`<div onclick="loadGal(${GALLERY.indexOf(c)})" style="border:1.5px solid ${ST.galIdx===GALLERY.indexOf(c)?'var(--gd)':'var(--bd)'};border-radius:6px;cursor:pointer;overflow:hidden;aspect-ratio:9/16;position:relative;background:var(--bg3)">
+          <img src="${c.url}" loading="lazy" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85" onerror="this.style.display='none'">
+          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);font-size:7px;color:#fff;text-align:center;padding:2px;font-weight:500">${c.name}</div>
+          ${ST.galIdx===GALLERY.indexOf(c)?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
         </div>`).join('')}
       </div>
       <div class="ov-row" style="margin-top:10px">
@@ -779,7 +809,7 @@ export function buildQuickVerses(){
   el.innerHTML = filtered.map(({v,i})=>`
     <div class="vi${ST.verseIdx===i?' on':''}" data-vidx="${i}" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
-      <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
+      <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
     </div>`).join('');
 }
 
@@ -836,7 +866,7 @@ function rebuildMobileVerseList(){
   el.innerHTML = filtered.map(({v,i})=>`
     <div class="vi" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
-      <div class="vi-ta">${v.ta.substring(0,70)}${v.ta.length>70?'…':''}</div>
+      <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
     </div>`).join('');
 }
 
@@ -1004,12 +1034,21 @@ export function biUseVerse(bookId, ch, v, enText, enBook){
   fetch(`https://bolls.life/get-text/TAMILBSI/${bkIdx}/${ch}/${v}/`)
     .then(r=>r.json())
     .then(d=>{
-      const taText = d.text || d[0]?.text || '';
+      // bolls.life returns {text:'...'} for single verse, or [{text:'...'}] for chapter
+      const taText = (Array.isArray(d) ? d[0]?.text : d?.text) || '';
       if(taText){
         verse.ta = taText.replace(/<[^>]+>/g,'').trim();
         if(ST.verse===verse){ debounceDraw(); }
         const vdTa2=g('vd-ta'); if(vdTa2) vdTa2.textContent=verse.ta;
+        // Refresh verse list so vi-ta shows Tamil text (was blank before fetch)
+        buildQuickVerses();
+        // Also update mobile verse list display
+        const mvdTa3=g('mvd-ta'); if(mvdTa3) mvdTa3.textContent=verse.ta.substring(0,90);
         toast('✅ '+tref+' loaded with Tamil!');
+      } else {
+        // bolls.life gave no Tamil — show English as fallback in list
+        verse.ta = enText.trim();
+        buildQuickVerses();
       }
     })
     .catch(()=>{ /* Tamil unavailable — English already shown */ });

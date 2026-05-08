@@ -28,7 +28,7 @@ window.FONTS={
   bold:  {label:'Bold',    fam:"700 'Noto Serif Tamil',serif",       hint:'Strong'},
 };
 
-window.TC_COLORS=['#ffffff','#f5c842','#fbbf24','#4ade80','#38bdf8','#f472b6','#a78bfa','#fed7aa','#fca5a5'];
+window.TC_COLORS=['#ffffff','#f5f5dc','#fffde7','#f5c842','#fbbf24','#fb923c','#f87171','#4ade80','#34d399','#38bdf8','#60a5fa','#f472b6','#c084fc','#a78bfa','#fed7aa','#fca5a5','#d1fae5','#1a1a1a'];
 
 window.PRESETS=[
   '#1a0a3a','#0a1a3a','#0a2a1a','#3a0a0a',
@@ -161,7 +161,7 @@ window.QUICK_VERSES=[
 // ── STATE ─────────────────────────────────────────────────────────
 window.ST={
   sz:'9:16', bgMode:'solid', bgColor:'#1a0a3a',
-  font:'serif', taSize:52, enSize:32, txColor:'#ffffff',
+  font:'serif', taSize:52, enSize:32,  // canvas reads slider DOM directly; these are fallbacks txColor:'#ffffff',
   showTa:true, showEn:true, showRef:true, showWM:true, textGlow:false,
   bgImg:null, galImg:null, userPhoto:null, galIdx:-1,
   verse:window.QUICK_VERSES[0], verseIdx:0,

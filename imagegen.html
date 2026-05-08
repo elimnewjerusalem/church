@@ -182,18 +182,25 @@
       <div class="lp-sec">
         <div class="lp-lbl">Tamil Size</div>
         <div class="gsl-row">
-          <input type="range" class="gsl" id="ta-size" min="28" max="200" value="52" oninput="g('ta-size-v').textContent=this.value+'px';draw()">
+          <input type="range" class="gsl" id="ta-size" min="28" max="150" value="52" oninput="g('ta-size-v').textContent=this.value+'px';draw()">
           <span class="gsl-val" id="ta-size-v">52px</span>
         </div>
         <div class="lp-lbl">English Size</div>
         <div class="gsl-row">
-          <input type="range" class="gsl" id="en-size" min="16" max="150" value="32" oninput="g('en-size-v').textContent=this.value+'px';draw()">
+          <input type="range" class="gsl" id="en-size" min="16" max="120" value="32" oninput="g('en-size-v').textContent=this.value+'px';draw()">
           <span class="gsl-val" id="en-size-v">32px</span>
         </div>
       </div>
       <div class="lp-sec">
         <div class="lp-lbl">Text Colour</div>
         <div class="tc-row" id="tc-row"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;margin-bottom:2px">
+          <input type="color" id="tc-wheel" value="#ffffff" title="Custom colour"
+            oninput="setTC(this.value)"
+            style="width:34px;height:28px;border:1px solid var(--bd2);border-radius:var(--r6);cursor:pointer;padding:2px;background:var(--bg3);flex-shrink:0">
+          <span style="font-size:10px;color:var(--tx3)">Custom</span>
+          <span id="tc-hex-display" style="font-size:11px;color:var(--gd);font-family:monospace;margin-left:auto">#FFFFFF</span>
+        </div>
       </div>
       <div class="lp-sec">
         <div class="lp-lbl">Options</div>
