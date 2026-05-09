@@ -449,6 +449,21 @@ img {
   margin-bottom: 36px;
 }
 
+html[data-theme="light"] .hero__title,
+html[data-theme="light"] .hero__ref,
+html[data-theme="light"] .section-heading,
+html[data-theme="light"] .section-heading em,
+html[data-theme="light"] .section-tag,
+html[data-theme="light"] .card h3,
+html[data-theme="light"] .card p,
+html[data-theme="light"] .service-slot__time,
+html[data-theme="light"] .activity-card__time {
+  color: var(--color-text) !important;
+}
+html[data-theme="light"] .service-slot__label {
+  color: var(--color-gold) !important;
+}
+
 .hero__actions {
   display: flex;
   gap: 12px;
