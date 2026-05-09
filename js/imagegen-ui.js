@@ -872,6 +872,28 @@ async function getLocalTamilText(bookId, ch, verse){
   return '';
 }
 
+async function getLocalTamilChapter(bookId, ch){
+  const book = BOOKS.find(b=>b.id===bookId);
+  const bookNum = book?.n || (BOOKS.findIndex(b=>b.id===bookId)+1);
+  const key = `${bookNum}_${ch}`;
+
+  if(LOCAL_TAMIL_DB===null){
+    LOCAL_TAMIL_DB = await loadLocalTamilFile('data/tamil-bible.json') || {};
+  }
+  if(LOCAL_TAMIL_DB?.[key]){
+    return LOCAL_TAMIL_DB[key].map(a=>a[1]?.trim()||'');
+  }
+
+  if(LOCAL_TAMIL_FULL===null){
+    LOCAL_TAMIL_FULL = await loadLocalTamilFile('data/tamil_full.json') || {};
+  }
+  if(LOCAL_TAMIL_FULL?.[key]){
+    return LOCAL_TAMIL_FULL[key].map(a=>a[1]?.trim()||'');
+  }
+
+  return null;
+}
+
 function rebuildMobileVerseList(){
   const el = g('m-verse-list');
   if(!el) return;
@@ -1000,29 +1022,39 @@ export function biBackBooks(){
   const bb = g('bi-books'); if(bb) bb.style.display='';
 }
 
-export function biSelectCh(ch){
+export async function biSelectCh(ch){
   BI.ch = ch;
   g('bi-ch-area').style.display='none';
   const va = g('bi-v-area'); if(va) va.style.display='block';
   const vt = g('bi-v-title'); if(vt) vt.textContent = BI.book.ta+' '+ch;
   const vl = g('bi-v-list'); if(vl) vl.innerHTML='';
   const vld = g('bi-v-loading'); if(vld) vld.style.display='block';
-  // Fetch from bible-api.com
-  fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
-    .then(r=>r.json())
-    .then(data=>{
-      if(vld) vld.style.display='none';
-      const verses = data.verses||[];
-      if(vl) vl.innerHTML = verses.map(v=>`
-        <div class="vi" onclick="biUseVerse('${BI.book.id}',${ch},${v.verse},\`${v.text.replace(/`/g,"'")}\`,'${BI.book.en}')"
-             style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
-          <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
-          ${v.text.trim()}
-        </div>`).join('');
-    }).catch(()=>{
-      if(vld) vld.style.display='none';
-      if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
-    });
+
+  const localTexts = await getLocalTamilChapter(BI.book.id, ch) || [];
+  const englishPromise = fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
+    .then(r=>r.ok?r.json():null)
+    .catch(()=>null);
+
+  const englishData = await englishPromise;
+  if(vld) vld.style.display='none';
+
+  const verses = englishData?.verses||[];
+  const versesToShow = verses.length ? verses : localTexts.map((text,i)=>({verse:i+1,text}));
+  if(vl) vl.innerHTML = versesToShow.map(v=>{
+    const tamilText = localTexts[v.verse-1] || '';
+    const displayText = tamilText || v.text.trim();
+    const clickText = v.text?.trim() || tamilText || '';
+    return `
+      <div class="vi" onclick="biUseVerse('${BI.book.id}',${ch},${v.verse},\`${clickText.replace(/`/g,"'")}\`,'${BI.book.en}')"
+           style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
+        <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
+        ${displayText}
+      </div>`;
+  }).join('');
+
+  if(!verses.length && !localTexts.length){
+    if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
+  }
 }
 
 export function biBackCh(){
@@ -1133,28 +1165,39 @@ export function mbiBackBooks(){
   const va = g('mbi-v-area'); if(va) va.style.display='none';
 }
 
-export function mbiSelectCh(ch){
+export async function mbiSelectCh(ch){
   BI.ch = ch;
   const ca = g('mbi-ch-area'); if(ca) ca.style.display='none';
   const va = g('mbi-v-area'); if(va) va.style.display='block';
   const vt = g('mbi-v-title'); if(vt) vt.textContent = BI.book.ta+' '+ch;
   const vl = g('mbi-v-list'); if(vl) vl.innerHTML='';
   const vld = g('mbi-v-loading'); if(vld) vld.style.display='block';
-  fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
-    .then(r=>r.json())
-    .then(data=>{
-      if(vld) vld.style.display='none';
-      const verses = data.verses||[];
-      if(vl) vl.innerHTML = verses.map(v=>`
-        <div class="vi" onclick="mbiUseVerse('${BI.book.id}',${ch},${v.verse},\`${v.text.replace(/`/g,"'")}\`,'${BI.book.en}')"
-             style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
-          <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
-          ${v.text.trim()}
-        </div>`).join('');
-    }).catch(()=>{
-      if(vld) vld.style.display='none';
-      if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
-    });
+
+  const localTexts = await getLocalTamilChapter(BI.book.id, ch) || [];
+  const englishPromise = fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
+    .then(r=>r.ok?r.json():null)
+    .catch(()=>null);
+
+  const englishData = await englishPromise;
+  if(vld) vld.style.display='none';
+
+  const verses = englishData?.verses||[];
+  const versesToShow = verses.length ? verses : localTexts.map((text,i)=>({verse:i+1,text}));
+  if(vl) vl.innerHTML = versesToShow.map(v=>{
+    const tamilText = localTexts[v.verse-1] || '';
+    const displayText = tamilText || v.text.trim();
+    const clickText = v.text?.trim() || tamilText || '';
+    return `
+      <div class="vi" onclick="mbiUseVerse('${BI.book.id}',${ch},${v.verse},\`${clickText.replace(/`/g,"'")}\`,'${BI.book.en}')"
+           style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
+        <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
+        ${displayText}
+      </div>`;
+  }).join('');
+
+  if(!verses.length && !localTexts.length){
+    if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
+  }
 }
 
 export function mbiBackCh(){
