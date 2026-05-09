@@ -265,17 +265,15 @@ window.draw = function(){
   // Cap font sizes — scale based on box height AND width
   const rawTaFs=parseInt(g('ta-size')?.value||52);
   const rawEnFs=parseInt(g('en-size')?.value||32);
-  // Max Tamil size: never more than 10% of box height or 5.8% of width
-  // Font size: cap loosely so slider value is respected (user can go large)
-  // W*0.13 ≈ 140px at 1080w — generous enough for display use
+  // Font cap raised — slider can reach 150px Tamil, 120px English
   const taFsCap = Math.min(rawTaFs, Math.round(W * 0.13));
   const enFsCap = Math.min(rawEnFs, Math.round(W * 0.09));
   let taFs = taFsCap;
   let enFs = enFsCap;
-  // Auto-fit: shrink Tamil font until all lines fit within 88% of canvas width
+  // Auto-fit: shrink Tamil font until lines fit within 80% of canvas width
   if(ST.autoFit!==false && v.ta){
     const testFont = (fs)=>`${isBold?'700 ':isItalic?'italic ':''}${fs}px ${fam}`;
-    const maxFitW = Math.round(BW*0.80); // B13: match wrapText's TW threshold
+    const maxFitW = Math.round(BW*0.80);  // match wrapText threshold
     let fitFs = taFs;
     while(fitFs > 18){
       ctx.font = testFont(fitFs);
@@ -330,8 +328,7 @@ window.draw = function(){
   const vPad = Math.round(BH*0.04);
   const availH = BH - vPad*2;
   let cy = BTOP + vPad + tp*(availH-totalH) + taFs*scale;
-  // B12: clamp cy — prevent text from rendering above the verse box
-  cy = Math.max(BTOP + vPad + taFs*scale, cy);
+  cy = Math.max(BTOP + vPad + taFs*scale, cy); // clamp — never above box top
 
   // Clip all verse text to box bounds
   ctx.save();

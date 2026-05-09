@@ -42,23 +42,22 @@ window.GALLERY=[
   {seed:'dawn',    name:'Sunrise',  label:'🌅', url:'https://picsum.photos/seed/dawn/1080/1920',    group:'Nature'},
   {seed:'ocean1',  name:'Ocean',    label:'🌊', url:'https://picsum.photos/seed/ocean1/1080/1920',  group:'Nature'},
   {seed:'forest3', name:'Forest',   label:'🌲', url:'https://picsum.photos/seed/forest3/1080/1920', group:'Nature'},
-  {seed:'mount2',  name:'Mountain', label:'⛰', url:'https://picsum.photos/seed/mount2/1080/1920',  group:'Nature'},
-  {seed:'sky77',   name:'Sky',      label:'☁', url:'https://picsum.photos/seed/sky77/1080/1920',   group:'Nature'},
+  {seed:'mount2',  name:'Mountain', label:'⛰',  url:'https://picsum.photos/seed/mount2/1080/1920',  group:'Nature'},
+  {seed:'sky77',   name:'Sky',      label:'☁',  url:'https://picsum.photos/seed/sky77/1080/1920',   group:'Nature'},
   {seed:'wheat1',  name:'Harvest',  label:'🌾', url:'https://picsum.photos/seed/wheat1/1080/1920',  group:'Nature'},
-  {seed:'river4',  name:'River',    label:'🏞', url:'https://picsum.photos/seed/river4/1080/1920',  group:'Nature'},
+  {seed:'river4',  name:'River',    label:'🏞',  url:'https://picsum.photos/seed/river4/1080/1920',  group:'Nature'},
   {seed:'flower9', name:'Flowers',  label:'🌸', url:'https://picsum.photos/seed/flower9/1080/1920', group:'Nature'},
-  {seed:'desert2', name:'Desert',   label:'🏜', url:'https://picsum.photos/seed/desert2/1080/1920', group:'Nature'},
+  {seed:'desert2', name:'Desert',   label:'🏜',  url:'https://picsum.photos/seed/desert2/1080/1920', group:'Nature'},
   {seed:'night3',  name:'Night Sky',label:'🌙', url:'https://picsum.photos/seed/night3/1080/1920',  group:'Nature'},
-  {seed:'dove1',   name:'Dove',     label:'🕊', url:'https://picsum.photos/seed/dove1/1080/1920',   group:'Nature'},
-  {seed:'light9',  name:'Sunlight', label:'✨', url:'https://picsum.photos/seed/light9/1080/1920',  group:'Nature'},
-  /* ── Bible / Faith ── */
-  {seed:'bible1',  name:'Open Bible',   label:'📖', url:'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1080&h=1920&fit=crop', group:'Faith'},
-  {seed:'cross1',  name:'Cross',        label:'✝',  url:'https://images.unsplash.com/photo-1531913964703-f7a1c2a1b8c9?w=1080&h=1920&fit=crop', group:'Faith'},
-  {seed:'pray1',   name:'Prayer',       label:'🙏', url:'https://images.unsplash.com/photo-1457269449834-928af64c684d?w=1080&h=1920&fit=crop', group:'Faith'},
-  {seed:'church1', name:'Church',       label:'⛪', url:'https://images.unsplash.com/photo-1520803941685-7f2c71cf1a28?w=1080&h=1920&fit=crop', group:'Faith'},
-  {seed:'candle1', name:'Candle',       label:'🕯', url:'https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1080&h=1920&fit=crop', group:'Faith'},
-  {seed:'dove2',   name:'Holy Spirit',  label:'🌟', url:'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1080&h=1920&fit=crop', group:'Faith'},
+  /* ── Faith ── */
+  {seed:'bible1',  name:'Open Bible',  label:'📖', url:'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'cross1',  name:'Cross',       label:'✝',  url:'https://images.unsplash.com/photo-1531913964703-f7a1c2a1b8c9?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'pray1',   name:'Prayer',      label:'🙏', url:'https://images.unsplash.com/photo-1457269449834-928af64c684d?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'church1', name:'Church',      label:'⛪', url:'https://images.unsplash.com/photo-1520803941685-7f2c71cf1a28?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'candle1', name:'Candle',      label:'🕯', url:'https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'dove2',   name:'Holy Spirit', label:'🌟', url:'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1080&h=1920&fit=crop', group:'Faith'},
 ];
+window.GALLERY_GROUPS=['All','Nature','Faith'];
 
 window.GALLERY_GROUPS=['All','Nature','Faith'];
 
@@ -131,7 +130,9 @@ export const BOOKS=[
   {id:'revelation',n:66,ta:'வெளிப்படுத்தல்',en:'Revelation',ch:22,t:'NT'},
 ];
 
-// BOOKS exported via ES module (imagegen-main.js Object.assign puts it on window)
+// BOOKS via ES module export (imagegen-main.js Object.assign exposes it to window)
+
+window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
 
 window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
 
@@ -148,14 +149,14 @@ window.QUICK_VERSES=[
   {ta:'திடமனதாயிரு, தைரியமாயிரு; கர்த்தர் உன்னோடிருக்கிறார்.',tref:'யோசுவா 1:9',en:'Be strong and courageous. The Lord your God is with you.',ref:'Joshua 1:9',tags:['Strength','Faith']},
   {ta:'கர்த்தர் என் வெளிச்சமும் என் இரட்சிப்புமாயிருக்கிறார்.',tref:'சங்கீதம் 27:1',en:'The Lord is my light and my salvation; whom shall I fear?',ref:'Psalm 27:1',tags:['Faith','Hope']},
   {ta:'என் கிருபை உனக்குப் போதும்.',tref:'2 கொரிந்தியர் 12:9',en:'My grace is sufficient for you.',ref:'2 Corinthians 12:9',tags:['Healing','Faith']},
-  {ta:'தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும்.',tref:'ரோமர் 8:28',en:'For those who love God all things work together for good.',ref:'Romans 8:28',tags:['Hope','Faith']},
+  {ta:'தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும்.',tref:'ரோமர் 8:28',en:'All things work together for good to those who love God.',ref:'Romans 8:28',tags:['Hope','Faith']},
   {ta:'இயேசு கிறிஸ்துவே நேற்றும் இன்றும் என்றும் மாறாதவர்.',tref:'எபிரெயர் 13:8',en:'Jesus Christ is the same yesterday and today and forever.',ref:'Hebrews 13:8',tags:['Faith']},
   {ta:'கர்த்தருடைய கிருபைகள் தீர்ந்துபோவதில்லை.',tref:'புலம்பல் 3:22',en:'The steadfast love of the Lord never ceases.',ref:'Lamentations 3:22',tags:['Love','Hope']},
-  {ta:'உங்கள் சரீரங்களை பரிசுத்தமான ஜீவபலியாக ஒப்புக்கொடுங்கள்.',tref:'ரோமர் 12:1',en:'Present your bodies as a living sacrifice, holy and acceptable to God.',ref:'Romans 12:1',tags:['Faith']},
-  {ta:'கர்த்தருக்கு நன்றி சொல்லுங்கள்; அவர் நல்லவர்.',tref:'சங்கீதம் 107:1',en:'Give thanks to the Lord, for He is good.',ref:'Psalm 107:1',tags:['Faith','Hope']},
   {ta:'அன்பே தேவன்.',tref:'1 யோவான் 4:8',en:'God is love.',ref:'1 John 4:8',tags:['Love']},
   {ta:'கர்த்தர் என் கோட்டையும் என் கன்மலையும் என் இரட்சகரும் ஆவார்.',tref:'சங்கீதம் 18:2',en:'The Lord is my rock and my fortress and my deliverer.',ref:'Psalm 18:2',tags:['Strength','Faith']},
   {ta:'இதோ, நான் உங்களுக்கு ஆரோக்கியத்தையும் சுகத்தையும் கொடுப்பேன்.',tref:'எரேமியா 33:6',en:'I will bring health and healing to them.',ref:'Jeremiah 33:6',tags:['Healing']},
+  {ta:'கர்த்தருக்கு நன்றி சொல்லுங்கள்; அவர் நல்லவர்.',tref:'சங்கீதம் 107:1',en:'Give thanks to the Lord, for He is good.',ref:'Psalm 107:1',tags:['Faith','Hope']},
+  {ta:'தேவன் நம்முடன் இருக்கிறார்.',tref:'மத்தேயு 1:23',en:'God is with us.',ref:'Matthew 1:23',tags:['Faith','Hope']},
 ];
 
 // ── STATE ─────────────────────────────────────────────────────────
@@ -170,7 +171,7 @@ window.ST={
   gradMode:false, grad1:'#1a0a3a', grad2:'#0a1a3a', gradAngle:135,
   // Safe zone
   safeZone:false,
-  // Text layout
+  // Text layout — must be in ST to avoid NaN in canvas draw
   textPos:0.5, autoFit:true,
 };
 window.BI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
@@ -179,9 +180,7 @@ window.BI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
 window.g=function(id){return document.getElementById(id);}
 window._tt;
 window.toast=function(msg,dur=2500){
-  const el=window.g('toast');
-  if(!el) return; // guard: DOM not ready
-  el.textContent=msg;el.classList.add('show');
+  const el=window.g('toast');if(!el)return;el.textContent=msg;el.classList.add('show');
   clearTimeout(window._tt);window._tt=setTimeout(()=>el.classList.remove('show'),dur);
 }
 

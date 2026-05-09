@@ -67,10 +67,10 @@
       <div class="lp-sec">
         <div class="lp-lbl">Type</div>
         <div class="bgmode-btns">
-          <button class="bgmode-btn on" id="bgm-solid"    data-mode="solid"    onclick="setBG('solid')">🎨 Colour</button>
-          <button class="bgmode-btn"    id="bgm-gradient" data-mode="gradient" onclick="setBG('gradient')">🌈 Gradient</button>
-          <button class="bgmode-btn"    id="bgm-photo"    data-mode="photo"    onclick="setBG('photo')">📷 Photo</button>
-          <button class="bgmode-btn"    id="bgm-gallery"  data-mode="gallery"  onclick="setBG('gallery')">🌄 Gallery</button>
+          <button class="bgmode-btn on" id="bgm-solid"    data-mode='solid'    onclick="setBG('solid')">🎨 Colour</button>
+          <button class="bgmode-btn"    id="bgm-gradient" data-mode='gradient' onclick="setBG('gradient')">🌈 Gradient</button>
+          <button class="bgmode-btn"    id="bgm-photo"    data-mode='photo'    onclick="setBG('photo')">📷 Photo</button>
+          <button class="bgmode-btn"    id="bgm-gallery"  data-mode='gallery'  onclick="setBG('gallery')">🌄 Gallery</button>
         </div>
       </div>
 
@@ -162,7 +162,7 @@
         <div class="lp-sec">
           <div class="lp-lbl">Gallery <span style="font-size:9px;color:var(--tx3);font-weight:400;margin-left:4px">Nature · Faith ✝</span></div>
           <div id="gal-wrap">
-            <div class="gal-grid" id="gal-grid"></div>
+            <div id="gal-wrap"><div class="gal-grid" id="gal-grid"></div></div>
           </div>
           <div class="ov-row">
             <span class="ov-lbl">Overlay</span>
@@ -194,11 +194,10 @@
       <div class="lp-sec">
         <div class="lp-lbl">Text Colour</div>
         <div class="tc-row" id="tc-row"></div>
-        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;margin-bottom:2px">
-          <input type="color" id="tc-wheel" value="#ffffff" title="Custom colour"
-            oninput="setTC(this.value)"
-            style="width:34px;height:28px;border:1px solid var(--bd2);border-radius:var(--r6);cursor:pointer;padding:2px;background:var(--bg3);flex-shrink:0">
-          <span style="font-size:10px;color:var(--tx3)">Custom</span>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+          <input type="color" id="tc-wheel" value="#ffffff" oninput="setTC(this.value)"
+            style="width:34px;height:28px;border:1px solid var(--bd2);border-radius:var(--r6);cursor:pointer;padding:2px;background:var(--bg3)">
+          <span style="font-size:10px;color:var(--tx3)">Custom colour</span>
           <span id="tc-hex-display" style="font-size:11px;color:var(--gd);font-family:monospace;margin-left:auto">#FFFFFF</span>
         </div>
       </div>
