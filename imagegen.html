@@ -162,7 +162,7 @@
         <div class="lp-sec">
           <div class="lp-lbl">Gallery <span style="font-size:9px;color:var(--tx3);font-weight:400;margin-left:4px">Nature · Faith ✝</span></div>
           <div id="gal-wrap">
-            <div id="gal-wrap"><div class="gal-grid" id="gal-grid"></div></div>
+            <div class="gal-grid" id="gal-grid"></div>
           </div>
           <div class="ov-row">
             <span class="ov-lbl">Overlay</span>
@@ -220,8 +220,8 @@
           <div class="tog" id="tog-glow" data-key="textGlow" onclick="togOpt(this,'textGlow')"></div>
         </div>
         <div class="tog-row">
-          <div><div class="tog-lbl">Auto-fit Font</div><div class="tog-sub">Shrinks text to fit canvas width</div></div>
-          <div class="tog on" id="tog-autofit" data-key="autoFit" onclick="togOpt(this,'autoFit')"></div>
+          <div><div class="tog-lbl">ENJC Watermark</div></div>
+          <div class="tog on" id="tog-wm" data-key="showWM" onclick="togOpt(this,'showWM')"></div>
         </div>
         <div class="lp-sec" style="margin-bottom:4px">
           <div class="lp-lbl" style="margin-bottom:6px">Text Position</div>
@@ -467,8 +467,6 @@ window.GALLERY=[
   {seed:'candle1', name:'Candle',      label:'🕯', url:'https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1080&h=1920&fit=crop', group:'Faith'},
   {seed:'dove2',   name:'Holy Spirit', label:'🌟', url:'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1080&h=1920&fit=crop', group:'Faith'},
 ];
-window.GALLERY_GROUPS=['All','Nature','Faith'];
-
 window.GALLERY_GROUPS=['All','Nature','Faith'];
 
 window.BOOKS =[
@@ -726,6 +724,7 @@ window.draw = function(){
     ctx.fillStyle='rgba(255,255,255,.92)';
     // Clip text to max width if needed
     ctx.save();
+    ctx.beginPath();
     ctx.rect(NX, LY, maxTextW, LSZ);
     ctx.clip();
     ctx.fillText(wmName,NX,LY+LSZ*.46);
@@ -791,6 +790,7 @@ window.draw = function(){
   ctx.font=`500 ${ytFSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
   ctx.save();
+  ctx.beginPath();
   ctx.rect(ytStartX+ICW+Math.round(W*0.018), YTY-ICH, maxFooterW-(ytStartX+ICW), ICH*1.5);
   ctx.clip();
   ctx.fillText(ytHandle,ytStartX+ICW+Math.round(W*0.018),YTY);
@@ -825,6 +825,7 @@ window.draw = function(){
   ctx.font=`500 ${igFSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
   ctx.save();
+  ctx.beginPath();
   ctx.rect(igStartX+ICW+Math.round(W*0.018), IGY-ICH, maxFooterW-(igStartX+ICW), ICH*1.5);
   ctx.clip();
   ctx.fillText(igHandle,igStartX+ICW+Math.round(W*0.018),IGY);
@@ -935,6 +936,7 @@ window.draw = function(){
 
   // Clip all verse text to box bounds
   ctx.save();
+  ctx.beginPath();
   ctx.rect(BX+Math.round(W*0.02), BTOP+Math.round(H*0.01), BW-Math.round(W*0.04), BH-Math.round(H*0.02));
   ctx.clip();
 
@@ -1522,7 +1524,7 @@ function syncMobile(){
       </div>
       <div class="ov-row" style="margin-top:10px">
         <span class="ov-lbl">Overlay</span>
-        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';draw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';g('m-gal-ov-v').textContent=this.value+'%';draw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
         <span class="ov-val" id="m-gal-ov-v">${parseInt(g('gal-ov')?.value||50)}%</span>
       </div>
     </div>`;
@@ -1702,7 +1704,6 @@ function setBG(mode, redraw=true){
 }
 
 function togOpt(togEl, key){
-  if(key==='showWM') return; // watermark always on — cannot be toggled
   snapshotST();
   const on = togEl.classList.toggle('on');
   ST[key] = on;
@@ -1798,7 +1799,7 @@ function syncMobileBG(){
       </div>
       <div class="ov-row" style="margin-top:10px">
         <span class="ov-lbl">Overlay</span>
-        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';draw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
+        <input type="range" class="ov-sl" id="m-gal-ov" min="0" max="80" value="${parseInt(g('gal-ov')?.value||50)}" oninput="g('gal-ov').value=this.value;g('gal-ov-v').textContent=this.value+'%';g('m-gal-ov-v').textContent=this.value+'%';draw()" style="flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:rgba(255,255,255,.12);outline:none">
         <span class="ov-val" id="m-gal-ov-v">${parseInt(g('gal-ov')?.value||50)}%</span>
       </div>
     </div>`;
@@ -1854,7 +1855,7 @@ function buildQuickVerses(){
     activeTag==='All' || (v.tags&&v.tags.includes(activeTag))
   );
   el.innerHTML = filtered.map(({v,i})=>`
-    <div class="vi${ST.verseIdx===i?' on':''}" data-vidx="${i}" onclick="selVerse(${i})">
+    <div class="vi${ST.verseIdx===i?' on':''}" data-idx="${i}" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
       <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
     </div>`).join('');
@@ -1910,7 +1911,7 @@ function rebuildMobileVerseList(){
     tag==='All' || (v.tags&&v.tags.includes(tag))
   );
   el.innerHTML = filtered.map(({v,i})=>`
-    <div class="vi" onclick="selVerse(${i})">
+    <div class="vi" data-idx="${i}" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
       <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
     </div>`).join('');
@@ -1922,7 +1923,7 @@ function selVerse(i){
   const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = ST.verse.ta||ST.verse.en||'';
   const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+(ST.verse.tref||ST.verse.ref||'');
   document.querySelectorAll('.vi').forEach(el=>{
-    const vidx=parseInt(el.dataset.vidx);
+    const vidx=parseInt(el.dataset.idx);
     el.classList.toggle('on',vidx===i);
   });
   debounceDraw();
@@ -2364,6 +2365,7 @@ function onGradAngle(val){
 function setPhotoOverlay(val){
   const inp=g('photo-ov'); if(inp) inp.value=val;
   const lbl=g('photo-ov-v'); if(lbl) lbl.textContent=val+'%';
+  const mlbl=g('m-photo-ov-v'); if(mlbl) mlbl.textContent=val+'%';
   debounceDraw();
 }
 

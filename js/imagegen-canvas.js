@@ -123,6 +123,7 @@ window.draw = function(){
     ctx.fillStyle='rgba(255,255,255,.92)';
     // Clip text to max width if needed
     ctx.save();
+    ctx.beginPath();
     ctx.rect(NX, LY, maxTextW, LSZ);
     ctx.clip();
     ctx.fillText(wmName,NX,LY+LSZ*.46);
@@ -188,6 +189,7 @@ window.draw = function(){
   ctx.font=`500 ${ytFSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
   ctx.save();
+  ctx.beginPath();
   ctx.rect(ytStartX+ICW+Math.round(W*0.018), YTY-ICH, maxFooterW-(ytStartX+ICW), ICH*1.5);
   ctx.clip();
   ctx.fillText(ytHandle,ytStartX+ICW+Math.round(W*0.018),YTY);
@@ -222,6 +224,7 @@ window.draw = function(){
   ctx.font=`500 ${igFSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
   ctx.save();
+  ctx.beginPath();
   ctx.rect(igStartX+ICW+Math.round(W*0.018), IGY-ICH, maxFooterW-(igStartX+ICW), ICH*1.5);
   ctx.clip();
   ctx.fillText(igHandle,igStartX+ICW+Math.round(W*0.018),IGY);
@@ -332,6 +335,7 @@ window.draw = function(){
 
   // Clip all verse text to box bounds
   ctx.save();
+  ctx.beginPath();
   ctx.rect(BX+Math.round(W*0.02), BTOP+Math.round(H*0.01), BW-Math.round(W*0.04), BH-Math.round(H*0.02));
   ctx.clip();
 

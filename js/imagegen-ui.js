@@ -790,7 +790,7 @@ export function buildQuickVerses(){
     activeTag==='All' || (v.tags&&v.tags.includes(activeTag))
   );
   el.innerHTML = filtered.map(({v,i})=>`
-    <div class="vi${ST.verseIdx===i?' on':''}" data-vidx="${i}" onclick="selVerse(${i})">
+    <div class="vi${ST.verseIdx===i?' on':''}" data-idx="${i}" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
       <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
     </div>`).join('');
@@ -846,7 +846,7 @@ function rebuildMobileVerseList(){
     tag==='All' || (v.tags&&v.tags.includes(tag))
   );
   el.innerHTML = filtered.map(({v,i})=>`
-    <div class="vi" onclick="selVerse(${i})">
+    <div class="vi" data-idx="${i}" onclick="selVerse(${i})">
       <div class="vi-ref">${v.tref} · ${v.ref}</div>
       <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
     </div>`).join('');
@@ -858,7 +858,7 @@ export function selVerse(i){
   const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = ST.verse.ta||ST.verse.en||'';
   const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+(ST.verse.tref||ST.verse.ref||'');
   document.querySelectorAll('.vi').forEach(el=>{
-    const vidx=parseInt(el.dataset.vidx);
+    const vidx=parseInt(el.dataset.idx);
     el.classList.toggle('on',vidx===i);
   });
   debounceDraw();
@@ -1300,5 +1300,6 @@ export function onGradAngle(val){
 export function setPhotoOverlay(val){
   const inp=g('photo-ov'); if(inp) inp.value=val;
   const lbl=g('photo-ov-v'); if(lbl) lbl.textContent=val+'%';
+  const mlbl=g('m-photo-ov-v'); if(mlbl) mlbl.textContent=val+'%';
   debounceDraw();
 }
