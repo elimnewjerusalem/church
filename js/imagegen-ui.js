@@ -271,8 +271,6 @@ export function setColorHex(hex, redraw=true){
   const hv=g('hex-val');if(hv)hv.textContent=hex.toUpperCase();
   const hi=g('hex-inp'); if(hi) hi.value=hex.toUpperCase();
   const cw=g('col-wheel'); if(cw) cw.value=hex;
-  const hi=g('hex-inp');if(hi)hi.value=hex.toUpperCase();
-  const cw=g('col-wheel');if(cw)cw.value=hex;
   document.querySelectorAll('.pdot').forEach(el=>{
     const bg=el.style.backgroundColor;
     const elhex='#'+[...new Array(3)].map((_,i)=>parseInt(bg.split(',')[i]?.replace(/\D/g,'')||0).toString(16).padStart(2,'0')).join('');
