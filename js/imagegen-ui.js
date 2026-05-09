@@ -835,6 +835,43 @@ export function mUseCustomVerse(){
   toast('✅ Custom verse applied!');
 }
 
+let LOCAL_TAMIL_DB = null;
+let LOCAL_TAMIL_FULL = null;
+
+async function loadLocalTamilFile(path){
+  try{
+    const res = await fetch(path);
+    if(!res.ok) return null;
+    return await res.json();
+  }catch(e){
+    return null;
+  }
+}
+
+async function getLocalTamilText(bookId, ch, verse){
+  const book = BOOKS.find(b=>b.id===bookId);
+  const bookNum = book?.n || (BOOKS.findIndex(b=>b.id===bookId)+1);
+  const key = `${bookNum}_${ch}`;
+
+  if(LOCAL_TAMIL_DB===null){
+    LOCAL_TAMIL_DB = await loadLocalTamilFile('data/tamil-bible.json') || {};
+  }
+  if(LOCAL_TAMIL_DB?.[key]){
+    const item = LOCAL_TAMIL_DB[key].find(a=>a[0]===verse);
+    if(item && item[1]) return item[1].trim();
+  }
+
+  if(LOCAL_TAMIL_FULL===null){
+    LOCAL_TAMIL_FULL = await loadLocalTamilFile('data/tamil_full.json') || {};
+  }
+  if(LOCAL_TAMIL_FULL?.[key]){
+    const item = LOCAL_TAMIL_FULL[key].find(a=>a[0]===verse);
+    if(item && item[1]) return item[1].trim();
+  }
+
+  return '';
+}
+
 function rebuildMobileVerseList(){
   const el = g('m-verse-list');
   if(!el) return;
@@ -872,7 +909,7 @@ export function updateBadges(){
 export function updateVerseDisplay(){
   const v = ST.verse;
   if(!v) return;
-  const ta = v.ta||''; const ref = v.tref||v.ref||'';
+  const ta = v.ta||v.en||''; const ref = v.tref||v.ref||'';
   // Desktop verse card
   const vdTa=g('vd-ta'); if(vdTa) vdTa.textContent=ta;
   const vdRef=g('vd-ref'); if(vdRef) vdRef.textContent='— '+ref;
@@ -993,7 +1030,7 @@ export function biBackCh(){
   const ca = g('bi-ch-area'); if(ca) ca.style.display='block';
 }
 
-export function biUseVerse(bookId, ch, v, enText, enBook){
+export async function biUseVerse(bookId, ch, v, enText, enBook){
   const book = BOOKS.find(b=>b.id===bookId);
   const ref  = `${enBook} ${ch}:${v}`;
   const tref = `${book?.ta||enBook} ${ch}:${v}`;
@@ -1007,7 +1044,17 @@ export function biUseVerse(bookId, ch, v, enText, enBook){
   debounceDraw();
   toast('📖 '+ref+' — fetching Tamil…');
 
-  // Fetch Tamil from bolls.life (TAMILBSI)
+  const localThai = await getLocalTamilText(bookId, ch, v);
+  if(localThai){
+    verse.ta = localThai;
+    if(ST.verse===verse){ debounceDraw(); }
+    const vdTa2=g('vd-ta'); if(vdTa2) vdTa2.textContent=verse.ta;
+    const mvd=g('mvd-ta'); if(mvd) mvd.textContent=verse.ta.substring(0,90);
+    buildQuickVerses();
+    toast('✅ '+tref+' loaded!');
+    return;
+  }
+
   const bkIdx = BOOKS.find(b=>b.id===bookId)?.n || (BOOKS.findIndex(b=>b.id===bookId)+1);
   fetch(`https://bolls.life/get-text/TAMILBSI/${bkIdx}/${ch}/${v}/`)
     .then(r=>r.json())
