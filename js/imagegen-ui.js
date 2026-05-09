@@ -834,7 +834,6 @@ export function mUseCustomVerse(){
   QUICK_VERSES.unshift(v); selVerse(0);
   toast('✅ Custom verse applied!');
 }
-}
 
 function rebuildMobileVerseList(){
   const el = g('m-verse-list');
