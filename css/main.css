@@ -100,6 +100,24 @@
   --bg4:  #dad6cc;
 }
 
+[data-theme="light"] .hero__title {
+  color: var(--color-text);
+}
+[data-theme="light"] .hero__ref {
+  color: var(--color-text-faint);
+}
+[data-theme="light"] .section-heading,
+[data-theme="light"] .section-heading em,
+[data-theme="light"] .section-tag,
+[data-theme="light"] .card,
+[data-theme="light"] .card h3,
+[data-theme="light"] .card p,
+[data-theme="light"] .service-slot__time {
+  color: var(--color-text);
+}
+[data-theme="light"] .service-slot__label {
+  color: var(--color-gold);
+}
 
 /* ── RESET ────────────────────────────────────────────────── */
 *,
