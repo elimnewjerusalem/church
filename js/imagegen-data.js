@@ -59,8 +59,6 @@ window.GALLERY=[
 ];
 window.GALLERY_GROUPS=['All','Nature','Faith'];
 
-window.GALLERY_GROUPS=['All','Nature','Faith'];
-
 export const BOOKS=[
   {id:'genesis',n:1,ta:'ஆதியாகமம்',en:'Genesis',ch:50,t:'OT'},
   {id:'exodus',n:2,ta:'யாத்திராகமம்',en:'Exodus',ch:40,t:'OT'},
@@ -131,8 +129,6 @@ export const BOOKS=[
 ];
 
 // BOOKS via ES module export (imagegen-main.js Object.assign exposes it to window)
-
-window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
 
 window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
 
