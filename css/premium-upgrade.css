@@ -428,6 +428,31 @@ h1 em, h2 em, h3 em, .section-heading em {
   animation: heroContentFade 1.2s ease-out 0.35s both;
 }
 
+/* Light theme hero overrides for readability */
+[data-theme="light"] .hero__overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, .15) 0%,
+    rgba(255, 255, 255, .35) 40%,
+    rgba(255, 255, 255, .55) 80%,
+    rgba(255, 255, 255, .75) 100%
+  );
+}
+
+[data-theme="light"] .hero::after {
+  background: radial-gradient(ellipse 120% 60% at 50% -10%,
+    rgba(255, 255, 255, .25) 0%,
+    transparent 65%);
+}
+
+[data-theme="light"] .hero__title {
+  text-shadow: 0 2px 16px rgba(255, 255, 255, .8);
+}
+
+[data-theme="light"] .hero__title em {
+  text-shadow: 0 0 32px rgba(255, 168, 37, .6), 0 2px 16px rgba(255, 255, 255, .8);
+}
+
 /* Hero buttons */
 .hero__actions {
   gap: 14px;
@@ -1211,28 +1236,28 @@ blockquote.card--gold footer {
 [data-theme="light"] {
   /* Re-anchor the studio bridge vars to dark-on-light values */
   --tx:  #1a1814;
-  --tx2: rgba(26, 24, 20, .68);
-  --tx3: rgba(26, 24, 20, .42);
-  --tx4: rgba(26, 24, 20, .32);
+  --tx2: #4a4035;
+  --tx3: #6b5f50;
+  --tx4: rgba(28, 23, 16, .6);
   --bd:  rgba(0, 0, 0, .09);
   --bd2: rgba(0, 0, 0, .16);
 }
 
 /* Studio left/right panel text */
-[data-theme="light"] .lp-tab         { color: rgba(26,24,20,.5); }
+[data-theme="light"] .lp-tab         { color: #4a4035; }
 [data-theme="light"] .lp-tab.on      { color: var(--color-gold); }
-[data-theme="light"] .lp-lbl         { color: rgba(26,24,20,.4); }
-[data-theme="light"] .rp-head        { color: rgba(26,24,20,.55); }
+[data-theme="light"] .lp-lbl         { color: #6b5f50; }
+[data-theme="light"] .rp-head        { color: #1a1814; }
 [data-theme="light"] .rp-body        { color: #1a1814; }
 
 /* Verse list */
-[data-theme="light"] .vi-ta          { color: rgba(26,24,20,.72); }
+[data-theme="light"] .vi-ta          { color: #4a4035; }
 [data-theme="light"] .vi-ref         { color: var(--color-gold); }
 [data-theme="light"] .vd-ta          { color: #1a1814; }
 
 /* Canvas hint & toolbar buttons */
-[data-theme="light"] .canvas-hint    { color: rgba(26,24,20,.4); }
-[data-theme="light"] .tb-sz          { color: rgba(26,24,20,.55); border-color: rgba(0,0,0,.14); }
+[data-theme="light"] .canvas-hint    { color: #6b5f50; }
+[data-theme="light"] .tb-sz          { color: #4a4035; border-color: rgba(0,0,0,.14); }
 [data-theme="light"] .tb-sz.on       { color: #09090f; }
 
 /* Right panel cards */
@@ -1367,7 +1392,7 @@ blockquote.card--gold footer {
    inside a light-mode card will now use readable dark values */
 [data-theme="light"] {
   --tx:  #1c1710;
-  --tx2: rgba(28, 23, 16, .68);
-  --tx3: rgba(28, 23, 16, .45);
-  --tx4: rgba(28, 23, 16, .35);
+  --tx2: #4a4035;
+  --tx3: #6b5f50;
+  --tx4: rgba(28, 23, 16, .6);
 }
