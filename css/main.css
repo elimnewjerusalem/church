@@ -1349,36 +1349,7 @@ button, select, input, textarea { font-family: var(--font-body); }
    Accent: Warm Gold (#FFD54A) on deep navy
 ═══════════════════════════════════════════════ */
 
-:root {
-  --bg:      #07090f;
-  --bg2:     #0c0f1a;
-  --bg3:     #111520;
-  --bg4:     #181d2e;
-  --tx:      #eae8e0;
-  --tx2:     rgba(234,232,224,.65);
-  --tx3:     rgba(234,232,224,.35);
-  --gd:      #FFD54A;
-  --gd2:     #FFC107;
-  --gdb:     rgba(255,213,74,.28);
-  --gdm:     rgba(255,213,74,.09);
-  --bd:      rgba(255,255,255,.07);
-  --bd2:     rgba(255,255,255,.13);
-  --sans:    'Poppins', sans-serif;
-  --serif:   'Playfair Display', Georgia, serif;
-  --tamil:   'Noto Serif Tamil', serif;
-  --glow:    0 0 40px rgba(255,213,74,.12);
-  --glow-sm: 0 0 12px rgba(255,213,74,.2);
-}
 
-*  { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  color: var(--tx);
-  font-family: var(--sans);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-h1,h2,h3 { font-family: var(--serif) !important; }
 
 /* ── HERO ────────────────────────────────────── */
 .bible-hero {

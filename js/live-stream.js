@@ -150,7 +150,7 @@ function displayLiveStream() {
       <div class="ls-offline-title">Join Us This Week</div>
       <div class="ls-offline-sub">We stream live on YouTube every service</div>
     </div>
-    <a href="https://www.youtube.com/@elimnewjerusalemchurch" target="_blank" rel="noopener" class="ls-offline-btn">
+    <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="ls-offline-btn">
       &#128250; Visit YouTube Channel
     </a>
   </div>
