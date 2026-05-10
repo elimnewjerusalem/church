@@ -71,6 +71,11 @@
   --color-bg-2:          #ece9e1;
   --color-bg-3:          #e2ddd3;
   --color-bg-4:          #d8d2c5;
+  --color-text:          #1c1710;
+  --color-text-muted:    #4a4035;
+  --color-text-faint:    #6b5f50;
+  --color-border:        rgba(0, 0, 0, .09);
+  --color-border-mid:    rgba(0, 0, 0, .16);
   --color-gold:          #9a6d0a;
   --color-gold-warm:     #c48b0e;
   --color-gold-dim:      #7a5508;
@@ -446,11 +451,17 @@ h1 em, h2 em, h3 em, .section-heading em {
 }
 
 [data-theme="light"] .hero__title {
-  text-shadow: 0 2px 16px rgba(255, 255, 255, .8);
+  color: var(--color-text);
+  text-shadow: 0 2px 16px rgba(255, 255, 255, .65);
 }
 
 [data-theme="light"] .hero__title em {
-  text-shadow: 0 0 32px rgba(255, 168, 37, .6), 0 2px 16px rgba(255, 255, 255, .8);
+  color: var(--color-gold);
+  text-shadow: 0 0 32px rgba(255, 168, 37, .6), 0 2px 16px rgba(255, 255, 255, .65);
+}
+
+[data-theme="light"] .hero__ref {
+  color: var(--color-text-faint);
 }
 
 /* Hero buttons */
