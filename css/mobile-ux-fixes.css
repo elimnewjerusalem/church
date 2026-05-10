@@ -120,7 +120,7 @@
 
 /* ── 9. SERVICE-TIME COUNTDOWN BANNER ────────────────────── */
 #enjc-service-banner {
-  display: none; /* shown by JS when next service is within 3h */
+  display: none; /* shown by JS via .is-visible class */
   position: sticky;
   top: 64px; /* below nav */
   z-index: 800;
@@ -129,7 +129,6 @@
   padding: 10px 16px;
   font-size: 13px;
   color: var(--color-text, #f0ece4);
-  display: none;
   align-items: center;
   justify-content: center;
   gap: 10px;

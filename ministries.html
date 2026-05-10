@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Our Ministries | ENJC</title>
   <meta name="description" content="Ministries at ENJC — Youth, Women, Prayer, Worship, Children, and Outreach.">
@@ -38,7 +39,7 @@
             <div class="nav-logo__sub">Elim New Jerusalem Church</div>
           </div>
         </a>
-        <div class="nav-links" role="list"><a href="index.html" class="nav-link" role="listitem">Home</a><a href="about.html" class="nav-link" role="listitem">About</a><a href="gallery.html" class="nav-link" role="listitem">Gallery</a><a href="ministries.html" class="nav-link  nav-link--active" role="listitem">Ministries</a><a href="events.html" class="nav-link" role="listitem">Events</a><a href="contact.html" class="nav-link" role="listitem">Contact</a><a href="bible.html" class="nav-link" role="listitem">Bible</a></div>
+        <div class="nav-links" role="list"><a href="index.html" class="nav-link" role="listitem">Home</a><a href="about.html" class="nav-link" role="listitem">About</a><a href="gallery.html" class="nav-link" role="listitem">Gallery</a><a href="ministries.html" class="nav-link  nav-link--active" aria-current="page" role="listitem">Ministries</a><a href="events.html" class="nav-link" role="listitem">Events</a><a href="contact.html" class="nav-link" role="listitem">Contact</a><a href="bible.html" class="nav-link" role="listitem">Bible</a></div>
         <div class="nav-controls">
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
             <div class="theme-toggle__dot"></div>
@@ -210,12 +211,57 @@
 
   <footer class="site-footer">
     <div class="container">
-      <div class="site-footer__inner">
-        <div class="site-footer__logo">ENJC — Elim New Jerusalem Church</div>
-        <div class="site-footer__copy">© 2026 · Tondiarpet, Chennai · +91 94443 45102</div>
+      <div class="site-footer__rich">
+        <div class="site-footer__col">
+          <div class="site-footer__logo">ENJC</div>
+          <p class="site-footer__tagline">Elim New Jerusalem Church<br>Tondiarpet, Chennai</p>
+          <p class="site-footer__addr">📍 No. 4, Peters Road, Tondiarpet, Chennai – 600 081</p>
+          <a href="tel:+919444345102" class="site-footer__phone">📞 +91 94443 45102</a>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__heading">Quick Links</div>
+          <nav aria-label="Footer navigation">
+            <a href="index.html" class="site-footer__link">🏠 Home</a>
+            <a href="about.html" class="site-footer__link">✝ About</a>
+            <a href="events.html" class="site-footer__link">📅 Live &amp; Events</a>
+            <a href="bible.html" class="site-footer__link">📖 Bible Reader</a>
+            <a href="gallery.html" class="site-footer__link">🖼 Gallery</a>
+            <a href="ministries.html" class="site-footer__link">🙏 Ministries</a>
+            <a href="contact.html" class="site-footer__link">✉ Contact</a>
+          </nav>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__heading">Connect With Us</div>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">▶</span> YouTube — Main Channel
+          </a>
+          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📱</span> YouTube — ENJC Shorts
+          </a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📸</span> Instagram
+          </a>
+          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">👥</span> Facebook
+          </a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">💬</span> WhatsApp
+          </a>
+          <div class="site-footer__services">
+            <div class="site-footer__heading" style="margin-top:16px">Service Times</div>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">✝ Fri · 11:00 AM – 1:30 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🌙 Night Prayer · 10:30 PM Daily</p>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 Elim New Jerusalem Church, Chennai</span>
+        <span>Built with ❤️ for the Kingdom</span>
       </div>
     </div>
   </footer>
+
 
   <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
      class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">

@@ -2809,3 +2809,54 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 .nx-feat:hover .nx-feat-lbl { color: var(--gd); }
 .nx-feat.on .nx-feat-lbl { color: var(--gd); }
 
+
+/* ═══════════════════════════════════════════════
+   RICH FOOTER
+═══════════════════════════════════════════════ */
+.site-footer__rich {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr;
+  gap: 40px;
+  padding: 48px 0 32px;
+  border-top: 0.5px solid var(--color-border);
+}
+.site-footer__col { display: flex; flex-direction: column; gap: 6px; }
+.site-footer__logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 4px;
+}
+.site-footer__tagline { font-size: 13px; color: var(--color-text-muted); margin: 0; line-height: 1.6; }
+.site-footer__addr   { font-size: 12px; color: var(--color-text-faint); margin: 4px 0 0; }
+.site-footer__phone  { font-size: 13px; color: var(--color-text-muted); text-decoration: none; margin-top: 4px; }
+.site-footer__phone:hover { color: var(--color-gold); }
+.site-footer__heading {
+  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--color-gold);
+  margin-bottom: 8px;
+}
+.site-footer__link {
+  font-size: 13px; color: var(--color-text-muted);
+  text-decoration: none; padding: 3px 0; transition: color .2s;
+}
+.site-footer__link:hover { color: var(--color-gold); }
+.site-footer__social {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--color-text-muted);
+  text-decoration: none; padding: 3px 0; transition: color .2s;
+}
+.site-footer__social:hover { color: var(--color-gold); }
+.site-footer__bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+  padding: 16px 0;
+  border-top: 0.5px solid var(--color-border);
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+@media (max-width: 680px) {
+  .site-footer__rich { grid-template-columns: 1fr; gap: 28px; padding: 32px 0 20px; }
+  .site-footer__bottom { flex-direction: column; text-align: center; }
+}

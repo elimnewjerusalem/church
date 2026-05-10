@@ -3,11 +3,30 @@
 //  Auto-detects live time, shows live player or offline card
 // ═══════════════════════════════════════════════════════════
 
-// ── UPDATE THESE WHEN GOING LIVE ────────────────────────────
-const YOUTUBE_LIVE_IDS = {
-  mainChannel:   '',   // paste live videoId here e.g. 'dQw4w9WgXcQ'
-  shortsChannel: ''
-};
+// ── YOUTUBE CONFIG ────────────────────────────────────────────
+const YT_API_KEY   = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+const MAIN_CHANNEL_ID   = 'UC4yhaUWMXi-Ven-QAVx4j7w';
+const SHORTS_CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w'; // same channel, shorts tab
+
+// Auto-fetched live IDs (populated on load)
+const YOUTUBE_LIVE_IDS = { mainChannel: '', shortsChannel: '' };
+
+async function fetchLiveVideoId(channelId) {
+  try {
+    const qs = new URLSearchParams({
+      part: 'id', type: 'video', eventType: 'live',
+      channelId, key: YT_API_KEY, maxResults: '1'
+    });
+    const res = await fetch(`https://www.googleapis.com/youtube/v3/search?${qs}`);
+    const data = await res.json();
+    return data?.items?.[0]?.id?.videoId || '';
+  } catch { return ''; }
+}
+
+async function initLiveIds() {
+  YOUTUBE_LIVE_IDS.mainChannel = await fetchLiveVideoId(MAIN_CHANNEL_ID);
+  YOUTUBE_LIVE_IDS.shortsChannel = YOUTUBE_LIVE_IDS.mainChannel;
+}
 
 // ── CHANNEL & SCHEDULE CONFIG ────────────────────────────────
 const LIVE_STREAMS = {
@@ -32,7 +51,7 @@ const LIVE_STREAMS = {
     liveUrl:    'https://www.youtube.com/@ENJCShorts/live',
     image: 'images/Live/night-prayer.jpg',
     schedule: [
-      { day:'all', startTime:'22:20', endTime:'23:30', title:'Daily Night Prayer', description:'End your day with prayer and devotion' }
+      { day:'all', startTime:'22:30', endTime:'23:30', title:'Daily Night Prayer', description:'End your day with prayer and devotion' }
     ]
   }
 };
@@ -180,7 +199,8 @@ function displayLiveStream() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await initLiveIds();
   displayLiveStream();
   setInterval(displayLiveStream, 60000);
 });
