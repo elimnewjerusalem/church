@@ -265,10 +265,26 @@
 
   function startCountdown() {
     const pad = n => String(Math.floor(n)).padStart(2, '0');
+    // All weekly service slots: [dayOfWeek (0=Sun,5=Fri), hour, minute]
+    const SLOTS = [
+      [0,  5, 30],  // Sunday 1st
+      [0,  8, 30],  // Sunday 2nd
+      [0, 12,  0],  // Sunday 3rd
+      [5, 11,  0],  // Friday prayer
+    ];
     const getNext = () => {
-      const now = new Date(), d = now.getDay() === 0 ? 7 : 7 - now.getDay();
-      const next = new Date(now);
-      next.setDate(now.getDate() + d); next.setHours(5, 30, 0, 0); return next;
+      const now = new Date();
+      let best = null;
+      for (const [day, h, m] of SLOTS) {
+        const t = new Date(now);
+        let diff = day - now.getDay();
+        if (diff < 0) diff += 7;
+        t.setDate(now.getDate() + diff);
+        t.setHours(h, m, 0, 0);
+        if (t <= now) t.setDate(t.getDate() + 7); // already passed today
+        if (!best || t < best) best = t;
+      }
+      return best;
     };
     const tick = () => {
       const diff = getNext() - Date.now(); if (diff < 0) return;

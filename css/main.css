@@ -1225,7 +1225,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   background: var(--nx-votd-bg);
   border-color: var(--nx-votd-bd);
 }
-[data-theme="light"] .nx-votd-ta   { color: #1a1a2e; }
+[data-theme="light"] .nx-votd-ta   { color: var(--tx); }
 [data-theme="light"] .nx-votd-en   { color: var(--tx3); }
 [data-theme="light"] .nx-votd-badge,
 [data-theme="light"] .nx-votd-taref { color: var(--gd); }
@@ -1236,7 +1236,7 @@ button, select, input, textarea { font-family: var(--font-body); }
 [data-theme="light"] .nx-feat-bar  { background: var(--bg2); }
 
 [data-theme="light"] .nx-lang-tog  { background: var(--bg3); border-color: var(--bd2); }
-[data-theme="light"] .nx-lang-btn  { color: var(--tx3); }
+[data-theme="light"] .nx-lang-btn  { color: var(--tx3); background: var(--bg3); }
 [data-theme="light"] .nx-lang-btn.on { background: var(--gd); color: #fff; }
 
 [data-theme="light"] .nx-sel       { background: var(--bg3); color: var(--tx); border-color: var(--bd2); }
@@ -1301,7 +1301,6 @@ button, select, input, textarea { font-family: var(--font-body); }
 [data-theme="light"] .ig-tab            { background: var(--bg3); color: var(--tx2); }
 [data-theme="light"] .ig-tab.on         { background: var(--gd); color: #fff; }
 [data-theme="light"] .ig-bgtab.on       { background: var(--gd); color: #fff; }
-[data-theme="light"] .nx-lang-btn       { background: var(--bg3); }
 
 /* Service slot time — needs to be readable on light card backgrounds */
 [data-theme="light"] .service-slot      { background: var(--color-bg-3); }
@@ -1325,7 +1324,7 @@ button, select, input, textarea { font-family: var(--font-body); }
 [data-theme="light"] .footer__links a   { color: #4a4035; }
 [data-theme="light"] .bottom-nav__item  { color: var(--color-text-muted); }
 [data-theme="light"] .bottom-nav__item.is-active { color: var(--color-gold); }
-[data-theme="light"] .bottom-nav__label { color: inherit; }
+[data-theme="light"] .bottom-nav__label { color: var(--color-text-faint); }
 
 /* ── PATCH: hide old hero + old sidebar layout ── */
 .bible-hero  { display: none !important; }

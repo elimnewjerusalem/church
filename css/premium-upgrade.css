@@ -1389,11 +1389,6 @@ blockquote.card--gold footer {
   border-color: var(--color-gold-border);
 }
 
-/* Fix inline rgba(0,0,0,.18) overlay slots inside cards */
-[data-theme="light"] .service-slot {
-  background: rgba(0, 0, 0, .04);
-}
-
 /* Ministry card icon area */
 [data-theme="light"] .activity-card__icon {
   opacity: 1;
