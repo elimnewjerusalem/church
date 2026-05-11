@@ -60,50 +60,167 @@
 
 <main id="main">
 
-  <!-- Page hero -->
+  <!-- ── PAGE HERO ───────────────────────────────────────── -->
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
       <p class="section-tag">Our Story</p>
       <h1 id="page-title">About <em>ENJC</em></h1>
-      <p>Elim New Jerusalem Church — Tondiarpet, Chennai.</p>
+      <p>Elim New Jerusalem Church — Tondiarpet, Chennai. Rooted in the Word, moving in the Spirit.</p>
     </div>
   </section>
 
-  <!-- Pastor -->
-  <section class="section" aria-labelledby="pastor-heading">
+  <!-- ── CHURCH STATS ─────────────────────────────────────── -->
+  <section class="section-alt" aria-label="Church at a glance" style="padding:32px 0;">
     <div class="container">
-      <p class="section-tag">Leadership</p>
-      <h2 class="section-heading" id="pastor-heading">Our <em>Pastor</em></h2>
-      <div class="section-rule" aria-hidden="true"></div>
-      <article class="card" style="padding:36px;display:flex;align-items:center;gap:36px;flex-wrap:wrap;">
-        <div class="pastor-avatar" style="width:140px;height:140px;border-radius:50%;border:3px solid var(--color-gold-border);flex-shrink:0;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35);">
-          <img src="images/pastor.jpg" alt="Pastor A. Karthik Daniel"
-               id="pastor-img"
-               style="width:100%;height:100%;object-fit:cover;object-position:center top;"
-               onerror="this.style.display='none';document.getElementById('pastor-fallback').style.display='flex'">
-          <div id="pastor-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:48px;background:var(--color-gold-bg);">🙏</div>
+      <div class="about-stats">
+        <div class="about-stat">
+          <div class="about-stat__n">35+</div>
+          <div class="about-stat__l">Years of Ministry</div>
         </div>
-        <div style="flex:1;min-width:240px;">
-          <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);margin-bottom:8px;">Senior Pastor</p>
-          <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:12px;">Pastor A. Karthik Daniel</h2>
-          <p style="font-size:15px;line-height:1.85;margin-bottom:18px;">
-            Pastor A. Karthik Daniel leads Elim New Jerusalem Church with a vision for deliverance,
-            prayer, and reaching the lost across Chennai and Tamil Nadu. He is deeply committed to the
-            Word of God and the transforming power of the Holy Spirit.
-          </p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold" style="font-size:13px;padding:9px 20px;">Contact Pastor</a>
-            <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Watch Sermons</a>
-          </div>
+        <div class="about-stat">
+          <div class="about-stat__n">3</div>
+          <div class="about-stat__l">Sunday Services</div>
         </div>
-      </article>
+        <div class="about-stat">
+          <div class="about-stat__n">Daily</div>
+          <div class="about-stat__l">Night Prayer</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat__n">TN+</div>
+          <div class="about-stat__l">Outreach Across Tamil Nadu</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- Deliverance Ministry -->
-  <section class="section-alt" aria-labelledby="ministry-heading">
+  <!-- ── PASTOR ────────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="pastor-heading">
+    <div class="container">
+      <p class="section-tag">Leadership</p>
+      <h2 class="section-heading" id="pastor-heading">Our <em>Pastor</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
+
+      <div class="pastor-layout">
+        <!-- Left: photo + contact -->
+        <div class="pastor-left">
+          <div class="pastor-avatar-wrap">
+            <img src="images/pastor.jpg" alt="Pastor A. Karthik Daniel"
+                 id="pastor-img"
+                 onerror="this.style.display='none';document.getElementById('pastor-fallback').style.display='flex'">
+            <div id="pastor-fallback">🙏</div>
+          </div>
+          <div class="pastor-badge">Senior Pastor</div>
+          <div class="pastor-name">Pastor A. Karthik Daniel</div>
+          <div class="pastor-actions">
+            <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold" style="font-size:13px;padding:9px 22px;width:100%;text-align:center;">💬 Contact Pastor</a>
+            <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 22px;width:100%;text-align:center;">▶ Watch Sermons</a>
+          </div>
+        </div>
+
+        <!-- Right: bio + video -->
+        <div class="pastor-right">
+          <p class="pastor-bio">
+            Pastor A. Karthik Daniel leads Elim New Jerusalem Church with a God-given vision for
+            deliverance, prayer, and reaching the lost across Chennai and Tamil Nadu. Called by
+            God from a young age, he has faithfully served the congregation at Tondiarpet with
+            humility, faith, and fire.
+          </p>
+          <p class="pastor-bio" style="margin-top:12px;">
+            He is deeply committed to the Word of God, the transforming power of the Holy Spirit,
+            and seeing families — whole households — saved, healed, and set free in Jesus' name.
+            His ministry spans Sunday services, Friday prayer meetings, daily night prayer, and
+            special deliverance and Promise services.
+          </p>
+
+          <!-- Featured sermon video -->
+          <div class="pastor-video-wrap">
+            <div class="pastor-video-label">Featured Sermon</div>
+            <div class="pastor-video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BqOLXeAVEZs"
+                title="Featured Sermon — Pastor A. Karthik Daniel"
+                frameborder="0" loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── CHURCH HISTORY TIMELINE ───────────────────────────── -->
+  <section class="section-alt" aria-labelledby="history-heading">
+    <div class="container">
+      <p class="section-tag">Our Journey</p>
+      <h2 class="section-heading" id="history-heading">Church <em>History</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
+
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1989</div>
+          <div class="tl-card card">
+            <div class="tl-icon">🌱</div>
+            <h3 class="tl-title">Church Founded</h3>
+            <p class="tl-desc">Elim New Jerusalem Church was established in Tondiarpet, Chennai — a small gathering with a great vision: to bring the power of Jesus Christ to the people of North Chennai.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2000s</div>
+          <div class="tl-card card">
+            <div class="tl-icon">🔥</div>
+            <h3 class="tl-title">Deliverance Ministry Grows</h3>
+            <p class="tl-desc">God's power moved mightily through the Deliverance Ministry. Families were set free, healings took place, and the congregation grew as testimonies spread across Chennai.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2010s</div>
+          <div class="tl-card card">
+            <div class="tl-icon">📖</div>
+            <h3 class="tl-title">Multiple Services &amp; Outreach</h3>
+            <p class="tl-desc">Sunday services expanded to three gatherings to accommodate the growing congregation. Promise Services, Testimony nights, and Tamil Nadu village outreaches began.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2020</div>
+          <div class="tl-card card">
+            <div class="tl-icon">📡</div>
+            <h3 class="tl-title">Live Streaming Begins</h3>
+            <p class="tl-desc">ENJC took the Gospel online — live streaming Sunday services and night prayer meetings on YouTube, reaching believers across India and around the world.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--now"></div>
+          <div class="tl-year tl-year--now">Today</div>
+          <div class="tl-card card card--gold">
+            <div class="tl-icon">✝️</div>
+            <h3 class="tl-title">Still Pressing Forward</h3>
+            <p class="tl-desc">Three Sunday services · Friday Family Blessing Prayer · Daily Night Prayer at 10:30 PM · Bible Reader app · Reaching Tamil Nadu and the nations for Jesus Christ.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── DELIVERANCE MINISTRY ──────────────────────────────── -->
+  <section class="section" aria-labelledby="ministry-heading">
     <div class="container">
       <p class="section-tag">Our Ministry</p>
       <h2 class="section-heading" id="ministry-heading">About Our <em>Deliverance Ministry</em></h2>
@@ -113,37 +230,31 @@
         and the presence of the Holy Spirit.
       </p>
       <div class="grid-3">
-
         <article class="card" style="padding:30px;">
-          <div style="width:52px;height:52px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;" aria-hidden="true">🙏</div>
+          <div class="ministry-icon" aria-hidden="true">🙏</div>
           <h3 style="margin-bottom:10px;">Prayer &amp; Intercession</h3>
           <p style="font-size:14px;">Daily prayer meetings and special intercession gatherings. Every believer is invited to pray for families, Chennai, and nations.</p>
         </article>
-
         <article class="card" style="padding:30px;">
-          <div style="width:52px;height:52px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;" aria-hidden="true">📖</div>
+          <div class="ministry-icon" aria-hidden="true">📖</div>
           <h3 style="margin-bottom:10px;">Word &amp; Worship</h3>
           <p style="font-size:14px;">Grounded in the authority of Scripture. We preach, teach, and live God&#39;s Word every week through three Sunday services.</p>
         </article>
-
         <article class="card" style="padding:30px;">
-          <div style="width:52px;height:52px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;" aria-hidden="true">🕊</div>
+          <div class="ministry-icon" aria-hidden="true">🕊</div>
           <h3 style="margin-bottom:10px;">Holy Spirit Ministry</h3>
           <p style="font-size:14px;">We welcome the gifts and move of the Holy Spirit. Healing, deliverance, and transformation happen when God&#39;s people gather.</p>
         </article>
-
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- Mission + Vision -->
-  <section class="section" aria-labelledby="mission-heading">
+  <!-- ── MISSION + VISION ──────────────────────────────────── -->
+  <section class="section-alt" aria-labelledby="mission-heading">
     <div class="container">
       <div class="grid-2" style="align-items:start;gap:52px;">
-
-        <!-- Mission -->
         <div>
           <p class="section-tag">Mission</p>
           <h2 class="section-heading" id="mission-heading">Our <em>Mission</em></h2>
@@ -167,8 +278,6 @@
             </li>
           </ul>
         </div>
-
-        <!-- Vision -->
         <div>
           <p class="section-tag">Vision</p>
           <h2 class="section-heading" id="vision-heading">Our <em>Vision</em></h2>
@@ -184,15 +293,14 @@
             <li class="card" style="padding:18px 20px;display:flex;align-items:flex-start;gap:14px;"><span style="color:var(--color-gold);font-size:16px;flex-shrink:0;margin-top:2px;" aria-hidden="true">🏘</span><div><div style="font-size:14px;font-weight:600;color:var(--color-text);margin-bottom:3px;">Village expansion across Tamil Nadu</div><div style="font-size:13px;color:var(--color-text-faint);">Starting in Chennai — reaching every Tamil Nadu village</div></div></li>
           </ul>
         </div>
-
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- Foundation verse -->
-  <section class="section-alt" aria-label="Foundation verse">
+  <!-- ── FOUNDATION VERSE ──────────────────────────────────── -->
+  <section class="section" aria-label="Foundation verse">
     <div class="container" style="text-align:center;">
       <blockquote class="card card--gold" style="padding:40px;max-width:700px;margin:0 auto;border:none;">
         <p style="font-family:var(--font-heading);font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--color-text);line-height:1.8;font-style:italic;margin-bottom:16px;">
