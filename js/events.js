@@ -301,13 +301,25 @@
   document.addEventListener('DOMContentLoaded', async () => {
     startCountdown();
 
-    // Fallback testimonials
+    // Load events.json for testimonials + video fallback
+    let jsonData = null;
     try {
-      const r = await fetch('data/events.json');
-      if (r.ok) { const d = await r.json(); initTestimonials(d.testimonials || []); }
+      const r = await fetch('data/events.json').catch(()=>fetch('events.json'));
+      if (r.ok) { jsonData = await r.json(); }
     } catch {}
+    initTestimonials(jsonData?.testimonials || []);
 
-    // Parallel fetch everything
+    // JSON fallback video cards (used when API returns empty)
+    function jsonVideos(arr, type) {
+      return (arr || []).map(v => ({
+        videoId:   v.videoId || '',
+        title:     v.title   || '',
+        date:      v.date    || '',
+        thumbnail: v.videoId ? `https://img.youtube.com/vi/${v.videoId}/mqdefault.jpg` : '',
+      }));
+    }
+
+    // Parallel fetch everything from YouTube API
     const [lives, sunday, friday, promise, deliverance, testimony, shorts] = await Promise.all([
       fetchRecentLives(3),
       fetchPlaylist(PL.sunday, 1),
@@ -318,24 +330,33 @@
       fetchShorts(3),
     ]);
 
+    // Use API results; fall back to JSON data if API returned nothing
+    const liveFinal        = lives.length       ? lives       : jsonVideos(jsonData?.recentStreams, 'live');
+    const sundayFinal      = sunday.length      ? sunday      : jsonVideos(jsonData?.events?.filter(e=>e.topic==='worship').slice(0,1), 'sunday');
+    const fridayFinal      = friday.length      ? friday      : jsonVideos(jsonData?.events?.filter(e=>e.topic==='prayer').slice(0,1), 'friday');
+    const promiseFinal     = promise.length     ? promise     : [];
+    const deliveranceFinal = deliverance.length ? deliverance : [];
+    const testimonyFinal   = testimony.length   ? testimony   : [];
+    const shortsFinal      = shorts.length      ? shorts      : jsonVideos(jsonData?.verseReels, 'shorts');
+
     // Render all sections
-    renderGrid('recent-streams-grid', lives, 'live');
-    renderServiceSection('sunday-section',  sunday[0]  || null, 'sunday',  PL.sunday,  'Sunday Service');
-    renderServiceSection('friday-section',  friday[0]  || null, 'friday',  PL.friday,  'Friday Prayer');
-    renderServiceSection('promise-section', promise[0] || null, 'promise', PL.promise, 'Promise Service');
-    renderGrid('deliverance-grid', deliverance, 'deliverance');
-    renderGrid('testimony-grid',   testimony,   'testimony');
-    renderGrid('shorts-grid',      shorts,      'shorts');
+    renderGrid('recent-streams-grid', liveFinal, 'live');
+    renderServiceSection('sunday-section',  sundayFinal[0]  || null, 'sunday',  PL.sunday,  'Sunday Service');
+    renderServiceSection('friday-section',  fridayFinal[0]  || null, 'friday',  PL.friday,  'Friday Prayer');
+    renderServiceSection('promise-section', promiseFinal[0] || null, 'promise', PL.promise, 'Promise Service');
+    renderGrid('deliverance-grid', deliveranceFinal, 'deliverance');
+    renderGrid('testimony-grid',   testimonyFinal,   'testimony');
+    renderGrid('shorts-grid',      shortsFinal,      'shorts');
 
     // Search pool
     allVideos = [
-      ...lives.map(v       => ({ ...v, _type: 'live' })),
-      ...sunday.map(v      => ({ ...v, _type: 'sunday' })),
-      ...friday.map(v      => ({ ...v, _type: 'friday' })),
-      ...promise.map(v     => ({ ...v, _type: 'promise' })),
-      ...deliverance.map(v => ({ ...v, _type: 'deliverance' })),
-      ...testimony.map(v   => ({ ...v, _type: 'testimony' })),
-      ...shorts.map(v      => ({ ...v, _type: 'shorts' })),
+      ...liveFinal.map(v        => ({ ...v, _type: 'live' })),
+      ...sundayFinal.map(v      => ({ ...v, _type: 'sunday' })),
+      ...fridayFinal.map(v      => ({ ...v, _type: 'friday' })),
+      ...promiseFinal.map(v     => ({ ...v, _type: 'promise' })),
+      ...deliveranceFinal.map(v => ({ ...v, _type: 'deliverance' })),
+      ...testimonyFinal.map(v   => ({ ...v, _type: 'testimony' })),
+      ...shortsFinal.map(v      => ({ ...v, _type: 'shorts' })),
     ];
 
     initFilterButtons();
