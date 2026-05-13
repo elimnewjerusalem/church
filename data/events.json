@@ -12,7 +12,7 @@
     },
     {
       "id": 2,
-      "title": "Sunday Worship — Faith That Moves Mountains",
+      "title": "Sunday Worship \u2014 Faith That Moves Mountains",
       "videoId": "BqOLXeAVEZs",
       "youtubeLink": "https://www.youtube.com/watch?v=BqOLXeAVEZs",
       "date": "February 22, 2026",
@@ -22,7 +22,7 @@
     },
     {
       "id": 3,
-      "title": "Family Blessing Prayer — Unity in the Spirit",
+      "title": "Family Blessing Prayer \u2014 Unity in the Spirit",
       "videoId": "ofwLCN2mWDk",
       "youtubeLink": "https://www.youtube.com/watch?v=ofwLCN2mWDk",
       "date": "February 7, 2026",
@@ -94,17 +94,33 @@
   ],
   "specialEvents": [
     {
+      "id": 4,
+      "title": "Night Prayer",
+      "icon": "\ud83c\udf19",
+      "schedule": "Every Night",
+      "time": "10:30pm",
+      "description": "Join us every night at 10:30 PM for a time of prayer and seeking God's presence."
+    },
+    {
+      "id": 5,
+      "title": "Promise Service",
+      "icon": "\u2b50",
+      "schedule": "1st of Every Month",
+      "time": "05:30am \u2013 07:30am",
+      "description": "A special worship service on the first day of each month to start the month in God's presence."
+    },
+    {
       "id": 1,
       "title": "Monthly Special Prayer",
-      "icon": "🙏",
+      "icon": "\ud83d\ude4f",
       "schedule": "2nd Saturday of Every Month",
-      "time": "06:00am – 06:00pm",
+      "time": "06:00am \u2013 06:00pm",
       "description": "A day dedicated to seeking God's face through special prayer and fasting"
     },
     {
       "id": 2,
       "title": "Annual Church Anniversary",
-      "icon": "🎉",
+      "icon": "\ud83c\udf89",
       "schedule": "Coming Soon",
       "time": "",
       "description": "Celebrating God's faithfulness with special worship services and activities"
@@ -112,7 +128,7 @@
     {
       "id": 3,
       "title": "Family Retreat",
-      "icon": "👨‍👩‍👧‍👦",
+      "icon": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66",
       "schedule": "Details Coming Soon",
       "time": "",
       "description": "A weekend getaway for families to connect with God and each other"
@@ -143,11 +159,28 @@
       "videoId": "P7tvLwUQ_tg",
       "youtubeLink": "https://www.youtube.com/live/P7tvLwUQ_tg",
       "schedule": "Every Sunday",
-      "times": ["05:30am – 07:30am", "08:30am – 10:30am", "11:30am – 01:30pm"],
+      "times": [
+        "05:30am \u2013 07:30am",
+        "08:30am \u2013 10:30am",
+        "12:00pm \u2013 02:00pm"
+      ],
       "topic": "worship",
       "description": "Join us for powerful worship, inspiring messages, and fellowship with believers.",
       "buttonText": "Watch Live",
       "buttonClass": "register"
+    },
+    {
+      "id": 4,
+      "title": "Tuesday Prayer Meeting",
+      "type": "info",
+      "schedule": "Every Tuesday",
+      "times": [
+        "11:00am \u2013 04:00pm"
+      ],
+      "topic": "prayer",
+      "description": "Special prayer gathering every Tuesday. Come and seek God's presence together.",
+      "buttonText": "Get Directions",
+      "buttonClass": "call"
     },
     {
       "id": 2,
@@ -156,7 +189,9 @@
       "videoId": "ysSagRBRE1A",
       "youtubeLink": "https://www.youtube.com/live/ysSagRBRE1A",
       "schedule": "Every Friday",
-      "times": ["11:00am – 01:30pm"],
+      "times": [
+        "11:00am \u2013 01:00pm"
+      ],
       "topic": "prayer",
       "description": "Come together in unity and power as we lift our voices in prayer.",
       "buttonText": "Watch Live",
@@ -169,7 +204,9 @@
       "videoId": "p2doONT8Q2s",
       "youtubeLink": "https://www.youtube.com/live/p2doONT8Q2s",
       "schedule": "Every Saturday",
-      "times": ["06:00pm – 07:00pm"],
+      "times": [
+        "06:00pm \u2013 07:00pm"
+      ],
       "topic": "message",
       "description": "Dynamic gatherings for young people to grow in faith and build friendships.",
       "buttonText": "Watch Live",
