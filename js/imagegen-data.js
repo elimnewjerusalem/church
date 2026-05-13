@@ -131,6 +131,7 @@ export const BOOKS=[
 // BOOKS via ES module export (imagegen-main.js Object.assign exposes it to window)
 
 window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
+window.BOOKS=BOOKS;
 
 window.QUICK_VERSES=[
   {ta:'தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார்.',tref:'யோவான் 3:16',en:'For God so loved the world.',ref:'John 3:16',tags:['Love','Faith']},
