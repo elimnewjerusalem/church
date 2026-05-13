@@ -251,8 +251,12 @@
     function navLightbox(d){cur=(cur+d+IMAGES.length)%IMAGES.length;render()}
     function render(){const item=IMAGES[cur];document.getElementById('lb-img').src=item.src;document.getElementById('lb-img').alt=item.caption;document.getElementById('lb-caption').textContent=item.caption;document.getElementById('lb-counter').textContent=(cur+1)+' / '+IMAGES.length}
     document.addEventListener('DOMContentLoaded',function(){
-      document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox()});
-      document.addEventListener('keydown',function(e){if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='ArrowRight')navLightbox(1);if(e.key==='ArrowLeft')navLightbox(-1);if(e.key==='Escape')closeLightbox()});
+      const lb=document.getElementById('lightbox');
+      lb.addEventListener('click',function(e){if(e.target===this)closeLightbox()});
+      document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='ArrowRight')navLightbox(1);if(e.key==='ArrowLeft')navLightbox(-1);if(e.key==='Escape')closeLightbox()});
+      let tx=0;
+      lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+      lb.addEventListener('touchend',function(e){const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)navLightbox(dx<0?1:-1)},{passive:true});
     });
   </script>
   
