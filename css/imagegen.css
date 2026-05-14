@@ -350,14 +350,15 @@ canvas#igcv{
   .lp,.rp{display:none;}
   .studio{grid-template-columns:1fr;grid-template-rows:1fr;}
   html,body{overflow:hidden;}
-  .canvas-area{padding:12px;}
+  .canvas-area{padding:12px;padding-bottom:70px;}
   canvas#igcv{
-    max-height:calc(100vh - var(--bar) - 70px)!important;
+    max-height:calc(100vh - var(--bar) - 70px - 58px)!important;
     max-width:100%;
   }
   .canvas-hint{display:none;}
   .tb-sizes{display:none;}
   .tb-logo span{display:none;}
+  #toast{bottom:78px;}
 }
 
 /* ── MOBILE BOTTOM BAR ── */

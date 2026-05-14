@@ -1044,8 +1044,9 @@ export async function biSelectCh(ch){
     const tamilText = localTexts[v.verse-1] || '';
     const displayText = tamilText || v.text.trim();
     const clickText = v.text?.trim() || tamilText || '';
+    const safe = encodeURIComponent(clickText);
     return `
-      <div class="vi" onclick="biUseVerse('${BI.book.id}',${ch},${v.verse},\`${clickText.replace(/`/g,"'")}\`,'${BI.book.en}')"
+      <div class="vi" onclick="biUseVerse('${BI.book.id}',${ch},${v.verse},decodeURIComponent('${safe}'),'${BI.book.en}')"
            style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
         <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
         ${displayText}
@@ -1187,8 +1188,9 @@ export async function mbiSelectCh(ch){
     const tamilText = localTexts[v.verse-1] || '';
     const displayText = tamilText || v.text.trim();
     const clickText = v.text?.trim() || tamilText || '';
+    const safe = encodeURIComponent(clickText);
     return `
-      <div class="vi" onclick="mbiUseVerse('${BI.book.id}',${ch},${v.verse},\`${clickText.replace(/`/g,"'")}\`,'${BI.book.en}')"
+      <div class="vi" onclick="mbiUseVerse('${BI.book.id}',${ch},${v.verse},decodeURIComponent('${safe}'),'${BI.book.en}')"
            style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
         <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
         ${displayText}
