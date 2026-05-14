@@ -673,7 +673,7 @@ html[data-theme="light"] .service-slot__label {
   border-radius: var(--radius-sm);
   padding: 13px 16px;
   color: var(--color-text);
-  font-size: 14px;
+  font-size: 16px;
   font-family: var(--font-body);
   outline: none;
   transition: border-color .2s;
@@ -739,7 +739,7 @@ textarea.form-field {
 }
 
 .bottom-nav__icon  { font-size: 19px; line-height: 1; }
-.bottom-nav__label { font-size: 9px; color: var(--color-text-faint); letter-spacing: .2px; }
+.bottom-nav__label { font-size: 11px; color: var(--color-text-faint); letter-spacing: .2px; }
 .bottom-nav__item.is-active .bottom-nav__label { color: var(--color-gold); }
 
 /* Center Bible button */
@@ -1136,7 +1136,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   flex: 1; background: var(--bg2);
   border: 1px solid var(--bd2); border-radius: 99px;
   padding: 9px 18px; color: var(--tx);
-  font-size: 12px; font-family: var(--sans);
+  font-size: 16px; font-family: var(--sans);
   outline: none; transition: all .2s;
 }
 .nx-search-inp:focus {
@@ -2761,7 +2761,7 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   background: rgba(255,255,255,.04); border: 1px solid var(--bd);
   border-radius: 99px; padding: 5px 10px; gap: 8px;
 }
-.nx-search-inp { background: none; border: none; outline: none; color: var(--tx); font-size: 13px; flex: 1; font-family: var(--sans); }
+.nx-search-inp { background: none; border: none; outline: none; color: var(--tx); font-size: 16px; flex: 1; font-family: var(--sans); }
 .nx-search-inp::placeholder { color: var(--tx3); }
 .nx-search-btn {
   width: 30px; height: 30px; background: var(--gd); border: none;
