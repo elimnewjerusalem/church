@@ -40,9 +40,11 @@
 @media (max-width: 900px) {
   .wa-float {
     bottom: 80px !important; /* 64px nav + 16px gap */
+    right: 18px !important;
   }
   .scroll-top-btn {
-    bottom: 80px !important;
+    bottom: 136px !important; /* 80px + 50px wa-float height + 6px gap */
+    right: 18px !important;
   }
 }
 
