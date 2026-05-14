@@ -4,8 +4,6 @@
    Tokens → Base → Layout → Components → Utilities → Responsive
    ============================================================ */
 
-/* ── GOOGLE FONTS ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap');
 
 
 /* ── DESIGN TOKENS ────────────────────────────────────────── */
@@ -39,6 +37,9 @@
   --max-width:    1240px;
   --radius-sm:    10px;
   --radius-md:    16px;
+  --border-radius-sm:  10px;
+  --border-radius-md:  16px;
+  --border-radius-lg:  24px;
   /* ── BIBLE PAGE BRIDGE VARS (alias → semantic tokens) ──────
      These map bible's short CSS var names to the site's
      semantic token values so one data-theme toggle works
@@ -330,9 +331,9 @@ img {
 
 .nav-visit-btn:hover { filter: brightness(1.09); }
 
-[data-theme="light"] .nav-link         { color: #3a3020; }
-[data-theme="light"] .nav-link:hover   { color: var(--color-gold); }
-[data-theme="light"] .nav-link--active { color: var(--color-gold); }
+[data-theme="light"] .nav-link               { color: #3a3020; }
+[data-theme="light"] .nav-link:hover         { color: var(--color-gold); }
+[data-theme="light"] .nav-link--active       { color: var(--color-gold); font-weight: 700; border-bottom: 2px solid var(--color-gold); padding-bottom: 4px; }
 
 /* Hamburger */
 .nav-hamburger {
@@ -820,7 +821,7 @@ textarea.form-field {
 
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (max-width: 1060px) {
   /* Hide desktop nav; show hamburger */
   .nav-links,
   .nav-visit-btn   { display: none; }
@@ -858,7 +859,11 @@ textarea.form-field {
   .grid-4 { grid-template-columns: 1fr 1fr; }
 }
 
-@media (min-width: 901px) {
+@media (max-width: 480px) {
+  .grid-4 { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1061px) {
   body { padding-bottom: 0; }
 
   .wa-float       { bottom: 28px; right: 24px; }
@@ -950,15 +955,7 @@ button, select, input, textarea { font-family: var(--font-body); }
 ═══════════════════════════════════════════════ */
 
 /* ── ROW 1: VOTD + CTRL ─────────────────────── */
-.nx-top {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  border-bottom: 1px solid var(--bd);
-  max-width: var(--max-width);
-  margin: 0 auto;
-  width: 100%;
-}
-@media(max-width:900px) { .nx-top { grid-template-columns: 1fr; } }
+/* .nx-top canonical block is in the NX LAYOUT section below */
 
 /* VOTD */
 .nx-votd {
@@ -1031,7 +1028,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   padding: 18px 16px;
   display: flex; flex-direction: column; gap: 8px;
 }
-@media(max-width:900px) {
+@media(max-width:1060px) {
   .nx-ctrl { border-left: none; border-top: 1px solid var(--bd); }
 }
 .nx-lbl {
@@ -1086,7 +1083,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   margin: 0 auto;
   width: 100%;
 }
-@media(max-width:900px) { .nx-mid { grid-template-columns: 1fr; } }
+@media(max-width:1060px) { .nx-mid { grid-template-columns: 1fr; } }
 
 .nx-mid-left {
   padding: 12px 20px;
@@ -1099,7 +1096,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   display: flex; flex-direction: column;
   justify-content: center; gap: 8px;
 }
-@media(max-width:900px) {
+@media(max-width:1060px) {
   .nx-mid-left { border-right: none; }
   .nx-mid-right { border-top: 1px solid var(--bd); }
 }
@@ -1259,7 +1256,6 @@ button, select, input, textarea { font-family: var(--font-body); }
 [data-theme="light"] .nx-feat:hover { background: rgba(154,108,10,.07); }
 
 /* ── DARK MODE: better contrast separators ──────────────── */
-.nx-top,
 .nx-mid,
 .nx-feat-bar { border-bottom: 1px solid var(--bd2); }
 
@@ -1303,7 +1299,7 @@ button, select, input, textarea { font-family: var(--font-body); }
 [data-theme="light"] .ig-bgtab.on       { background: var(--gd); color: #fff; }
 
 /* Service slot time — needs to be readable on light card backgrounds */
-[data-theme="light"] .service-slot      { background: var(--color-bg-3); }
+[data-theme="light"] .service-slot { background: rgba(0, 0, 0, .05); }
 [data-theme="light"] .service-slot__label { color: var(--color-text-muted); }
 
 /* Fix subtle row/item backgrounds */
@@ -1402,7 +1398,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   margin: 0 auto;
   min-height: calc(100vh - 180px);
 }
-@media(max-width:960px) { .bl-layout { grid-template-columns: 1fr; } }
+@media(max-width:1060px) { .bl-layout { grid-template-columns: 1fr; } }
 
 /* ── MAIN (LEFT) ─────────────────────────────── */
 .bl-main {
@@ -1926,7 +1922,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   scrollbar-width: thin;
   scrollbar-color: var(--gdb) transparent;
 }
-@media(max-width:960px) {
+@media(max-width:1060px) {
   .bl-sidebar {
     position: static;
     height: auto;
@@ -2459,7 +2455,7 @@ button, select, input, textarea { font-family: var(--font-body); }
   z-index: 600;
   align-items: stretch;
 }
-@media(max-width:900px) { .bottom-nav { display: flex !important; } }
+@media(max-width:1060px) { .bottom-nav { display: flex !important; } }
 
 /* ── DESKTOP SHEET CENTERING ─────────────────── */
 @media(min-width:901px) {
@@ -2652,13 +2648,13 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   max-width: 1280px;
   margin: 0 auto;
 }
-@media(max-width:900px){ .nx-top { grid-template-columns: 1fr; } }
+@media(max-width:1060px){ .nx-top { grid-template-columns: 1fr; } }
 
 .nx-votd {
   padding: 24px 28px 20px;
   border-right: 1px solid var(--bd);
 }
-@media(max-width:900px){ .nx-votd { border-right: none; border-bottom: 1px solid var(--bd); } }
+@media(max-width:1060px){ .nx-votd { border-right: none; border-bottom: 1px solid var(--bd); } }
 
 .nx-votd-badge {
   display: inline-flex; align-items: center; gap: 6px;

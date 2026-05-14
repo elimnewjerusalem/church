@@ -11,7 +11,7 @@
 (function () {
   'use strict';
 
-  const YT_API_KEY = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+  const YT_API_KEY = 'REPLACE_WITH_NEW_RESTRICTED_KEY'; // ⚠️ Revoke old key in Google Cloud Console / restrict to elimnewjerusalem.github.io + YouTube Data API v3
   const CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 
   const PL = {
