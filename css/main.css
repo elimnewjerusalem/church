@@ -407,7 +407,7 @@ img {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, .52);
+  background: rgba(255, 204, 136, 0.52);
   z-index: 1;
 }
 
