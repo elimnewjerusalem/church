@@ -1346,7 +1346,7 @@ button, select, input, textarea { font-family: var(--font-body); }
 /* ── PANEL light mode ───────────────────────────────────── */
 [data-theme="light"] .panel       { background: var(--bg2); }
 [data-theme="light"] .panel-head  { border-color: var(--bd); }
-[data-theme="light"] .overlay     { background: rgba(0,0,0,.5); }
+[data-theme="light"] .overlay     { background: rgba(250, 168, 74, 0.5); }
 
 /* ── BOTTOM SHEET light mode ────────────────────────────── */
 [data-theme="light"] .verse-sheet { background: var(--bg2); border-color: var(--bd2); }
@@ -2177,7 +2177,7 @@ button, select, input, textarea { font-family: var(--font-body); }
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.65);
+  background: rgba(250, 199, 89, 0.65);
   z-index: 500;
   opacity: 0;
   pointer-events: none;
