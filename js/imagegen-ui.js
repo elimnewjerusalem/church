@@ -445,11 +445,11 @@ export function syncMobile(){
     </div>
     <div id="m-bg-gallery" class="m-bg-section" data-mode="gallery" style="display:${ST.bgMode==='gallery'?'block':'none'}">
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Nature Photos</p>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">
         ${(window.GALLERY_GROUPS||['All','Nature','Faith']).map(grp=>`<button class="bgmode-btn${(ST._galGroup||'All')===grp?' on':''}" onclick="setGalGroup('${grp}')">${grp==='Faith'?'✝ '+grp:'🌿 '+grp}</button>`).join('')}
       </div>
-      ${GALLERY.filter(c=>(ST._galGroup||'All')==='All'||c.group===(ST._galGroup||'All')).map((c,i)=>{const ri=GALLERY.indexOf(c);return `<div onclick="loadGal(${ri})" style="border:1.5px solid ${ST.galIdx===ri?'var(--gd)':'var(--bd)'};border-radius:6px;cursor:pointer;overflow:hidden;aspect-ratio:9/16;position:relative;background:var(--bg3);display:inline-block;width:calc(25% - 4px);margin:2px">
+      ${GALLERY.filter(c=>(ST._galGroup||'All')==='All'||c.group===(ST._galGroup||'All')).map((c,i)=>{const ri=GALLERY.indexOf(c);return `<div onclick="loadGal(${ri})" style="border:1.5px solid ${ST.galIdx===ri?'var(--gd)':'var(--bd)'};border-radius:6px;cursor:pointer;overflow:hidden;aspect-ratio:9/16;position:relative;background:var(--bg3)">
           <img src="${c.url}" loading="lazy" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85" onerror="this.style.display='none'">
           <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);font-size:7px;color:#fff;text-align:center;padding:2px;font-weight:500">${c.name}</div>
           ${ST.galIdx===ri?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
@@ -518,14 +518,14 @@ export function syncMobile(){
     </div>
 
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px">Custom Verse</p>
-    <textarea id="custom-ta" placeholder="Tamil verse text..." rows="2"
-      style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;font-family:var(--tamil);resize:none;margin-bottom:5px;outline:none"></textarea>
-    <input id="custom-en" type="text" placeholder="English verse (optional)..."
-      style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;margin-bottom:5px;outline:none">
+    <textarea id="m-custom-ta" placeholder="Tamil verse text..." rows="2"
+      style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:16px;padding:7px 9px;font-family:var(--tamil);resize:none;margin-bottom:5px;outline:none"></textarea>
+    <input id="m-custom-en" type="text" placeholder="English verse (optional)..."
+      style="width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:16px;padding:7px 9px;margin-bottom:5px;outline:none">
     <div style="display:flex;gap:5px;margin-bottom:14px">
-      <input id="custom-ref" type="text" placeholder="Reference (e.g. John 3:16)"
-        style="flex:1;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 9px;outline:none">
-      <button class="bgmode-btn on" onclick="useCustomVerse()" style="white-space:nowrap">✅ Use</button>
+      <input id="m-custom-ref" type="text" placeholder="Reference (e.g. John 3:16)"
+        style="flex:1;background:var(--bg2);border:1px solid var(--bd2);border-radius:8px;color:var(--tx);font-size:16px;padding:7px 9px;outline:none">
+      <button class="bgmode-btn on" onclick="mUseCustomVerse()" style="white-space:nowrap">✅ Use</button>
     </div>
 
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">📖 Bible Index — all 66 books</p>
@@ -720,11 +720,11 @@ export function syncMobileBG(){
     </div>
     <div id="m-bg-gallery" class="m-bg-section" data-mode="gallery" style="display:${ST.bgMode==='gallery'?'block':'none'}">
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Nature Photos</p>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">
         ${(window.GALLERY_GROUPS||['All','Nature','Faith']).map(grp=>`<button class="bgmode-btn${(ST._galGroup||'All')===grp?' on':''}" onclick="setGalGroup('${grp}')">${grp==='Faith'?'✝ '+grp:'🌿 '+grp}</button>`).join('')}
       </div>
-      ${GALLERY.filter(c=>(ST._galGroup||'All')==='All'||c.group===(ST._galGroup||'All')).map((c,i)=>{const ri=GALLERY.indexOf(c);return `<div onclick="loadGal(${ri})" style="border:1.5px solid ${ST.galIdx===ri?'var(--gd)':'var(--bd)'};border-radius:6px;cursor:pointer;overflow:hidden;aspect-ratio:9/16;position:relative;background:var(--bg3);display:inline-block;width:calc(25% - 4px);margin:2px">
+      ${GALLERY.filter(c=>(ST._galGroup||'All')==='All'||c.group===(ST._galGroup||'All')).map((c,i)=>{const ri=GALLERY.indexOf(c);return `<div onclick="loadGal(${ri})" style="border:1.5px solid ${ST.galIdx===ri?'var(--gd)':'var(--bd)'};border-radius:6px;cursor:pointer;overflow:hidden;aspect-ratio:9/16;position:relative;background:var(--bg3)">
           <img src="${c.url}" loading="lazy" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85" onerror="this.style.display='none'">
           <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);font-size:7px;color:#fff;text-align:center;padding:2px;font-weight:500">${c.name}</div>
           ${ST.galIdx===ri?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
@@ -1072,6 +1072,7 @@ export async function biUseVerse(bookId, ch, v, enText, enBook){
   QUICK_VERSES.unshift(verse);
   ST.verse = verse; ST.verseIdx = 0;
   buildQuickVerses();
+  selVerse(0); // highlight the newly added verse in quick list
   const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = enText.trim();
   const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+ref;
   debounceDraw();
