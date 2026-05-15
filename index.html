@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="apple-touch-icon" href="images/logo/logo.png">
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home | ENJC — Elim New Jerusalem Church</title>
@@ -10,7 +12,9 @@
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- Theme applied before paint to prevent flash -->
   <script src="js/site.js"></script>
@@ -22,7 +26,7 @@
 
   <!-- SEO: Open Graph & Twitter Card -->
   <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/index.html">
+  <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/">
   <meta property="og:title"       content="Home | ENJC — Elim New Jerusalem Church">
   <meta property="og:description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 &amp; 12:00. Night Prayer 10:30 PM daily.">
   <meta property="og:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
@@ -387,7 +391,7 @@
           <!-- Each month rendered as a date-card -->
           <article class="card" style="padding: 18px; text-align: center;">
             <div class="date-card__month">January</div>
-            <div class="date-card__date">18 Jan 2026 · Sunday</div>
+            <div class="date-card__date" style="font-size:clamp(11px,1.8vw,13px)">18 Jan 2026 · Sunday</div>
           </article>
           <article class="card" style="padding: 18px; text-align: center;">
             <div class="date-card__month">February</div>
@@ -543,6 +547,40 @@
     </a>
   </nav>
 
+
+  <script>
+  // Mark past deliverance dates
+  (function(){
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    document.querySelectorAll('.date-card__date').forEach(function(el){
+      var txt = el.textContent.trim(); // e.g. "18 Jan 2026 · Sunday"
+      var parts = txt.split(' · ')[0].trim(); // "18 Jan 2026"
+      var d = new Date(parts);
+      if(!isNaN(d) && d < today){
+        var card = el.closest('article');
+        if(card){
+          card.style.opacity = '0.45';
+          var month = card.querySelector('.date-card__month');
+          if(month && !month.querySelector('.past-badge')){
+            var badge = document.createElement('span');
+            badge.className = 'past-badge';
+            badge.textContent = 'PAST';
+            badge.style.cssText = 'display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;background:rgba(255,255,255,.12);color:var(--color-text-faint);padding:2px 7px;border-radius:99px;margin-left:6px;vertical-align:middle;';
+            month.appendChild(badge);
+          }
+        }
+      }
+    });
+  })();
+  </script>
+
+  <style>
+  .date-card__date{font-size:clamp(11px,1.8vw,13px);}
+  .date-card__month{font-size:clamp(9px,1.5vw,11px);}
+  @media(max-width:600px){.service-slot{padding:12px 10px;}.service-slot__time{font-size:1.3rem;}}
+  @media(max-width:480px){.grid-4{grid-template-columns:1fr 1fr;}} /* override back to 2col for date cards on small screens */
+  </style>
 <script src="js/premium-upgrade.js" defer></script>
 
   <script src="js/mobile-ux-fixes.js" defer></script>

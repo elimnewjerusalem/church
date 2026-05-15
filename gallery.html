@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
 <link rel="canonical" href="https://elimnewjerusalem.github.io/church/gallery.html">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="apple-touch-icon" href="images/logo/logo.png">
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gallery | ENJC</title>
   <meta name="description" content="Photo gallery of worship, community, and God's work at ENJC Tondiarpet.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
   <script src="js/site.js"></script>
   <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/premium-upgrade.css">
@@ -167,7 +171,7 @@
     <button class="lightbox__nav lightbox__nav--prev" onclick="navLightbox(-1)" aria-label="Previous">&#8249;</button>
     <button class="lightbox__nav lightbox__nav--next" onclick="navLightbox(1)"  aria-label="Next">&#8250;</button>
     <div class="lightbox__inner">
-      <img class="lightbox__img" id="lb-img" src="" alt="">
+      <img class="lightbox__img" id="lb-img" src="" alt="" style="aspect-ratio:4/3;min-height:120px">
       <p class="lightbox__caption" id="lb-caption"></p>
     </div>
   </div>
@@ -248,14 +252,14 @@
 
   <style>
 /* BENTO GRID */
-.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:12px}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(160px,22vw,240px);gap:12px}
 .bento__item{border-radius:16px;overflow:hidden;cursor:pointer;position:relative;background:var(--color-bg-2);border:1px solid var(--color-border);transition:transform .2s,border-color .2s}
 .bento__item:hover{transform:scale(1.015);border-color:var(--color-gold-border)}
 .bento__item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
 .bento__item:hover img{transform:scale(1.06)}
-.bento__cap{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:12px;font-weight:600;color:#fff;opacity:0;transition:opacity .2s}
+.bento__cap{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:12px;font-weight:600;color:#fff;opacity:0;transition:opacity .2s}.bento__item:hover .bento__cap{opacity:1}@media(hover:none){.bento__cap{opacity:1}}
 .bento__item:hover .bento__cap{opacity:1}
-@media(max-width:768px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:160px}.bento__item[style*="grid-row:1/3"],.bento__item[style*="grid-row:3/5"]{grid-row:span 1!important}}
+@media(max-width:768px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(140px,24vw,200px)}.bento__item[style*="grid-row:1/3"],.bento__item[style*="grid-row:3/5"]{grid-row:span 1!important;grid-column:auto!important}.bento__item{grid-column:auto!important}}
 @media(max-width:480px){.bento{grid-template-columns:1fr;grid-auto-rows:220px}.bento__item{grid-column:1!important;grid-row:auto!important}}
 /* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:20px}
@@ -271,17 +275,19 @@
 .lightbox__counter{position:fixed;top:22px;left:50%;transform:translateX(-50%);font-size:12px;color:rgba(255,255,255,.5);background:rgba(0,0,0,.4);padding:4px 12px;border-radius:99px;z-index:10000}
   </style>
   <script>
+        const _supportsWebP=(()=>{try{return document.createElement('canvas').toDataURL('image/webp').startsWith('data:image/webp')}catch(e){return false}})();
+    const _ext=_supportsWebP?'webp':'jpg';
     const IMAGES=[
-      {src:'images/gallery/g1.jpg',  caption:'Church Gathering'},
-      {src:'images/gallery/g2.jpg',  caption:'Worship Service'},
-      {src:'images/gallery/g3.jpg',  caption:'Community'},
-      {src:'images/gallery/g4.jpg',  caption:'Prayer Night'},
-      {src:'images/gallery/g5.jpg',  caption:'Sunday School'},
-      {src:'images/gallery/g6.jpg',  caption:'Deliverance Meeting'},
-      {src:'images/gallery/g7.jpg',  caption:'Gospel Ministry'},
-      {src:'images/gallery/g8.jpg',  caption:'Fasting Prayer'},
-      {src:'images/gallery/g9.jpg',  caption:'Youth Ministry'},
-      {src:'images/gallery/g10.jpg', caption:"Women's Fellowship"},
+      {src:'images/gallery/g1.'+_ext,  caption:'Church Gathering'},
+      {src:'images/gallery/g2.'+_ext,  caption:'Worship Service'},
+      {src:'images/gallery/g3.'+_ext,  caption:'Community'},
+      {src:'images/gallery/g4.'+_ext,  caption:'Prayer Night'},
+      {src:'images/gallery/g5.'+_ext,  caption:'Sunday School'},
+      {src:'images/gallery/g6.'+_ext,  caption:'Deliverance Meeting'},
+      {src:'images/gallery/g7.'+_ext,  caption:'Gospel Ministry'},
+      {src:'images/gallery/g8.'+_ext,  caption:'Fasting Prayer'},
+      {src:'images/gallery/g9.'+_ext,  caption:'Youth Ministry'},
+      {src:'images/gallery/g10.'+_ext, caption:"Women's Fellowship"},
     ];
     let cur=0;
     function openLightbox(i){cur=i;render();document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden'}
