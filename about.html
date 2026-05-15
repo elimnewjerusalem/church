@@ -115,9 +115,12 @@
         <!-- Left: photo + contact -->
         <div class="pastor-left">
           <div class="pastor-avatar-wrap">
-            <img src="images/pastor.jpg" alt="Pastor A. Karthik Daniel"
-                 id="pastor-img"
-                 onerror="this.style.display='none';document.getElementById('pastor-fallback').style.display='flex'">
+            <picture>
+              <source srcset="images/pastor.webp" type="image/webp">
+              <img src="images/pastor.jpg" alt="Pastor A. Karthik Daniel"
+                   id="pastor-img"
+                   onerror="this.style.display='none';document.getElementById('pastor-fallback').style.display='flex'">
+            </picture>
             <div id="pastor-fallback">🙏</div>
           </div>
           <div class="pastor-badge">Senior Pastor</div>
