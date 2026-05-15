@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
   <meta charset="UTF-8">
+<link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="images/logo/logo.png">
-  <link rel="apple-touch-icon" href="images/logo/logo.png">
-  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
   <title>Home | ENJC — Elim New Jerusalem Church</title>
   <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Theme applied before paint to prevent flash -->
   <script src="js/site.js"></script>
@@ -162,17 +158,23 @@
     <section class="hero" aria-label="Hero banner">
 
       <!-- Desktop background image -->
-      <img
-        src="images/home/slide1.jpg"
-        alt="ENJC Sunday worship"
-        class="hero__image hero__image--desktop"
-       loading="eager" fetchpriority="high">
+      <picture>
+        <source srcset="images/home/slide1.webp" type="image/webp">
+        <img
+          src="images/home/slide1.jpg"
+          alt="ENJC Sunday worship"
+          class="hero__image hero__image--desktop"
+         loading="eager" fetchpriority="high">
+      </picture>
       <!-- Mobile background image (swapped via CSS at ≤600 px) -->
-      <img
-        src="images/home/slide2.jpg"
-        alt="ENJC church gathering"
-        class="hero__image hero__image--mobile"
-       loading="lazy">
+      <picture>
+        <source srcset="images/home/slide2.webp" type="image/webp">
+        <img
+          src="images/home/slide2.jpg"
+          alt="ENJC church gathering"
+          class="hero__image hero__image--mobile"
+         loading="lazy">
+      </picture>
 
       <div class="hero__overlay" aria-hidden="true"></div>
 
