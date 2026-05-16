@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ── GOOGLE FONTS ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&family=Oswald:wght@500;600;700&display=swap');
 
 
 /* ── DESIGN TOKENS ────────────────────────────────────────── */
@@ -32,6 +32,7 @@
   /* Typography */
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body:    'Poppins', system-ui, sans-serif;
+  --font-number:  'Oswald', 'Poppins', system-ui, sans-serif;
   --font-tamil:   'Noto Serif Tamil', serif;
 
   /* Spacing */
@@ -576,10 +577,11 @@ html[data-theme="light"] .service-slot__label {
 }
 
 .service-slot__time {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-number);
+  font-size: 1.7rem;
+  font-weight: 600;
   color: var(--color-text);
+  letter-spacing: 0.5px;
 }
 
 /* Activity mini-card icon row */
@@ -597,10 +599,11 @@ html[data-theme="light"] .service-slot__label {
 }
 
 .date-card__date {
-  font-family: var(--font-heading);
-  font-size: 1rem;
+  font-family: var(--font-number);
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-text);
+  letter-spacing: 0.3px;
 }
 
 
