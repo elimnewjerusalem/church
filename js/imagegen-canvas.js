@@ -400,6 +400,13 @@ window.draw = function(){
     ctx.fillText('▲ SAFE ZONE',W/2,sT-Math.round(W*0.01));
     ctx.fillText('▼ SAFE ZONE',W/2,H-sB+Math.round(W*0.028));
   }
+
+  // Update mini preview in sheet header
+  const pv = document.getElementById('mob-preview-cv');
+  if(pv){
+    pv.width = 28; pv.height = 40;
+    pv.getContext('2d').drawImage(cv, 0, 0, 28, 40);
+  }
 }
 
 window.drawBgImage = function(ctx,img,W,H,opacity){

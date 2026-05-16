@@ -24,7 +24,7 @@ import {
   onHexInput, onRGB, onGradColor, onGradAngle,
   setPhotoOverlay, snapshotST, undoLast,
   syncMobileStyle, syncMobileText, syncMobileBG,
-  saveDesign,
+  saveDesign, addToGallery, loadGalCustom, removeMyPhoto,
 } from './imagegen-ui.js';
 
 // Expose UI functions to window so HTML onclick= attributes work
@@ -47,7 +47,7 @@ Object.assign(window, {
   onHexInput, onRGB, onGradColor, onGradAngle,
   setPhotoOverlay, snapshotST, undoLast,
   syncMobileStyle, syncMobileText, syncMobileBG,
-  saveDesign, goBack,
+  saveDesign, goBack, addToGallery, loadGalCustom, removeMyPhoto,
 });
 
 // Boot on DOM ready

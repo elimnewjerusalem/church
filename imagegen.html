@@ -365,17 +365,17 @@
   <a class="mob-tab" href="index.html" style="text-decoration:none;color:inherit;">
     <span class="mob-tab-icon">🏠</span>Home
   </a>
-  <button class="mob-tab" data-panel="m-style" onclick="mobOpen(this,'🎨 Style')">
-    <span class="mob-tab-icon">🎨</span>Style
-  </button>
-  <button class="mob-tab" data-panel="m-bg" onclick="mobOpen(this,'🖼 Background')">
-    <span class="mob-tab-icon">🖼</span>BG
+  <button class="mob-tab" data-panel="m-verse" onclick="mobOpen(this,'📖 Verse')">
+    <span class="mob-tab-icon">📖</span>Verse
   </button>
   <button class="mob-tab" data-panel="m-text" onclick="mobOpen(this,'✍ Text')">
     <span class="mob-tab-icon">✍</span>Text
   </button>
-  <button class="mob-tab" data-panel="m-verse" onclick="mobOpen(this,'📖 Verse')">
-    <span class="mob-tab-icon">📖</span>Verse
+  <button class="mob-tab" data-panel="m-bg" onclick="mobOpen(this,'🖼 Background')">
+    <span class="mob-tab-icon">🖼</span>BG
+  </button>
+  <button class="mob-tab" data-panel="m-style" onclick="mobOpen(this,'🎨 Style')">
+    <span class="mob-tab-icon">🎨</span>Style
   </button>
   <button class="mob-tab" data-panel="m-export" onclick="mobOpen(this,'⬇ Export')">
     <span class="mob-tab-icon">⬇</span>Export
@@ -390,6 +390,9 @@
   <div class="mob-sheet-handle"></div>
   <div class="mob-sheet-head">
     <span class="mob-sheet-title" id="mob-sheet-title">Style</span>
+    <div class="mob-sheet-preview" id="mob-sheet-preview" title="Canvas preview">
+      <canvas id="mob-preview-cv"></canvas>
+    </div>
     <button class="mob-sheet-close" onclick="mobClose()">✕</button>
   </div>
   <div class="mob-sheet-body" id="mob-sheet-body">
