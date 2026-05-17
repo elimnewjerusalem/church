@@ -13,8 +13,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- Theme applied before paint to prevent flash -->
   <script src="js/site.js"></script>
@@ -115,7 +115,7 @@
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
             <div class="theme-toggle__dot"></div>
           </button>
-          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
+          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn" style="background:#c9a84c;color:#0a1628;font-weight:500;font-size:11px;padding:7px 14px;border-radius:6px;text-decoration:none;">
             📍 Visit Us
           </a>
         </div>
@@ -183,23 +183,29 @@
       <div class="hero__overlay" aria-hidden="true"></div>
 
       <div class="hero__content">
-        <p class="hero__eyebrow">Isaiah 43:4</p>
+        <p class="hero__eyebrow">Elim New Jerusalem Church · Tondiarpet, Chennai</p>
         <h1 class="hero__title">
           Because you are <em>precious</em> in my sight,<br>
           You are honoured and I love you
         </h1>
-        <p class="hero__ref">— Isaiah 43:4</p>
-        <div class="hero__actions">
+        <p class="hero__ref">— Isaiah 43:4 · Service starts in <span id="cd-hero" style="color:#c9a84c;font-style:normal;">--:--</span></p>
+        <div class="hero__actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
           <a href="https://wa.me/919444345102?text=Hi%2C+I+would+like+to+visit+ENJC"
              target="_blank" rel="noopener"
-             class="btn btn--gold">
-            Join Us Today
+             class="btn btn--gold btn-primary-hero">
+            👥 Join Us Today
           </a>
           <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial"
              target="_blank" rel="noopener"
-             class="btn btn--ghost">
+             class="btn btn--ghost btn-secondary-hero">
             ▶ Watch Live
           </a>
+        </div>
+        <div class="hero-services">
+          <div class="srv"><div class="srv-time">5:30 AM</div><div class="srv-label">1st Service</div></div>
+          <div class="srv"><div class="srv-time">8:30 AM</div><div class="srv-label">2nd Service</div></div>
+          <div class="srv"><div class="srv-time">12:00 PM</div><div class="srv-label">3rd Service</div></div>
+          <div class="srv"><div class="srv-time">10:30 PM</div><div class="srv-label">Night Prayer</div></div>
         </div>
       </div>
 
@@ -250,7 +256,7 @@
             <div class="activity-card__icon" aria-hidden="true">🕊️</div>
             <h3 style="font-size: 1rem; margin-bottom: 6px;">Tuesday Prayer Meeting</h3>
             <p style="font-size: 13px; margin-bottom: 10px;">ENJC Special Prayer</p>
-            <div class="activity-card__time" style="font-family: var(--font-number, 'Oswald', sans-serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.3px;">11:00 AM – 4:00 PM</div>
+            <div class="activity-card__time" style="font-family: var(--font-heading); font-size: 1.1rem;">11:00 AM – 4:00 PM</div>
             <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Special prayer gathering every Tuesday</p>
           </article>
 
@@ -258,7 +264,7 @@
             <div class="activity-card__icon" aria-hidden="true">🙏</div>
             <h3 style="font-size: 1rem; margin-bottom: 6px;">Friday Prayer Meeting</h3>
             <p style="font-size: 13px; margin-bottom: 10px;">ENJC Family Blessing Prayer</p>
-            <div class="activity-card__time" style="font-family: var(--font-number, 'Oswald', sans-serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.3px;">11:00 AM – 1:00 PM</div>
+            <div class="activity-card__time" style="font-family: var(--font-heading); font-size: 1.1rem;">11:00 AM – 1:00 PM</div>
             <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Family blessing prayer every Friday</p>
           </article>
 
@@ -266,7 +272,7 @@
             <div class="activity-card__icon" aria-hidden="true">✝️</div>
             <h3 style="font-size: 1rem; margin-bottom: 6px;">Missionary Vision Meeting</h3>
             <p style="font-size: 13px; margin-bottom: 10px;">3rd Friday of every month</p>
-            <div class="activity-card__time" style="font-family: var(--font-number, 'Oswald', sans-serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.3px;">6:00 PM</div>
+            <div class="activity-card__time" style="font-family: var(--font-heading); font-size: 1.1rem;">6:00 PM</div>
             <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Special gathering for ministry workers</p>
           </article>
 
