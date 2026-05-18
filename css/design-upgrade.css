@@ -1,0 +1,441 @@
+/* ═══════════════════════════════════════════════════════════
+   ENJC Design Upgrade 2026 — Full Site Polish
+   Applies to all pages. Drop this file after main.css.
+   Deep Navy #0a1628 · Gold #c9a84c · Cream #f4f0e8
+═══════════════════════════════════════════════════════════ */
+
+/* ── PAGE HERO — bold dark with gold left bar ── */
+.page-hero {
+  background: linear-gradient(160deg, #0d1e3a 0%, #071020 100%);
+  border-bottom: 1px solid #1a2e50;
+  padding: 56px 0 44px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: #c9a84c;
+  opacity: 0.7;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%,
+    rgba(201,168,76,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.page-hero .section-tag { color: #c9a84c; margin-bottom: 10px; }
+.page-hero h1 {
+  font-family: 'Cormorant Garamond','Playfair Display',Georgia,serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #f0e6c8;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.page-hero h1 em { color: #c9a84c; font-style: italic; }
+.page-hero > .container > p {
+  font-size: 14px;
+  color: #4a6888;
+  max-width: 480px;
+  margin: 0;
+}
+
+/* ── HERO CONCEPT A (home) tweaks ── */
+.hero--concept-a .hero__overlay {
+  background: linear-gradient(
+    to right,
+    rgba(4,10,20,0.97) 0%,
+    rgba(6,14,26,0.88) 38%,
+    rgba(6,14,26,0.5) 62%,
+    rgba(6,14,26,0.15) 100%
+  ) !important;
+}
+[data-theme="light"] .hero--concept-a .hero__overlay {
+  background: linear-gradient(
+    to right,
+    rgba(4,10,20,0.95) 0%,
+    rgba(6,14,26,0.82) 38%,
+    rgba(6,14,26,0.42) 62%,
+    rgba(6,14,26,0.10) 100%
+  ) !important;
+}
+
+/* ── SECTION ALTERNATING ── */
+.section { background: var(--color-bg); }
+.section-alt { background: var(--color-bg-2); }
+[data-theme="light"] .section { background: #f4f0e8; }
+[data-theme="light"] .section-alt { background: #ede9e0; }
+
+/* ── CARDS — gold top accent ── */
+.card {
+  border-top: 2px solid #c9a84c;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+[data-theme="light"] .card {
+  background: #ffffff;
+  border-color: #e0dbd0;
+  border-top: 2px solid #c9a84c;
+}
+[data-theme="light"] .card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* ── SECTION HEADINGS ── */
+.section-heading em { color: #c9a84c; font-style: italic; }
+.section-tag {
+  color: #c9a84c;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+.section-rule {
+  width: 44px; height: 2px;
+  background: #c9a84c;
+  border-radius: 2px;
+  margin: 14px 0 36px;
+}
+
+/* ── ACTIVITY CARD TIME ── */
+.activity-card__time { color: #c9a84c !important; }
+
+/* ── SERVICE SLOT ── */
+.service-slot__label { color: #c9a84c; }
+.service-slot__time {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ── PASTOR SECTION ── */
+.pastor-avatar-wrap {
+  border: 3px solid rgba(201,168,76,0.4);
+  box-shadow: 0 0 0 6px rgba(201,168,76,0.08);
+}
+.pastor-badge {
+  background: #c9a84c;
+  color: #0a1628;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 99px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.pastor-name {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.pastor-bio {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--color-text-muted);
+}
+
+/* ── ABOUT STATS ── */
+.about-stat__n { color: #c9a84c; }
+.about-stats {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.about-stat {
+  border-right: 1px solid var(--color-border);
+  padding: 28px 20px;
+}
+.about-stat:last-child { border-right: none; }
+
+/* ── MINISTRY CARDS ── */
+.ministry-card {
+  border-top: 2px solid #c9a84c;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ministry-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.ministry-card__label {
+  background: rgba(201,168,76,0.92);
+  color: #0a1628;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+.ministry-card__badge {
+  background: #c9a84c;
+  color: #0a1628;
+}
+
+/* ── DATE CARDS (deliverance) ── */
+.date-card__month { color: #c9a84c; }
+.date-card__date { color: var(--color-text); }
+
+/* ── FILTER BUTTONS (events/gallery) ── */
+.enjc-filter-btn {
+  background: transparent;
+  border: 1px solid var(--color-border-mid);
+  color: var(--color-text-muted);
+  border-radius: 99px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.enjc-filter-btn:hover {
+  border-color: rgba(201,168,76,0.4);
+  color: #c9a84c;
+}
+.enjc-filter-active,
+.enjc-filter-btn.enjc-filter-active {
+  background: #c9a84c !important;
+  border-color: #c9a84c !important;
+  color: #0a1628 !important;
+  font-weight: 600;
+}
+
+/* ── BENTO GALLERY ── */
+.bento__item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0.5px solid var(--color-border);
+}
+.bento__cap {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(6,14,26,0.85) 0%, transparent 100%);
+  color: #f0e6c8;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 20px 14px 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.bento__item:hover .bento__cap { opacity: 1; }
+
+/* ── LIGHTBOX ── */
+#lightbox-backdrop {
+  background: rgba(4,10,20,0.95) !important;
+  backdrop-filter: blur(8px);
+}
+#lightbox-close {
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: #c9a84c;
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* ── CONTACT FORM ── */
+.form-field:focus { border-color: rgba(201,168,76,0.5); }
+.btn--gold,
+.nav-visit-btn {
+  background: #c9a84c !important;
+  color: #0a1628 !important;
+}
+.btn--gold:hover,
+.nav-visit-btn:hover { filter: brightness(1.08); }
+
+/* ── FOOTER RICH ── */
+.site-footer { background: #071020 !important; border-top: 1px solid #1a2e50 !important; }
+.site-footer__logo { color: #c9a84c; font-family: 'Cormorant Garamond',Georgia,serif; }
+.site-footer__heading { color: #c9a84c; }
+.site-footer__link:hover { color: #c9a84c; }
+.site-footer__phone { color: #c9a84c; }
+.site-footer__tagline { color: #4a6888; }
+.site-footer__addr { color: #3a5070; }
+.site-footer__copy { color: #2a3f5a; }
+[data-theme="light"] .site-footer { background: #0a1628 !important; }
+[data-theme="light"] .site-footer__link { color: #4a6888; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav { background: #0a1628 !important; border-top: 1px solid #1a2e50 !important; }
+.bottom-nav__item.is-active .bottom-nav__label { color: #c9a84c; }
+.bottom-nav__bible-btn { background: #c9a84c !important; color: #0a1628 !important; }
+[data-theme="light"] .bottom-nav { background: #0a1628 !important; }
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float { background: #25d366 !important; }
+
+/* ── VIDEO CARDS (events) ── */
+.enjc-video-card {
+  background: var(--color-bg-2);
+  border: 0.5px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-top: 2px solid #c9a84c;
+}
+.enjc-video-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.22);
+}
+.enjc-video-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.enjc-video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.enjc-play-overlay {
+  position: absolute; inset: 0;
+  background: rgba(6,14,26,0.4);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.2s;
+}
+.enjc-video-card:hover .enjc-play-overlay { opacity: 1; }
+.enjc-play-btn {
+  width: 48px; height: 48px;
+  background: #c9a84c;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #0a1628;
+}
+.enjc-video-info { padding: 14px; }
+.enjc-video-title {
+  font-size: 13px; font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.4; margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.enjc-video-date { font-size: 11px; color: var(--color-text-faint); }
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── COUNTDOWN BANNER ── */
+#enjc-service-banner {
+  background: #071020;
+  border-bottom: 1px solid #1a2e50;
+  color: #4a6888;
+  font-size: 12px;
+}
+.banner-time { color: #c9a84c !important; font-weight: 600; }
+
+/* ── PRAYER REQUEST SECTION ── */
+.prayer-section {
+  background: linear-gradient(160deg, #0d1e3a 0%, #071020 100%);
+  border-top: 1px solid #1a2e50;
+  padding: 56px 0;
+  position: relative;
+}
+.prayer-section::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px; background: #c9a84c; opacity: 0.6;
+}
+
+/* ── PLAN YOUR VISIT ── */
+.visit-step {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--color-border);
+}
+.visit-step:last-child { border-bottom: none; }
+.visit-step-num {
+  width: 32px; height: 32px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #c9a84c;
+  flex-shrink: 0;
+}
+.visit-step-title { font-size: 14px; font-weight: 600; color: var(--color-text); margin-bottom: 4px; }
+.visit-step-desc { font-size: 13px; color: var(--color-text-muted); line-height: 1.6; }
+
+/* ── TESTIMONY CARDS ── */
+.testimony-card {
+  background: var(--color-bg-2);
+  border: 0.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+  border-left: 3px solid #c9a84c;
+  transition: transform 0.2s;
+}
+.testimony-card:hover { transform: translateY(-2px); }
+.testimony-quote {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.testimony-quote::before { content: '"'; color: #c9a84c; font-size: 24px; line-height: 0; vertical-align: -8px; margin-right: 4px; }
+.testimony-name { font-size: 13px; font-weight: 600; color: #c9a84c; }
+.testimony-detail { font-size: 11px; color: var(--color-text-faint); margin-top: 2px; }
+[data-theme="light"] .testimony-card { background: #ffffff; border-color: #e0dbd0; }
+
+/* ── VILLAGE REACH STRIP ── */
+.reach-strip {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 20px;
+}
+.reach-pill {
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  color: #c9a84c;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 99px;
+}
+
+/* ── QUICK CTA BAND ── */
+.cta-band {
+  background: #c9a84c;
+  padding: 28px 0;
+  text-align: center;
+}
+.cta-band h3 {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0a1628;
+  margin-bottom: 8px;
+}
+.cta-band p { font-size: 13px; color: rgba(10,22,40,0.7); margin-bottom: 16px; }
+.btn--navy {
+  background: #0a1628;
+  color: #c9a84c;
+  border-radius: 99px;
+  padding: 11px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s;
+}
+.btn--navy:hover { background: #071020; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .page-hero { padding: 40px 0 32px; }
+  .page-hero h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  .testimony-card { padding: 18px; }
+  .visit-step { gap: 12px; }
+}

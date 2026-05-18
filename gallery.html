@@ -11,11 +11,12 @@
   <meta name="description" content="Photo gallery of worship, community, and God's work at ENJC Tondiarpet.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
   <script src="js/site.js"></script>
   <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/premium-upgrade.css">
+  <link rel="stylesheet" href="css/design-upgrade.css">
   <link rel="stylesheet" href="css/mobile-ux-fixes.css">
 
   <!-- SEO: Open Graph & Twitter Card -->
@@ -56,7 +57,7 @@
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
             <div class="theme-toggle__dot"></div>
           </button>
-          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn" style="background:#c9a84c;color:#0a1628;font-weight:500;font-size:11px;padding:7px 14px;border-radius:6px;text-decoration:none;">
+          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
             📍 Visit Us
           </a>
         </div>
@@ -78,6 +79,19 @@
       <p class="section-tag">Our Moments</p>
       <h1 id="page-title">Photo <em>Gallery</em></h1>
       <p>Glimpses of worship, community, and God&#39;s work among us.</p>
+    </div>
+  </section>
+
+  <!-- Gallery filter tabs -->
+  <section class="section-sm" style="padding-bottom:0;">
+    <div class="container">
+      <div class="enjc-filter-row" role="group" aria-label="Filter gallery by category" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+        <button class="enjc-filter-btn enjc-filter-active" data-gfilter="all">All Photos</button>
+        <button class="enjc-filter-btn" data-gfilter="worship">Worship</button>
+        <button class="enjc-filter-btn" data-gfilter="outreach">Outreach</button>
+        <button class="enjc-filter-btn" data-gfilter="events">Events</button>
+        <button class="enjc-filter-btn" data-gfilter="community">Community</button>
+      </div>
     </div>
   </section>
 
@@ -307,5 +321,6 @@
 <script src="js/premium-upgrade.js" defer></script>
 
   <script src="js/mobile-ux-fixes.js" defer></script>
+  <script src="js/design-upgrade.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+/* ENJC Design Upgrade 2026 — Scroll animations + UI polish */
+(function(){
+  /* Fade-up on scroll */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  /* Auto fade-up cards on scroll */
+  const cardObs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => {
+      if(e.isIntersecting){
+        setTimeout(() => { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }, i * 80);
+        cardObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.card, .testimony-card, .ministry-card, .enjc-video-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    cardObs.observe(el);
+  });
+
+  /* Scroll top button */
+  const btn = document.getElementById('scroll-top-btn');
+  if(btn){
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('is-visible', window.scrollY > 400);
+    });
+  }
+})();

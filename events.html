@@ -8,10 +8,11 @@
   <title>Live & Events | ENJC</title>
   <meta name="description" content="ENJC live streams, recent services, verse reels, and community testimonials.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
   <script src="js/site.js"></script>
   <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/premium-upgrade.css">
+  <link rel="stylesheet" href="css/design-upgrade.css">
   <link rel="stylesheet" href="css/mobile-ux-fixes.css">
 
   <!-- SEO: Open Graph & Twitter Card -->
@@ -56,7 +57,7 @@
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
             <div class="theme-toggle__dot"></div>
           </button>
-          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn" style="background:#c9a84c;color:#0a1628;font-weight:500;font-size:11px;padding:7px 14px;border-radius:6px;text-decoration:none;">
+          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
             📍 Visit Us
           </a>
         </div>
@@ -95,6 +96,7 @@
       <div class="enjc-filter-row" role="group" aria-label="Filter by topic">
         <button class="enjc-filter-btn enjc-filter-active" data-filter="all">🎬 All</button>
         <button class="enjc-filter-btn" data-filter="live">🔴 Live</button>
+        <button class="enjc-filter-btn" data-filter="sermon">📖 Sermons</button>
         <button class="enjc-filter-btn" data-filter="sunday">🙏 Sunday</button>
         <button class="enjc-filter-btn" data-filter="friday">✝️ Friday</button>
         <button class="enjc-filter-btn" data-filter="promise">🎯 Promise</button>
@@ -138,10 +140,10 @@
         <h2 class="section-heading" style="margin-bottom:8px;">Next <em>Service</em></h2>
         <p style="font-size:14px;color:var(--color-text-faint);margin-bottom:28px;">This countdown loads automatically. Join us for worship and be blessed.</p>
         <div class="countdown" style="display:flex;gap:14px;flex-wrap:wrap;" role="timer" aria-live="polite" aria-label="Time until next Sunday service">
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-d" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Days</div></div>
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-h" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Hours</div></div>
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-m" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Mins</div></div>
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-s" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Secs</div></div>
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-d" class="countdown__value" style="font-family:'Oswald',sans-serif;font-size:2.6rem;font-weight:700;color:var(--color-gold);line-height:1;letter-spacing:1px;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Days</div></div>
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-h" class="countdown__value" style="font-family:'Oswald',sans-serif;font-size:2.6rem;font-weight:700;color:var(--color-gold);line-height:1;letter-spacing:1px;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Hours</div></div>
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-m" class="countdown__value" style="font-family:'Oswald',sans-serif;font-size:2.6rem;font-weight:700;color:var(--color-gold);line-height:1;letter-spacing:1px;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Mins</div></div>
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-s" class="countdown__value" style="font-family:'Oswald',sans-serif;font-size:2.6rem;font-weight:700;color:var(--color-gold);line-height:1;letter-spacing:1px;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Secs</div></div>
         </div>
         <div style="margin-top:24px;">
           <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold">Get Notified on WhatsApp</a>
@@ -388,4 +390,5 @@
   <script src="js/premium-upgrade.js" defer></script>
 
   <script src="js/mobile-ux-fixes.js" defer></script>
+  <script src="js/design-upgrade.js" defer></script>
 </body></html>
