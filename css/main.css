@@ -385,13 +385,13 @@ img {
 .hero {
   position: relative;
   width: 100%;
-  /* Responsive height: 100vh on desktop, scales down on smaller screens */
-  height: clamp(520px, 100svh, 100svh);
-  min-height: 520px;
+  /* Responsive height: scales with content */
+  min-height: clamp(650px, 90vh, 950px);
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding-inline: clamp(24px, 5vw, 100px);
   background: var(--color-bg);
 }
 
@@ -400,9 +400,9 @@ img {
   inset: 0;
   width: 100%;
   height: 100%;
-  /* Default: contain + top positioning for cinematic full-subject visibility */
+  /* Contain: keeps full subject visible, positioned right-center */
   object-fit: contain;
-  object-position: center center;
+  object-position: right center;
   z-index: 0;
   /* Prevent upscaling on very large screens */
   max-width: 100%;
@@ -420,80 +420,90 @@ img {
 }
 
 /* ── HERO RESPONSIVE BREAKPOINTS ──────────────────────────────────
-   1920x1080+: Full contain with center positioning
-   1600x900:   Slight zoom, maintain composition
-   1366x768:   Optimized sizing with padding
-   tablets:    Adaptive scaling
+   1920x1080+: Full contain with right positioning
+   1600x900:   Right-positioned cinematic framing
+   1366x768:   Optimized sizing with left-right balance
+   tablets:    Single-column stack
 */
 
-/* Ultra-wide desktop (1920x1080+) — no zoom, full image visible */
+/* Ultra-wide desktop (1920x1080+) */
 @media (min-width: 1920px) {
+  .hero {
+    min-height: 100vh;
+    max-height: 100vh;
+  }
   .hero__image {
     object-fit: contain;
-    object-position: center center;
+    object-position: right center;
   }
 }
 
-/* Large desktop (1600x900+) */
+/* Large desktop (1600px - 1919px) */
 @media (min-width: 1600px) and (max-width: 1919px) {
+  .hero {
+    min-height: clamp(700px, 95vh, 950px);
+  }
   .hero__image {
     object-fit: contain;
-    object-position: center center;
+    object-position: right center;
   }
 }
 
-/* Medium laptop (1366x768) — prevent cropping, optimize framing */
+/* Medium laptop (1367px - 1599px) */
 @media (min-width: 1367px) and (max-width: 1599px) {
   .hero {
-    height: clamp(600px, 85svh, 90svh);
+    min-height: clamp(680px, 85vh, 900px);
+    padding-inline: clamp(32px, 4.5vw, 80px);
   }
   .hero__image {
     object-fit: contain;
-    object-position: center center;
+    object-position: right center;
   }
 }
 
-/* Smaller laptops & large tablets (1024px - 1366px) */
-@media (max-width: 1366px) {
+/* Smaller laptops (1024px - 1366px) */
+@media (min-width: 1024px) and (max-width: 1366px) {
   .hero {
-    height: clamp(500px, 75svh, 85svh);
+    min-height: clamp(620px, 80vh, 820px);
+    padding-inline: clamp(28px, 4vw, 70px);
   }
   .hero__image {
     object-fit: contain;
-    object-position: center center;
-  }
-  .hero__content {
-    padding: 0 24px;
+    object-position: right center;
   }
 }
 
-/* Tablets & medium screens (768px - 1023px) */
+/* Tablets (768px - 1023px) */
 @media (max-width: 1023px) {
   .hero {
-    height: clamp(480px, 70svh, 80svh);
+    min-height: clamp(560px, 75vh, 750px);
+    justify-content: center;
+    padding-inline: clamp(20px, 3.5vw, 50px);
   }
-  .hero__content {
-    padding: 0 20px;
+  .hero__image {
+    object-fit: contain;
+    object-position: center center;
   }
 }
 
 /* Mobile & small screens (below 768px) */
 @media (max-width: 767px) {
   .hero {
-    height: clamp(420px, 80svh, 100svh);
+    min-height: clamp(480px, 80vh, 680px);
+    justify-content: center;
+    padding-inline: clamp(16px, 3vw, 40px);
   }
-  .hero__content {
-    padding: 0 16px;
-    max-width: 100%;
+  .hero__image {
+    object-fit: contain;
+    object-position: center center;
   }
 }
 
 .hero__content {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 0 28px;
-  max-width: 720px;
+  padding: 0;
+  margin: 0;
 }
 
 .hero__eyebrow {
@@ -502,7 +512,8 @@ img {
   letter-spacing: 3px;
   text-transform: uppercase;
   color: rgba(232, 160, 32, .85);
-  margin-bottom: 18px;
+  margin-bottom: 0;
+  margin: 0;
 }
 
 .hero__title {
@@ -544,8 +555,9 @@ html[data-theme="light"] .service-slot__label {
 .hero__actions {
   display: flex;
   gap: 12px;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  margin: 0;
 }
 
 
@@ -3305,11 +3317,23 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   flex-shrink: 0;
 }
 
-/* Left-aligned content */
+/* Left-aligned content — two-column layout */
 .hero__content--left {
+  position: relative;
+  z-index: 2;
   text-align: left !important;
-  padding: 52px 48px 0 52px;
-  max-width: 640px;
+  flex: 0 0 auto;
+  max-width: clamp(320px, 50%, 580px);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.hero__content--left > * {
+  margin: 0;
 }
 
 /* Eyebrow row: line + text */
@@ -3317,7 +3341,7 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin: 0;
 }
 .hero__eyebrow-line {
   display: block;
@@ -3342,7 +3366,7 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   font-weight: 600;
   color: #f0e6c8;
   line-height: 1.1;
-  margin-bottom: 10px;
+  margin: 0;
 }
 .hero--concept-a .hero__title em {
   color: var(--color-gold);
@@ -3355,13 +3379,13 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   color: #4a6888;
   font-style: italic;
   font-family: var(--font-heading);
-  margin-bottom: 24px;
+  margin: 0;
 }
 
 /* Buttons left-aligned */
 .hero--concept-a .hero__actions {
   justify-content: flex-start;
-  margin-bottom: 32px;
+  margin: 0;
 }
 .hero--concept-a .btn--ghost {
   border-color: var(--color-gold);
@@ -3371,12 +3395,14 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   background: rgba(201, 168, 76, 0.12);
 }
 
-/* Service times strip — bottom of hero content */
+/* Service times strip — part of content block */
 .hero__srv-strip {
   display: flex;
   gap: 0;
   border-top: 1px solid #1a2e50;
   width: 100%;
+  margin-top: auto;
+  align-self: stretch;
 }
 .hero__srv {
   flex: 1;
@@ -3390,6 +3416,7 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   color: var(--color-gold);
   font-family: var(--font-body);
   line-height: 1.2;
+  margin: 0;
 }
 .hero__srv-label {
   font-size: 9px;
@@ -3401,42 +3428,47 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 
 /* Responsive */
 
-/* Large desktop (1600px+) — full padding */
+/* Large desktop (1600px+) */
 @media (min-width: 1600px) {
   .hero__content--left {
-    padding: 52px 64px 0 64px;
-    max-width: 680px;
+    max-width: 600px;
+    gap: 24px;
+  }
+  .hero--concept-a .hero__title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
   }
 }
 
-/* Medium desktop (1366px - 1599px) — optimized spacing */
+/* Medium desktop (1367px - 1599px) */
 @media (min-width: 1367px) and (max-width: 1599px) {
   .hero__content--left {
-    padding: 48px 44px 0 48px;
-    max-width: 600px;
+    max-width: 550px;
+    gap: 22px;
   }
   .hero--concept-a .hero__title {
-    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
   }
 }
 
 /* Smaller laptops (1024px - 1366px) */
 @media (min-width: 1024px) and (max-width: 1366px) {
   .hero__content--left {
-    padding: 44px 40px 0 44px;
-    max-width: 550px;
+    max-width: 480px;
+    gap: 20px;
   }
   .hero--concept-a .hero__title {
-    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   }
   .hero__srv { min-width: 50%; }
 }
 
-/* Tablets & medium screens (769px - 1023px) */
-@media (min-width: 769px) and (max-width: 1023px) {
+/* Tablets (768px - 1023px) — center layout */
+@media (max-width: 1023px) {
   .hero__content--left {
-    padding: 40px 32px 0 36px;
-    max-width: 500px;
+    max-width: 100%;
+    gap: 18px;
+    align-items: center;
+    text-align: center;
   }
   .hero--concept-a .hero__title {
     font-size: clamp(1.6rem, 5vw, 2.4rem);
@@ -3448,8 +3480,10 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 /* Mobile & small screens (below 768px) */
 @media (max-width: 768px) {
   .hero__content--left {
-    padding: 36px 20px 0 24px;
     max-width: 100%;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
   }
   .hero--concept-a .hero__title {
     font-size: clamp(1.8rem, 7vw, 2.4rem);
