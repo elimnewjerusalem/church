@@ -385,12 +385,14 @@ img {
 .hero {
   position: relative;
   width: 100%;
-  height: 100svh;
+  /* Responsive height: 100vh on desktop, scales down on smaller screens */
+  height: clamp(520px, 100svh, 100svh);
   min-height: 520px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--color-bg);
 }
 
 .hero__image {
@@ -398,8 +400,13 @@ img {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* Default: contain + top positioning for cinematic full-subject visibility */
+  object-fit: contain;
+  object-position: center center;
   z-index: 0;
+  /* Prevent upscaling on very large screens */
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* Show desktop image by default; swap on small screens via .hero__image--mobile */
@@ -410,6 +417,75 @@ img {
   inset: 0;
   background: rgba(255, 204, 136, 0.52);
   z-index: 1;
+}
+
+/* ── HERO RESPONSIVE BREAKPOINTS ──────────────────────────────────
+   1920x1080+: Full contain with center positioning
+   1600x900:   Slight zoom, maintain composition
+   1366x768:   Optimized sizing with padding
+   tablets:    Adaptive scaling
+*/
+
+/* Ultra-wide desktop (1920x1080+) — no zoom, full image visible */
+@media (min-width: 1920px) {
+  .hero__image {
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+/* Large desktop (1600x900+) */
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .hero__image {
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+/* Medium laptop (1366x768) — prevent cropping, optimize framing */
+@media (min-width: 1367px) and (max-width: 1599px) {
+  .hero {
+    height: clamp(600px, 85svh, 90svh);
+  }
+  .hero__image {
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+/* Smaller laptops & large tablets (1024px - 1366px) */
+@media (max-width: 1366px) {
+  .hero {
+    height: clamp(500px, 75svh, 85svh);
+  }
+  .hero__image {
+    object-fit: contain;
+    object-position: center center;
+  }
+  .hero__content {
+    padding: 0 24px;
+  }
+}
+
+/* Tablets & medium screens (768px - 1023px) */
+@media (max-width: 1023px) {
+  .hero {
+    height: clamp(480px, 70svh, 80svh);
+  }
+  .hero__content {
+    padding: 0 20px;
+  }
+}
+
+/* Mobile & small screens (below 768px) */
+@media (max-width: 767px) {
+  .hero {
+    height: clamp(420px, 80svh, 100svh);
+  }
+  .hero__content {
+    padding: 0 16px;
+    max-width: 100%;
+  }
 }
 
 .hero__content {
@@ -3022,6 +3098,70 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   position: absolute; inset: 0;
   width: 100%; height: 100%;
 }
+
+/* ── PASTOR LAYOUT RESPONSIVE ──────────────────────────────────
+   Responsive column sizing with improved breakpoints
+   Prevents cropping and maintains proper spacing
+*/
+
+/* Large desktop (1600px+) — generous spacing */
+@media (min-width: 1600px) {
+  .pastor-layout {
+    grid-template-columns: clamp(240px, 20%, 300px) 1fr;
+    gap: clamp(40px, 4vw, 60px);
+  }
+  .pastor-avatar-wrap {
+    width: clamp(160px, 15vw, 200px);
+    height: clamp(160px, 15vw, 200px);
+  }
+}
+
+/* Medium-large desktop (1367px - 1599px) */
+@media (min-width: 1367px) and (max-width: 1599px) {
+  .pastor-layout {
+    grid-template-columns: clamp(220px, 18%, 280px) 1fr;
+    gap: clamp(36px, 3.5vw, 48px);
+  }
+  .pastor-avatar-wrap {
+    width: clamp(150px, 12vw, 180px);
+    height: clamp(150px, 12vw, 180px);
+  }
+}
+
+/* Medium desktop (1024px - 1366px) */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .pastor-layout {
+    grid-template-columns: clamp(200px, 16%, 260px) 1fr;
+    gap: clamp(32px, 3vw, 44px);
+  }
+  .pastor-avatar-wrap {
+    width: clamp(140px, 11vw, 160px);
+    height: clamp(140px, 11vw, 160px);
+  }
+  .pastor-bio { font-size: 14px; }
+}
+
+/* Tablets (721px - 1023px) */
+@media (min-width: 721px) and (max-width: 1023px) {
+  .pastor-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .pastor-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+  .pastor-avatar-wrap {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+  }
+  .pastor-actions { flex-direction: row; }
+  .pastor-bio { font-size: 14px; }
+}
+
+/* Mobile (max 720px) */
 @media (max-width: 720px) {
   .pastor-layout { grid-template-columns: 1fr; gap: 32px; }
   .pastor-left { flex-direction: row; align-items: center; gap: 20px; }
@@ -3168,7 +3308,6 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 /* Left-aligned content */
 .hero__content--left {
   text-align: left !important;
-  align-items: flex-start !important;
   padding: 52px 48px 0 52px;
   max-width: 640px;
 }
@@ -3261,6 +3400,52 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 }
 
 /* Responsive */
+
+/* Large desktop (1600px+) — full padding */
+@media (min-width: 1600px) {
+  .hero__content--left {
+    padding: 52px 64px 0 64px;
+    max-width: 680px;
+  }
+}
+
+/* Medium desktop (1366px - 1599px) — optimized spacing */
+@media (min-width: 1367px) and (max-width: 1599px) {
+  .hero__content--left {
+    padding: 48px 44px 0 48px;
+    max-width: 600px;
+  }
+  .hero--concept-a .hero__title {
+    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+  }
+}
+
+/* Smaller laptops (1024px - 1366px) */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .hero__content--left {
+    padding: 44px 40px 0 44px;
+    max-width: 550px;
+  }
+  .hero--concept-a .hero__title {
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  }
+  .hero__srv { min-width: 50%; }
+}
+
+/* Tablets & medium screens (769px - 1023px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .hero__content--left {
+    padding: 40px 32px 0 36px;
+    max-width: 500px;
+  }
+  .hero--concept-a .hero__title {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+  .hero__srv-strip { flex-wrap: wrap; }
+  .hero__srv { min-width: 50%; border-bottom: 1px solid #1a2e50; }
+}
+
+/* Mobile & small screens (below 768px) */
 @media (max-width: 768px) {
   .hero__content--left {
     padding: 36px 20px 0 24px;
