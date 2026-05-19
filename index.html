@@ -160,79 +160,26 @@
     <!-- ══════════════════════════════════════════════
          HERO — Concept A: Immersive Dark Navy + Gold
     ══════════════════════════════════════════════ -->
-    <section class="hero hero--concept-a" aria-label="Hero banner">
+    <!-- ══ HERO — Image slider (no text) ══ -->
+    <section class="enjc-slider" aria-label="Hero image slider" id="hero-slider">
 
-      <!-- Desktop background image -->
-      <picture>
-        <source srcset="images/home/slide1.webp" type="image/webp">
-        <img
-          src="images/home/slide1.jpg"
-          alt="ENJC Sunday worship"
-          class="hero__image hero__image--desktop"
-          loading="eager" fetchpriority="high">
-      </picture>
-      <!-- Mobile background image -->
-      <picture>
-        <source srcset="images/home/slide2.webp" type="image/webp">
-        <img
-          src="images/home/slide2.jpg"
-          alt="ENJC church gathering"
-          class="hero__image hero__image--mobile"
-          loading="lazy">
-      </picture>
-
-      <!-- Dark gradient overlay -->
-      <div class="hero__overlay" aria-hidden="true"></div>
-      <!-- Gold left accent bar -->
-      <div class="hero__side-bar" aria-hidden="true"></div>
-      <!-- Live badge -->
-      <div class="hero__live-badge" aria-hidden="true">
-        <span class="hero__live-dot"></span>
-        <span>Watch Live ▶</span>
+      <div class="enjc-slide enjc-slide--active">
+        <img src="images/home/slide1.webp" alt="ENJC Sunday worship"
+             class="enjc-slide__img" loading="eager" fetchpriority="high"
+             onerror="this.src='images/home/slide1.jpg'">
       </div>
 
-      <!-- Main content — left aligned -->
-      <div class="hero__content hero__content--left">
-        <div class="hero__eyebrow-row" aria-hidden="true">
-          <span class="hero__eyebrow-line"></span>
-          <span class="hero__eyebrow">Elim New Jerusalem Church · Tondiarpet, Chennai</span>
-        </div>
-        <h1 class="hero__title">
-          Encounter God.<br>
-          Experience <em>Life.</em>
-        </h1>
-        <p class="hero__ref">"Because you are precious in my sight" — Isaiah 43:4</p>
-        <div class="hero__actions">
-          <a href="https://wa.me/919444345102?text=Hi%2C+I+would+like+to+visit+ENJC"
-             target="_blank" rel="noopener"
-             class="btn btn--gold">
-            Join Us Today
-          </a>
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial"
-             target="_blank" rel="noopener"
-             class="btn btn--ghost">
-            ▶ Watch Live
-          </a>
-        </div>
-        <!-- Service times strip inside hero -->
-        <div class="hero__srv-strip" aria-label="Sunday service times">
-          <div class="hero__srv">
-            <div class="hero__srv-time">5:30 AM</div>
-            <div class="hero__srv-label">1st Service</div>
-          </div>
-          <div class="hero__srv">
-            <div class="hero__srv-time">8:30 AM</div>
-            <div class="hero__srv-label">2nd Service</div>
-          </div>
-          <div class="hero__srv">
-            <div class="hero__srv-time">12:00 PM</div>
-            <div class="hero__srv-label">3rd Service</div>
-          </div>
-          <div class="hero__srv">
-            <div class="hero__srv-time">10:30 PM</div>
-            <div class="hero__srv-label">Night Prayer</div>
-          </div>
-        </div>
+      <div class="enjc-slide">
+        <img src="images/home/slide2.jpg" alt="Pastor A. Karthik Daniel — ENJC"
+             class="enjc-slide__img" loading="lazy">
+      </div>
+
+      <button class="enjc-arrow enjc-arrow--prev" onclick="sliderPrev()" aria-label="Previous">&#10094;</button>
+      <button class="enjc-arrow enjc-arrow--next" onclick="sliderNext()" aria-label="Next">&#10095;</button>
+
+      <div class="enjc-dots">
+        <button class="enjc-dot enjc-dot--on" onclick="sliderGo(0)" aria-label="Slide 1"></button>
+        <button class="enjc-dot" onclick="sliderGo(1)" aria-label="Slide 2"></button>
       </div>
 
     </section>

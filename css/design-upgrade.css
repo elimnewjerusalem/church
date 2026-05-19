@@ -439,3 +439,113 @@
   .testimony-card { padding: 18px; }
   .visit-step { gap: 12px; }
 }
+
+/* ═══════════════════════════════════════════════
+   ENJC IMAGE SLIDER — Hero (no text overlay)
+   Image fills full width, natural height preserved
+═══════════════════════════════════════════════ */
+
+.enjc-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  display: block;
+  /* No fixed height — image dictates height */
+}
+
+.enjc-slide {
+  display: none;
+  width: 100%;
+}
+
+.enjc-slide--active {
+  display: block;
+}
+
+.enjc-slide__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  /* Fade transition */
+  animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: scale(1.015); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Arrow buttons ── */
+.enjc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 22, 40, 0.55);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  color: #c9a84c;
+  font-size: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  padding: 0;
+  line-height: 1;
+}
+
+.enjc-arrow:hover {
+  background: rgba(201, 168, 76, 0.25);
+  border-color: #c9a84c;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.enjc-arrow--prev { left: 16px; }
+.enjc-arrow--next { right: 16px; }
+
+/* ── Dot indicators ── */
+.enjc-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.enjc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.enjc-dot--on {
+  background: #c9a84c;
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .enjc-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+  .enjc-arrow--prev { left: 8px; }
+  .enjc-arrow--next { right: 8px; }
+  .enjc-dots { bottom: 10px; }
+}
+
