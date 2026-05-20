@@ -764,8 +764,43 @@ img { max-width: 100%; display: block; }
 }
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
   border-color: var(--border-mid);
+  animation: cardGlow .9s ease-in-out infinite alternate;
+}
+
+/* Animated glow — pure box-shadow, no pseudo-element conflicts, GPU-safe */
+@keyframes cardGlow {
+  from {
+    box-shadow:
+      var(--shadow-hover),
+      0 0 18px 4px rgba(147, 184, 255, 0.18),
+      0 0 36px 8px rgba(93, 142, 245, 0.10);
+  }
+  to {
+    box-shadow:
+      var(--shadow-hover),
+      0 0 28px 8px rgba(147, 184, 255, 0.26),
+      0 0 52px 14px rgba(93, 142, 245, 0.16);
+  }
+}
+
+/* Light mode — warmer gold glow instead of blue */
+[data-theme="light"] .card:hover {
+  animation: cardGlowLight .9s ease-in-out infinite alternate;
+}
+@keyframes cardGlowLight {
+  from {
+    box-shadow:
+      0 8px 32px rgba(120,60,20,0.16), 0 0 0 1px var(--border-mid),
+      0 0 18px 4px rgba(201, 168, 76, 0.20),
+      0 0 36px 8px rgba(201, 168, 76, 0.10);
+  }
+  to {
+    box-shadow:
+      0 8px 32px rgba(120,60,20,0.16), 0 0 0 1px var(--border-mid),
+      0 0 28px 8px rgba(201, 168, 76, 0.30),
+      0 0 52px 14px rgba(201, 168, 76, 0.16);
+  }
 }
 .card h3 { color: var(--text); }
 .card p   { color: var(--text-muted); }
@@ -1537,3 +1572,13 @@ img { max-width: 100%; display: block; }
 .info-band strong { color: var(--gold); }
 .info-band a { color: var(--gold); font-weight: 500; }
 .info-band a:hover { color: var(--gold-warm); }
+
+
+/* ── Respect reduced-motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  [data-theme="light"] .card:hover {
+    animation: none;
+    box-shadow: var(--shadow-hover);
+  }
+}
