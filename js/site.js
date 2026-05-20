@@ -22,7 +22,7 @@
   }
 
   // Restore saved preference immediately (before paint) to avoid flicker.
-  applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+  applyTheme(localStorage.getItem(THEME_KEY) || 'light');
 
   /** Toggle between dark and light; persists choice in localStorage. */
   window.toggleTheme = function () {
