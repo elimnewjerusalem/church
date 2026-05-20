@@ -1,10 +1,10 @@
 // ═══════════════════════════════════════════════════════════════
-//  ENJC Service Worker — Offline-first PWA
+//  ENJC Service Worker — Offline-first PWA  (fixed v2)
 //  Caches shell + static assets; Bible data stays fresh from network
 // ═══════════════════════════════════════════════════════════════
 
-const CACHE_NAME    = 'enjc-v1';
-const DATA_CACHE    = 'enjc-data-v1';
+const CACHE_NAME = 'enjc-v2';
+const DATA_CACHE = 'enjc-data-v2';
 
 // Static shell — cache on install, serve from cache always
 const SHELL_ASSETS = [
@@ -17,9 +17,11 @@ const SHELL_ASSETS = [
   '/church/gallery.html',
   '/church/imagegen.html',
   '/church/ministries.html',
+  '/church/manifest.json',
   '/church/css/main.css',
   '/church/css/mobile-ux-fixes.css',
-  '/church/css/premium-upgrade.css',
+  '/church/css/enjc-premium.css',
+  '/church/css/design-upgrade.css',
   '/church/css/imagegen.css',
   '/church/css/events.css',
   '/church/js/site.js',
@@ -28,8 +30,8 @@ const SHELL_ASSETS = [
   '/church/js/gallery.js',
   '/church/js/live-stream.js',
   '/church/js/mobile-ux-fixes.js',
+  '/church/js/design-upgrade.js',
   '/church/js/premium-upgrade.js',
-  '/church/js/slider.js',
   '/church/js/imagegen-main.js',
   '/church/js/imagegen-ui.js',
   '/church/js/imagegen-canvas.js',
@@ -39,11 +41,10 @@ const SHELL_ASSETS = [
   '/church/data/bible-topics.json',
   '/church/data/book_index.json',
   '/church/data/events.json',
-  '/church/data/manifest.json',
   '/church/data/tamil-bible.json',
   '/church/images/logo/logo.png',
-  '/church/images/home/slide1.jpg',
-  '/church/images/home/slide2.jpg',
+  '/church/images/home/slide1.webp',
+  '/church/images/home/slide2.webp',
   '/church/images/pastor.jpg',
 ];
 
@@ -51,7 +52,15 @@ const SHELL_ASSETS = [
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(SHELL_ASSETS);
+      // addAll fails if ANY asset 404s — use individual puts so one missing
+      // image doesn't break the whole install
+      return Promise.allSettled(
+        SHELL_ASSETS.map(url =>
+          fetch(url).then(res => {
+            if (res.ok) cache.put(url, res);
+          }).catch(() => {})
+        )
+      );
     }).then(() => self.skipWaiting())
   );
 });
@@ -73,12 +82,14 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip non-GET, cross-origin API calls (YouTube, Bible APIs, fonts)
+  // Skip non-GET and cross-origin API calls (YouTube, Bible APIs, fonts)
   if (request.method !== 'GET') return;
-  if (!url.origin.includes('github.io') && !url.pathname.startsWith('/church/')) return;
+  if (url.hostname !== 'elimnewjerusalem.github.io' &&
+      url.hostname !== location.hostname) return;
 
   // Bible data: network-first, fall back to cache (keeps content fresh)
-  if (url.pathname.includes('/data/english_kjv') || url.pathname.includes('/data/tamil_full')) {
+  if (url.pathname.includes('/data/english_kjv') ||
+      url.pathname.includes('/data/tamil_full')) {
     event.respondWith(
       caches.open(DATA_CACHE).then(cache =>
         fetch(request)
@@ -94,13 +105,11 @@ self.addEventListener('fetch', event => {
     caches.match(request).then(cached => {
       if (cached) return cached;
       return fetch(request).then(res => {
-        // Cache new assets encountered after install
         if (res.ok && res.type !== 'opaque') {
           caches.open(CACHE_NAME).then(c => c.put(request, res.clone()));
         }
         return res;
       }).catch(() => {
-        // Offline fallback for navigation requests
         if (request.mode === 'navigate') {
           return caches.match('/church/index.html');
         }

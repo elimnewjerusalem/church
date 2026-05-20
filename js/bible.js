@@ -3,11 +3,8 @@
 // ═══════════════════════════════════════════════════════════════
 'use strict';
 
-// ── FCBH KEY (free at 4.dbt.io) ─────────────────────────────────
-const FCBH_KEY = "";
-const FCBH_TA  = "TAMOVSN2DA";
-const FCBH_EN  = "ENGKJVC2DA";
-
+// FCBH audio API key (leave empty to use ResponsiveVoice instead)
+const FCBH_KEY = '';
 // ── CONFIG ───────────────────────────────────────────────────────
 const C = {
   enAPI:  'https://bible-api.com/',

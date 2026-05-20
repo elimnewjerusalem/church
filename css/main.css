@@ -269,6 +269,13 @@ img {
   display: flex;
   gap: 0;
   align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: contents;
 }
 
 .nav-link {
@@ -3506,3 +3513,14 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
   .hero__srv { min-width: 50%; }
 }
 
+
+/* ── Date cards (Deliverance schedule) ── */
+.date-card__date  { font-size: clamp(11px, 1.8vw, 13px); }
+.date-card__month { font-size: clamp(9px, 1.5vw, 11px); }
+@media (max-width: 600px) {
+  .service-slot            { padding: 12px 10px; }
+  .service-slot__time      { font-size: 1.3rem; }
+}
+@media (max-width: 480px) {
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+}

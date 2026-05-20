@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found | ENJC</title>
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <script src="js/site.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/enjc-premium.css">
+  <link rel="stylesheet" href="css/design-upgrade.css">
+  <link rel="stylesheet" href="css/mobile-ux-fixes.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+
+<header>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="ENJC home">
+        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
+        <div>
+          <div class="nav-logo__name">ENJC</div>
+          <div class="nav-logo__sub">Elim New Jerusalem Church</div>
+        </div>
+      </a>
+      <ul class="nav-links" aria-label="Main navigation">
+        <li><a href="index.html"      class="nav-link">Home</a></li>
+        <li><a href="about.html"      class="nav-link">About</a></li>
+        <li><a href="gallery.html"    class="nav-link">Gallery</a></li>
+        <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+        <li><a href="events.html"     class="nav-link">Events</a></li>
+        <li><a href="contact.html"    class="nav-link">Contact</a></li>
+        <li><a href="bible.html"      class="nav-link">Bible</a></li>
+        <li><a href="imagegen.html"   class="nav-link">🖼️ Cards</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+          <div class="theme-toggle__dot"></div>
+        </button>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" role="menu">
+      <a href="index.html"      class="mobile-menu__link" role="menuitem">Home</a>
+      <a href="about.html"      class="mobile-menu__link" role="menuitem">About</a>
+      <a href="gallery.html"    class="mobile-menu__link" role="menuitem">Gallery</a>
+      <a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a>
+      <a href="events.html"     class="mobile-menu__link" role="menuitem">Events</a>
+      <a href="contact.html"    class="mobile-menu__link" role="menuitem">Contact</a>
+      <a href="bible.html"      class="mobile-menu__link" role="menuitem">Bible</a>
+      <a href="imagegen.html"   class="mobile-menu__link" role="menuitem">🖼️ Scripture Cards</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="section" style="min-height: 60vh; display: flex; align-items: center;">
+    <div class="container" style="text-align: center; padding: 60px 20px;">
+
+      <div style="font-size: 80px; margin-bottom: 20px;" aria-hidden="true">🕊️</div>
+
+      <p class="section-tag">404 — Page Not Found</p>
+      <h1 class="section-heading" style="max-width: 520px; margin: 0 auto 16px;">
+        This page has <em>gone on a journey</em>
+      </h1>
+      <div class="section-rule" aria-hidden="true" style="margin: 0 auto 24px;"></div>
+
+      <p style="font-size: 15px; color: var(--color-text-muted); max-width: 420px; margin: 0 auto 36px; line-height: 1.7;">
+        The page you're looking for doesn't exist or may have been moved.
+        Let's get you back to the right place.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+        <a href="index.html" class="btn btn--gold" style="padding: 12px 28px;">🏠 Go to Home</a>
+        <a href="bible.html" class="btn btn--outline" style="padding: 12px 28px;">📖 Open Bible</a>
+        <a href="events.html" class="btn btn--outline" style="padding: 12px 28px;">📅 Watch Services</a>
+      </div>
+
+      <p style="margin-top: 48px; font-size: 13px; color: var(--color-text-faint);">
+        <em>"The Lord himself goes before you and will be with you." — Deuteronomy 31:8</em>
+      </p>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__bottom">
+      <span>© 2026 Elim New Jerusalem Church, Chennai</span>
+      <span>Built with ❤️ for the Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <a href="index.html"   class="bottom-nav__item">
+    <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
+    <span class="bottom-nav__label">Home</span>
+  </a>
+  <a href="about.html"   class="bottom-nav__item">
+    <span class="bottom-nav__icon" aria-hidden="true">✝</span>
+    <span class="bottom-nav__label">About</span>
+  </a>
+  <div class="bottom-nav__center">
+    <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
+  </div>
+  <a href="events.html"  class="bottom-nav__item">
+    <span class="bottom-nav__icon" aria-hidden="true">📅</span>
+    <span class="bottom-nav__label">Events</span>
+  </a>
+  <a href="contact.html" class="bottom-nav__item">
+    <span class="bottom-nav__icon" aria-hidden="true">✉</span>
+    <span class="bottom-nav__label">Contact</span>
+  </a>
+</nav>
+
+<script src="js/premium-upgrade.js" defer></script>
+<script src="js/mobile-ux-fixes.js" defer></script>
+<script src="js/design-upgrade.js" defer></script>
+
+</body>
+</html>
