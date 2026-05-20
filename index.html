@@ -2,40 +2,40 @@
 <html lang="ta">
 <head>
   <meta charset="UTF-8">
-  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
+<link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
   <link rel="icon" type="image/png" href="images/logo/logo.png">
   <link rel="apple-touch-icon" href="images/logo/logo.png">
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home | ENJC — Elim New Jerusalem Church, Chennai</title>
-  <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily. Spirit-led deliverance & revival ministry.">
+  <title>Home | ENJC — Elim New Jerusalem Church</title>
+  <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- Theme applied before paint to prevent flash -->
   <script src="js/site.js"></script>
 
-  <!-- Fonts — preconnect then load -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-
-  <!-- Styles -->
+  <!-- Shared styles -->
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/enjc-premium.css">
+<link rel="stylesheet" href="css/premium-upgrade.css">
+  <link rel="stylesheet" href="css/design-upgrade.css">
   <link rel="stylesheet" href="css/mobile-ux-fixes.css">
 
   <!-- SEO: Open Graph & Twitter Card -->
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/">
-  <meta property="og:title"       content="ENJC — Elim New Jerusalem Church, Chennai">
-  <meta property="og:description" content="Spirit-led deliverance and revival ministry in Tondiarpet, Chennai. Sunday services at 5:30, 8:30 & 12:00 PM.">
+  <meta property="og:title"       content="Home | ENJC — Elim New Jerusalem Church">
+  <meta property="og:description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 &amp; 12:00. Night Prayer 10:30 PM daily.">
   <meta property="og:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="ENJC — Elim New Jerusalem Church, Chennai">
-  <meta name="twitter:description" content="Spirit-led deliverance and revival ministry in Tondiarpet, Chennai.">
+  <meta name="twitter:card"       content="summary">
+  <meta name="twitter:title"      content="Home | ENJC — Elim New Jerusalem Church">
+  <meta name="twitter:description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 &amp; 12:00. Night Prayer 10:30 PM daily.">
   <meta name="twitter:image"      content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-
-  <!-- Schema.org Church -->
+  <!-- Schema.org: Church (index only) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -72,237 +72,6 @@
     "pastor": {"@type": "Person","name": "Pastor A. Karthik Daniel"}
   }
   </script>
-
-  <style>
-  /* ── Inline critical: hero + slider ───────────────────────── */
-  .enjc-slider {
-    position: relative;
-    width: 100%;
-    height: min(92vh, 860px);
-    overflow: hidden;
-    background: var(--bg);
-  }
-  .enjc-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1.4s ease;
-  }
-  .enjc-slide--active { opacity: 1; }
-  .enjc-slide__img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center 30%;
-    display: block;
-  }
-  .enjc-slide__overlay {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(to right, rgba(6,8,16,0.82) 0%, rgba(6,8,16,0.46) 55%, rgba(6,8,16,0.28) 100%),
-      linear-gradient(to top,   rgba(6,8,16,0.75) 0%, transparent 52%);
-  }
-  .enjc-slide__content {
-    position: absolute;
-    top: 50%; left: var(--container-px, 48px);
-    transform: translateY(-50%);
-    max-width: 620px;
-    z-index: 10;
-  }
-  .enjc-arrow {
-    position: absolute;
-    top: 50%; transform: translateY(-50%);
-    z-index: 20;
-    width: 42px; height: 42px;
-    background: rgba(6,8,16,0.55);
-    border: 1px solid var(--border-mid);
-    border-radius: 50%;
-    color: var(--text);
-    font-size: 14px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: background var(--t-fast), border-color var(--t-fast);
-    backdrop-filter: blur(8px);
-  }
-  .enjc-arrow:hover { background: var(--gold-bg-rich); border-color: var(--gold-border); color: var(--gold); }
-  .enjc-arrow--prev { left: 20px; }
-  .enjc-arrow--next { right: 20px; }
-  .enjc-dots {
-    position: absolute;
-    bottom: 28px; right: 48px;
-    z-index: 20;
-    display: flex; gap: 8px;
-  }
-  .enjc-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--border-mid);
-    border: none; padding: 0; cursor: pointer;
-    transition: background var(--t-fast), transform var(--t-fast);
-  }
-  .enjc-dot--on { background: var(--gold); transform: scale(1.4); }
-
-  /* Scroll hint line */
-  .scroll-hint {
-    position: absolute;
-    bottom: 32px; left: 50%;
-    transform: translateX(-50%);
-    z-index: 20;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--text-faint);
-    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-    animation: scrollHint 2s ease-in-out infinite;
-    font-family: var(--font-body);
-  }
-  .scroll-hint-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--gold-border), transparent);
-  }
-  @keyframes scrollHint {
-    0%,100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
-    50%      { opacity: 0.9; transform: translateX(-50%) translateY(7px); }
-  }
-
-  /* ── Particles canvas ── */
-  #particles { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
-
-  /* ── Hero overline / title / verse ── */
-  .slide-overline {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 20px; opacity: 0;
-    animation: fadeUp 0.9s 0.2s var(--ease-out) forwards;
-  }
-  .slide-overline::before {
-    content: ''; display: block; width: 24px; height: 1px;
-    background: var(--gold); opacity: 0.7;
-  }
-  .slide-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 600; line-height: 1.04;
-    color: var(--text); letter-spacing: -0.03em;
-    margin-bottom: 20px;
-    opacity: 0; animation: fadeUp 0.9s 0.38s var(--ease-out) forwards;
-  }
-  .slide-title em { font-style: italic; color: var(--gold); }
-  .slide-verse {
-    font-family: var(--font-display);
-    font-style: italic; font-size: clamp(14px, 1.8vw, 17px);
-    color: rgba(237,232,223,0.75); line-height: 1.7;
-    margin-bottom: 6px;
-    opacity: 0; animation: fadeUp 0.9s 0.54s var(--ease-out) forwards;
-  }
-  .slide-ref {
-    font-size: 12px; color: var(--text-faint); letter-spacing: 0.06em;
-    margin-bottom: 36px;
-    opacity: 0; animation: fadeUp 0.9s 0.62s var(--ease-out) forwards;
-  }
-  .slide-actions {
-    display: flex; gap: 14px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.9s 0.74s var(--ease-out) forwards;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(22px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Service ticker ── */
-  .service-ticker {
-    background: var(--bg-2);
-    border-bottom: 1px solid var(--border);
-    padding: 8px 0;
-    font-size: 12px; color: var(--text-muted);
-    text-align: center; letter-spacing: 0.02em;
-    overflow: hidden;
-  }
-  .service-ticker span { color: var(--gold); font-weight: 500; }
-  .service-ticker a { color: var(--gold); text-decoration: none; }
-
-  /* ── Card gold accent ── */
-  .card--gold {
-    border-color: var(--gold-border);
-    background: linear-gradient(135deg, var(--gold-bg) 0%, var(--bg-card) 60%);
-  }
-
-  /* ── Programmes card center ── */
-  .prog-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 28px 22px;
-    text-align: center;
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-    transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
-  }
-  .prog-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--gold-border);
-  }
-  .prog-card__icon { font-size: 30px; line-height: 1; }
-  .prog-card h3 { font-size: 1rem; color: var(--text); margin: 0; }
-  .prog-card__time { font-size: 12px; font-weight: 500; color: var(--gold); letter-spacing: 0.04em; }
-  .prog-card p { font-size: 13px; color: var(--text-faint); margin: 0; line-height: 1.55; }
-
-  /* ── Tools grid ── */
-  .tool-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 28px;
-    text-align: center;
-    display: flex; flex-direction: column; align-items: center; gap: 14px;
-    text-decoration: none; color: var(--text);
-    transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
-  }
-  .tool-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--gold-border);
-    color: var(--text);
-  }
-  .tool-card__icon { font-size: 36px; line-height: 1; }
-  .tool-card h3 { font-size: 1rem; margin: 0; color: var(--text); }
-  .tool-card p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.6; }
-
-  /* ── Date card past ── */
-  .date-card--past { opacity: 0.40; }
-  .past-badge {
-    display: inline-block; font-size: 9px; font-weight: 700;
-    letter-spacing: 1px; background: rgba(255,255,255,.10);
-    color: var(--text-faint); padding: 2px 7px;
-    border-radius: 99px; margin-left: 6px; vertical-align: middle;
-  }
-
-  /* ── Deliverance info band ── */
-  .deliv-note {
-    margin-top: 28px;
-    padding: 16px 22px;
-    background: var(--gold-bg);
-    border: 1px solid var(--gold-border);
-    border-radius: var(--radius-sm);
-    font-size: 13px; color: var(--text-muted);
-    line-height: 1.6;
-  }
-  .deliv-note strong { color: var(--text); }
-
-  /* ── Mobile hero adjustments ── */
-  @media (max-width: 680px) {
-    .enjc-slider { height: min(88vh, 700px); }
-    .enjc-slide__overlay {
-      background: linear-gradient(to bottom, rgba(6,8,16,0.55) 0%, rgba(6,8,16,0.92) 100%);
-    }
-    .enjc-slide__content {
-      top: auto; bottom: 60px; transform: none;
-      left: 20px; right: 20px; max-width: 100%;
-      text-align: center;
-    }
-    .slide-overline { justify-content: center; }
-    .slide-actions { justify-content: center; }
-    .scroll-hint { display: none; }
-    .enjc-dots { bottom: 20px; right: 20px; }
-  }
-  </style>
 </head>
 
 <body>
@@ -317,8 +86,12 @@
 
         <!-- Logo -->
         <a href="index.html" class="nav-logo" aria-label="ENJC home">
-          <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <img
+            src="images/logo/logo.png"
+            class="nav-logo__img"
+            alt="ENJC logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+          >
           <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
           <div>
             <div class="nav-logo__name">ENJC</div>
@@ -328,14 +101,14 @@
 
         <!-- Desktop links -->
         <div class="nav-links" role="list">
-          <a href="index.html"      class="nav-link nav-link--active" aria-current="page" role="listitem">Home</a>
-          <a href="about.html"      class="nav-link" role="listitem">About</a>
-          <a href="gallery.html"    class="nav-link" role="listitem">Gallery</a>
-          <a href="ministries.html" class="nav-link" role="listitem">Ministries</a>
-          <a href="events.html"     class="nav-link" role="listitem">Events</a>
-          <a href="contact.html"    class="nav-link" role="listitem">Contact</a>
-          <a href="bible.html"      class="nav-link" role="listitem">Bible</a>
-          <a href="imagegen.html"   class="nav-link" role="listitem">🖼️ Cards</a>
+          <a href="index.html"       class="nav-link nav-link--active" aria-current="page" role="listitem">Home</a>
+          <a href="about.html"       class="nav-link" role="listitem">About</a>
+          <a href="gallery.html"     class="nav-link" role="listitem">Gallery</a>
+          <a href="ministries.html"  class="nav-link" role="listitem">Ministries</a>
+          <a href="events.html"      class="nav-link" role="listitem">Events</a>
+          <a href="contact.html"     class="nav-link" role="listitem">Contact</a>
+          <a href="bible.html"       class="nav-link" role="listitem">Bible</a>
+          <a href="imagegen.html"    class="nav-link" role="listitem">🖼️ Cards</a>
         </div>
 
         <!-- Theme toggle + Visit Us -->
@@ -346,96 +119,67 @@
           <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
             📍 Visit Us
           </a>
-          <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-            <span></span><span></span><span></span>
-          </button>
         </div>
 
-      </div><!-- /container -->
+        <!-- Hamburger (mobile) -->
+        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+        </button>
+
+      </div><!-- /.container -->
 
       <!-- Mobile dropdown -->
-      <nav class="mobile-menu" id="mobile-menu" role="menu" aria-label="Mobile navigation">
-        <a href="index.html"      class="nav-link--active" role="menuitem">🏠 Home</a>
-        <a href="about.html"      role="menuitem">✝ About</a>
-        <a href="gallery.html"    role="menuitem">🖼 Gallery</a>
-        <a href="ministries.html" role="menuitem">🙏 Ministries</a>
-        <a href="events.html"     role="menuitem">📅 Events</a>
-        <a href="contact.html"    role="menuitem">✉ Contact</a>
-        <a href="bible.html"      role="menuitem">📖 Bible</a>
-        <a href="imagegen.html"   role="menuitem">🖼️ Scripture Cards</a>
-        <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" role="menuitem">📍 Visit Us</a>
-      </nav>
-    </nav>
+      <div class="mobile-menu" id="mobile-menu" role="menu">
+        <a href="index.html"       class="mobile-menu__link is-active" role="menuitem">Home</a>
+        <a href="about.html"       class="mobile-menu__link" role="menuitem">About</a>
+        <a href="gallery.html"     class="mobile-menu__link" role="menuitem">Gallery</a>
+        <a href="ministries.html"  class="mobile-menu__link" role="menuitem">Ministries</a>
+        <a href="events.html"      class="mobile-menu__link" role="menuitem">Events</a>
+        <a href="contact.html"     class="mobile-menu__link" role="menuitem">Contact</a>
+        <a href="bible.html"       class="mobile-menu__link" role="menuitem">Bible</a>
+        <a href="imagegen.html"    class="mobile-menu__link" role="menuitem">🖼️ Scripture Cards</a>
+      </div>
 
-    <!-- Service times ticker -->
-    <div class="service-ticker" role="complementary" aria-label="Service times">
-      <strong>Sunday Worship</strong> · <span>5:30 AM</span> · <span>8:30 AM</span> · <span>12:00 PM</span>
-      &nbsp;|&nbsp;
-      <strong>Night Prayer</strong> · <span>10:30 PM Daily</span>
-      &nbsp;|&nbsp;
-      <a href="contact.html">📍 Tondiarpet, Chennai</a>
-    </div>
+    </nav>
   </header>
 
 
   <main id="main">
+  <!-- ══ SERVICE-TIME COUNTDOWN BANNER (mobile) ══ -->
+  <div id="enjc-service-banner" role="status" aria-live="polite" aria-atomic="true">
+    <span class="banner-icon" aria-hidden="true">⛪</span>
+    <span class="banner-label">Service starts in</span>
+    <span class="banner-time">–</span>
+    <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener"
+       style="margin-left:8px;font-size:12px;color:var(--color-gold);text-decoration:underline;">Watch Live ▶</a>
+  </div>
+
 
     <!-- ══════════════════════════════════════════════
-         HERO — Cinematic Slider
+         HERO — Concept A: Immersive Dark Navy + Gold
     ══════════════════════════════════════════════ -->
+    <!-- ══ HERO — Image slider (no text) ══ -->
     <section class="enjc-slider" aria-label="Hero image slider" id="hero-slider">
 
-      <!-- Particle canvas -->
-      <canvas id="particles" aria-hidden="true"></canvas>
-
-      <!-- Slide 1 -->
       <div class="enjc-slide enjc-slide--active">
-        <img src="images/home/slide1.webp" alt="ENJC Sunday worship congregation"
+        <img src="images/home/slide1.webp" alt="ENJC Sunday worship"
              class="enjc-slide__img" loading="eager" fetchpriority="high"
              onerror="this.src='images/home/slide1.jpg'">
-        <div class="enjc-slide__overlay"></div>
-        <div class="enjc-slide__content">
-          <div class="slide-overline">Tondiarpet, Chennai</div>
-          <h1 class="slide-title">Where the <em>Spirit</em><br>Moves Freely</h1>
-          <p class="slide-verse">"The Spirit of the Lord is upon me, because he hath anointed me to preach the gospel."</p>
-          <p class="slide-ref">Luke 4:18</p>
-          <div class="slide-actions">
-            <a href="events.html" class="btn btn--gold">Watch Live ▶</a>
-            <a href="about.html"  class="btn btn--ghost">Our Story →</a>
-          </div>
-        </div>
       </div>
 
-      <!-- Slide 2 -->
       <div class="enjc-slide">
-        <img src="images/home/slide2.webp" alt="Pastor A. Karthik Daniel — ENJC"
+        <img src="images/home/slide2.jpg" alt="Pastor A. Karthik Daniel — ENJC"
              class="enjc-slide__img" loading="lazy">
-        <div class="enjc-slide__overlay"></div>
-        <div class="enjc-slide__content">
-          <div class="slide-overline">Revival Ministry</div>
-          <h1 class="slide-title">Healing, <em>Deliverance</em><br>&amp; Restoration</h1>
-          <p class="slide-verse">"Is any sick among you? let him call for the elders of the church; and let them pray over him."</p>
-          <p class="slide-ref">James 5:14</p>
-          <div class="slide-actions">
-            <a href="contact.html?intent=visit" class="btn btn--gold">Plan Your Visit →</a>
-            <a href="bible.html"                class="btn btn--ghost">Open Bible 📖</a>
-          </div>
-        </div>
       </div>
 
-      <!-- Controls -->
-      <button class="enjc-arrow enjc-arrow--prev" onclick="sliderPrev()" aria-label="Previous slide">&#10094;</button>
-      <button class="enjc-arrow enjc-arrow--next" onclick="sliderNext()" aria-label="Next slide">&#10095;</button>
+      <button class="enjc-arrow enjc-arrow--prev" onclick="sliderPrev()" aria-label="Previous">&#10094;</button>
+      <button class="enjc-arrow enjc-arrow--next" onclick="sliderNext()" aria-label="Next">&#10095;</button>
 
-      <div class="enjc-dots" role="tablist" aria-label="Slide indicators">
-        <button class="enjc-dot enjc-dot--on" onclick="sliderGo(0)" aria-label="Slide 1" role="tab" aria-selected="true"></button>
-        <button class="enjc-dot"              onclick="sliderGo(1)" aria-label="Slide 2" role="tab" aria-selected="false"></button>
-      </div>
-
-      <!-- Scroll hint -->
-      <div class="scroll-hint" aria-hidden="true">
-        Scroll
-        <div class="scroll-hint-line"></div>
+      <div class="enjc-dots">
+        <button class="enjc-dot enjc-dot--on" onclick="sliderGo(0)" aria-label="Slide 1"></button>
+        <button class="enjc-dot" onclick="sliderGo(1)" aria-label="Slide 2"></button>
       </div>
 
     </section>
@@ -447,19 +191,19 @@
     <section class="section" aria-labelledby="services-heading">
       <div class="container">
 
-        <p class="section-tag reveal">When We Meet</p>
-        <h2 class="section-heading reveal" id="services-heading">
+        <p class="section-tag">When We Meet</p>
+        <h2 class="section-heading" id="services-heading">
           Church Worship &amp; <em>Service Times</em>
         </h2>
-        <div class="section-rule reveal" aria-hidden="true"></div>
+        <div class="section-rule" aria-hidden="true"></div>
 
-        <!-- Sunday highlighted card -->
-        <article class="card card--gold reveal" style="padding: 32px; margin-bottom: 20px;">
-          <header style="display:flex; align-items:center; gap:14px; margin-bottom:22px;">
-            <div style="width:46px;height:46px;background:var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;" aria-hidden="true">📅</div>
+        <!-- Sunday — highlighted gold card -->
+        <article class="card card--gold" style="padding: 32px; margin-bottom: 20px;">
+          <header style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <div style="width: 42px; height: 42px; background: var(--color-gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;" aria-hidden="true">📅</div>
             <div>
-              <h3 style="font-size:1.15rem;margin-bottom:3px;">Sunday — ENJC Family Gathering</h3>
-              <p style="font-size:12px;color:var(--text-faint);">Three services every Sunday</p>
+              <h3 style="font-size: 1.15rem; margin-bottom: 2px;">Sunday — ENJC Family Gathering</h3>
+              <p style="font-size: 12px; color: var(--color-text-faint);">Three services every Sunday</p>
             </div>
           </header>
           <div class="grid-3">
@@ -478,79 +222,83 @@
           </div>
         </article>
 
-        <!-- Weekly meetings -->
-        <div class="grid-3" style="margin-bottom:20px;">
+        <!-- Weekly meetings — 3-column grid -->
+        <div class="grid-3" style="margin-bottom: 20px;">
 
-          <article class="card reveal reveal-delay-1" style="padding:26px;">
+          <article class="card" style="padding: 26px;">
             <div class="activity-card__icon" aria-hidden="true">🕊️</div>
-            <h3 style="font-size:1rem;margin-bottom:6px;">Tuesday Prayer Meeting</h3>
-            <p style="font-size:13px;margin-bottom:10px;">ENJC Special Prayer</p>
-            <div class="activity-card__time">11:00 AM – 4:00 PM</div>
-            <p style="font-size:12px;color:var(--text-faint);margin-top:6px;">Special prayer gathering every Tuesday</p>
+            <h3 style="font-size: 1rem; margin-bottom: 6px;">Tuesday Prayer Meeting</h3>
+            <p style="font-size: 13px; margin-bottom: 10px;">ENJC Special Prayer</p>
+            <div class="activity-card__time" style="font-family: var(--font-number, 'Oswald', sans-serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.3px;">11:00 AM – 4:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Special prayer gathering every Tuesday</p>
           </article>
 
-          <article class="card reveal reveal-delay-2" style="padding:26px;">
+          <article class="card" style="padding: 26px;">
             <div class="activity-card__icon" aria-hidden="true">🙏</div>
-            <h3 style="font-size:1rem;margin-bottom:6px;">Friday Prayer Meeting</h3>
-            <p style="font-size:13px;margin-bottom:10px;">ENJC Family Blessing Prayer</p>
-            <div class="activity-card__time">11:00 AM – 1:00 PM</div>
-            <p style="font-size:12px;color:var(--text-faint);margin-top:6px;">Family blessing prayer every Friday</p>
+            <h3 style="font-size: 1rem; margin-bottom: 6px;">Friday Prayer Meeting</h3>
+            <p style="font-size: 13px; margin-bottom: 10px;">ENJC Family Blessing Prayer</p>
+            <div class="activity-card__time" style="font-family: var(--font-number, 'Oswald', sans-serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.3px;">11:00 AM – 1:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Family blessing prayer every Friday</p>
           </article>
 
-          <article class="card reveal reveal-delay-3" style="padding:26px;">
+          <article class="card" style="padding: 26px;">
             <div class="activity-card__icon" aria-hidden="true">✝️</div>
-            <h3 style="font-size:1rem;margin-bottom:6px;">Missionary Vision Meeting</h3>
-            <p style="font-size:13px;margin-bottom:10px;">3rd Friday of every month</p>
-            <div class="activity-card__time">6:00 PM</div>
-            <p style="font-size:12px;color:var(--text-faint);margin-top:6px;">Special gathering for ministry workers</p>
+            <h3 style="font-size: 1rem; margin-bottom: 6px;">Missionary Vision Meeting</h3>
+            <p style="font-size: 13px; margin-bottom: 10px;">3rd Friday of every month</p>
+            <div class="activity-card__time" style="font-family: var(--font-number, 'Oswald', sans-serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.3px;">6:00 PM</div>
+            <p style="font-size: 12px; color: var(--color-text-faint); margin-top: 6px;">Special gathering for ministry workers</p>
           </article>
 
         </div>
 
-        <!-- Outreach -->
-        <div class="grid-3" style="margin-bottom:20px;">
+        <!-- Ministry outreach — 3-column grid -->
+        <div class="grid-3" style="margin-bottom: 20px;">
 
-          <article class="card reveal reveal-delay-1" style="padding:24px;">
+          <article class="card" style="padding: 24px;">
             <div class="activity-card__icon" aria-hidden="true">👩</div>
-            <h3 style="font-size:.95rem;margin-bottom:6px;">Sisters' Village Ministry</h3>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Sisters' Village Ministry</h3>
             <div class="activity-card__time">3rd Saturday</div>
-            <p style="font-size:12px;color:var(--text-faint);">Monthly village outreach for sisters</p>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Monthly village outreach for sisters</p>
           </article>
 
-          <article class="card reveal reveal-delay-2" style="padding:24px;">
+          <article class="card" style="padding: 24px;">
             <div class="activity-card__icon" aria-hidden="true">👨</div>
-            <h3 style="font-size:.95rem;margin-bottom:6px;">Brothers' Village Ministry</h3>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Brothers' Village Ministry</h3>
             <div class="activity-card__time">4th Saturday</div>
-            <p style="font-size:12px;color:var(--text-faint);">Monthly village outreach for brothers</p>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Monthly village outreach for brothers</p>
           </article>
 
-          <article class="card reveal reveal-delay-3" style="padding:24px;">
+          <article class="card" style="padding: 24px;">
             <div class="activity-card__icon" aria-hidden="true">📢</div>
-            <h3 style="font-size:.95rem;margin-bottom:6px;">Gospel Ministry</h3>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Gospel Ministry</h3>
             <div class="activity-card__time">Every Sunday · 3:00 PM</div>
-            <p style="font-size:12px;color:var(--text-faint);">Weekly gospel outreach every Sunday afternoon</p>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Weekly gospel outreach every Sunday afternoon</p>
           </article>
 
         </div>
 
-        <!-- Fasting + Deliverance -->
+        <!-- Fasting + Deliverance — 2-column grid -->
         <div class="grid-2">
-          <article class="card reveal reveal-delay-1" style="padding:24px;">
+
+          <article class="card" style="padding: 24px;">
             <div class="activity-card__icon" aria-hidden="true">⏰</div>
-            <h3 style="font-size:.95rem;margin-bottom:6px;">Fasting Prayer</h3>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Fasting Prayer</h3>
             <div class="activity-card__time">6:00 AM – 6:00 PM</div>
-            <p style="font-size:12px;color:var(--text-faint);">All-day fasting and prayer</p>
+            <p style="font-size: 12px; color: var(--color-text-faint);">All-day fasting and prayer</p>
           </article>
-          <article class="card reveal reveal-delay-2" style="padding:24px;">
+
+          <article class="card" style="padding: 24px;">
             <div class="activity-card__icon" aria-hidden="true">🔥</div>
-            <h3 style="font-size:.95rem;margin-bottom:6px;">Deliverance Meetings</h3>
+            <h3 style="font-size: .95rem; margin-bottom: 6px;">Deliverance Meetings</h3>
             <div class="activity-card__time">New Moon Day · 6:00 PM</div>
-            <p style="font-size:12px;color:var(--text-faint);">Every new moon day — prayer &amp; deliverance</p>
+            <p style="font-size: 12px; color: var(--color-text-faint);">Every new moon day — prayer &amp; deliverance</p>
           </article>
+
         </div>
 
       </div>
     </section>
+
 
     <div class="divider"></div>
 
@@ -561,44 +309,45 @@
     <section class="section-alt" aria-labelledby="programmes-heading">
       <div class="container">
 
-        <p class="section-tag reveal">More Activities</p>
-        <h2 class="section-heading reveal" id="programmes-heading">Church <em>Programmes</em></h2>
-        <div class="section-rule reveal" aria-hidden="true"></div>
+        <p class="section-tag">More Activities</p>
+        <h2 class="section-heading" id="programmes-heading">Church <em>Programmes</em></h2>
+        <div class="section-rule" aria-hidden="true"></div>
 
-        <div class="grid-4" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+        <div class="grid-3">
 
-          <article class="prog-card reveal reveal-delay-1">
-            <div class="prog-card__icon" aria-hidden="true">⭐</div>
-            <h3>Promise Service</h3>
-            <div class="prog-card__time">1st of Every Month · 5:30 – 7:30 AM</div>
-            <p>Special worship on the first day of each month</p>
+          <article class="card" style="padding: 28px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 14px;" aria-hidden="true">⭐</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Promise Service</h3>
+            <div class="activity-card__time" style="margin-bottom: 6px;">1st of Every Month · 5:30 – 7:30 AM</div>
+            <p style="font-size: 13px; color: var(--color-text-faint);">Special worship service on the first day of each month</p>
           </article>
 
-          <article class="prog-card reveal reveal-delay-2">
-            <div class="prog-card__icon" aria-hidden="true">🌙</div>
-            <h3>Night Prayer</h3>
-            <div class="prog-card__time">Daily · 10:30 PM</div>
-            <p>Every night — prayer and seeking God's presence</p>
+          <article class="card" style="padding: 28px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 14px;" aria-hidden="true">🌙</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Night Prayer</h3>
+            <div class="activity-card__time" style="margin-bottom: 6px;">Daily · 10:30 PM</div>
+            <p style="font-size: 13px; color: var(--color-text-faint);">Join us every night for prayer and seeking God's presence</p>
           </article>
 
-          <article class="prog-card reveal reveal-delay-3">
-            <div class="prog-card__icon" aria-hidden="true">📚</div>
-            <h3>Sunday School</h3>
-            <div class="prog-card__time">Every Sunday · 6:30 – 9:30 AM</div>
-            <p>Bible education for children every Sunday morning</p>
+          <article class="card" style="padding: 28px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 14px;" aria-hidden="true">📚</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Sunday School</h3>
+            <div class="activity-card__time" style="margin-bottom: 6px;">Every Sunday · 6:30 – 9:30 AM</div>
+            <p style="font-size: 13px; color: var(--color-text-faint);">Bible education for children every Sunday morning</p>
           </article>
 
-          <article class="prog-card reveal reveal-delay-4">
-            <div class="prog-card__icon" aria-hidden="true">🎉</div>
-            <h3>Vacation Bible School</h3>
-            <div class="prog-card__time">Every May · 6 Days</div>
-            <p>Annual VBS for children and youth each May</p>
+          <article class="card" style="padding: 28px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 14px;" aria-hidden="true">🎉</div>
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">Vacation Bible School</h3>
+            <div class="activity-card__time" style="margin-bottom: 6px;">Every May · 6 Days</div>
+            <p style="font-size: 13px; color: var(--color-text-faint);">Annual VBS held once a year in May for children and youth</p>
           </article>
 
         </div>
 
       </div>
     </section>
+
 
     <div class="divider"></div>
 
@@ -609,118 +358,138 @@
     <section class="section" aria-labelledby="dates-heading">
       <div class="container">
 
-        <p class="section-tag reveal">2026 Schedule</p>
-        <h2 class="section-heading reveal" id="dates-heading">Deliverance Meeting <em>Dates 2026</em></h2>
-        <p class="reveal" style="font-size:14px;color:var(--text-muted);margin:14px 0 36px;max-width:560px;">
+        <p class="section-tag">2026 Schedule</p>
+        <h2 class="section-heading" id="dates-heading">
+          Deliverance Meeting <em>Dates 2026</em>
+        </h2>
+        <p style="font-size: 14px; color: var(--color-text-muted); margin: 14px 0 36px; max-width: 560px;">
           Every New Moon Day at 6:00 PM — a powerful time of prayer, healing, and deliverance open to all.
         </p>
 
-        <div class="grid-4" id="dates-grid">
-          <!-- Dates rendered by JS below; also static fallback -->
+        <div class="grid-4">
+          <!-- Each month rendered as a date-card -->
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">January</div>
+            <div class="date-card__date" style="font-size:clamp(11px,1.8vw,13px)">18 Jan 2026 · Sunday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">February</div>
+            <div class="date-card__date">17 Feb 2026 · Tuesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">March</div>
+            <div class="date-card__date">18 Mar 2026 · Wednesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">April</div>
+            <div class="date-card__date">17 Apr 2026 · Friday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">May</div>
+            <div class="date-card__date">16 May 2026 · Saturday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">June</div>
+            <div class="date-card__date">14 Jun 2026 · Saturday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">July</div>
+            <div class="date-card__date">14 Jul 2026 · Tuesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">August</div>
+            <div class="date-card__date">12 Aug 2026 · Wednesday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">September</div>
+            <div class="date-card__date">10 Sep 2026 · Thursday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">October</div>
+            <div class="date-card__date">10 Oct 2026 · Saturday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">November</div>
+            <div class="date-card__date">08 Nov 2026 · Sunday</div>
+          </article>
+          <article class="card" style="padding: 18px; text-align: center;">
+            <div class="date-card__month">December</div>
+            <div class="date-card__date">08 Dec 2026 · Tuesday</div>
+          </article>
         </div>
 
-        <div class="deliv-note reveal">
-          🔥 <strong>All are welcome</strong> — Bring your family and friends.
-          God's power to set people free is for everyone. No prior registration needed.
-        </div>
+        <p style="margin-top: 28px; padding: 16px 22px; background: var(--color-gold-bg); border: 1px solid var(--color-gold-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--color-text-muted);">
+          🔥 <strong style="color: var(--color-text);">All are welcome</strong> — Bring your family and friends.
+          God's power to set people free is for everyone.
+        </p>
 
       </div>
     </section>
 
 
-    <!-- ══════════════════════════════════════════════
-         LATEST FROM YOUTUBE
-    ══════════════════════════════════════════════ -->
-    <section class="section-alt" aria-labelledby="yt-heading">
-      <div class="container">
-
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
-          <div>
-            <p class="section-tag">Watch &amp; Listen</p>
-            <h2 class="section-heading" id="yt-heading">Latest <em>Messages</em></h2>
-          </div>
-          <a href="events.html" class="btn btn--outline" style="font-size:13px;padding:9px 22px;">View All &#9654;</a>
+  <!-- LATEST FROM YOUTUBE -->
+  <section class="section-alt" aria-labelledby="yt-heading">
+    <div class="container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <p class="section-tag">Watch &amp; Listen</p>
+          <h2 class="section-heading" id="yt-heading">Latest <em>Messages</em></h2>
         </div>
-
-        <div class="grid-3" id="home-yt-grid">
-          <!-- Skeleton placeholders -->
-          <div class="enjc-video-card">
-            <div class="enjc-video-thumb" style="background:var(--bg-3);display:flex;align-items:center;justify-content:center;">
-              <span style="font-size:32px;color:var(--border);">▶</span>
-            </div>
-            <div class="enjc-video-info">
-              <div class="enjc-video-title" style="color:var(--text-faint);">Loading latest messages…</div>
-            </div>
-          </div>
-          <div class="enjc-video-card">
-            <div class="enjc-video-thumb" style="background:var(--bg-3);display:flex;align-items:center;justify-content:center;">
-              <span style="font-size:32px;color:var(--border);">▶</span>
-            </div>
-            <div class="enjc-video-info"><div class="enjc-video-title" style="color:var(--text-faint);">Loading…</div></div>
-          </div>
-          <div class="enjc-video-card">
-            <div class="enjc-video-thumb" style="background:var(--bg-3);display:flex;align-items:center;justify-content:center;">
-              <span style="font-size:32px;color:var(--border);">▶</span>
-            </div>
-            <div class="enjc-video-info"><div class="enjc-video-title" style="color:var(--text-faint);">Loading…</div></div>
-          </div>
-        </div>
-
+        <a href="events.html" class="btn btn--outline" style="font-size:13px;padding:9px 20px;">View All &#9654;</a>
       </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════
-         BIBLE TOOLS & RESOURCES
-    ══════════════════════════════════════════════ -->
-    <section class="section" aria-labelledby="tools-heading">
-      <div class="container">
-
-        <p class="section-tag reveal">Unique to ENJC</p>
-        <h2 class="section-heading reveal" id="tools-heading">Bible Tools &amp; <em>Resources</em></h2>
-        <div class="section-rule reveal" aria-hidden="true"></div>
-
-        <div class="grid-3">
-
-          <a href="bible.html" class="tool-card reveal reveal-delay-1">
-            <div class="tool-card__icon" aria-hidden="true">📖</div>
-            <h3>Bible Reader</h3>
-            <p>All 66 books in Tamil &amp; English with audio, bookmarks, quiz, and reading plans.</p>
-            <span class="btn btn--gold" style="font-size:12px;padding:9px 22px;margin-top:auto;">Open Bible →</span>
-          </a>
-
-          <a href="imagegen.html" class="tool-card reveal reveal-delay-2">
-            <div class="tool-card__icon" aria-hidden="true">🖼️</div>
-            <h3>Scripture Cards</h3>
-            <p>Create beautiful verse images for WhatsApp and social media in Tamil &amp; English.</p>
-            <span class="btn btn--gold" style="font-size:12px;padding:9px 22px;margin-top:auto;">Create Cards →</span>
-          </a>
-
-          <a href="events.html" class="tool-card reveal reveal-delay-3">
-            <div class="tool-card__icon" aria-hidden="true">📺</div>
-            <h3>Watch Live &amp; Sermons</h3>
-            <p>Sunday, Friday, Promise, Deliverance and Testimony services — live and on-demand.</p>
-            <span class="btn btn--gold" style="font-size:12px;padding:9px 22px;margin-top:auto;">Watch Now →</span>
-          </a>
-
+      <div class="grid-3" id="home-yt-grid">
+        <div class="enjc-video-card" style="opacity:1;transform:none;">
+          <div class="enjc-video-thumb" style="background:var(--color-bg-3);min-height:160px;display:flex;align-items:center;justify-content:center;"><span style="font-size:32px;color:var(--color-border);">&#9654;</span></div>
+          <div class="enjc-video-info"><div class="enjc-video-title">Loading latest messages...</div></div>
         </div>
-
+        <div class="enjc-video-card" style="opacity:1;transform:none;">
+          <div class="enjc-video-thumb" style="background:var(--color-bg-3);min-height:160px;display:flex;align-items:center;justify-content:center;"><span style="font-size:32px;color:var(--color-border);">&#9654;</span></div>
+          <div class="enjc-video-info"><div class="enjc-video-title">Loading...</div></div>
+        </div>
+        <div class="enjc-video-card" style="opacity:1;transform:none;">
+          <div class="enjc-video-thumb" style="background:var(--color-bg-3);min-height:160px;display:flex;align-items:center;justify-content:center;"><span style="font-size:32px;color:var(--color-border);">&#9654;</span></div>
+          <div class="enjc-video-info"><div class="enjc-video-title">Loading...</div></div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-
-    <!-- ══════════════════════════════════════════════
-         CTA BAND
-    ══════════════════════════════════════════════ -->
-    <div class="cta-band">
-      <div class="container">
-        <h3>Join Us This Sunday</h3>
-        <p>All are welcome &mdash; 5:30 AM &middot; 8:30 AM &middot; 12:00 PM &middot; Tondiarpet, Chennai</p>
-        <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC" target="_blank" rel="noopener" class="btn--navy">
-          💬 Contact Us on WhatsApp
+  <!-- QUICK ACCESS -->
+  <section class="section" aria-labelledby="tools-heading">
+    <div class="container">
+      <p class="section-tag">Unique to ENJC</p>
+      <h2 class="section-heading" id="tools-heading">Bible Tools &amp; <em>Resources</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
+      <div class="grid-3">
+        <a href="bible.html" class="card" style="padding:28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:all .2s;">
+          <div style="font-size:36px;" aria-hidden="true">&#128214;</div>
+          <h3 style="font-size:1rem;margin:0;">Bible Reader</h3>
+          <p style="font-size:13px;margin:0;">All 66 books in Tamil &amp; English with audio, bookmarks, and search.</p>
+          <span class="btn btn--gold" style="font-size:12px;padding:8px 18px;margin-top:auto;">Open Bible &#8594;</span>
+        </a>
+        <a href="imagegen.html" class="card" style="padding:28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:all .2s;">
+          <div style="font-size:36px;" aria-hidden="true">&#128247;</div>
+          <h3 style="font-size:1rem;margin:0;">Scripture Cards</h3>
+          <p style="font-size:13px;margin:0;">Create beautiful verse images to share on WhatsApp and social media.</p>
+          <span class="btn btn--gold" style="font-size:12px;padding:8px 18px;margin-top:auto;">Create Cards &#8594;</span>
+        </a>
+        <a href="events.html" class="card" style="padding:28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:all .2s;">
+          <div style="font-size:36px;" aria-hidden="true">&#128250;</div>
+          <h3 style="font-size:1rem;margin:0;">Watch Live &amp; Sermons</h3>
+          <p style="font-size:13px;margin:0;">Sunday, Friday, Promise, Deliverance and Testimony services.</p>
+          <span class="btn btn--gold" style="font-size:12px;padding:8px 18px;margin-top:auto;">Watch Now &#8594;</span>
         </a>
       </div>
     </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="container" style="text-align:center;">
+      <h3>Join us this Sunday</h3>
+      <p>All are welcome &mdash; 5:30 AM &middot; 8:30 AM &middot; 12:00 PM</p>
+      <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC" target="_blank" rel="noopener" class="btn--navy">&#128172; Contact Us on WhatsApp</a>
+    </div>
+  </div>
 
   </main><!-- /main -->
 
@@ -731,52 +500,57 @@
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__rich">
-
         <div class="site-footer__col">
           <div class="site-footer__logo">ENJC</div>
           <p class="site-footer__tagline">Elim New Jerusalem Church<br>Tondiarpet, Chennai</p>
           <p class="site-footer__addr">📍 No.110E, Elaya Street, Tondiarpet, Chennai – 600 081</p>
           <a href="tel:+919444345102" class="site-footer__phone">📞 +91 94443 45102</a>
         </div>
-
         <div class="site-footer__col">
           <div class="site-footer__heading">Quick Links</div>
           <nav aria-label="Footer navigation">
-            <a href="index.html"      class="site-footer__link">🏠 Home</a>
-            <a href="about.html"      class="site-footer__link">✝ About</a>
-            <a href="events.html"     class="site-footer__link">📅 Live &amp; Events</a>
-            <a href="bible.html"      class="site-footer__link">📖 Bible Reader</a>
-            <a href="gallery.html"    class="site-footer__link">🖼 Gallery</a>
+            <a href="index.html" class="site-footer__link">🏠 Home</a>
+            <a href="about.html" class="site-footer__link">✝ About</a>
+            <a href="events.html" class="site-footer__link">📅 Live &amp; Events</a>
+            <a href="bible.html" class="site-footer__link">📖 Bible Reader</a>
+            <a href="gallery.html" class="site-footer__link">🖼 Gallery</a>
             <a href="ministries.html" class="site-footer__link">🙏 Ministries</a>
-            <a href="contact.html"    class="site-footer__link">✉ Contact</a>
-            <a href="imagegen.html"   class="site-footer__link">🖼️ Scripture Cards</a>
+            <a href="contact.html" class="site-footer__link">✉ Contact</a>
+            <a href="imagegen.html" class="site-footer__link">🖼️ Scripture Cards</a>
           </nav>
         </div>
-
         <div class="site-footer__col">
           <div class="site-footer__heading">Connect With Us</div>
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social">▶ YouTube — Main Channel</a>
-          <a href="https://www.youtube.com/@ENJCShorts"                      target="_blank" rel="noopener" class="site-footer__social">📱 YouTube — ENJC Shorts</a>
-          <a href="https://www.instagram.com/elimnewjerusalemchurch"          target="_blank" rel="noopener" class="site-footer__social">📸 Instagram</a>
-          <a href="https://www.facebook.com/enjcmedia"                        target="_blank" rel="noopener" class="site-footer__social">👥 Facebook</a>
-          <a href="https://wa.me/919444345102"                                target="_blank" rel="noopener" class="site-footer__social">💬 WhatsApp</a>
-
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">▶</span> YouTube — Main Channel
+          </a>
+          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📱</span> YouTube — ENJC Shorts
+          </a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📸</span> Instagram
+          </a>
+          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">👥</span> Facebook
+          </a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">💬</span> WhatsApp
+          </a>
           <div class="site-footer__services">
-            <div class="site-footer__heading" style="margin-top:16px;">Service Times</div>
-            <p style="margin:4px 0;font-size:12px;color:var(--text-faint);">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
-            <p style="margin:4px 0;font-size:12px;color:var(--text-faint);">✝ Fri · 11:00 AM – 1:30 PM</p>
-            <p style="margin:4px 0;font-size:12px;color:var(--text-faint);">🌙 Night Prayer · 10:30 PM Daily</p>
+            <div class="site-footer__heading" style="margin-top:16px">Service Times</div>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">✝ Fri · 11:00 AM – 1:30 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🌙 Night Prayer · 10:30 PM Daily</p>
           </div>
         </div>
-
-      </div><!-- /rich -->
-
+      </div>
       <div class="site-footer__bottom">
         <span>© 2026 Elim New Jerusalem Church, Chennai</span>
         <span>Built with ❤️ for the Kingdom</span>
       </div>
     </div>
   </footer>
+
 
 
   <!-- ══════════════════════════════════════════════
@@ -805,7 +579,7 @@
       <span class="bottom-nav__label">About</span>
     </a>
     <div class="bottom-nav__center">
-      <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible Reader">📖</a>
+      <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
     </div>
     <a href="events.html"  class="bottom-nav__item">
       <span class="bottom-nav__icon" aria-hidden="true">📅</span>
@@ -818,154 +592,42 @@
   </nav>
 
 
-  <!-- ══════════════════════════════════════════════
-       SCRIPTS
-  ══════════════════════════════════════════════ -->
-  <script src="js/slider.js" defer></script>
-  <script src="js/mobile-ux-fixes.js" defer></script>
-
   <script>
-  /* ── Deliverance dates 2026 ── */
-  (function () {
-    var dates = [
-      {m:'January',   d:'18 Jan 2026', day:'Sunday'},
-      {m:'February',  d:'17 Feb 2026', day:'Tuesday'},
-      {m:'March',     d:'18 Mar 2026', day:'Wednesday'},
-      {m:'April',     d:'17 Apr 2026', day:'Friday'},
-      {m:'May',       d:'16 May 2026', day:'Saturday'},
-      {m:'June',      d:'14 Jun 2026', day:'Saturday'},
-      {m:'July',      d:'14 Jul 2026', day:'Tuesday'},
-      {m:'August',    d:'12 Aug 2026', day:'Wednesday'},
-      {m:'September', d:'10 Sep 2026', day:'Thursday'},
-      {m:'October',   d:'10 Oct 2026', day:'Saturday'},
-      {m:'November',  d:'08 Nov 2026', day:'Sunday'},
-      {m:'December',  d:'08 Dec 2026', day:'Tuesday'}
-    ];
-    var today = new Date(); today.setHours(0,0,0,0);
-    var grid = document.getElementById('dates-grid');
-    if (!grid) return;
-    grid.innerHTML = dates.map(function(item, i) {
-      var past = new Date(item.d) < today;
-      return '<article class="card ' + (past ? 'date-card--past' : '') + '" style="padding:18px;text-align:center;">' +
-        '<div class="date-card__month">' + item.m + (past ? '<span class="past-badge">PAST</span>' : '') + '</div>' +
-        '<div class="date-card__date">' + item.d + ' · ' + item.day + '</div>' +
-        '</article>';
-    }).join('');
-  })();
-
-  /* ── Scroll reveal ── */
-  (function () {
-    var els = document.querySelectorAll('.reveal');
-    if (!els.length) return;
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(function(el) { io.observe(el); });
-  })();
-
-  /* ── Scroll-top button visibility ── */
-  (function () {
-    var btn = document.getElementById('scroll-top-btn');
-    if (!btn) return;
-    window.addEventListener('scroll', function() {
-      btn.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-  })();
-  window.goTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
-
-  /* ── Particle canvas ── */
-  (function () {
-    var canvas = document.getElementById('particles');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var particles = [];
-    var W, H;
-
-    function resize() {
-      W = canvas.width  = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-
-    function rand(min, max) { return min + Math.random() * (max - min); }
-
-    for (var i = 0; i < 55; i++) {
-      particles.push({
-        x: rand(0, 1), y: rand(0, 1),
-        size: rand(0.8, 2.4),
-        opacity: rand(0.08, 0.36),
-        speedX: rand(-0.00008, 0.00008),
-        speedY: rand(-0.00012, -0.00006),
-        phase: rand(0, Math.PI * 2)
-      });
-    }
-
-    var frame = 0;
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      frame++;
-      particles.forEach(function(p) {
-        p.x += p.speedX;
-        p.y += p.speedY;
-        if (p.y < -0.02) { p.y = 1.02; p.x = rand(0, 1); }
-        if (p.x < -0.02) p.x = 1.02;
-        if (p.x > 1.02)  p.x = -0.02;
-
-        var pulse = p.opacity * (0.7 + 0.3 * Math.sin(frame * 0.015 + p.phase));
-        ctx.beginPath();
-        ctx.arc(p.x * W, p.y * H, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(212, 168, 67, ' + pulse + ')';
-        ctx.fill();
-      });
-      requestAnimationFrame(draw);
-    }
-    draw();
-  })();
-
-  /* ── YouTube latest videos (home grid) ── */
-  (function () {
-    var API_KEY    = 'AIzaSyDaovYyepH5QPbp5pIoRDNmZxE0xz0GFdI';
-    var CHANNEL_ID = 'UCc5_mS-ggGUFJqZS64kSb3g';
-    var grid = document.getElementById('home-yt-grid');
-    if (!grid) return;
-
-    fetch('https://www.googleapis.com/youtube/v3/search?key=' + API_KEY +
-          '&channelId=' + CHANNEL_ID +
-          '&part=snippet,id&order=date&type=video&maxResults=3')
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        if (!data.items || !data.items.length) return;
-        grid.innerHTML = data.items.map(function(v) {
-          var id    = v.id.videoId;
-          var title = v.snippet.title;
-          var thumb = v.snippet.thumbnails.medium.url;
-          var date  = new Date(v.snippet.publishedAt).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'});
-          return '<a href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener" class="enjc-video-card">' +
-            '<div class="enjc-video-thumb">' +
-              '<img src="' + thumb + '" alt="' + title.replace(/"/g,'') + '" loading="lazy">' +
-              '<div class="enjc-video-play">' +
-                '<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-                  '<circle cx="22" cy="22" r="22" fill="rgba(0,0,0,0.55)"/>' +
-                  '<polygon points="18,14 32,22 18,30" fill="white"/>' +
-                '</svg>' +
-              '</div>' +
-            '</div>' +
-            '<div class="enjc-video-info">' +
-              '<div class="enjc-video-title">' + title + '</div>' +
-              '<div class="enjc-video-meta">' + date + '</div>' +
-            '</div>' +
-          '</a>';
-        }).join('');
-      })
-      .catch(function() {
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:28px;color:var(--text-faint);font-size:14px;">' +
-          'Could not load videos. <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" style="color:var(--gold);">Visit our YouTube channel →</a></div>';
-      });
+  // Mark past deliverance dates
+  (function(){
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    document.querySelectorAll('.date-card__date').forEach(function(el){
+      var txt = el.textContent.trim(); // e.g. "18 Jan 2026 · Sunday"
+      var parts = txt.split(' · ')[0].trim(); // "18 Jan 2026"
+      var d = new Date(parts);
+      if(!isNaN(d) && d < today){
+        var card = el.closest('article');
+        if(card){
+          card.style.opacity = '0.45';
+          var month = card.querySelector('.date-card__month');
+          if(month && !month.querySelector('.past-badge')){
+            var badge = document.createElement('span');
+            badge.className = 'past-badge';
+            badge.textContent = 'PAST';
+            badge.style.cssText = 'display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;background:rgba(255,255,255,.12);color:var(--color-text-faint);padding:2px 7px;border-radius:99px;margin-left:6px;vertical-align:middle;';
+            month.appendChild(badge);
+          }
+        }
+      }
+    });
   })();
   </script>
 
+  <style>
+  .date-card__date{font-size:clamp(11px,1.8vw,13px);}
+  .date-card__month{font-size:clamp(9px,1.5vw,11px);}
+  @media(max-width:600px){.service-slot{padding:12px 10px;}.service-slot__time{font-size:1.3rem;}}
+  @media(max-width:480px){.grid-4{grid-template-columns:1fr 1fr;}} /* override back to 2col for date cards on small screens */
+  </style>
+<script src="js/premium-upgrade.js" defer></script>
+
+  <script src="js/mobile-ux-fixes.js" defer></script>
+  <script src="js/design-upgrade.js" defer></script>
 </body>
 </html>
