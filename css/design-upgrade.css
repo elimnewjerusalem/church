@@ -256,34 +256,7 @@
 .wa-float { background: #25d366 !important; }
 
 
-/* ── SCROLL-TO-TOP — fixed: uses is-visible class ── */
-.scroll-top-btn {
-  display: none;
-  position: fixed;
-  bottom: 88px;
-  right: 24px;
-  z-index: 980;
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--bg-3);
-  border: 1px solid var(--border-gold);
-  color: var(--gold);
-  font-size: 16px; cursor: pointer;
-  align-items: center; justify-content: center;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-}
-.scroll-top-btn.is-visible { display: flex; }
-.scroll-top-btn:hover {
-  background: var(--gold);
-  color: var(--bg);
-  transform: translateY(-2px);
-}
-@media (max-width: 900px) {
-  .scroll-top-btn { bottom: 140px; right: 16px; }
-}
-@media (min-width: 901px) {
-  .scroll-top-btn { bottom: 32px; right: 24px; }
-}
+/* scroll-top-btn — positioned in enjc-premium.css */
 
 
 /* ── VIDEO CARDS ── */

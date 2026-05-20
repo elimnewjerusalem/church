@@ -1104,11 +1104,12 @@ img { max-width: 100%; display: block; }
 /* ═══════════════════════════════════════════════════════════════
    SECTION 16 — FLOATING ACTIONS
 ═══════════════════════════════════════════════════════════════ */
+/* ── WhatsApp float — always visible, bottom-right ── */
 .wa-float {
   position: fixed;
-  bottom: 88px;
+  bottom: 24px;
   right: 20px;
-  z-index: 980;
+  z-index: 990;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1124,17 +1125,18 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 6px 28px rgba(37, 211, 102, 0.50);
 }
 
+/* ── Scroll-to-top — sits above WA button ── */
 .scroll-top-btn {
   position: fixed;
-  bottom: 88px;
-  right: 78px;
-  z-index: 980;
+  bottom: 84px;   /* 24px WA bottom + 50px WA height + 10px gap */
+  right: 23px;    /* visually centered over WA (WA is 50px, btn is 38px → offset 6px) */
+  z-index: 989;
   width: 38px;
   height: 38px;
   border-radius: 50%;
   background: var(--bg-3);
-  border: 1px solid var(--border-mid);
-  color: var(--text-muted);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
   font-size: 16px;
   cursor: pointer;
   display: none;
@@ -1142,16 +1144,23 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
 }
-.scroll-top-btn.visible { display: flex; }
-.scroll-top-btn:hover { background: var(--gold-bg); color: var(--gold); transform: translateY(-2px); }
+/* support both .visible and .is-visible (site.js uses is-visible) */
+.scroll-top-btn.visible,
+.scroll-top-btn.is-visible { display: flex; }
+.scroll-top-btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
 
+/* Mobile — clear bottom nav (64px) */
 @media (max-width: 900px) {
-  .wa-float { bottom: 80px; }
-  .scroll-top-btn { bottom: 80px; }
+  .wa-float       { bottom: 78px; right: 16px; }
+  .scroll-top-btn { bottom: 138px; right: 19px; } /* 78+50+10 */
 }
 @media (min-width: 901px) {
-  .wa-float { bottom: 28px; }
-  .scroll-top-btn { bottom: 28px; }
+  .wa-float       { bottom: 24px; right: 20px; }
+  .scroll-top-btn { bottom: 84px; right: 23px; }
 }
 
 
