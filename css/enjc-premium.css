@@ -754,6 +754,7 @@ img { max-width: 100%; display: block; }
 /* ═══════════════════════════════════════════════════════════════
    SECTION 8 — CARDS
 ═══════════════════════════════════════════════════════════════ */
+/* ── CARD BASE ── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -761,47 +762,60 @@ img { max-width: 100%; display: block; }
   padding: var(--card-pad);
   transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
   backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 0;
 }
+
+/* ── SVG RUNNING BORDER ─────────────────────────────────────────
+   JS injects one <svg class="card-svg"> per .card.
+   The SVG rect traces the full perimeter with stroke-dasharray.
+   fill → reveal → retract loop = 2.4 s.
+   Dark  → var(--gold) = Gospel Blue #93b8ff
+   Light → var(--gold) = warm gold   #8a6010
+─────────────────────────────────────────────────────────────────*/
+.card-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 2;
+}
+
+.card-svg rect {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  filter: drop-shadow(0 0 4px var(--gold-border));
+}
+
+.card:hover .card-svg rect {
+  opacity: 1;
+  animation: cardFullRun 2.4s ease-in-out infinite;
+}
+
+@keyframes cardFullRun {
+  0%   { stroke-dashoffset: var(--p); stroke-dasharray: 0 var(--p); }
+  45%  { stroke-dashoffset: 0;        stroke-dasharray: var(--p) 0; }
+  55%  { stroke-dashoffset: 0;        stroke-dasharray: var(--p) 0; }
+  100% { stroke-dashoffset: calc(var(--p) * -1); stroke-dasharray: 0 var(--p); }
+}
+
+/* Lift + glow on hover */
 .card:hover {
   transform: translateY(-3px);
   border-color: var(--border-mid);
-  animation: cardGlow .9s ease-in-out infinite alternate;
+  box-shadow: var(--shadow-hover);
 }
 
-/* Animated glow — pure box-shadow, no pseudo-element conflicts, GPU-safe */
-@keyframes cardGlow {
-  from {
-    box-shadow:
-      var(--shadow-hover),
-      0 0 18px 4px rgba(147, 184, 255, 0.18),
-      0 0 36px 8px rgba(93, 142, 245, 0.10);
-  }
-  to {
-    box-shadow:
-      var(--shadow-hover),
-      0 0 28px 8px rgba(147, 184, 255, 0.26),
-      0 0 52px 14px rgba(93, 142, 245, 0.16);
-  }
+/* Reduced-motion: skip animation, keep lift */
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .card-svg rect { animation: none; opacity: 0; }
 }
 
-/* Light mode — warmer gold glow instead of blue */
-[data-theme="light"] .card:hover {
-  animation: cardGlowLight .9s ease-in-out infinite alternate;
-}
-@keyframes cardGlowLight {
-  from {
-    box-shadow:
-      0 8px 32px rgba(120,60,20,0.16), 0 0 0 1px var(--border-mid),
-      0 0 18px 4px rgba(201, 168, 76, 0.20),
-      0 0 36px 8px rgba(201, 168, 76, 0.10);
-  }
-  to {
-    box-shadow:
-      0 8px 32px rgba(120,60,20,0.16), 0 0 0 1px var(--border-mid),
-      0 0 28px 8px rgba(201, 168, 76, 0.30),
-      0 0 52px 14px rgba(201, 168, 76, 0.16);
-  }
-}
 .card h3 { color: var(--text); }
 .card p   { color: var(--text-muted); }
 
@@ -1573,12 +1587,3 @@ img { max-width: 100%; display: block; }
 .info-band a { color: var(--gold); font-weight: 500; }
 .info-band a:hover { color: var(--gold-warm); }
 
-
-/* ── Respect reduced-motion preference ── */
-@media (prefers-reduced-motion: reduce) {
-  .card:hover,
-  [data-theme="light"] .card:hover {
-    animation: none;
-    box-shadow: var(--shadow-hover);
-  }
-}
