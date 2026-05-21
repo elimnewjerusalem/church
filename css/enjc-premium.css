@@ -1581,7 +1581,7 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--gold-border);
   text-align: center;
   font-size: 13px;
-  color: var(--text-muted);
+ eee color: var(--text-muted);
 }
 .info-band strong { color: var(--gold); }
 .info-band a { color: var(--gold); font-weight: 500; }
