@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
@@ -8,15 +8,15 @@
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home | ENJC — Elim New Jerusalem Church</title>
-  <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily. Pastor A. Karthik Daniel.">
+  <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Poppins:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Poppins:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Theme (before paint) -->
+  <!-- Theme applied before paint -->
   <script src="js/site.js"></script>
 
   <!-- Shared styles -->
@@ -26,17 +26,15 @@
   <link rel="stylesheet" href="css/mobile-ux-fixes.css">
 
   <!-- SEO -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/">
-  <meta property="og:title"       content="Home | ENJC — Elim New Jerusalem Church">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elimnewjerusalem.github.io/church/">
+  <meta property="og:title" content="Home | ENJC — Elim New Jerusalem Church">
   <meta property="og:description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily.">
-  <meta property="og:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="Home | ENJC — Elim New Jerusalem Church">
+  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Home | ENJC — Elim New Jerusalem Church">
   <meta name="twitter:description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services 5:30, 8:30 & 12:00. Night Prayer 10:30 PM daily.">
-  <meta name="twitter:image"      content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-
-  <!-- Schema.org -->
+  <meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,7 +53,7 @@
       "postalCode": "600081",
       "addressCountry": "IN"
     },
-    "geo": { "@type": "GeoCoordinates", "latitude": 13.133763, "longitude": 80.2867307 },
+    "geo": {"@type": "GeoCoordinates","latitude": 13.133763,"longitude": 80.2867307},
     "telephone": "+919444345102",
     "email": "enjcofficial@gmail.com",
     "openingHours": ["Su 05:30-13:30","Fr 11:00-13:00","Mo,Tu,We,Th,Fr,Sa,Su 22:30-23:30"],
@@ -66,773 +64,919 @@
       "https://www.instagram.com/elimnewjerusalemchurch",
       "https://whatsapp.com/channel/0029VaruXHU6xCSXGgR0pG3f"
     ],
-    "pastor": { "@type": "Person", "name": "Pastor A. Karthik Daniel" }
+    "pastor": {"@type": "Person","name": "Pastor A. Karthik Daniel"}
   }
   </script>
 
   <style>
-    /* ══ HOMEPAGE-ONLY STYLES — Elevation Church inspired ══════ */
+  /* ═══════════════════════════════════════
+     ELEVATION-STYLE HOME — NEW DESIGN
+     Clean, cinematic, sermon-first
+  ═══════════════════════════════════════ */
 
-    /* ── HERO ─────────────────────────────────────────────────── */
-    .ev-hero {
-      position: relative;
-      height: 100svh;
-      min-height: 580px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
+  /* ── HERO — Full screen with slide background + overlay ── */
+  .ev-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: var(--bg);
+  }
 
-    /* Full-bleed hero image (slide1) */
-    .ev-hero__bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .ev-hero__bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
+  /* ── VIDEO BACKGROUND ── */
+  .ev-hero__video-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .ev-hero__video {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto;
+    object-fit: cover;
+  }
+  /* Fallback poster shown while video loads or if unsupported */
+  .ev-hero__video-fallback {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/home/slide1.webp');
+    background-size: cover;
+    background-position: center top;
+    z-index: 0;
+  }
 
-    /* Dark gradient — left-heavy like Elevation */
-    .ev-hero__overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(to right,
-          rgba(10,5,2,0.92) 0%,
-          rgba(10,5,2,0.65) 55%,
-          rgba(10,5,2,0.20) 100%),
-        linear-gradient(to top,
-          rgba(10,5,2,0.85) 0%,
-          transparent 50%);
-    }
+  /* Gradient overlay — dark bottom so text pops */
+  .ev-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(3,10,26,0.30) 0%,
+      rgba(3,10,26,0.10) 40%,
+      rgba(3,10,26,0.72) 75%,
+      rgba(3,10,26,0.96) 100%
+    );
+  }
 
-    /* Content sits above overlays */
-    .ev-hero__body {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      padding: 0 0 72px;
-    }
+  /* Content sits above overlay */
+  .ev-hero__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px) clamp(56px,8vw,100px);
+  }
 
-    .ev-hero__inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 32px;
-    }
+  .ev-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s var(--ease-out) forwards;
+  }
+  .ev-hero__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
 
-    .ev-hero__text {
-      max-width: 600px;
-    }
+  .ev-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5.6rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s var(--ease-out) forwards;
+  }
+  .ev-hero__title em {
+    font-style: italic;
+    color: var(--gold-warm);
+  }
 
-    /* Live badge */
-    .ev-hero__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245, 166, 35, 0.14);
-      border: 1px solid rgba(245, 166, 35, 0.35);
-      border-radius: 99px;
-      padding: 5px 14px 5px 10px;
-      margin-bottom: 22px;
-      animation: heroBadge 0.7s 0.2s ease both;
-    }
-    .ev-hero__badge-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--color-gold);
-      animation: pulse 1.8s ease infinite;
-    }
-    .ev-hero__badge span {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--color-gold);
-    }
+  .ev-hero__sub {
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.8vw, 17px);
+    font-weight: 400;
+    color: rgba(234, 240, 255, 0.70);
+    margin-bottom: 36px;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s var(--ease-out) forwards;
+  }
 
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(245,166,35,0.6); }
-      50%      { box-shadow: 0 0 0 5px rgba(245,166,35,0); }
-    }
+  .ev-hero__ctas {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.85s var(--ease-out) forwards;
+  }
 
-    /* Title */
-    .ev-hero__title {
-      font-family: var(--font-heading);
-      font-size: clamp(2.6rem, 6.5vw, 5.2rem);
-      font-weight: 800;
-      line-height: 1.05;
-      color: var(--color-text);
-      margin-bottom: 20px;
-      animation: heroUp 0.8s 0.4s ease both;
-    }
-    .ev-hero__title em {
-      font-style: italic;
-      color: var(--color-gold);
-      display: block;
-    }
+  .ev-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 32px;
+    background: var(--gold);
+    color: var(--bg);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .ev-btn-primary:hover {
+    background: var(--gold-warm);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(147,184,255,0.3);
+  }
+  .ev-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: transparent;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .ev-btn-secondary:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.55);
+  }
 
-    /* Sub */
-    .ev-hero__sub {
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      font-weight: 300;
-      color: rgba(253, 240, 224, 0.72);
-      line-height: 1.75;
-      max-width: 480px;
-      margin-bottom: 36px;
-      animation: heroUp 0.8s 0.6s ease both;
-    }
+  /* Slide dots at bottom of hero */
+  .ev-hero__dots {
+    position: absolute;
+    bottom: 28px;
+    right: clamp(20px,5vw,64px);
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+  }
+  .ev-hero__dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s;
+  }
+  .ev-hero__dot.is-on {
+    background: var(--gold);
+    width: 20px;
+    border-radius: 3px;
+  }
 
-    /* Buttons */
-    .ev-hero__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      animation: heroUp 0.8s 0.8s ease both;
-    }
+  /* Service times band below hero */
+  .ev-times-band {
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border-mid);
+    padding: 0;
+  }
+  .ev-times-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+  .ev-time-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .ev-time-item:last-child { border-right: none; }
+  .ev-time-item:hover { background: var(--bg-3); }
+  .ev-time-item__day {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .ev-time-item__time {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .ev-time-item__label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 2px;
+  }
 
-    .ev-btn-gold {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 14px 30px;
-      background: var(--color-gold);
-      color: #07090f;
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: none;
-      text-decoration: none;
-      cursor: pointer;
-      transition: filter 0.2s, transform 0.2s;
-      border-radius: 4px;
-    }
-    .ev-btn-gold:hover { filter: brightness(1.1); transform: translateY(-2px); }
+  /* ── LATEST SERMON — Elevation hero sermon style ── */
+  .ev-sermon-hero {
+    background: var(--bg);
+    padding: clamp(64px,8vw,110px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ev-sermon-hero .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-sermon-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 36px;
+  }
+  .ev-sermon-label span {
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .ev-sermon-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 48px;
+    align-items: start;
+  }
+  .ev-sermon-main {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+  }
+  .ev-sermon-main__thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+  .ev-sermon-main__thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .ev-sermon-main:hover .ev-sermon-main__thumb img { transform: scale(1.03); }
+  .ev-sermon-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(3,10,26,0.35);
+    transition: background 0.2s;
+  }
+  .ev-sermon-main:hover .ev-sermon-play { background: rgba(3,10,26,0.15); }
+  .ev-sermon-play__btn {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: rgba(255,0,0,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .ev-sermon-main:hover .ev-sermon-play__btn {
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  }
+  .ev-sermon-play__btn svg { margin-left: 4px; }
+  .ev-sermon-main__info {
+    padding: 22px 24px 26px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+  }
+  .ev-sermon-main__series {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .ev-sermon-main__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .ev-sermon-main__date {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-faint);
+  }
 
-    .ev-btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 13px 28px;
-      background: transparent;
-      color: var(--color-text);
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      border: 1px solid rgba(253,240,224,0.32);
-      text-decoration: none;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      border-radius: 4px;
-    }
-    .ev-btn-ghost:hover {
-      border-color: rgba(253,240,224,0.65);
-      background: rgba(253,240,224,0.06);
-    }
+  /* Sidebar sermon list */
+  .ev-sermon-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ev-sermon-list__heading {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 6px;
+  }
+  .ev-sermon-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .ev-sermon-item:hover .ev-sermon-item__title { color: var(--gold); }
+  .ev-sermon-item__thumb {
+    width: 90px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    background: var(--bg-3);
+  }
+  .ev-sermon-item__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .ev-sermon-item__title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    transition: color 0.2s;
+  }
+  .ev-sermon-item__date {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 4px;
+  }
+  .ev-sermon-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .ev-sermon-all:hover { gap: 10px; }
 
-    /* Right side: service times capsule */
-    .ev-hero__times {
-      flex-shrink: 0;
-      background: rgba(17,8,6,0.85);
-      border: 1px solid rgba(245,166,35,0.25);
-      border-radius: 12px;
-      padding: 24px 28px;
-      backdrop-filter: blur(12px);
-      animation: heroUp 0.8s 1.0s ease both;
-      min-width: 220px;
-    }
-    .ev-hero__times-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--color-gold);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .ev-hero__times-label::before {
-      content: '';
-      width: 16px; height: 1px;
-      background: var(--color-gold);
-    }
-    .ev-time-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(245,166,35,0.1);
-      gap: 20px;
-    }
-    .ev-time-row:last-child { border-bottom: none; }
-    .ev-time-row__name {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--color-text-muted);
-    }
-    .ev-time-row__val {
-      font-family: var(--font-number);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--color-text);
-      letter-spacing: 0.3px;
-    }
+  /* ── CONNECT SECTION — 2 large cards ── */
+  .ev-connect {
+    background: var(--bg-2);
+    padding: clamp(64px,8vw,110px) 0;
+  }
+  .ev-connect .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-connect__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .ev-connect-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 36px;
+    background: var(--bg-3);
+    border: 1px solid var(--border-mid);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    text-decoration: none;
+  }
+  .ev-connect-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  .ev-connect-card__icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .ev-connect-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .ev-connect-card__desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .ev-connect-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    transition: gap 0.2s;
+  }
+  .ev-connect-card:hover .ev-connect-card__cta { gap: 10px; }
 
-    /* Scroll hint */
-    .ev-hero__scroll {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      opacity: 0;
-      animation: heroFade 1s 1.4s ease forwards;
-    }
-    .ev-hero__scroll span {
-      font-size: 8.5px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(253,240,224,0.38);
-    }
-    .ev-hero__scroll-line {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, rgba(245,166,35,0.5), transparent);
-      animation: scrollBounce 2s 2s ease-in-out infinite;
-    }
+  /* ── MINISTRIES GRID ── */
+  .ev-ministries {
+    background: var(--bg);
+    padding: clamp(64px,8vw,110px) 0;
+  }
+  .ev-ministries .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-ministry-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .ev-ministry-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+    transition: all 0.25s var(--ease-out);
+    text-decoration: none;
+  }
+  .ev-ministry-card:hover {
+    border-color: var(--border-gold);
+    background: var(--bg-3);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+  .ev-ministry-card__icon { font-size: 32px; margin-bottom: 14px; display: block; }
+  .ev-ministry-card__title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .ev-ministry-card__time {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .ev-ministry-card__desc {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-faint);
+    line-height: 1.6;
+  }
 
-    @keyframes heroBadge { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
-    @keyframes heroUp    { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
-    @keyframes heroFade  { from { opacity:0; } to { opacity:1; } }
-    @keyframes scrollBounce {
-      0%,100% { transform:scaleY(1);   opacity:0.5; }
-      50%      { transform:scaleY(0.7); opacity:1;   }
-    }
+  /* ── SERVICES SECTION — clean grid ── */
+  .ev-services {
+    background: var(--bg-2);
+    padding: clamp(64px,8vw,110px) 0;
+  }
+  .ev-services .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-services__sunday {
+    background: linear-gradient(135deg, rgba(147,184,255,0.10) 0%, rgba(147,184,255,0.04) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: 16px;
+    padding: clamp(28px,4vw,48px);
+    margin-bottom: 28px;
+  }
+  .ev-services__sunday-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .ev-services__sunday-sub {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .ev-services__slots {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .ev-slot {
+    flex: 1;
+    min-width: 100px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .ev-slot__label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .ev-slot__time {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    color: var(--text);
+  }
+  .ev-services__weekly {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .ev-weekly-card {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    transition: border-color 0.2s;
+  }
+  .ev-weekly-card:hover { border-color: var(--border-gold); }
+  .ev-weekly-card__icon { font-size: 22px; margin-bottom: 10px; }
+  .ev-weekly-card__title {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .ev-weekly-card__time {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .ev-weekly-card__desc {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-faint);
+    line-height: 1.5;
+  }
 
-    /* ── SERVICE BANNER (mobile countdown) ───────────────────── */
-    /* Keep the existing one from premium.css, just style override */
+  /* ── PROGRAMMES ── */
+  .ev-programmes {
+    background: var(--bg);
+    padding: clamp(64px,8vw,110px) 0;
+  }
+  .ev-programmes .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-prog-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .ev-prog-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .ev-prog-card:hover {
+    border-color: var(--border-gold);
+    background: var(--bg-3);
+  }
+  .ev-prog-card__icon { font-size: 28px; margin-bottom: 12px; }
+  .ev-prog-card__title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .ev-prog-card__time {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .ev-prog-card__desc {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-faint);
+    line-height: 1.5;
+  }
 
-    /* ── LATEST SERMON (two-column like Elevation) ────────────── */
-    .ev-sermon {
-      padding: 88px 0;
-      background: var(--color-bg-2);
-    }
-    .ev-sermon__inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .ev-sermon__thumb {
-      position: relative;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-      background: var(--color-bg-3);
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .ev-sermon__thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .ev-sermon__thumb:hover img { transform: scale(1.04); }
-    .ev-sermon__play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .ev-sermon__play-circle {
-      width: 66px; height: 66px;
-      border-radius: 50%;
-      background: rgba(245,166,35,0.92);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.25s, background 0.2s;
-    }
-    .ev-sermon__thumb:hover .ev-sermon__play-circle {
-      transform: scale(1.12);
-      background: var(--color-gold);
-    }
-    .ev-sermon__play-circle svg {
-      width: 24px; height: 24px;
-      fill: #07090f;
-      margin-left: 4px;
-    }
-    .ev-sermon__tag {
-      position: absolute;
-      top: 14px; left: 14px;
-      background: var(--color-gold);
-      color: #07090f;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 3px;
-    }
-    .ev-sermon__text .section-tag { margin-bottom: 10px; }
-    .ev-sermon__series {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--color-text-faint);
-      margin-bottom: 10px;
-    }
-    .ev-sermon__title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 800;
-      line-height: 1.15;
-      color: var(--color-text);
-      margin-bottom: 14px;
-    }
-    .ev-sermon__pastor {
-      font-size: 13px;
-      color: var(--color-text-faint);
-      margin-bottom: 5px;
-    }
-    .ev-sermon__pastor strong { color: var(--color-text-muted); }
-    .ev-sermon__desc {
-      font-size: 14px;
-      color: var(--color-text-muted);
-      line-height: 1.85;
-      margin: 20px 0 32px;
-      max-width: 420px;
-    }
-    .ev-sermon__btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  /* ── DELIVERANCE DATES ── */
+  .ev-dates {
+    background: var(--bg-2);
+    padding: clamp(64px,8vw,110px) 0;
+  }
+  .ev-dates .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-dates-grid {
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 10px;
+    margin-top: 40px;
+  }
+  .ev-date-card {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .ev-date-card:hover { border-color: var(--border-gold); }
+  .ev-date-card__month {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .ev-date-card__date {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--text-faint);
+    line-height: 1.4;
+  }
+  .ev-dates__note {
+    margin-top: 24px;
+    padding: 16px 22px;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
 
-    /* ── SERVICES SECTION ─────────────────────────────────────── */
-    .ev-services {
-      padding: 88px 0;
-      background: var(--color-bg);
-    }
-    .ev-services__inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .ev-services__head {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .ev-services__head .section-rule { margin: 14px auto 0; }
+  /* ── RESOURCES (Bible Tools) ── */
+  .ev-resources {
+    background: var(--bg);
+    padding: clamp(64px,8vw,110px) 0;
+  }
+  .ev-resources .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .ev-resource-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px 28px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: all 0.25s var(--ease-out);
+  }
+  .ev-resource-card:hover {
+    border-color: var(--border-gold);
+    background: var(--bg-3);
+    transform: translateY(-3px);
+  }
+  .ev-resource-card__icon { font-size: 36px; }
+  .ev-resource-card__title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .ev-resource-card__desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .ev-resource-card__btn {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    transition: background 0.2s;
+  }
+  .ev-resource-card:hover .ev-resource-card__btn {
+    background: var(--gold-bg-rich);
+  }
 
-    /* Primary Sunday card */
-    .ev-sunday-card {
-      background: var(--color-gold-bg);
-      border: 1px solid var(--color-gold-border);
-      border-radius: 12px;
-      padding: 36px 40px;
-      margin-bottom: 24px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 28px;
-      align-items: center;
-    }
-    .ev-sunday-card__icon {
-      width: 56px; height: 56px;
-      border: 1.5px solid var(--color-gold-border);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      flex-shrink: 0;
-    }
-    .ev-sunday-card__info h3 {
-      font-size: 1.15rem;
-      color: var(--color-text);
-      margin-bottom: 4px;
-    }
-    .ev-sunday-card__info p {
-      font-size: 12px;
-      color: var(--color-text-faint);
-      margin-bottom: 20px;
-    }
-    .ev-slots {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .ev-slot {
-      background: rgba(0,0,0,0.22);
-      border: 1px solid var(--color-gold-border);
-      border-radius: 8px;
-      padding: 12px 20px;
-      text-align: center;
-      min-width: 110px;
-    }
-    .ev-slot__label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--color-gold);
-      margin-bottom: 6px;
-    }
-    .ev-slot__time {
-      font-family: var(--font-number);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--color-text);
-    }
+  /* ── SECTION HEADERS (shared) ── */
+  .ev-section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .ev-section-eyebrow span {
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .ev-section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .ev-section-title em {
+    font-style: italic;
+    color: var(--gold-warm);
+  }
+  .ev-section-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 560px;
+  }
 
-    /* Weekly meetings grid */
-    .ev-meet-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .ev-meet-grid--2 { grid-template-columns: repeat(2, 1fr); }
-    .ev-meet-card {
-      background: var(--color-bg-2);
-      border: 1px solid var(--color-border);
-      border-radius: 10px;
-      padding: 24px;
-      transition: border-color 0.25s, background 0.25s;
-      border-top: 3px solid transparent;
-    }
-    .ev-meet-card:hover {
-      border-top-color: var(--color-gold);
-      background: var(--color-bg-3);
-    }
-    .ev-meet-card__icon { font-size: 22px; margin-bottom: 12px; }
-    .ev-meet-card__name {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--color-text);
-      margin-bottom: 4px;
-    }
-    .ev-meet-card__when {
-      font-family: var(--font-number);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--color-gold);
-      margin-bottom: 6px;
-    }
-    .ev-meet-card__desc {
-      font-size: 11.5px;
-      color: var(--color-text-faint);
-      line-height: 1.6;
-    }
+  /* ── CTA JOIN BAND ── */
+  .ev-join-band {
+    background: var(--bg-3);
+    border-top: 1px solid var(--border-mid);
+    padding: clamp(56px,7vw,96px) 0;
+    text-align: center;
+  }
+  .ev-join-band .container-wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+  .ev-join-band__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem,5vw,3.2rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .ev-join-band__sub {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
 
-    /* ── PROGRAMMES SECTION ───────────────────────────────────── */
-    .ev-programmes {
-      padding: 88px 0;
-      background: var(--color-bg-2);
-    }
-    .ev-programmes__inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .ev-prog-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 48px;
-    }
-    .ev-prog-card {
-      background: var(--color-bg);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 32px 24px;
-      text-align: center;
-      transition: transform 0.25s, border-color 0.25s;
-    }
-    .ev-prog-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--color-gold-border);
-    }
-    .ev-prog-card__emoji { font-size: 30px; margin-bottom: 16px; }
-    .ev-prog-card__name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-text);
-      margin-bottom: 8px;
-    }
-    .ev-prog-card__time {
-      font-family: var(--font-number);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--color-gold);
-      margin-bottom: 8px;
-    }
-    .ev-prog-card__desc {
-      font-size: 12px;
-      color: var(--color-text-faint);
-      line-height: 1.6;
-    }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-    /* ── DELIVERANCE DATES ────────────────────────────────────── */
-    .ev-dates {
-      padding: 88px 0;
-      background: var(--color-bg);
-    }
-    .ev-dates__inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .ev-dates__note {
-      font-size: 14px;
-      color: var(--color-text-faint);
-      margin: 14px 0 40px;
-      max-width: 560px;
-    }
-    .ev-dates-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-    .ev-date-card {
-      background: var(--color-bg-2);
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      padding: 16px 10px;
-      text-align: center;
-      transition: border-color 0.2s;
-    }
-    .ev-date-card:hover { border-color: var(--color-gold-border); }
-    .ev-date-card__month {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--color-gold);
-      margin-bottom: 8px;
-    }
-    .ev-date-card__date {
-      font-family: var(--font-number);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--color-text);
-    }
-    .ev-dates-note {
-      margin-top: 16px;
-      padding: 14px 20px;
-      background: var(--color-gold-bg);
-      border: 1px solid var(--color-gold-border);
-      border-radius: 8px;
-      font-size: 13px;
-      color: var(--color-text-muted);
-    }
-
-    /* ── VERSE BAND ───────────────────────────────────────────── */
-    .ev-verse {
-      padding: 72px 0;
-      background: var(--color-gold);
-      text-align: center;
-    }
-    .ev-verse__text {
-      font-family: var(--font-heading);
-      font-size: clamp(1.3rem, 3.5vw, 2.2rem);
-      font-weight: 700;
-      font-style: italic;
-      color: #07090f;
-      line-height: 1.5;
-      max-width: 760px;
-      margin: 0 auto 14px;
-    }
-    .ev-verse__ref {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(7,9,15,0.55);
-    }
-
-    /* ── LATEST MESSAGES ──────────────────────────────────────── */
-    .ev-media {
-      padding: 88px 0;
-      background: var(--color-bg-2);
-    }
-    .ev-media__inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .ev-media__head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-    .ev-media__head a {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--color-gold);
-      border-bottom: 1px solid rgba(245,166,35,0.35);
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-    .ev-media__head a:hover { border-color: var(--color-gold); }
-
-    /* ── TOOLS / QUICK ACCESS ─────────────────────────────────── */
-    .ev-tools {
-      padding: 88px 0;
-      background: var(--color-bg);
-    }
-    .ev-tools__inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .ev-tools-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 48px;
-    }
-    .ev-tool-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      padding: 36px 24px;
-      background: var(--color-bg-2);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      text-align: center;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .ev-tool-card:hover {
-      border-color: var(--color-gold-border);
-      transform: translateY(-4px);
-    }
-    .ev-tool-card__emoji { font-size: 36px; }
-    .ev-tool-card__name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-text);
-    }
-    .ev-tool-card__desc {
-      font-size: 13px;
-      color: var(--color-text-muted);
-      line-height: 1.7;
-    }
-    .ev-tool-card .btn {
-      margin-top: auto;
-      font-size: 12px;
-      padding: 9px 20px;
-    }
-
-    /* ── CTA BAND ─────────────────────────────────────────────── */
-    .ev-cta {
-      padding: 72px 0;
-      background: var(--color-bg-3);
-      text-align: center;
-    }
-    .ev-cta h3 {
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
-      color: var(--color-text);
-      margin-bottom: 10px;
-    }
-    .ev-cta p {
-      font-size: 14px;
-      color: var(--color-text-muted);
-      margin-bottom: 28px;
-    }
-
-    /* ── SCROLL REVEAL ────────────────────────────────────────── */
-    .rv {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .rv.in {
-      opacity: 1;
-      transform: none;
-    }
-    .rv-d1 { transition-delay: 0.1s; }
-    .rv-d2 { transition-delay: 0.2s; }
-    .rv-d3 { transition-delay: 0.3s; }
-    .rv-d4 { transition-delay: 0.4s; }
-    .rv-d5 { transition-delay: 0.5s; }
-    .rv-d6 { transition-delay: 0.6s; }
-
-    /* ── RESPONSIVE ───────────────────────────────────────────── */
-    @media (max-width: 960px) {
-      .ev-hero__inner   { flex-direction: column; align-items: flex-start; }
-      .ev-hero__times   { display: none; }
-      .ev-sermon__inner { grid-template-columns: 1fr; gap: 36px; }
-      .ev-sunday-card   { grid-template-columns: 1fr; }
-      .ev-meet-grid     { grid-template-columns: 1fr 1fr; }
-      .ev-prog-grid     { grid-template-columns: 1fr 1fr; }
-      .ev-dates-grid    { grid-template-columns: repeat(4, 1fr); }
-      .ev-tools-grid    { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .ev-hero__body    { padding-bottom: 52px; }
-      .ev-hero__inner   { padding: 0 20px; }
-      .ev-sermon__inner,
-      .ev-services__inner,
-      .ev-programmes__inner,
-      .ev-dates__inner,
-      .ev-media__inner,
-      .ev-tools__inner  { padding: 0 20px; }
-      .ev-meet-grid,
-      .ev-prog-grid,
-      .ev-tools-grid    { grid-template-columns: 1fr; }
-      .ev-dates-grid    { grid-template-columns: repeat(3, 1fr); }
-      .ev-meet-grid--2  { grid-template-columns: 1fr; }
-      .ev-services,
-      .ev-sermon,
-      .ev-programmes,
-      .ev-dates,
-      .ev-media,
-      .ev-tools         { padding: 60px 0; }
-    }
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .ev-sermon-layout { grid-template-columns: 1fr; gap: 32px; }
+    .ev-connect__grid { grid-template-columns: 1fr; }
+    .ev-ministry-grid { grid-template-columns: repeat(2,1fr); }
+    .ev-services__weekly { grid-template-columns: repeat(2,1fr); }
+    .ev-prog-grid { grid-template-columns: repeat(2,1fr); }
+    .ev-dates-grid { grid-template-columns: repeat(4,1fr); }
+    .ev-resource-grid { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 600px) {
+    .ev-times-inner { flex-direction: column; }
+    .ev-time-item { border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; justify-content: space-between; padding: 16px 0; }
+    .ev-time-item:last-child { border-bottom: none; }
+    .ev-ministry-grid { grid-template-columns: 1fr; }
+    .ev-services__weekly { grid-template-columns: 1fr; }
+    .ev-prog-grid { grid-template-columns: repeat(2,1fr); }
+    .ev-dates-grid { grid-template-columns: repeat(3,1fr); }
+    .ev-resource-grid { grid-template-columns: 1fr; }
+    .ev-hero__title { font-size: clamp(2.2rem,9vw,3.2rem); }
+    .ev-services__slots { flex-direction: column; }
+    .ev-slot { min-width: unset; }
+  }
   </style>
 </head>
+
 <body>
   <a href="#main" class="skip-to-content">Skip to main content</a>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       NAVIGATION  (unchanged — uses existing main.css classes)
-  ═════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════
+       NAVIGATION — Elevation style: minimal, 4 links + hamburger
+  ══════════════════════ -->
   <header>
     <nav class="site-nav" aria-label="Primary navigation">
       <div class="container">
+
         <a href="index.html" class="nav-logo" aria-label="ENJC home">
           <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
           <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
           <div>
             <div class="nav-logo__name">ENJC</div>
@@ -840,23 +984,21 @@
           </div>
         </a>
 
+        <!-- Only 4 key links visible on desktop — Elevation style -->
         <ul class="nav-links" aria-label="Main navigation">
           <li><a href="index.html"      class="nav-link nav-link--active" aria-current="page">Home</a></li>
-          <li><a href="about.html"      class="nav-link">About</a></li>
-          <li><a href="gallery.html"    class="nav-link">Gallery</a></li>
+          <li><a href="events.html"     class="nav-link">Sermons</a></li>
           <li><a href="ministries.html" class="nav-link">Ministries</a></li>
-          <li><a href="events.html"     class="nav-link">Events</a></li>
-          <li><a href="contact.html"    class="nav-link">Contact</a></li>
-          <li><a href="bible.html"      class="nav-link">Bible</a></li>
-          <li><a href="imagegen.html"   class="nav-link">🖼️ Cards</a></li>
+          <li><a href="contact.html"    class="nav-link">Visit Us</a></li>
         </ul>
 
         <div class="nav-controls">
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
             <div class="theme-toggle__dot"></div>
           </button>
-          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
-            📍 Visit Us
+          <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
+             target="_blank" rel="noopener" class="nav-visit-btn">
+            Plan a Visit
           </a>
         </div>
 
@@ -867,449 +1009,544 @@
         </button>
       </div>
 
+      <!-- Mobile dropdown — full links here -->
       <div class="mobile-menu" id="mobile-menu" role="menu">
         <a href="index.html"      class="mobile-menu__link is-active" role="menuitem">Home</a>
         <a href="about.html"      class="mobile-menu__link" role="menuitem">About</a>
-        <a href="gallery.html"    class="mobile-menu__link" role="menuitem">Gallery</a>
+        <a href="events.html"     class="mobile-menu__link" role="menuitem">Sermons &amp; Events</a>
         <a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a>
-        <a href="events.html"     class="mobile-menu__link" role="menuitem">Events</a>
+        <a href="gallery.html"    class="mobile-menu__link" role="menuitem">Gallery</a>
         <a href="contact.html"    class="mobile-menu__link" role="menuitem">Contact</a>
-        <a href="bible.html"      class="mobile-menu__link" role="menuitem">Bible</a>
+        <a href="bible.html"      class="mobile-menu__link" role="menuitem">Bible Reader</a>
         <a href="imagegen.html"   class="mobile-menu__link" role="menuitem">🖼️ Scripture Cards</a>
       </div>
     </nav>
   </header>
 
+
   <main id="main">
 
-    <!-- ══ SERVICE COUNTDOWN BANNER ══ -->
-    <div id="enjc-service-banner" role="status" aria-live="polite" aria-atomic="true">
-      <span class="banner-icon" aria-hidden="true">⛪</span>
-      <span class="banner-label">Service starts in</span>
-      <span class="banner-time">–</span>
-      <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener"
-         style="margin-left:8px;font-size:12px;color:var(--color-gold);text-decoration:underline;">Watch Live ▶</a>
-    </div>
+    <!-- ══════════════════════════════════════════════
+         HERO — Full screen image + dark overlay + CTA
+    ══════════════════════════════════════════════ -->
+    <section class="ev-hero" aria-label="Hero">
 
-    <!-- ═══════════════════════════════════════════════════════════
-         HERO — Elevation Church style: full-bleed image + text overlay
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-hero" aria-label="Welcome to ENJC">
-
-      <!-- Background: existing slide1 image -->
-      <div class="ev-hero__bg">
-        <img src="images/home/slide1.webp" alt="ENJC Sunday worship"
-             fetchpriority="high" loading="eager"
-             onerror="this.src='images/home/slide1.jpg'">
+      <!-- Video background — replace hero.mp4 with your actual file -->
+      <div class="ev-hero__video-wrap" aria-hidden="true">
+        <!-- Fallback image shown if video fails to load -->
+        <div class="ev-hero__video-fallback"></div>
+        <!--
+          HOW TO USE:
+          1. Put your MP4 file inside the "images/home/" folder
+          2. Rename it to "hero.mp4"  (or change the src below)
+          3. Recommended: keep file under 15–20MB for fast load
+          4. Optional: also export a .webm version and add a <source> tag for better browser support
+        -->
+        <video
+          class="ev-hero__video"
+          src="images/home/hero.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="images/home/slide1.webp"
+        >
+          <!-- WebM for Chrome/Firefox (optional but faster) -->
+          <!-- <source src="images/home/hero.webm" type="video/webm"> -->
+          <source src="images/home/hero.mp4" type="video/mp4">
+        </video>
       </div>
 
-      <!-- Overlay -->
+      <!-- Gradient overlay -->
       <div class="ev-hero__overlay" aria-hidden="true"></div>
 
-      <!-- Content -->
-      <div class="ev-hero__body">
-        <div class="ev-hero__inner">
-
-          <!-- Left: headline + CTA -->
-          <div class="ev-hero__text">
-            <div class="ev-hero__badge">
-              <div class="ev-hero__badge-dot"></div>
-              <span>Tondiarpet, Chennai</span>
-            </div>
-
-            <h1 class="ev-hero__title">
-              A Place to<br>
-              <em>Encounter God</em>
-            </h1>
-
-            <p class="ev-hero__sub">
-              Join us every Sunday for Spirit-filled worship, prayer and the Word of God.
-              Everyone is welcome — come as you are.
-            </p>
-
-            <div class="ev-hero__actions">
-              <a href="#ev-services" class="ev-btn-gold">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Service Times
-              </a>
-              <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="ev-btn-ghost">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                Watch Live
-              </a>
-            </div>
-          </div>
-
-          <!-- Right: service times card (desktop only) -->
-          <aside class="ev-hero__times" aria-label="Sunday service times">
-            <div class="ev-hero__times-label">Sunday Services</div>
-            <div class="ev-time-row">
-              <span class="ev-time-row__name">1st Service</span>
-              <span class="ev-time-row__val">5:30 AM</span>
-            </div>
-            <div class="ev-time-row">
-              <span class="ev-time-row__name">2nd Service</span>
-              <span class="ev-time-row__val">8:30 AM</span>
-            </div>
-            <div class="ev-time-row">
-              <span class="ev-time-row__name">3rd Service</span>
-              <span class="ev-time-row__val">12:00 PM</span>
-            </div>
-            <div class="ev-time-row">
-              <span class="ev-time-row__name">Night Prayer</span>
-              <span class="ev-time-row__val">10:30 PM</span>
-            </div>
-          </aside>
-
-        </div>
-      </div>
-
-      <!-- Scroll hint -->
-      <div class="ev-hero__scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="ev-hero__scroll-line"></div>
-      </div>
-
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════════
-         LATEST SERMON — Prominent, two-column like Elevation
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-sermon" aria-labelledby="sermon-h">
-      <div class="ev-sermon__inner">
-
-        <!-- Thumbnail -->
-        <div class="rv">
-          <a class="ev-sermon__thumb"
-             href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial"
-             target="_blank" rel="noopener"
-             aria-label="Watch latest sermon on YouTube">
-            <img id="sermon-thumb-img"
-                 src="images/home/slide2.webp"
-                 alt="Latest sermon thumbnail"
-                 onerror="this.src='images/home/slide2.webp'">
-            <div class="ev-sermon__play">
-              <div class="ev-sermon__play-circle">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
-            </div>
-            <span class="ev-sermon__tag">Latest Message</span>
+      <!-- Hero content -->
+      <div class="ev-hero__content">
+        <div class="ev-hero__eyebrow">Tondiarpet, Chennai</div>
+        <h1 class="ev-hero__title">
+          Where <em>God's Presence</em><br>
+          Changes Everything
+        </h1>
+        <p class="ev-hero__sub">
+          Join us every Sunday for Spirit-led worship, the Word, and community — 
+          led by Pastor A. Karthik Daniel.
+        </p>
+        <div class="ev-hero__ctas">
+          <a href="events.html" class="ev-btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Watch Sermons
+          </a>
+          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="ev-btn-secondary">
+            📍 Plan a Visit
           </a>
         </div>
+      </div>
 
-        <!-- Text -->
-        <div class="rv rv-d2">
-          <p class="section-tag">Sunday Message</p>
-          <p class="ev-sermon__series">Latest from ENJC</p>
-          <h2 class="ev-sermon__title" id="sermon-h" id="sermon-title-el">
-            Loading Latest Message…
-          </h2>
-          <p class="ev-sermon__pastor">By <strong>Pastor A. Karthik Daniel</strong></p>
-          <p class="ev-sermon__desc">
-            Experience powerful Spirit-filled preaching from Elim New Jerusalem Church.
-            Watch our latest message and be strengthened in your walk with God.
-          </p>
-          <div class="ev-sermon__btns">
-            <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial"
-               target="_blank" rel="noopener" class="ev-btn-gold">Watch Now</a>
-            <a href="events.html" class="ev-btn-ghost">All Messages</a>
-          </div>
+
+
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         SERVICE TIMES BAND — below hero
+    ══════════════════════════════════════════════ -->
+    <div class="ev-times-band" role="complementary" aria-label="Service times">
+      <div class="ev-times-inner">
+        <div class="ev-time-item">
+          <div class="ev-time-item__day">Sunday</div>
+          <div class="ev-time-item__time">5:30 · 8:30 · 12:00</div>
+          <div class="ev-time-item__label">Three services</div>
+        </div>
+        <div class="ev-time-item">
+          <div class="ev-time-item__day">Tuesday</div>
+          <div class="ev-time-item__time">11:00 AM – 4:00 PM</div>
+          <div class="ev-time-item__label">Special Prayer</div>
+        </div>
+        <div class="ev-time-item">
+          <div class="ev-time-item__day">Friday</div>
+          <div class="ev-time-item__time">11:00 AM – 1:00 PM</div>
+          <div class="ev-time-item__label">Family Blessing Prayer</div>
+        </div>
+        <div class="ev-time-item">
+          <div class="ev-time-item__day">Daily</div>
+          <div class="ev-time-item__time">10:30 PM</div>
+          <div class="ev-time-item__label">Night Prayer</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════
+         LATEST SERMONS — Elevation hero + sidebar list
+    ══════════════════════════════════════════════ -->
+    <section class="ev-sermon-hero" aria-labelledby="sermons-heading">
+      <div class="container-wide">
+
+        <div class="ev-sermon-label">
+          <span></span>
+          Watch &amp; Listen
         </div>
 
+        <div class="ev-sermon-layout">
+
+          <!-- Main featured sermon -->
+          <div>
+            <a class="ev-sermon-main" id="ev-sermon-featured" href="#" target="_blank" rel="noopener" aria-label="Watch latest sermon">
+              <div class="ev-sermon-main__thumb">
+                <img id="ev-sermon-featured-img" src="" alt="Latest sermon thumbnail" loading="lazy">
+                <div class="ev-sermon-play">
+                  <div class="ev-sermon-play__btn">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="ev-sermon-main__info">
+                <div class="ev-sermon-main__series" id="ev-sermon-featured-series">Latest Message</div>
+                <div class="ev-sermon-main__title" id="ev-sermon-featured-title">Loading latest message…</div>
+                <div class="ev-sermon-main__date" id="ev-sermon-featured-date"></div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Sidebar: more sermons -->
+          <div>
+            <div class="ev-sermon-list">
+              <div class="ev-sermon-list__heading" id="sermons-heading">More Messages</div>
+              <div id="ev-sermon-list-items">
+                <!-- Filled by JS -->
+                <div style="padding:20px 0;font-size:13px;color:var(--text-faint);">Loading…</div>
+              </div>
+              <a href="events.html" class="ev-sermon-all">
+                View All Messages
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════════
-         SERVICE TIMES
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-services" id="ev-services" aria-labelledby="services-h">
-      <div class="ev-services__inner">
+    <!-- ══════════════════════════════════════════════
+         CONNECT — 2 big cards (Visit + Online)
+    ══════════════════════════════════════════════ -->
+    <section class="ev-connect" aria-labelledby="connect-heading">
+      <div class="container-wide">
 
-        <div class="ev-services__head rv">
-          <p class="section-tag">When We Gather</p>
-          <h2 class="section-heading" id="services-h">Worship &amp; <em>Service Times</em></h2>
-          <div class="section-rule"></div>
+        <div class="ev-section-eyebrow"><span></span> Get Connected</div>
+        <h2 class="ev-section-title" id="connect-heading">
+          A Place for <em>You & Your Family</em>
+        </h2>
+        <p class="ev-section-desc">
+          Whether you're visiting for the first time or looking to go deeper — there's a place for you here.
+        </p>
+
+        <div class="ev-connect__grid">
+
+          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="ev-connect-card">
+            <span class="ev-connect-card__icon">📍</span>
+            <div class="ev-connect-card__title">Visit In Person</div>
+            <p class="ev-connect-card__desc">
+              110E, Elaya Street (Near Bethastha Swimming Pool),
+              Tondiarpet, Chennai – 600 081.<br>
+              We'd love to see you this Sunday.
+            </p>
+            <span class="ev-connect-card__cta">Get Directions →</span>
+          </a>
+
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="ev-connect-card">
+            <span class="ev-connect-card__icon">▶️</span>
+            <div class="ev-connect-card__title">Watch Online</div>
+            <p class="ev-connect-card__desc">
+              Can't make it in person? Catch our Sunday services, prayer meetings, and special events live on YouTube.
+            </p>
+            <span class="ev-connect-card__cta">Open YouTube →</span>
+          </a>
+
         </div>
+      </div>
+    </section>
 
-        <!-- Sunday card -->
-        <div class="ev-sunday-card rv rv-d1">
-          <div class="ev-sunday-card__icon" aria-hidden="true">📅</div>
-          <div class="ev-sunday-card__info">
-            <h3>Sunday — ENJC Family Gathering</h3>
-            <p>Three services every Sunday — all are welcome</p>
-            <div class="ev-slots">
-              <div class="ev-slot">
-                <div class="ev-slot__label">1st Service</div>
-                <div class="ev-slot__time">5:30</div>
-              </div>
-              <div class="ev-slot">
-                <div class="ev-slot__label">2nd Service</div>
-                <div class="ev-slot__time">8:30</div>
-              </div>
-              <div class="ev-slot">
-                <div class="ev-slot__label">3rd Service</div>
-                <div class="ev-slot__time">12:00</div>
-              </div>
+
+    <!-- ══════════════════════════════════════════════
+         MINISTRIES — 6-card grid
+    ══════════════════════════════════════════════ -->
+    <section class="ev-ministries" aria-labelledby="ministries-heading">
+      <div class="container-wide">
+
+        <div class="ev-section-eyebrow"><span></span> Get Involved</div>
+        <h2 class="ev-section-title" id="ministries-heading">
+          Discover Our <em>Ministries</em>
+        </h2>
+        <p class="ev-section-desc">
+          From prayer gatherings to village outreach — there's a ministry for everyone.
+        </p>
+
+        <div class="ev-ministry-grid">
+
+          <a href="ministries.html" class="ev-ministry-card">
+            <span class="ev-ministry-card__icon">👩</span>
+            <div class="ev-ministry-card__title">Sisters' Village Ministry</div>
+            <div class="ev-ministry-card__time">3rd Saturday Monthly</div>
+            <p class="ev-ministry-card__desc">Village outreach ministry for sisters</p>
+          </a>
+
+          <a href="ministries.html" class="ev-ministry-card">
+            <span class="ev-ministry-card__icon">👨</span>
+            <div class="ev-ministry-card__title">Brothers' Village Ministry</div>
+            <div class="ev-ministry-card__time">4th Saturday Monthly</div>
+            <p class="ev-ministry-card__desc">Village outreach ministry for brothers</p>
+          </a>
+
+          <a href="ministries.html" class="ev-ministry-card">
+            <span class="ev-ministry-card__icon">📢</span>
+            <div class="ev-ministry-card__title">Gospel Ministry</div>
+            <div class="ev-ministry-card__time">Every Sunday · 3:00 PM</div>
+            <p class="ev-ministry-card__desc">Weekly gospel outreach every Sunday afternoon</p>
+          </a>
+
+          <a href="ministries.html" class="ev-ministry-card">
+            <span class="ev-ministry-card__icon">✝️</span>
+            <div class="ev-ministry-card__title">Missionary Vision</div>
+            <div class="ev-ministry-card__time">3rd Friday · 6:00 PM</div>
+            <p class="ev-ministry-card__desc">Monthly gathering for ministry workers</p>
+          </a>
+
+          <a href="ministries.html" class="ev-ministry-card">
+            <span class="ev-ministry-card__icon">📚</span>
+            <div class="ev-ministry-card__title">Sunday School</div>
+            <div class="ev-ministry-card__time">Every Sunday · 6:30–9:30 AM</div>
+            <p class="ev-ministry-card__desc">Bible education for children every Sunday morning</p>
+          </a>
+
+          <a href="ministries.html" class="ev-ministry-card">
+            <span class="ev-ministry-card__icon">🔥</span>
+            <div class="ev-ministry-card__title">Deliverance Meetings</div>
+            <div class="ev-ministry-card__time">Every New Moon · 6:00 PM</div>
+            <p class="ev-ministry-card__desc">Prayer and deliverance open to all</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         SERVICE TIMES — full detail
+    ══════════════════════════════════════════════ -->
+    <section class="ev-services" aria-labelledby="services-heading">
+      <div class="container-wide">
+
+        <div class="ev-section-eyebrow"><span></span> When We Meet</div>
+        <h2 class="ev-section-title" id="services-heading">
+          Church Worship &amp; <em>Service Times</em>
+        </h2>
+
+        <!-- Sunday highlight -->
+        <div class="ev-services__sunday" style="margin-top:40px;">
+          <div class="ev-services__sunday-title">📅 Sunday — ENJC Family Gathering</div>
+          <p class="ev-services__sunday-sub">Three services every Sunday — all are welcome</p>
+          <div class="ev-services__slots">
+            <div class="ev-slot">
+              <div class="ev-slot__label">1st Service</div>
+              <div class="ev-slot__time">5:30 AM</div>
+            </div>
+            <div class="ev-slot">
+              <div class="ev-slot__label">2nd Service</div>
+              <div class="ev-slot__time">8:30 AM</div>
+            </div>
+            <div class="ev-slot">
+              <div class="ev-slot__label">3rd Service</div>
+              <div class="ev-slot__time">12:00 PM</div>
             </div>
           </div>
         </div>
 
-        <!-- Weekly meetings -->
-        <div class="ev-meet-grid">
-          <div class="ev-meet-card rv rv-d1">
-            <div class="ev-meet-card__icon">🕊️</div>
-            <div class="ev-meet-card__name">Tuesday Prayer</div>
-            <div class="ev-meet-card__when">11:00 AM – 4:00 PM</div>
-            <div class="ev-meet-card__desc">ENJC Special Prayer — every Tuesday</div>
-          </div>
-          <div class="ev-meet-card rv rv-d2">
-            <div class="ev-meet-card__icon">🙏</div>
-            <div class="ev-meet-card__name">Friday Prayer</div>
-            <div class="ev-meet-card__when">11:00 AM – 1:00 PM</div>
-            <div class="ev-meet-card__desc">Family Blessing Prayer — every Friday</div>
-          </div>
-          <div class="ev-meet-card rv rv-d3">
-            <div class="ev-meet-card__icon">✝️</div>
-            <div class="ev-meet-card__name">Missionary Vision</div>
-            <div class="ev-meet-card__when">3rd Friday · 6:00 PM</div>
-            <div class="ev-meet-card__desc">Special gathering for ministry workers</div>
-          </div>
-        </div>
+        <!-- Weekly meetings grid -->
+        <div class="ev-services__weekly">
 
-        <!-- Outreach row -->
-        <div class="ev-meet-grid" style="margin-top:16px;">
-          <div class="ev-meet-card rv rv-d1">
-            <div class="ev-meet-card__icon">👩</div>
-            <div class="ev-meet-card__name">Sisters' Village Ministry</div>
-            <div class="ev-meet-card__when">3rd Saturday</div>
-            <div class="ev-meet-card__desc">Monthly village outreach for sisters</div>
+          <div class="ev-weekly-card">
+            <div class="ev-weekly-card__icon">🕊️</div>
+            <div class="ev-weekly-card__title">Tuesday Prayer Meeting</div>
+            <div class="ev-weekly-card__time">11:00 AM – 4:00 PM</div>
+            <p class="ev-weekly-card__desc">ENJC Special Prayer — every Tuesday</p>
           </div>
-          <div class="ev-meet-card rv rv-d2">
-            <div class="ev-meet-card__icon">👨</div>
-            <div class="ev-meet-card__name">Brothers' Village Ministry</div>
-            <div class="ev-meet-card__when">4th Saturday</div>
-            <div class="ev-meet-card__desc">Monthly village outreach for brothers</div>
-          </div>
-          <div class="ev-meet-card rv rv-d3">
-            <div class="ev-meet-card__icon">📢</div>
-            <div class="ev-meet-card__name">Gospel Ministry</div>
-            <div class="ev-meet-card__when">Every Sunday · 3:00 PM</div>
-            <div class="ev-meet-card__desc">Weekly gospel outreach every Sunday afternoon</div>
-          </div>
-        </div>
 
-        <!-- Fasting + Deliverance -->
-        <div class="ev-meet-grid ev-meet-grid--2" style="margin-top:16px;">
-          <div class="ev-meet-card rv rv-d1">
-            <div class="ev-meet-card__icon">⏰</div>
-            <div class="ev-meet-card__name">Fasting Prayer</div>
-            <div class="ev-meet-card__when">6:00 AM – 6:00 PM</div>
-            <div class="ev-meet-card__desc">All-day fasting and prayer</div>
+          <div class="ev-weekly-card">
+            <div class="ev-weekly-card__icon">🙏</div>
+            <div class="ev-weekly-card__title">Friday Prayer Meeting</div>
+            <div class="ev-weekly-card__time">11:00 AM – 1:00 PM</div>
+            <p class="ev-weekly-card__desc">Family Blessing Prayer — every Friday</p>
           </div>
-          <div class="ev-meet-card rv rv-d2">
-            <div class="ev-meet-card__icon">🔥</div>
-            <div class="ev-meet-card__name">Deliverance Meetings</div>
-            <div class="ev-meet-card__when">New Moon Day · 6:00 PM</div>
-            <div class="ev-meet-card__desc">Every new moon day — prayer &amp; deliverance</div>
-          </div>
-        </div>
 
+          <div class="ev-weekly-card">
+            <div class="ev-weekly-card__icon">⏰</div>
+            <div class="ev-weekly-card__title">Fasting Prayer</div>
+            <div class="ev-weekly-card__time">6:00 AM – 6:00 PM</div>
+            <p class="ev-weekly-card__desc">All-day fasting and prayer</p>
+          </div>
+
+          <div class="ev-weekly-card">
+            <div class="ev-weekly-card__icon">🌙</div>
+            <div class="ev-weekly-card__title">Night Prayer</div>
+            <div class="ev-weekly-card__time">Daily · 10:30 PM</div>
+            <p class="ev-weekly-card__desc">Join us every night for prayer</p>
+          </div>
+
+          <div class="ev-weekly-card">
+            <div class="ev-weekly-card__icon">⭐</div>
+            <div class="ev-weekly-card__title">Promise Service</div>
+            <div class="ev-weekly-card__time">1st of Month · 5:30–7:30 AM</div>
+            <p class="ev-weekly-card__desc">Special worship service on the first day of each month</p>
+          </div>
+
+          <div class="ev-weekly-card">
+            <div class="ev-weekly-card__icon">🔥</div>
+            <div class="ev-weekly-card__title">Deliverance Meeting</div>
+            <div class="ev-weekly-card__time">New Moon Day · 6:00 PM</div>
+            <p class="ev-weekly-card__desc">Prayer &amp; deliverance every new moon</p>
+          </div>
+
+        </div>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════════
-         PROGRAMMES
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-programmes" aria-labelledby="prog-h">
-      <div class="ev-programmes__inner">
-        <div class="rv">
-          <p class="section-tag">More Activities</p>
-          <h2 class="section-heading" id="prog-h">Church <em>Programmes</em></h2>
-          <div class="section-rule"></div>
-        </div>
+    <!-- ══════════════════════════════════════════════
+         CHURCH PROGRAMMES
+    ══════════════════════════════════════════════ -->
+    <section class="ev-programmes" aria-labelledby="prog-heading">
+      <div class="container-wide">
+
+        <div class="ev-section-eyebrow"><span></span> More Activities</div>
+        <h2 class="ev-section-title" id="prog-heading">Church <em>Programmes</em></h2>
 
         <div class="ev-prog-grid">
-          <div class="ev-prog-card rv rv-d1">
-            <div class="ev-prog-card__emoji">⭐</div>
-            <div class="ev-prog-card__name">Promise Service</div>
-            <div class="ev-prog-card__time">1st of Every Month · 5:30 – 7:30 AM</div>
-            <div class="ev-prog-card__desc">Special worship service on the first day of each month</div>
+
+          <div class="ev-prog-card">
+            <div class="ev-prog-card__icon">⭐</div>
+            <div class="ev-prog-card__title">Promise Service</div>
+            <div class="ev-prog-card__time">1st of Every Month · 5:30–7:30 AM</div>
+            <p class="ev-prog-card__desc">Special worship on the first day of each month</p>
           </div>
-          <div class="ev-prog-card rv rv-d2">
-            <div class="ev-prog-card__emoji">🌙</div>
-            <div class="ev-prog-card__name">Night Prayer</div>
+
+          <div class="ev-prog-card">
+            <div class="ev-prog-card__icon">🌙</div>
+            <div class="ev-prog-card__title">Night Prayer</div>
             <div class="ev-prog-card__time">Daily · 10:30 PM</div>
-            <div class="ev-prog-card__desc">Join us every night for prayer and seeking God's presence</div>
+            <p class="ev-prog-card__desc">Every night — seeking God's presence together</p>
           </div>
-          <div class="ev-prog-card rv rv-d3">
-            <div class="ev-prog-card__emoji">📚</div>
-            <div class="ev-prog-card__name">Sunday School</div>
-            <div class="ev-prog-card__time">Every Sunday · 6:30 – 9:30 AM</div>
-            <div class="ev-prog-card__desc">Bible education for children every Sunday morning</div>
+
+          <div class="ev-prog-card">
+            <div class="ev-prog-card__icon">📚</div>
+            <div class="ev-prog-card__title">Sunday School</div>
+            <div class="ev-prog-card__time">Every Sunday · 6:30–9:30 AM</div>
+            <p class="ev-prog-card__desc">Bible education for children every Sunday morning</p>
           </div>
-          <div class="ev-prog-card rv rv-d4">
-            <div class="ev-prog-card__emoji">🎉</div>
-            <div class="ev-prog-card__name">Vacation Bible School</div>
+
+          <div class="ev-prog-card">
+            <div class="ev-prog-card__icon">🎉</div>
+            <div class="ev-prog-card__title">Vacation Bible School</div>
             <div class="ev-prog-card__time">Every May · 6 Days</div>
-            <div class="ev-prog-card__desc">Annual VBS held once a year in May for children and youth</div>
+            <p class="ev-prog-card__desc">Annual VBS in May for children and youth</p>
           </div>
+
         </div>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════
          DELIVERANCE DATES 2026
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-dates" aria-labelledby="dates-h">
-      <div class="ev-dates__inner">
-        <div class="rv">
-          <p class="section-tag">2026 Schedule</p>
-          <h2 class="section-heading" id="dates-h">Deliverance Meeting <em>Dates 2026</em></h2>
-          <p class="ev-dates__note">Every New Moon Day at 6:00 PM — a powerful time of prayer, healing, and deliverance open to all.</p>
-        </div>
+    ══════════════════════════════════════════════ -->
+    <section class="ev-dates" aria-labelledby="dates-heading">
+      <div class="container-wide">
+
+        <div class="ev-section-eyebrow"><span></span> 2026 Schedule</div>
+        <h2 class="ev-section-title" id="dates-heading">
+          Deliverance Meeting <em>Dates 2026</em>
+        </h2>
+        <p class="ev-section-desc">
+          Every New Moon Day at 6:00 PM — prayer, healing, and deliverance open to all.
+        </p>
 
         <div class="ev-dates-grid">
-          <div class="ev-date-card rv rv-d1"><div class="ev-date-card__month">January</div><div class="ev-date-card__date date-card__date">18 Jan 2026 · Sunday</div></div>
-          <div class="ev-date-card rv rv-d2"><div class="ev-date-card__month">February</div><div class="ev-date-card__date date-card__date">17 Feb 2026 · Tuesday</div></div>
-          <div class="ev-date-card rv rv-d3"><div class="ev-date-card__month">March</div><div class="ev-date-card__date date-card__date">18 Mar 2026 · Wednesday</div></div>
-          <div class="ev-date-card rv rv-d4"><div class="ev-date-card__month">April</div><div class="ev-date-card__date date-card__date">17 Apr 2026 · Friday</div></div>
-          <div class="ev-date-card rv rv-d5"><div class="ev-date-card__month">May</div><div class="ev-date-card__date date-card__date">16 May 2026 · Saturday</div></div>
-          <div class="ev-date-card rv rv-d6"><div class="ev-date-card__month">June</div><div class="ev-date-card__date date-card__date">14 Jun 2026 · Saturday</div></div>
-          <div class="ev-date-card rv rv-d1"><div class="ev-date-card__month">July</div><div class="ev-date-card__date date-card__date">14 Jul 2026 · Tuesday</div></div>
-          <div class="ev-date-card rv rv-d2"><div class="ev-date-card__month">August</div><div class="ev-date-card__date date-card__date">12 Aug 2026 · Wednesday</div></div>
-          <div class="ev-date-card rv rv-d3"><div class="ev-date-card__month">September</div><div class="ev-date-card__date date-card__date">10 Sep 2026 · Thursday</div></div>
-          <div class="ev-date-card rv rv-d4"><div class="ev-date-card__month">October</div><div class="ev-date-card__date date-card__date">10 Oct 2026 · Saturday</div></div>
-          <div class="ev-date-card rv rv-d5"><div class="ev-date-card__month">November</div><div class="ev-date-card__date date-card__date">08 Nov 2026 · Sunday</div></div>
-          <div class="ev-date-card rv rv-d6"><div class="ev-date-card__month">December</div><div class="ev-date-card__date date-card__date">08 Dec 2026 · Tuesday</div></div>
+          <div class="ev-date-card" data-date="18 Jan 2026">
+            <div class="ev-date-card__month">January</div>
+            <div class="ev-date-card__date">18 Jan 2026<br>Sunday</div>
+          </div>
+          <div class="ev-date-card" data-date="17 Feb 2026">
+            <div class="ev-date-card__month">February</div>
+            <div class="ev-date-card__date">17 Feb 2026<br>Tuesday</div>
+          </div>
+          <div class="ev-date-card" data-date="18 Mar 2026">
+            <div class="ev-date-card__month">March</div>
+            <div class="ev-date-card__date">18 Mar 2026<br>Wednesday</div>
+          </div>
+          <div class="ev-date-card" data-date="17 Apr 2026">
+            <div class="ev-date-card__month">April</div>
+            <div class="ev-date-card__date">17 Apr 2026<br>Friday</div>
+          </div>
+          <div class="ev-date-card" data-date="16 May 2026">
+            <div class="ev-date-card__month">May</div>
+            <div class="ev-date-card__date">16 May 2026<br>Saturday</div>
+          </div>
+          <div class="ev-date-card" data-date="14 Jun 2026">
+            <div class="ev-date-card__month">June</div>
+            <div class="ev-date-card__date">14 Jun 2026<br>Saturday</div>
+          </div>
+          <div class="ev-date-card" data-date="14 Jul 2026">
+            <div class="ev-date-card__month">July</div>
+            <div class="ev-date-card__date">14 Jul 2026<br>Tuesday</div>
+          </div>
+          <div class="ev-date-card" data-date="12 Aug 2026">
+            <div class="ev-date-card__month">August</div>
+            <div class="ev-date-card__date">12 Aug 2026<br>Wednesday</div>
+          </div>
+          <div class="ev-date-card" data-date="10 Sep 2026">
+            <div class="ev-date-card__month">September</div>
+            <div class="ev-date-card__date">10 Sep 2026<br>Thursday</div>
+          </div>
+          <div class="ev-date-card" data-date="10 Oct 2026">
+            <div class="ev-date-card__month">October</div>
+            <div class="ev-date-card__date">10 Oct 2026<br>Saturday</div>
+          </div>
+          <div class="ev-date-card" data-date="08 Nov 2026">
+            <div class="ev-date-card__month">November</div>
+            <div class="ev-date-card__date">8 Nov 2026<br>Sunday</div>
+          </div>
+          <div class="ev-date-card" data-date="08 Dec 2026">
+            <div class="ev-date-card__month">December</div>
+            <div class="ev-date-card__date">8 Dec 2026<br>Tuesday</div>
+          </div>
         </div>
 
-        <p class="ev-dates-note rv">
-          🔥 <strong style="color:var(--color-text);">All are welcome</strong> — Bring your family and friends.
-          God's power to set people free is for everyone.
+        <p class="ev-dates__note">
+          🔥 <strong>All are welcome</strong> — Bring your family and friends. God's power to set people free is for everyone.
         </p>
+
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════════
-         VERSE BAND
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-verse" aria-label="Scripture of the week">
-      <div class="container">
-        <blockquote class="ev-verse__text rv">
-          "For I know the plans I have for you, declares the Lord — plans to prosper you and
-          not to harm you, plans to give you hope and a future."
-        </blockquote>
-        <p class="ev-verse__ref rv rv-d2">Jeremiah 29:11</p>
-      </div>
-    </section>
+    <!-- ══════════════════════════════════════════════
+         BIBLE TOOLS & RESOURCES
+    ══════════════════════════════════════════════ -->
+    <section class="ev-resources" aria-labelledby="resources-heading">
+      <div class="container-wide">
 
+        <div class="ev-section-eyebrow"><span></span> Unique to ENJC</div>
+        <h2 class="ev-section-title" id="resources-heading">
+          Bible Tools &amp; <em>Resources</em>
+        </h2>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         LATEST MESSAGES (YouTube API)
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-media" aria-labelledby="yt-h">
-      <div class="ev-media__inner">
-        <div class="ev-media__head rv">
-          <div>
-            <p class="section-tag">Watch &amp; Listen</p>
-            <h2 class="section-heading" id="yt-h">Latest <em>Messages</em></h2>
-          </div>
-          <a href="events.html">View All →</a>
-        </div>
-        <div class="grid-3" id="home-yt-grid">
-          <div class="enjc-video-card" style="opacity:1;transform:none;">
-            <div class="enjc-video-thumb" style="background:var(--color-bg-3);min-height:160px;display:flex;align-items:center;justify-content:center;"><span style="font-size:32px;color:var(--color-border);">&#9654;</span></div>
-            <div class="enjc-video-info"><div class="enjc-video-title">Loading latest messages…</div></div>
-          </div>
-          <div class="enjc-video-card" style="opacity:1;transform:none;">
-            <div class="enjc-video-thumb" style="background:var(--color-bg-3);min-height:160px;display:flex;align-items:center;justify-content:center;"><span style="font-size:32px;color:var(--color-border);">&#9654;</span></div>
-            <div class="enjc-video-info"><div class="enjc-video-title">Loading…</div></div>
-          </div>
-          <div class="enjc-video-card" style="opacity:1;transform:none;">
-            <div class="enjc-video-thumb" style="background:var(--color-bg-3);min-height:160px;display:flex;align-items:center;justify-content:center;"><span style="font-size:32px;color:var(--color-border);">&#9654;</span></div>
-            <div class="enjc-video-info"><div class="enjc-video-title">Loading…</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="ev-resource-grid">
 
-
-    <!-- ═══════════════════════════════════════════════════════════
-         BIBLE TOOLS
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-tools" aria-labelledby="tools-h">
-      <div class="ev-tools__inner">
-        <div class="rv">
-          <p class="section-tag">Unique to ENJC</p>
-          <h2 class="section-heading" id="tools-h">Bible Tools &amp; <em>Resources</em></h2>
-          <div class="section-rule"></div>
-        </div>
-
-        <div class="ev-tools-grid">
-          <a href="bible.html" class="ev-tool-card rv rv-d1">
-            <div class="ev-tool-card__emoji">📖</div>
-            <div class="ev-tool-card__name">Bible Reader</div>
-            <div class="ev-tool-card__desc">All 66 books in Tamil &amp; English with audio, bookmarks, and search.</div>
-            <span class="btn btn--gold">Open Bible →</span>
+          <a href="bible.html" class="ev-resource-card">
+            <span class="ev-resource-card__icon">📖</span>
+            <div class="ev-resource-card__title">Bible Reader</div>
+            <p class="ev-resource-card__desc">All 66 books in Tamil &amp; English with audio, bookmarks, and search.</p>
+            <span class="ev-resource-card__btn">Open Bible →</span>
           </a>
-          <a href="imagegen.html" class="ev-tool-card rv rv-d2">
-            <div class="ev-tool-card__emoji">🖼️</div>
-            <div class="ev-tool-card__name">Scripture Cards</div>
-            <div class="ev-tool-card__desc">Create beautiful verse images to share on WhatsApp and social media.</div>
-            <span class="btn btn--gold">Create Cards →</span>
+
+          <a href="imagegen.html" class="ev-resource-card">
+            <span class="ev-resource-card__icon">🖼️</span>
+            <div class="ev-resource-card__title">Scripture Cards</div>
+            <p class="ev-resource-card__desc">Create beautiful verse images to share on WhatsApp and social media.</p>
+            <span class="ev-resource-card__btn">Create Cards →</span>
           </a>
-          <a href="events.html" class="ev-tool-card rv rv-d3">
-            <div class="ev-tool-card__emoji">📺</div>
-            <div class="ev-tool-card__name">Watch Live &amp; Sermons</div>
-            <div class="ev-tool-card__desc">Sunday, Friday, Promise, Deliverance and Testimony services.</div>
-            <span class="btn btn--gold">Watch Now →</span>
+
+          <a href="events.html" class="ev-resource-card">
+            <span class="ev-resource-card__icon">📺</span>
+            <div class="ev-resource-card__title">Watch Live &amp; Sermons</div>
+            <p class="ev-resource-card__desc">Sunday, Friday, Promise, Deliverance and Testimony services.</p>
+            <span class="ev-resource-card__btn">Watch Now →</span>
           </a>
+
         </div>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════════
-         CTA BAND
-    ═════════════════════════════════════════════════════════════ -->
-    <section class="ev-cta" aria-label="Join us this Sunday">
-      <div class="container">
-        <h3 class="rv">Join Us This Sunday</h3>
-        <p class="rv rv-d1">All are welcome — 5:30 AM · 8:30 AM · 12:00 PM</p>
-        <div class="rv rv-d2">
-          <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
-             target="_blank" rel="noopener" class="ev-btn-gold">
-            💬 Contact Us on WhatsApp
-          </a>
-        </div>
+    <!-- ══════════════════════════════════════════════
+         JOIN US BAND
+    ══════════════════════════════════════════════ -->
+    <div class="ev-join-band">
+      <div class="container-wide">
+        <div class="ev-join-band__title">Join Us This Sunday</div>
+        <p class="ev-join-band__sub">5:30 AM &nbsp;·&nbsp; 8:30 AM &nbsp;·&nbsp; 12:00 PM — All are welcome</p>
+        <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
+           target="_blank" rel="noopener" class="ev-btn-primary" style="display:inline-flex;">
+          💬 Contact Us on WhatsApp
+        </a>
       </div>
-    </section>
+    </div>
 
   </main>
 
 
-  <!-- ═══════════════════════════════════════════════════════════
-       FOOTER (unchanged content)
-  ═════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__rich">
+
         <div class="site-footer__col">
           <div class="site-footer__logo">ENJC</div>
           <p class="site-footer__tagline">Elim New Jerusalem Church<br>Tondiarpet, Chennai</p>
           <p class="site-footer__addr">📍 No.110E, Elaya Street, Tondiarpet, Chennai – 600 081</p>
           <a href="tel:+919444345102" class="site-footer__phone">📞 +91 94443 45102</a>
         </div>
+
         <div class="site-footer__col">
           <div class="site-footer__heading">Quick Links</div>
           <nav aria-label="Footer navigation">
             <a href="index.html"      class="site-footer__link">🏠 Home</a>
             <a href="about.html"      class="site-footer__link">✝ About</a>
-            <a href="events.html"     class="site-footer__link">📅 Live &amp; Events</a>
+            <a href="events.html"     class="site-footer__link">📅 Sermons &amp; Events</a>
             <a href="bible.html"      class="site-footer__link">📖 Bible Reader</a>
             <a href="gallery.html"    class="site-footer__link">🖼 Gallery</a>
             <a href="ministries.html" class="site-footer__link">🙏 Ministries</a>
@@ -1317,13 +1554,24 @@
             <a href="imagegen.html"   class="site-footer__link">🖼️ Scripture Cards</a>
           </nav>
         </div>
+
         <div class="site-footer__col">
           <div class="site-footer__heading">Connect With Us</div>
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social">▶ YouTube — Main Channel</a>
-          <a href="https://www.youtube.com/@ENJCShorts"                     target="_blank" rel="noopener" class="site-footer__social">📱 YouTube — ENJC Shorts</a>
-          <a href="https://www.instagram.com/elimnewjerusalemchurch"         target="_blank" rel="noopener" class="site-footer__social">📸 Instagram</a>
-          <a href="https://www.facebook.com/enjcmedia"                       target="_blank" rel="noopener" class="site-footer__social">👥 Facebook</a>
-          <a href="https://wa.me/919444345102"                               target="_blank" rel="noopener" class="site-footer__social">💬 WhatsApp</a>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">▶</span> YouTube — Main Channel
+          </a>
+          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📱</span> YouTube — ENJC Shorts
+          </a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📸</span> Instagram
+          </a>
+          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">👥</span> Facebook
+          </a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">💬</span> WhatsApp
+          </a>
           <div class="site-footer__services">
             <div class="site-footer__heading" style="margin-top:16px">Service Times</div>
             <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
@@ -1331,6 +1579,7 @@
             <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🌙 Night Prayer · 10:30 PM Daily</p>
           </div>
         </div>
+
       </div>
       <div class="site-footer__bottom">
         <span>© 2026 Elim New Jerusalem Church, Chennai</span>
@@ -1340,9 +1589,9 @@
   </footer>
 
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ══════════════════════
        FLOATING ACTIONS
-  ═════════════════════════════════════════════════════════════ -->
+  ══════════════════════ -->
   <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
      class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
@@ -1353,24 +1602,24 @@
   <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
 
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ══════════════════════
        MOBILE BOTTOM NAV
-  ═════════════════════════════════════════════════════════════ -->
+  ══════════════════════ -->
   <nav class="bottom-nav" aria-label="Mobile navigation">
     <a href="index.html"   class="bottom-nav__item is-active">
       <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
       <span class="bottom-nav__label">Home</span>
     </a>
-    <a href="about.html"   class="bottom-nav__item">
-      <span class="bottom-nav__icon" aria-hidden="true">✝</span>
-      <span class="bottom-nav__label">About</span>
+    <a href="events.html"  class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">📺</span>
+      <span class="bottom-nav__label">Sermons</span>
     </a>
     <div class="bottom-nav__center">
       <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
     </div>
-    <a href="events.html"  class="bottom-nav__item">
-      <span class="bottom-nav__icon" aria-hidden="true">📅</span>
-      <span class="bottom-nav__label">Events</span>
+    <a href="ministries.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">🙏</span>
+      <span class="bottom-nav__label">Ministries</span>
     </a>
     <a href="contact.html" class="bottom-nav__item">
       <span class="bottom-nav__icon" aria-hidden="true">✉</span>
@@ -1379,147 +1628,146 @@
   </nav>
 
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ══════════════════════
        SCRIPTS
-  ═════════════════════════════════════════════════════════════ -->
+  ══════════════════════ -->
+
+  <!-- Hero Video: ensure autoplay works, handle mobile restrictions -->
+  <script>
+  (function() {
+    var video = document.querySelector('.ev-hero__video');
+    if (!video) return;
+
+    // Ensure muted + playsinline (required for iOS autoplay)
+    video.muted = true;
+    video.setAttribute('playsinline', '');
+
+    // Try to play; if blocked (some browsers require interaction), show fallback
+    var playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function() {
+        // Autoplay blocked — fallback image already visible underneath
+        // Optionally: show a subtle play hint
+        video.style.display = 'none';
+      });
+    }
+
+    // On slow connections: if video hasn't started in 4s, hide it (fallback shows)
+    var hideTimer = setTimeout(function() {
+      if (video.readyState < 2) {
+        video.style.display = 'none';
+      }
+    }, 4000);
+
+    video.addEventListener('playing', function() {
+      clearTimeout(hideTimer);
+      // Fade in video once playing
+      video.style.opacity = '0';
+      video.style.transition = 'opacity 1.2s ease';
+      requestAnimationFrame(function() {
+        video.style.opacity = '1';
+      });
+    }, { once: true });
+  })();
+  </script>
 
   <!-- Mark past deliverance dates -->
   <script>
-  (function(){
-    var today = new Date(); today.setHours(0,0,0,0);
-    document.querySelectorAll('.date-card__date').forEach(function(el){
-      var txt = el.textContent.trim();
-      var parts = txt.split(' · ')[0].trim();
-      var d = new Date(parts);
-      if(!isNaN(d) && d < today){
-        var card = el.closest('.ev-date-card');
-        if(card){
-          card.style.opacity = '0.4';
-          var m = card.querySelector('.ev-date-card__month');
-          if(m && !m.querySelector('.past-badge')){
-            var b = document.createElement('span');
-            b.className = 'past-badge';
-            b.textContent = 'PAST';
-            b.style.cssText = 'display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;background:rgba(255,255,255,.1);color:var(--color-text-faint);padding:2px 6px;border-radius:99px;margin-left:5px;vertical-align:middle;';
-            m.appendChild(b);
-          }
+  (function() {
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    document.querySelectorAll('.ev-date-card').forEach(function(card) {
+      var dateStr = card.getAttribute('data-date');
+      if (!dateStr) return;
+      var d = new Date(dateStr);
+      if (!isNaN(d) && d < today) {
+        card.style.opacity = '0.4';
+        var monthEl = card.querySelector('.ev-date-card__month');
+        if (monthEl) {
+          var badge = document.createElement('span');
+          badge.textContent = 'PAST';
+          badge.style.cssText = 'display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;background:rgba(255,255,255,.1);color:var(--text-faint);padding:1px 6px;border-radius:99px;margin-left:5px;vertical-align:middle;';
+          monthEl.appendChild(badge);
         }
       }
     });
   })();
   </script>
 
-  <!-- Scroll reveal -->
+  <!-- YouTube: Latest sermons -->
   <script>
-  (function(){
-    var els = document.querySelectorAll('.rv');
-    if(!('IntersectionObserver' in window)){
-      els.forEach(function(el){ el.classList.add('in'); }); return;
-    }
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
-      });
-    },{ threshold: 0.1 });
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
-
-  <!-- Smooth scroll for anchor links -->
-  <script>
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var t = document.querySelector(a.getAttribute('href'));
-      if(t){ e.preventDefault(); var top = t.getBoundingClientRect().top + window.scrollY - 64; window.scrollTo({top:top,behavior:'smooth'}); }
-    });
-  });
-  </script>
-
-  <script src="js/premium-upgrade.js" defer></script>
-  <script src="js/mobile-ux-fixes.js" defer></script>
-  <script src="js/design-upgrade.js" defer></script>
-
-  <!-- YouTube API: Latest Messages grid + Sermon section -->
-  <script>
-  (function(){
+  (function() {
     'use strict';
     var YT_API_KEY = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
     var CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 
-    function fmtDate(iso){
-      if(!iso) return '';
-      return new Date(iso).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+    function fmtDate(iso) {
+      if (!iso) return '';
+      return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
     }
 
-    function buildCard(v){
-      var id = (v.videoId||'').replace(/^\/+/,'');
-      return '<article class="enjc-video-card" style="opacity:1;transform:none;">'
-        +'<a href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener"'
-        +' style="display:block;position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;">'
-        +'<img src="'+v.thumbnail+'" alt="'+v.title+'"'
-        +' style="width:100%;height:100%;object-fit:cover;opacity:.88;" loading="lazy">'
-        +'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">'
-        +'<div style="width:50px;height:50px;background:rgba(255,0,0,.9);border-radius:50%;'
-        +'display:flex;align-items:center;justify-content:center;">'
-        +'<span style="color:#fff;font-size:18px;margin-left:3px;">▶</span></div></div></a>'
-        +'<div class="enjc-video-info">'
-        +'<div class="enjc-video-title">'+v.title+'</div>'
-        +'<div style="font-size:11px;color:var(--color-text-faint);margin-top:3px;">'+fmtDate(v.date)+'</div>'
-        +'</div></article>';
+    function showError() {
+      var el = document.getElementById('ev-sermon-featured-title');
+      if (el) el.textContent = 'Could not load latest messages.';
+      var list = document.getElementById('ev-sermon-list-items');
+      if (list) list.innerHTML = '<div style="padding:16px 0;font-size:12px;color:var(--text-faint);">Visit our <a href="events.html" style="color:var(--gold);">Events page</a> for all videos.</div>';
     }
 
-    function showError(){
-      var el = document.getElementById('home-yt-grid');
-      if(!el) return;
-      el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:32px;">'
-        +'<p style="color:var(--color-text-faint);font-size:13px;">Could not load latest messages.</p>'
-        +'<a href="events.html" class="btn btn--outline" style="margin-top:12px;display:inline-block;font-size:13px;">View All Videos &#9654;</a>'
-        +'</div>';
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function() {
       var qs = new URLSearchParams({
-        part:'snippet', channelId:CHANNEL_ID,
-        eventType:'completed', type:'video',
-        order:'date', maxResults:'3',
+        part: 'snippet', channelId: CHANNEL_ID,
+        eventType: 'completed', type: 'video',
+        order: 'date', maxResults: '4',
         key: YT_API_KEY
       });
-      fetch('https://www.googleapis.com/youtube/v3/search?'+qs)
-        .then(function(r){ return r.json(); })
-        .then(function(data){
-          if(!data.items || !data.items.length){ showError(); return; }
-          var videos = data.items.map(function(item){
+
+      fetch('https://www.googleapis.com/youtube/v3/search?' + qs)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (!data.items || !data.items.length) { showError(); return; }
+
+          var videos = data.items.map(function(item) {
             return {
               videoId:   item.id.videoId,
               title:     item.snippet.title,
               date:      item.snippet.publishedAt,
-              thumbnail: (item.snippet.thumbnails.medium||item.snippet.thumbnails.default).url
+              thumbnail: (item.snippet.thumbnails.medium || item.snippet.thumbnails.default).url
             };
           });
-          // Fill grid
-          var el = document.getElementById('home-yt-grid');
-          if(el) el.innerHTML = videos.map(buildCard).join('');
-          // Update sermon section with latest video
-          var v0 = videos[0];
-          if(v0){
-            var titleEl = document.getElementById('sermon-title-el');
-            if(titleEl) titleEl.textContent = v0.title;
-            var thumbEl = document.getElementById('sermon-thumb-img');
-            if(thumbEl){
-              var hq = 'https://img.youtube.com/vi/'+v0.videoId+'/maxresdefault.jpg';
-              thumbEl.src = hq;
-              thumbEl.onerror = function(){ this.src = v0.thumbnail; };
-            }
-            var thumbLink = document.querySelector('.ev-sermon__thumb');
-            if(thumbLink && v0.videoId){
-              thumbLink.href = 'https://www.youtube.com/watch?v='+v0.videoId;
-            }
+
+          // Featured — first video
+          var featured = videos[0];
+          var featuredEl = document.getElementById('ev-sermon-featured');
+          if (featuredEl) featuredEl.href = 'https://www.youtube.com/watch?v=' + featured.videoId;
+          var featuredImg = document.getElementById('ev-sermon-featured-img');
+          if (featuredImg) { featuredImg.src = featured.thumbnail; featuredImg.alt = featured.title; }
+          var featuredTitle = document.getElementById('ev-sermon-featured-title');
+          if (featuredTitle) featuredTitle.textContent = featured.title;
+          var featuredDate = document.getElementById('ev-sermon-featured-date');
+          if (featuredDate) featuredDate.textContent = fmtDate(featured.date);
+
+          // Sidebar list — remaining 3
+          var listEl = document.getElementById('ev-sermon-list-items');
+          if (listEl) {
+            listEl.innerHTML = videos.slice(1).map(function(v) {
+              return '<a href="https://www.youtube.com/watch?v=' + v.videoId
+                + '" target="_blank" rel="noopener" class="ev-sermon-item">'
+                + '<div class="ev-sermon-item__thumb"><img src="' + v.thumbnail
+                + '" alt="' + v.title + '" loading="lazy"></div>'
+                + '<div><div class="ev-sermon-item__title">' + v.title + '</div>'
+                + '<div class="ev-sermon-item__date">' + fmtDate(v.date) + '</div>'
+                + '</div></a>';
+            }).join('');
           }
         })
         .catch(showError);
     });
   })();
   </script>
+
+  <script src="js/premium-upgrade.js" defer></script>
+  <script src="js/mobile-ux-fixes.js" defer></script>
+  <script src="js/design-upgrade.js" defer></script>
 
 </body>
 </html>

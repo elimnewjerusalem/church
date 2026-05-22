@@ -2,39 +2,262 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<link rel="canonical" href="https://elimnewjerusalem.github.io/church/gallery.html">
+  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/gallery.html">
   <link rel="icon" type="image/png" href="images/logo/logo.png">
   <link rel="apple-touch-icon" href="images/logo/logo.png">
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gallery | ENJC</title>
+  <title>Gallery | ENJC — Elim New Jerusalem Church</title>
   <meta name="description" content="Photo gallery of worship, community, and God's work at ENJC Tondiarpet.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
+
   <script src="js/site.js"></script>
   <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/enjc-premium.css">
-<link rel="stylesheet" href="css/design-upgrade.css">
-<link rel="stylesheet" href="css/mobile-ux-fixes.css">
+  <link rel="stylesheet" href="css/enjc-premium.css">
+  <link rel="stylesheet" href="css/design-upgrade.css">
+  <link rel="stylesheet" href="css/mobile-ux-fixes.css">
 
-  <!-- SEO: Open Graph & Twitter Card -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/gallery.html">
-  <meta property="og:title"       content="Gallery | ENJC">
-  <meta property="og:description" content="Photo gallery of worship services, events, and community life at Elim New Jerusalem Church.">
-  <meta property="og:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta name="twitter:card"       content="summary">
-  <meta name="twitter:title"      content="Gallery | ENJC">
-  <meta name="twitter:description" content="Photo gallery of worship services, events, and community life at Elim New Jerusalem Church.">
-  <meta name="twitter:image"      content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <meta property="og:type"         content="website">
+  <meta property="og:url"          content="https://elimnewjerusalem.github.io/church/gallery.html">
+  <meta property="og:title"        content="Gallery | ENJC">
+  <meta property="og:description"  content="Photo gallery of worship services, events, and community life at Elim New Jerusalem Church.">
+  <meta property="og:image"        content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:title"       content="Gallery | ENJC">
+  <meta name="twitter:description" content="Photo gallery of worship, community, and God's work at ENJC.">
+  <meta name="twitter:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
 
+  <style>
+  /* ═══════════════════════════════════════
+     GALLERY PAGE — Elevation Style
+  ═══════════════════════════════════════ */
+  .gl-wrap {
+    max-width: var(--max-width, 1280px);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 64px);
+  }
+  .gl-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-body); font-size: 11px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .gl-eyebrow span { display: inline-block; width: 28px; height: 1px; background: var(--gold); opacity: .6; }
+  .gl-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700; color: var(--text); line-height: 1.05; margin-bottom: 20px;
+    opacity: 0; animation: glFadeUp .9s .2s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .gl-title em { font-style: italic; color: var(--gold-warm); }
+  .gl-sub {
+    font-family: var(--font-body); font-size: clamp(15px, 1.8vw, 17px);
+    color: rgba(234,240,255,.65); max-width: 520px; line-height: 1.8;
+    opacity: 0; animation: glFadeUp .9s .4s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes glFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── PAGE HERO ── */
+  .gl-hero {
+    background: var(--bg);
+    padding: clamp(80px, 10vw, 130px) 0 clamp(48px, 6vw, 72px);
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .gl-hero::before {
+    content: ''; position: absolute; top: -80px; left: 50%;
+    transform: translateX(-50%); width: 700px; height: 400px;
+    background: radial-gradient(ellipse at center, rgba(147,184,255,.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .gl-hero .gl-wrap { position: relative; z-index: 1; }
+
+  /* ── FILTER BAR ── */
+  .gl-filter-bar {
+    background: var(--bg-2); border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    position: sticky; top: var(--nav-height, 64px); z-index: 50;
+    backdrop-filter: blur(20px);
+  }
+  .gl-filter-inner {
+    max-width: var(--max-width, 1280px); margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .gl-filter-btn {
+    padding: 8px 18px; border-radius: 99px;
+    background: var(--bg-3); border: 1px solid var(--border);
+    font-family: var(--font-body); font-size: 12px; font-weight: 500;
+    color: var(--text-muted); cursor: pointer; transition: all .2s;
+    white-space: nowrap;
+  }
+  .gl-filter-btn:hover { border-color: var(--border-gold); color: var(--gold); }
+  .gl-filter-btn.is-on {
+    background: var(--gold-bg); border-color: var(--border-gold);
+    color: var(--gold); font-weight: 600;
+  }
+
+  /* ── BENTO GALLERY GRID ── */
+  .gl-section {
+    background: var(--bg); padding: clamp(48px, 6vw, 80px) 0;
+  }
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-auto-rows: clamp(160px, 22vw, 260px);
+    gap: 14px;
+    margin-top: 0;
+  }
+  .bento__item {
+    border-radius: 16px; overflow: hidden; cursor: pointer;
+    position: relative; background: var(--bg-2);
+    border: 1px solid var(--border);
+    transition: transform .25s cubic-bezier(.22,1,.36,1), border-color .2s, box-shadow .25s;
+  }
+  .bento__item:hover {
+    transform: scale(1.018); border-color: var(--border-gold);
+    box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  }
+  .bento__item picture,
+  .bento__item picture img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+  .bento__item:hover picture img { transform: scale(1.06); }
+
+  /* Gradient caption always readable on mobile, hover on desktop */
+  .bento__cap {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 32px 14px 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,.72));
+    font-family: var(--font-body); font-size: 12px; font-weight: 600; color: #fff;
+    opacity: 0; transition: opacity .2s;
+  }
+  .bento__item:hover .bento__cap { opacity: 1; }
+  @media (hover: none) { .bento__cap { opacity: 1; } }
+
+  /* Category badge top-left */
+  .bento__badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    font-family: var(--font-body); font-size: 10px; font-weight: 700;
+    letter-spacing: .5px; text-transform: uppercase; color: #fff;
+    background: rgba(0,0,0,.45); padding: 3px 10px; border-radius: 99px;
+    backdrop-filter: blur(6px);
+    opacity: 0; transition: opacity .2s;
+  }
+  .bento__item:hover .bento__badge { opacity: 1; }
+
+  /* Zoom icon on hover */
+  .bento__zoom {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%) scale(.7);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #fff;
+    opacity: 0; transition: opacity .2s, transform .2s;
+    pointer-events: none;
+  }
+  .bento__item:hover .bento__zoom {
+    opacity: 1; transform: translate(-50%,-50%) scale(1);
+  }
+
+  /* Gallery filter — hide items by data-cat */
+  .bento__item[hidden] { display: none !important; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(3,10,26,.95); align-items: center; justify-content: center;
+    padding: 20px; backdrop-filter: blur(12px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox__inner {
+    max-width: 92vw; max-height: 90vh;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    position: relative;
+  }
+  .lightbox__img {
+    max-width: 90vw; max-height: 80vh;
+    object-fit: contain; border-radius: 14px; display: block;
+    box-shadow: 0 24px 80px rgba(0,0,0,.8);
+  }
+  .lightbox__caption {
+    font-family: var(--font-display); font-size: 1rem; font-style: italic;
+    font-weight: 600; color: rgba(255,255,255,.7); text-align: center;
+  }
+  .lightbox__close {
+    position: fixed; top: 18px; right: 22px;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    color: #fff; font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10000; transition: background .2s;
+  }
+  .lightbox__close:hover { background: rgba(255,255,255,.25); }
+  .lightbox__nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.15);
+    color: #fff; font-size: 28px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10000; transition: background .2s;
+  }
+  .lightbox__nav:hover { background: rgba(255,255,255,.25); }
+  .lightbox__nav--prev { left: 14px; }
+  .lightbox__nav--next { right: 14px; }
+  .lightbox__counter {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-body); font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,.5); background: rgba(0,0,0,.5);
+    padding: 4px 14px; border-radius: 99px; z-index: 10000;
+  }
+
+  /* ── INSTAGRAM CTA ── */
+  .gl-insta-cta {
+    background: var(--bg-2); border-top: 1px solid var(--border);
+    padding: clamp(56px,7vw,96px) 0; text-align: center;
+  }
+  .gl-insta-cta__title {
+    font-family: var(--font-display); font-size: clamp(1.8rem,4.5vw,3rem);
+    font-weight: 700; color: var(--text); margin-bottom: 12px;
+  }
+  .gl-insta-cta__sub { font-family: var(--font-body); font-size: 15px; color: var(--text-muted); margin-bottom: 32px; }
+  .gl-insta-cta__btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 36px;
+    background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+    color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 600;
+    border-radius: 8px; text-decoration: none; transition: all .2s;
+  }
+  .gl-insta-cta__btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .bento {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: clamp(140px, 24vw, 200px);
+    }
+    .bento__item[style*="grid-row:1/3"],
+    .bento__item[style*="grid-row:3/5"] { grid-row: span 1 !important; }
+    .bento__item { grid-column: auto !important; }
+  }
+  @media (max-width: 480px) {
+    .bento {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 220px;
+    }
+    .bento__item { grid-column: 1 !important; grid-row: auto !important; }
+  }
+  </style>
 </head>
+
 <body>
   <a href="#main" class="skip-to-content">Skip to main content</a>
-<header>
+
+  <!-- ══ NAV ══ -->
+  <header>
     <nav class="site-nav" aria-label="Primary navigation">
       <div class="container">
         <a href="index.html" class="nav-logo" aria-label="ENJC home">
@@ -46,14 +269,19 @@
             <div class="nav-logo__sub">Elim New Jerusalem Church</div>
           </div>
         </a>
-        <ul class="nav-links" aria-label="Main navigation"><li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li><li><a href="gallery.html" class="nav-link  nav-link--active" aria-current="page">Gallery</a></li><li><a href="ministries.html" class="nav-link">Ministries</a></li><li><a href="events.html" class="nav-link">Events</a></li><li><a href="contact.html" class="nav-link">Contact</a></li><li><a href="bible.html" class="nav-link">Bible</a></li><li><a href="imagegen.html" class="nav-link">🖼️ Cards</a></li></ul>
+        <ul class="nav-links" aria-label="Main navigation">
+          <li><a href="index.html"      class="nav-link">Home</a></li>
+          <li><a href="events.html"     class="nav-link">Sermons</a></li>
+          <li><a href="about.html"      class="nav-link">About</a></li>
+          <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+          <li><a href="contact.html"    class="nav-link">Visit Us</a></li>
+        </ul>
         <div class="nav-controls">
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
             <div class="theme-toggle__dot"></div>
           </button>
-          <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
-            📍 Visit Us
-          </a>
+          <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
+             target="_blank" rel="noopener" class="nav-visit-btn">Plan a Visit</a>
         </div>
         <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
           <span class="nav-hamburger__line"></span>
@@ -61,131 +289,192 @@
           <span class="nav-hamburger__line"></span>
         </button>
       </div>
-      <div class="mobile-menu" id="mobile-menu" role="menu"><a href="index.html" class="mobile-menu__link" role="menuitem">Home</a><a href="about.html" class="mobile-menu__link" role="menuitem">About</a><a href="gallery.html" class="mobile-menu__link  is-active" role="menuitem">Gallery</a><a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a><a href="events.html" class="mobile-menu__link" role="menuitem">Events</a><a href="contact.html" class="mobile-menu__link" role="menuitem">Contact</a><a href="bible.html" class="mobile-menu__link" role="menuitem">Bible</a>
-        <a href="imagegen.html" class="mobile-menu__link" role="menuitem">🖼️ Scripture Cards</a></div>
+      <div class="mobile-menu" id="mobile-menu" role="menu">
+        <a href="index.html"      class="mobile-menu__link" role="menuitem">Home</a>
+        <a href="about.html"      class="mobile-menu__link" role="menuitem">About</a>
+        <a href="events.html"     class="mobile-menu__link" role="menuitem">Sermons &amp; Events</a>
+        <a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a>
+        <a href="gallery.html"    class="mobile-menu__link is-active" role="menuitem">Gallery</a>
+        <a href="contact.html"    class="mobile-menu__link" role="menuitem">Contact</a>
+        <a href="bible.html"      class="mobile-menu__link" role="menuitem">Bible Reader</a>
+        <a href="imagegen.html"   class="mobile-menu__link" role="menuitem">🖼️ Scripture Cards</a>
+      </div>
     </nav>
   </header>
 
-<main id="main">
 
-  <section class="page-hero" aria-labelledby="page-title">
-    <div class="container">
-      <p class="section-tag">Our Moments</p>
-      <h1 id="page-title">Photo <em>Gallery</em></h1>
-      <p>Glimpses of worship, community, and God&#39;s work among us.</p>
-    </div>
-  </section>
+  <main id="main">
 
-  <!-- Gallery filter tabs -->
-  <section class="section-sm" style="padding-bottom:0;">
-    <div class="container">
-      <div class="enjc-filter-row" role="group" aria-label="Filter gallery by category" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
-        <button class="enjc-filter-btn enjc-filter-active" data-gfilter="all">All Photos</button>
-        <button class="enjc-filter-btn" data-gfilter="worship">Worship</button>
-        <button class="enjc-filter-btn" data-gfilter="outreach">Outreach</button>
-        <button class="enjc-filter-btn" data-gfilter="events">Events</button>
-        <button class="enjc-filter-btn" data-gfilter="community">Community</button>
+    <!-- ══ PAGE HERO ══ -->
+    <section class="gl-hero" aria-labelledby="page-title">
+      <div class="gl-wrap">
+        <div class="gl-eyebrow"><span></span> Our Moments</div>
+        <h1 class="gl-title" id="page-title">
+          Photo <em>Gallery</em>
+        </h1>
+        <p class="gl-sub">
+          Glimpses of worship, community, and God's work among us — captured in moments.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ══ FILTER BAR (sticky) ══ -->
+    <div class="gl-filter-bar" aria-label="Filter gallery by category">
+      <div class="gl-filter-inner" role="group">
+        <button class="gl-filter-btn is-on" data-gfilter="all">All Photos</button>
+        <button class="gl-filter-btn" data-gfilter="worship">🙏 Worship</button>
+        <button class="gl-filter-btn" data-gfilter="outreach">📢 Outreach</button>
+        <button class="gl-filter-btn" data-gfilter="events">📅 Events</button>
+        <button class="gl-filter-btn" data-gfilter="community">👥 Community</button>
       </div>
     </div>
-  </section>
 
-  <section class="section" aria-label="Photo gallery">
-    <div class="container">
 
-      <div class="bento" id="gallery-grid">
+    <!-- ══ BENTO GRID ══ -->
+    <section class="gl-section" aria-label="Photo gallery">
+      <div class="gl-wrap">
 
-        <!-- GROUP 1: g1–g5 (rows 1–2) -->
-        <div class="bento__item" style="grid-column:1;grid-row:1" onclick="openLightbox(0)">
-          <picture>
-            <source srcset="images/gallery/g1.webp" type="image/webp">
-            <img src="images/gallery/g1.webp" alt="ENJC Church gathering" loading="lazy">
-          </picture>
-          <div class="bento__cap">Church Gathering</div>
-        </div>
-        <div class="bento__item" style="grid-column:1;grid-row:2" onclick="openLightbox(1)">
-          <picture>
-            <source srcset="images/gallery/g2.webp" type="image/webp">
-            <img src="images/gallery/g2.webp" alt="Worship Service" loading="lazy">
-          </picture>
-          <div class="bento__cap">Worship Service</div>
-        </div>
-        <div class="bento__item" style="grid-column:2;grid-row:1/3" onclick="openLightbox(2)">
-          <picture>
-            <source srcset="images/gallery/g3.webp" type="image/webp">
-            <img src="images/gallery/g3.webp" alt="Community" loading="lazy">
-          </picture>
-          <div class="bento__cap">Community</div>
-        </div>
-        <div class="bento__item" style="grid-column:3;grid-row:1" onclick="openLightbox(3)">
-          <picture>
-            <source srcset="images/gallery/g4.webp" type="image/webp">
-            <img src="images/gallery/g4.webp" alt="Prayer Night" loading="lazy">
-          </picture>
-          <div class="bento__cap">Prayer Night</div>
-        </div>
-        <div class="bento__item" style="grid-column:3;grid-row:2" onclick="openLightbox(4)">
-          <picture>
-            <source srcset="images/gallery/g5.webp" type="image/webp">
-            <img src="images/gallery/g5.webp" alt="Sunday School" loading="lazy">
-          </picture>
-          <div class="bento__cap">Sunday School</div>
-        </div>
+        <div class="bento" id="gallery-grid">
 
-        <!-- GROUP 2: g6–g10 (rows 3–4) -->
-        <div class="bento__item" style="grid-column:1;grid-row:3" onclick="openLightbox(5)">
-          <picture>
-            <source srcset="images/gallery/g6.webp" type="image/webp">
-            <img src="images/gallery/g6.webp" alt="Deliverance Meeting" loading="lazy">
-          </picture>
-          <div class="bento__cap">Deliverance Meeting</div>
-        </div>
-        <div class="bento__item" style="grid-column:1;grid-row:4" onclick="openLightbox(6)">
-          <picture>
-            <source srcset="images/gallery/g7.webp" type="image/webp">
-            <img src="images/gallery/g7.webp" alt="Gospel Ministry" loading="lazy">
-          </picture>
-          <div class="bento__cap">Gospel Ministry</div>
-        </div>
-        <div class="bento__item" style="grid-column:2;grid-row:3/5" onclick="openLightbox(7)">
-          <picture>
-            <source srcset="images/gallery/g8.webp" type="image/webp">
-            <img src="images/gallery/g8.webp" alt="Fasting Prayer" loading="lazy">
-          </picture>
-          <div class="bento__cap">Fasting Prayer</div>
-        </div>
-        <div class="bento__item" style="grid-column:3;grid-row:3" onclick="openLightbox(8)">
-          <picture>
-            <source srcset="images/gallery/g9.webp" type="image/webp">
-            <img src="images/gallery/g9.webp" alt="Youth Ministry" loading="lazy">
-          </picture>
-          <div class="bento__cap">Youth Ministry</div>
-        </div>
-        <div class="bento__item" style="grid-column:3;grid-row:4" onclick="openLightbox(9)">
-          <picture>
-            <source srcset="images/gallery/g10.webp" type="image/webp">
-            <img src="images/gallery/g10.webp" alt="Women's Fellowship" loading="lazy">
-          </picture>
-          <div class="bento__cap">Women's Fellowship</div>
-        </div>
+          <!-- GROUP 1 — rows 1–2 -->
+          <div class="bento__item" style="grid-column:1;grid-row:1" data-cat="worship"   onclick="openLightbox(0)">
+            <picture>
+              <source srcset="images/gallery/g1.webp" type="image/webp">
+              <img src="images/gallery/g1.webp" alt="Church Gathering" loading="eager">
+            </picture>
+            <div class="bento__badge">Worship</div>
+            <div class="bento__cap">Church Gathering</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:1;grid-row:2" data-cat="worship"   onclick="openLightbox(1)">
+            <picture>
+              <source srcset="images/gallery/g2.webp" type="image/webp">
+              <img src="images/gallery/g2.webp" alt="Worship Service" loading="lazy">
+            </picture>
+            <div class="bento__badge">Worship</div>
+            <div class="bento__cap">Worship Service</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:2;grid-row:1/3" data-cat="community" onclick="openLightbox(2)">
+            <picture>
+              <source srcset="images/gallery/g3.webp" type="image/webp">
+              <img src="images/gallery/g3.webp" alt="Community" loading="lazy">
+            </picture>
+            <div class="bento__badge">Community</div>
+            <div class="bento__cap">Community</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:3;grid-row:1" data-cat="events"    onclick="openLightbox(3)">
+            <picture>
+              <source srcset="images/gallery/g4.webp" type="image/webp">
+              <img src="images/gallery/g4.webp" alt="Prayer Night" loading="lazy">
+            </picture>
+            <div class="bento__badge">Events</div>
+            <div class="bento__cap">Prayer Night</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:3;grid-row:2" data-cat="community" onclick="openLightbox(4)">
+            <picture>
+              <source srcset="images/gallery/g5.webp" type="image/webp">
+              <img src="images/gallery/g5.webp" alt="Sunday School" loading="lazy">
+            </picture>
+            <div class="bento__badge">Community</div>
+            <div class="bento__cap">Sunday School</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <!-- GROUP 2 — rows 3–4 -->
+          <div class="bento__item" style="grid-column:1;grid-row:3" data-cat="events"    onclick="openLightbox(5)">
+            <picture>
+              <source srcset="images/gallery/g6.webp" type="image/webp">
+              <img src="images/gallery/g6.webp" alt="Deliverance Meeting" loading="lazy">
+            </picture>
+            <div class="bento__badge">Events</div>
+            <div class="bento__cap">Deliverance Meeting</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:1;grid-row:4" data-cat="outreach"  onclick="openLightbox(6)">
+            <picture>
+              <source srcset="images/gallery/g7.webp" type="image/webp">
+              <img src="images/gallery/g7.webp" alt="Gospel Ministry" loading="lazy">
+            </picture>
+            <div class="bento__badge">Outreach</div>
+            <div class="bento__cap">Gospel Ministry</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:2;grid-row:3/5" data-cat="worship"  onclick="openLightbox(7)">
+            <picture>
+              <source srcset="images/gallery/g8.webp" type="image/webp">
+              <img src="images/gallery/g8.webp" alt="Fasting Prayer" loading="lazy">
+            </picture>
+            <div class="bento__badge">Worship</div>
+            <div class="bento__cap">Fasting Prayer</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:3;grid-row:3" data-cat="community" onclick="openLightbox(8)">
+            <picture>
+              <source srcset="images/gallery/g9.webp" type="image/webp">
+              <img src="images/gallery/g9.webp" alt="Youth Ministry" loading="lazy">
+            </picture>
+            <div class="bento__badge">Community</div>
+            <div class="bento__cap">Youth Ministry</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+          <div class="bento__item" style="grid-column:3;grid-row:4" data-cat="community" onclick="openLightbox(9)">
+            <picture>
+              <source srcset="images/gallery/g10.webp" type="image/webp">
+              <img src="images/gallery/g10.webp" alt="Women's Fellowship" loading="lazy">
+            </picture>
+            <div class="bento__badge">Community</div>
+            <div class="bento__cap">Women's Fellowship</div>
+            <div class="bento__zoom">🔍</div>
+          </div>
+
+        </div><!-- /bento -->
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- LIGHTBOX -->
+
+    <!-- ══ INSTAGRAM CTA ══ -->
+    <div class="gl-insta-cta">
+      <div class="gl-wrap">
+        <div class="gl-insta-cta__title">See More on Instagram</div>
+        <p class="gl-insta-cta__sub">Follow us for daily inspiration, event photos, and glimpses of our church family.</p>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch?igsh=aHN3ZmQwYmE3MXow"
+           target="_blank" rel="noopener" class="gl-insta-cta__btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          @elimnewjerusalemchurch
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- ══ LIGHTBOX ══ -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-    <div class="lightbox__counter" id="lb-counter"></div>
-    <button class="lightbox__close" onclick="closeLightbox()" aria-label="Close">✕</button>
-    <button class="lightbox__nav lightbox__nav--prev" onclick="navLightbox(-1)" aria-label="Previous">&#8249;</button>
-    <button class="lightbox__nav lightbox__nav--next" onclick="navLightbox(1)"  aria-label="Next">&#8250;</button>
+    <div class="lightbox__counter" id="lb-counter" aria-live="polite"></div>
+    <button class="lightbox__close" onclick="closeLightbox()" aria-label="Close photo viewer">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" onclick="navLightbox(-1)" aria-label="Previous photo">&#8249;</button>
+    <button class="lightbox__nav lightbox__nav--next" onclick="navLightbox(1)"  aria-label="Next photo">&#8250;</button>
     <div class="lightbox__inner">
-      <img class="lightbox__img" id="lb-img" src="" alt="" style="aspect-ratio:4/3;min-height:120px">
+      <img class="lightbox__img" id="lb-img" src="" alt="" style="aspect-ratio:4/3;min-height:120px;">
       <p class="lightbox__caption" id="lb-caption"></p>
     </div>
   </div>
 
-</main>
 
+  <!-- ══ FOOTER ══ -->
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__rich">
@@ -198,33 +487,23 @@
         <div class="site-footer__col">
           <div class="site-footer__heading">Quick Links</div>
           <nav aria-label="Footer navigation">
-            <a href="index.html" class="site-footer__link">🏠 Home</a>
-            <a href="about.html" class="site-footer__link">✝ About</a>
-            <a href="events.html" class="site-footer__link">📅 Live &amp; Events</a>
-            <a href="bible.html" class="site-footer__link">📖 Bible Reader</a>
-            <a href="gallery.html" class="site-footer__link">🖼 Gallery</a>
+            <a href="index.html"      class="site-footer__link">🏠 Home</a>
+            <a href="about.html"      class="site-footer__link">✝ About</a>
+            <a href="events.html"     class="site-footer__link">📅 Sermons &amp; Events</a>
+            <a href="bible.html"      class="site-footer__link">📖 Bible Reader</a>
+            <a href="gallery.html"    class="site-footer__link">🖼 Gallery</a>
             <a href="ministries.html" class="site-footer__link">🙏 Ministries</a>
-            <a href="contact.html" class="site-footer__link">✉ Contact</a>
-            <a href="imagegen.html" class="site-footer__link">🖼️ Scripture Cards</a>
+            <a href="contact.html"    class="site-footer__link">✉ Contact</a>
+            <a href="imagegen.html"   class="site-footer__link">🖼️ Scripture Cards</a>
           </nav>
         </div>
         <div class="site-footer__col">
           <div class="site-footer__heading">Connect With Us</div>
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social">
-            <span aria-hidden="true">▶</span> YouTube — Main Channel
-          </a>
-          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social">
-            <span aria-hidden="true">📱</span> YouTube — ENJC Shorts
-          </a>
-          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social">
-            <span aria-hidden="true">📸</span> Instagram
-          </a>
-          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social">
-            <span aria-hidden="true">👥</span> Facebook
-          </a>
-          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social">
-            <span aria-hidden="true">💬</span> WhatsApp
-          </a>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social"><span>▶</span> YouTube — Main Channel</a>
+          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social"><span>📱</span> YouTube — ENJC Shorts</a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social"><span>📸</span> Instagram</a>
+          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social"><span>👥</span> Facebook</a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social"><span>💬</span> WhatsApp</a>
           <div class="site-footer__services">
             <div class="site-footer__heading" style="margin-top:16px">Service Times</div>
             <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
@@ -240,80 +519,110 @@
     </div>
   </footer>
 
-
   <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
      class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
   </a>
-
   <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
 
   <nav class="bottom-nav" aria-label="Mobile navigation">
-    <a href="index.html" class="bottom-nav__item"><span class="bottom-nav__icon" aria-hidden="true">🏠</span><span class="bottom-nav__label">Home</span></a>
-    <a href="about.html" class="bottom-nav__item"><span class="bottom-nav__icon" aria-hidden="true">✝</span><span class="bottom-nav__label">About</span></a>
+    <a href="index.html"   class="bottom-nav__item"><span class="bottom-nav__icon">🏠</span><span class="bottom-nav__label">Home</span></a>
+    <a href="events.html"  class="bottom-nav__item"><span class="bottom-nav__icon">📺</span><span class="bottom-nav__label">Sermons</span></a>
     <div class="bottom-nav__center"><a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a></div>
-    <a href="events.html" class="bottom-nav__item"><span class="bottom-nav__icon" aria-hidden="true">📅</span><span class="bottom-nav__label">Events</span></a>
-    <a href="contact.html" class="bottom-nav__item"><span class="bottom-nav__icon" aria-hidden="true">✉</span><span class="bottom-nav__label">Contact</span></a>
+    <a href="ministries.html" class="bottom-nav__item"><span class="bottom-nav__icon">🙏</span><span class="bottom-nav__label">Ministries</span></a>
+    <a href="contact.html" class="bottom-nav__item"><span class="bottom-nav__icon">✉</span><span class="bottom-nav__label">Contact</span></a>
   </nav>
 
-  <style>
-/* BENTO GRID */
-.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(160px,22vw,240px);gap:12px}
-.bento__item{border-radius:16px;overflow:hidden;cursor:pointer;position:relative;background:var(--color-bg-2);border:1px solid var(--color-border);transition:transform .2s,border-color .2s}
-.bento__item:hover{transform:scale(1.015);border-color:var(--color-gold-border)}
-.bento__item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
-.bento__item:hover img{transform:scale(1.06)}
-.bento__cap{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:12px;font-weight:600;color:#fff;opacity:0;transition:opacity .2s}.bento__item:hover .bento__cap{opacity:1}@media(hover:none){.bento__cap{opacity:1}}
-.bento__item:hover .bento__cap{opacity:1}
-@media(max-width:768px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(140px,24vw,200px)}.bento__item[style*="grid-row:1/3"],.bento__item[style*="grid-row:3/5"]{grid-row:span 1!important;grid-column:auto!important}.bento__item{grid-column:auto!important}}
-@media(max-width:480px){.bento{grid-template-columns:1fr;grid-auto-rows:220px}.bento__item{grid-column:1!important;grid-row:auto!important}}
-/* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:20px}
-.lightbox.open{display:flex}
-.lightbox__inner{max-width:92vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:12px}
-.lightbox__img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:12px;display:block}
-.lightbox__caption{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);text-align:center}
-.lightbox__close{position:fixed;top:20px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.14);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;transition:background .2s}
-.lightbox__close:hover{background:rgba(255,255,255,.28)}
-.lightbox__nav{position:fixed;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.14);border:none;color:#fff;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;transition:background .2s}
-.lightbox__nav:hover{background:rgba(255,255,255,.28)}
-.lightbox__nav--prev{left:16px}.lightbox__nav--next{right:16px}
-.lightbox__counter{position:fixed;top:22px;left:50%;transform:translateX(-50%);font-size:12px;color:rgba(255,255,255,.5);background:rgba(0,0,0,.4);padding:4px 12px;border-radius:99px;z-index:10000}
-  </style>
-  <script>
-        const _supportsWebP=(()=>{try{return document.createElement('canvas').toDataURL('image/webp').startsWith('data:image/webp')}catch(e){return false}})();
-    const _ext=_supportsWebP?'webp':'jpg';
-    const IMAGES=[
-      {src:'images/gallery/g1.'+_ext,  caption:'Church Gathering'},
-      {src:'images/gallery/g2.'+_ext,  caption:'Worship Service'},
-      {src:'images/gallery/g3.'+_ext,  caption:'Community'},
-      {src:'images/gallery/g4.'+_ext,  caption:'Prayer Night'},
-      {src:'images/gallery/g5.'+_ext,  caption:'Sunday School'},
-      {src:'images/gallery/g6.'+_ext,  caption:'Deliverance Meeting'},
-      {src:'images/gallery/g7.'+_ext,  caption:'Gospel Ministry'},
-      {src:'images/gallery/g8.'+_ext,  caption:'Fasting Prayer'},
-      {src:'images/gallery/g9.'+_ext,  caption:'Youth Ministry'},
-      {src:'images/gallery/g10.'+_ext, caption:"Women's Fellowship"},
-    ];
-    let cur=0;
-    function openLightbox(i){cur=i;render();document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden'}
-    function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow=''}
-    function navLightbox(d){cur=(cur+d+IMAGES.length)%IMAGES.length;render()}
-    function render(){const item=IMAGES[cur];document.getElementById('lb-img').src=item.src;document.getElementById('lb-img').alt=item.caption;document.getElementById('lb-caption').textContent=item.caption;document.getElementById('lb-counter').textContent=(cur+1)+' / '+IMAGES.length}
-    document.addEventListener('DOMContentLoaded',function(){
-      const lb=document.getElementById('lightbox');
-      lb.addEventListener('click',function(e){if(e.target===this)closeLightbox()});
-      document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='ArrowRight')navLightbox(1);if(e.key==='ArrowLeft')navLightbox(-1);if(e.key==='Escape')closeLightbox()});
-      let tx=0;
-      lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
-      lb.addEventListener('touchend',function(e){const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)navLightbox(dx<0?1:-1)},{passive:true});
-    });
-  </script>
-  
-<script src="js/premium-upgrade.js" defer></script>
 
+  <!-- ══ GALLERY JS ══ -->
+  <script>
+  (function() {
+    'use strict';
+
+    /* ── Image list ── */
+    var supportsWebP = (function() {
+      try { return document.createElement('canvas').toDataURL('image/webp').startsWith('data:image/webp'); }
+      catch(e) { return false; }
+    })();
+    var ext = supportsWebP ? 'webp' : 'jpg';
+    var IMAGES = [
+      { src: 'images/gallery/g1.'  + ext, caption: 'Church Gathering'   },
+      { src: 'images/gallery/g2.'  + ext, caption: 'Worship Service'    },
+      { src: 'images/gallery/g3.'  + ext, caption: 'Community'          },
+      { src: 'images/gallery/g4.'  + ext, caption: 'Prayer Night'       },
+      { src: 'images/gallery/g5.'  + ext, caption: 'Sunday School'      },
+      { src: 'images/gallery/g6.'  + ext, caption: 'Deliverance Meeting'},
+      { src: 'images/gallery/g7.'  + ext, caption: 'Gospel Ministry'    },
+      { src: 'images/gallery/g8.'  + ext, caption: 'Fasting Prayer'     },
+      { src: 'images/gallery/g9.'  + ext, caption: 'Youth Ministry'     },
+      { src: 'images/gallery/g10.' + ext, caption: "Women's Fellowship" },
+    ];
+    var cur = 0;
+
+    /* ── Lightbox ── */
+    function render() {
+      var item = IMAGES[cur];
+      document.getElementById('lb-img').src     = item.src;
+      document.getElementById('lb-img').alt     = item.caption;
+      document.getElementById('lb-caption').textContent = item.caption;
+      document.getElementById('lb-counter').textContent = (cur + 1) + ' / ' + IMAGES.length;
+    }
+    window.openLightbox = function(i) {
+      cur = i; render();
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+    window.closeLightbox = function() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    };
+    window.navLightbox = function(d) {
+      cur = (cur + d + IMAGES.length) % IMAGES.length; render();
+    };
+
+    /* ── Filter ── */
+    document.querySelectorAll('.gl-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var filter = btn.getAttribute('data-gfilter');
+        // Update active state
+        document.querySelectorAll('.gl-filter-btn').forEach(function(b) { b.classList.remove('is-on'); });
+        btn.classList.add('is-on');
+        // Show/hide items
+        document.querySelectorAll('.bento__item').forEach(function(item) {
+          var cat = item.getAttribute('data-cat') || 'all';
+          if (filter === 'all' || cat === filter) {
+            item.removeAttribute('hidden');
+          } else {
+            item.setAttribute('hidden', '');
+          }
+        });
+      });
+    });
+
+    /* ── Keyboard + Touch ── */
+    document.addEventListener('DOMContentLoaded', function() {
+      var lb = document.getElementById('lightbox');
+      lb.addEventListener('click', function(e) { if (e.target === this) window.closeLightbox(); });
+      document.addEventListener('keydown', function(e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'ArrowRight') window.navLightbox(1);
+        if (e.key === 'ArrowLeft')  window.navLightbox(-1);
+        if (e.key === 'Escape')     window.closeLightbox();
+      });
+      var tx = 0;
+      lb.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].clientX - tx;
+        if (Math.abs(dx) > 50) window.navLightbox(dx < 0 ? 1 : -1);
+      }, { passive: true });
+    });
+
+  })();
+  </script>
+
+  <script src="js/premium-upgrade.js" defer></script>
   <script src="js/mobile-ux-fixes.js" defer></script>
   <script src="js/design-upgrade.js" defer></script>
 </body>
