@@ -87,12 +87,12 @@ img{max-width:100%;display:block;}
 }
 .hero-bg{
   position:absolute;inset:0;
-  background:var(--navy-dark);
+  background: transparent;
 }
 /* Photo placeholder — replace with real image */
 .hero-photo{
   position:absolute;inset:0;
-  background:linear-gradient(135deg,#0a1628 0%,#0f2245 40%,#0a1830 100%);
+  background: transparent;
   display:flex;align-items:center;justify-content:center;
 }
 .hero-photo-hint{
@@ -524,6 +524,27 @@ img{max-width:100%;display:block;}
   body{padding-bottom:60px;}
   .wa-float{bottom:80px;}
 }
+
+/* Video background override */
+.hero { background: #030a1a; }
+.hero-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 0; pointer-events: none;
+}
+.hero-overlay {
+  background: linear-gradient(
+    to top,
+    #030a1a 0%,
+    rgba(3,10,26,0.80) 35%,
+    rgba(3,10,26,0.45) 65%,
+    rgba(3,10,26,0.20) 100%
+  );
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+}
 </style>
 </head>
 <body>
@@ -557,19 +578,19 @@ img{max-width:100%;display:block;}
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-photo">
-      <!-- Replace src below with real church photo: slide1.jpg or slide2.jpg -->
-      <!-- <img src="images/slide1.jpg" alt="ENJC Worship" style="width:100%;height:100%;object-fit:cover;"> -->
-      <div class="hero-photo-hint">
-        <i class="ti ti-photo" style="font-size:32px;color:#1e3060;"></i>
-        <p>இங்கே church photo வரும்<br><code style="font-size:9px;color:#2a4060;">slide1.jpg / slide2.jpg</code></p>
-      </div>
-    </div>
-    <!-- Atmospheric glow -->
-    <div class="hero-light" style="width:600px;height:600px;top:-200px;left:30%;"></div>
-    <div class="hero-light" style="width:300px;height:300px;bottom:-100px;right:20%;opacity:0.5;"></div>
-  </div>
+  <!-- Cinematic video background -->
+  <video
+    class="hero-video"
+    src="images/home/hero.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  ></video>
+  <!-- Fallback poster / still frame for slow connections -->
+  <div class="hero-video-fallback" aria-hidden="true"></div>
   <div class="hero-overlay"></div>
   <div class="hero-side-bar"></div>
 
