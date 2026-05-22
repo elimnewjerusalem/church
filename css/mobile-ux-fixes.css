@@ -40,11 +40,9 @@
 @media (max-width: 900px) {
   .wa-float {
     bottom: 80px !important; /* 64px nav + 16px gap */
-    right: 18px !important;
   }
   .scroll-top-btn {
-    bottom: 136px !important; /* 80px + 50px wa-float height + 6px gap */
-    right: 18px !important;
+    bottom: 80px !important;
   }
 }
 
@@ -122,7 +120,7 @@
 
 /* ── 9. SERVICE-TIME COUNTDOWN BANNER ────────────────────── */
 #enjc-service-banner {
-  display: none; /* shown by JS via .is-visible class */
+  display: none; /* shown by JS when next service is within 3h */
   position: sticky;
   top: 64px; /* below nav */
   z-index: 800;
@@ -131,6 +129,7 @@
   padding: 10px 16px;
   font-size: 13px;
   color: var(--color-text, #f0ece4);
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 10px;

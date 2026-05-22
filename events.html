@@ -2,288 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/events.html">
-  <link rel="icon" type="image/png" href="images/logo/logo.png">
-  <link rel="apple-touch-icon" href="images/logo/logo.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sermons &amp; Events | ENJC — Elim New Jerusalem Church</title>
-  <meta name="description" content="ENJC live streams, recent services, verse reels, and community testimonials.">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-
-  <link rel="preconnect" href="https://www.googleapis.com">
-  <link rel="preconnect" href="https://www.youtube.com">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live & Events | ENJC</title>
+  <meta name="description" content="ENJC live streams, recent services, verse reels, and community testimonials.">
   <script src="js/site.js"></script>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/enjc-premium.css">
-  <link rel="stylesheet" href="css/design-upgrade.css">
-  <link rel="stylesheet" href="css/mobile-ux-fixes.css">
-  <link rel="stylesheet" href="css/events.css">
-
-  <meta property="og:type"         content="website">
-  <meta property="og:url"          content="https://elimnewjerusalem.github.io/church/events.html">
-  <meta property="og:title"        content="Sermons &amp; Events | ENJC">
-  <meta property="og:description"  content="Upcoming events, deliverance meetings, and programmes at Elim New Jerusalem Church, Chennai.">
-  <meta property="og:image"        content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta name="twitter:card"        content="summary">
-  <meta name="twitter:title"       content="Sermons &amp; Events | ENJC">
-  <meta name="twitter:description" content="Upcoming events, deliverance meetings, and programmes at ENJC, Chennai.">
-  <meta name="twitter:image"       content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-
-  <style>
-  /* ═══════════════════════════════════════
-     EVENTS PAGE — Elevation Style
-  ═══════════════════════════════════════ */
-  .ev-wrap {
-    max-width: var(--max-width, 1280px);
-    margin: 0 auto;
-    padding: 0 clamp(20px,5vw,64px);
-  }
-  .ev-eyebrow {
-    display: flex; align-items: center; gap: 10px;
-    font-family: var(--font-body); font-size: 11px; font-weight: 600;
-    letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold);
-    margin-bottom: 14px;
-  }
-  .ev-eyebrow span { display: inline-block; width: 28px; height: 1px; background: var(--gold); opacity: .6; }
-  .ev-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4.5vw, 3rem);
-    font-weight: 700; color: var(--text); line-height: 1.1; margin-bottom: 14px;
-  }
-  .ev-title em { font-style: italic; color: var(--gold-warm); }
-  .ev-desc { font-family: var(--font-body); font-size: 15px; color: var(--text-muted); max-width: 580px; line-height: 1.8; }
-
-  /* ── PAGE HERO ── */
-  .ep-hero {
-    background: var(--bg);
-    padding: clamp(80px,10vw,130px) 0 clamp(60px,8vw,96px);
-    border-bottom: 1px solid var(--border);
-    position: relative; overflow: hidden;
-  }
-  .ep-hero::before {
-    content: ''; position: absolute; top: -80px; left: 50%;
-    transform: translateX(-50%); width: 700px; height: 400px;
-    background: radial-gradient(ellipse at center, rgba(147,184,255,.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .ep-hero .ev-wrap { position: relative; z-index: 1; }
-  .ep-hero__title {
-    font-family: var(--font-display);
-    font-size: clamp(3rem,7vw,5.5rem);
-    font-weight: 700; color: var(--text); line-height: 1.05; margin-bottom: 20px;
-    opacity: 0; animation: epFadeUp .9s .2s cubic-bezier(.22,1,.36,1) forwards;
-  }
-  .ep-hero__title em { font-style: italic; color: var(--gold-warm); }
-  .ep-hero__sub {
-    font-family: var(--font-body); font-size: clamp(15px,1.8vw,17px);
-    color: rgba(234,240,255,.65); max-width: 540px; line-height: 1.8;
-    opacity: 0; animation: epFadeUp .9s .4s cubic-bezier(.22,1,.36,1) forwards;
-  }
-  @keyframes epFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* ── SEARCH + FILTER ── */
-  .ep-search-wrap {
-    background: var(--bg-2); border-bottom: 1px solid var(--border);
-    padding: 24px 0;
-    position: sticky; top: var(--nav-height, 64px); z-index: 50;
-    backdrop-filter: blur(20px);
-  }
-  .ep-search-inner {
-    max-width: var(--max-width, 1280px); margin: 0 auto;
-    padding: 0 clamp(20px,5vw,64px);
-    display: flex; flex-direction: column; gap: 14px;
-  }
-  .ep-search-bar {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--bg-3); border: 1px solid var(--border);
-    border-radius: 10px; padding: 0 16px;
-    transition: border-color .2s;
-  }
-  .ep-search-bar:focus-within { border-color: var(--border-gold); }
-  .ep-search-bar input {
-    flex: 1; background: transparent; border: none; outline: none;
-    padding: 14px 0; font-family: var(--font-body); font-size: 14px;
-    color: var(--text);
-  }
-  .ep-search-bar input::placeholder { color: var(--text-faint); }
-  .ep-search-clear {
-    background: none; border: none; cursor: pointer;
-    color: var(--text-faint); font-size: 16px; padding: 4px 2px;
-    display: none;
-  }
-  .ep-filter-row {
-    display: flex; gap: 8px; flex-wrap: wrap;
-  }
-  .ep-filter-btn {
-    padding: 7px 14px; border-radius: 99px;
-    background: var(--bg-3); border: 1px solid var(--border);
-    font-family: var(--font-body); font-size: 12px; font-weight: 500;
-    color: var(--text-muted); cursor: pointer; transition: all .2s;
-    white-space: nowrap;
-  }
-  .ep-filter-btn:hover { border-color: var(--border-gold); color: var(--gold); }
-  .ep-filter-btn.is-on {
-    background: var(--gold-bg); border-color: var(--border-gold);
-    color: var(--gold); font-weight: 600;
-  }
-
-  /* ── LIVE BAND ── */
-  .ep-live-band {
-    background: var(--bg); padding: clamp(64px,8vw,100px) 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* ── COUNTDOWN ── */
-  .ep-countdown {
-    background: var(--bg-2); padding: clamp(48px,6vw,80px) 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .ep-countdown__inner { max-width: 640px; margin: 0 auto; text-align: center; }
-  .ep-countdown__units { display: flex; gap: 14px; justify-content: center; margin-top: 28px; }
-  .ep-cd-unit {
-    flex: 1; min-width: 72px;
-    background: var(--bg-3); border: 1px solid var(--border-gold);
-    border-radius: 12px; padding: 20px 12px; text-align: center;
-  }
-  .ep-cd-val {
-    font-family: var(--font-display); font-size: clamp(2rem,4vw,2.8rem);
-    font-weight: 700; color: var(--gold); line-height: 1;
-  }
-  .ep-cd-lbl { font-family: var(--font-body); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-faint); margin-top: 6px; }
-  .ep-countdown__cta { margin-top: 28px; }
-
-  /* ── VIDEO SECTIONS ── */
-  .ep-videos { background: var(--bg); padding: clamp(64px,8vw,100px) 0; border-bottom: 1px solid var(--border); }
-  .ep-videos--alt { background: var(--bg-2); }
-  .ep-video-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px;
-  }
-  .ep-video-card {
-    background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px;
-    overflow: hidden; transition: all .25s cubic-bezier(.22,1,.36,1);
-    text-decoration: none; display: flex; flex-direction: column;
-  }
-  .ep-videos--alt .ep-video-card { background: var(--bg-3); }
-  .ep-video-card:hover { border-color: var(--border-gold); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0,0,0,.5); }
-  .ep-video-thumb {
-    position: relative; aspect-ratio: 16/9; overflow: hidden; background: #000;
-  }
-  .ep-video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-  .ep-video-card:hover .ep-video-thumb img { transform: scale(1.04); }
-  .ep-video-play {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,.3); transition: background .2s;
-  }
-  .ep-video-card:hover .ep-video-play { background: rgba(0,0,0,.1); }
-  .ep-video-play__btn {
-    width: 48px; height: 48px; border-radius: 50%;
-    background: rgba(255,0,0,.9); display: flex; align-items: center; justify-content: center;
-    transition: transform .2s;
-  }
-  .ep-video-card:hover .ep-video-play__btn { transform: scale(1.1); }
-  .ep-video-info { padding: 16px 18px 20px; flex: 1; }
-  .ep-video-badge {
-    display: inline-block; margin-bottom: 8px;
-    padding: 3px 10px; border-radius: 99px; font-size: 10px; font-weight: 700;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
-  .ep-video-badge--live   { background: #ff0000; color: #fff; }
-  .ep-video-badge--sun    { background: rgba(124,108,240,.3); color: #a99ef8; border: 1px solid rgba(124,108,240,.3); }
-  .ep-video-badge--fri    { background: rgba(5,150,105,.2); color: #34d399; border: 1px solid rgba(5,150,105,.3); }
-  .ep-video-badge--del    { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.2); }
-  .ep-video-badge--testi  { background: rgba(147,184,255,.15); color: var(--gold); border: 1px solid var(--border-gold); }
-  .ep-video-badge--short  { background: rgba(251,191,36,.15); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
-  .ep-video-title {
-    font-family: var(--font-display); font-size: 1rem; font-weight: 700;
-    color: var(--text); line-height: 1.4; margin-bottom: 6px;
-  }
-  .ep-video-date { font-family: var(--font-body); font-size: 11px; color: var(--text-faint); }
-  .ep-view-all-wrap { text-align: center; margin-top: 32px; }
-  .ep-view-all {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 30px; background: var(--gold-bg); border: 1px solid var(--border-gold);
-    border-radius: 8px; font-family: var(--font-body); font-size: 13px; font-weight: 600;
-    color: var(--gold); text-decoration: none; transition: all .2s;
-  }
-  .ep-view-all:hover { background: var(--gold-bg-rich); transform: translateY(-1px); }
-
-  /* ── REGULAR SERVICES ── */
-  .ep-services {
-    background: var(--bg-2); padding: clamp(64px,8vw,100px) 0; border-bottom: 1px solid var(--border);
-  }
-  .ep-services__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; }
-  .ep-service-col {}
-  .ep-service-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 5px 14px; border-radius: 99px;
-    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    color: #fff; margin-bottom: 18px;
-  }
-  .ep-service-badge--sun   { background: #7c6cf0; }
-  .ep-service-badge--fri   { background: #059669; }
-  .ep-service-badge--pro   { background: #0369a1; }
-  .ep-service-time {
-    font-family: var(--font-body); font-size: 12px; color: var(--text-faint); margin-bottom: 16px;
-  }
-
-  /* ── TESTIMONIALS CAROUSEL ── */
-  .ep-testi {
-    background: var(--bg); padding: clamp(64px,8vw,100px) 0;
-  }
-  .ep-testi__inner { max-width: 780px; margin: 0 auto; text-align: center; }
-  .ep-testi__card {
-    background: var(--bg-2); border: 1px solid var(--border-gold);
-    border-radius: 20px; padding: clamp(28px,4vw,48px);
-    margin-top: 40px;
-  }
-  .ep-testi__quote-mark { font-family: var(--font-display); font-size: 4rem; line-height: .7; color: var(--gold); opacity: .4; margin-bottom: 12px; }
-  .ep-testi__text {
-    font-family: var(--font-display); font-size: clamp(1.05rem,2vw,1.3rem);
-    font-style: italic; color: var(--text); line-height: 1.8; margin-bottom: 20px;
-  }
-  .ep-testi__author { font-family: var(--font-body); font-size: 12px; font-weight: 600; color: var(--text-faint); }
-  .ep-testi__nav { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-  .ep-testi__nav-btn {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: var(--bg-3); border: 1px solid var(--border);
-    color: var(--text-muted); cursor: pointer; font-size: 16px;
-    display: flex; align-items: center; justify-content: center; transition: all .2s;
-  }
-  .ep-testi__nav-btn:hover { border-color: var(--border-gold); color: var(--gold); }
-
-  /* ── SEARCH RESULTS ── */
-  .ep-search-results { background: var(--bg); padding: clamp(48px,6vw,80px) 0; display: none; }
-  .ep-search-results.is-visible { display: block; }
-  .ep-results-count { font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
-
-  /* ── LOADING STATE ── */
-  .ep-loading {
-    text-align: center; padding: 56px 20px;
-    font-family: var(--font-body); font-size: 14px; color: var(--text-faint);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .ep-video-grid { grid-template-columns: repeat(2,1fr); }
-    .ep-services__grid { grid-template-columns: 1fr; gap: 32px; }
-  }
-  @media (max-width: 600px) {
-    .ep-video-grid { grid-template-columns: 1fr; }
-    .ep-countdown__units { gap: 8px; }
-  }
-  </style>
 </head>
-
 <body>
-  <a href="#main" class="skip-to-content">Skip to main content</a>
-
-  <!-- ══ NAV ══ -->
   <header>
     <nav class="site-nav" aria-label="Primary navigation">
       <div class="container">
@@ -296,337 +25,207 @@
             <div class="nav-logo__sub">Elim New Jerusalem Church</div>
           </div>
         </a>
-        <ul class="nav-links" aria-label="Main navigation">
-          <li><a href="index.html"      class="nav-link">Home</a></li>
-          <li><a href="events.html"     class="nav-link nav-link--active" aria-current="page">Sermons</a></li>
-          <li><a href="about.html"      class="nav-link">About</a></li>
-          <li><a href="ministries.html" class="nav-link">Ministries</a></li>
-          <li><a href="contact.html"    class="nav-link">Visit Us</a></li>
-        </ul>
+        <div class="nav-links" role="list"><a href="index.html" class="nav-link" role="listitem">Home</a><a href="about.html" class="nav-link" role="listitem">About</a><a href="gallery.html" class="nav-link" role="listitem">Gallery</a><a href="ministries.html" class="nav-link" role="listitem">Ministries</a><a href="events.html" class="nav-link  nav-link--active" role="listitem">Events</a><a href="contact.html" class="nav-link" role="listitem">Contact</a><a href="bible.html" class="nav-link" role="listitem">Bible</a></div>
         <div class="nav-controls">
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
             <div class="theme-toggle__dot"></div>
           </button>
-          <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
-             target="_blank" rel="noopener" class="nav-visit-btn">Plan a Visit</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Elim+New+Jerusalem+Church+Tondiarpet+Chennai" target="_blank" rel="noopener" class="nav-visit-btn">
+            📍 Visit Us
+          </a>
         </div>
-        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
           <span class="nav-hamburger__line"></span>
           <span class="nav-hamburger__line"></span>
           <span class="nav-hamburger__line"></span>
         </button>
       </div>
-      <div class="mobile-menu" id="mobile-menu" role="menu">
-        <a href="index.html"      class="mobile-menu__link" role="menuitem">Home</a>
-        <a href="about.html"      class="mobile-menu__link" role="menuitem">About</a>
-        <a href="events.html"     class="mobile-menu__link is-active" role="menuitem">Sermons &amp; Events</a>
-        <a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a>
-        <a href="gallery.html"    class="mobile-menu__link" role="menuitem">Gallery</a>
-        <a href="contact.html"    class="mobile-menu__link" role="menuitem">Contact</a>
-        <a href="bible.html"      class="mobile-menu__link" role="menuitem">Bible Reader</a>
-        <a href="imagegen.html"   class="mobile-menu__link" role="menuitem">🖼️ Scripture Cards</a>
-      </div>
+      <div class="mobile-menu" id="mobile-menu" role="menu"><a href="index.html" class="mobile-menu__link" role="menuitem">Home</a><a href="about.html" class="mobile-menu__link" role="menuitem">About</a><a href="gallery.html" class="mobile-menu__link" role="menuitem">Gallery</a><a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a><a href="events.html" class="mobile-menu__link  is-active" role="menuitem">Events</a><a href="contact.html" class="mobile-menu__link" role="menuitem">Contact</a><a href="bible.html" class="mobile-menu__link" role="menuitem">Bible</a></div>
     </nav>
   </header>
 
+<main>
 
-  <main id="main">
+  <!-- Page hero -->
+  <section class="page-hero" aria-labelledby="page-title">
+    <div class="container">
+      <p class="section-tag">Live &amp; Schedule</p>
+      <h1 id="page-title">Live &amp; <em>Events</em></h1>
+      <p>Join us for worship, fellowship, and special gatherings</p>
+    </div>
+  </section>
 
-    <!-- ══ PAGE HERO ══ -->
-    <section class="ep-hero" aria-labelledby="page-title">
-      <div class="ev-wrap">
-        <div class="ev-eyebrow"><span></span> Live &amp; Schedule</div>
-        <h1 class="ep-hero__title" id="page-title">
-          Sermons &amp; <em>Events</em>
-        </h1>
-        <p class="ep-hero__sub">Join us for worship, fellowship, and special gatherings — live or on replay.</p>
-      </div>
-    </section>
+  <!-- Live Stream — rendered by js/live-stream.js -->
+  <section id="live-stream-section" class="reveal-on-scroll section-sm" aria-labelledby="live-heading">
+    <div class="container">
+      <p class="section-tag">Live Stream</p>
+      <h2 class="section-heading" id="live-heading" style="margin-bottom:24px;">Join Us <em>This Week</em></h2>
+      <!--
+        live-stream.js checks the current time against the service schedule.
+        • During service hours  → shows "LIVE NOW" badge + YouTube player
+        • Outside service hours → shows offline card with schedule times
+        To go live: set YOUTUBE_LIVE_IDS.mainChannel in js/live-stream.js
+      -->
+      <div id="live-stream-container"></div>
+    </div>
+  </section>
 
+  <div class="divider"></div>
 
-    <!-- ══ SEARCH + FILTER (sticky) ══ -->
-    <div class="ep-search-wrap" aria-label="Search and filter videos">
-      <div class="ep-search-inner">
-        <div class="ep-search-bar">
-          <span aria-hidden="true">🔍</span>
-          <input type="search" id="video-search-input"
-            placeholder="Search sermons, prayers, worship..." autocomplete="off"
-            aria-label="Search videos">
-          <button id="search-clear-btn" class="ep-search-clear" aria-label="Clear search">✕</button>
+  <!-- Countdown -->
+  <section class="reveal-on-scroll section-sm" style="background:var(--color-bg-2);" aria-label="Countdown to next service">
+    <div class="container">
+      <div style="max-width:640px;margin:0 auto;">
+        <p class="section-tag">Coming Up</p>
+        <h2 class="section-heading" style="margin-bottom:8px;">Next <em>Service</em></h2>
+        <p style="font-size:14px;color:var(--color-text-faint);margin-bottom:28px;">This countdown loads automatically. Join us for worship and be blessed.</p>
+        <div class="countdown" style="display:flex;gap:14px;flex-wrap:wrap;" role="timer" aria-live="polite" aria-label="Time until next Sunday service">
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-d" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Days</div></div>
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-h" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Hours</div></div>
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-m" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Mins</div></div>
+          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-s" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Secs</div></div>
         </div>
-        <div class="ep-filter-row" role="group" aria-label="Filter by topic">
-          <button class="ep-filter-btn enjc-filter-btn enjc-filter-active is-on" data-filter="all">🎬 All</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="live">🔴 Live</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="sermon">📖 Sermons</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="sunday">🙏 Sunday</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="friday">✝️ Friday</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="promise">🎯 Promise</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="deliverance">🔥 Deliverance</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="testimony">💬 Testimony</button>
-          <button class="ep-filter-btn enjc-filter-btn" data-filter="shorts">📱 Shorts</button>
+        <div style="margin-top:24px;">
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold">Get Notified on WhatsApp</a>
         </div>
       </div>
     </div>
+  </section>
 
+  <div class="divider"></div>
 
-    <!-- ══ SEARCH RESULTS (shown when filtering/searching) ══ -->
-    <section id="search-results-section" class="ep-search-results" aria-live="polite">
-      <div class="ev-wrap">
-        <p id="search-result-count" class="ep-results-count"></p>
-        <div class="ep-video-grid" id="search-results-grid"></div>
+  <!-- Recent Live Streams -->
+  <section class="reveal-on-scroll section" aria-labelledby="streams-heading">
+    <div class="container">
+      <p class="section-tag">Watch Again</p>
+      <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent Live <em>Streams</em></h2>
+      <p class="section-sub">Catch up on our latest worship services and devotionals</p>
+      <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
+      <div class="grid-3" id="recent-streams-grid"></div>
+      <div style="text-align:center;margin-top:28px;">
+        <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">View All on YouTube</a>
       </div>
-    </section>
+    </div>
+  </section>
 
+  <div class="divider"></div>
 
-    <!-- ══ LIVE STREAM ══ -->
-    <section id="live-stream-section" class="ep-live-band normal-section" aria-labelledby="live-heading">
-      <div class="ev-wrap">
-        <div class="ev-eyebrow"><span></span> Right Now</div>
-        <h2 class="ev-title" id="live-heading">Join Us <em>This Week</em></h2>
-        <p class="ev-desc">Live during service hours, or catch the replay any time.</p>
-        <div id="live-stream-container" style="margin-top:32px;"></div>
+  <!-- Most Watched -->
+  <section class="reveal-on-scroll section-alt" aria-labelledby="popular-heading">
+    <div class="container">
+      <p class="section-tag">Popular</p>
+      <h2 class="section-heading" id="popular-heading" style="margin-bottom:8px;">🔥 Most Watched <em>Messages</em></h2>
+      <p class="section-sub">Popular sermons and devotionals that touched hearts</p>
+            <!-- Populated by js/events.js from data/events.json → mostWatched[] -->
+      <div class="grid-3" id="most-watched-grid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Verse Reels -->
+  <section class="reveal-on-scroll section" aria-labelledby="reels-heading">
+    <div class="container">
+      <p class="section-tag">Short Videos</p>
+      <h2 class="section-heading" id="reels-heading" style="margin-bottom:8px;">📖 Verse <em>Reels</em></h2>
+      <p class="section-sub">Daily scripture encouragement in short videos</p>
+      <!-- Populated by js/events.js from data/events.json → verseReels[] -->
+      <div class="reels-row" id="verse-reels-row" style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;"></div>
+      <div style="text-align:center;margin-top:32px;">
+        <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">More Reels on YouTube</a>
       </div>
-    </section>
+    </div>
+  </section>
 
+  <div class="divider"></div>
 
-    <!-- ══ COUNTDOWN ══ -->
-    <section class="ep-countdown normal-section" aria-label="Countdown to next service">
-      <div class="ev-wrap">
-        <div class="ep-countdown__inner">
-          <div class="ev-eyebrow" style="justify-content:center;"><span></span> Coming Up <span></span></div>
-          <h2 class="ev-title" style="text-align:center;">Next <em>Service</em></h2>
-          <p class="ev-desc" style="margin:0 auto 0;text-align:center;">This countdown loads automatically.</p>
-          <div class="ep-countdown__units" role="timer" aria-live="polite" aria-label="Time until next Sunday service">
-            <div class="ep-cd-unit"><div class="ep-cd-val" id="cd-d">--</div><div class="ep-cd-lbl">Days</div></div>
-            <div class="ep-cd-unit"><div class="ep-cd-val" id="cd-h">--</div><div class="ep-cd-lbl">Hours</div></div>
-            <div class="ep-cd-unit"><div class="ep-cd-val" id="cd-m">--</div><div class="ep-cd-lbl">Mins</div></div>
-            <div class="ep-cd-unit"><div class="ep-cd-val" id="cd-s">--</div><div class="ep-cd-lbl">Secs</div></div>
-          </div>
-          <div class="ep-countdown__cta">
-            <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
-               style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--gold);color:var(--bg);font-family:var(--font-body);font-size:13px;font-weight:600;border-radius:8px;text-decoration:none;transition:all .2s;"
-               onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter=''">
-              💬 Get Notified on WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Community Testimonials -->
+  <section class="reveal-on-scroll section-alt" aria-labelledby="testimonials-heading">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto;text-align:center;">
+        <p class="section-tag" style="justify-content:center;">Community</p>
+        <h2 class="section-heading" id="testimonials-heading" style="margin-bottom:28px;">💬 What People Are <em>Saying</em></h2>
 
-
-    <!-- ══ RECENT LIVE STREAMS ══ -->
-    <section class="ep-videos normal-section" aria-labelledby="streams-heading">
-      <div class="ev-wrap">
-        <div class="ev-eyebrow"><span></span> Watch Again</div>
-        <h2 class="ev-title" id="streams-heading">Recent <em>Live Streams</em></h2>
-        <p class="ev-desc">Catch up on our latest worship services and devotionals.</p>
-        <div class="ep-video-grid" id="recent-streams-grid">
-          <div class="ep-loading" style="grid-column:1/-1;">Loading…</div>
-        </div>
-        <div class="ep-view-all-wrap">
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="ep-view-all">
-            View All on YouTube →
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ══ REGULAR SERVICES ══ -->
-    <section class="ep-services normal-section" aria-label="Regular Services">
-      <div class="ev-wrap">
-        <div class="ev-eyebrow"><span></span> Every Week</div>
-        <h2 class="ev-title">Our Regular <em>Services</em></h2>
-        <p class="ev-desc">Join us in-person or watch live on YouTube.</p>
-        <div class="ep-services__grid">
-          <div>
-            <div class="ep-service-badge ep-service-badge--sun">🙏 Sunday Service</div>
-            <div class="ep-service-time">Sun · 5:30 / 8:30 AM &amp; 12:00 PM</div>
-            <div id="sunday-section"></div>
-          </div>
-          <div>
-            <div class="ep-service-badge ep-service-badge--fri">✝️ Friday Prayer</div>
-            <div class="ep-service-time">Fri · 11:00 AM – 1:30 PM</div>
-            <div id="friday-section"></div>
-          </div>
-          <div>
-            <div class="ep-service-badge ep-service-badge--pro">🎯 Promise Service</div>
-            <div class="ep-service-time">1st of Month · 5:30 AM</div>
-            <div id="promise-section"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ══ DELIVERANCE MEETINGS ══ -->
-    <section class="ep-videos ep-videos--alt normal-section" aria-label="Deliverance Meetings">
-      <div class="ev-wrap">
-        <div class="ev-eyebrow"><span></span> Power &amp; Freedom</div>
-        <h2 class="ev-title">Deliverance <em>Meetings</em></h2>
-        <p class="ev-desc">Experience God's power through special deliverance sessions.</p>
-        <div class="ep-video-grid" id="deliverance-grid">
-          <div class="ep-loading" style="grid-column:1/-1;">Loading…</div>
-        </div>
-        <div class="ep-view-all-wrap">
-          <a href="https://www.youtube.com/playlist?list=PLcsOT9w6kTBUbVgaE9w9rP6lA_EWwqPTj"
-             target="_blank" rel="noopener" class="ep-view-all">
-            View Full Playlist →
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ══ BELIEVERS TESTIMONY ══ -->
-    <section class="ep-videos normal-section" aria-label="Believers Testimony">
-      <div class="ev-wrap">
-        <div class="ev-eyebrow"><span></span> Glory to God</div>
-        <h2 class="ev-title">Believers <em>Testimony</em></h2>
-        <p class="ev-desc">Hear how God has transformed lives in our community.</p>
-        <div class="ep-video-grid" id="testimony-grid">
-          <div class="ep-loading" style="grid-column:1/-1;">Loading…</div>
-        </div>
-        <div class="ep-view-all-wrap">
-          <a href="https://youtube.com/playlist?list=PLcsOT9w6kTBXwTSQuvtQDI7gq3nZjIbxJ"
-             target="_blank" rel="noopener" class="ep-view-all">
-            View Full Playlist →
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ══ ENJC SHORTS ══ -->
-    <section class="ep-videos ep-videos--alt normal-section" aria-label="ENJC Shorts">
-      <div class="ev-wrap">
-        <div class="ev-eyebrow"><span></span> Quick &amp; Powerful</div>
-        <h2 class="ev-title">ENJC <em>Shorts</em></h2>
-        <p class="ev-desc">Short powerful clips from our ministry.</p>
-        <div class="ep-video-grid" id="shorts-grid">
-          <div class="ep-loading" style="grid-column:1/-1;">Loading…</div>
-        </div>
-        <div class="ep-view-all-wrap">
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial/shorts"
-             target="_blank" rel="noopener" class="ep-view-all">
-            View All Shorts →
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ══ COMMUNITY TESTIMONIALS ══ -->
-    <section class="ep-testi" aria-labelledby="testi-heading">
-      <div class="ev-wrap">
-        <div class="ep-testi__inner">
-          <div class="ev-eyebrow" style="justify-content:center;"><span></span> Community <span></span></div>
-          <h2 class="ev-title" id="testi-heading" style="text-align:center;">What People Are <em>Saying</em></h2>
-          <div class="ep-testi__card">
-            <div class="ep-testi__quote-mark" aria-hidden="true">"</div>
-            <p class="ep-testi__text" id="testimonial-text">
-              The Night Prayer meetings have completely transformed my prayer life. I feel God's presence so powerfully every time I attend.
+        <!-- Testimonial carousel -->
+        <div id="testimonial-container">
+          <blockquote class="card testimonial" style="background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:32px;text-align:left;">
+            <p id="testimonial-text" class="testimonial__text" style="font-family:var(--font-heading);font-size:1.05rem;font-style:italic;color:var(--color-text);line-height:1.8;margin-bottom:16px;">
+              &#8220;The Night Prayer meetings have completely transformed my prayer life. I feel God&#39;s presence so powerfully every time I attend.&#8221;
             </p>
-            <div class="ep-testi__author" id="testimonial-author">— ENJC Member</div>
-          </div>
-          <nav class="ep-testi__nav" aria-label="Testimonial navigation">
-            <button class="ep-testi__nav-btn" onclick="changeTestimonial(-1)" aria-label="Previous testimonial">&#10094;</button>
-            <button class="ep-testi__nav-btn" onclick="changeTestimonial(1)"  aria-label="Next testimonial">&#10095;</button>
-          </nav>
+            <footer id="testimonial-author" style="font-size:12px;color:var(--color-text-faint);font-weight:600;">— ENJC Member</footer>
+          </blockquote>
         </div>
+
+        <nav class="testimonial-nav" style="display:flex;justify-content:center;gap:8px;margin-top:18px;" aria-label="Testimonial navigation">
+          <button onclick="changeTestimonial(-1)" class="testimonial-nav__btn" style="width:36px;height:36px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-border);color:var(--color-text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;" aria-label="Previous testimonial">&#10094;</button>
+          <button onclick="changeTestimonial(1)"  class="testimonial-nav__btn" style="width:36px;height:36px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-border);color:var(--color-text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;" aria-label="Next testimonial">&#10095;</button>
+        </nav>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+</main>
 
-
-  <!-- ══ FOOTER ══ -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <div class="site-footer__rich">
-        <div class="site-footer__col">
-          <div class="site-footer__logo">ENJC</div>
-          <p class="site-footer__tagline">Elim New Jerusalem Church<br>Tondiarpet, Chennai</p>
-          <p class="site-footer__addr">📍 No.110E, Elaya Street, Tondiarpet, Chennai – 600 081</p>
-          <a href="tel:+919444345102" class="site-footer__phone">📞 +91 94443 45102</a>
-        </div>
-        <div class="site-footer__col">
-          <div class="site-footer__heading">Quick Links</div>
-          <nav aria-label="Footer navigation">
-            <a href="index.html"      class="site-footer__link">🏠 Home</a>
-            <a href="about.html"      class="site-footer__link">✝ About</a>
-            <a href="events.html"     class="site-footer__link">📅 Sermons &amp; Events</a>
-            <a href="bible.html"      class="site-footer__link">📖 Bible Reader</a>
-            <a href="gallery.html"    class="site-footer__link">🖼 Gallery</a>
-            <a href="ministries.html" class="site-footer__link">🙏 Ministries</a>
-            <a href="contact.html"    class="site-footer__link">✉ Contact</a>
-            <a href="imagegen.html"   class="site-footer__link">🖼️ Scripture Cards</a>
-          </nav>
-        </div>
-        <div class="site-footer__col">
-          <div class="site-footer__heading">Connect With Us</div>
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social"><span>▶</span> YouTube — Main Channel</a>
-          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social"><span>📱</span> YouTube — ENJC Shorts</a>
-          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social"><span>📸</span> Instagram</a>
-          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social"><span>👥</span> Facebook</a>
-          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social"><span>💬</span> WhatsApp</a>
-          <div class="site-footer__services">
-            <div class="site-footer__heading" style="margin-top:16px">Service Times</div>
-            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
-            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">✝ Fri · 11:00 AM – 1:30 PM</p>
-            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🌙 Night Prayer · 10:30 PM Daily</p>
-          </div>
-        </div>
-      </div>
-      <div class="site-footer__bottom">
-        <span>© 2026 Elim New Jerusalem Church, Chennai</span>
-        <span>Built with ❤️ for the Kingdom</span>
+      <div class="site-footer__inner">
+        <div class="site-footer__logo">ENJC — Elim New Jerusalem Church</div>
+        <div class="site-footer__copy">© 2026 · Tondiarpet, Chennai · +91 94443 45102</div>
       </div>
     </div>
   </footer>
 
+  <!-- WhatsApp Float -->
   <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
      class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
   </a>
+
   <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
 
+  <!-- Mobile Bottom Nav -->
   <nav class="bottom-nav" aria-label="Mobile navigation">
-    <a href="index.html"   class="bottom-nav__item"><span class="bottom-nav__icon">🏠</span><span class="bottom-nav__label">Home</span></a>
-    <a href="events.html"  class="bottom-nav__item is-active"><span class="bottom-nav__icon">📺</span><span class="bottom-nav__label">Sermons</span></a>
-    <div class="bottom-nav__center"><a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a></div>
-    <a href="ministries.html" class="bottom-nav__item"><span class="bottom-nav__icon">🙏</span><span class="bottom-nav__label">Ministries</span></a>
-    <a href="contact.html" class="bottom-nav__item"><span class="bottom-nav__icon">✉</span><span class="bottom-nav__label">Contact</span></a>
+    <a href="index.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="about.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">✝</span>
+      <span class="bottom-nav__label">About</span>
+    </a>
+    <div class="bottom-nav__center">
+      <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
+    </div>
+    <a href="events.html" class="bottom-nav__item is-active">
+      <span class="bottom-nav__icon" aria-hidden="true">📅</span>
+      <span class="bottom-nav__label">Events</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">✉</span>
+      <span class="bottom-nav__label">Contact</span>
+    </a>
   </nav>
 
-  <!-- Filter button sync with events.js -->
-  <script>
-  document.querySelectorAll('.ep-filter-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.ep-filter-btn').forEach(function(b) { b.classList.remove('is-on'); });
-      btn.classList.add('is-on');
-    });
-  });
-  var clearBtn = document.getElementById('search-clear-btn');
-  var searchInput = document.getElementById('video-search-input');
-  if (searchInput && clearBtn) {
-    searchInput.addEventListener('input', function() {
-      clearBtn.style.display = this.value ? 'block' : 'none';
-    });
-    clearBtn.addEventListener('click', function() {
-      searchInput.value = '';
-      clearBtn.style.display = 'none';
-      searchInput.dispatchEvent(new Event('input'));
-    });
-  }
-  </script>
-
+  <!-- JS: live detection — shows LIVE NOW or offline schedule card -->
   <script src="js/live-stream.js"></script>
+  <!-- JS: loads videos + testimonials from data/events.json -->
   <script src="js/events.js"></script>
-  <script src="js/premium-upgrade.js" defer></script>
-  <script src="js/mobile-ux-fixes.js" defer></script>
-  <script src="js/design-upgrade.js" defer></script>
-</body>
-</html>
+
+
+  <!-- Scroll Reveal Observer -->
+  <script>
+  (function(){
+    var els = document.querySelectorAll('.reveal-on-scroll');
+    if (!els.length) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+    els.forEach(function(el){ obs.observe(el); });
+  })();
+  </script>
+</body></html>
