@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elim New Jerusalem Church | Tondiarpet, Chennai</title>
 <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services at 5:30, 8:30 AM & 12:00 PM. Night Prayer daily at 10:30 PM. All are welcome.">
@@ -16,6 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="main.css">
 <style>
 /* ===== RESET & BASE ===== */
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -49,12 +50,21 @@ img{max-width:100%;display:block;}
   padding:0 32px;height:60px;
 }
 .nav-logo{display:flex;align-items:center;gap:10px;}
+
+/* FIX 1: Logo image instead of "E" letter */
+.nav-logo-img{
+  width:36px;height:36px;border-radius:8px;
+  object-fit:contain;
+  /* If image fails, show gold box fallback */
+}
 .nav-logo-mark{
-  width:34px;height:34px;border-radius:50%;
+  width:36px;height:36px;border-radius:8px;
   background:var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:500;color:var(--navy);
+  display:none; /* hidden by default; JS shows if img fails */
+  align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:var(--navy);
   font-family:'Cormorant Garamond',serif;letter-spacing:0.02em;
+  flex-shrink:0;
 }
 .nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
 .nav-logo-text span{color:var(--gold);}
@@ -85,33 +95,39 @@ img{max-width:100%;display:block;}
   overflow:hidden;
   display:flex;
 }
-.hero-bg{
-  position:absolute;inset:0;
-  background: transparent;
-}
-/* Photo placeholder — replace with real image */
-.hero-photo{
-  position:absolute;inset:0;
-  background: transparent;
-  display:flex;align-items:center;justify-content:center;
-}
-.hero-photo-hint{
-  border:1px dashed #1e3060;border-radius:10px;
-  padding:14px 22px;text-align:center;
-  pointer-events:none;
-}
-.hero-photo-hint p{font-size:11px;color:#2a4070;margin-top:4px;}
-/* Atmospheric lights */
-.hero-light{
-  position:absolute;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,168,76,0.12) 0%,transparent 70%);
-  pointer-events:none;
-}
-
 .hero-side-bar{
   position:absolute;left:0;top:0;bottom:0;
   width:3px;background:var(--gold);opacity:0.7;
+  z-index:3;
 }
+
+/* FIX 2: Video overlay — stronger gradient so text is always readable */
+.hero-video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  z-index:0;pointer-events:none;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  /* Strong cinematic gradient — bottom heavy so text pops */
+  background:linear-gradient(
+    to top,
+    rgba(6,14,26,0.97) 0%,
+    rgba(6,14,26,0.82) 35%,
+    rgba(6,14,26,0.55) 60%,
+    rgba(6,14,26,0.30) 100%
+  );
+  z-index:1;
+}
+/* Extra: subtle left vignette for the side bar area */
+.hero-overlay::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(6,14,26,0.5) 0%, transparent 40%);
+}
+
+/* FIX 2 cont: Force all hero text to cream/white — no inheritance issues */
 .hero-body{
   position:relative;z-index:2;
   display:flex;width:100%;
@@ -124,25 +140,25 @@ img{max-width:100%;display:block;}
 .hero-eyebrow{
   display:flex;align-items:center;gap:10px;margin-bottom:16px;
 }
-.hero-eyebrow-line{width:28px;height:1px;background:var(--gold);}
+.hero-eyebrow-line{width:28px;height:1px;background:var(--gold);flex-shrink:0;}
 .hero-eyebrow-text{
   font-size:10px;letter-spacing:0.2em;
   color:var(--gold);text-transform:uppercase;font-weight:500;
 }
 .hero-title{
   font-family:'Cormorant Garamond',serif;
-  font-size:52px;font-weight:600;
-  color:var(--text-primary);
+  font-size:clamp(32px, 5vw, 52px);font-weight:600;
+  color:#f0e6c8 !important; /* FIX: always cream, regardless of theme */
   line-height:1.05;margin-bottom:8px;
 }
 .hero-title em{color:var(--gold);font-style:italic;}
 .hero-verse{
-  font-size:12px;color:var(--text-dim);
+  font-size:14px;color:rgba(240,230,200,0.55) !important; /* FIX: faint cream */
   font-style:italic;margin-bottom:6px;
-  font-family:'Cormorant Garamond',serif;font-size:14px;
+  font-family:'Cormorant Garamond',serif;
 }
 .hero-desc{
-  font-size:13px;color:#4a6888;
+  font-size:13px;color:rgba(240,230,200,0.65) !important; /* FIX: readable on video */
   line-height:1.6;margin-bottom:24px;max-width:400px;
 }
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
@@ -151,7 +167,7 @@ img{max-width:100%;display:block;}
   font-size:12px;font-weight:500;
   padding:11px 22px;border-radius:7px;border:none;
   cursor:pointer;font-family:'DM Sans',sans-serif;
-  display:flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:6px;
   transition:background 0.2s;
 }
 .btn-gold:hover{background:var(--gold-light);}
@@ -161,34 +177,36 @@ img{max-width:100%;display:block;}
   padding:11px 22px;border-radius:7px;
   border:1px solid var(--gold);cursor:pointer;
   font-family:'DM Sans',sans-serif;
-  display:flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:6px;
   transition:all 0.2s;
 }
 .btn-outline:hover{background:rgba(201,168,76,0.1);}
 .hero-services{
   display:flex;gap:0;
-  border-top:1px solid var(--border);
-  border-radius:0 0 0 0;
+  border-top:1px solid rgba(26,46,80,0.8);
 }
 .hero-srv{
   flex:1;padding:14px 16px;
-  border-right:1px solid var(--border);
+  border-right:1px solid rgba(26,46,80,0.8);
 }
 .hero-srv:last-child{border-right:none;}
 .hero-srv-time{font-size:16px;font-weight:500;color:var(--gold);}
-.hero-srv-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+.hero-srv-label{font-size:10px;color:rgba(240,230,200,0.45);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
 
-/* Hero right — upcoming event card */
+/* FIX 3: Deliverance event card — right side, vertically centered */
 .hero-right{
-  width:220px;
+  width:240px;
   display:flex;flex-direction:column;justify-content:center;
-  padding:32px 20px 32px 0;
+  padding:32px 24px 32px 0;
+  flex-shrink:0;
 }
 .event-card{
-  background:rgba(13,30,58,0.85);
+  background:rgba(9,20,42,0.88);
   border:1px solid var(--border);
-  border-radius:10px;padding:18px;
-  backdrop-filter:blur(10px);
+  border-top:2px solid var(--gold);
+  border-radius:12px;padding:18px;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 }
 .event-card-label{
   font-size:9px;letter-spacing:0.15em;
@@ -200,11 +218,15 @@ img{max-width:100%;display:block;}
   padding:12px;margin-bottom:12px;
 }
 .event-card-month{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;}
-.event-card-date{font-size:24px;font-weight:500;color:var(--gold);line-height:1;}
+.event-card-date{font-size:28px;font-weight:600;color:var(--gold);line-height:1;font-family:'Cormorant Garamond',serif;}
 .event-card-title{font-size:12px;color:var(--text-primary);margin-top:4px;font-weight:500;}
-.event-card-detail{font-size:10px;color:var(--text-muted);margin-top:2px;}
+.event-card-detail{font-size:10px;color:var(--text-muted);margin-top:3px;line-height:1.5;}
 .event-card-sep{height:1px;background:var(--border);margin:10px 0;}
-.event-card-view{font-size:11px;color:var(--gold);display:flex;align-items:center;justify-content:space-between;}
+.event-card-view{
+  font-size:11px;color:var(--gold);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.event-card-view:hover{color:var(--gold-light);}
 
 /* Live badge */
 .live-badge{
@@ -217,9 +239,9 @@ img{max-width:100%;display:block;}
 .live-dot{
   width:7px;height:7px;background:#e24b4a;
   border-radius:50%;
-  animation:pulse 1.5s infinite;
+  animation:pulse-dot 1.5s infinite;
 }
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes pulse-dot{0%,100%{opacity:1;}50%{opacity:0.3;}}
 .live-text{font-size:11px;color:#8fa8c8;}
 
 /* ===== COUNTDOWN STRIP ===== */
@@ -269,7 +291,7 @@ img{max-width:100%;display:block;}
 .sec-header-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;}
 .sec-view-all{font-size:12px;color:var(--gold);display:flex;align-items:center;gap:4px;}
 
-/* ===== SERVICE TIMES ===== */
+/* ===== SERVICE TIMES STRIP ===== */
 .service-strip{
   background:var(--navy-dark);
   border-top:1px solid var(--border);
@@ -297,9 +319,9 @@ img{max-width:100%;display:block;}
   background:#fff;border:0.5px solid var(--cream-dark);
   border-radius:10px;padding:16px 18px;
   border-top:2px solid var(--gold);
-  transition:box-shadow 0.2s;
+  transition:box-shadow 0.2s,transform 0.2s;
 }
-.schedule-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.schedule-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08);transform:translateY(-2px);}
 .sc-icon{font-size:20px;color:var(--gold);margin-bottom:10px;}
 .sc-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px;}
 .sc-detail{font-size:11px;color:#7a7060;line-height:1.5;}
@@ -314,7 +336,6 @@ img{max-width:100%;display:block;}
 }
 .about-photo-hint{text-align:center;}
 .about-photo-hint p{font-size:11px;color:var(--border);margin-top:6px;}
-.about-cross{font-size:48px;color:var(--navy);opacity:0.15;}
 .about-text{}
 .about-quote{
   font-family:'Cormorant Garamond',serif;
@@ -326,6 +347,20 @@ img{max-width:100%;display:block;}
 .about-pillars{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
 .pillar{display:flex;align-items:center;gap:8px;font-size:12px;color:#5a5040;}
 .pillar i{font-size:14px;color:var(--gold);}
+
+/* FIX 7 & 8: Pastor photo — smaller square with rounded corners */
+.pastor-photo-wrap{
+  width:90px;
+  height:90px;          /* square, not tall rectangle */
+  border-radius:12px;   /* square with rounded corners, not circle */
+  overflow:hidden;
+  border:2px solid var(--gold-dim);
+  flex-shrink:0;
+}
+.pastor-photo-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+}
 
 /* ===== DELIVERANCE ===== */
 .deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
@@ -370,10 +405,7 @@ img{max-width:100%;display:block;}
 .event-info{flex:1;}
 .event-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:2px;}
 .event-meta{font-size:11px;color:#7a7060;}
-.event-badge{
-  font-size:10px;padding:4px 10px;border-radius:99px;
-  font-weight:500;
-}
+.event-badge{font-size:10px;padding:4px 10px;border-radius:99px;font-weight:500;}
 .badge-regular{background:#f0f4ff;color:#3a5490;}
 .badge-special{background:#fff8e6;color:#8a5a00;}
 
@@ -385,7 +417,7 @@ img{max-width:100%;display:block;}
   display:flex;flex-direction:column;gap:8px;
   transition:all 0.2s;cursor:pointer;
 }
-.tool-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 16px rgba(201,168,76,0.1);}
+.tool-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 16px rgba(201,168,76,0.1);transform:translateY(-2px);}
 .tool-icon{
   width:40px;height:40px;border-radius:9px;
   background:var(--cream);
@@ -401,7 +433,9 @@ img{max-width:100%;display:block;}
 .ministry-card{
   background:var(--navy-mid);border:0.5px solid var(--border);
   border-radius:10px;overflow:hidden;
+  transition:border-color 0.2s;
 }
+.ministry-card:hover{border-color:var(--gold-dim);}
 .ministry-card-img{
   height:100px;background:var(--navy-light);
   display:flex;align-items:center;justify-content:center;
@@ -417,8 +451,9 @@ img{max-width:100%;display:block;}
   aspect-ratio:1;border-radius:8px;
   background:var(--navy-light);
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
+  overflow:hidden;transition:transform 0.2s;
 }
+.gallery-item:hover{transform:scale(1.03);}
 .gallery-item i{font-size:24px;color:var(--border);}
 
 /* ===== CONTACT SECTION ===== */
@@ -469,7 +504,7 @@ img{max-width:100%;display:block;}
 
 /* ===== WHATSAPP FLOAT ===== */
 .wa-float{
-  position:fixed;bottom:24px;right:24px;z-index:50;
+  position:fixed;bottom:80px;right:24px;z-index:50;
   width:46px;height:46px;border-radius:50%;
   background:#25d366;
   display:flex;align-items:center;justify-content:center;
@@ -478,6 +513,29 @@ img{max-width:100%;display:block;}
 }
 .wa-float:hover{transform:scale(1.08);}
 .wa-float i{font-size:22px;color:#fff;}
+@media(min-width:901px){
+  .wa-float{bottom:28px;}
+}
+
+/* FIX 4: Scroll-to-top button */
+#scroll-top-btn{
+  position:fixed;
+  bottom:80px;right:76px;
+  width:42px;height:42px;
+  background:var(--gold);
+  border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:50;
+  box-shadow:0 4px 16px rgba(201,168,76,0.4);
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s, transform 0.2s;
+  color:var(--navy);font-size:18px;
+}
+#scroll-top-btn.visible{opacity:1;pointer-events:all;}
+#scroll-top-btn:hover{transform:scale(1.1);}
+@media(min-width:901px){
+  #scroll-top-btn{bottom:28px;right:82px;}
+}
 
 /* ===== MOBILE NAV ===== */
 .mob-nav{
@@ -492,6 +550,21 @@ img{max-width:100%;display:block;}
 .mob-item span{font-size:9px;color:var(--text-dim);}
 .mob-item.active i,.mob-item.active span{color:var(--gold);}
 
+/* FIX 5: Scroll reveal — slide-up-fade-in per card */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+             transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal.d1{transition-delay:0.05s;}
+.reveal.d2{transition-delay:0.12s;}
+.reveal.d3{transition-delay:0.19s;}
+.reveal.d4{transition-delay:0.26s;}
+.reveal.d5{transition-delay:0.33s;}
+.reveal.d6{transition-delay:0.40s;}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
   .navbar{padding:0 16px;}
@@ -499,10 +572,9 @@ img{max-width:100%;display:block;}
   .nav-mobile-toggle{display:block;}
   .hero{min-height:auto;}
   .hero-left{padding:40px 20px 32px;}
-  .hero-title{font-size:34px;}
-  .hero-right{display:none;}
+  .hero-right{display:none;} /* hide on mobile — fits below instead */
   .hero-services{flex-wrap:wrap;}
-  .hero-srv{min-width:50%;border-bottom:1px solid var(--border);}
+  .hero-srv{min-width:50%;border-bottom:1px solid rgba(26,46,80,0.6);}
   .service-strip{grid-template-columns:1fr 1fr;}
   .service-item{border-bottom:1px solid var(--border);}
   .about-grid,.contact-grid{grid-template-columns:1fr;}
@@ -516,20 +588,6 @@ img{max-width:100%;display:block;}
   .cd-strip{flex-wrap:wrap;gap:12px;padding:12px 20px;}
   .mob-nav{display:block;}
   body{padding-bottom:60px;}
-  .wa-float{bottom:80px;}
-}
-
-/* Video background override */
-.hero { background: #030a1a; }
-.hero-video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  z-index: 0; pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-video { display: none; }
 }
 </style>
 </head>
@@ -538,7 +596,15 @@ img{max-width:100%;display:block;}
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar">
   <div class="nav-logo">
-    <div class="nav-logo-mark">E</div>
+    <!-- FIX 1: logo image — fallback to letter mark if image 404s -->
+    <img
+      class="nav-logo-img"
+      src="images/logo/Logo.png"
+      alt="ENJC Logo"
+      width="36" height="36"
+      onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex';"
+    >
+    <div class="nav-logo-mark" id="logo-fallback">E</div>
     <div>
       <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
@@ -557,26 +623,29 @@ img{max-width:100%;display:block;}
   <a href="contact.html" class="nav-cta">
     <i class="ti ti-map-pin" style="font-size:12px;"></i> Visit Us
   </a>
-  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').style.display='flex';">
+  <button class="nav-mobile-toggle" id="mob-toggle">
     <i class="ti ti-menu-2"></i>
   </button>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <!-- Cinematic video background -->
+  <!-- FIX 6: Video with proper load/error handling -->
   <video
+    id="hero-video"
     class="hero-video"
-    src="images/home/hero.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
+    autoplay muted loop playsinline
     preload="auto"
     aria-hidden="true"
-  ></video>
-  <!-- Fallback poster / still frame for slow connections -->
-  <div class="hero-video-fallback" aria-hidden="true"></div>
+  >
+    <source src="images/home/hero.mp4" type="video/mp4">
+  </video>
+  <!-- Fallback gradient shown when video can't load -->
+  <div class="hero-video-fallback" aria-hidden="true" style="
+    position:absolute;inset:0;z-index:0;
+    background:linear-gradient(135deg,#060e1a 0%,#0d1e3a 50%,#060e1a 100%);
+  "></div>
+
   <div class="hero-overlay"></div>
   <div class="hero-side-bar"></div>
 
@@ -587,6 +656,7 @@ img{max-width:100%;display:block;}
   </div>
 
   <div class="hero-body">
+    <!-- Left: text content -->
     <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-line"></div>
@@ -605,9 +675,30 @@ img{max-width:100%;display:block;}
         <a href="events.html" class="btn-outline">
           <i class="ti ti-player-play" style="font-size:13px;"></i> Watch Live
         </a>
+      </div>
+
+      <!-- Service times at bottom of hero -->
+      <div class="hero-services">
+        <div class="hero-srv">
+          <div class="hero-srv-time">5:30 AM</div>
+          <div class="hero-srv-label">Sunday 1st</div>
+        </div>
+        <div class="hero-srv">
+          <div class="hero-srv-time">8:30 AM</div>
+          <div class="hero-srv-label">Sunday 2nd</div>
+        </div>
+        <div class="hero-srv">
+          <div class="hero-srv-time">12:00 PM</div>
+          <div class="hero-srv-label">Sunday 3rd</div>
+        </div>
+        <div class="hero-srv">
+          <div class="hero-srv-time">10:30 PM</div>
+          <div class="hero-srv-label">Night Prayer</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Upcoming event card -->
+    <!-- FIX 3: Right — deliverance event card, properly placed -->
     <div class="hero-right">
       <div class="event-card">
         <div class="event-card-label">Next Deliverance Meeting</div>
@@ -693,10 +784,9 @@ img{max-width:100%;display:block;}
 </div>
 
 <!-- ===== ABOUT SECTION ===== -->
-<section class="reveal-on-scroll section section-cream">
-  <div class="about-grid">
+<section class="section section-cream">
+  <div class="about-grid reveal">
     <div class="about-photo">
-      <!-- Replace with real church/pastor photo -->
       <div class="about-photo-hint">
         <i class="ti ti-church" style="font-size:48px;color:#1e3060;"></i>
         <p>Church / Pastor photo இங்கே</p>
@@ -720,43 +810,43 @@ img{max-width:100%;display:block;}
 </section>
 
 <!-- ===== SCHEDULE SECTION ===== -->
-<section class="reveal-on-scroll section section-white">
-  <div class="sec-header">
+<section class="section section-white">
+  <div class="sec-header reveal">
     <div class="sec-eyebrow">When We Meet</div>
     <h2 class="sec-title">Church Worship & <em>Service Times</em></h2>
   </div>
-  <div class="reveal-on-scroll schedule-grid">
-    <div class="reveal-on-scroll schedule-card">
+  <div class="schedule-grid">
+    <div class="schedule-card reveal d1">
       <i class="ti ti-sun sc-icon"></i>
       <div class="sc-name">Sunday Worship</div>
       <div class="sc-detail">ENJC Family Gathering — three services every Sunday morning</div>
       <div class="sc-time">5:30 AM · 8:30 AM · 12:00 PM</div>
     </div>
-    <div class="reveal-on-scroll schedule-card">
+    <div class="schedule-card reveal d2">
       <i class="ti ti-star sc-icon"></i>
       <div class="sc-name">Promise Service</div>
       <div class="sc-detail">Special service on the 1st of every month</div>
       <div class="sc-time">5:30 – 7:30 AM</div>
     </div>
-    <div class="reveal-on-scroll schedule-card">
+    <div class="schedule-card reveal d3">
       <i class="ti ti-pray sc-icon"></i>
       <div class="sc-name">Tuesday Prayer</div>
       <div class="sc-detail">ENJC Special Prayer Meeting every Tuesday</div>
       <div class="sc-time">11:00 AM – 4:00 PM</div>
     </div>
-    <div class="reveal-on-scroll schedule-card">
+    <div class="schedule-card reveal d4">
       <i class="ti ti-heart sc-icon"></i>
       <div class="sc-name">Friday Blessing Prayer</div>
       <div class="sc-detail">ENJC Family Blessing Prayer every Friday</div>
       <div class="sc-time">11:00 AM – 1:30 PM</div>
     </div>
-    <div class="reveal-on-scroll schedule-card">
+    <div class="schedule-card reveal d5">
       <i class="ti ti-flame sc-icon"></i>
       <div class="sc-name">Deliverance Meetings</div>
       <div class="sc-detail">New Moon Day — prayer, healing & deliverance. All are welcome.</div>
       <div class="sc-time">6:00 PM · Monthly</div>
     </div>
-    <div class="reveal-on-scroll schedule-card">
+    <div class="schedule-card reveal d6">
       <i class="ti ti-moon sc-icon"></i>
       <div class="sc-name">Night Prayer</div>
       <div class="sc-detail">Daily night prayer — every night without exception</div>
@@ -766,102 +856,53 @@ img{max-width:100%;display:block;}
 </section>
 
 <!-- ===== DELIVERANCE SECTION ===== -->
-<section class="reveal-on-scroll section section-dark">
-  <div class="sec-header">
+<section class="section section-dark">
+  <div class="sec-header reveal">
     <div class="sec-eyebrow" style="color:var(--gold);">2026 Schedule</div>
     <h2 class="sec-title sec-title-light">Deliverance Meeting <em>Dates 2026</em></h2>
     <p class="sec-sub sec-sub-light">Every New Moon Day at 6:00 PM — prayer, healing & deliverance. All are welcome.</p>
   </div>
   <div class="deliv-grid">
-    <div class="deliv-card past">
-      <div class="deliv-month">January</div>
-      <div class="deliv-date">18 Jan</div>
-      <div class="deliv-day">Sunday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">February</div>
-      <div class="deliv-date">17 Feb</div>
-      <div class="deliv-day">Tuesday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">March</div>
-      <div class="deliv-date">18 Mar</div>
-      <div class="deliv-day">Wednesday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">April</div>
-      <div class="deliv-date">17 Apr</div>
-      <div class="deliv-day">Friday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">May</div>
-      <div class="deliv-date">16 May</div>
-      <div class="deliv-day">Saturday</div>
-    </div>
-    <div class="deliv-card upcoming">
-      <div class="deliv-month">June</div>
-      <div class="deliv-date">14 Jun</div>
-      <div class="deliv-day">Saturday</div>
-      <div class="deliv-tag">Next</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">July</div>
-      <div class="deliv-date">14 Jul</div>
-      <div class="deliv-day">Tuesday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">August</div>
-      <div class="deliv-date">12 Aug</div>
-      <div class="deliv-day">Wednesday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">September</div>
-      <div class="deliv-date">10 Sep</div>
-      <div class="deliv-day">Thursday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">October</div>
-      <div class="deliv-date">10 Oct</div>
-      <div class="deliv-day">Saturday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">November</div>
-      <div class="deliv-date">08 Nov</div>
-      <div class="deliv-day">Sunday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">December</div>
-      <div class="deliv-date">08 Dec</div>
-      <div class="deliv-day">Tuesday</div>
-    </div>
+    <div class="deliv-card past reveal d1"><div class="deliv-month">January</div><div class="deliv-date">18 Jan</div><div class="deliv-day">Sunday</div></div>
+    <div class="deliv-card past reveal d2"><div class="deliv-month">February</div><div class="deliv-date">17 Feb</div><div class="deliv-day">Tuesday</div></div>
+    <div class="deliv-card past reveal d3"><div class="deliv-month">March</div><div class="deliv-date">18 Mar</div><div class="deliv-day">Wednesday</div></div>
+    <div class="deliv-card past reveal d4"><div class="deliv-month">April</div><div class="deliv-date">17 Apr</div><div class="deliv-day">Friday</div></div>
+    <div class="deliv-card past reveal d5"><div class="deliv-month">May</div><div class="deliv-date">16 May</div><div class="deliv-day">Saturday</div></div>
+    <div class="deliv-card upcoming reveal d6"><div class="deliv-month">June</div><div class="deliv-date">14 Jun</div><div class="deliv-day">Saturday</div><div class="deliv-tag">Next</div></div>
+    <div class="deliv-card reveal d1"><div class="deliv-month">July</div><div class="deliv-date">14 Jul</div><div class="deliv-day">Tuesday</div></div>
+    <div class="deliv-card reveal d2"><div class="deliv-month">August</div><div class="deliv-date">12 Aug</div><div class="deliv-day">Wednesday</div></div>
+    <div class="deliv-card reveal d3"><div class="deliv-month">September</div><div class="deliv-date">10 Sep</div><div class="deliv-day">Thursday</div></div>
+    <div class="deliv-card reveal d4"><div class="deliv-month">October</div><div class="deliv-date">10 Oct</div><div class="deliv-day">Saturday</div></div>
+    <div class="deliv-card reveal d5"><div class="deliv-month">November</div><div class="deliv-date">08 Nov</div><div class="deliv-day">Sunday</div></div>
+    <div class="deliv-card reveal d6"><div class="deliv-month">December</div><div class="deliv-date">08 Dec</div><div class="deliv-day">Tuesday</div></div>
   </div>
 </section>
 
 <!-- ===== MINISTRIES SECTION ===== -->
-<section class="reveal-on-scroll section section-dark" style="padding-top:0;">
-  <div class="sec-header-row" style="margin-bottom:20px;">
+<section class="section section-dark" style="padding-top:0;">
+  <div class="sec-header-row reveal" style="margin-bottom:20px;">
     <div>
       <div class="sec-eyebrow">What We Do</div>
       <h2 class="sec-title sec-title-light">Our <em>Ministries</em></h2>
     </div>
     <a href="ministries.html" class="sec-view-all">View All <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
   </div>
-  <div class="reveal-on-scroll ministry-grid">
-    <div class="ministry-card">
+  <div class="ministry-grid">
+    <div class="ministry-card reveal d1">
       <div class="ministry-card-img"><i class="ti ti-users"></i></div>
       <div class="ministry-card-body">
         <div class="ministry-name">Village Ministry</div>
-        <div class="ministry-desc">Reaching villages across Tamil Nadu with the Gospel of Jesus Christ through outreach teams.</div>
+        <div class="ministry-desc">Reaching villages across Tamil Nadu with the Gospel through outreach teams.</div>
       </div>
     </div>
-    <div class="ministry-card">
+    <div class="ministry-card reveal d2">
       <div class="ministry-card-img"><i class="ti ti-user-heart"></i></div>
       <div class="ministry-card-body">
         <div class="ministry-name">Sisters Ministry</div>
         <div class="ministry-desc">A dedicated ministry for sisters — prayer, fellowship and spiritual growth.</div>
       </div>
     </div>
-    <div class="ministry-card">
+    <div class="ministry-card reveal d3">
       <div class="ministry-card-img"><i class="ti ti-shield-heart"></i></div>
       <div class="ministry-card-body">
         <div class="ministry-name">Brothers Ministry</div>
@@ -872,8 +913,8 @@ img{max-width:100%;display:block;}
 </section>
 
 <!-- ===== BIBLE TOOLS ===== -->
-<section class="reveal-on-scroll section section-cream">
-  <div class="sec-header-row" style="margin-bottom:20px;">
+<section class="section section-cream">
+  <div class="sec-header-row reveal" style="margin-bottom:20px;">
     <div>
       <div class="sec-eyebrow">Bible Tools</div>
       <h2 class="sec-title">Read, Study & <em>Share</em> the Word</h2>
@@ -881,19 +922,19 @@ img{max-width:100%;display:block;}
     <a href="bible.html" class="sec-view-all" style="color:var(--gold);">View All Tools <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
   </div>
   <div class="tools-grid">
-    <a href="bible.html" class="tool-card">
+    <a href="bible.html" class="tool-card reveal d1">
       <div class="tool-icon"><i class="ti ti-book"></i></div>
       <div class="tool-name">Bible Reader</div>
       <div class="tool-desc">Read all 66 books in Tamil & English. Clean, distraction-free reading.</div>
       <div class="tool-link">Open Bible <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
     </a>
-    <a href="imagegen.html" class="tool-card">
+    <a href="imagegen.html" class="tool-card reveal d2">
       <div class="tool-icon"><i class="ti ti-photo"></i></div>
       <div class="tool-name">Scripture Cards</div>
       <div class="tool-desc">Create beautiful verse images to share on WhatsApp & social media. 8 templates.</div>
       <div class="tool-link">Create Cards <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
     </a>
-    <a href="events.html" class="tool-card">
+    <a href="events.html" class="tool-card reveal d3">
       <div class="tool-icon"><i class="ti ti-player-play"></i></div>
       <div class="tool-name">Watch Live & Sermons</div>
       <div class="tool-desc">Live streams, Sunday, Friday, Promise, Deliverance & Testimony services on YouTube.</div>
@@ -903,8 +944,8 @@ img{max-width:100%;display:block;}
 </section>
 
 <!-- ===== GALLERY STRIP ===== -->
-<section class="reveal-on-scroll section section-white" style="padding-bottom:32px;">
-  <div class="sec-header-row" style="margin-bottom:16px;">
+<section class="section section-white" style="padding-bottom:32px;">
+  <div class="sec-header-row reveal" style="margin-bottom:16px;">
     <div>
       <div class="sec-eyebrow">Our Community</div>
       <h2 class="sec-title">Church <em>Gallery</em></h2>
@@ -912,21 +953,21 @@ img{max-width:100%;display:block;}
     <a href="gallery.html" class="sec-view-all" style="color:var(--gold);">View More Photos <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
   </div>
   <div class="gallery-strip">
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d1"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d2"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d3"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d4"><i class="ti ti-photo"></i></div>
   </div>
 </section>
 
 <!-- ===== CONTACT SECTION ===== -->
-<section class="reveal-on-scroll section section-dark">
-  <div class="sec-header">
+<section class="section section-dark">
+  <div class="sec-header reveal">
     <div class="sec-eyebrow">Find Us</div>
     <h2 class="sec-title sec-title-light">Visit <em>ENJC</em></h2>
   </div>
   <div class="contact-grid">
-    <div class="contact-info">
+    <div class="contact-info reveal">
       <div class="contact-row">
         <div class="contact-row-icon"><i class="ti ti-map-pin"></i></div>
         <div>
@@ -958,7 +999,7 @@ img{max-width:100%;display:block;}
         </div>
       </div>
     </div>
-    <div class="map-embed">
+    <div class="map-embed reveal d2">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.4!2d80.2935!3d13.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI4LjIiTiA4MMKwMTcnMzYuNiJF!5e0!3m2!1sen!2sin!4v1"
         allowfullscreen loading="lazy">
@@ -1022,9 +1063,14 @@ img{max-width:100%;display:block;}
 </footer>
 
 <!-- WhatsApp Float -->
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank">
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp">
   <i class="ti ti-brand-whatsapp"></i>
 </a>
+
+<!-- FIX 4: Scroll-to-top button -->
+<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="ti ti-arrow-up"></i>
+</button>
 
 <!-- Mobile Nav -->
 <nav class="mob-nav">
@@ -1047,32 +1093,61 @@ img{max-width:100%;display:block;}
   </div>
 </nav>
 
-<!-- ===== COUNTDOWN SCRIPT ===== -->
 <script>
+/* ── FIX 6: Video load / error handling ── */
+(function(){
+  var v = document.getElementById('hero-video');
+  if(!v) return;
+
+  // If video can't play (no src, codec issue, slow net), hide gracefully
+  function onVideoError(){
+    v.style.display = 'none';
+  }
+  v.addEventListener('error', onVideoError);
+
+  // If canplay doesn't fire within 4s on slow connection, hide video
+  var videoTimeout = setTimeout(function(){
+    if(v.readyState < 3){ // HAVE_FUTURE_DATA
+      v.style.display = 'none';
+    }
+  }, 4000);
+
+  v.addEventListener('canplay', function(){
+    clearTimeout(videoTimeout);
+    v.style.opacity = '1';
+  });
+
+  // Respect prefers-reduced-motion
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    v.pause();
+    v.style.display = 'none';
+  }
+})();
+
+/* ── Countdown: Next Sunday Service ── */
 function updateCountdown(){
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun
-  const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
-  const services = [
-    {d:0,h:5,m:30},{d:0,h:8,m:30},{d:0,h:12,m:0}
-  ];
-  let minDiff = Infinity;
-  for(let i=0;i<7;i++){
-    const tDay = (day+i)%7;
-    if(tDay===0){ // Sunday
-      for(const sv of services){
-        let diff = i*86400 + (sv.h-h)*3600 + (sv.m-m)*60 - s;
+  var now = new Date();
+  var day = now.getDay(); // 0=Sun
+  var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+  var services = [{d:0,h:5,m:30},{d:0,h:8,m:30},{d:0,h:12,m:0}];
+  var minDiff = Infinity;
+  for(var i=0;i<7;i++){
+    var tDay=(day+i)%7;
+    if(tDay===0){
+      for(var j=0;j<services.length;j++){
+        var sv=services[j];
+        var diff = i*86400 + (sv.h-h)*3600 + (sv.m-m)*60 - s;
         if(i===0 && (h>sv.h||(h===sv.h&&m>=sv.m))) continue;
         if(diff>0 && diff<minDiff) minDiff=diff;
       }
     }
   }
   if(minDiff===Infinity) minDiff=0;
-  const dd=Math.floor(minDiff/86400);
-  const rh=Math.floor((minDiff%86400)/3600);
-  const rm=Math.floor((minDiff%3600)/60);
-  const rs=minDiff%60;
-  const p=n=>String(n).padStart(2,'0');
+  var dd=Math.floor(minDiff/86400);
+  var rh=Math.floor((minDiff%86400)/3600);
+  var rm=Math.floor((minDiff%3600)/60);
+  var rs=minDiff%60;
+  function p(n){return String(n).padStart(2,'0');}
   document.getElementById('cd-d').textContent=p(dd);
   document.getElementById('cd-h').textContent=p(rh);
   document.getElementById('cd-m').textContent=p(rm);
@@ -1080,21 +1155,54 @@ function updateCountdown(){
 }
 updateCountdown();
 setInterval(updateCountdown,1000);
+
+/* ── FIX 4: Scroll-to-top visibility ── */
+var scrollBtn = document.getElementById('scroll-top-btn');
+window.addEventListener('scroll', function(){
+  if(window.scrollY > 300){
+    scrollBtn.classList.add('visible');
+  } else {
+    scrollBtn.classList.remove('visible');
+  }
+}, {passive:true});
+
+/* ── FIX 5: Scroll reveal with IntersectionObserver ── */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!els.length || !window.IntersectionObserver) {
+    // Fallback: just show everything
+    els.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){ obs.observe(el); });
+})();
+
+/* ── Mobile nav toggle ── */
+document.getElementById('mob-toggle').addEventListener('click', function(){
+  var links = document.querySelector('.nav-links');
+  if(links.style.display === 'flex'){
+    links.style.display = '';
+  } else {
+    links.style.display = 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '60px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = '#0a1628';
+    links.style.padding = '8px 0';
+    links.style.borderBottom = '1px solid #1a2e50';
+    links.style.zIndex = '200';
+  }
+});
 </script>
-
-
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
 </body>
 </html>
