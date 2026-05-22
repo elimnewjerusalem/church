@@ -50,10 +50,10 @@ img{max-width:100%;display:block;}
 .nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
 .nav-logo-text span{color:var(--gold);}
 .nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.nav-links{display:flex;gap:2px;align-items:center;}
+.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
 .nav-links a{font-size:12px;color:var(--text-muted);padding:7px 11px;border-radius:6px;transition:all 0.2s;}
-.nav-links a:hover,.nav-links a.active{color:var(--text-primary);}
-.nav-links a.active{background:var(--navy-light);}
+.nav-links a:hover{color:var(--text-primary);}
+.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
 .nav-cta{
   background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
   padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;
@@ -252,6 +252,7 @@ img{max-width:100%;display:block;}
 /* ===== SECTIONS ===== */
 .section{padding:52px 40px;}
 .section-dark{background:var(--navy);}
+.section-mid{background:#0f1e38;}
 .section-cream{background:var(--cream);}
 .section-white{background:#fff;}
 .sec-eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:6px;}
@@ -286,6 +287,7 @@ img{max-width:100%;display:block;}
 }
 .about-photo-hint{text-align:center;}
 .about-photo-hint p{font-size:11px;color:var(--border);margin-top:6px;}
+.about-video{width:100%;}
 .about-quote{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:12px;}
 .about-quote em{color:var(--gold);font-style:italic;}
 .about-desc{font-size:13px;color:#5a5040;line-height:1.75;margin-bottom:16px;}
@@ -608,11 +610,20 @@ img{max-width:100%;display:block;}
 <!-- ===== ABOUT ===== -->
 <section class="section section-cream">
   <div class="about-grid reveal">
-    <div class="about-photo">
-      <div class="about-photo-hint">
-        <i class="ti ti-church" style="font-size:48px;color:#1e3060;"></i>
-        <p>Church / Pastor photo இங்கே</p>
+    <div class="about-video">
+      <div class="video-embed-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
+        <iframe
+          src="https://www.youtube.com/embed/REPLACE_VIDEO_ID?rel=0&modestbranding=1"
+          title="Pastor Testimony"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"
+        ></iframe>
       </div>
+      <p style="font-size:11px;color:#8a9ab0;margin-top:10px;text-align:center;">
+        Watch: Pastor's Testimony — How ENJC began
+      </p>
     </div>
     <div class="about-text">
       <div class="sec-eyebrow">About Us</div>
@@ -671,7 +682,7 @@ img{max-width:100%;display:block;}
 </section>
 
 <!-- ===== MINISTRIES ===== -->
-<section class="section section-dark" style="padding-top:0;">
+<section class="section section-mid" style="padding-top:0;">
   <div class="sec-header-row reveal" style="margin-bottom:20px;">
     <div><div class="sec-eyebrow">What We Do</div><h2 class="sec-title sec-title-light">Our <em>Ministries</em></h2></div>
     <a href="ministries.html" class="sec-view-all">View All <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
