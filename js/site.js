@@ -97,7 +97,7 @@
   /* ── SERVICE WORKER ─────────────────────────────────────── */
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/church/sw.js')
+      navigator.serviceWorker.register('/sw.js')
         .catch(function (err) {
           console.error('SW registration failed:', err);
         });

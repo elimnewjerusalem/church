@@ -187,7 +187,7 @@
       }
       // Also remove unused weights if Poppins has too many
       link.href = link.href.replace(
-        /Poppins:wght@[\d;+]+/,
+        /Poppins:wght@[\d;]+/,
         'Poppins:wght@400;500;600'
       );
     });
