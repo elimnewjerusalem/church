@@ -51,7 +51,7 @@
 body{font-family:'DM Sans',sans-serif;}
 .navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
 .nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
 .nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
 .nav-logo-text span{color:var(--gold);}
@@ -126,15 +126,15 @@ body{background:var(--navy);color:var(--text-primary);}
        style="margin-left:8px;font-size:12px;color:var(--color-gold);text-decoration:underline;">Watch Live ▶</a>
   </div>
   <nav class="navbar">
-  <div class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
+  <a href="index.html" class="nav-logo" style="text-decoration:none;">
+    <img class="nav-logo-img" src="images/logo/logo_nav.png" alt="ENJC Logo" width="38" height="38"
          onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
     <div class="nav-logo-fallback" id="logo-fb">E</div>
     <div>
       <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
-  </div>
+  </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -163,41 +163,41 @@ body{background:var(--navy);color:var(--text-primary);}
     </div>
   </section>
 
-  <section class="reveal-on-scroll section" aria-label="Photo gallery">
+  <section class="section" aria-label="Photo gallery">
     <div class="container">
 
       <div class="bento" id="gallery-grid">
 
         <!-- GROUP 1: g1–g5 (rows 1–2) -->
-        <div class="bento__item" style="grid-column:1;grid-row:1" onclick="openLightbox(0)">
+        <div class="bento__item reveal-on-scroll delay-1" style="grid-column:1;grid-row:1" onclick="openLightbox(0)">
           <picture>
             <source srcset="images/gallery/g1.webp" type="image/webp">
             <img src="images/gallery/g1.webp" alt="ENJC Church gathering" loading="lazy">
           </picture>
           <div class="bento__cap">Church Gathering</div>
         </div>
-        <div class="bento__item" style="grid-column:1;grid-row:2" onclick="openLightbox(1)">
+        <div class="bento__item reveal-on-scroll delay-2" style="grid-column:1;grid-row:2" onclick="openLightbox(1)">
           <picture>
             <source srcset="images/gallery/g2.webp" type="image/webp">
             <img src="images/gallery/g2.webp" alt="Worship Service" loading="lazy">
           </picture>
           <div class="bento__cap">Worship Service</div>
         </div>
-        <div class="bento__item" style="grid-column:2;grid-row:1/3" onclick="openLightbox(2)">
+        <div class="bento__item reveal-on-scroll delay-3" style="grid-column:2;grid-row:1/3" onclick="openLightbox(2)">
           <picture>
             <source srcset="images/gallery/g3.webp" type="image/webp">
             <img src="images/gallery/g3.webp" alt="Community" loading="lazy">
           </picture>
           <div class="bento__cap">Community</div>
         </div>
-        <div class="bento__item" style="grid-column:3;grid-row:1" onclick="openLightbox(3)">
+        <div class="bento__item reveal-on-scroll delay-4" style="grid-column:3;grid-row:1" onclick="openLightbox(3)">
           <picture>
             <source srcset="images/gallery/g4.webp" type="image/webp">
             <img src="images/gallery/g4.webp" alt="Prayer Night" loading="lazy">
           </picture>
           <div class="bento__cap">Prayer Night</div>
         </div>
-        <div class="bento__item" style="grid-column:3;grid-row:2" onclick="openLightbox(4)">
+        <div class="bento__item reveal-on-scroll delay-5" style="grid-column:3;grid-row:2" onclick="openLightbox(4)">
           <picture>
             <source srcset="images/gallery/g5.webp" type="image/webp">
             <img src="images/gallery/g5.webp" alt="Sunday School" loading="lazy">
@@ -206,35 +206,35 @@ body{background:var(--navy);color:var(--text-primary);}
         </div>
 
         <!-- GROUP 2: g6–g10 (rows 3–4) -->
-        <div class="bento__item" style="grid-column:1;grid-row:3" onclick="openLightbox(5)">
+        <div class="bento__item reveal-on-scroll delay-6" style="grid-column:1;grid-row:3" onclick="openLightbox(5)">
           <picture>
             <source srcset="images/gallery/g6.webp" type="image/webp">
             <img src="images/gallery/g6.webp" alt="Deliverance Meeting" loading="lazy">
           </picture>
           <div class="bento__cap">Deliverance Meeting</div>
         </div>
-        <div class="bento__item" style="grid-column:1;grid-row:4" onclick="openLightbox(6)">
+        <div class="bento__item reveal-on-scroll delay-1" style="grid-column:1;grid-row:4" onclick="openLightbox(6)">
           <picture>
             <source srcset="images/gallery/g7.webp" type="image/webp">
             <img src="images/gallery/g7.webp" alt="Gospel Ministry" loading="lazy">
           </picture>
           <div class="bento__cap">Gospel Ministry</div>
         </div>
-        <div class="bento__item" style="grid-column:2;grid-row:3/5" onclick="openLightbox(7)">
+        <div class="bento__item reveal-on-scroll delay-2" style="grid-column:2;grid-row:3/5" onclick="openLightbox(7)">
           <picture>
             <source srcset="images/gallery/g8.webp" type="image/webp">
             <img src="images/gallery/g8.webp" alt="Fasting Prayer" loading="lazy">
           </picture>
           <div class="bento__cap">Fasting Prayer</div>
         </div>
-        <div class="bento__item" style="grid-column:3;grid-row:3" onclick="openLightbox(8)">
+        <div class="bento__item reveal-on-scroll delay-3" style="grid-column:3;grid-row:3" onclick="openLightbox(8)">
           <picture>
             <source srcset="images/gallery/g9.webp" type="image/webp">
             <img src="images/gallery/g9.webp" alt="Youth Ministry" loading="lazy">
           </picture>
           <div class="bento__cap">Youth Ministry</div>
         </div>
-        <div class="bento__item" style="grid-column:3;grid-row:4" onclick="openLightbox(9)">
+        <div class="bento__item reveal-on-scroll delay-4" style="grid-column:3;grid-row:4" onclick="openLightbox(9)">
           <picture>
             <source srcset="images/gallery/g10.webp" type="image/webp">
             <img src="images/gallery/g10.webp" alt="Women's Fellowship" loading="lazy">
@@ -356,7 +356,7 @@ body{background:var(--navy);color:var(--text-primary);}
       entries.forEach(function(e){
         if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
       });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+    }, {threshold: 0.05, rootMargin: '0px 0px -20px 0px'});
     els.forEach(function(el){ obs.observe(el); });
   })();
   </script>
