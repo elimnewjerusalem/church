@@ -22,47 +22,6 @@
     cardObs.observe(el);
   });
 
-  /* ── SVG Running Border — inject one <svg> per .card ──────────
-     Draws a rounded-rect that traces the full perimeter on hover.
-     fill → full reveal → retract = 2.4 s loop.
-     Skipped for prefers-reduced-motion users.                  */
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function injectCardSVG(card) {
-    if (card.querySelector('.card-svg')) return;
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('class', 'card-svg');
-    svg.setAttribute('aria-hidden', 'true');
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    rect.setAttribute('x', '1');
-    rect.setAttribute('y', '1');
-    const r = parseFloat(getComputedStyle(card).borderRadius) || 20;
-    rect.setAttribute('rx', r);
-    svg.appendChild(rect);
-    card.appendChild(svg);
-    function sizeRect() {
-      const w = card.offsetWidth, h = card.offsetHeight;
-      if (!w || !h) return;
-      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-      rect.setAttribute('width', w - 2);
-      rect.setAttribute('height', h - 2);
-      const p = Math.round(2 * (w + h) - (8 - 2 * Math.PI) * r);
-      card.style.setProperty('--p', p);
-      rect.style.strokeDasharray  = '0 ' + p;
-      rect.style.strokeDashoffset = p;
-    }
-    sizeRect();
-    if (window.ResizeObserver) new ResizeObserver(sizeRect).observe(card);
-  }
-
-  if (!reduceMotion) {
-    document.querySelectorAll('.card').forEach(injectCardSVG);
-    const borderObs = new MutationObserver(() => {
-      document.querySelectorAll('.card:not(:has(.card-svg))').forEach(injectCardSVG);
-    });
-    borderObs.observe(document.body, { childList: true, subtree: true });
-  }
-
   /* Scroll top button */
   const btn = document.getElementById('scroll-top-btn');
   if(btn){
@@ -71,44 +30,3 @@
     });
   }
 })();
-
-/* ── ENJC Image Slider ── */
-(function(){
-  var slides = document.querySelectorAll('.enjc-slide');
-  var dots   = document.querySelectorAll('.enjc-dot');
-  var cur    = 0;
-  var timer;
-
-  if (!slides.length) return;
-
-  function go(n) {
-    slides[cur].classList.remove('enjc-slide--active');
-    dots[cur].classList.remove('enjc-dot--on');
-    cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add('enjc-slide--active');
-    dots[cur].classList.add('enjc-dot--on');
-  }
-
-  function startAuto() {
-    clearInterval(timer);
-    timer = setInterval(function(){ go(cur + 1); }, 10000);
-  }
-
-  window.sliderNext = function(){ go(cur + 1); startAuto(); };
-  window.sliderPrev = function(){ go(cur - 1); startAuto(); };
-  window.sliderGo   = function(n){ go(n); startAuto(); };
-
-  // Touch swipe support
-  var startX = 0;
-  var el = document.getElementById('hero-slider');
-  if (el) {
-    el.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
-    el.addEventListener('touchend', function(e){
-      var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) { dx < 0 ? sliderNext() : sliderPrev(); }
-    }, {passive:true});
-  }
-
-  startAuto();
-})();
-

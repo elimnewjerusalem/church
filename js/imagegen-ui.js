@@ -394,11 +394,11 @@ export function syncMobile(){
 
   // BG
   g('m-bg').innerHTML=`
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px">
-      <button onclick="setBG('solid')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='solid'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='solid'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='solid'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">🎨</span>Colour</button>
-      <button onclick="setBG('gradient')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='gradient'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='gradient'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='gradient'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">🌈</span>Gradient</button>
-      <button onclick="setBG('photo')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='photo'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='photo'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='photo'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">📷</span>My Photo</button>
-      <button onclick="setBG('gallery')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='gallery'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='gallery'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='gallery'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">🌄</span>Gallery</button>
+    <div style="display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap">
+      <button class="bgmode-btn${ST.bgMode==='solid'?' on':''}" onclick="setBG('solid')">🎨 Colour</button>
+      <button class="bgmode-btn${ST.bgMode==='gradient'?' on':''}" onclick="setBG('gradient')">🌈 Gradient</button>
+      <button class="bgmode-btn${ST.bgMode==='photo'?' on':''}" onclick="setBG('photo')">📷 Photo</button>
+      <button class="bgmode-btn${ST.bgMode==='gallery'?' on':''}" onclick="setBG('gallery')">🌄 Gallery</button>
     </div>
     <div id="m-bg-solid" class="m-bg-section" data-mode="solid" style="display:${ST.bgMode==='solid'?'block':'none'}">
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Colour Presets</p>
@@ -556,8 +556,8 @@ export function syncMobile(){
       ${VERSE_TAGS.map(t=>`<button class="bgmode-btn m-vtag${(ST._verseTag||'All')===t?' on':''}" data-tag="${t}" onclick="setVerseTag('${t}',this)">${t}</button>`).join('')}
     </div>
     <div id="m-verse-list">
-      ${QUICK_VERSES.map((v,i)=>({v,i})).filter(({v})=>(ST._verseTag||'All')==='All'||(v.tags&&v.tags.includes(ST._verseTag||'All'))).map(({v,i})=>`
-        <div class="vi${ST.verseIdx===i?' on':''}" data-idx="${i}" onclick="selVerse(${i})">
+      ${QUICK_VERSES.filter(v=>(ST._verseTag||'All')==='All'||(v.tags&&v.tags.includes(ST._verseTag||'All'))).map((v,i)=>`
+        <div class="vi" onclick="selVerse(${i})">
           <div class="vi-ref">${v.tref} · ${v.ref}</div>
           <div class="vi-ta">${(v.ta||v.en||'').substring(0,70)}${(v.ta||v.en||'').length>70?'…':''}</div>
         </div>`).join('')}
@@ -669,11 +669,11 @@ export function syncMobileBG(){
   if(!el) return;
   // Rebuild the BG panel HTML with current ST values
   el.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px">
-      <button onclick="setBG('solid')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='solid'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='solid'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='solid'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">🎨</span>Colour</button>
-      <button onclick="setBG('gradient')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='gradient'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='gradient'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='gradient'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">🌈</span>Gradient</button>
-      <button onclick="setBG('photo')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='photo'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='photo'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='photo'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">📷</span>My Photo</button>
-      <button onclick="setBG('gallery')" style="padding:12px 8px;border-radius:10px;border:2px solid ${ST.bgMode==='gallery'?'var(--gd)':'var(--bd)'};background:${ST.bgMode==='gallery'?'var(--gdm)':'var(--bg3)'};color:${ST.bgMode==='gallery'?'var(--gd)':'var(--tx2)'};font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px">🌄</span>Gallery</button>
+    <div style="display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap">
+      <button class="bgmode-btn${ST.bgMode==='solid'?' on':''}" onclick="setBG('solid')">🎨 Colour</button>
+      <button class="bgmode-btn${ST.bgMode==='gradient'?' on':''}" onclick="setBG('gradient')">🌈 Gradient</button>
+      <button class="bgmode-btn${ST.bgMode==='photo'?' on':''}" onclick="setBG('photo')">📷 Photo</button>
+      <button class="bgmode-btn${ST.bgMode==='gallery'?' on':''}" onclick="setBG('gallery')">🌄 Gallery</button>
     </div>
     <div id="m-bg-solid" class="m-bg-section" data-mode="solid" style="display:${ST.bgMode==='solid'?'block':'none'}">
       <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Colour Presets</p>
@@ -719,14 +719,11 @@ export function syncMobileBG(){
       </div>
     </div>
     <div id="m-bg-gallery" class="m-bg-section" data-mode="gallery" style="display:${ST.bgMode==='gallery'?'block':'none'}">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin:0">Gallery</p>
-        <button onclick="addToGallery()" style="background:var(--gd);border:none;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#07090f;cursor:pointer">+ Upload</button>
-      </div>
-      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
-        ${(window.GALLERY_GROUPS||['All','My Photos','Nature','Faith']).map(grp=>`<button class="bgmode-btn${(ST._galGroup||'All')===grp?' on':''}" onclick="setGalGroup('${grp}')">${grp==='Faith'?'✝ '+grp:grp==='My Photos'?'📱 '+grp:'🌿 '+grp}</button>`).join('')}
-      </div>
+      <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Nature Photos</p>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">
+        ${(window.GALLERY_GROUPS||['All','Nature','Faith']).map(grp=>`<button class="bgmode-btn${(ST._galGroup||'All')===grp?' on':''}" onclick="setGalGroup('${grp}')">${grp==='Faith'?'✝ '+grp:'🌿 '+grp}</button>`).join('')}
+      </div>
       ${GALLERY.filter(c=>(ST._galGroup||'All')==='All'||c.group===(ST._galGroup||'All')).map((c,i)=>{const ri=GALLERY.indexOf(c);return `<div onclick="loadGal(${ri})" style="border:1.5px solid ${ST.galIdx===ri?'var(--gd)':'var(--bd)'};border-radius:6px;cursor:pointer;overflow:hidden;aspect-ratio:9/16;position:relative;background:var(--bg3)">
           <img src="${c.url}" loading="lazy" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85" onerror="this.style.display='none'">
           <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);font-size:7px;color:#fff;text-align:center;padding:2px;font-weight:500">${c.name}</div>
@@ -914,19 +911,11 @@ function rebuildMobileVerseList(){
 export function selVerse(i){
   ST.verseIdx = i;
   ST.verse = QUICK_VERSES[i];
-  if(!ST.verse) return;
-  const ta = ST.verse.ta||ST.verse.en||'';
-  const ref = ST.verse.tref||ST.verse.ref||'';
-  // Update desktop verse card
-  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = ta;
-  const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+ref;
-  // Update mobile verse card
-  const mvdTa = g('mvd-ta'); if(mvdTa) mvdTa.textContent = ta.substring(0,90)+(ta.length>90?'…':'');
-  const mvdRef = g('mvd-ref'); if(mvdRef) mvdRef.textContent = '— '+ref;
-  // Highlight selected in all verse lists
+  const vdTa = g('vd-ta'); if(vdTa) vdTa.textContent = ST.verse.ta||ST.verse.en||'';
+  const vdRef = g('vd-ref'); if(vdRef) vdRef.textContent = '— '+(ST.verse.tref||ST.verse.ref||'');
   document.querySelectorAll('.vi').forEach(el=>{
-    const vidx = parseInt(el.dataset.idx);
-    el.classList.toggle('on', vidx===i);
+    const vidx=parseInt(el.dataset.idx);
+    el.classList.toggle('on',vidx===i);
   });
   debounceDraw();
 }
@@ -1277,64 +1266,29 @@ export function buildGallery(){
   const el   = g('gal-grid');
   if(!el) return;
 
-  // Add 'My Photos' group if not already there
-  if(!window.GALLERY_GROUPS.includes('My Photos')){
-    window.GALLERY_GROUPS = ['All','My Photos','Nature','Faith'];
-  }
-
   // Build group tabs if not yet built
   if(wrap && !wrap.querySelector('.gal-group-tabs')){
-    const groups = window.GALLERY_GROUPS;
+    const groups = window.GALLERY_GROUPS||['All'];
     const tabsEl = document.createElement('div');
     tabsEl.className = 'gal-group-tabs';
     tabsEl.style.cssText = 'display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px';
     tabsEl.innerHTML = groups.map(g=>`
       <button class="bgmode-btn gal-gtab${(ST._galGroup||'All')===g?' on':''}"
-        data-group="${g}" onclick="setGalGroup('${g}')">${g==='Faith'?'✝ '+g:g==='My Photos'?'📱 '+g:'🌿 '+g}</button>`
+        data-group="${g}" onclick="setGalGroup('${g}')">${g==='Faith'?'✝ '+g:'🌿 '+g}</button>`
     ).join('');
     wrap.insertBefore(tabsEl, el);
   } else if(wrap) {
+    // Sync tab active state
     wrap.querySelectorAll('.gal-gtab').forEach(b=>
       b.classList.toggle('on', b.dataset.group===(ST._galGroup||'All'))
     );
   }
 
   const activeGroup = ST._galGroup||'All';
-  const myPhotos = (window.ST._myPhotos||[]);
   const filtered = GALLERY.map((c,i)=>({c,i}))
     .filter(({c})=> activeGroup==='All' || c.group===activeGroup);
 
-  // My Photos section
-  let myPhotosHTML = '';
-  if(activeGroup==='All'||activeGroup==='My Photos'){
-    const uploadBtn = `<div onclick="addToGallery()"
-      style="border:2px dashed var(--gd);border-radius:6px;cursor:pointer;
-             background:var(--gdm);transition:all .15s;aspect-ratio:9/16;
-             position:relative;display:flex;flex-direction:column;
-             align-items:center;justify-content:center;gap:4px">
-      <span style="font-size:24px">+</span>
-      <span style="font-size:8px;color:var(--gd);font-weight:600;text-align:center;padding:0 4px">Upload Photo</span>
-    </div>`;
-    const myItems = myPhotos.map((p,idx)=>{
-      const galIdx = GALLERY.length + idx;
-      return `<div onclick="loadGalCustom(${idx})"
-        style="border:1.5px solid ${ST.galIdx===galIdx?'var(--gd)':'var(--bd)'};
-               border-radius:6px;cursor:pointer;overflow:hidden;
-               background:var(--bg3);aspect-ratio:9/16;position:relative">
-        <img src="${p.thumb}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85">
-        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);
-                    font-size:8px;color:#fff;text-align:center;padding:3px 2px;font-weight:500">📱 ${p.name}</div>
-        <button onclick="event.stopPropagation();removeMyPhoto(${idx})"
-          style="position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;
-                 background:rgba(255,0,0,.7);border:none;color:#fff;font-size:10px;
-                 cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">✕</button>
-        ${ST.galIdx===galIdx?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
-      </div>`;
-    }).join('');
-    myPhotosHTML = uploadBtn + myItems;
-  }
-
-  el.innerHTML = myPhotosHTML + filtered.map(({c,i})=>`
+  el.innerHTML = filtered.map(({c,i})=>`
     <div onclick="loadGal(${i})"
          style="border:1.5px solid ${ST.galIdx===i?'var(--gd)':'var(--bd)'};
                 border-radius:6px;cursor:pointer;overflow:hidden;
@@ -1346,64 +1300,6 @@ export function buildGallery(){
                   font-size:8px;color:#fff;text-align:center;padding:3px 2px;font-weight:500">${c.label} ${c.name}</div>
       ${ST.galIdx===i?'<div style="position:absolute;inset:0;border:2px solid var(--gd);border-radius:5px;pointer-events:none"></div>':''}
     </div>`).join('');
-}
-
-export function addToGallery(){
-  const inp = document.createElement('input');
-  inp.type='file'; inp.accept='image/*'; inp.multiple=true;
-  inp.onchange = e=>{
-    const files = [...e.target.files];
-    if(!files.length) return;
-    if(!window.ST._myPhotos) window.ST._myPhotos = [];
-    let loaded = 0;
-    files.forEach(file=>{
-      const reader = new FileReader();
-      reader.onload = ev=>{
-        const img = new Image();
-        img.onload = ()=>{
-          window.ST._myPhotos.push({
-            name: file.name.replace(/\.[^.]+$/,'').substring(0,12),
-            thumb: ev.target.result,
-            img: img,
-          });
-          loaded++;
-          if(loaded === files.length){
-            ST._galGroup = 'My Photos';
-            buildGallery();
-            // Auto-load first uploaded
-            loadGalCustom(window.ST._myPhotos.length - files.length);
-            toast(`📱 ${files.length} photo${files.length>1?'s':''} added!`);
-          }
-        };
-        img.src = ev.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-  inp.click();
-}
-
-export function loadGalCustom(idx){
-  const photos = window.ST._myPhotos||[];
-  if(!photos[idx]) return;
-  const galIdx = GALLERY.length + idx;
-  ST.galIdx = galIdx;
-  ST.galImg = photos[idx].img;
-  setBG('gallery');
-  debounceDraw();
-  // Highlight
-  buildGallery();
-  toast('📱 '+photos[idx].name);
-}
-
-export function removeMyPhoto(idx){
-  if(!window.ST._myPhotos) return;
-  window.ST._myPhotos.splice(idx,1);
-  if(ST.galIdx === GALLERY.length + idx) {
-    ST.galIdx = -1; ST.galImg = null;
-  }
-  buildGallery();
-  debounceDraw();
 }
 
 export function setGalGroup(group){

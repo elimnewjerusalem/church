@@ -2,157 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact Us | ENJC</title>
   <meta name="description" content="Contact Elim New Jerusalem Church. Address: Tondiarpet, Chennai. Phone: +91 94443 45102.">
   <script src="js/site.js"></script>
   <link rel="stylesheet" href="css/main.css">
-<style>
-:root{
-  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
-  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
-  --cream:#f4f0e8;--cream-dark:#e8e3d8;
-  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
-  --border:#1a2e50;
+
+<style id="scroll-top-style">
+.scroll-top-btn {
+  position: fixed; bottom: 80px; right: 20px; z-index: 900;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--gold, #f5c842); color: #030a1a;
+  border: none; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 18px; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
-body{font-family:'DM Sans',sans-serif;}
-.navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
-.nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
-.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
-.nav-logo-text span{color:var(--gold);}
-.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
-.nav-links a{font-size:12px;color:var(--text-muted);padding:7px 11px;border-radius:6px;transition:all 0.2s;}
-.nav-links a:hover{color:var(--text-primary);}
-.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
-.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;transition:background 0.2s;white-space:nowrap;}
-.nav-cta:hover{background:var(--gold-light);}
-.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
-@media(max-width:900px){.navbar{padding:0 18px;}.nav-links,.nav-cta{display:none;}.nav-mobile-toggle{display:block;}}
-.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
-.footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
-.footer-brand-name span{color:var(--gold);}
-.footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
-.footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
-.footer-social{display:flex;gap:6px;margin-top:14px;}
-.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
-.social-icon:hover{border-color:var(--gold-dim);}
-.social-icon i{font-size:14px;color:var(--text-muted);}
-.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
-.footer-links{display:flex;flex-direction:column;gap:6px;}
-.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
-.footer-links a:hover{color:var(--gold);}
-.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
-.footer-copy{font-size:11px;color:var(--text-dim);}
-.footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
-.wa-float{position:fixed;bottom:76px;right:24px;z-index:150;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;}
-.wa-float:hover{transform:scale(1.08);}
-.wa-float i{font-size:22px;color:#fff;}
-#scroll-top-btn{position:fixed;bottom:76px;right:82px;z-index:150;width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;}
-#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
-#scroll-top-btn:hover{transform:scale(1.1);}
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;}
-.mob-nav-inner{display:flex;justify-content:space-around;}
-.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;}
-.mob-item i{font-size:20px;color:var(--text-dim);}
-.mob-item span{font-size:9px;color:var(--text-dim);}
-.mob-item.active i,.mob-item.active span{color:var(--gold);}
-@media(max-width:900px){body{padding-bottom:60px;}.mob-nav{display:block;}.wa-float{bottom:76px;}.footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:28px 20px 16px;}}
-@media(max-width:540px){.footer-grid{grid-template-columns:1fr;}}
-</style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<style>
-:root{
-  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
-  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
-  --cream:#f4f0e8;--cream-dark:#e8e3d8;
-  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
-  --border:#1a2e50;
+.scroll-top-btn.is-visible { opacity: 1; pointer-events: auto; }
+.wa-float {
+  position: fixed; bottom: 130px; right: 18px; z-index: 900;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: #25d366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
-body{font-family:'DM Sans',sans-serif;}
-.navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
-.nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
-.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
-.nav-logo-text span{color:var(--gold);}
-.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
-.nav-links a{font-size:12px;color:var(--text-muted);padding:7px 11px;border-radius:6px;transition:all 0.2s;}
-.nav-links a:hover{color:var(--text-primary);}
-.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
-.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;transition:background 0.2s;white-space:nowrap;}
-.nav-cta:hover{background:var(--gold-light);}
-.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
-@media(max-width:900px){.navbar{padding:0 18px;}.nav-links,.nav-cta{display:none;}.nav-mobile-toggle{display:block;}}
-.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
-.footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
-.footer-brand-name span{color:var(--gold);}
-.footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
-.footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
-.footer-social{display:flex;gap:6px;margin-top:14px;}
-.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
-.social-icon:hover{border-color:var(--gold-dim);}
-.social-icon i{font-size:14px;color:var(--text-muted);}
-.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
-.footer-links{display:flex;flex-direction:column;gap:6px;}
-.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
-.footer-links a:hover{color:var(--gold);}
-.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
-.footer-copy{font-size:11px;color:var(--text-dim);}
-.footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
-.wa-float{position:fixed;bottom:76px;right:24px;z-index:150;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;}
-.wa-float:hover{transform:scale(1.08);}
-.wa-float i{font-size:22px;color:#fff;}
-#scroll-top-btn{position:fixed;bottom:76px;right:82px;z-index:150;width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;}
-#scroll-top-btn.visible{opacity:1;pointer-events:all;}
-#scroll-top-btn:hover{transform:scale(1.1);}
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;}
-.mob-nav-inner{display:flex;justify-content:space-around;}
-.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;}
-.mob-item i{font-size:20px;color:var(--text-dim);}
-.mob-item span{font-size:9px;color:var(--text-dim);}
-.mob-item.active i,.mob-item.active span{color:var(--gold);}
-@media(max-width:900px){body{padding-bottom:60px;}.mob-nav{display:block;}.wa-float{bottom:76px;}.footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:28px 20px 16px;}}
-@media(max-width:540px){.footer-grid{grid-template-columns:1fr;}}
 </style>
+  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/contact.html">
+  <meta property="og:title" content="Contact | ENJC — Elim New Jerusalem Church">
+  <meta property="og:description" content="Get in touch with Elim New Jerusalem Church. Visit us at No.110E, Elaiyasamy Street, Tondiarpet, Chennai.">
+  <meta property="og:url" content="https://elimnewjerusalem.github.io/church/contact.html">
+  <meta property="og:type" content="website">
 </head>
 <body>
-  <nav class="navbar">
-  <div class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/Logo.png" alt="ENJC Logo" width="38" height="38"
-         onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
-    <div class="nav-logo-fallback" id="logo-fb">E</div>
-    <div>
-      <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
-      <div class="nav-logo-sub">Tondiarpet, Chennai</div>
-    </div>
-  </div>
-  <div class="nav-links" id="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="ministries.html">Ministries</a>
-    <a href="events.html">Events</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="bible.html">Bible</a>
-    <a href="imagegen.html">Cards</a>
-    <a href="contact.html" class="active">Contact</a>
-  </div>
-  <a href="contact.html" class="nav-cta">
-    <i class="ti ti-map-pin" style="font-size:12px;"></i> Visit Us
-  </a>
-  <button class="nav-mobile-toggle" id="mob-toggle">
-    <i class="ti ti-menu-2"></i>
-  </button>
-</nav>
+  <header>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="ENJC home">
+          <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
+          <div>
+            <div class="nav-logo__name">ENJC</div>
+            <div class="nav-logo__sub">Elim New Jerusalem Church</div>
+          </div>
+        </a>
+        <div class="nav-links" style="flex:1;justify-content:center;display:flex;align-items:center;" role="list"><a href="index.html" class="nav-link" role="listitem">Home</a><a href="about.html" class="nav-link" role="listitem">About</a><a href="gallery.html" class="nav-link" role="listitem">Gallery</a><a href="ministries.html" class="nav-link" role="listitem">Ministries</a><a href="events.html" class="nav-link" role="listitem">Events</a><a href="contact.html" class="nav-link  nav-link--active" role="listitem">Contact</a><a href="bible.html" class="nav-link" role="listitem">Bible</a></div>
+        <div class="nav-controls">
+          <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+            <div class="theme-toggle__dot"></div>
+          </button>
+          <a href="https://www.google.com/maps/search/?api=1&query=Elim+New+Jerusalem+Church+Tondiarpet+Chennai" target="_blank" rel="noopener" class="nav-visit-btn">
+            📍 Visit Us
+          </a>
+        </div>
+        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu" role="menu"><a href="index.html" class="mobile-menu__link" role="menuitem">Home</a><a href="about.html" class="mobile-menu__link" role="menuitem">About</a><a href="gallery.html" class="mobile-menu__link" role="menuitem">Gallery</a><a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a><a href="events.html" class="mobile-menu__link" role="menuitem">Events</a><a href="contact.html" class="mobile-menu__link  is-active" role="menuitem">Contact</a><a href="bible.html" class="mobile-menu__link" role="menuitem">Bible</a></div>
+    </nav>
+  </header>
 
 <main>
 
@@ -329,61 +246,35 @@ body{font-family:'DM Sans',sans-serif;}
 </main>
 
   <footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name"><span>ENJC</span> · Elim New Jerusalem Church</div>
-      <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
-      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
-      <div class="footer-social">
-        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-youtube"></i></a>
-        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank"><i class="ti ti-brand-instagram"></i></a>
-        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-facebook"></i></a>
-        <a href="https://wa.me/919444345102" class="social-icon" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Quick Links</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a><a href="about.html">About</a>
-        <a href="ministries.html">Ministries</a><a href="events.html">Events</a>
-        <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Bible Tools</div>
-      <div class="footer-links">
-        <a href="bible.html">Bible Reader</a>
-        <a href="imagegen.html">Scripture Cards</a>
-        <a href="events.html">Watch Live</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Service Times</div>
-      <div class="footer-links">
-        <a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a>
-        <a href="#">Friday · 11:00 AM – 1:30 PM</a>
-        <a href="#">Tuesday · 11:00 AM – 4:00 PM</a>
-        <a href="#">Night Prayer · 10:30 PM Daily</a>
-        <a href="#">Promise · 1st of every month</a>
+  <div class="footer-bottom" style="padding:16px 0;">
+    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
+    <div class="footer-verse">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__logo">ENJC — Elim New Jerusalem Church</div>
+        <div class="site-footer__copy">© 2026 · Tondiarpet, Chennai · +91 94443 45102</div>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
-    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
   </div>
 </footer>
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
-<nav class="mob-nav">
-  <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item active"><i class="ti ti-mail"></i><span>Contact</span></a>
-  </div>
-</nav>
+
+  <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
+     class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html" class="bottom-nav__item"><span class="bottom-nav__icon" aria-hidden="true">🏠</span><span class="bottom-nav__label">Home</span></a>
+    <a href="about.html" class="bottom-nav__item"><span class="bottom-nav__icon" aria-hidden="true">✝</span><span class="bottom-nav__label">About</span></a>
+    <div class="bottom-nav__center"><a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a></div>
+    <a href="events.html" class="bottom-nav__item"><span class="bottom-nav__icon" aria-hidden="true">📅</span><span class="bottom-nav__label">Events</span></a>
+    <a href="contact.html" class="bottom-nav__item is-active"><span class="bottom-nav__icon" aria-hidden="true">✉</span><span class="bottom-nav__label">Contact</span></a>
+  </nav>
 
 
   <!-- Scroll Reveal Observer -->
@@ -399,22 +290,48 @@ body{font-family:'DM Sans',sans-serif;}
     els.forEach(function(el){ obs.observe(el); });
   })();
   </script>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="ti ti-brand-whatsapp"></i>
+</a>
+
+<!-- Scroll to Top -->
+<button id="scroll-top-btn" class="scroll-top-btn" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="ti ti-arrow-up"></i>
+</button>
+
+<!-- Mobile Nav -->
+<nav class="mob-nav" aria-label="Mobile navigation">
+  <div class="mob-nav-inner">
+    <a href="index.html" class="mob-item ">
+      <i class="ti ti-home"></i><span>Home</span>
+    </a>
+    <a href="about.html" class="mob-item ">
+      <i class="ti ti-info-circle"></i><span>About</span>
+    </a>
+    <a href="bible.html" class="mob-item ">
+      <i class="ti ti-book"></i><span>Bible</span>
+    </a>
+    <a href="events.html" class="mob-item ">
+      <i class="ti ti-calendar"></i><span>Events</span>
+    </a>
+    <a href="contact.html" class="mob-item active">
+      <i class="ti ti-phone"></i><span>Contact</span>
+    </a>
+  </div>
+</nav>
+
 <script>
-/* Mobile nav toggle */
 (function(){
-  var btn = document.getElementById('mob-toggle');
-  var links = document.getElementById('nav-links');
-  if(!btn || !links) return;
-  btn.addEventListener('click', function(){
-    var open = links.classList.toggle('mob-open');
-    Object.assign(links.style, open ? {
-      display:'flex', flexDirection:'column', position:'absolute',
-      top:'60px', left:'0', right:'0', background:'#0a1628',
-      padding:'8px 0', borderBottom:'1px solid #1a2e50', zIndex:'300'
-    } : {display:'', position:'', flexDirection:''});
-  });
+  var btn = document.getElementById('scroll-top-btn');
+  if(!btn) return;
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('is-visible', window.scrollY > 300);
+  }, {passive:true});
 })();
 </script>
+
 </body>
 </html>
 

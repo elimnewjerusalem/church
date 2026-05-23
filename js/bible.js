@@ -3,8 +3,11 @@
 // ═══════════════════════════════════════════════════════════════
 'use strict';
 
-// FCBH audio API key (leave empty to use ResponsiveVoice instead)
-const FCBH_KEY = '';
+// ── FCBH KEY (free at 4.dbt.io) ─────────────────────────────────
+const FCBH_KEY = "";
+const FCBH_TA  = "TAMOVSN2DA";
+const FCBH_EN  = "ENGKJVC2DA";
+
 // ── CONFIG ───────────────────────────────────────────────────────
 const C = {
   enAPI:  'https://bible-api.com/',
@@ -12,9 +15,7 @@ const C = {
   taAPI2: 'https://bolls.life/get-text/TAMBL98/',
   taAPI3: 'https://api.getbible.net/v2/tamil/',
   data:   'data/',
-  ms:     9000,
-  // Local Bible data (loaded once at startup)
-  EN_LOCAL: 'data/english_kjv.json',
+  ms:     9000
 };
 
 // ── STATE ────────────────────────────────────────────────────────
@@ -25,10 +26,9 @@ const S = {
   hl: JSON.parse(localStorage.getItem('enjc_hl')||'{}'),
   bm: JSON.parse(localStorage.getItem('enjc_bm')||'[]'),
   notes: JSON.parse(localStorage.getItem('enjc_notes')||'{}'),
-  tamilDB:{}, bibleData:{}, enDB:{},
+  tamilDB:{}, bibleData:{},
   igSz:'9:16', igBg:'#080c10', igTc:'#e8a020',
   igVerses:[], customVerse:null,
-  igBgMode:'solid', igBgImg:null, igUnsOverlay:0.5,
   audEl:null, playing:false, playAllM:false, pIdx:0,
   showParallel:false, hlColor:'#f5c518',
   theme: localStorage.getItem('enjc-theme')||'dark',
@@ -78,133 +78,19 @@ const PLAN=[
   {day:"நாள் 7",ch:"வெளிப்படுத்தல் 21",lbl:"எல்லாம் புதிதாகும்",book:"revelation",n:21}
 ];
 
-// ── QUIZ — 100 questions in 10 rotating sets of 10 ─────────────
-const QQ_ALL=[
-  // SET 1
+// ── QUIZ ────────────────────────────────────────────────────────
+const QQ=[
   {q:"யோவான் 3:16 இல் தேவன் உலகத்தில் என்ன செய்தார்?",a:1,o:["ஆக்கினை தீர்த்தார்","அன்பு கூர்ந்தார்","நியாயந்தீர்த்தார்","மறந்தார்"],r:"யோவான் 3:16"},
-  {q:"கர்த்தர் என் ___; எனக்கு குறைவுண்டாவதில்லை.",a:0,o:["மேய்ப்பர்","தந்தை","ராஜா","நண்பர்"],r:"சங்கீதம் 23:1"},
-  {q:"என்னை பலப்படுத்துகிற ___ னால் எல்லாவற்றையும் செய்யவல்லேன்.",a:2,o:["தேவன்","தூதர்","கிறிஸ்து","மனிதர்"],r:"பிலிப்பியர் 4:13"},
+  {q:"கர்த்தர் என் ___; எனக்கு குறைவுண்டாவதில்லை. (சங்கீதம் 23:1)",a:0,o:["மேய்ப்பர்","தந்தை","ராஜா","நண்பர்"],r:"சங்கீதம் 23:1"},
+  {q:"என்னை ___ பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்.",a:1,o:["எப்போதும்","என்னை","மட்டும்","அன்பாய்"],r:"பிலிப்பியர் 4:13"},
   {q:"எரேமியா 29:11 — என்னால் நினைக்கப்படுகிற நினைவுகள் எவ்வகையானவை?",a:0,o:["சமாதானம்","தீமை","நியாயம்","கோபம்"],r:"எரேமியா 29:11"},
   {q:"யோசுவா 1:9 — திடமனதாயிரு, ___; கர்த்தர் உன்னோடிருக்கிறார்.",a:1,o:["பெரியவனாயிரு","தைரியமாயிரு","சந்தோஷமாயிரு","நம்பிக்கையாயிரு"],r:"யோசுவா 1:9"},
   {q:"ஏசாயா 40:31 — கர்த்தருக்கு காத்திருக்கிறவர்கள் என்ன அடைவார்கள்?",a:2,o:["ஆசீர்வாதம்","சமாதானம்","புதுப்பெலன்","ஜீவன்"],r:"ஏசாயா 40:31"},
   {q:"மத்தேயு 11:28 — வருத்தப்பட்டு வாருங்கள்; நான் என்ன தருவேன்?",a:3,o:["வாழ்க்கை","நம்பிக்கை","ஆசீர்வாதம்","இளைப்பாறுதல்"],r:"மத்தேயு 11:28"},
   {q:"1 கொரிந்தியர் 13:4 — அன்பு நீடிய ___ உள்ளது",a:0,o:["பொறுமை","கோபம்","சந்தோஷம்","சக்தி"],r:"1 கொரிந்தியர் 13:4"},
   {q:"ரோமர் 8:28 — தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் எதற்கு ஏதுவாக நடக்கும்?",a:1,o:["தீமைக்கு","நன்மைக்கு","ஆக்கினைக்கு","சோதனைக்கு"],r:"ரோமர் 8:28"},
-  {q:"சங்கீதம் 46:1 — தேவன் நமக்கு அடைக்கலமும் ___ மாயிருக்கிறார்",a:2,o:["சந்தோஷமு","அன்பு","பெலனு","நம்பிக்கையு"],r:"சங்கீதம் 46:1"},
-  // SET 2
-  {q:"யோவான் 14:6 — நான்தான் வழியும் ___ மும் ஜீவனுமாயிருக்கிறேன்.",a:1,o:["ஜீவனு","சத்தியமு","வெளிச்சமு","நம்பிக்கையு"],r:"யோவான் 14:6"},
-  {q:"நீதிமொழிகள் 3:5 — உன் சம்பூர்ண இருதயத்தோடே எங்கே நம்பிக்கை வை?",a:0,o:["கர்த்தரில்","மனிதரில்","தன்னில்","செல்வத்தில்"],r:"நீதிமொழிகள் 3:5"},
-  {q:"2 கொரிந்தியர் 12:9 — என் ___ உனக்குப் போதும் என்று கர்த்தர் சொன்னார்.",a:2,o:["பலன்","சமாதானம்","கிருபை","நேசம்"],r:"2 கொரிந்தியர் 12:9"},
-  {q:"எபிரெயர் 11:1 — விசுவாசமானது ___ படுகிறவைகளின் உறுதியாயிருக்கிறது.",a:0,o:["நம்பப்","மறக்கப்","தேடப்","காணப்"],r:"எபிரெயர் 11:1"},
-  {q:"1 தெசலோனிக்கேயர் 5:17 — ___ ஜெபம் பண்ணுங்கள்.",a:3,o:["அதிகமாக","பணிவாக","ஒன்றாக","இடைவிடாமல்"],r:"1 தெசலோனிக்கேயர் 5:17"},
-  {q:"ஏசாயா 43:4 — நீ என் கண்களுக்கு ___ யானவன்.",a:1,o:["பெரிய","அருமை","சக்தி","நம்பிக்கை"],r:"ஏசாயா 43:4"},
-  {q:"சங்கீதம் 27:1 — கர்த்தர் என் வெளிச்சமும் என் ___ மாயிருக்கிறார்.",a:2,o:["தந்தையு","நம்பிக்கையு","இரட்சிப்பு","வழிகாட்டியு"],r:"சங்கீதம் 27:1"},
-  {q:"யோவான் 14:27 — ___ ஐ உங்களுக்கு வைத்துவிடுகிறேன் என்று இயேசு சொன்னார்.",a:0,o:["சமாதானம்","ஜீவன்","வெளிச்சம்","வல்லமை"],r:"யோவான் 14:27"},
-  {q:"எபிரெயர் 13:8 — இயேசு கிறிஸ்துவே நேற்றும் இன்றும் என்றும் ___.",a:3,o:["வல்லமையுள்ளவர்","அன்புள்ளவர்","நீதியுள்ளவர்","மாறாதவர்"],r:"எபிரெயர் 13:8"},
-  {q:"புலம்பல் 3:22 — கர்த்தருடைய கிருபைகள் ___ போவதில்லை.",a:1,o:["கண்டு","தீர்ந்து","மாறி","வளர்ந்து"],r:"புலம்பல் 3:22"},
-  // SET 3
-  {q:"மத்தேயு 5:8 — இருதயத்தில் ___ உள்ளவர்கள் பாக்கியவான்கள்.",a:0,o:["சுத்தம்","நம்பிக்கை","அன்பு","பெலன்"],r:"மத்தேயு 5:8"},
-  {q:"சங்கீதம் 119:105 — உம்முடைய வசனம் என் காலுக்கு ___ ம் என் பாதைக்கு வெளிச்சமுமாயிருக்கிறது.",a:2,o:["வழியு","தண்ணீரு","விளக்கு","சக்தியு"],r:"சங்கீதம் 119:105"},
-  {q:"கலாத்தியர் 5:22 — ஆவியின் கனி என்ன?",a:1,o:["வல்லமை","அன்பு","ஞானம்","பலன்"],r:"கலாத்தியர் 5:22"},
-  {q:"யாக்கோபு 5:16 — ___ மானுடைய வேண்டுதல் மிகவும் பெலனுள்ளதாய் வல்லமையாய் நடக்கிறது.",a:0,o:["நீதி","தாழ்மை","விசுவாச","தொடர்ச்சியான"],r:"யாக்கோபு 5:16"},
-  {q:"1 யோவான் 4:8 — தேவன் என்னவர்?",a:3,o:["ஞானம்","வல்லமை","நீதி","அன்பு"],r:"1 யோவான் 4:8"},
-  {q:"சங்கீதம் 37:4 — கர்த்தரிடத்தில் ___ திரு; அவர் இருதயத்தின் வேண்டுதல்களை அருள்வார்.",a:1,o:["நம்பிக்கையாயி","மகிழ்ந்தி","பயந்தி","தாழ்மையாயி"],r:"சங்கீதம் 37:4"},
-  {q:"ஏசாயா 53:5 — அவருடைய ___ களால் குணமாகிறோம்.",a:2,o:["வார்த்தை","கரங்க","தழும்பு","வல்லமை"],r:"ஏசாயா 53:5"},
-  {q:"1 பேதுரு 5:7 — உங்கள் கவலைகளையெல்லாம் அவர்மேல் போடுங்கள்; ஏன்?",a:0,o:["அவர் விசாரிக்கிறார்","அவர் வல்லமையுள்ளவர்","அவர் நீதியுள்ளவர்","அவர் வழிகாட்டுவார்"],r:"1 பேதுரு 5:7"},
-  {q:"சங்கீதம் 100:4 — ___ தோடே அவருடைய வாசல்களிலும் பிரவேசியுங்கள்.",a:3,o:["விசுவாசத்","பயத்","நம்பிக்கையி","ஸ்தோத்திரத்"],r:"சங்கீதம் 100:4"},
-  {q:"ரோமர் 15:13 — நம்பிக்கையின் தேவன் என்னால் நிரப்புவாராக என்று பவுல் வேண்டினார்?",a:1,o:["வல்லமையால்","சகல சந்தோஷத்தினால்","ஞானத்தினால்","பெலத்தினால்"],r:"ரோமர் 15:13"},
-  // SET 4
-  {q:"மத்தேயு 6:33 — முதலாவது ___ ஐயும் அவருடைய நீதியையும் தேடுங்கள்.",a:0,o:["தேவனுடைய ராஜ்யத்த்","சமாதானத்த்","அன்பின் வழியை","ஞானத்தை"],r:"மத்தேயு 6:33"},
-  {q:"யோவான் 10:10 — நான் வந்தது என்னவென்றால் ___ அடையும்படியாக வந்தேன்.",a:2,o:["சமாதானம்","வல்லமை","ஜீவன்","நம்பிக்கை"],r:"யோவான் 10:10"},
-  {q:"எபேசியர் 2:8 — கிருபையினாலே ___ கொண்டு இரட்சிக்கப்பட்டீர்கள்.",a:1,o:["நம்பிக்கையை","விசுவாசத்தை","அன்பை","ஞானத்தை"],r:"எபேசியர் 2:8"},
-  {q:"பிலிப்பியர் 4:6 — ___ ஒன்றினிமித்தமும் கவலைப்படாமல் இருங்கள்.",a:3,o:["சில","அதிக","குறைந்த","எந்த"],r:"பிலிப்பியர் 4:6"},
-  {q:"யோவான் 15:5 — நான் திராட்சைவல்லி; நீங்கள் ___.",a:0,o:["கொம்புகள்","வேர்கள்","பழங்கள்","இலைகள்"],r:"யோவான் 15:5"},
-  {q:"மாற்கு 16:15 — சகல உலகத்திலும் போய் ___ ஐ பிரசங்கியுங்கள்.",a:1,o:["சமாதானத்த்","சுவிசேஷத்த்","அன்பை","நம்பிக்கையை"],r:"மாற்கு 16:15"},
-  {q:"லூக்கா 1:37 — தேவனால் ___ கார்யமும் இல்லாமல் போகாது.",a:2,o:["ஒரு","சில","எந்த","கடினமான"],r:"லூக்கா 1:37"},
-  {q:"அப்போஸ்தலர் 1:8 — ___ வரும்போது நீங்கள் வல்லமை பெறுவீர்கள்.",a:0,o:["பரிசுத்த ஆவி","தேவதூதர்","கிறிஸ்து","வசனம்"],r:"அப்போஸ்தலர் 1:8"},
-  {q:"2 தீமோத்தேயு 3:16 — வேதாகமம் ___ ஏவுதலினால் உண்டானது.",a:3,o:["மனித","தூத","தீர்க்கதரிசன","தேவ"],r:"2 தீமோத்தேயு 3:16"},
-  {q:"சங்கீதம் 34:18 — கர்த்தர் ___ ஆனவர்களுக்கு சமீபமாயிருக்கிறார்.",a:1,o:["வல்லமையு","இருதயம் நொறுங்கி","ஜெபிக்கிற","துதிக்கிற"],r:"சங்கீதம் 34:18"},
-  // SET 5
-  {q:"மத்தேயு 28:20 — இதோ உலக முடிவுபரியந்தம் நான் ___ உங்களுடனே இருக்கிறேன்.",a:0,o:["எப்பொழுதும்","சில நேரம்","ஜெபிக்கும்போது","கஷ்டத்தில்"],r:"மத்தேயு 28:20"},
-  {q:"யோவான் 8:32 — சத்தியம் உங்களை ___ செய்யும்.",a:2,o:["மகிழ்வி","பலப்படுத்தி","விடுதலையா","ஆசீர்வதி"],r:"யோவான் 8:32"},
-  {q:"நீதிமொழிகள் 18:10 — கர்த்தருடைய நாமம் ___ மான கோபுரம்.",a:1,o:["வல்லமையு","பலத்த","அன்பான","நீதியான"],r:"நீதிமொழிகள் 18:10"},
-  {q:"சங்கீதம் 91:1 — உன்னதமானவருடைய ___ ல் தங்குகிறவன் சர்வவல்லவருடைய நிழலில் இருப்பான்.",a:3,o:["வாக்கு","வல்லமை","நாமம்","இரகசியத்"],r:"சங்கீதம் 91:1"},
-  {q:"ஏசாயா 41:10 — ___ ஆகாதே; நான் உன் தேவன்.",a:0,o:["பயப்பட","வருந்த","சந்தேகப்பட","கஷ்டப்பட"],r:"ஏசாயா 41:10"},
-  {q:"மத்தேயு 5:9 — ___ உண்டாக்குகிறவர்கள் பாக்கியவான்கள்.",a:2,o:["அன்பை","விசுவாசத்தை","சமாதானத்தை","நீதியை"],r:"மத்தேயு 5:9"},
-  {q:"1 யோவான் 1:9 — நாம் பாவங்களை அறிக்கையிட்டால் அவர் நம்முடைய பாவங்களை ___ செய்வார்.",a:1,o:["மறைக்க","மன்னிக்க","மறக்க","நீக்க"],r:"1 யோவான் 1:9"},
-  {q:"ரோமர் 10:9 — ___ ஐ கர்த்தர் என்று வாயினால் அறிக்கையிட்டால் இரட்சிக்கப்படுவாய்.",a:0,o:["இயேசுவை","தேவனை","கிறிஸ்துவை","ஆண்டவரை"],r:"ரோமர் 10:9"},
-  {q:"எபேசியர் 6:11 — தேவனுடைய ___ ஐ தரித்துக்கொள்ளுங்கள்.",a:3,o:["வல்லமை","அன்பு","சமாதானம்","சர்வாயுதவர்க்க"],r:"எபேசியர் 6:11"},
-  {q:"பிலிப்பியர் 4:13 — என்னை பலப்படுத்துகிற கிறிஸ்துவினால் ___ வல்லேன்.",a:2,o:["சிலவற்றை","பலவற்றை","எல்லாவற்றையும்","யாவற்றையும்"],r:"பிலிப்பியர் 4:13"},
-  // SET 6
-  {q:"யோவான் 3:3 — மறுபடியும் ___ ஆனவன் தேவனுடைய ராஜ்யத்தை காண மாட்டான்.",a:1,o:["நம்பி","பிறவாத","ஜெபிக்காத","மாறாத"],r:"யோவான் 3:3"},
-  {q:"சங்கீதம் 23:4 — மரண இருளின் பள்ளத்தாக்கில் நடந்தாலும் ___ ஆகேன்.",a:0,o:["பயப்பட","தளர","வருந்த","நம்பிக்கை இழக்க"],r:"சங்கீதம் 23:4"},
-  {q:"ஏசாயா 26:3 — உன்னை நம்பினவனை ___ ல் காத்திருப்பாய்.",a:2,o:["வல்லமை","விசுவாசம்","சந்தோஷம் நிறைந்த சமாதான","நீதி"],r:"ஏசாயா 26:3"},
-  {q:"மத்தேயு 7:7 — ___, உங்களுக்கு கொடுக்கப்படும்.",a:3,o:["தேடுங்கள்","கேளுங்கள்","கொடுங்கள்","கேளுங்கள்"],r:"மத்தேயு 7:7"},
-  {q:"எபிரெயர் 4:16 — ___ ஆக கிருபாசனத்தண்டை சேருவோமாக.",a:0,o:["தைரியமா","தாழ்மையா","சந்தோஷமா","நம்பிக்கையா"],r:"எபிரெயர் 4:16"},
-  {q:"1 கொரிந்தியர் 10:13 — தேவன் உங்களால் ___ ஆகிற சோதனை வரவொட்டார்.",a:1,o:["தாங்காத","தாங்க முடியாத","வல்லமையுள்ள","கடந்த"],r:"1 கொரிந்தியர் 10:13"},
-  {q:"யோவான் 16:33 — உலகத்தில் உங்களுக்கு ___ உண்டு; தைரியமாயிருங்கள்.",a:2,o:["சோதனை","கஷ்டம்","உபத்திரவம்","ஆபத்து"],r:"யோவான் 16:33"},
-  {q:"ரோமர் 8:38-39 — நம்மை கிறிஸ்துவின் அன்பிலிருந்து பிரிக்க ___ ஆலும் கூடாது.",a:0,o:["யாராலு","எதனா","எந்த சக்தியினாலு","மரணத்தினாலு"],r:"ரோமர் 8:38-39"},
-  {q:"சங்கீதம் 139:14 — நான் ___ விதத்தில் உருவாக்கப்பட்டதால் உமக்கு ஸ்தோத்திரம்.",a:3,o:["சாதாரண","வேதனையான","தெய்வீகமான","அதிசயமான"],r:"சங்கீதம் 139:14"},
-  {q:"ஏசாயா 55:11 — என் வாயிலிருந்து புறப்படுகிற வசனம் ___ திரும்பாது.",a:1,o:["ஒருகால்","வெறுமையா","ஒருபோதும்","சிலவேளை"],r:"ஏசாயா 55:11"},
-  // SET 7
-  {q:"மத்தேயு 18:20 — என் ___ ல் கூடியிருக்கும் இடத்தில் அங்கே இருக்கிறேன்.",a:0,o:["நாமத்தினா","வல்லமையினா","ஆவியினா","சமாதானத்தினா"],r:"மத்தேயு 18:20"},
-  {q:"யோவான் 11:25 — நான் உயிர்த்தெழுதலும் ___ உமாயிருக்கிறேன்.",a:2,o:["சமாதானமு","வல்லமையு","ஜீவனு","நீதியு"],r:"யோவான் 11:25"},
-  {q:"எபிரெயர் 13:5 — நான் உன்னை ___ விலகுவதில்லை என்று கர்த்தர் சொன்னார்.",a:1,o:["நேசத்தோடு","விட்டு","ஆசீர்வதிக்காம","வழிகாட்டாம"],r:"எபிரெயர் 13:5"},
-  {q:"நீதிமொழிகள் 3:6 — உன் வழிகளிலெல்லாம் அவரை ___, அவர் உன் பாதைகளை செவ்வைப்படுத்துவார்.",a:3,o:["தேடு","நம்பு","பின்பற்று","அங்கீகரி"],r:"நீதிமொழிகள் 3:6"},
-  {q:"சங்கீதம் 51:10 — தேவனே, என்னில் ___ இருதயம் சிருஷ்டியும்.",a:0,o:["சுத்தமான","நம்பிக்கையான","விசுவாசமான","அன்பான"],r:"சங்கீதம் 51:10"},
-  {q:"அப்போஸ்தலர் 2:38 — மனந்திரும்பி ___ நாமத்தினாலே ஞானஸ்நானம் பெறுங்கள்.",a:1,o:["தேவன்","இயேசுகிறிஸ்து","பரிசுத்த ஆவி","கர்த்தர்"],r:"அப்போஸ்தலர் 2:38"},
-  {q:"1 தீமோத்தேயு 6:6 — ___ உடன் கூடிய தேவபக்தி மிகவும் இலாபமுள்ளது.",a:2,o:["நம்பிக்கை","விசுவாசம்","திருப்தி","அன்பு"],r:"1 தீமோத்தேயு 6:6"},
-  {q:"யோவான் 4:24 — தேவன் ___ ஆவியிருக்கிறார்.",a:0,o:["ஆவி","அன்பு","வல்லமை","நீதி"],r:"யோவான் 4:24"},
-  {q:"2 தீமோத்தேயு 1:7 — தேவன் நமக்கு ___ ஆவியை அல்ல, பலமுள்ள ஆவியை கொடுத்தார்.",a:3,o:["பலவீனமான","சோர்வான","சோதனையான","பயமுள்ள"],r:"2 தீமோத்தேயு 1:7"},
-  {q:"கொலோசெயர் 3:23 — நீங்கள் செய்கிற எதுவாயினும் ___ க்கென்று செய்யுங்கள்.",a:1,o:["மனிதர்கள்","கர்த்தர்","சபை","குடும்பம்"],r:"கொலோசெயர் 3:23"},
-  // SET 8
-  {q:"மத்தேயு 5:16 — உங்கள் ___ மனுஷர் முன்பாக பிரகாசிக்கட்டும்.",a:0,o:["வெளிச்சம்","விசுவாசம்","அன்பு","நம்பிக்கை"],r:"மத்தேயு 5:16"},
-  {q:"யோவான் 15:13 — தன் ___ களுக்காக ஜீவனை கொடுப்பதிலும் பெரிய அன்பு இல்லை.",a:2,o:["பகைவர்","தந்தை","நண்பர்","சகோதரர்"],r:"யோவான் 15:13"},
-  {q:"ரோமர் 12:2 — இந்த ___ க்கு ஒத்த வடிவமாயிராதேயுங்கள்.",a:1,o:["கஷ்டத்தி","உலகத்தி","சோதனைக்கி","பாவத்தி"],r:"ரோமர் 12:2"},
-  {q:"சங்கீதம் 121:2 — என் உதவி ___ உண்டாக்கின கர்த்தரிடத்திலிருந்து வருகிறது.",a:3,o:["என் கைகளை","என் வழியை","என் நாட்களை","வானத்தையும் பூமியையும்"],r:"சங்கீதம் 121:2"},
-  {q:"ஏசாயா 43:2 — நீ ___ கடந்து போகும்போது நான் உன்னோடே இருப்பேன்.",a:0,o:["ஆழமான நீரிலே","பள்ளத்தாக்கிலே","இருளிலே","கஷ்டத்திலே"],r:"ஏசாயா 43:2"},
-  {q:"லூக்கா 12:7 — உங்கள் ___ எல்லாம் எண்ணப்பட்டிருக்கிறது.",a:2,o:["நாட்கள்","பாவங்கள்","தலைமயிர்கள்","வேண்டுதல்கள்"],r:"லூக்கா 12:7"},
-  {q:"1 கொரிந்தியர் 2:9 — தேவன் தம்மை நேசிக்கிறவர்களுக்கு ஆயத்தம் செய்தவைகளை ___ கண்டதில்லை.",a:1,o:["யாரு","கண்","செவி","இருதயம்"],r:"1 கொரிந்தியர் 2:9"},
-  {q:"எபேசியர் 3:20 — நாம் கேட்பதிலும் நினைப்பதிலும் ___ மாய் செய்யவல்லவர்.",a:3,o:["சரியா","தகுந்த","அதிகமா","அதிகாதிகமா"],r:"எபேசியர் 3:20"},
-  {q:"1 கொரிந்தியர் 15:57 — நம்முடைய ___ இயேசுகிறிஸ்து மூலமாக ஜெயம் தருகிறார்.",a:0,o:["தேவன்","கர்த்தர்","ஆண்டவர்","பரிசுத்தர்"],r:"1 கொரிந்தியர் 15:57"},
-  {q:"யாக்கோபு 1:17 — எல்லா நல்ல வரமும் சர்வ உத்தம ஈவும் ___ இலிருந்து வருகிறது.",a:1,o:["பூமி","மேலிருந்து","மனிதரி","இயற்கையி"],r:"யாக்கோபு 1:17"},
-  // SET 9
-  {q:"1 யோவான் 4:18 — ___ இல் பயமில்லை; பூரண அன்பு பயத்தை நீக்கும்.",a:0,o:["அன்பி","விசுவாசத்தி","ஜெபத்தி","நம்பிக்கையி"],r:"1 யோவான் 4:18"},
-  {q:"சங்கீதம் 16:8 — நான் கர்த்தரை என் முன்பாக ___ வைத்திருக்கிறேன்.",a:2,o:["படமாக","ஆதாரமாக","எப்பொழுதும்","பிரார்த்தனையாக"],r:"சங்கீதம் 16:8"},
-  {q:"எபேசியர் 1:7 — அவருடைய ___ நாம் மீட்பை பெற்றிருக்கிறோம்.",a:1,o:["அன்பினாலே","இரத்தத்தினாலே","வல்லமையினாலே","வசனத்தினாலே"],r:"எபேசியர் 1:7"},
-  {q:"யோவான் 5:24 — என் வசனத்தை கேட்டு என்னை அனுப்பினவரை நம்புகிறவன் ___ ஜீவனை உடையவன்.",a:3,o:["நித்திய","பரிசுத்த","சமாதான","நிறைவான"],r:"யோவான் 5:24"},
-  {q:"மத்தேயு 11:29 — என் நுகத்தை ஏற்றுக்கொள்ளுங்கள்; என் நுகம் ___ மானது.",a:0,o:["இலகுவா","கடினமா","நீதியா","வல்லமையா"],r:"மத்தேயு 11:29"},
-  {q:"அப்போஸ்தலர் 16:31 — ___ ஐ விசுவாசி; நீயும் உன் வீட்டாரும் இரட்சிக்கப்படுவீர்கள்.",a:2,o:["தேவனை","கர்த்தரை","கர்த்தராகிய இயேசுவை","கிறிஸ்துவை"],r:"அப்போஸ்தலர் 16:31"},
-  {q:"சங்கீதம் 145:18 — கர்த்தர் தம்மை ___ கூப்பிடுகிற எல்லாருக்கும் சமீபமாயிருக்கிறார்.",a:1,o:["விசுவாசமுடன்","உண்மையோடு","அன்போடு","பயத்தோடு"],r:"சங்கீதம் 145:18"},
-  {q:"2 நாளாகமம் 7:14 — என் நாமம் தரிக்கப்பட்ட என் ஜனங்கள் ___, நான் அவர்கள் பாவத்தை மன்னிப்பேன்.",a:3,o:["பாடும்போது","தேடும்போது","வேண்டும்போது","தாழ்மைப்பட்டு ஜெபித்தால்"],r:"2 நாளாகமம் 7:14"},
-  {q:"ரோமர் 5:8 — நாம் பாவிகளாயிருக்கையில் ___ நமக்காக மரித்தார்.",a:0,o:["கிறிஸ்து","தேவன்","இயேசு","ஆண்டவர்"],r:"ரோமர் 5:8"},
-  {q:"நீதிமொழிகள் 16:3 — உன் கிரியைகளை ___ ஒப்புவி; உன் நினைவுகள் நிலைப்படும்.",a:2,o:["மனிதரிடம்","தூதரிடம்","கர்த்தரிடம்","சபையிடம்"],r:"நீதிமொழிகள் 16:3"},
-  // SET 10
-  {q:"யோவான் 6:35 — நான் ஜீவ ___ ஆயிருக்கிறேன்; என்னிடத்தில் வருகிறவன் பசியடைவதில்லை.",a:1,o:["தண்ணீர்","அப்பம்","வெளிச்சம்","வழி"],r:"யோவான் 6:35"},
-  {q:"மத்தேயு 4:4 — மனுஷன் அப்பத்தினாலே மட்டுமல்ல, ___ மூலமாகவும் பிழைப்பான்.",a:0,o:["தேவ வசனத்தி","விசுவாசத்தி","ஜெபத்தி","அன்பினா"],r:"மத்தேயு 4:4"},
-  {q:"1 பேதுரு 2:9 — நீங்கள் ___ இனம், ராஜரீக ஆசாரியக்கூட்டம்.",a:2,o:["சாதாரண","பரிசுத்த","தெரிந்துகொள்ளப்பட்ட","ஆசீர்வதிக்கப்பட்ட"],r:"1 பேதுரு 2:9"},
-  {q:"சங்கீதம் 32:8 — நீ போக வேண்டிய வழியை ___, உனக்கு ஆலோசனை சொல்லுவேன்.",a:3,o:["காண்பிப்பேன்","தெரிவிப்பேன்","நடத்துவேன்","போதிப்பேன்"],r:"சங்கீதம் 32:8"},
-  {q:"ஏசாயா 40:8 — புல் காய்ந்து போகும்; ___ என்றென்றும் நிலைத்திருக்கும்.",a:0,o:["தேவ வசனம்","தேவ அன்பு","தேவ வல்லமை","தேவ நீதி"],r:"ஏசாயா 40:8"},
-  {q:"யாக்கோபு 4:8 — தேவனிடத்தில் ___ வாருங்கள், அவர் உங்களிடத்தில் சேருவார்.",a:1,o:["பயத்துட","சேர்ந்து","அன்போடு","விசுவாசத்துட"],r:"யாக்கோபு 4:8"},
-  {q:"லூக்கா 11:9 — ___ உங்களுக்கு கொடுக்கப்படும்; தேடுங்கள் கண்டடைவீர்கள்.",a:2,o:["விசுவாசியுங்கள்","தேடுங்கள்","கேளுங்கள்","ஜெபியுங்கள்"],r:"லூக்கா 11:9"},
-  {q:"2 கொரிந்தியர் 5:17 — ஒருவன் கிறிஸ்துவுக்குள் இருந்தால் ___ சிருஷ்டி.",a:3,o:["ஆசீர்வதிக்கப்பட்ட","பரிசுத்தமான","சந்தோஷமான","புதிய"],r:"2 கொரிந்தியர் 5:17"},
-  {q:"சங்கீதம் 118:24 — இது ___ உண்டாக்கின நாள்; இதில் சந்தோஷப்படுவோம்.",a:0,o:["கர்த்தர்","தேவன்","கிறிஸ்து","ஆண்டவர்"],r:"சங்கீதம் 118:24"},
-  {q:"வெளிப்படுத்தல் 21:4 — ___ கண்ணீரையும் துடைத்துவிடுவார்; மரணம் இனி இராது.",a:1,o:["கர்த்தர்","தேவன்","கிறிஸ்து","இயேசு"],r:"வெளிப்படுத்தல் 21:4"},
+  {q:"சங்கீதம் 46:1 — தேவன் நமக்கு அடைக்கலமும் ___ மாயிருக்கிறார்",a:2,o:["சந்தோஷமு","அன்பு","பெலனு","நம்பிக்கையு"],r:"சங்கீதம் 46:1"}
 ];
-
-// Get current set (rotates daily, 10 sets)
-let _quizSet = -1;
-function getQQ(){
-  if(_quizSet < 0){
-    // Rotate set by day of year
-    const d=new Date();
-    const day=Math.floor((d-new Date(d.getFullYear(),0,0))/86400000);
-    _quizSet = day % 10;
-  }
-  const start = _quizSet * 10;
-  return QQ_ALL.slice(start, start + 10);
-}
-const QQ = getQQ(); // current set of 10
 
 // ── IMAGE VERSES ────────────────────────────────────────────────
 const IGVERSES=[
@@ -275,37 +161,12 @@ function toggleMobMenu(){var m=document.getElementById('mobile-menu');if(m)m.cla
 // ── LOAD DATA ────────────────────────────────────────────────────
 async function loadData(){
   try{
-    // Device detection
-    const isWebView = /wv|WebView/.test(navigator.userAgent) ||
-                      (navigator.userAgent.includes('Android') && !navigator.userAgent.includes('Chrome/'));
-    const isMobile  = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isPC      = !isMobile;
-
-    // Load bible-data + tamil — always needed
     const [bd,tb]=await Promise.allSettled([
       fetchT(C.data+'bible-data.json').then(r=>r.json()),
-      fetchT(C.data+'tamil-bible.json').then(r=>r.json()),
+      fetchT(C.data+'tamil-bible.json').then(r=>r.json())
     ]);
     if(bd.status==='fulfilled'&&bd.value)S.bibleData=bd.value;
-    if(tb.status==='fulfilled'&&tb.value){
-      S.tamilDB=tb.value;
-      console.log('Tamil Bible loaded: '+Object.keys(S.tamilDB).length+' chapters');
-    }
-
-    // English KJV (4.1MB) — load only on PC at startup
-    // On mobile/app: lazy-load when user first taps EN button
-    if(isPC){
-      fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
-        if(en){S.enDB=en;console.log('English KJV loaded: '+Object.keys(en).length+' books');}
-      }).catch(()=>{});
-    }
-
-    // Full Tamil (13MB) — load only on PC, background
-    if(isPC){
-      fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
-        if(tf){S.tamilDB=tf;console.log('Full Tamil loaded: '+Object.keys(tf).length+' chapters');}
-      }).catch(()=>{});
-    }
+    if(tb.status==='fulfilled'&&tb.value)S.tamilDB=tb.value;
   }catch(e){}
   loadVOTD(); // reload with remote data if available
   initIGVerses();
@@ -375,20 +236,6 @@ function setLang(l){
   g('btn-ta').classList.toggle('on',l==='ta');
   g('btn-en').classList.toggle('on',l==='en');
   stopAud();
-  // Lazy-load English KJV on mobile when user first taps EN
-  if(l==='en' && !Object.keys(S.enDB).length){
-    toast('📖 English Bible loading...');
-    fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
-      if(en){
-        S.enDB=en;
-        console.log('English KJV lazy-loaded: '+Object.keys(en).length+' books');
-        if(S.book)loadCh();
-      }
-    }).catch(()=>{
-      toast('⚠ English Bible load failed — check internet');
-    });
-    return; // loadCh called after EN loads
-  }
   if(S.book)loadCh();
 }
 
@@ -400,10 +247,6 @@ function togParallel(){
     btn.classList.toggle('on',S.showParallel);
   }
   if(S.verses.length)renderVerses();
-}
-
-function togParallelNew(){
-  togParallel();
 }
 
 // ── BOOKS ────────────────────────────────────────────────────────
@@ -462,72 +305,33 @@ async function loadCh(){
 
 async function loadTA(){
   const key=S.bookNum+'_'+S.ch;
-
-  // ── 1. Embedded local DB (pre-loaded chapters) ────────────────
-  if(S.tamilDB[key]){
-    const vv=S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
-    return vv;
-  }
-
-  // ── 2. localStorage cache (previously fetched chapters) ───────
+  // Embedded DB
+  if(S.tamilDB[key])return S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
+  // Cache
   const ck='enjc_ta_'+key;
-  try{
-    const c=localStorage.getItem(ck);
-    if(c){const p=JSON.parse(c);if(p?.length)return p;}
-  }catch(e){}
-
-  // ── 3. Fetch from APIs — try all 3 sources ────────────────────
-  const apis=[
-    C.taAPI1+S.bookNum+'/'+S.ch+'/',
-    C.taAPI2+S.bookNum+'/'+S.ch+'/',
-    C.taAPI3+S.bookNum+'/'+S.ch+'.json'
-  ];
-  for(const url of apis){
+  try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
+  // Fetch
+  for(const url of[C.taAPI1+S.bookNum+'/'+S.ch+'/',C.taAPI2+S.bookNum+'/'+S.ch+'/',C.taAPI3+S.bookNum+'/'+S.ch+'.json']){
     try{
       const r=await fetchT(url);if(!r.ok)continue;
       const d=await r.json();
       let vv=null;
-      if(Array.isArray(d)&&d.length){
-        // bolls.life format: [{verse:1, text:"..."}, ...]
-        if(d[0]?.verse!==undefined) vv=d.map(v=>({num:v.verse,text:v.text}));
-        // getbible format: [[1,"text"], ...]
-        else if(Array.isArray(d[0])) vv=d.map(v=>({num:v[0],text:v[1]}));
-      } else if(d.verses?.length){
-        vv=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
-      }
+      if(Array.isArray(d)&&d.length)vv=d.map(v=>({num:v.verse,text:v.text}));
+      else if(d.verses?.length)vv=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
       if(vv?.length){
-        // Cache for offline use
         try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
-        toast('📥 '+S.bookTaName+' '+S.ch+' சேமிக்கப்பட்டது');
         return vv;
       }
     }catch(e){continue;}
   }
-  toast('⚠ '+S.bookTaName+' '+S.ch+' — இணையம் தேவை. முதல் முறை API-ல் இருந்து பெறப்படும்.');
-  throw new Error('Tamil offline: '+key);
+  throw new Error('Tamil offline இல்லை. Internet தேவை.');
 }
 
 async function loadEN(){
-  // ── 1. Local KJV JSON (instant, no network) ──────────────────
-  const localBook = S.enDB[S.bookNum];
-  if(localBook){
-    const localCh = localBook[S.ch];
-    if(localCh && localCh.length){
-      return localCh.map((text,i)=>({num:i+1, text: text||''}));
-    }
-  }
-  // ── 2. Fallback: remote API (with cache) ─────────────────────
-  const ck='enjc_en_'+S.bookNum+'_'+S.ch;
-  try{
-    const cached=localStorage.getItem(ck);
-    if(cached){const p=JSON.parse(cached);if(p?.length)return p;}
-  }catch(e){}
   const r=await fetchT(C.enAPI+S.book+'+'+S.ch+'?translation=kjv');
   const d=await r.json();
   if(d.error)throw new Error(d.error);
-  const vv=(d.verses||[]).map(v=>({num:v.verse,text:v.text.trim().replace(/\n/g,' ')}));
-  try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
-  return vv;
+  return(d.verses||[]).map(v=>({num:v.verse,text:v.text.trim().replace(/\n/g,' ')}));
 }
 
 // ── RENDER ───────────────────────────────────────────────────────
@@ -549,7 +353,7 @@ function renderVerses(){
     return `<div class="vi${isHl?' vhl':''}${isTa?' vi-ta':''}" id="vi${i}"
       style="${isHl?'--hl-color:'+(hlm[v.num]||S.hlColor)+';':''}"
       onclick="openVModal(${i})">
-      <span class="vn mob-hide-vn" onclick="playV(${i});event.stopPropagation()">${v.num}</span>
+      <span class="vn" onclick="playV(${i});event.stopPropagation()">${v.num}</span>
       <div class="vb">
         <span class="vtxt${isTa?' ta-font':''}" style="font-size:${S.fs}px">${v.text}</span>
         ${S.showParallel&&enMap[v.num]?`<span class="v-en-para">${enMap[v.num]}</span>`:''}
@@ -580,8 +384,6 @@ function updateChUI(){
   g('chprogf').style.width='0%';
   // Auto-populate image gen verse
   setTimeout(igAutoPopulate, 400);
-
-  updateBMChapterBtn();
 }
 
 function prevCh(){if(S.ch>1){S.ch--;g('ch-sel').value=S.ch;loadCh();}}
@@ -663,100 +465,19 @@ function speak(text,lang,cb){
           await S.audEl.play();S.playing=true;updPBtn();return;
         }
       }
-
-      // ResponsiveVoice — use for Tamil always (best cross-platform Tamil TTS)
-      // Use for English on mobile too
-      if(typeof responsiveVoice!=='undefined'){
-        if(!responsiveVoice.voiceSupport()){
-          await new Promise(res=>setTimeout(res,800));
-        }
-      }
+      // ResponsiveVoice
       if(typeof responsiveVoice!=='undefined'&&responsiveVoice.voiceSupport()){
-        const voice=lg==='ta'?'Tamil Female':(navigator.userAgent.includes('Chrome')?'UK English Male':'UK English Female');
+        const voice=lg==='ta'?'Tamil Female':(navigator.userAgent.includes('Chrome')?'UK English Male':'en-IN Female');
         if(apst)apst.textContent=lg==='ta'?'இயங்குகிறது...':'Playing...';
         responsiveVoice.speak(text,voice,{
           rate:spd,pitch:1,volume:1,
           onstart:()=>{S.playing=true;updPBtn();},
           onend:done,
-          onerror:()=>{
-            // RV error — may be rate limited (FREE key)
-            const apst=g('apstat');
-            useTTS(text,lg,spd,(result)=>{
-              // If TTS also fails, show friendly message
-              if(!S.playing&&apst&&apst.textContent==='நிறுத்தப்பட்டது'){
-                apst.textContent=lg==='ta'?'Audio limit — சற்று நேரம் பிறகு முயற்சிக்கவும்':'Audio unavailable — try again later';
-              }
-              done(result);
-            });
-          }
+          onerror:()=>useTTS(text,lg,spd,done)
         });
         return;
       }
-
-      // Web Speech API — fallback when ResponsiveVoice not available
-      if(typeof SpeechSynthesisUtterance!=='undefined'&&window.speechSynthesis){
-        // Wait for voices to load (important on PC)
-        let voices=window.speechSynthesis.getVoices();
-        if(!voices.length){
-          await new Promise(res=>{
-            if(window.speechSynthesis.onvoiceschanged!==undefined){
-              window.speechSynthesis.onvoiceschanged=()=>{res();};
-            }else setTimeout(res,500);
-          });
-          voices=window.speechSynthesis.getVoices();
-        }
-        const taVoice=voices.find(v=>v.lang==='ta-IN'||v.lang==='ta'||v.name.toLowerCase().includes('tamil'));
-        const enVoice=voices.find(v=>v.lang==='en-GB')||voices.find(v=>v.lang==='en-IN')||voices.find(v=>v.lang.startsWith('en'));
-        const targetVoice=lg==='ta'?taVoice:enVoice;
-
-        // Use Web Speech for English on PC, or as last resort
-
-        const utt=new SpeechSynthesisUtterance(text);
-        if(targetVoice){utt.voice=targetVoice;utt.lang=targetVoice.lang;}
-        else{utt.lang=lg==='ta'?'ta-IN':'en-GB';}
-        utt.rate=Math.min(spd||1, 0.9); // slightly slower for Tamil clarity
-        utt.pitch=1;
-
-        // Android Chrome bug: onend fires early for long text
-        // Fix: use boundary events to track real completion
-        let _lastCharIdx=0;
-        utt.onboundary=e=>{if(e.charIndex)_lastCharIdx=e.charIndex;};
-        utt.onstart=()=>{S.playing=true;updPBtn();if(apst)apst.textContent='Playing...';};
-        utt.onend=()=>{
-          // Check if we actually finished (charIndex near text end)
-          const finished=_lastCharIdx>=(text.length-10)||_lastCharIdx===0;
-          if(finished){done();}
-          else{
-            // Resume from where it stopped — Android early-end bug
-            const remaining=text.substring(_lastCharIdx);
-            if(remaining.trim().length>5){
-              const utt2=new SpeechSynthesisUtterance(remaining);
-              if(targetVoice)utt2.voice=targetVoice;
-              utt2.lang=utt.lang;utt2.rate=utt.rate;utt2.pitch=1;
-              utt2.onend=done;utt2.onerror=done;
-              window.speechSynthesis.speak(utt2);
-            }else done();
-          }
-        };
-        utt.onerror=(e)=>{
-          if(e.error==='interrupted')return;
-          useRV(text,lg,spd,done);
-        };
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utt);
-        S.playing=true;updPBtn();
-        S.audSynth=utt;
-
-        // Android keep-alive: speechSynthesis pauses after ~15s
-        if(S._keepAlive){clearInterval(S._keepAlive);S._keepAlive=null;}
-        S._keepAlive=setInterval(()=>{
-          if(!window.speechSynthesis.speaking){clearInterval(S._keepAlive);return;}
-          window.speechSynthesis.resume();
-        },10000);
-        return;
-      }
-
-      // Final fallback
+      // SpeechSynthesis
       useTTS(text,lg,spd,done);
     }catch(e){useTTS(text,lg,spd,done);}
   },50);
@@ -820,8 +541,7 @@ function seqPlay(){
   }
   const v=S.verses[S.pIdx];
   hlPlay(S.pIdx);
-  const pct2=Math.round((S.pIdx+1)/S.verses.length*100);
-  safe('apstat',(S.lang==='ta'?'வசனம் ':'Verse ')+v.num+' / '+S.verses.length+' · '+pct2+'%');
+  safe('apstat',(S.lang==='ta'?'வசனம் ':'Verse ')+v.num+' / '+S.verses.length);
   g('vi'+S.pIdx)?.scrollIntoView({behavior:'smooth',block:'center'});
   speak(v.text,S.lang,()=>{
     if(S.playAllM){S.pIdx++;seqPlay();}
@@ -848,8 +568,6 @@ function togPlay(){
 function stopAud(){
   try{if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();}catch(e){}
   if(S.audEl){S.audEl.pause();S.audEl.currentTime=0;S.audEl=null;}
-  if(S._keepAlive){clearInterval(S._keepAlive);S._keepAlive=null;}
-  if(S.audSynth){try{synth.cancel();}catch(e){} S.audSynth=null;}
   synth.cancel();
   S.playing=false;S.playAllM=false;updPBtn();
   document.querySelectorAll('.vi').forEach(el=>el.classList.remove('vplay'));
@@ -925,38 +643,6 @@ function updateBmBadge(){
 }
 function rmBM(i){const bms=getBM();bms.splice(i,1);saveBM(bms);updateBmBadge();openPanel('bm');}
 
-
-// ── BOOKMARK CHAPTER ─────────────────────────────────────────────
-function togBMChapter(){
-  if(!S.book) return;
-  const bk = BOOKS.find(b => b.id === S.book);
-  if(!bk) return;
-  const key = 'bmc_' + S.book + '_' + S.ch;
-  const bms = getBM();
-  const already = bms.findIndex(b => b.refEN === key);
-  if(already >= 0){
-    bms.splice(already, 1);
-    saveBM(bms);
-    toast('🔖 Chapter bookmark removed');
-    if(g('bmchbtn')) g('bmchbtn').style.color = '';
-  } else {
-    const label = (S.lang==='ta' ? bk.ta : bk.name) + ' ' + S.ch + ' (full chapter)';
-    bms.unshift({ refEN: key, text: label, refTA: label, isChapter: true });
-    saveBM(bms);
-    toast('🔖 Chapter saved!');
-    if(g('bmchbtn')) g('bmchbtn').style.color = 'var(--gd)';
-  }
-  updateBmBadge();
-}
-
-function updateBMChapterBtn(){
-  if(!S.book || !g('bmchbtn')) return;
-  const key = 'bmc_' + S.book + '_' + S.ch;
-  const bms = getBM();
-  const saved = bms.some(b => b.refEN === key);
-  g('bmchbtn').style.color = saved ? 'var(--gd)' : '';
-}
-
 // ── FONT SIZE ─────────────────────────────────────────────────────
 function chFont(d){
   S.fs=d===0?17:Math.min(28,Math.max(13,S.fs+d*2));
@@ -968,8 +654,6 @@ function chFont(d){
 // ── SEARCH ───────────────────────────────────────────────────────
 async function doSearch(){
   const q=g('sinp').value.trim();if(!q)return;
-  // Hint if no chapter loaded yet
-  if(!S.book){toast('முதலில் ஒரு புத்தகம் தேர்ந்தெடுங்கள் — Select a book first');return;}
   stopAud();
   g('chbar').style.display='none';
   g('bcontent').innerHTML='<div class="bload"><div class="bspin"></div><p>தேடுகிறது...</p></div>';
@@ -1264,7 +948,6 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
       <div class="ig-bg-tabs">
         <div class="ig-bgtab on" id="igtab-solid" onclick="igSetBgMode('solid')">🎨 Solid Colour</div>
         <div class="ig-bgtab" id="igtab-photo" onclick="igSetBgMode('photo')">📷 My Photo</div>
-        <div class="ig-bgtab" id="igtab-unsplash" onclick="igSetBgMode('unsplash')">🌄 Photos</div>
       </div>
 
       <!-- SOLID -->
@@ -1316,22 +999,6 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
           <span class="ig-gsl-val" id="ig-opval">60%</span>
         </div>
       </div>
-
-      <!-- UNSPLASH BACKGROUNDS -->
-      <div id="ig-unsplash-sec" style="display:none">
-        <div style="font-size:10px;color:var(--tx3);margin-bottom:8px;line-height:1.6">
-          🌐 Free nature &amp; worship photos — tap any to use as background
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px" id="uns-grid">
-          ${renderUnsplashGrid()}
-        </div>
-        <div class="ig-gsl-row" style="margin-top:10px">
-          <span class="ig-gsl-lbl">Overlay</span>
-          <input type="range" class="ig-gsl" id="ig-uns-opacity" min="0" max="80" value="50" oninput="S.igUnsOverlay=this.value/100;g('ig-uns-opval').textContent=this.value+'%';drawIG()">
-          <span class="ig-gsl-val" id="ig-uns-opval">50%</span>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1385,7 +1052,7 @@ canvas#igcv{max-width:100%;max-height:200px;display:block}
 
   <!-- CANVAS -->
   <div class="ig-canvas-wrap">
-    <canvas id="igcv" ontouchstart="igTouchStart(event)" ontouchend="igTouchEnd(event)"></canvas>
+    <canvas id="igcv"></canvas>
   </div>
 
   <!-- EXPORT -->
@@ -1425,15 +1092,12 @@ function igSetSize(el, sz){
 // ── BG MODE ──────────────────────────────────────────────────────
 function igSetBgMode(mode){
   _igMode = mode;
-  document.getElementById('igtab-solid')?.classList.toggle('on', mode==='solid');
-  document.getElementById('igtab-photo')?.classList.toggle('on', mode==='photo');
-  document.getElementById('igtab-unsplash')?.classList.toggle('on', mode==='unsplash');
-  const ss  = document.getElementById('ig-solid-sec');
-  const ps  = document.getElementById('ig-photo-sec');
-  const us  = document.getElementById('ig-unsplash-sec');
-  if(ss) ss.style.display   = mode==='solid'    ? 'block' : 'none';
-  if(ps) ps.style.display   = mode==='photo'    ? 'block' : 'none';
-  if(us) us.style.display   = mode==='unsplash' ? 'block' : 'none';
+  document.getElementById('igtab-solid').classList.toggle('on', mode==='solid');
+  document.getElementById('igtab-photo').classList.toggle('on', mode==='photo');
+  const ss = document.getElementById('ig-solid-sec');
+  const ps = document.getElementById('ig-photo-sec');
+  if(ss) ss.style.display = mode==='solid'?'block':'none';
+  if(ps) ps.style.display = mode==='photo'?'block':'none';
   drawIG();
 }
 
@@ -1524,62 +1188,6 @@ function igWheelMove(e){
   const bi=document.getElementById('ig-b');
   if(ri)ri.value=R;if(gi)gi.value=G;if(bi)bi.value=B;
   igRGBSlider();
-}
-
-
-// ── UNSPLASH BACKGROUNDS ─────────────────────────────────────────
-// Free Unsplash Source API — no key needed, 1080px quality
-const IG_UNSPLASH = [
-  { label:'🌅 Nature',    query:'nature+sky+sunrise',      color:'#0d1e2e' },
-  { label:'⛰️ Mountains', query:'mountains+landscape',      color:'#1a1a2e' },
-  { label:'🌊 Ocean',     query:'ocean+waves+sea',          color:'#0d1e3a' },
-  { label:'✨ Stars',     query:'stars+galaxy+night+sky',   color:'#07090f' },
-  { label:'🌸 Flowers',   query:'flowers+nature+garden',    color:'#2e1a1a' },
-  { label:'🕊️ Peace',    query:'peaceful+calm+light',      color:'#1a2e1a' },
-  { label:'🌿 Forest',    query:'forest+trees+green',       color:'#0d2e0d' },
-  { label:'☁️ Clouds',    query:'clouds+sky+heaven',        color:'#1a1a3e' },
-  { label:'🌾 Field',     query:'wheat+field+golden',       color:'#2e2a0d' },
-  { label:'🏙️ City',      query:'city+lights+night',        color:'#0d1219' },
-  { label:'💧 Rain',      query:'rain+drops+water',         color:'#0d1a2e' },
-  { label:'🌙 Moon',      query:'moon+night+sky',           color:'#07090f' },
-];
-let igUnsplashIdx = 0;
-
-function igLoadUnsplash(idx){
-  igUnsplashIdx = idx;
-  const cat = IG_UNSPLASH[idx];
-  if(!cat) return;
-  // Picsum Photos — reliable, fast, no API key needed
-  const seeds=[10,15,20,25,30,35,42,50,60,65,70,75,80,85,90,95,100,110,120,130];
-  const seed = seeds[idx % seeds.length];
-  const url = 'https://picsum.photos/seed/'+(seed+idx*7)+'/1080/1080';
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  toast('⏳ Loading...');
-  img.onload = function(){
-    S.igBgImg = img;
-    S.igBgMode = 'unsplash';
-    _igMode = 'unsplash';
-    drawIG();
-    toast('✅ '+cat.label+' loaded');
-    document.querySelectorAll('.ig-uns-btn').forEach(function(b,i){
-      b.classList.toggle('on', i===idx);
-    });
-  };
-  img.onerror = function(){ toast('⚠️ Photo failed — try another'); };
-  img.src = url;
-}
-
-function renderUnsplashGrid(){
-  return IG_UNSPLASH.map((cat,i)=>
-    `<button class="ig-uns-btn${igUnsplashIdx===i?' on':''}" onclick="igLoadUnsplash(${i})" 
-     style="border:1px solid var(--bd);border-radius:8px;padding:7px 5px;font-size:11px;
-     background:rgba(255,255,255,.03);cursor:pointer;text-align:center;transition:all .18s;
-     color:var(--tx2);font-family:var(--sans);line-height:1.4">
-      <div style="font-size:15px">${cat.label.split(' ')[0]}</div>
-      <div style="font-size:9px;margin-top:2px;opacity:.7">${cat.label.split(' ').slice(1).join(' ')}</div>
-    </button>`
-  ).join('');
 }
 
 // ── FONT ─────────────────────────────────────────────────────────
@@ -1699,18 +1307,9 @@ function igAutoPopulate(){
   S.customVerse={ta:S.verses[0].text,tref:taRef,en:enV?.text||'',ref:S.bookName+' '+S.ch+':'+S.verses[0].num};
 }
 
-
-// ── SWIPE VERSE IMAGES ───────────────────────────────────────────
-let igTouchX = 0;
-function igTouchStart(e){ igTouchX = e.touches[0].clientX; }
-function igTouchEnd(e){
-  const dx = e.changedTouches[0].clientX - igTouchX;
-  if(Math.abs(dx) > 40){ dx < 0 ? igNextVerse() : igPrevVerse(); }
-}
-
 // ── DRAW ─────────────────────────────────────────────────────────
 function getIGVerse(){
-  if(S.customVerse){return S.customVerse;}  // keep until user picks new verse
+  if(S.customVerse){const v=S.customVerse;S.customVerse=null;return v;}
   // Use current verse if chapter is loaded
   if(S.verses.length){
     const v=S.verses[_igVerseIdx||0];
@@ -1731,32 +1330,20 @@ function drawIG(){
   const ctx=cv.getContext('2d');
   const v=getIGVerse();
 
-  function drawWithImg(img,opacity){
-    const ir=img.width/img.height,cr=W/H;
-    let sx=0,sy=0,sw=img.width,sh=img.height;
-    if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}
-    else{sh=img.width/cr;sy=(img.height-sh)/2;}
-    ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
-    ctx.fillStyle='rgba(0,0,0,'+opacity+')';
-    ctx.fillRect(0,0,W,H);
-    _drawIG(ctx,W,H,v,true);
-  }
-
   if(_igMode==='photo'&&_userPhoto){
     const img=new Image();
     img.onload=()=>{
+      const ir=img.width/img.height, cr=W/H;
+      let sx=0,sy=0,sw=img.width,sh=img.height;
+      if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}
+      else{sh=img.width/cr;sy=(img.height-sh)/2;}
+      ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
       const op=parseInt(document.getElementById('ig-opacity')?.value||'60')/100;
-      drawWithImg(img,op);
+      ctx.fillStyle=`rgba(0,0,0,${op})`;ctx.fillRect(0,0,W,H);
+      _drawIG(ctx,W,H,v,true);
     };
     img.src=_userPhoto;return;
   }
-
-  if((_igMode==='unsplash')&&S.igBgImg){
-    const op=S.igUnsOverlay||0.5;
-    drawWithImg(S.igBgImg,op);
-    return;
-  }
-
   ctx.fillStyle=_igBgColor||'#8b1a1a';ctx.fillRect(0,0,W,H);
   _drawIG(ctx,W,H,v,false);
 }
@@ -1953,7 +1540,7 @@ function copyImgToClipboard(){
 const THEMES={
   dark:{'--bg':'#07090f','--bg2':'#0c1018','--bg3':'#111926','--tx':'#dde4f0','--tx2':'rgba(221,228,240,.6)','--tx3':'rgba(221,228,240,.3)','--bd':'rgba(255,255,255,.06)','--bd2':'rgba(255,255,255,.14)','--gd':'#e8a020','--gd2':'#f5bf50','--gdm':'rgba(232,160,32,.12)','--gdb':'rgba(232,160,32,.28)'},
   sepia:{'--bg':'#f8f1e4','--bg2':'#f2e9d8','--bg3':'#ede0c8','--tx':'#2c1a0e','--tx2':'rgba(44,26,14,.6)','--tx3':'rgba(44,26,14,.35)','--bd':'rgba(44,26,14,.1)','--bd2':'rgba(44,26,14,.2)','--gd':'#8b4513','--gd2':'#a0522d','--gdm':'rgba(139,69,19,.1)','--gdb':'rgba(139,69,19,.25)'},
-  light:{'--bg':'#f8f6f1','--bg2':'#eeece6','--bg3':'#e4e0d8','--tx':'#1c1710','--tx2':'rgba(28,23,16,.62)','--tx3':'rgba(28,23,16,.38)','--bd':'rgba(28,23,16,.09)','--bd2':'rgba(28,23,16,.18)','--gd':'#8a6009','--gd2':'#daa520','--gdm':'rgba(138,96,9,.09)','--gdb':'rgba(138,96,9,.28)'}
+  light:{'--bg':'#f8f6f1','--bg2':'#eeece6','--bg3':'#e4e0d8','--tx':'#1c1710','--tx2':'rgba(28,23,16,.62)','--tx3':'rgba(28,23,16,.38)','--bd':'rgba(28,23,16,.09)','--bd2':'rgba(28,23,16,.18)','--gd':'#9a6c0a','--gd2':'#daa520','--gdm':'rgba(154,108,10,.09)','--gdb':'rgba(154,108,10,.28)'}
 };
 
 function applyTheme(theme){
@@ -2155,140 +1742,69 @@ let _mv=null;
 
 function openVModal(i){
   const v=S.verses[i];if(!v)return;
-  // Build _mv state (used by mAct)
-  // Build cross-language verse data for sheet
-  const _taVerse = S.taVerses.find(t=>t.num===v.num);
-  const _enVerse = S.enVerses.find(e=>e.num===v.num);
   _mv={i,v,
     ref:S.bookName+' '+S.ch+':'+v.num,
     taRef:(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num,
-    // Tamil: from taVerses → if reading in Tamil use verse text → else empty
-    ta: (_taVerse?.text) || (S.lang==='ta' ? v.text : ''),
-    // English: from enVerses → if reading in English use verse text → else empty
-    en: (_enVerse?.text) || (S.lang==='en' ? v.text : '')
+    ta:(S.taVerses.find(t=>t.num===v.num)||{}).text||(S.lang==='ta'?v.text:''),
+    en:(S.enVerses.find(e=>e.num===v.num)||{}).text||(S.lang==='en'?v.text:'')
   };
-
-  // ── Populate bottom sheet ────────────────────────────
-  // Toggle vopen class — remove from previously open verse only
-  const prevOpen = document.querySelector('.vi.vopen');
-  if(prevOpen) prevOpen.classList.remove('vopen');
-  const viEl = document.getElementById('vi'+i);
-  if(viEl) viEl.classList.add('vopen');
-
-  const sheet     = document.getElementById('verse-sheet');
-  const backdrop  = document.getElementById('sheet-backdrop');
-  if(!sheet) return;
-
-  // Reference pill
-  const refText = _mv.taRef+(_mv.ref!==_mv.taRef?' · '+_mv.ref:'');
-  const el=document.getElementById('vs-ref');
-  if(el) el.textContent = refText;
-
-  // Tamil verse
-  const taEl = document.getElementById('vs-ta');
-  if(taEl){
-    taEl.textContent = _mv.ta ? '\u201c'+_mv.ta+'\u201d' : '';
-    taEl.style.cssText = ''; // reset highlight
-  }
-
-  // English verse
-  const enEl = document.getElementById('vs-en');
-  if(enEl){
-    enEl.textContent = _mv.en ? '\u201c'+_mv.en+'\u201d' : '';
-    enEl.style.display = _mv.en ? 'block' : 'none';
-  }
-
+  safe('vmodal-ref',_mv.taRef+(_mv.ref!==_mv.taRef?' · '+_mv.ref:''));
+  safe('vmodal-ta',_mv.ta?'\u201c'+_mv.ta+'\u201d':'');
+  safe('vmodal-en',_mv.en?'\u201c'+_mv.en+'\u201d':'');
+  g('vmodal-en').style.display=_mv.en?'block':'none';
   // Note
   const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
-  const noteEl=document.getElementById('vs-note');
-  if(noteEl) noteEl.value = notes[_mv.ref]||'';
-
+  const noteEl=g('note-ta');if(noteEl)noteEl.value=notes[_mv.ref]||'';
   // Bookmark state
   const isBm=getBM().some(b=>b.ref===_mv.ref);
-  const bmBtn=document.getElementById('sheet-bm-btn');
-  if(bmBtn) bmBtn.classList.toggle('saved', isBm);
-
-  // Reset highlight dots
-  document.querySelectorAll('.hldot').forEach(d=>d.classList.remove('on'));
-
-  // Hide highlight row
-  const hlRow=document.getElementById('vs-hl-row');
-  if(hlRow) hlRow.style.display='none';
-
-  // Open sheet
-  sheet.classList.add('open');
-  if(backdrop) backdrop.classList.add('open');
+  g('bm-act').querySelector('.act-icon').textContent=isBm?'♥':'♡';
+  safe('bm-lbl2',isBm?'Saved ✓':'Save');
+  // Show
+  g('vmodal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 
 function closeVModal(e){
-  const sheet    = document.getElementById('verse-sheet');
-  const backdrop = document.getElementById('sheet-backdrop');
-  if(sheet)    sheet.classList.remove('open');
-  if(backdrop) backdrop.classList.remove('open');
-  document.body.style.overflow='';
-  // Remove vopen so action buttons hide again on mobile
-  document.querySelectorAll('.vi.vopen').forEach(el=>el.classList.remove('vopen'));
+  if(!e||e.target===g('vmodal')){
+    g('vmodal').classList.remove('open');
+    document.body.style.overflow='';
+  }
 }
 
 function mAct(action){
   if(!_mv)return;
-
-  if(action==='ta-audio'){
-    speak(_mv.ta||_mv.v.text,'ta');
-    toast('▶ Tamil audio...');
-  }
-  else if(action==='en-audio'){
-    speak(_mv.en||_mv.v.text,'en');
-    toast('▶ English audio...');
-  }
+  if(action==='ta-audio'){speak(_mv.ta||_mv.v.text,'ta');toast('▶ Tamil audio...');}
+  else if(action==='en-audio'){speak(_mv.en||_mv.v.text,'en');toast('▶ English audio...');}
   else if(action==='image'){
     S.customVerse={ta:_mv.ta,tref:_mv.taRef,en:_mv.en,ref:_mv.ref};
-    closeVModal();
+    g('vmodal').classList.remove('open');document.body.style.overflow='';
     openPanel('img');setTimeout(drawIG,100);
   }
   else if(action==='save'){
-    const bms=getBM();
-    const fi=bms.findIndex(b=>b.ref===_mv.ref);
-    if(fi>=0){
-      bms.splice(fi,1);saveBM(bms);
-      const bmBtn=document.getElementById('sheet-bm-btn');
-      if(bmBtn)bmBtn.classList.remove('saved');
-      toast('Removed');
-    } else {
-      bms.unshift({ref:_mv.ref,refTA:_mv.taRef,text:_mv.ta||_mv.en});
-      saveBM(bms);
-      const bmBtn=document.getElementById('sheet-bm-btn');
-      if(bmBtn)bmBtn.classList.add('saved');
-      toast('\u2665 Saved!');
-    }
+    const bms=getBM();const fi=bms.findIndex(b=>b.ref===_mv.ref);
+    if(fi>=0){bms.splice(fi,1);saveBM(bms);g('bm-act').querySelector('.act-icon').textContent='♡';safe('bm-lbl2','Save');toast('Removed');}
+    else{bms.unshift({ref:_mv.ref,refTA:_mv.taRef,text:_mv.ta||_mv.en});saveBM(bms);g('bm-act').querySelector('.act-icon').textContent='♥';safe('bm-lbl2','Saved ✓');toast('\u2665 Saved!');}
     updateBmBadge();
   }
   else if(action==='copy'){
     const out=(_mv.taRef?_mv.taRef+'\n'+_mv.ta+'\n':'')+_mv.ref+'\n'+(_mv.en||_mv.ta);
-    navigator.clipboard?.writeText(out);
-    toast('📋 Copied!');
+    navigator.clipboard?.writeText(out);toast('📋 Copied!');
   }
   else if(action==='share'){
-    const msg=(_mv.taRef+'\n'+_mv.ta+'\n\n'+_mv.ref+'\n'+(_mv.en||'')+'\n\nhttps://elimnewjerusalem.github.io/church/bible.html').trim();
+    const msg=_mv.ref+'\n'+(_mv.en||_mv.ta)+'\n\nhttps://elimnewjerusalem.github.io/church/bible.html';
     if(navigator.share)navigator.share({title:'ENJC Bible',text:msg});
     else{navigator.clipboard?.writeText(msg);toast('Copied!');}
   }
 }
 
-let _noteDebounce;
 function autoSaveNote(text){
   if(!_mv)return;
-  // Debounce — save after 800ms of inactivity, don't re-render on every keystroke
-  clearTimeout(_noteDebounce);
-  _noteDebounce = setTimeout(()=>{
-    const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
-    if(text.trim())notes[_mv.ref]=text.trim();else delete notes[_mv.ref];
-    localStorage.setItem('enjc_notes',JSON.stringify(notes));
-    S.notes=notes;
-    // Update inline preview only after debounce
-    if(S.verses.length) renderVerses();
-  }, 800);
+  const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
+  if(text.trim())notes[_mv.ref]=text.trim();else delete notes[_mv.ref];
+  localStorage.setItem('enjc_notes',JSON.stringify(notes));
+  S.notes=notes;
+  // Update inline preview
+  if(S.verses.length)renderVerses();
 }
 
 // ── CACHE UTILS ──────────────────────────────────────────────────
@@ -2297,12 +1813,6 @@ function getCacheInfo(){
   const kb=Math.round(keys.reduce((a,k)=>{try{return a+(localStorage.getItem(k)||'').length;}catch(e){return a;}},0)/1024);
   return keys.length+' chapters cached ('+kb+' KB)';
 }
-
-
-// ── NX PARALLEL TOGGLE (checkbox version) ────────────────
-
-// Sync old togParallel to also update checkbox
-
 
 // ── THEME SYNC: Override site.js toggleTheme to also update bible CSS vars ──
 // Called when user clicks the nav theme button on the bible page

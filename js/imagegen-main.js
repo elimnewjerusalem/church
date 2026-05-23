@@ -1,54 +1,37 @@
-// ── ENJC Verse Studio — Main Entry Point ─────────────────────────
-// Import order matters: data → canvas → export → ui
-// Each file registers its own window.* globals on import
+import { g, ST } from "./imagegen-data.js";
+import { draw } from "./imagegen-canvas.js";
+// ── EXPORT ───────────────────────────────────────────────────────
+export function dlIG(fmt){
+  const cv=g('igcv');if(!cv)return;
+  const mime=fmt==='png'?'image/png':fmt==='webp'?'image/webp':'image/jpeg';
+  const a=document.createElement('a');
+  a.download=`enjc-verse-${ST.sz.replace(':','x')}.${fmt}`;
+  a.href=cv.toDataURL(mime,0.93);a.click();
+  toast('\u2193 '+fmt.toUpperCase()+' downloaded!');
+}
+export function copyImg(){
+  const cv=g('igcv');if(!cv)return;
+  cv.toBlob(async blob=>{
+    try{
+      await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);
+      toast('\uD83D\uDCCB Copied!');
+    }catch{dlIG('png');toast('\uD83D\uDCCB Saved!');}
+  },'image/png');
+}
+export function shareWA(){shareFile();}
+export function shareApp(app){shareFile();}
+export function shareNative(){shareFile();}
+export function shareFile(){
+  const cv=g('igcv');if(!cv)return;
+  cv.toBlob(blob=>{
+    const f=new File([blob],'enjc-verse.jpg',{type:'image/jpeg'});
+    if(navigator.share&&navigator.canShare?.({files:[f]})){
+      navigator.share({title:'ENJC Bible Verse',files:[f]});
+    }else{
+      dlIG('jpg');
+      toast('📱 Saved! Attach in WhatsApp / Instagram',3500);
+    }
+  },'image/jpeg',0.93);
+}
+export function goBack(){window.location.href='bible.html';}
 
-import './imagegen-data.js';
-import './imagegen-canvas.js';
-import { goBack } from './imagegen-export.js';
-import {
-  initStudio, toggleStudioTheme, debounceDraw,
-  switchTab, applyTemplate,
-  setFont, setTC, setColorHex,
-  mobOpen, mobClose, syncMobile,
-  setSz, setBG, togOpt,
-  prevVerse, nextVerse, useVOTD, shuffleVerse,
-  useCustomVerse, mUseCustomVerse, selVerse,
-  setVerseTag, updateBadges, updateVerseDisplay,
-  onTS, onTE,
-  biRenderBooks, biSearch, biFilter,
-  biSelectBook, biBackBooks, biSelectCh, biBackCh, biUseVerse,
-  mbiRenderBooks, mbiSearch, mbiFilter,
-  mbiSelectBook, mbiBackBooks, mbiSelectCh, mbiBackCh, mbiUseVerse,
-  pickPhoto, loadGal, setGalGroup,
-  buildGradPresets, setGradPreset, updateGradPreview,
-  onHexInput, onRGB, onGradColor, onGradAngle,
-  setPhotoOverlay, snapshotST, undoLast,
-  syncMobileStyle, syncMobileText, syncMobileBG,
-  saveDesign, addToGallery, loadGalCustom, removeMyPhoto,
-} from './imagegen-ui.js';
-
-// Expose UI functions to window so HTML onclick= attributes work
-Object.assign(window, {
-  toggleStudioTheme, debounceDraw,
-  switchTab, applyTemplate,
-  setFont, setTC, setColorHex,
-  mobOpen, mobClose, syncMobile,
-  setSz, setBG, togOpt,
-  prevVerse, nextVerse, useVOTD, shuffleVerse,
-  useCustomVerse, mUseCustomVerse, selVerse,
-  setVerseTag, updateBadges, updateVerseDisplay,
-  onTS, onTE,
-  biRenderBooks, biSearch, biFilter,
-  biSelectBook, biBackBooks, biSelectCh, biBackCh, biUseVerse,
-  mbiRenderBooks, mbiSearch, mbiFilter,
-  mbiSelectBook, mbiBackBooks, mbiSelectCh, mbiBackCh, mbiUseVerse,
-  pickPhoto, loadGal, setGalGroup,
-  setGradPreset, updateGradPreview,
-  onHexInput, onRGB, onGradColor, onGradAngle,
-  setPhotoOverlay, snapshotST, undoLast,
-  syncMobileStyle, syncMobileText, syncMobileBG,
-  saveDesign, goBack, addToGallery, loadGalCustom, removeMyPhoto,
-});
-
-// Boot on DOM ready
-document.addEventListener('DOMContentLoaded', initStudio);
