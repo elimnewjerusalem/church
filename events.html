@@ -44,7 +44,7 @@
 body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-primary);}
 .navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
 .nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
 .nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
 .nav-logo-text span{color:var(--gold);}
@@ -124,15 +124,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
 </head>
 <body>
   <nav class="navbar">
-  <div class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
+  <a href="index.html" class="nav-logo" style="text-decoration:none;">
+    <img class="nav-logo-img" src="images/logo/logo_nav.png" alt="ENJC Logo" width="38" height="38"
          onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
     <div class="nav-logo-fallback" id="logo-fb">E</div>
     <div>
       <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
-  </div>
+  </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -156,7 +156,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
   <!-- Page hero -->
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
-      <p class="section-tag">Live &amp; Schedule</p>
+      <p class="section-tag anim-fade-up">Live &amp; Schedule</p>
       <h1 id="page-title">Live &amp; <em>Events</em></h1>
       <p>Join us for worship, fellowship, and special gatherings</p>
     </div>
@@ -165,8 +165,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
   <!-- Live Stream — rendered by js/live-stream.js -->
   <section id="live-stream-section" class="reveal-on-scroll section-sm" aria-labelledby="live-heading">
     <div class="container">
-      <p class="section-tag">Live Stream</p>
-      <h2 class="section-heading" id="live-heading" style="margin-bottom:24px;">Join Us <em>This Week</em></h2>
+      <p class="section-tag anim-wipe">Live Stream</p>
+      <h2 class="section-heading anim-fade-up anim-d1" id="live-heading" style="margin-bottom:24px;">Join Us <em>This Week</em></h2>
       <!--
         live-stream.js checks the current time against the service schedule.
         • During service hours  → shows "LIVE NOW" badge + YouTube player
@@ -181,8 +181,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
 
   <section class="reveal-on-scroll section" aria-labelledby="service-highlights-heading">
     <div class="container">
-      <p class="section-tag">Featured Services</p>
-      <h2 class="section-heading" id="service-highlights-heading">Service <em>Highlights</em></h2>
+      <p class="section-tag anim-fade-up">Featured Services</p>
+      <h2 class="section-heading anim-fade-up anim-d1" id="service-highlights-heading">Service <em>Highlights</em></h2>
       <div class="grid-3" style="margin-top:24px;">
         <div id="sunday-section"></div>
         <div id="friday-section"></div>
@@ -201,10 +201,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
         <h2 class="section-heading" style="margin-bottom:8px;">Next <em>Service</em></h2>
         <p style="font-size:14px;color:var(--color-text-faint);margin-bottom:28px;">This countdown loads automatically. Join us for worship and be blessed.</p>
         <div class="countdown" style="display:flex;gap:14px;flex-wrap:wrap;" role="timer" aria-live="polite" aria-label="Time until next Sunday service">
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-d" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Days</div></div>
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-h" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Hours</div></div>
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-m" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Mins</div></div>
-          <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-s" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Secs</div></div>
+          <div class="card countdown__unit anim-fade-up anim-d1" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-d" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Days</div></div>
+          <div class="card countdown__unit anim-fade-up anim-d2" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-h" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Hours</div></div>
+          <div class="card countdown__unit anim-fade-up anim-d3" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-m" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Mins</div></div>
+          <div class="card countdown__unit anim-fade-up anim-d4" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-s" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Secs</div></div>
         </div>
         <div style="margin-top:24px;">
           <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold">Get Notified on WhatsApp</a>
@@ -218,7 +218,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
   <!-- Recent Live Streams -->
   <section class="reveal-on-scroll section" aria-labelledby="streams-heading">
     <div class="container">
-      <p class="section-tag">Watch Again</p>
+      <p class="section-tag anim-wipe">Watch Again</p>
       <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent Live <em>Streams</em></h2>
       <p class="section-sub">Catch up on our latest worship services and devotionals</p>
       <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
@@ -234,7 +234,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
   <!-- Most Watched -->
   <section class="reveal-on-scroll section-alt" aria-labelledby="popular-heading">
     <div class="container">
-      <p class="section-tag">Popular</p>
+      <p class="section-tag anim-roll-left">Popular</p>
       <h2 class="section-heading" id="popular-heading" style="margin-bottom:8px;">🔥 Most Watched <em>Messages</em></h2>
       <p class="section-sub">Popular sermons and devotionals that touched hearts</p>
             <!-- Populated by js/events.js from data/events.json → mostWatched[] -->
@@ -247,7 +247,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
   <!-- Verse Reels -->
   <section class="reveal-on-scroll section" aria-labelledby="reels-heading">
     <div class="container">
-      <p class="section-tag">Short Videos</p>
+      <p class="section-tag anim-wipe">Short Videos</p>
       <h2 class="section-heading" id="reels-heading" style="margin-bottom:8px;">📖 Verse <em>Reels</em></h2>
       <p class="section-sub">Daily scripture encouragement in short videos</p>
       <!-- Populated by js/events.js from data/events.json → verseReels[] -->
@@ -264,12 +264,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
   <section class="reveal-on-scroll section-alt" aria-labelledby="testimonials-heading">
     <div class="container">
       <div style="max-width:800px;margin:0 auto;text-align:center;">
-        <p class="section-tag" style="justify-content:center;">Community</p>
+        <p class="section-tag anim-fade-up" style="justify-content:center;">Community</p>
         <h2 class="section-heading" id="testimonials-heading" style="margin-bottom:28px;">💬 What People Are <em>Saying</em></h2>
 
         <!-- Testimonial carousel -->
         <div id="testimonial-container">
-          <blockquote class="card testimonial" style="background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:32px;text-align:left;">
+          <blockquote class="card testimonial anim-roll-right" style="background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:32px;text-align:left;">
             <p id="testimonial-text" class="testimonial__text" style="font-family:var(--font-heading);font-size:1.05rem;font-style:italic;color:var(--color-text);line-height:1.8;margin-bottom:16px;">
               &#8220;The Night Prayer meetings have completely transformed my prayer life. I feel God&#39;s presence so powerfully every time I attend.&#8221;
             </p>

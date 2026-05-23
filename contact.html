@@ -44,7 +44,7 @@
 body{font-family:'DM Sans',sans-serif;}
 .navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
 .nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
 .nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
 .nav-logo-text span{color:var(--gold);}
@@ -111,15 +111,15 @@ body{background:var(--navy);color:var(--text-primary);}
 </head>
 <body>
   <nav class="navbar">
-  <div class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
+  <a href="index.html" class="nav-logo" style="text-decoration:none;">
+    <img class="nav-logo-img" src="images/logo/logo_nav.png" alt="ENJC Logo" width="38" height="38"
          onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
     <div class="nav-logo-fallback" id="logo-fb">E</div>
     <div>
       <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
-  </div>
+  </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -143,7 +143,7 @@ body{background:var(--navy);color:var(--text-primary);}
   <!-- Page hero -->
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
-      <p class="section-tag">Reach Us</p>
+      <p class="section-tag anim-fade-up">Reach Us</p>
       <h1 id="page-title">Get In <em>Touch</em></h1>
       <p>We&#39;d love to hear from you and answer any questions.</p>
     </div>
@@ -157,31 +157,31 @@ body{background:var(--navy);color:var(--text-primary);}
         <!-- Left: contact details -->
         <div>
           <p class="section-tag">Contact Info</p>
-          <h2 class="section-heading" id="contact-heading" style="margin-bottom:24px;">Find <em>Us</em></h2>
+          <h2 class="section-heading anim-fade-up anim-d1" id="contact-heading" style="margin-bottom:24px;">Find <em>Us</em></h2>
           <div style="display:flex;flex-direction:column;gap:12px;">
 
-          <div class="card contact-info-card" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
+          <div class="card contact-info-card anim-roll-left anim-d1" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
             <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">📍</div>
             <div>
               <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">Address</div>
               <div style="font-size:14px;font-weight:500;color:var(--color-text);line-height:1.75;">No.110E, Elaya Street, Tondiarpet<br><span style="font-size:12px;color:var(--color-text-faint);">(Near Bedestha Swimming Pool)</span><br>Chennai – 600 081</div>
             </div>
           </div>
-          <div class="card contact-info-card" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
+          <div class="card contact-info-card anim-roll-left anim-d2" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
             <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">📞</div>
             <div>
               <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">Phone</div>
               <div style="font-size:14px;font-weight:500;color:var(--color-text);line-height:1.75;"><a href="tel:+919444345102" style="color:var(--color-gold);">+91 94443 45102</a></div>
             </div>
           </div>
-          <div class="card contact-info-card" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
+          <div class="card contact-info-card anim-roll-left anim-d3" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
             <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">✉</div>
             <div>
               <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">Email</div>
               <div style="font-size:14px;font-weight:500;color:var(--color-text);line-height:1.75;"><a href="mailto:enjcofficial@gmail.com" style="color:var(--color-gold);">enjcofficial@gmail.com</a></div>
             </div>
           </div>
-          <div class="card contact-info-card" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
+          <div class="card contact-info-card anim-roll-left anim-d4" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
             <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">💬</div>
             <div>
               <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">WhatsApp</div>
@@ -196,12 +196,12 @@ body{background:var(--navy);color:var(--text-primary);}
 
         <!-- Right: service times + prayer request -->
         <div>
-          <p class="section-tag">When We Meet</p>
-          <h2 class="section-heading" style="margin-bottom:24px;">Service <em>Times</em></h2>
+          <p class="section-tag anim-wipe">When We Meet</p>
+          <h2 class="section-heading anim-fade-up anim-d1" style="margin-bottom:24px;">Service <em>Times</em></h2>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
 <div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Sunday</span><span style="font-size:12px;color:var(--color-gold);font-weight:700;">05:30 · 08:30 · 12:00</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Friday</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">11:00 AM</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Saturday</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">6:00 PM</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">2nd Saturday</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">6:00 AM – 6:00 PM</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Night Prayer</span><span style="font-size:12px;color:var(--color-gold);font-weight:700;">10:30 PM Daily</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Deliverance</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">6:00 PM Weekly</span></div>
           </div>
-          <div class="card card--gold" style="padding:24px;">
+          <div class="card card--gold anim-fade-up anim-d2" style="padding:24px;">
             <h3 style="margin-bottom:8px;font-size:1.05rem;">Need Prayer?</h3>
             <p style="font-size:13px;margin-bottom:16px;">We believe in the power of prayer. Share your request and our prayer team will lift you up.</p>
             <a href="https://wa.me/919444345102?text=Prayer%20Request%3A%20" target="_blank" rel="noopener" class="btn btn--gold" style="font-size:13px;padding:10px 22px;">Submit Prayer Request</a>
@@ -243,8 +243,8 @@ body{background:var(--navy);color:var(--text-primary);}
   <!-- Social / Follow Us -->
   <section class="reveal-on-scroll section" aria-labelledby="social-heading">
     <div class="container">
-      <p class="section-tag">Follow Us</p>
-      <h2 class="section-heading" id="social-heading" style="margin-bottom:8px;">Stay <em>Connected</em></h2>
+      <p class="section-tag anim-fade-up">Follow Us</p>
+      <h2 class="section-heading anim-fade-up anim-d1" id="social-heading" style="margin-bottom:8px;">Stay <em>Connected</em></h2>
       <p class="section-sub">Join our online community — never miss a sermon, event, or inspirational message.</p>
       <div class="grid-2">
 

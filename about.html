@@ -44,7 +44,7 @@
 body{font-family:'DM Sans',sans-serif;}
 .navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
 .nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
 .nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
 .nav-logo-text span{color:var(--gold);}
@@ -111,15 +111,15 @@ body{background:var(--navy);color:var(--text-primary);}
 </head>
 <body>
   <nav class="navbar">
-  <div class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
+  <a href="index.html" class="nav-logo" style="text-decoration:none;">
+    <img class="nav-logo-img" src="images/logo/logo_nav.png" alt="ENJC Logo" width="38" height="38"
          onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
     <div class="nav-logo-fallback" id="logo-fb">E</div>
     <div>
       <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
-  </div>
+  </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html" class="active">About</a>
@@ -143,7 +143,7 @@ body{background:var(--navy);color:var(--text-primary);}
   <!-- Page hero -->
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
-      <p class="section-tag">Our Story</p>
+      <p class="section-tag anim-fade-up">Our Story</p>
       <h1 id="page-title">About <em>ENJC</em></h1>
       <p>Elim New Jerusalem Church — Tondiarpet, Chennai.</p>
     </div>
@@ -152,10 +152,10 @@ body{background:var(--navy);color:var(--text-primary);}
   <!-- Pastor -->
   <section class="reveal-on-scroll section" aria-labelledby="pastor-heading">
     <div class="container">
-      <p class="section-tag">Leadership</p>
-      <h2 class="section-heading" id="pastor-heading">Our <em>Pastor</em></h2>
+      <p class="section-tag anim-fade-up">Leadership</p>
+      <h2 class="section-heading anim-fade-up anim-d1" id="pastor-heading">Our <em>Pastor</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
-      <article class="card" style="padding:36px;display:flex;align-items:center;gap:36px;flex-wrap:wrap;">
+      <article class="card anim-roll-left anim-d2" style="padding:36px;display:flex;align-items:center;gap:36px;flex-wrap:wrap;">
         <div class="pastor-avatar" style="width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--color-gold-border);flex-shrink:0;" aria-hidden="true">
           <img src="images/pastor.webp" alt="Pastor A. Karthik Daniel" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='👨‍⚖️';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';this.parentElement.style.fontSize='48px';this.parentElement.style.background='var(--color-gold-bg)';">
         </div>
@@ -181,8 +181,8 @@ body{background:var(--navy);color:var(--text-primary);}
   <!-- Deliverance Ministry -->
   <section class="reveal-on-scroll section-alt" aria-labelledby="ministry-heading">
     <div class="container">
-      <p class="section-tag">Our Ministry</p>
-      <h2 class="section-heading" id="ministry-heading">About Our <em>Deliverance Ministry</em></h2>
+      <p class="section-tag anim-fade-up">Our Ministry</p>
+      <h2 class="section-heading anim-fade-up anim-d1" id="ministry-heading">About Our <em>Deliverance Ministry</em></h2>
       <p style="font-size:15px;max-width:680px;margin:14px 0 40px;line-height:1.85;">
         We believe in the power of Jesus Christ to set people free — from bondage, sickness,
         and spiritual oppression. Our deliverance ministry is rooted in prayer, God&#39;s Word,
@@ -190,19 +190,19 @@ body{background:var(--navy);color:var(--text-primary);}
       </p>
       <div class="grid-3">
 
-        <article class="card" style="padding:30px;">
+        <article class="card anim-fade-up anim-d1" style="padding:30px;">
           <div style="width:52px;height:52px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;" aria-hidden="true">🙏</div>
           <h3 style="margin-bottom:10px;">Prayer &amp; Intercession</h3>
           <p style="font-size:14px;">Daily prayer meetings and special intercession gatherings. Every believer is invited to pray for families, Chennai, and nations.</p>
         </article>
 
-        <article class="card" style="padding:30px;">
+        <article class="card anim-fade-up anim-d2" style="padding:30px;">
           <div style="width:52px;height:52px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;" aria-hidden="true">📖</div>
           <h3 style="margin-bottom:10px;">Word &amp; Worship</h3>
           <p style="font-size:14px;">Grounded in the authority of Scripture. We preach, teach, and live God&#39;s Word every week through three Sunday services.</p>
         </article>
 
-        <article class="card" style="padding:30px;">
+        <article class="card anim-fade-up anim-d3" style="padding:30px;">
           <div style="width:52px;height:52px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;" aria-hidden="true">🕊</div>
           <h3 style="margin-bottom:10px;">Holy Spirit Ministry</h3>
           <p style="font-size:14px;">We welcome the gifts and move of the Holy Spirit. Healing, deliverance, and transformation happen when God&#39;s people gather.</p>
@@ -221,8 +221,8 @@ body{background:var(--navy);color:var(--text-primary);}
 
         <!-- Mission -->
         <div>
-          <p class="section-tag">Mission</p>
-          <h2 class="section-heading" id="mission-heading">Our <em>Mission</em></h2>
+          <p class="section-tag anim-wipe">Mission</p>
+          <h2 class="section-heading anim-fade-up anim-d1" id="mission-heading">Our <em>Mission</em></h2>
           <p style="font-size:15px;line-height:1.85;margin:14px 0 28px;">
             To bring the transforming power of Jesus Christ to families and communities in
             Tondiarpet, Chennai, and beyond — through worship, prayer, the Word of God,

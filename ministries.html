@@ -44,7 +44,7 @@
 body{font-family:'DM Sans',sans-serif;}
 .navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
 .nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
 .nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
 .nav-logo-text span{color:var(--gold);}
@@ -111,15 +111,15 @@ body{background:var(--navy);color:var(--text-primary);}
 </head>
 <body>
   <nav class="navbar">
-  <div class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
+  <a href="index.html" class="nav-logo" style="text-decoration:none;">
+    <img class="nav-logo-img" src="images/logo/logo_nav.png" alt="ENJC Logo" width="38" height="38"
          onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
     <div class="nav-logo-fallback" id="logo-fb">E</div>
     <div>
       <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
-  </div>
+  </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -142,7 +142,7 @@ body{background:var(--navy);color:var(--text-primary);}
 
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
-      <p class="section-tag">All Ministries</p>
+      <p class="section-tag anim-fade-up">All Ministries</p>
       <h1 id="page-title">Find Your <em>Place</em></h1>
       <p>A ministry for every person at every stage of life.</p>
     </div>
@@ -152,7 +152,7 @@ body{background:var(--navy);color:var(--text-primary);}
     <div class="container">
       <h2 class="section-heading sr-only" id="ministries-heading">Ministry Cards</h2>
       <div class="grid-3">
-        <article class="card ministry-card" style="overflow:hidden;">
+        <article class="card ministry-card anim-roll-left anim-d1" style="overflow:hidden;">
           <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
             <img src="images/ministries/youth.webp" alt="Youth Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
@@ -172,7 +172,7 @@ body{background:var(--navy);color:var(--text-primary);}
                class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
           </div>
         </article>
-        <article class="card ministry-card" style="overflow:hidden;">
+        <article class="card ministry-card anim-fade-up anim-d2" style="overflow:hidden;">
           <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
             <img src="images/ministries/women.webp" alt="Women's Fellowship" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
@@ -192,7 +192,7 @@ body{background:var(--navy);color:var(--text-primary);}
                class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
           </div>
         </article>
-        <article class="card ministry-card" style="overflow:hidden;">
+        <article class="card ministry-card anim-roll-left anim-d3" style="overflow:hidden;">
           <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
             <img src="images/ministries/prayer.webp" alt="Prayer Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
@@ -212,7 +212,7 @@ body{background:var(--navy);color:var(--text-primary);}
                class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
           </div>
         </article>
-        <article class="card ministry-card" style="overflow:hidden;">
+        <article class="card ministry-card anim-fade-up anim-d4" style="overflow:hidden;">
           <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
             <img src="images/ministries/worship.webp" alt="Worship Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
@@ -232,7 +232,7 @@ body{background:var(--navy);color:var(--text-primary);}
                class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
           </div>
         </article>
-        <article class="card ministry-card" style="overflow:hidden;">
+        <article class="card ministry-card anim-roll-left anim-d5" style="overflow:hidden;">
           <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
             <img src="images/ministries/children.webp" alt="Children's Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
@@ -252,7 +252,7 @@ body{background:var(--navy);color:var(--text-primary);}
                class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
           </div>
         </article>
-        <article class="card ministry-card" style="overflow:hidden;">
+        <article class="card ministry-card anim-fade-up anim-d6" style="overflow:hidden;">
           <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
             <img src="images/ministries/outreach.webp" alt="Outreach Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
@@ -275,7 +275,7 @@ body{background:var(--navy);color:var(--text-primary);}
       </div>
 
       <!-- CTA banner -->
-      <div class="card card--gold" style="margin-top:52px;padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div class="card card--gold anim-wipe" style="margin-top:52px;padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
         <div>
           <h3 style="margin-bottom:8px;">Want to get involved?</h3>
           <p style="font-size:14px;">Every ministry welcomes new members. WhatsApp us and we&#39;ll connect you with the right leader.</p>
