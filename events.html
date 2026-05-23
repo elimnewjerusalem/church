@@ -27,8 +27,21 @@
   --cream:#f4f0e8;--cream-dark:#e8e3d8;
   --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
   --border:#1a2e50;
+  /* map to main.css --color-* variables */
+  --color-bg:          #0a1628;
+  --color-bg-2:        #060e1a;
+  --color-bg-3:        #0d1e3a;
+  --color-text:        #f0e6c8;
+  --color-text-muted:  #8fa8c8;
+  --color-text-faint:  #5a7090;
+  --color-border:      #1a2e50;
+  --color-border-mid:  #1e3060;
+  --color-gold:        #c9a84c;
+  --color-gold-bg:     rgba(201,168,76,.10);
+  --color-gold-border: rgba(201,168,76,.28);
+  --font-heading:      'Cormorant Garamond','Playfair Display',Georgia,serif;
 }
-body{font-family:'DM Sans',sans-serif;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-primary);}
 .navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
 .nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
@@ -75,6 +88,33 @@ body{font-family:'DM Sans',sans-serif;}
 .mob-item.active i,.mob-item.active span{color:var(--gold);}
 @media(max-width:900px){body{padding-bottom:60px;}.mob-nav{display:block;}.wa-float{bottom:76px;}.footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:28px 20px 16px;}}
 @media(max-width:540px){.footer-grid{grid-template-columns:1fr;}}
+
+/* ── Events page layout & padding fixes ── */
+.page-hero{background:linear-gradient(170deg,var(--navy-mid) 0%,var(--navy) 100%);border-bottom:1px solid var(--border);padding:56px 0 48px;}
+.page-hero h1{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--text-primary);margin:8px 0 10px;line-height:1.15;}
+.page-hero h1 em{color:var(--gold);font-style:italic;}
+.page-hero p{font-size:14px;color:var(--text-muted);margin:0;}
+.page-hero .section-tag{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);}
+.page-hero .section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
+.section-heading{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text-primary);margin:0 0 6px;}
+.section-heading em{color:var(--gold);font-style:italic;}
+.section-tag{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);}
+.section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
+.section{padding:64px 0;}
+.section-alt{padding:64px 0;background:var(--navy-mid);}
+.section-sm{padding:48px 0;}
+.container{max-width:1100px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.container{padding:0 18px;}.section,.section-alt{padding:40px 0;}.page-hero{padding:40px 0 32px;}}
+.card{background:var(--navy-mid);border:0.5px solid var(--border);border-radius:12px;}
+.btn--gold{background:var(--gold);color:var(--navy);font-size:13px;font-weight:600;padding:9px 20px;border-radius:7px;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;text-decoration:none;}
+.btn--gold:hover{background:var(--gold-light);}
+.btn--outline{background:transparent;color:var(--text-primary);font-size:13px;font-weight:600;padding:9px 20px;border-radius:7px;border:1px solid var(--border);display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;text-decoration:none;}
+.btn--outline:hover{border-color:var(--gold);color:var(--gold);}
+.divider{height:1px;background:var(--border);margin:0;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:768px){.grid-3{grid-template-columns:1fr;}}
+.section-sub{font-size:14px;color:var(--text-muted);margin:0 0 28px;max-width:600px;}
+.section-rule{width:40px;height:2px;background:var(--gold);margin:12px 0 24px;border-radius:2px;}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
