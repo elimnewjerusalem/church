@@ -5,10 +5,6 @@
    ============================================================ */
 
 /* ── 1. SAFE AREA INSET HANDLING (iPhone X+, notches) ────── */
-body {
-  padding-bottom: calc(60px + max(0px, env(safe-area-inset-bottom, 0px))) !important;
-}
-
 @media (max-width: 900px) {
   body {
     padding-bottom: calc(64px + max(0px, env(safe-area-inset-bottom, 0px))) !important;
@@ -130,41 +126,48 @@ body {
 }
 
 /* ── 4. MOBILE MENU ANIMATION ───────────────────────── */
+/* Desktop: nav-links always visible */
 #nav-links {
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  opacity: 0;
-  visibility: hidden;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#nav-links.mob-open {
-  display: flex !important;
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  right: 0;
-  background: var(--navy, #0a1628);
-  border-bottom: 1px solid var(--border, #1a2e50);
-  padding: 8px 0;
-  z-index: 300;
-  max-height: calc(100vh - 60px) !important;
-  overflow-y: auto !important;
-  opacity: 1;
-  visibility: visible;
-}
+/* Mobile only: collapse nav-links by default, expand on .mob-open */
+@media (max-width: 900px) {
+  #nav-links {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0;
+    visibility: hidden;
+    display: flex !important;
+    flex-direction: column;
+  }
 
-#nav-links.mob-open a {
-  padding: 14px 20px;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  transition: all 0.2s ease;
-}
+  #nav-links.mob-open {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--navy, #0a1628);
+    border-bottom: 1px solid var(--border, #1a2e50);
+    padding: 8px 0;
+    z-index: 300;
+    max-height: calc(100vh - 60px) !important;
+    overflow-y: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 
-#nav-links.mob-open a:active {
-  background: rgba(201, 168, 76, 0.12);
+  #nav-links.mob-open a {
+    padding: 14px 20px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+
+  #nav-links.mob-open a:active {
+    background: rgba(201, 168, 76, 0.12);
+  }
 }
 
 /* ── 5. FLOATING BUTTONS POSITIONING ────────────────── */
@@ -276,18 +279,11 @@ body.nav-open {
 }
 
 /* ── 11. VIEWPORT SAFE AREAS ────────────────────────── */
-@supports (padding: max(0px)) {
-  .mob-nav {
-    padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
-  }
-  
-  body {
-    padding-bottom: max(60px, calc(60px + env(safe-area-inset-bottom, 0px)));
-  }
-}
-
 @media (max-width: 900px) {
   @supports (padding: max(0px)) {
+    .mob-nav {
+      padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
+    }
     body {
       padding-bottom: max(64px, calc(64px + env(safe-area-inset-bottom, 0px))) !important;
     }
@@ -307,20 +303,22 @@ html {
 }
 
 /* ── 13. IMPROVED LINK STATES ────────────────────────── */
-#nav-links.mob-open a {
-  color: var(--text-muted, #5a7090);
-}
+@media (max-width: 900px) {
+  #nav-links.mob-open a {
+    color: #8fa8c8;
+  }
 
-#nav-links.mob-open a:hover {
-  color: var(--text-primary, #f0e6c8);
-  background: rgba(201, 168, 76, 0.08);
-}
+  #nav-links.mob-open a:hover {
+    color: var(--text-primary, #f0e6c8);
+    background: rgba(201, 168, 76, 0.08);
+  }
 
-#nav-links.mob-open a.active {
-  color: var(--gold, #c9a84c) !important;
-  background: rgba(201, 168, 76, 0.12);
-  font-weight: 600;
-  border-radius: 6px;
+  #nav-links.mob-open a.active {
+    color: var(--gold, #c9a84c) !important;
+    background: rgba(201, 168, 76, 0.12);
+    font-weight: 600;
+    border-radius: 6px;
+  }
 }
 
 /* ── 14. BOTTOM NAV SPACING ADJUSTMENT ──────────────── */
