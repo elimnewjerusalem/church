@@ -118,13 +118,7 @@ body{background:var(--navy);color:var(--text-primary);}
 </head>
 <body>
   <a href="#main" class="skip-to-content">Skip to main content</a>
-  <div id="enjc-service-banner" role="status" aria-live="polite" aria-atomic="true">
-    <span class="banner-icon" aria-hidden="true">⛪</span>
-    <span class="banner-label">Service starts in</span>
-    <span class="banner-time">–</span>
-    <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener"
-       style="margin-left:8px;font-size:12px;color:var(--color-gold);text-decoration:underline;">Watch Live ▶</a>
-  </div>
+
   <nav class="navbar">
   <a href="index.html" class="nav-logo" style="text-decoration:none;">
     <img class="nav-logo-img" src="images/logo/logo_nav.png" alt="ENJC Logo" width="38" height="38"
@@ -157,8 +151,8 @@ body{background:var(--navy);color:var(--text-primary);}
 
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
-      <p class="section-tag">Our Moments</p>
-      <h1 id="page-title">Photo <em>Gallery</em></h1>
+      <p class="section-tag anim-fade-up">Our Moments</p>
+      <h1 id="page-title" class="anim-fade-up anim-d1">Photo <em>Gallery</em></h1>
       <p>Glimpses of worship, community, and God&#39;s work among us.</p>
     </div>
   </section>
@@ -169,35 +163,35 @@ body{background:var(--navy);color:var(--text-primary);}
       <div class="bento" id="gallery-grid">
 
         <!-- GROUP 1: g1–g5 (rows 1–2) -->
-        <div class="bento__item reveal-on-scroll delay-1" style="grid-column:1;grid-row:1" onclick="openLightbox(0)">
+        <div class="bento__item reveal-on-scroll anim-roll-left anim-d1" style="grid-column:1;grid-row:1" onclick="openLightbox(0)">
           <picture>
             <source srcset="images/gallery/g1.webp" type="image/webp">
             <img src="images/gallery/g1.webp" alt="ENJC Church gathering" loading="lazy">
           </picture>
           <div class="bento__cap">Church Gathering</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-2" style="grid-column:1;grid-row:2" onclick="openLightbox(1)">
+        <div class="bento__item reveal-on-scroll anim-fade-up anim-d2" style="grid-column:1;grid-row:2" onclick="openLightbox(1)">
           <picture>
             <source srcset="images/gallery/g2.webp" type="image/webp">
             <img src="images/gallery/g2.webp" alt="Worship Service" loading="lazy">
           </picture>
           <div class="bento__cap">Worship Service</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-3" style="grid-column:2;grid-row:1/3" onclick="openLightbox(2)">
+        <div class="bento__item reveal-on-scroll anim-wipe anim-d3" style="grid-column:2;grid-row:1/3" onclick="openLightbox(2)">
           <picture>
             <source srcset="images/gallery/g3.webp" type="image/webp">
             <img src="images/gallery/g3.webp" alt="Community" loading="lazy">
           </picture>
           <div class="bento__cap">Community</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-4" style="grid-column:3;grid-row:1" onclick="openLightbox(3)">
+        <div class="bento__item reveal-on-scroll anim-roll-left anim-d4" style="grid-column:3;grid-row:1" onclick="openLightbox(3)">
           <picture>
             <source srcset="images/gallery/g4.webp" type="image/webp">
             <img src="images/gallery/g4.webp" alt="Prayer Night" loading="lazy">
           </picture>
           <div class="bento__cap">Prayer Night</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-5" style="grid-column:3;grid-row:2" onclick="openLightbox(4)">
+        <div class="bento__item reveal-on-scroll anim-fade-up anim-d5" style="grid-column:3;grid-row:2" onclick="openLightbox(4)">
           <picture>
             <source srcset="images/gallery/g5.webp" type="image/webp">
             <img src="images/gallery/g5.webp" alt="Sunday School" loading="lazy">
@@ -206,35 +200,35 @@ body{background:var(--navy);color:var(--text-primary);}
         </div>
 
         <!-- GROUP 2: g6–g10 (rows 3–4) -->
-        <div class="bento__item reveal-on-scroll delay-6" style="grid-column:1;grid-row:3" onclick="openLightbox(5)">
+        <div class="bento__item reveal-on-scroll anim-wipe anim-d6" style="grid-column:1;grid-row:3" onclick="openLightbox(5)">
           <picture>
             <source srcset="images/gallery/g6.webp" type="image/webp">
             <img src="images/gallery/g6.webp" alt="Deliverance Meeting" loading="lazy">
           </picture>
           <div class="bento__cap">Deliverance Meeting</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-1" style="grid-column:1;grid-row:4" onclick="openLightbox(6)">
+        <div class="bento__item reveal-on-scroll anim-roll-left anim-d1" style="grid-column:1;grid-row:4" onclick="openLightbox(6)">
           <picture>
             <source srcset="images/gallery/g7.webp" type="image/webp">
             <img src="images/gallery/g7.webp" alt="Gospel Ministry" loading="lazy">
           </picture>
           <div class="bento__cap">Gospel Ministry</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-2" style="grid-column:2;grid-row:3/5" onclick="openLightbox(7)">
+        <div class="bento__item reveal-on-scroll anim-fade-up anim-d2" style="grid-column:2;grid-row:3/5" onclick="openLightbox(7)">
           <picture>
             <source srcset="images/gallery/g8.webp" type="image/webp">
             <img src="images/gallery/g8.webp" alt="Fasting Prayer" loading="lazy">
           </picture>
           <div class="bento__cap">Fasting Prayer</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-3" style="grid-column:3;grid-row:3" onclick="openLightbox(8)">
+        <div class="bento__item reveal-on-scroll anim-wipe anim-d3" style="grid-column:3;grid-row:3" onclick="openLightbox(8)">
           <picture>
             <source srcset="images/gallery/g9.webp" type="image/webp">
             <img src="images/gallery/g9.webp" alt="Youth Ministry" loading="lazy">
           </picture>
           <div class="bento__cap">Youth Ministry</div>
         </div>
-        <div class="bento__item reveal-on-scroll delay-4" style="grid-column:3;grid-row:4" onclick="openLightbox(9)">
+        <div class="bento__item reveal-on-scroll anim-roll-left anim-d4" style="grid-column:3;grid-row:4" onclick="openLightbox(9)">
           <picture>
             <source srcset="images/gallery/g10.webp" type="image/webp">
             <img src="images/gallery/g10.webp" alt="Women's Fellowship" loading="lazy">

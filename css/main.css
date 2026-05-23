@@ -3733,3 +3733,83 @@ body { background: #071020; }
     transition: none !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   ENJC — SCROLL ANIMATIONS v2
+   Roll in · Fade up · Wipe reveal
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── 1. FADE UP (sections headers, cards, contact) ── */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity  0.72s cubic-bezier(0.22,0.8,0.3,1),
+    transform 0.72s cubic-bezier(0.22,0.8,0.3,1);
+  will-change: opacity, transform;
+}
+.anim-fade-up.anim-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 2. ROLL IN (video, ministry cards — from left) ── */
+.anim-roll-left {
+  opacity: 0;
+  transform: translateX(-56px) rotate(-4deg);
+  transition:
+    opacity  0.78s cubic-bezier(0.22,0.8,0.3,1),
+    transform 0.78s cubic-bezier(0.22,0.8,0.3,1);
+  will-change: opacity, transform;
+}
+.anim-roll-left.anim-in {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* Roll in from right (about-text) */
+.anim-roll-right {
+  opacity: 0;
+  transform: translateX(56px) rotate(4deg);
+  transition:
+    opacity  0.78s cubic-bezier(0.22,0.8,0.3,1) 0.1s,
+    transform 0.78s cubic-bezier(0.22,0.8,0.3,1) 0.1s;
+  will-change: opacity, transform;
+}
+.anim-roll-right.anim-in {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* ── 3. WIPE REVEAL (gallery strip, section dividers) ── */
+.anim-wipe {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition:
+    opacity  0.05s linear,
+    clip-path 0.85s cubic-bezier(0.77,0,0.18,1);
+  will-change: clip-path, opacity;
+}
+.anim-wipe.anim-in {
+  opacity: 1;
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ── STAGGER DELAYS ── */
+.anim-d1 { transition-delay: 0.07s !important; }
+.anim-d2 { transition-delay: 0.14s !important; }
+.anim-d3 { transition-delay: 0.21s !important; }
+.anim-d4 { transition-delay: 0.28s !important; }
+.anim-d5 { transition-delay: 0.35s !important; }
+.anim-d6 { transition-delay: 0.42s !important; }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-up, .anim-roll-left, .anim-roll-right, .anim-wipe {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+}
