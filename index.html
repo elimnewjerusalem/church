@@ -2,10 +2,10 @@
 <html lang="ta">
 <head>
 <meta charset="UTF-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elim New Jerusalem Church | Tondiarpet, Chennai</title>
 <meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services at 5:30, 8:30 AM & 12:00 PM. Night Prayer daily at 10:30 PM. All are welcome.">
@@ -16,171 +16,281 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="main.css">
 <style>
-/* Photo placeholder — replace with real image */
-.hero-photo-hint p{font-size:11px;color:#2a4070;margin-top:4px;}
-/* Atmospheric lights */
-.hero-title em{color:var(--gold);font-style:italic;}
-.btn-gold{
-  background:var(--gold);color:var(--navy);
-  font-size:12px;font-weight:500;
-  padding:11px 22px;border-radius:7px;border:none;
-  cursor:pointer;font-family:'DM Sans',sans-serif;
-  display:flex;align-items:center;gap:6px;
-  transition:background 0.2s;
+/* ===== RESET ===== */
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
+  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
+  --cream:#f4f0e8;--cream-dark:#e8e3d8;
+  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
+  --border:#1a2e50;
 }
-.btn-gold:hover{background:var(--gold-light);}
-.btn-outline{
-  background:transparent;color:var(--gold);
-  font-size:12px;font-weight:500;
-  padding:11px 22px;border-radius:7px;
-  border:1px solid var(--gold);cursor:pointer;
-  font-family:'DM Sans',sans-serif;
-  display:flex;align-items:center;gap:6px;
-  transition:all 0.2s;
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:sticky;top:0;z-index:200;
+  background:var(--navy);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:60px;
 }
-.btn-outline:hover{background:rgba(201,168,76,0.1);}
-.hero-srv:last-child{border-right:none;}
-/* Hero right — upcoming event card */
-.event-card{
-  background:rgba(13,30,58,0.85);
-  border:1px solid var(--border);
-  border-radius:10px;padding:18px;
-  backdrop-filter:blur(10px);
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-logo-fallback{
+  width:36px;height:36px;border-radius:8px;background:var(--gold);
+  display:none;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:var(--navy);
+  font-family:'Cormorant Garamond',serif;flex-shrink:0;
 }
-.event-card-label{
-  font-size:9px;letter-spacing:0.15em;
-  color:var(--gold);text-transform:uppercase;
-  font-weight:500;margin-bottom:12px;
+.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
+.nav-logo-text span{color:var(--gold);}
+.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
+.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
+.nav-links a{font-size:12px;color:var(--text-muted);padding:7px 11px;border-radius:6px;transition:all 0.2s;}
+.nav-links a:hover{color:var(--text-primary);}
+.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
+.nav-cta{
+  background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
+  padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;
+  transition:background 0.2s;white-space:nowrap;
 }
-.event-card-next{
-  background:var(--navy-light);border-radius:8px;
-  padding:12px;margin-bottom:12px;
+.nav-cta:hover{background:var(--gold-light);}
+.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  height:calc(100svh - 60px);
+  min-height:480px;max-height:800px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  background:var(--navy-dark);
 }
-.event-card-month{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;}
-.event-card-date{font-size:24px;font-weight:500;color:var(--gold);line-height:1;}
-.event-card-title{font-size:12px;color:var(--text-primary);margin-top:4px;font-weight:500;}
-.event-card-detail{font-size:10px;color:var(--text-muted);margin-top:2px;}
-.event-card-sep{height:1px;background:var(--border);margin:10px 0;}
-.event-card-view{font-size:11px;color:var(--gold);display:flex;align-items:center;justify-content:space-between;}
+
+/* VIDEO — full bleed, NO overlay, NO gradient */
+.hero-video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  z-index:0;pointer-events:none;
+}
+
+/* Thin left gold bar */
+.hero-side-bar{
+  position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--gold);opacity:0.8;z-index:3;
+}
 
 /* Live badge */
 .live-badge{
-  position:absolute;top:20px;right:24px;z-index:5;
+  position:absolute;top:18px;right:24px;z-index:5;
   display:flex;align-items:center;gap:6px;
-  background:rgba(6,14,26,0.8);
-  border:1px solid var(--border);border-radius:20px;
-  padding:6px 14px;backdrop-filter:blur(8px);
+  background:rgba(6,14,26,0.65);
+  border:1px solid rgba(201,168,76,0.3);border-radius:20px;
+  padding:6px 14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 }
-.live-dot{
-  width:7px;height:7px;background:#e24b4a;
-  border-radius:50%;
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.live-text{font-size:11px;color:#8fa8c8;}
+.live-dot{width:7px;height:7px;background:#e24b4a;border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
+.live-text{font-size:11px;color:#c0d4e8;}
 
-/* ===== COUNTDOWN STRIP ===== */
+/* ── HERO BODY: left text | right card ── */
+.hero-body{
+  position:relative;z-index:2;
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:52px 52px 48px 52px;
+  gap:40px;
+}
+
+/* LEFT */
+.hero-left{flex:1;max-width:540px;}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.hero-eyebrow-line{width:28px;height:1px;background:var(--gold);flex-shrink:0;}
+.hero-eyebrow-text{font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;font-weight:500;}
+
+/* Text with outline/drop-shadow so readable on any video frame */
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,6vw,72px);
+  font-weight:700;
+  color:#ffffff;
+  line-height:1.0;
+  margin-bottom:12px;
+  /* drop shadow — two layers: sharp dark + soft dark */
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.9),
+    0 4px 24px rgba(0,0,0,0.7),
+    0 0 60px rgba(0,0,0,0.4);
+  /* optional: thin outline via paint-order trick */
+  -webkit-text-stroke: 0.5px rgba(0,0,0,0.3);
+  paint-order: stroke fill;
+}
+.hero-title em{
+  color:var(--gold);font-style:italic;
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.9),
+    0 0 30px rgba(201,168,76,0.5),
+    0 4px 20px rgba(0,0,0,0.6);
+  -webkit-text-stroke:0;
+}
+.hero-verse{
+  font-size:13px;font-style:italic;
+  color:rgba(255,255,255,0.80);
+  font-family:'Cormorant Garamond',serif;
+  margin-bottom:10px;
+  text-shadow:0 1px 6px rgba(0,0,0,0.85),0 2px 12px rgba(0,0,0,0.6);
+}
+.hero-desc{
+  font-size:13px;color:rgba(255,255,255,0.82);
+  line-height:1.65;margin-bottom:28px;max-width:400px;
+  text-shadow:0 1px 6px rgba(0,0,0,0.85),0 2px 12px rgba(0,0,0,0.5);
+}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-gold{
+  background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
+  padding:11px 22px;border-radius:7px;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;
+  transition:background 0.2s;
+  box-shadow:0 2px 12px rgba(0,0,0,0.4);
+}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-outline{
+  background:rgba(0,0,0,0.25);color:#ffffff;
+  font-size:12px;font-weight:500;padding:11px 22px;border-radius:7px;
+  border:1px solid rgba(255,255,255,0.45);cursor:pointer;
+  font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;
+  transition:all 0.2s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  box-shadow:0 2px 12px rgba(0,0,0,0.3);
+}
+.btn-outline:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.7);}
+
+/* RIGHT: Deliverance card */
+.hero-right{flex-shrink:0;width:240px;display:flex;align-items:center;}
+.event-card{
+  width:100%;
+  background:rgba(6,14,26,0.78);
+  border:1px solid rgba(201,168,76,0.35);
+  border-top:2px solid var(--gold);
+  border-radius:12px;padding:18px;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.45);
+}
+.event-card-label{
+  font-size:9px;letter-spacing:0.15em;color:var(--gold);
+  text-transform:uppercase;font-weight:600;margin-bottom:14px;
+}
+.event-card-next{
+  background:rgba(17,37,80,0.85);
+  border:1px solid rgba(201,168,76,0.18);
+  border-radius:8px;padding:14px;margin-bottom:12px;
+}
+.event-card-month{font-size:9px;color:#5a7090;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;}
+.event-card-date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:38px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px;
+}
+.event-card-title{font-size:13px;color:#ffffff;font-weight:600;margin-bottom:4px;}
+.event-card-detail{font-size:10px;color:#5a7090;line-height:1.55;}
+.event-card-sep{height:1px;background:rgba(26,46,80,0.8);margin:10px 0;}
+.event-card-view{
+  font-size:11px;color:var(--gold);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:color 0.2s;
+}
+.event-card-view:hover{color:var(--gold-light);}
+
+/* ===== COUNTDOWN STRIP — below hero ===== */
 .cd-strip{
   background:var(--navy-dark);
+  border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
-  padding:12px 32px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:16px;
+  padding:12px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
 }
 .cd-left{display:flex;align-items:center;gap:8px;}
-.cd-icon{font-size:16px;color:var(--gold-dim);}
+.cd-icon{font-size:15px;color:var(--gold-dim);}
 .cd-label{font-size:11px;color:var(--text-muted);}
 .cd-units{display:flex;align-items:center;gap:8px;}
-.cd-unit{text-align:center;min-width:38px;}
-.cd-num{font-size:20px;font-weight:500;color:var(--gold);font-family:'DM Sans',sans-serif;line-height:1;}
-.cd-unit-label{font-size:8px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:1px;}
-.cd-sep{font-size:16px;color:var(--border);padding-bottom:8px;}
-.cd-right{display:flex;align-items:center;gap:10px;}
+.cd-unit{text-align:center;min-width:40px;}
+.cd-num{font-size:22px;font-weight:600;color:var(--gold);font-family:'DM Sans',sans-serif;line-height:1;}
+.cd-unit-label{font-size:8px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;}
+.cd-sep{font-size:18px;color:var(--border);padding-bottom:10px;font-weight:300;}
+.cd-right{display:flex;align-items:center;}
 .cd-wa{
   font-size:11px;color:var(--navy);background:var(--gold);
-  padding:7px 14px;border-radius:6px;font-weight:500;
-  display:flex;align-items:center;gap:5px;
+  padding:7px 16px;border-radius:6px;font-weight:600;
+  display:flex;align-items:center;gap:5px;transition:background 0.2s;
 }
+.cd-wa:hover{background:var(--gold-light);}
 
-/* ===== SECTIONS ===== */
-.section{padding:48px 32px;}
-.section-dark{background:var(--navy);}
-.section-cream{background:var(--cream);}
-.section-white{background:#fff;}
-
-.sec-eyebrow{
-  font-size:10px;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--gold);
-  font-weight:500;margin-bottom:6px;
-}
-.sec-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:30px;font-weight:600;color:var(--navy);
-  line-height:1.15;margin-bottom:6px;
-}
-.sec-title em{color:var(--gold);font-style:italic;}
-.sec-title-light{color:var(--text-primary);}
-.sec-sub{font-size:13px;color:#7a7060;line-height:1.6;margin-bottom:28px;max-width:560px;}
-.sec-sub-light{color:var(--text-muted);}
-.sec-header{margin-bottom:24px;}
-.sec-header-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;}
-.sec-view-all{font-size:12px;color:var(--gold);display:flex;align-items:center;gap:4px;}
-
-/* ===== SERVICE TIMES ===== */
+/* ===== SERVICE TIMES STRIP — below countdown ===== */
 .service-strip{
   background:var(--navy-dark);
-  border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
   display:grid;grid-template-columns:repeat(4,1fr);
 }
 .service-item{
-  padding:18px 20px;border-right:1px solid var(--border);
+  padding:16px 20px;border-right:1px solid var(--border);
   display:flex;align-items:center;gap:12px;
 }
 .service-item:last-child{border-right:none;}
 .service-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:var(--navy-light);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
+  width:36px;height:36px;border-radius:8px;background:var(--navy-light);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .service-icon i{font-size:17px;color:var(--gold);}
 .service-time{font-size:14px;font-weight:500;color:var(--gold);}
 .service-name{font-size:11px;color:var(--text-muted);margin-top:1px;}
 
+/* ===== SECTIONS ===== */
+.section{padding:52px 40px;}
+.section-dark{background:var(--navy);}
+.section-mid{background:#0f1e38;}
+.section-cream{background:var(--cream);}
+.section-white{background:#fff;}
+.sec-eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:6px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,34px);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:6px;}
+.sec-title em{color:var(--gold);font-style:italic;}
+.sec-title-light{color:var(--text-primary);}
+.sec-sub{font-size:13px;color:#7a7060;line-height:1.65;margin-bottom:28px;max-width:560px;}
+.sec-sub-light{color:var(--text-muted);}
+.sec-header{margin-bottom:28px;}
+.sec-header-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;}
+.sec-view-all{font-size:12px;color:var(--gold);display:flex;align-items:center;gap:4px;transition:color 0.2s;}
+.sec-view-all:hover{color:var(--gold-light);}
+
 /* ===== SCHEDULE CARDS ===== */
-.schedule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.schedule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .schedule-card{
   background:#fff;border:0.5px solid var(--cream-dark);
-  border-radius:10px;padding:16px 18px;
-  border-top:2px solid var(--gold);
-  transition:box-shadow 0.2s;
+  border-radius:10px;padding:18px;border-top:2px solid var(--gold);
+  transition:box-shadow 0.2s,transform 0.2s;
 }
-.schedule-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.schedule-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.07);transform:translateY(-2px);}
 .sc-icon{font-size:20px;color:var(--gold);margin-bottom:10px;}
-.sc-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px;}
-.sc-detail{font-size:11px;color:#7a7060;line-height:1.5;}
-.sc-time{font-size:12px;color:var(--gold);font-weight:500;margin-top:6px;}
+.sc-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.sc-detail{font-size:11px;color:#7a7060;line-height:1.55;}
+.sc-time{font-size:12px;color:var(--gold);font-weight:600;margin-top:8px;}
 
-/* ===== ABOUT SECTION ===== */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
 .about-photo{
   background:var(--navy-light);border-radius:12px;
-  min-height:280px;display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
+  min-height:280px;display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
 .about-photo-hint{text-align:center;}
 .about-photo-hint p{font-size:11px;color:var(--border);margin-top:6px;}
-.about-cross{font-size:48px;color:var(--navy);opacity:0.15;}
-.about-text{}
-.about-quote{
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px;font-weight:600;color:var(--navy);
-  line-height:1.2;margin-bottom:12px;
-}
+.about-video{width:100%;}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:12px;}
 .about-quote em{color:var(--gold);font-style:italic;}
-.about-desc{font-size:13px;color:#5a5040;line-height:1.7;margin-bottom:16px;}
+.about-desc{font-size:13px;color:#5a5040;line-height:1.75;margin-bottom:16px;}
 .about-pillars{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
 .pillar{display:flex;align-items:center;gap:8px;font-size:12px;color:#5a5040;}
 .pillar i{font-size:14px;color:var(--gold);}
@@ -189,97 +299,54 @@
 .deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
 .deliv-card{
   background:var(--navy-mid);border:0.5px solid var(--border);
-  border-radius:10px;padding:14px;text-align:center;
-  transition:border-color 0.2s;
+  border-radius:10px;padding:14px;text-align:center;transition:border-color 0.2s;
 }
 .deliv-card:hover{border-color:var(--gold-dim);}
-.deliv-card.past{opacity:0.3;}
-.deliv-card.upcoming{
-  border-color:var(--gold);
-  background:var(--navy-light);
-}
+.deliv-card.past{opacity:0.28;}
+.deliv-card.upcoming{border-color:var(--gold);background:var(--navy-light);}
 .deliv-month{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;}
-.deliv-date{font-size:15px;font-weight:500;color:var(--gold);}
+.deliv-date{font-size:15px;font-weight:600;color:var(--gold);}
 .deliv-day{font-size:10px;color:var(--text-dim);margin-top:3px;}
-.deliv-tag{
-  display:inline-block;font-size:8px;
-  background:var(--gold);color:var(--navy);
-  padding:1px 6px;border-radius:99px;
-  margin-top:5px;font-weight:500;
-}
-
-/* ===== EVENTS LIST ===== */
-.events-list{display:flex;flex-direction:column;gap:10px;}
-.event-row{
-  background:#fff;border:0.5px solid var(--cream-dark);
-  border-radius:10px;padding:14px 18px;
-  display:flex;align-items:center;gap:16px;
-  transition:box-shadow 0.2s;
-}
-.event-row:hover{box-shadow:0 4px 16px rgba(0,0,0,0.06);}
-.event-date-box{
-  width:48px;height:52px;border-radius:8px;
-  background:var(--navy);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.event-date-month{font-size:8px;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;}
-.event-date-num{font-size:18px;font-weight:500;color:var(--text-primary);}
-.event-info{flex:1;}
-.event-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:2px;}
-.event-meta{font-size:11px;color:#7a7060;}
-.event-badge{
-  font-size:10px;padding:4px 10px;border-radius:99px;
-  font-weight:500;
-}
-.badge-regular{background:#f0f4ff;color:#3a5490;}
-.badge-special{background:#fff8e6;color:#8a5a00;}
-
-/* ===== BIBLE TOOLS ===== */
-.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.tool-card{
-  background:#fff;border:0.5px solid var(--cream-dark);
-  border-radius:10px;padding:16px;
-  display:flex;flex-direction:column;gap:8px;
-  transition:all 0.2s;cursor:pointer;
-}
-.tool-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 16px rgba(201,168,76,0.1);}
-.tool-icon{
-  width:40px;height:40px;border-radius:9px;
-  background:var(--cream);
-  display:flex;align-items:center;justify-content:center;
-}
-.tool-icon i{font-size:20px;color:var(--gold);}
-.tool-name{font-size:13px;font-weight:500;color:var(--navy);}
-.tool-desc{font-size:11px;color:#7a7060;line-height:1.4;}
-.tool-link{font-size:11px;color:var(--gold);margin-top:auto;display:flex;align-items:center;gap:3px;}
+.deliv-tag{display:inline-block;font-size:8px;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:99px;margin-top:5px;font-weight:600;}
 
 /* ===== MINISTRIES ===== */
 .ministry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .ministry-card{
   background:var(--navy-mid);border:0.5px solid var(--border);
-  border-radius:10px;overflow:hidden;
+  border-radius:10px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;
 }
-.ministry-card-img{
-  height:100px;background:var(--navy-light);
-  display:flex;align-items:center;justify-content:center;
-}
-.ministry-card-img i{font-size:32px;color:var(--border);}
+.ministry-card:hover{border-color:var(--gold-dim);transform:translateY(-2px);}
+.ministry-card-img{height:90px;background:var(--navy-light);display:flex;align-items:center;justify-content:center;}
+.ministry-card-img i{font-size:28px;color:var(--border);}
 .ministry-card-body{padding:14px;}
-.ministry-name{font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
-.ministry-desc{font-size:11px;color:var(--text-muted);line-height:1.5;}
+.ministry-name{font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;}
+.ministry-desc{font-size:11px;color:var(--text-muted);line-height:1.55;}
 
-/* ===== GALLERY STRIP ===== */
+/* ===== BIBLE TOOLS ===== */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.tool-card{
+  background:#fff;border:0.5px solid var(--cream-dark);
+  border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px;
+  transition:all 0.2s;cursor:pointer;
+}
+.tool-card:hover{border-color:var(--gold-dim);box-shadow:0 6px 20px rgba(201,168,76,0.12);transform:translateY(-2px);}
+.tool-icon{width:40px;height:40px;border-radius:9px;background:var(--cream);display:flex;align-items:center;justify-content:center;}
+.tool-icon i{font-size:20px;color:var(--gold);}
+.tool-name{font-size:13px;font-weight:600;color:var(--navy);}
+.tool-desc{font-size:11px;color:#7a7060;line-height:1.5;}
+.tool-link{font-size:11px;color:var(--gold);margin-top:auto;display:flex;align-items:center;gap:3px;}
+
+/* ===== GALLERY ===== */
 .gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
 .gallery-item{
-  aspect-ratio:1;border-radius:8px;
-  background:var(--navy-light);
+  aspect-ratio:1;border-radius:8px;background:var(--navy-light);
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
+  overflow:hidden;transition:transform 0.2s;
 }
+.gallery-item:hover{transform:scale(1.03);}
 .gallery-item i{font-size:24px;color:var(--border);}
 
-/* ===== CONTACT SECTION ===== */
+/* ===== CONTACT ===== */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
 .contact-info{display:flex;flex-direction:column;gap:16px;}
 .contact-row{display:flex;align-items:flex-start;gap:12px;}
@@ -290,71 +357,81 @@
 }
 .contact-row-icon i{font-size:16px;color:var(--gold);}
 .contact-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;}
-.contact-value{font-size:13px;color:var(--text-primary);margin-top:2px;line-height:1.5;}
-.map-embed{
-  background:var(--navy-mid);border-radius:10px;
-  border:0.5px solid var(--border);
-  overflow:hidden;height:220px;
-}
+.contact-value{font-size:13px;color:var(--text-primary);margin-top:2px;line-height:1.55;}
+.map-embed{background:var(--navy-mid);border-radius:10px;border:0.5px solid var(--border);overflow:hidden;height:220px;}
 .map-embed iframe{width:100%;height:100%;border:0;}
 
 /* ===== FOOTER ===== */
-.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 32px 20px;}
+.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
 .footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
 .footer-brand-name span{color:var(--gold);}
 .footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
 .footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
 .footer-social{display:flex;gap:6px;margin-top:14px;}
-.social-icon{
-  width:30px;height:30px;border-radius:7px;
-  background:var(--navy-mid);border:0.5px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  transition:border-color 0.2s;
-}
+.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
 .social-icon:hover{border-color:var(--gold-dim);}
 .social-icon i{font-size:14px;color:var(--text-muted);}
 .footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
 .footer-links{display:flex;flex-direction:column;gap:6px;}
 .footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
 .footer-links a:hover{color:var(--gold);}
-.footer-bottom{
-  border-top:1px solid var(--border);padding-top:16px;
-  display:flex;justify-content:space-between;align-items:center;
-}
+.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
 .footer-copy{font-size:11px;color:var(--text-dim);}
 .footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
 
-/* ===== WHATSAPP FLOAT ===== */
+/* ===== FLOATING BUTTONS ===== */
 .wa-float{
-  position:fixed;bottom:24px;right:24px;z-index:50;
-  width:46px;height:46px;border-radius:50%;
-  background:#25d366;
+  position:fixed;bottom:28px;right:24px;z-index:150;
+  width:46px;height:46px;border-radius:50%;background:#25d366;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,0.4);
-  transition:transform 0.2s;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;
 }
 .wa-float:hover{transform:scale(1.08);}
 .wa-float i{font-size:22px;color:#fff;}
 
-/* ===== MOBILE NAV ===== */
+#scroll-top-btn{
+  position:fixed;bottom:28px;right:82px;z-index:150;
+  width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:18px;color:var(--navy);
+  box-shadow:0 4px 16px rgba(201,168,76,0.4);
+  opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;
+}
+#scroll-top-btn.visible{opacity:1;pointer-events:all;}
+#scroll-top-btn:hover{transform:scale(1.1);}
+
+/* ===== MOBILE BOTTOM NAV ===== */
 .mob-nav{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;z-index:99;
-  background:var(--navy);border-top:1px solid var(--border);
-  padding:6px 0 8px;
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;
+  background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;
 }
 .mob-nav-inner{display:flex;justify-content:space-around;}
-.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;}
+.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;}
 .mob-item i{font-size:20px;color:var(--text-dim);}
 .mob-item span{font-size:9px;color:var(--text-dim);}
 .mob-item.active i,.mob-item.active span{color:var(--gold);}
 
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal{
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal.d1{transition-delay:0.06s;}.reveal.d2{transition-delay:0.12s;}
+.reveal.d3{transition-delay:0.18s;}.reveal.d4{transition-delay:0.24s;}
+.reveal.d5{transition-delay:0.30s;}.reveal.d6{transition-delay:0.36s;}
+
 /* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .navbar{padding:0 16px;}
+@media(max-width:900px){
+  .navbar{padding:0 18px;}
   .nav-links,.nav-cta{display:none;}
   .nav-mobile-toggle{display:block;}
+  body{padding-bottom:60px;}
+  .hero{height:auto;max-height:none;min-height:520px;}
+  .hero-body{flex-direction:column;align-items:flex-start;padding:36px 24px 28px;gap:24px;}
+  .hero-right{width:100%;max-width:320px;}
+  .hero-title{font-size:clamp(36px,8vw,48px);}
   .service-strip{grid-template-columns:1fr 1fr;}
   .service-item{border-bottom:1px solid var(--border);}
   .about-grid,.contact-grid{grid-template-columns:1fr;}
@@ -365,229 +442,15 @@
   .gallery-strip{grid-template-columns:repeat(2,1fr);}
   .footer-grid{grid-template-columns:1fr 1fr;}
   .section{padding:36px 20px;}
-  .cd-strip{flex-wrap:wrap;gap:12px;padding:12px 20px;}
+  .cd-strip{flex-wrap:wrap;gap:10px;padding:12px 20px;}
   .mob-nav{display:block;}
-  body{padding-bottom:60px;}
-  .wa-float{bottom:80px;}
+  .wa-float{bottom:76px;}
+  #scroll-top-btn{bottom:76px;right:76px;}
 }
-
-
-/* ══════════════════════════════════════════════════
-   HERO — Split-Screen Layout
-   Left: dark content panel  |  Right: live video
-   ══════════════════════════════════════════════════ */
-
-/* Outer shell */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 100svh;
-  background: #030a1a;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ── Video pane (right half, absolute) ── */
-.hero-video-pane {
-  position: absolute;
-  inset: 0 0 0 48%;          /* covers right 52% */
-  z-index: 0;
-  overflow: hidden;
-}
-
-.hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  pointer-events: none;
-}
-
-/* Left-side fade so video doesn't bleed into text */
-.hero-video-pane::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right,
-    #030a1a 0%,
-    rgba(3,10,26,0.6) 30%,
-    rgba(3,10,26,0.15) 70%,
-    rgba(3,10,26,0.05) 100%
-  );
-  z-index: 1;
-}
-
-/* Top + bottom vignette on the video pane */
-.hero-video-pane::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom, #030a1a 0%, transparent 18%),
-    linear-gradient(to top,    #030a1a 0%, transparent 20%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Thin gold divider */
-.hero-divider {
-  position: absolute;
-  left: 48%;
-  top: 10%;
-  bottom: 10%;
-  width: 1px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(245,200,66,0.35) 30%,
-    rgba(245,200,66,0.55) 50%,
-    rgba(245,200,66,0.35) 70%,
-    transparent 100%
-  );
-  z-index: 3;
-}
-
-/* Left gold accent bar */
-.hero-side-bar {
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, transparent, #f5c842 40%, #f5c842 60%, transparent);
-  opacity: 0.8;
-  z-index: 4;
-}
-
-/* ── Content layer ── */
-.hero-body {
-  position: relative;
-  z-index: 4;
-  display: flex;
-  width: 100%;
-  flex: 1;
-  align-items: stretch;
-}
-
-/* Left panel: opaque dark, holds all text */
-.hero-left {
-  width: 50%;
-  padding: 80px 48px 48px 52px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: linear-gradient(to right,
-    #030a1a 70%,
-    rgba(3,10,26,0.92) 100%
-  );
-}
-
-/* Right panel: transparent — video shows through */
-.hero-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 32px 28px 32px 20px;
-}
-
-/* Event card styling remains unchanged */
-.event-card {
-  background: rgba(6,15,36,0.88);
-  border: 1px solid rgba(245,200,66,0.22);
-  border-radius: 14px;
-  padding: 20px;
-  width: 210px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Live badge */
-.live-badge {
-  position: absolute;
-  top: 20px; right: 24px;
-  z-index: 5;
-}
-
-/* Service times strip at bottom of left panel */
-.hero-services {
-  display: flex;
-  gap: 0;
-  border-top: 1px solid rgba(245,200,66,0.15);
-  margin-top: 28px;
-}
-
-.hero-srv {
-  flex: 1;
-  padding: 14px 12px;
-  border-right: 1px solid rgba(255,255,255,0.06);
-}
-.hero-srv:last-child { border-right: none; }
-.hero-srv-time  { font-size: 15px; font-weight: 500; color: var(--gold); }
-.hero-srv-label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
-
-/* Text styles */
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(36px, 4vw, 54px);
-  font-weight: 600;
-  color: #f0e6c8;
-  line-height: 1.05;
-  margin-bottom: 10px;
-}
-.hero-title em { color: #f5c842; font-style: italic; }
-.hero-verse {
-  font-size: 13px; color: #4a6888;
-  font-style: italic;
-  font-family: 'Cormorant Garamond', serif;
-  margin-bottom: 8px;
-}
-.hero-desc {
-  font-size: 13px; color: #4a6888;
-  line-height: 1.65; margin-bottom: 24px; max-width: 380px;
-}
-
-/* ── Countdown / WhatsApp strip (below hero body) ── */
-.hero-foot {
-  position: relative;
-  z-index: 4;
-  background: #030a1a;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-/* ── Reduced-motion fallback ── */
-@media (prefers-reduced-motion: reduce) {
-  .hero-video { display: none; }
-  .hero-video-pane {
-    background: linear-gradient(135deg, #0c1e3e 0%, #030a1a 100%);
-  }
-}
-
-/* ── Mobile: stack vertically, video on top ── */
-@media (max-width: 768px) {
-  .hero { min-height: auto; }
-
-  .hero-video-pane {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: 240px;
-    order: -1;
-  }
-
-  .hero-divider { display: none; }
-
-  .hero-body { flex-direction: column; }
-
-  .hero-left {
-    width: 100%;
-    padding: 32px 20px 24px;
-    background: #030a1a;
-  }
-
-  .hero-right { display: none; }
-
-  .hero-title { font-size: 30px; }
+@media(max-width:540px){
+  .schedule-grid,.tools-grid,.ministry-grid{grid-template-columns:1fr;}
+  .deliv-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -596,13 +459,20 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar">
   <div class="nav-logo">
-    <div class="nav-logo-mark">E</div>
+    <img
+      class="nav-logo-img"
+      src="images/logo/Logo.png"
+      alt="ENJC Logo"
+      width="38" height="38"
+      onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';"
+    >
+    <div class="nav-logo-fallback" id="logo-fb">E</div>
     <div>
       <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
   </div>
-  <div class="nav-links" style="flex:1;justify-content:center;display:flex;align-items:center;">
+  <div class="nav-links" id="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
     <a href="ministries.html">Ministries</a>
@@ -615,38 +485,33 @@
   <a href="contact.html" class="nav-cta">
     <i class="ti ti-map-pin" style="font-size:12px;"></i> Visit Us
   </a>
-  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').style.display='flex';">
+  <button class="nav-mobile-toggle" id="mob-toggle">
     <i class="ti ti-menu-2"></i>
-  </button>
-
-  <button class="mob-toggle nav-hamburger" id="mob-toggle" aria-label="Open menu"
-    onclick="document.querySelector('.nav-links').classList.toggle('nav-open')">
-    <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO — video only, no overlay ===== -->
 <section class="hero">
-  <!-- Right-pane: video -->
-  <div class="hero-video-pane">
-    <video
-      class="hero-video"
-      src="images/home/hero.mp4"
-      autoplay muted loop playsinline preload="auto"
-      aria-hidden="true"
-    ></video>
-  </div>
-  <!-- Gold divider line -->
-  <div class="hero-divider" aria-hidden="true"></div>
+  <video
+    id="hero-vid"
+    class="hero-video"
+    autoplay muted loop playsinline preload="auto"
+    aria-hidden="true"
+  >
+    <source src="images/home/hero.mp4" type="video/mp4">
+  </video>
+
   <div class="hero-side-bar"></div>
 
-  <!-- Live badge -->
   <div class="live-badge">
     <div class="live-dot"></div>
     <span class="live-text">Watch Live ▶</span>
   </div>
 
+  <!-- hero body: left text + right card -->
   <div class="hero-body">
+
+    <!-- LEFT: title, verse, desc, buttons -->
     <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-line"></div>
@@ -666,27 +531,9 @@
           <i class="ti ti-player-play" style="font-size:13px;"></i> Watch Live
         </a>
       </div>
-      <div class="hero-services">
-        <div class="hero-srv">
-          <div class="hero-srv-time">5:30 AM</div>
-          <div class="hero-srv-label">1st Service</div>
-        </div>
-        <div class="hero-srv">
-          <div class="hero-srv-time">8:30 AM</div>
-          <div class="hero-srv-label">2nd Service</div>
-        </div>
-        <div class="hero-srv">
-          <div class="hero-srv-time">12:00 PM</div>
-          <div class="hero-srv-label">3rd Service</div>
-        </div>
-        <div class="hero-srv">
-          <div class="hero-srv-time">10:30 PM</div>
-          <div class="hero-srv-label">Night Prayer</div>
-        </div>
-      </div>
     </div>
 
-    <!-- Upcoming event card -->
+    <!-- RIGHT: next deliverance meeting card -->
     <div class="hero-right">
       <div class="event-card">
         <div class="event-card-label">Next Deliverance Meeting</div>
@@ -702,35 +549,24 @@
         </a>
       </div>
     </div>
-  </div>
+
+  </div><!-- /hero-body -->
 </section>
 
-<!-- ===== COUNTDOWN STRIP ===== -->
+<!-- ===== COUNTDOWN — below hero ===== -->
 <div class="cd-strip">
   <div class="cd-left">
     <i class="ti ti-clock cd-icon"></i>
     <span class="cd-label">Next Sunday Service</span>
   </div>
   <div class="cd-units">
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-d">--</div>
-      <div class="cd-unit-label">Days</div>
-    </div>
+    <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><div class="cd-unit-label">Days</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-h">--</div>
-      <div class="cd-unit-label">Hrs</div>
-    </div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-unit-label">Hrs</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-m">--</div>
-      <div class="cd-unit-label">Min</div>
-    </div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-unit-label">Min</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-s">--</div>
-      <div class="cd-unit-label">Sec</div>
-    </div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-unit-label">Sec</div></div>
   </div>
   <div class="cd-right">
     <a href="https://wa.me/919444345102" class="cd-wa" target="_blank">
@@ -739,7 +575,7 @@
   </div>
 </div>
 
-<!-- ===== SERVICE TIMES STRIP ===== -->
+<!-- ===== SERVICE TIMES — below countdown ===== -->
 <div class="service-strip">
   <div class="service-item">
     <div class="service-icon"><i class="ti ti-sun"></i></div>
@@ -771,24 +607,24 @@
   </div>
 </div>
 
-<!-- ===== ABOUT SECTION ===== -->
-<section class="reveal-on-scroll section section-cream">
-  <div class="about-grid">
+<!-- ===== ABOUT ===== -->
+<section class="section section-cream">
+  <div class="about-grid reveal">
     <div class="about-video">
-          <div class="video-embed-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
-            <iframe
-              src="https://www.youtube.com/embed/REPLACE_VIDEO_ID?rel=0&modestbranding=1"
-              title="Pastor Testimony — How ENJC Began"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"
-            ></iframe>
-          </div>
-          <p style="font-size:11px;color:#8a9ab0;margin-top:10px;text-align:center;">
-            Watch: Pastor&#x2019;s Testimony &#x2014; How ENJC began
-          </p>
-        </div>
+      <div class="video-embed-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
+        <iframe
+          src="https://www.youtube.com/embed/REPLACE_VIDEO_ID?rel=0&modestbranding=1"
+          title="Pastor Testimony"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"
+        ></iframe>
+      </div>
+      <p style="font-size:11px;color:#8a9ab0;margin-top:10px;text-align:center;">
+        Watch: Pastor's Testimony — How ENJC began
+      </p>
+    </div>
     <div class="about-text">
       <div class="sec-eyebrow">About Us</div>
       <h2 class="about-quote">We exist to<br><em>worship God</em><br>& serve His people.</h2>
@@ -806,250 +642,97 @@
   </div>
 </section>
 
-<!-- ===== SCHEDULE SECTION ===== -->
-<section class="reveal-on-scroll section section-white">
-  <div class="sec-header">
+<!-- ===== SCHEDULE ===== -->
+<section class="section section-white">
+  <div class="sec-header reveal">
     <div class="sec-eyebrow">When We Meet</div>
     <h2 class="sec-title">Church Worship & <em>Service Times</em></h2>
   </div>
-  <div class="reveal-on-scroll schedule-grid">
-    <div class="reveal-on-scroll schedule-card">
-      <i class="ti ti-sun sc-icon"></i>
-      <div class="sc-name">Sunday Worship</div>
-      <div class="sc-detail">ENJC Family Gathering — three services every Sunday morning</div>
-      <div class="sc-time">5:30 AM · 8:30 AM · 12:00 PM</div>
-    </div>
-    <div class="reveal-on-scroll schedule-card">
-      <i class="ti ti-star sc-icon"></i>
-      <div class="sc-name">Promise Service</div>
-      <div class="sc-detail">Special service on the 1st of every month</div>
-      <div class="sc-time">5:30 – 7:30 AM</div>
-    </div>
-    <div class="reveal-on-scroll schedule-card">
-      <i class="ti ti-pray sc-icon"></i>
-      <div class="sc-name">Tuesday Prayer</div>
-      <div class="sc-detail">ENJC Special Prayer Meeting every Tuesday</div>
-      <div class="sc-time">11:00 AM – 4:00 PM</div>
-    </div>
-    <div class="reveal-on-scroll schedule-card">
-      <i class="ti ti-heart sc-icon"></i>
-      <div class="sc-name">Friday Blessing Prayer</div>
-      <div class="sc-detail">ENJC Family Blessing Prayer every Friday</div>
-      <div class="sc-time">11:00 AM – 1:30 PM</div>
-    </div>
-    <div class="reveal-on-scroll schedule-card">
-      <i class="ti ti-flame sc-icon"></i>
-      <div class="sc-name">Deliverance Meetings</div>
-      <div class="sc-detail">New Moon Day — prayer, healing & deliverance. All are welcome.</div>
-      <div class="sc-time">6:00 PM · Monthly</div>
-    </div>
-    <div class="reveal-on-scroll schedule-card">
-      <i class="ti ti-moon sc-icon"></i>
-      <div class="sc-name">Night Prayer</div>
-      <div class="sc-detail">Daily night prayer — every night without exception</div>
-      <div class="sc-time">10:30 PM · Daily</div>
-    </div>
+  <div class="schedule-grid">
+    <div class="schedule-card reveal d1"><i class="ti ti-sun sc-icon"></i><div class="sc-name">Sunday Worship</div><div class="sc-detail">ENJC Family Gathering — three services every Sunday morning</div><div class="sc-time">5:30 AM · 8:30 AM · 12:00 PM</div></div>
+    <div class="schedule-card reveal d2"><i class="ti ti-star sc-icon"></i><div class="sc-name">Promise Service</div><div class="sc-detail">Special service on the 1st of every month</div><div class="sc-time">5:30 – 7:30 AM</div></div>
+    <div class="schedule-card reveal d3"><i class="ti ti-pray sc-icon"></i><div class="sc-name">Tuesday Prayer</div><div class="sc-detail">ENJC Special Prayer Meeting every Tuesday</div><div class="sc-time">11:00 AM – 4:00 PM</div></div>
+    <div class="schedule-card reveal d4"><i class="ti ti-heart sc-icon"></i><div class="sc-name">Friday Blessing Prayer</div><div class="sc-detail">ENJC Family Blessing Prayer every Friday</div><div class="sc-time">11:00 AM – 1:30 PM</div></div>
+    <div class="schedule-card reveal d5"><i class="ti ti-flame sc-icon"></i><div class="sc-name">Deliverance Meetings</div><div class="sc-detail">New Moon Day — prayer, healing & deliverance. All are welcome.</div><div class="sc-time">6:00 PM · Monthly</div></div>
+    <div class="schedule-card reveal d6"><i class="ti ti-moon sc-icon"></i><div class="sc-name">Night Prayer</div><div class="sc-detail">Daily night prayer — every night without exception</div><div class="sc-time">10:30 PM · Daily</div></div>
   </div>
 </section>
 
-<!-- ===== DELIVERANCE SECTION ===== -->
-<section class="reveal-on-scroll section section-dark">
-  <div class="sec-header">
-    <div class="sec-eyebrow" style="color:var(--gold);">2026 Schedule</div>
+<!-- ===== DELIVERANCE 2026 ===== -->
+<section class="section section-dark">
+  <div class="sec-header reveal">
+    <div class="sec-eyebrow">2026 Schedule</div>
     <h2 class="sec-title sec-title-light">Deliverance Meeting <em>Dates 2026</em></h2>
     <p class="sec-sub sec-sub-light">Every New Moon Day at 6:00 PM — prayer, healing & deliverance. All are welcome.</p>
   </div>
   <div class="deliv-grid">
-    <div class="deliv-card past">
-      <div class="deliv-month">January</div>
-      <div class="deliv-date">18 Jan</div>
-      <div class="deliv-day">Sunday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">February</div>
-      <div class="deliv-date">17 Feb</div>
-      <div class="deliv-day">Tuesday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">March</div>
-      <div class="deliv-date">18 Mar</div>
-      <div class="deliv-day">Wednesday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">April</div>
-      <div class="deliv-date">17 Apr</div>
-      <div class="deliv-day">Friday</div>
-    </div>
-    <div class="deliv-card past">
-      <div class="deliv-month">May</div>
-      <div class="deliv-date">16 May</div>
-      <div class="deliv-day">Saturday</div>
-    </div>
-    <div class="deliv-card upcoming">
-      <div class="deliv-month">June</div>
-      <div class="deliv-date">14 Jun</div>
-      <div class="deliv-day">Saturday</div>
-      <div class="deliv-tag">Next</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">July</div>
-      <div class="deliv-date">14 Jul</div>
-      <div class="deliv-day">Tuesday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">August</div>
-      <div class="deliv-date">12 Aug</div>
-      <div class="deliv-day">Wednesday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">September</div>
-      <div class="deliv-date">10 Sep</div>
-      <div class="deliv-day">Thursday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">October</div>
-      <div class="deliv-date">10 Oct</div>
-      <div class="deliv-day">Saturday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">November</div>
-      <div class="deliv-date">08 Nov</div>
-      <div class="deliv-day">Sunday</div>
-    </div>
-    <div class="deliv-card">
-      <div class="deliv-month">December</div>
-      <div class="deliv-date">08 Dec</div>
-      <div class="deliv-day">Tuesday</div>
-    </div>
+    <div class="deliv-card past reveal d1"><div class="deliv-month">January</div><div class="deliv-date">18 Jan</div><div class="deliv-day">Sunday</div></div>
+    <div class="deliv-card past reveal d2"><div class="deliv-month">February</div><div class="deliv-date">17 Feb</div><div class="deliv-day">Tuesday</div></div>
+    <div class="deliv-card past reveal d3"><div class="deliv-month">March</div><div class="deliv-date">18 Mar</div><div class="deliv-day">Wednesday</div></div>
+    <div class="deliv-card past reveal d4"><div class="deliv-month">April</div><div class="deliv-date">17 Apr</div><div class="deliv-day">Friday</div></div>
+    <div class="deliv-card past reveal d5"><div class="deliv-month">May</div><div class="deliv-date">16 May</div><div class="deliv-day">Saturday</div></div>
+    <div class="deliv-card upcoming reveal d6"><div class="deliv-month">June</div><div class="deliv-date">14 Jun</div><div class="deliv-day">Saturday</div><div class="deliv-tag">Next</div></div>
+    <div class="deliv-card reveal d1"><div class="deliv-month">July</div><div class="deliv-date">14 Jul</div><div class="deliv-day">Tuesday</div></div>
+    <div class="deliv-card reveal d2"><div class="deliv-month">August</div><div class="deliv-date">12 Aug</div><div class="deliv-day">Wednesday</div></div>
+    <div class="deliv-card reveal d3"><div class="deliv-month">September</div><div class="deliv-date">10 Sep</div><div class="deliv-day">Thursday</div></div>
+    <div class="deliv-card reveal d4"><div class="deliv-month">October</div><div class="deliv-date">10 Oct</div><div class="deliv-day">Saturday</div></div>
+    <div class="deliv-card reveal d5"><div class="deliv-month">November</div><div class="deliv-date">08 Nov</div><div class="deliv-day">Sunday</div></div>
+    <div class="deliv-card reveal d6"><div class="deliv-month">December</div><div class="deliv-date">08 Dec</div><div class="deliv-day">Tuesday</div></div>
   </div>
 </section>
 
-<!-- ===== MINISTRIES SECTION ===== -->
-<section class="reveal-on-scroll section section-mid" style="padding-top:0;">
-  <div class="sec-header-row" style="margin-bottom:20px;">
-    <div>
-      <div class="sec-eyebrow">What We Do</div>
-      <h2 class="sec-title sec-title-light">Our <em>Ministries</em></h2>
-    </div>
+<!-- ===== MINISTRIES ===== -->
+<section class="section section-mid" style="padding-top:0;">
+  <div class="sec-header-row reveal" style="margin-bottom:20px;">
+    <div><div class="sec-eyebrow">What We Do</div><h2 class="sec-title sec-title-light">Our <em>Ministries</em></h2></div>
     <a href="ministries.html" class="sec-view-all">View All <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
   </div>
-  <div class="reveal-on-scroll ministry-grid">
-    <div class="ministry-card">
-      <div class="ministry-card-img"><i class="ti ti-users"></i></div>
-      <div class="ministry-card-body">
-        <div class="ministry-name">Village Ministry</div>
-        <div class="ministry-desc">Reaching villages across Tamil Nadu with the Gospel of Jesus Christ through outreach teams.</div>
-      </div>
-    </div>
-    <div class="ministry-card">
-      <div class="ministry-card-img"><i class="ti ti-user-heart"></i></div>
-      <div class="ministry-card-body">
-        <div class="ministry-name">Sisters Ministry</div>
-        <div class="ministry-desc">A dedicated ministry for sisters — prayer, fellowship and spiritual growth.</div>
-      </div>
-    </div>
-    <div class="ministry-card">
-      <div class="ministry-card-img"><i class="ti ti-shield-heart"></i></div>
-      <div class="ministry-card-body">
-        <div class="ministry-name">Brothers Ministry</div>
-        <div class="ministry-desc">Building men of God through the Word, prayer and accountability in community.</div>
-      </div>
-    </div>
+  <div class="ministry-grid">
+    <div class="ministry-card reveal d1"><div class="ministry-card-img"><i class="ti ti-users"></i></div><div class="ministry-card-body"><div class="ministry-name">Village Ministry</div><div class="ministry-desc">Reaching villages across Tamil Nadu with the Gospel through outreach teams.</div></div></div>
+    <div class="ministry-card reveal d2"><div class="ministry-card-img"><i class="ti ti-user-heart"></i></div><div class="ministry-card-body"><div class="ministry-name">Sisters Ministry</div><div class="ministry-desc">A dedicated ministry for sisters — prayer, fellowship and spiritual growth.</div></div></div>
+    <div class="ministry-card reveal d3"><div class="ministry-card-img"><i class="ti ti-shield-heart"></i></div><div class="ministry-card-body"><div class="ministry-name">Brothers Ministry</div><div class="ministry-desc">Building men of God through the Word, prayer and accountability.</div></div></div>
   </div>
 </section>
 
 <!-- ===== BIBLE TOOLS ===== -->
-<section class="reveal-on-scroll section section-cream">
-  <div class="sec-header-row" style="margin-bottom:20px;">
-    <div>
-      <div class="sec-eyebrow">Bible Tools</div>
-      <h2 class="sec-title">Read, Study & <em>Share</em> the Word</h2>
-    </div>
-    <a href="bible.html" class="sec-view-all" style="color:var(--gold);">View All Tools <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
+<section class="section section-cream">
+  <div class="sec-header-row reveal" style="margin-bottom:20px;">
+    <div><div class="sec-eyebrow">Bible Tools</div><h2 class="sec-title">Read, Study & <em>Share</em> the Word</h2></div>
+    <a href="bible.html" class="sec-view-all">View All <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
   </div>
   <div class="tools-grid">
-    <a href="bible.html" class="tool-card">
-      <div class="tool-icon"><i class="ti ti-book"></i></div>
-      <div class="tool-name">Bible Reader</div>
-      <div class="tool-desc">Read all 66 books in Tamil & English. Clean, distraction-free reading.</div>
-      <div class="tool-link">Open Bible <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
-    </a>
-    <a href="imagegen.html" class="tool-card">
-      <div class="tool-icon"><i class="ti ti-photo"></i></div>
-      <div class="tool-name">Scripture Cards</div>
-      <div class="tool-desc">Create beautiful verse images to share on WhatsApp & social media. 8 templates.</div>
-      <div class="tool-link">Create Cards <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
-    </a>
-    <a href="events.html" class="tool-card">
-      <div class="tool-icon"><i class="ti ti-player-play"></i></div>
-      <div class="tool-name">Watch Live & Sermons</div>
-      <div class="tool-desc">Live streams, Sunday, Friday, Promise, Deliverance & Testimony services on YouTube.</div>
-      <div class="tool-link">Watch Now <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
-    </a>
+    <a href="bible.html" class="tool-card reveal d1"><div class="tool-icon"><i class="ti ti-book"></i></div><div class="tool-name">Bible Reader</div><div class="tool-desc">Read all 66 books in Tamil & English. Clean, distraction-free reading.</div><div class="tool-link">Open Bible <i class="ti ti-arrow-right" style="font-size:11px;"></i></div></a>
+    <a href="imagegen.html" class="tool-card reveal d2"><div class="tool-icon"><i class="ti ti-photo"></i></div><div class="tool-name">Scripture Cards</div><div class="tool-desc">Create beautiful verse images to share on WhatsApp & social media. 8 templates.</div><div class="tool-link">Create Cards <i class="ti ti-arrow-right" style="font-size:11px;"></i></div></a>
+    <a href="events.html" class="tool-card reveal d3"><div class="tool-icon"><i class="ti ti-player-play"></i></div><div class="tool-name">Watch Live & Sermons</div><div class="tool-desc">Live streams, Sunday, Friday, Promise, Deliverance & Testimony services.</div><div class="tool-link">Watch Now <i class="ti ti-arrow-right" style="font-size:11px;"></i></div></a>
   </div>
 </section>
 
-<!-- ===== GALLERY STRIP ===== -->
-<section class="reveal-on-scroll section section-white" style="padding-bottom:32px;">
-  <div class="sec-header-row" style="margin-bottom:16px;">
-    <div>
-      <div class="sec-eyebrow">Our Community</div>
-      <h2 class="sec-title">Church <em>Gallery</em></h2>
-    </div>
-    <a href="gallery.html" class="sec-view-all" style="color:var(--gold);">View More Photos <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
+<!-- ===== GALLERY ===== -->
+<section class="section section-white" style="padding-bottom:32px;">
+  <div class="sec-header-row reveal" style="margin-bottom:16px;">
+    <div><div class="sec-eyebrow">Our Community</div><h2 class="sec-title">Church <em>Gallery</em></h2></div>
+    <a href="gallery.html" class="sec-view-all">View More <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
   </div>
   <div class="gallery-strip">
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
-    <div class="gallery-item"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d1"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d2"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d3"><i class="ti ti-photo"></i></div>
+    <div class="gallery-item reveal d4"><i class="ti ti-photo"></i></div>
   </div>
 </section>
 
-<!-- ===== CONTACT SECTION ===== -->
-<section class="reveal-on-scroll section section-dark">
-  <div class="sec-header">
-    <div class="sec-eyebrow">Find Us</div>
-    <h2 class="sec-title sec-title-light">Visit <em>ENJC</em></h2>
-  </div>
+<!-- ===== CONTACT ===== -->
+<section class="section section-dark">
+  <div class="sec-header reveal"><div class="sec-eyebrow">Find Us</div><h2 class="sec-title sec-title-light">Visit <em>ENJC</em></h2></div>
   <div class="contact-grid">
-    <div class="contact-info">
-      <div class="contact-row">
-        <div class="contact-row-icon"><i class="ti ti-map-pin"></i></div>
-        <div>
-          <div class="contact-label">Address</div>
-          <div class="contact-value">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081</div>
-        </div>
-      </div>
-      <div class="contact-row">
-        <div class="contact-row-icon"><i class="ti ti-phone"></i></div>
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">+91 94443 45102</div>
-        </div>
-      </div>
-      <div class="contact-row">
-        <div class="contact-row-icon"><i class="ti ti-clock"></i></div>
-        <div>
-          <div class="contact-label">Service Times</div>
-          <div class="contact-value">Sunday: 5:30 · 8:30 AM · 12:00 PM<br>Friday: 11:00 AM – 1:30 PM<br>Night Prayer: 10:30 PM Daily</div>
-        </div>
-      </div>
-      <div class="contact-row">
-        <div class="contact-row-icon"><i class="ti ti-brand-whatsapp"></i></div>
-        <div>
-          <div class="contact-label">WhatsApp</div>
-          <div class="contact-value">
-            <a href="https://wa.me/919444345102" style="color:var(--gold);" target="_blank">Message us on WhatsApp →</a>
-          </div>
-        </div>
-      </div>
+    <div class="contact-info reveal">
+      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-map-pin"></i></div><div><div class="contact-label">Address</div><div class="contact-value">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081</div></div></div>
+      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-phone"></i></div><div><div class="contact-label">Phone</div><div class="contact-value">+91 94443 45102</div></div></div>
+      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-clock"></i></div><div><div class="contact-label">Service Times</div><div class="contact-value">Sunday: 5:30 · 8:30 AM · 12:00 PM<br>Friday: 11:00 AM – 1:30 PM<br>Night Prayer: 10:30 PM Daily</div></div></div>
+      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-brand-whatsapp"></i></div><div><div class="contact-label">WhatsApp</div><div class="contact-value"><a href="https://wa.me/919444345102" style="color:var(--gold);" target="_blank">Message us on WhatsApp →</a></div></div></div>
     </div>
-    <div class="map-embed">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.4!2d80.2935!3d13.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI4LjIiTiA4MMKwMTcnMzYuNiJF!5e0!3m2!1sen!2sin!4v1"
-        allowfullscreen loading="lazy">
-      </iframe>
+    <div class="map-embed reveal d2">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.4!2d80.2935!3d13.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI4LjIiTiA4MMKwMTcnMzYuNiJF!5e0!3m2!1sen!2sin!4v1" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -1060,11 +743,7 @@
     <div>
       <div class="footer-brand-name"><span>ENJC</span> · Elim New Jerusalem Church</div>
       <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
-      <div class="footer-addr">
-        No.110E, Elaya Street<br>
-        Tondiarpet, Chennai – 600 081<br>
-        +91 94443 45102
-      </div>
+      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
       <div class="footer-social">
         <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-youtube"></i></a>
         <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank"><i class="ti ti-brand-instagram"></i></a>
@@ -1075,12 +754,9 @@
     <div>
       <div class="footer-col-title">Quick Links</div>
       <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="ministries.html">Ministries</a>
-        <a href="events.html">Events</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="about.html">About</a>
+        <a href="ministries.html">Ministries</a><a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
       </div>
     </div>
     <div>
@@ -1108,96 +784,101 @@
   </div>
 </footer>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank">
+<!-- WhatsApp float -->
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp">
   <i class="ti ti-brand-whatsapp"></i>
 </a>
 
-
-<!-- Scroll to Top -->
-<button id="scroll-top-btn" class="scroll-top-btn" aria-label="Back to top"
-  onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<!-- Scroll-to-top -->
+<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <i class="ti ti-arrow-up"></i>
 </button>
-<script>
-(function(){
-  var btn=document.getElementById('scroll-top-btn');
-  if(!btn) return;
-  window.addEventListener('scroll',function(){
-    btn.classList.toggle('is-visible', window.scrollY > 300);
-  },{passive:true});
-})();
-</script>
 
-<!-- Mobile Nav -->
+<!-- Mobile nav -->
 <nav class="mob-nav">
   <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item active">
-      <i class="ti ti-home"></i><span>Home</span>
-    </a>
-    <a href="about.html" class="mob-item">
-      <i class="ti ti-info-circle"></i><span>About</span>
-    </a>
-    <a href="bible.html" class="mob-item">
-      <i class="ti ti-book"></i><span>Bible</span>
-    </a>
-    <a href="events.html" class="mob-item">
-      <i class="ti ti-calendar"></i><span>Events</span>
-    </a>
-    <a href="contact.html" class="mob-item">
-      <i class="ti ti-mail"></i><span>Contact</span>
-    </a>
+    <a href="index.html" class="mob-item active"><i class="ti ti-home"></i><span>Home</span></a>
+    <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
+    <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
+    <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
+    <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
   </div>
 </nav>
 
-<!-- ===== COUNTDOWN SCRIPT ===== -->
 <script>
-function updateCountdown(){
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun
-  const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
-  const services = [
-    {d:0,h:5,m:30},{d:0,h:8,m:30},{d:0,h:12,m:0}
-  ];
-  let minDiff = Infinity;
-  for(let i=0;i<7;i++){
-    const tDay = (day+i)%7;
-    if(tDay===0){ // Sunday
-      for(const sv of services){
-        let diff = i*86400 + (sv.h-h)*3600 + (sv.m-m)*60 - s;
-        if(i===0 && (h>sv.h||(h===sv.h&&m>=sv.m))) continue;
-        if(diff>0 && diff<minDiff) minDiff=diff;
+/* ── Video: error / slow connection fallback ── */
+(function(){
+  var v = document.getElementById('hero-vid');
+  if(!v) return;
+  // Fallback bg so hero looks good if video fails
+  function hidVideo(){
+    v.style.display='none';
+    document.querySelector('.hero').style.background=
+      'linear-gradient(135deg,#060e1a 0%,#0d1e3a 55%,#060e1a 100%)';
+  }
+  v.addEventListener('error', hidVideo);
+  var t = setTimeout(function(){
+    if(v.readyState < 2) hidVideo();
+  }, 5000);
+  v.addEventListener('canplay', function(){ clearTimeout(t); });
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    v.pause(); hidVideo();
+  }
+})();
+
+/* ── Countdown ── */
+function tick(){
+  var now=new Date(), day=now.getDay(), h=now.getHours(), m=now.getMinutes(), s=now.getSeconds();
+  var slots=[{h:5,m:30},{h:8,m:30},{h:12,m:0}];
+  var best=Infinity;
+  for(var i=0;i<7;i++){
+    if((day+i)%7===0){
+      for(var j=0;j<slots.length;j++){
+        var diff=i*86400+(slots[j].h-h)*3600+(slots[j].m-m)*60-s;
+        if(i===0&&(h>slots[j].h||(h===slots[j].h&&m>=slots[j].m))) continue;
+        if(diff>0&&diff<best) best=diff;
       }
     }
   }
-  if(minDiff===Infinity) minDiff=0;
-  const dd=Math.floor(minDiff/86400);
-  const rh=Math.floor((minDiff%86400)/3600);
-  const rm=Math.floor((minDiff%3600)/60);
-  const rs=minDiff%60;
-  const p=n=>String(n).padStart(2,'0');
-  document.getElementById('cd-d').textContent=p(dd);
-  document.getElementById('cd-h').textContent=p(rh);
-  document.getElementById('cd-m').textContent=p(rm);
-  document.getElementById('cd-s').textContent=p(rs);
+  if(best===Infinity) best=0;
+  var p=function(n){return String(n).padStart(2,'0');};
+  document.getElementById('cd-d').textContent=p(Math.floor(best/86400));
+  document.getElementById('cd-h').textContent=p(Math.floor((best%86400)/3600));
+  document.getElementById('cd-m').textContent=p(Math.floor((best%3600)/60));
+  document.getElementById('cd-s').textContent=p(best%60);
 }
-updateCountdown();
-setInterval(updateCountdown,1000);
+tick(); setInterval(tick,1000);
+
+/* ── Scroll-to-top visibility ── */
+var stb=document.getElementById('scroll-top-btn');
+window.addEventListener('scroll',function(){
+  stb.classList.toggle('visible',window.scrollY>300);
+},{passive:true});
+
+/* ── Reveal on scroll ── */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!els.length||!window.IntersectionObserver){
+    els.forEach(function(e){e.classList.add('visible');});return;
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -32px 0px'});
+  els.forEach(function(e){obs.observe(e);});
+})();
+
+/* ── Mobile nav toggle ── */
+document.getElementById('mob-toggle').addEventListener('click',function(){
+  var l=document.getElementById('nav-links');
+  var open=l.classList.toggle('mob-open');
+  Object.assign(l.style,open?{
+    display:'flex',flexDirection:'column',position:'absolute',
+    top:'60px',left:'0',right:'0',background:'#0a1628',
+    padding:'8px 0',borderBottom:'1px solid #1a2e50',zIndex:'300'
+  }:{display:'',position:'',flexDirection:''});
+});
 </script>
-
-
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
 </body>
 </html>

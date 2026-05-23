@@ -350,14 +350,15 @@ canvas#igcv{
   .lp,.rp{display:none;}
   .studio{grid-template-columns:1fr;grid-template-rows:1fr;}
   html,body{overflow:hidden;}
-  .canvas-area{padding:12px;}
+  .canvas-area{padding:12px;padding-bottom:70px;}
   canvas#igcv{
-    max-height:calc(100vh - var(--bar) - 70px)!important;
+    max-height:calc(100vh - var(--bar) - 70px - 58px)!important;
     max-width:100%;
   }
   .canvas-hint{display:none;}
   .tb-sizes{display:none;}
   .tb-logo span{display:none;}
+  #toast{bottom:78px;}
 }
 
 /* ── MOBILE BOTTOM BAR ── */
@@ -392,15 +393,16 @@ canvas#igcv{
 .mob-backdrop.on{display:block;}
 .mob-sheet{
   position:fixed;bottom:0;left:0;right:0;
-  background:var(--bg2);
+  background:var(--bg1);
   border-radius:20px 20px 0 0;
-  border-top:1px solid var(--bd2);
+  border-top:2px solid var(--gd);
   z-index:220;
   transform:translateY(100%);
   transition:transform .3s cubic-bezier(.32,1,.32,1);
-  max-height:75vh;
+  max-height:72vh;
   display:flex;flex-direction:column;
   overflow:hidden;
+  box-shadow:0 -8px 32px rgba(0,0,0,.6);
 }
 .mob-sheet.on{transform:translateY(0);}
 .mob-sheet-handle{
@@ -410,8 +412,15 @@ canvas#igcv{
 .mob-sheet-head{
   display:flex;align-items:center;justify-content:space-between;
   padding:10px 16px 8px;border-bottom:1px solid var(--bd);flex-shrink:0;
+  gap:8px;
 }
-.mob-sheet-title{font-size:12px;font-weight:600;color:var(--gd);letter-spacing:.5px;}
+.mob-sheet-title{font-size:13px;font-weight:600;color:var(--gd);letter-spacing:.5px;flex:1;}
+.mob-sheet-preview{
+  width:28px;height:40px;border-radius:4px;overflow:hidden;
+  border:1px solid var(--bd2);flex-shrink:0;
+  background:var(--bg3);
+}
+.mob-sheet-preview canvas{width:100%;height:100%;object-fit:cover;display:block;}
 .mob-sheet-close{
   width:26px;height:26px;border-radius:50%;
   background:var(--bd);border:none;
@@ -453,8 +462,8 @@ canvas#igcv{
   --bg3: #dad6cc;
   --bg4: #cec9be;
   --tx:  #1a1814;
-  --tx2: rgba(26,24,20,.65);
-  --tx3: rgba(26,24,20,.38);
+  --tx2: #4a4035;
+  --tx3: #7a6e60;
   --gd:  #8a6009;
   --gdb: rgba(138,96,9,.28);
   --gdm: rgba(138,96,9,.08);

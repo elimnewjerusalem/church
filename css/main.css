@@ -7,7 +7,6 @@
 /* ── GOOGLE FONTS ─────────────────────────────────────────── */
 /* ── DESIGN TOKENS ────────────────────────────────────────── */
 :root {
-  --bg-mid: #0f1e38;
   /* Background layers — Navy palette from mockup */
   --color-bg:          #030a1a;
   --color-bg-2:        #060f24;
@@ -265,6 +264,8 @@ img {
   display: flex;
   gap: 0;
   align-items: center;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-link {
@@ -278,12 +279,8 @@ img {
 }
 
 .nav-link:hover          { color: var(--color-text); }
-.nav-link.nav-link--active {
-  color: #f5c842 !important;
-  background: rgba(245,200,66,0.12);
-  border-radius: 6px;
-  font-weight: 600;
-}
+.nav-link.nav-link--active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
+.nav-links a.active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
 
 /* Right controls */
 .nav-controls {
@@ -334,12 +331,7 @@ img {
 
 [data-theme="light"] .nav-link         { color: #3a3020; }
 [data-theme="light"] .nav-link:hover   { color: var(--color-gold); }
-[data-theme="light"] .nav-link--active {
-  color: #f5c842 !important;
-  background: rgba(245,200,66,0.12);
-  border-radius: 6px;
-  font-weight: 600;
-}
+[data-theme="light"] .nav-link--active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
 
 /* Hamburger */
 .nav-hamburger {
@@ -3129,13 +3121,9 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 }
 .nav-link { color: #6a85a8; font-size: 11px; }
 .nav-link:hover { color: #c9a84c; }
-.nav-link--active {
-  color: #f5c842 !important;
-  background: rgba(245,200,66,0.12);
-  border-radius: 6px;
-  font-weight: 600;
-}
-.nav-link--active::after { display:none; }
+.nav-link--active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
+.nav-links a.active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
+.nav-link--active::after { display: none; }
 .nav-visit-btn {
   background: #c9a84c !important;
   color: #0a1628 !important;
@@ -3144,12 +3132,7 @@ canvas#igcv { max-width: 100%; height: auto; display: block; touch-action: pan-y
 }
 [data-theme="light"] .nav-link { color: #6a85a8; }
 [data-theme="light"] .nav-link:hover { color: #c9a84c; }
-[data-theme="light"] .nav-link--active {
-  color: #f5c842 !important;
-  background: rgba(245,200,66,0.12);
-  border-radius: 6px;
-  font-weight: 600;
-}
+[data-theme="light"] .nav-link--active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
 
 /* ── HERO REDESIGN ─────────────────────────────────────────── */
 .hero {
@@ -3590,13 +3573,9 @@ body { background: #071020; }
 [data-theme="light"] .section-alt p { color: #4a6888; }
 
 /* ── ACTIVE NAV INDICATOR ───────────────────────────────────── */
-.nav-link--active {
-  color: #f5c842 !important;
-  background: rgba(245,200,66,0.12);
-  border-radius: 6px;
-  font-weight: 600;
-}
-.nav-link--active::after { display:none; }
+.nav-link--active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
+.nav-link--active::after { display: none; }
+.nav-links a.active { color: #f5c842 !important; background: rgba(245,200,66,0.12); border-radius: 6px; font-weight: 600; }
 .nav-link { position: relative; }
 
 
@@ -3669,19 +3648,6 @@ body { background: #071020; }
   z-index: 2;
 }
 
-/* Nav active — vibrant gold pill (matches inline class="active" on <a> tags) */
-.nav-links a.active,
-.nav-links .active {
-  color: #f5c842 !important;
-  background: rgba(245, 200, 66, 0.12);
-  border-radius: 6px;
-  font-weight: 600;
-}
-.nav-links a.active::after { display: none; }
-
-.section-mid { background: #0f1e38; }
-.section-mid .section-heading { color: #f0e6c8; }
-.section-mid .section-tag    { color: #f5c842; }
-.section-mid .section-sub    { color: #8a9ab0; }
-
-.about-video { width: 100%; }
+/* ── SECTION TOKENS (alternating palette) ────────────────── */
+.section-mid  { background: #0f1e38; }
+.about-video  { width: 100%; }
