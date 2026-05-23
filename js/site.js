@@ -125,7 +125,7 @@
     var animObs = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if (en.isIntersecting){
-          en.target.classList.add('anim-in');
+          en.target.classList.add('anim-in', 'is-visible');
           animObs.unobserve(en.target);
         }
       });
