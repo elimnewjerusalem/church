@@ -93,18 +93,31 @@
 
   const COLORS = {
     live:'#ef4444', sunday:'#7c6cf0', friday:'#059669',
-    promise:'#0369a1', deliverance:'#b91c1c', testimony:'#d97706', shorts:'#dc2626'
+    promise:'#0369a1', deliverance:'#b91c1c', testimony:'#d97706', shorts:'#dc2626', popular:'#f59e0b'
   };
   const LABELS = {
     live:'🔴 Live Stream', sunday:'🙏 Sunday Service', friday:'✝️ Friday Prayer',
     promise:'🎯 Promise Service', deliverance:'🔥 Deliverance',
-    testimony:'💬 Testimony', shorts:'📱 Shorts'
+    testimony:'💬 Testimony', shorts:'📱 Shorts', popular:'🔥 Most Watched'
   };
+
+  function normalizeVideo(item, type) {
+    const videoId = item.videoId || item.id || '';
+    return {
+      videoId,
+      title: item.title || '',
+      date: item.date || '',
+      views: item.views || '',
+      thumbnail: item.thumbnail || (videoId ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` : ''),
+      _type: type
+    };
+  }
 
   function buildCard(item, type) {
     const id    = (item.videoId || '').replace(/^\/+/, '');
     const color = COLORS[type] || '#6b7280';
     const label = LABELS[type] || type;
+    const meta  = item.views ? `${item.views} • ${item.date || ''}` : (item.date || '');
 
     const thumb = item.thumbnail
       ? `<a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"
@@ -133,7 +146,7 @@
               font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;
               background:${color};color:#fff;">${label}</span>
           <h4 style="color:var(--color-text);font-size:13px;line-height:1.45;margin-bottom:4px;">${item.title}</h4>
-          <p style="font-size:11px;color:var(--color-text-faint);">${item.date || ''}</p>
+          <p style="font-size:11px;color:var(--color-text-faint);">${meta}</p>
         </div>
       </article>`;
   }
@@ -175,6 +188,16 @@
       return;
     }
     el.innerHTML = items.map(v => buildCard(v, type)).join('');
+  }
+
+  function renderReelsRow(elId, items) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (!items.length) {
+      el.innerHTML = `<div style="width:100%;text-align:center;padding:24px;color:var(--color-text-faint);">No reels found.</div>`;
+      return;
+    }
+    el.innerHTML = items.map(v => buildCard(v, 'shorts')).join('');
   }
 
   /* ── SEARCH + FILTER ── */
@@ -311,13 +334,12 @@
 
     // JSON fallback video cards (used when API returns empty)
     function jsonVideos(arr, type) {
-      return (arr || []).map(v => ({
-        videoId:   v.videoId || '',
-        title:     v.title   || '',
-        date:      v.date    || '',
-        thumbnail: v.videoId ? `https://img.youtube.com/vi/${v.videoId}/mqdefault.jpg` : '',
-      }));
+      return (arr || []).map(v => normalizeVideo(v, type));
     }
+
+    const mostWatchedFinal = jsonData?.mostWatched?.length
+      ? jsonData.mostWatched.map(v => normalizeVideo(v, 'popular'))
+      : [];
 
     // Parallel fetch everything from YouTube API
     const [lives, sunday, friday, promise, deliverance, testimony, shorts] = await Promise.all([
@@ -331,22 +353,23 @@
     ]);
 
     // Use API results; fall back to JSON data if API returned nothing
-    const liveFinal        = lives.length       ? lives       : jsonVideos(jsonData?.recentStreams, 'live');
-    const sundayFinal      = sunday.length      ? sunday      : jsonVideos(jsonData?.events?.filter(e=>e.topic==='worship').slice(0,1), 'sunday');
-    const fridayFinal      = friday.length      ? friday      : jsonVideos(jsonData?.events?.filter(e=>e.topic==='prayer').slice(0,1), 'friday');
-    const promiseFinal     = promise.length     ? promise     : [];
-    const deliveranceFinal = deliverance.length ? deliverance : [];
-    const testimonyFinal   = testimony.length   ? testimony   : [];
-    const shortsFinal      = shorts.length      ? shorts      : jsonVideos(jsonData?.verseReels, 'shorts');
+    const liveFinal        = lives.length       ? lives.map(v => normalizeVideo(v, 'live')) : jsonVideos(jsonData?.recentStreams, 'live');
+    const sundayFinal      = sunday.length      ? sunday.map(v => normalizeVideo(v, 'sunday')) : jsonVideos(jsonData?.events?.filter(e=>e.topic==='worship').slice(0,1), 'sunday');
+    const fridayFinal      = friday.length      ? friday.map(v => normalizeVideo(v, 'friday')) : jsonVideos(jsonData?.events?.filter(e=>e.topic==='prayer').slice(0,1), 'friday');
+    const promiseFinal     = promise.length     ? promise.map(v => normalizeVideo(v, 'promise')) : [];
+    const deliveranceFinal = deliverance.length ? deliverance.map(v => normalizeVideo(v, 'deliverance')) : [];
+    const testimonyFinal   = testimony.length   ? testimony.map(v => normalizeVideo(v, 'testimony')) : [];
+    const shortsFinal      = shorts.length      ? shorts.map(v => normalizeVideo(v, 'shorts')) : jsonVideos(jsonData?.verseReels, 'shorts');
 
     // Render all sections
     renderGrid('recent-streams-grid', liveFinal, 'live');
+    renderGrid('most-watched-grid', mostWatchedFinal, 'popular');
     renderServiceSection('sunday-section',  sundayFinal[0]  || null, 'sunday',  PL.sunday,  'Sunday Service');
     renderServiceSection('friday-section',  fridayFinal[0]  || null, 'friday',  PL.friday,  'Friday Prayer');
     renderServiceSection('promise-section', promiseFinal[0] || null, 'promise', PL.promise, 'Promise Service');
     renderGrid('deliverance-grid', deliveranceFinal, 'deliverance');
     renderGrid('testimony-grid',   testimonyFinal,   'testimony');
-    renderGrid('shorts-grid',      shortsFinal,      'shorts');
+    renderReelsRow('verse-reels-row', shortsFinal);
 
     // Search pool
     allVideos = [

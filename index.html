@@ -398,7 +398,7 @@ img{max-width:100%;display:block;}
   box-shadow:0 4px 16px rgba(201,168,76,0.4);
   opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;
 }
-#scroll-top-btn.visible{opacity:1;pointer-events:all;}
+#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
 #scroll-top-btn:hover{transform:scale(1.1);}
 
 /* ===== MOBILE BOTTOM NAV ===== */
@@ -852,7 +852,7 @@ tick(); setInterval(tick,1000);
 /* ── Scroll-to-top visibility ── */
 var stb=document.getElementById('scroll-top-btn');
 window.addEventListener('scroll',function(){
-  stb.classList.toggle('visible',window.scrollY>300);
+  stb.classList.toggle('is-visible',window.scrollY>300);
 },{passive:true});
 
 /* ── Reveal on scroll ── */

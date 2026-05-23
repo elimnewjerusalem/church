@@ -132,7 +132,7 @@ body{font-family:'DM Sans',sans-serif;}
 .wa-float:hover{transform:scale(1.08);}
 .wa-float i{font-size:22px;color:#fff;}
 #scroll-top-btn{position:fixed;bottom:76px;right:82px;z-index:150;width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;}
-#scroll-top-btn.visible{opacity:1;pointer-events:all;}
+#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
 #scroll-top-btn:hover{transform:scale(1.1);}
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;}
 .mob-nav-inner{display:flex;justify-content:space-around;}
@@ -369,35 +369,7 @@ body{font-family:'DM Sans',sans-serif;}
 .lightbox__nav--prev{left:16px}.lightbox__nav--next{right:16px}
 .lightbox__counter{position:fixed;top:22px;left:50%;transform:translateX(-50%);font-size:12px;color:rgba(255,255,255,.5);background:rgba(0,0,0,.4);padding:4px 12px;border-radius:99px;z-index:10000}
   </style>
-  <script>
-        const _supportsWebP=(()=>{try{return document.createElement('canvas').toDataURL('image/webp').startsWith('data:image/webp')}catch(e){return false}})();
-    const _ext=_supportsWebP?'webp':'jpg';
-    const IMAGES=[
-      {src:'images/gallery/g1.'+_ext,  caption:'Church Gathering'},
-      {src:'images/gallery/g2.'+_ext,  caption:'Worship Service'},
-      {src:'images/gallery/g3.'+_ext,  caption:'Community'},
-      {src:'images/gallery/g4.'+_ext,  caption:'Prayer Night'},
-      {src:'images/gallery/g5.'+_ext,  caption:'Sunday School'},
-      {src:'images/gallery/g6.'+_ext,  caption:'Deliverance Meeting'},
-      {src:'images/gallery/g7.'+_ext,  caption:'Gospel Ministry'},
-      {src:'images/gallery/g8.'+_ext,  caption:'Fasting Prayer'},
-      {src:'images/gallery/g9.'+_ext,  caption:'Youth Ministry'},
-      {src:'images/gallery/g10.'+_ext, caption:"Women's Fellowship"},
-    ];
-    let cur=0;
-    function openLightbox(i){cur=i;render();document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden'}
-    function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow=''}
-    function navLightbox(d){cur=(cur+d+IMAGES.length)%IMAGES.length;render()}
-    function render(){const item=IMAGES[cur];document.getElementById('lb-img').src=item.src;document.getElementById('lb-img').alt=item.caption;document.getElementById('lb-caption').textContent=item.caption;document.getElementById('lb-counter').textContent=(cur+1)+' / '+IMAGES.length}
-    document.addEventListener('DOMContentLoaded',function(){
-      const lb=document.getElementById('lightbox');
-      lb.addEventListener('click',function(e){if(e.target===this)closeLightbox()});
-      document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='ArrowRight')navLightbox(1);if(e.key==='ArrowLeft')navLightbox(-1);if(e.key==='Escape')closeLightbox()});
-      let tx=0;
-      lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
-      lb.addEventListener('touchend',function(e){const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)navLightbox(dx<0?1:-1)},{passive:true});
-    });
-  </script>
+  <script src="js/gallery.js"></script>
   
 <script src="js/premium-upgrade.js" defer></script>
 
