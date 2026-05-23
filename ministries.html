@@ -7,6 +7,62 @@
   <meta name="description" content="Ministries at ENJC — Youth, Women, Prayer, Worship, Children, and Outreach.">
   <script src="js/site.js"></script>
   <link rel="stylesheet" href="css/main.css">
+<style>
+:root{
+  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
+  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
+  --cream:#f4f0e8;--cream-dark:#e8e3d8;
+  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
+  --border:#1a2e50;
+}
+body{font-family:'DM Sans',sans-serif;}
+.navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
+.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
+.nav-logo-text span{color:var(--gold);}
+.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
+.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
+.nav-links a{font-size:12px;color:var(--text-muted);padding:7px 11px;border-radius:6px;transition:all 0.2s;}
+.nav-links a:hover{color:var(--text-primary);}
+.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
+.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;transition:background 0.2s;white-space:nowrap;}
+.nav-cta:hover{background:var(--gold-light);}
+.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
+@media(max-width:900px){.navbar{padding:0 18px;}.nav-links,.nav-cta{display:none;}.nav-mobile-toggle{display:block;}}
+.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
+.footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
+.footer-brand-name span{color:var(--gold);}
+.footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
+.footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
+.footer-social{display:flex;gap:6px;margin-top:14px;}
+.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
+.social-icon:hover{border-color:var(--gold-dim);}
+.social-icon i{font-size:14px;color:var(--text-muted);}
+.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
+.footer-links{display:flex;flex-direction:column;gap:6px;}
+.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:11px;color:var(--text-dim);}
+.footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
+.wa-float{position:fixed;bottom:76px;right:24px;z-index:150;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;}
+.wa-float:hover{transform:scale(1.08);}
+.wa-float i{font-size:22px;color:#fff;}
+#scroll-top-btn{position:fixed;bottom:76px;right:82px;z-index:150;width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;}
+#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
+#scroll-top-btn:hover{transform:scale(1.1);}
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;}
+.mob-nav-inner{display:flex;justify-content:space-around;}
+.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;}
+.mob-item i{font-size:20px;color:var(--text-dim);}
+.mob-item span{font-size:9px;color:var(--text-dim);}
+.mob-item.active i,.mob-item.active span{color:var(--gold);}
+@media(max-width:900px){body{padding-bottom:60px;}.mob-nav{display:block;}.wa-float{bottom:76px;}.footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:28px 20px 16px;}}
+@media(max-width:540px){.footer-grid{grid-template-columns:1fr;}}
+</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
@@ -320,6 +376,22 @@ body{font-family:'DM Sans',sans-serif;}
     els.forEach(function(el){ obs.observe(el); });
   })();
   </script>
+<script>
+/* Mobile nav toggle */
+(function(){
+  var btn = document.getElementById('mob-toggle');
+  var links = document.getElementById('nav-links');
+  if(!btn || !links) return;
+  btn.addEventListener('click', function(){
+    var open = links.classList.toggle('mob-open');
+    Object.assign(links.style, open ? {
+      display:'flex', flexDirection:'column', position:'absolute',
+      top:'60px', left:'0', right:'0', background:'#0a1628',
+      padding:'8px 0', borderBottom:'1px solid #1a2e50', zIndex:'300'
+    } : {display:'', position:'', flexDirection:''});
+  });
+})();
+</script>
 </body>
 </html>
 
