@@ -38,9 +38,6 @@
 
 /* ── 2. FLOATING BUTTONS CLEAR BOTTOM NAV ON MOBILE ──────── */
 @media (max-width: 900px) {
-  .wa-float {
-    bottom: 80px !important; /* 64px nav + 16px gap */
-  }
   .scroll-top-btn {
     bottom: 80px !important;
   }

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="images/logo/logo.png">
 <link rel="apple-touch-icon" href="images/logo/logo.png">
+  <link rel="manifest" href="data/manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
@@ -15,10 +16,16 @@
 <meta property="og:description" content="Join us for worship, prayer and deliverance. Sunday services at 5:30, 8:30 AM & 12:00 PM.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://elimnewjerusalem.github.io/church/">
+  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/enjc-premium.css">
+  <link rel="stylesheet" href="css/design-upgrade.css">
 <link rel="stylesheet" href="css/mobile-ui-fixes.css">
 <style>
 /* ===== RESET ===== */
@@ -489,7 +496,7 @@ img{max-width:100%;display:block;}
   <a href="index.html" class="nav-logo" style="text-decoration:none;">
     <img
       class="nav-logo-img"
-      src="images/logo/logo_nav.png"
+      src="images/logo/logo.png"
       alt="ENJC Logo"
       width="38" height="38"
       onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';"
@@ -878,11 +885,6 @@ function tick(){
 tick(); setInterval(tick,1000);
 
 /* ── Scroll-to-top visibility ── */
-var stb=document.getElementById('scroll-top-btn');
-window.addEventListener('scroll',function(){
-  stb.classList.toggle('is-visible',window.scrollY>300);
-},{passive:true});
-
 /* ── Reveal on scroll ── */
 (function(){
   var els=document.querySelectorAll('.reveal');
@@ -935,6 +937,7 @@ window.addEventListener('scroll',function(){
   });
 })();
 </script>
-<script src="js/site.js"></script>
+<script src="js/site.js" defer></script>
+  <script src="js/design-upgrade.js" defer></script>
 </body>
 </html>

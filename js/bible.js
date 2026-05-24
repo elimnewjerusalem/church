@@ -289,21 +289,18 @@ async function loadData(){
     if(bd.status==='fulfilled'&&bd.value)S.bibleData=bd.value;
     if(tb.status==='fulfilled'&&tb.value){
       S.tamilDB=tb.value;
-      console.log('Tamil Bible loaded: '+Object.keys(S.tamilDB).length+' chapters');
     }
 
     // English KJV (4.1MB) — load only on PC at startup
     // On mobile/app: lazy-load when user first taps EN button
     if(isPC){
       fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
-        if(en){S.enDB=en;console.log('English KJV loaded: '+Object.keys(en).length+' books');}
       }).catch(()=>{});
     }
 
     // Full Tamil (13MB) — load only on PC, background
     if(isPC){
       fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
-        if(tf){S.tamilDB=tf;console.log('Full Tamil loaded: '+Object.keys(tf).length+' chapters');}
       }).catch(()=>{});
     }
   }catch(e){}
@@ -381,7 +378,6 @@ function setLang(l){
     fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
       if(en){
         S.enDB=en;
-        console.log('English KJV lazy-loaded: '+Object.keys(en).length+' books');
         if(S.book)loadCh();
       }
     }).catch(()=>{

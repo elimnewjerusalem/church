@@ -9,7 +9,7 @@
 // Set HTTP referrer to: elimnewjerusalem.github.io/*
 const YT_API_KEY   = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
 const MAIN_CHANNEL_ID   = 'UC4yhaUWMXi-Ven-QAVx4j7w';
-const SHORTS_CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w'; // same channel, shorts tab
+// SHORTS_CHANNEL_ID removed — same as MAIN_CHANNEL_ID, no separate API call needed
 
 // Auto-fetched live IDs (populated on load)
 const YOUTUBE_LIVE_IDS = { mainChannel: '', shortsChannel: '' };

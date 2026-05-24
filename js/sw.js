@@ -3,7 +3,7 @@
 //  Caches shell + static assets; Bible data stays fresh from network
 // ═══════════════════════════════════════════════════════════════
 
-const CACHE_NAME = 'enjc-v2';
+const CACHE_NAME = 'enjc-v3';
 const DATA_CACHE = 'enjc-data-v2';
 
 // Static shell — cache on install, serve from cache always
@@ -17,9 +17,10 @@ const SHELL_ASSETS = [
   '/church/gallery.html',
   '/church/imagegen.html',
   '/church/ministries.html',
-  '/church/manifest.json',
+  '/church/data/manifest.json',
   '/church/css/main.css',
   '/church/css/mobile-ux-fixes.css',
+  '/church/css/mobile-ui-fixes.css',
   '/church/css/enjc-premium.css',
   '/church/css/design-upgrade.css',
   '/church/css/imagegen.css',
@@ -31,7 +32,6 @@ const SHELL_ASSETS = [
   '/church/js/live-stream.js',
   '/church/js/mobile-ux-fixes.js',
   '/church/js/design-upgrade.js',
-  '/church/js/premium-upgrade.js',
   '/church/js/imagegen-main.js',
   '/church/js/imagegen-ui.js',
   '/church/js/imagegen-canvas.js',
