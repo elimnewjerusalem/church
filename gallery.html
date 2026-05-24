@@ -166,72 +166,72 @@ body{background:var(--navy);color:var(--text-primary);}
         <div class="bento__item reveal-on-scroll anim-roll-left anim-d1" style="grid-column:1;grid-row:1" onclick="openLightbox(0)">
           <picture>
             <source srcset="images/gallery/g1.webp" type="image/webp">
-            <img src="images/gallery/g1.webp" alt="ENJC Church gathering" loading="lazy">
+            <img src="images/gallery/g1.webp" alt="ENJC Church gathering" loading="eager" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Church Gathering</div>
         </div>
         <div class="bento__item reveal-on-scroll anim-fade-up anim-d2" style="grid-column:1;grid-row:2" onclick="openLightbox(1)">
           <picture>
             <source srcset="images/gallery/g2.webp" type="image/webp">
-            <img src="images/gallery/g2.webp" alt="Worship Service" loading="lazy">
+            <img src="images/gallery/g2.webp" alt="Worship Service" loading="eager" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Worship Service</div>
         </div>
-        <div class="bento__item reveal-on-scroll anim-wipe anim-d3" style="grid-column:2;grid-row:1/3" onclick="openLightbox(2)">
+        <div class="bento__item reveal-on-scroll anim-fade-up anim-d3" style="grid-column:2;grid-row:1/3" onclick="openLightbox(2)">
           <picture>
             <source srcset="images/gallery/g3.webp" type="image/webp">
-            <img src="images/gallery/g3.webp" alt="Community" loading="lazy">
+            <img src="images/gallery/g3.webp" alt="Community" loading="eager" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Community</div>
         </div>
         <div class="bento__item reveal-on-scroll anim-roll-left anim-d4" style="grid-column:3;grid-row:1" onclick="openLightbox(3)">
           <picture>
             <source srcset="images/gallery/g4.webp" type="image/webp">
-            <img src="images/gallery/g4.webp" alt="Prayer Night" loading="lazy">
+            <img src="images/gallery/g4.webp" alt="Prayer Night" loading="eager" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Prayer Night</div>
         </div>
         <div class="bento__item reveal-on-scroll anim-fade-up anim-d5" style="grid-column:3;grid-row:2" onclick="openLightbox(4)">
           <picture>
             <source srcset="images/gallery/g5.webp" type="image/webp">
-            <img src="images/gallery/g5.webp" alt="Sunday School" loading="lazy">
+            <img src="images/gallery/g5.webp" alt="Sunday School" loading="lazy" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Sunday School</div>
         </div>
 
         <!-- GROUP 2: g6–g10 (rows 3–4) -->
-        <div class="bento__item reveal-on-scroll anim-wipe anim-d6" style="grid-column:1;grid-row:3" onclick="openLightbox(5)">
+        <div class="bento__item reveal-on-scroll anim-fade-up anim-d6" style="grid-column:1;grid-row:3" onclick="openLightbox(5)">
           <picture>
             <source srcset="images/gallery/g6.webp" type="image/webp">
-            <img src="images/gallery/g6.webp" alt="Deliverance Meeting" loading="lazy">
+            <img src="images/gallery/g6.webp" alt="Deliverance Meeting" loading="lazy" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Deliverance Meeting</div>
         </div>
         <div class="bento__item reveal-on-scroll anim-roll-left anim-d1" style="grid-column:1;grid-row:4" onclick="openLightbox(6)">
           <picture>
             <source srcset="images/gallery/g7.webp" type="image/webp">
-            <img src="images/gallery/g7.webp" alt="Gospel Ministry" loading="lazy">
+            <img src="images/gallery/g7.webp" alt="Gospel Ministry" loading="lazy" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Gospel Ministry</div>
         </div>
         <div class="bento__item reveal-on-scroll anim-fade-up anim-d2" style="grid-column:2;grid-row:3/5" onclick="openLightbox(7)">
           <picture>
             <source srcset="images/gallery/g8.webp" type="image/webp">
-            <img src="images/gallery/g8.webp" alt="Fasting Prayer" loading="lazy">
+            <img src="images/gallery/g8.webp" alt="Fasting Prayer" loading="lazy" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Fasting Prayer</div>
         </div>
-        <div class="bento__item reveal-on-scroll anim-wipe anim-d3" style="grid-column:3;grid-row:3" onclick="openLightbox(8)">
+        <div class="bento__item reveal-on-scroll anim-fade-up anim-d3" style="grid-column:3;grid-row:3" onclick="openLightbox(8)">
           <picture>
             <source srcset="images/gallery/g9.webp" type="image/webp">
-            <img src="images/gallery/g9.webp" alt="Youth Ministry" loading="lazy">
+            <img src="images/gallery/g9.webp" alt="Youth Ministry" loading="lazy" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Youth Ministry</div>
         </div>
         <div class="bento__item reveal-on-scroll anim-roll-left anim-d4" style="grid-column:3;grid-row:4" onclick="openLightbox(9)">
           <picture>
             <source srcset="images/gallery/g10.webp" type="image/webp">
-            <img src="images/gallery/g10.webp" alt="Women's Fellowship" loading="lazy">
+            <img src="images/gallery/g10.webp" alt="Women's Fellowship" loading="lazy" onerror="this.src='images/logo/logo.png'">
           </picture>
           <div class="bento__cap">Women's Fellowship</div>
         </div>
@@ -316,17 +316,45 @@ body{background:var(--navy);color:var(--text-primary);}
 .bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(160px,22vw,240px);gap:12px}
 .bento__item{border-radius:16px;overflow:hidden;cursor:pointer;position:relative;background:var(--color-bg-2);border:1px solid var(--color-border);transition:transform .2s,border-color .2s}
 .bento__item:hover{transform:scale(1.015);border-color:var(--color-gold-border)}
-.bento__item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
-.bento__item:hover img{transform:scale(1.06)}
-.bento__cap{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:12px;font-weight:600;color:#fff;opacity:0;transition:opacity .2s}.bento__item:hover .bento__cap{opacity:1}@media(hover:none){.bento__cap{opacity:1}}
+/* picture + img must fill the bento cell completely */
+.bento__item picture{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.bento__item picture img,.bento__item>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.bento__item:hover picture img,.bento__item:hover>img{transform:scale(1.06)}
+.bento__cap{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.7));font-size:12px;font-weight:600;color:#fff;opacity:0;transition:opacity .2s;z-index:2;}
 .bento__item:hover .bento__cap{opacity:1}
-@media(max-width:768px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(140px,24vw,200px)}.bento__item[style*="grid-row:1/3"],.bento__item[style*="grid-row:3/5"]{grid-row:span 1!important;grid-column:auto!important}.bento__item{grid-column:auto!important}}
-@media(max-width:480px){.bento{grid-template-columns:1fr;grid-auto-rows:220px}.bento__item{grid-column:1!important;grid-row:auto!important}}
+@media(hover:none){.bento__cap{opacity:1}}
+/* Mobile: collapse to 2-col then 1-col, drop span overrides */
+@media(max-width:768px){
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(140px,24vw,200px)}
+  .bento__item{grid-column:auto!important;grid-row:auto!important}
+}
+@media(max-width:480px){
+  .bento{grid-template-columns:1fr;grid-auto-rows:220px}
+  .bento__item{grid-column:1!important;grid-row:auto!important}
+}
 /* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:20px}
 .lightbox.open{display:flex}
 .lightbox__inner{max-width:92vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:12px}
 .lightbox__img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:12px;display:block}
+/* ── GALLERY: animation reliability fixes ── */
+/* Ensure bento items with animation classes start invisible */
+.bento__item.anim-fade-up:not(.anim-in),
+.bento__item.anim-roll-left:not(.anim-in),
+.bento__item.anim-roll-right:not(.anim-in) {
+  opacity: 0;
+}
+/* Once triggered, show fully */
+.bento__item.anim-in {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+/* Fallback: if JS fails, show all images */
+@media (scripting: none) {
+  .bento__item { opacity: 1 !important; transform: none !important; }
+}
+
 .lightbox__caption{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);text-align:center}
 .lightbox__close{position:fixed;top:20px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.14);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;transition:background .2s}
 .lightbox__close:hover{background:rgba(255,255,255,.28)}
@@ -350,8 +378,16 @@ body{background:var(--navy);color:var(--text-primary);}
       entries.forEach(function(e){
         if(e.isIntersecting){ e.target.classList.add('is-visible','anim-in'); obs.unobserve(e.target); }
       });
-    }, {threshold: 0.05, rootMargin: '0px 0px -20px 0px'});
+    }, {threshold: 0, rootMargin: '0px 0px -10px 0px'});
     els.forEach(function(el){ obs.observe(el); });
+    // Failsafe: after 1.5s, force-reveal any items still hidden (e.g. already in viewport on load)
+    setTimeout(function(){
+      els.forEach(function(el){
+        if(!el.classList.contains('anim-in')){
+          el.classList.add('is-visible','anim-in');
+        }
+      });
+    }, 1500);
   })();
   </script>
 <script>
