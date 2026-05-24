@@ -1,16 +1,22 @@
 /**
- * ENJC — events.js v7
- * 1. Recent Live       — latest 3
- * 2. Sunday Service    — latest 1 + playlist link
- * 3. Friday Prayer     — latest 1 + playlist link
- * 4. Promise Service   — latest 1 + playlist link
- * 5. Deliverance       — latest 3
- * 6. Testimony         — latest 3
- * 7. Shorts            — latest 3
+ * ENJC — events.js v8
+ * Full auto-update from YouTube Data API v3
+ * Sections:
+ *  1. Featured Services  — Sunday / Friday / Promise (latest 1 each + playlist link)
+ *  2. Recent Live        — latest 4 completed live streams
+ *  3. Deliverance        — latest 3 from playlist
+ *  4. Testimony          — latest 3 from playlist
+ *  5. Shorts / Reels     — latest 3 short videos
+ *  6. Most Watched       — top 3 by viewCount from channel videos (real-time)
+ *  7. Search + Filter    — across all loaded videos
+ *  8. Testimonials       — from events.json (static)
+ *  9. Countdown          — to next service
  */
 (function () {
   'use strict';
 
+  // SECURITY: Restrict in Google Cloud Console → APIs → Credentials
+  // → HTTP referrers → add: elimnewjerusalem.github.io/*
   const YT_API_KEY = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
   const CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 
@@ -26,7 +32,68 @@
   let activeFilter = 'all';
   let searchQuery  = '';
 
-  /* ── API ── */
+  /* ──────────────────────────────
+     SKELETON LOADERS
+  ────────────────────────────── */
+
+  function skeletonCard() {
+    return `<article class="card video-card enjc-skeleton-card" style="overflow:hidden;">
+      <div class="enjc-skeleton" style="aspect-ratio:16/9;"></div>
+      <div style="padding:14px;">
+        <div class="enjc-skeleton" style="height:16px;width:60%;margin-bottom:8px;border-radius:4px;"></div>
+        <div class="enjc-skeleton" style="height:13px;width:90%;margin-bottom:5px;border-radius:4px;"></div>
+        <div class="enjc-skeleton" style="height:11px;width:45%;border-radius:4px;"></div>
+      </div>
+    </article>`;
+  }
+
+  function skeletonServiceSection() {
+    return `<div style="max-width:420px;">
+      <div class="enjc-skeleton" style="aspect-ratio:16/9;border-radius:12px;"></div>
+      <div class="enjc-skeleton" style="height:36px;width:160px;border-radius:99px;margin-top:14px;"></div>
+    </div>`;
+  }
+
+  function showSkeletons(elId, count, type) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (type === 'service') {
+      el.innerHTML = skeletonServiceSection();
+    } else {
+      el.innerHTML = Array(count).fill(skeletonCard()).join('');
+    }
+  }
+
+  /* ──────────────────────────────
+     INJECT SKELETON CSS
+  ────────────────────────────── */
+
+  (function injectSkeletonStyles() {
+    if (document.getElementById('enjc-skeleton-style')) return;
+    const style = document.createElement('style');
+    style.id = 'enjc-skeleton-style';
+    style.textContent = `
+      @keyframes enjcShimmer {
+        0%   { background-position: -600px 0; }
+        100% { background-position: 600px 0; }
+      }
+      .enjc-skeleton {
+        background: linear-gradient(90deg,
+          var(--color-bg-3, #0d1e3a) 25%,
+          var(--color-bg-2, #111e35) 50%,
+          var(--color-bg-3, #0d1e3a) 75%
+        );
+        background-size: 600px 100%;
+        animation: enjcShimmer 1.4s infinite linear;
+        border-radius: 8px;
+      }
+    `;
+    document.head.appendChild(style);
+  })();
+
+  /* ──────────────────────────────
+     YOUTUBE API HELPERS
+  ────────────────────────────── */
 
   async function ytFetch(endpoint, params) {
     const qs = new URLSearchParams({ ...params, key: YT_API_KEY }).toString();
@@ -45,7 +112,7 @@
     const data = await ytFetch('playlistItems', {
       part: 'snippet', playlistId, maxResults: max
     });
-    if (!data?.items) return [];
+    if (!data?.items?.length) return [];
     return data.items.map(item => ({
       videoId:   item.snippet.resourceId.videoId,
       title:     item.snippet.title,
@@ -59,7 +126,7 @@
       part: 'snippet', channelId: CHANNEL_ID,
       eventType: 'completed', type: 'video', order: 'date', maxResults: max
     });
-    if (!data?.items) return [];
+    if (!data?.items?.length) return [];
     return data.items.map(item => ({
       videoId:   item.id.videoId,
       title:     item.snippet.title,
@@ -73,13 +140,47 @@
       part: 'snippet', channelId: CHANNEL_ID,
       type: 'video', videoDuration: 'short', order: 'date', maxResults: max
     });
-    if (!data?.items) return [];
+    if (!data?.items?.length) return [];
     return data.items.map(item => ({
       videoId:   item.id.videoId,
       title:     item.snippet.title,
       date:      fmtDate(item.snippet.publishedAt),
       thumbnail: item.snippet.thumbnails?.medium?.url || '',
     }));
+  }
+
+  /* fetchMostWatched — real view counts from YouTube
+     1. Search for latest 20 videos from channel
+     2. Batch-fetch statistics for those video IDs
+     3. Sort by viewCount descending, return top N
+  */
+  async function fetchMostWatched(topN) {
+    // Step 1: get recent video IDs
+    const searchData = await ytFetch('search', {
+      part: 'id', channelId: CHANNEL_ID,
+      type: 'video', order: 'viewCount', maxResults: 20
+    });
+    if (!searchData?.items?.length) return [];
+
+    const ids = searchData.items.map(i => i.id.videoId).join(',');
+
+    // Step 2: get stats + snippet for those IDs
+    const statsData = await ytFetch('videos', {
+      part: 'snippet,statistics', id: ids
+    });
+    if (!statsData?.items?.length) return [];
+
+    // Step 3: sort by viewCount and return top N
+    return statsData.items
+      .sort((a, b) => Number(b.statistics.viewCount || 0) - Number(a.statistics.viewCount || 0))
+      .slice(0, topN)
+      .map(item => ({
+        videoId:   item.id,
+        title:     item.snippet.title,
+        date:      fmtDate(item.snippet.publishedAt),
+        thumbnail: item.snippet.thumbnails?.medium?.url || '',
+        views:     fmtViews(item.statistics.viewCount),
+      }));
   }
 
   function fmtDate(iso) {
@@ -89,27 +190,48 @@
     });
   }
 
-  /* ── CARD ── */
+  function fmtViews(n) {
+    if (!n) return '';
+    const num = Number(n);
+    if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + 'M views';
+    if (num >= 1_000)     return (num / 1_000).toFixed(1) + 'K views';
+    return num + ' views';
+  }
+
+  /* ──────────────────────────────
+     CARD BUILDER
+  ────────────────────────────── */
 
   const COLORS = {
-    live:'#ef4444', sunday:'#7c6cf0', friday:'#059669',
-    promise:'#0369a1', deliverance:'#b91c1c', testimony:'#d97706', shorts:'#dc2626', popular:'#f59e0b'
+    live:        '#ef4444',
+    sunday:      '#7c6cf0',
+    friday:      '#059669',
+    promise:     '#0369a1',
+    deliverance: '#b91c1c',
+    testimony:   '#d97706',
+    shorts:      '#dc2626',
+    popular:     '#f59e0b',
   };
   const LABELS = {
-    live:'🔴 Live Stream', sunday:'🙏 Sunday Service', friday:'✝️ Friday Prayer',
-    promise:'🎯 Promise Service', deliverance:'🔥 Deliverance',
-    testimony:'💬 Testimony', shorts:'📱 Shorts', popular:'🔥 Most Watched'
+    live:        '🔴 Live Stream',
+    sunday:      '🙏 Sunday Service',
+    friday:      '✝️ Friday Prayer',
+    promise:     '🎯 Promise Service',
+    deliverance: '🔥 Deliverance',
+    testimony:   '💬 Testimony',
+    shorts:      '📱 Shorts',
+    popular:     '🔥 Most Watched',
   };
 
   function normalizeVideo(item, type) {
     const videoId = item.videoId || item.id || '';
     return {
       videoId,
-      title: item.title || '',
-      date: item.date || '',
-      views: item.views || '',
+      title:     item.title || '',
+      date:      item.date  || '',
+      views:     item.views || '',
       thumbnail: item.thumbnail || (videoId ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` : ''),
-      _type: type
+      _type:     type,
     };
   }
 
@@ -117,48 +239,62 @@
     const id    = (item.videoId || '').replace(/^\/+/, '');
     const color = COLORS[type] || '#6b7280';
     const label = LABELS[type] || type;
-    const meta  = item.views ? `${item.views} • ${item.date || ''}` : (item.date || '');
-
-    const thumb = item.thumbnail
-      ? `<a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"
-            style="display:block;position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;">
-           <img src="${item.thumbnail}" alt="${item.title}"
-                style="width:100%;height:100%;object-fit:cover;opacity:0.88;" loading="lazy">
-           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-             <div style="width:50px;height:50px;background:rgba(255,0,0,0.9);border-radius:50%;
-                  display:flex;align-items:center;justify-content:center;">
-               <span style="color:#fff;font-size:18px;margin-left:3px;">▶</span>
-             </div>
-           </div>
-         </a>`
-      : `<div style="aspect-ratio:16/9;position:relative;background:#1a1a1a;">
-           <iframe src="https://www.youtube.com/embed/${id}" title="${item.title}"
-             frameborder="0" loading="lazy"
-             allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
-             allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
-         </div>`;
+    const meta  = item.views
+      ? `${item.views}${item.date ? ' · ' + item.date : ''}`
+      : (item.date || '');
 
     return `
       <article class="card video-card" style="overflow:hidden;" data-type="${type}">
-        ${thumb}
+        <a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"
+           style="display:block;position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;">
+          <img src="${item.thumbnail || `https://img.youtube.com/vi/${id}/mqdefault.jpg`}"
+               alt="${escHtml(item.title)}"
+               style="width:100%;height:100%;object-fit:cover;opacity:0.88;" loading="lazy">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <div style="width:50px;height:50px;background:rgba(255,0,0,0.9);border-radius:50%;
+                 display:flex;align-items:center;justify-content:center;">
+              <span style="color:#fff;font-size:18px;margin-left:3px;">▶</span>
+            </div>
+          </div>
+        </a>
         <div style="padding:14px;">
           <span style="display:inline-block;padding:2px 9px;border-radius:99px;font-size:9px;
               font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;
               background:${color};color:#fff;">${label}</span>
-          <h4 style="color:var(--color-text);font-size:13px;line-height:1.45;margin-bottom:4px;">${item.title}</h4>
+          <h4 style="color:var(--color-text);font-size:13px;line-height:1.45;margin-bottom:4px;">${escHtml(item.title)}</h4>
           <p style="font-size:11px;color:var(--color-text-faint);">${meta}</p>
         </div>
       </article>`;
   }
 
-  /* ── SERVICE SECTION (latest 1 card + playlist button) ── */
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 
-  function renderServiceSection(elId, video, type, playlistId, title) {
+  /* ──────────────────────────────
+     RENDER HELPERS
+  ────────────────────────────── */
+
+  function renderGrid(elId, items, type) {
     const el = document.getElementById(elId);
     if (!el) return;
-    const color  = COLORS[type];
-    const plUrl  = `https://www.youtube.com/playlist?list=${playlistId}`;
-    const cardHtml = video ? buildCard(video, type)
+    if (!items.length) {
+      el.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;
+        color:var(--color-text-faint);">No videos found.</div>`;
+      return;
+    }
+    el.innerHTML = items.map(v => buildCard(normalizeVideo(v, type), type)).join('');
+  }
+
+  function renderServiceSection(elId, video, type, playlistId) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const color = COLORS[type];
+    const plUrl = `https://www.youtube.com/playlist?list=${playlistId}`;
+    const cardHtml = video
+      ? buildCard(normalizeVideo(video, type), type)
       : `<div class="card" style="aspect-ratio:16/9;display:flex;align-items:center;
            justify-content:center;color:var(--color-text-faint);">No video found</div>`;
 
@@ -177,53 +313,37 @@
       </div>`;
   }
 
-  /* ── RENDER GRID ── */
-
-  function renderGrid(elId, items, type) {
-    const el = document.getElementById(elId);
-    if (!el) return;
-    if (!items.length) {
-      el.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;
-        color:var(--color-text-faint);">No videos found.</div>`;
-      return;
-    }
-    el.innerHTML = items.map(v => buildCard(v, type)).join('');
-  }
-
-  function renderReelsRow(elId, items) {
-    const el = document.getElementById(elId);
-    if (!el) return;
-    if (!items.length) {
-      el.innerHTML = `<div style="width:100%;text-align:center;padding:24px;color:var(--color-text-faint);">No reels found.</div>`;
-      return;
-    }
-    el.innerHTML = items.map(v => buildCard(v, 'shorts')).join('');
-  }
-
-  /* ── SEARCH + FILTER ── */
+  /* ──────────────────────────────
+     SEARCH + FILTER
+  ────────────────────────────── */
 
   function applyFilter() {
     const q = searchQuery.trim().toLowerCase();
     const f = activeFilter;
     if (!q && f === 'all') { showNormalSections(); return; }
+
     const results = allVideos.filter(v => {
       const mt = f === 'all' || v._type === f;
       const mq = !q || (v.title || '').toLowerCase().includes(q);
       return mt && mq;
     });
-    renderSearchResults(results, q, f);
+    renderSearchResults(results);
   }
 
-  function renderSearchResults(results, q, f) {
+  function renderSearchResults(results) {
     const grid    = document.getElementById('search-results-grid');
     const section = document.getElementById('search-results-section');
     document.querySelectorAll('.normal-section').forEach(s => s.style.display = 'none');
     if (section) section.style.display = 'block';
     if (!grid) return;
-    const label = f !== 'all' ? LABELS[f] || f : `"${q}"`;
+
+    const f     = activeFilter;
+    const q     = searchQuery.trim();
+    const label = f !== 'all' ? (LABELS[f] || f) : (q ? `"${q}"` : 'All');
     const countEl = document.getElementById('search-result-count');
     if (countEl) countEl.innerHTML =
       `${results.length} video${results.length !== 1 ? 's' : ''} — ${label}`;
+
     grid.innerHTML = results.length
       ? results.map(v => buildCard(v, v._type)).join('')
       : `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--color-text-faint);">
@@ -265,7 +385,9 @@
     });
   }
 
-  /* ── TESTIMONIAL CAROUSEL ── */
+  /* ──────────────────────────────
+     TESTIMONIAL CAROUSEL
+  ────────────────────────────── */
 
   function initTestimonials(items) {
     if (!items?.length) return;
@@ -274,7 +396,7 @@
     if (!textEl || !authorEl) return;
     let idx = 0;
     const render = () => {
-      textEl.innerHTML     = `\u201c${items[idx].text}\u201d`;
+      textEl.innerHTML     = `\u201c${escHtml(items[idx].text)}\u201d`;
       authorEl.textContent = `\u2014 ${items[idx].author}`;
     };
     window.changeTestimonial = d => {
@@ -284,16 +406,17 @@
     render();
   }
 
-  /* ── COUNTDOWN ── */
+  /* ──────────────────────────────
+     COUNTDOWN
+  ────────────────────────────── */
 
   function startCountdown() {
     const pad = n => String(Math.floor(n)).padStart(2, '0');
-    // All weekly service slots: [dayOfWeek (0=Sun,5=Fri), hour, minute]
     const SLOTS = [
-      [0,  5, 30],  // Sunday 1st
-      [0,  8, 30],  // Sunday 2nd
-      [0, 12,  0],  // Sunday 3rd
-      [5, 11,  0],  // Friday prayer
+      [0,  5, 30],  // Sunday 5:30 AM
+      [0,  8, 30],  // Sunday 8:30 AM
+      [0, 12,  0],  // Sunday 12:00 PM
+      [5, 11,  0],  // Friday 11:00 AM
     ];
     const getNext = () => {
       const now = new Date();
@@ -304,86 +427,102 @@
         if (diff < 0) diff += 7;
         t.setDate(now.getDate() + diff);
         t.setHours(h, m, 0, 0);
-        if (t <= now) t.setDate(t.getDate() + 7); // already passed today
+        if (t <= now) t.setDate(t.getDate() + 7);
         if (!best || t < best) best = t;
       }
       return best;
     };
     const tick = () => {
-      const diff = getNext() - Date.now(); if (diff < 0) return;
-      document.getElementById('cd-d').textContent = pad(diff / 86_400_000);
-      document.getElementById('cd-h').textContent = pad((diff % 86_400_000) / 3_600_000);
-      document.getElementById('cd-m').textContent = pad((diff % 3_600_000) / 60_000);
-      document.getElementById('cd-s').textContent = pad((diff % 60_000) / 1_000);
+      const diff = getNext() - Date.now();
+      if (diff < 0) return;
+      const dEl = document.getElementById('cd-d');
+      const hEl = document.getElementById('cd-h');
+      const mEl = document.getElementById('cd-m');
+      const sEl = document.getElementById('cd-s');
+      if (dEl) dEl.textContent = pad(diff / 86_400_000);
+      if (hEl) hEl.textContent = pad((diff % 86_400_000) / 3_600_000);
+      if (mEl) mEl.textContent = pad((diff % 3_600_000) / 60_000);
+      if (sEl) sEl.textContent = pad((diff % 60_000) / 1_000);
     };
     setInterval(tick, 1000); tick();
   }
 
-  /* ── INIT ── */
+  /* ──────────────────────────────
+     MAIN INIT
+  ────────────────────────────── */
 
   document.addEventListener('DOMContentLoaded', async () => {
     startCountdown();
+    initFilterButtons();
+    initSearch();
 
-    // Load events.json for testimonials + video fallback
+    // Show skeletons immediately while fetching
+    showSkeletons('sunday-section',      1, 'service');
+    showSkeletons('friday-section',      1, 'service');
+    showSkeletons('promise-section',     1, 'service');
+    showSkeletons('recent-streams-grid', 4, 'grid');
+    showSkeletons('most-watched-grid',   3, 'grid');
+    showSkeletons('deliverance-grid',    3, 'grid');
+    showSkeletons('testimony-grid',      3, 'grid');
+    showSkeletons('verse-reels-row',     3, 'grid');
+
+    // Load events.json for testimonials fallback
     let jsonData = null;
     try {
-      const r = await fetch('data/events.json').catch(()=>fetch('events.json'));
-      if (r.ok) { jsonData = await r.json(); }
+      const r = await fetch('data/events.json').catch(() => fetch('events.json'));
+      if (r.ok) jsonData = await r.json();
     } catch {}
     initTestimonials(jsonData?.testimonials || []);
 
-    // JSON fallback video cards (used when API returns empty)
+    // Fallback normalizer for events.json videos
     function jsonVideos(arr, type) {
       return (arr || []).map(v => normalizeVideo(v, type));
     }
 
-    const mostWatchedFinal = jsonData?.mostWatched?.length
-      ? jsonData.mostWatched.map(v => normalizeVideo(v, 'popular'))
-      : [];
+    // Parallel fetch everything — UI stays responsive via skeletons
+    const [lives, sunday, friday, promise, deliverance, testimony, shorts, mostWatched] =
+      await Promise.all([
+        fetchRecentLives(4),
+        fetchPlaylist(PL.sunday,      1),
+        fetchPlaylist(PL.friday,      1),
+        fetchPlaylist(PL.promise,     1),
+        fetchPlaylist(PL.deliverance, 3),
+        fetchPlaylist(PL.testimony,   3),
+        fetchShorts(3),
+        fetchMostWatched(3),
+      ]);
 
-    // Parallel fetch everything from YouTube API
-    const [lives, sunday, friday, promise, deliverance, testimony, shorts] = await Promise.all([
-      fetchRecentLives(3),
-      fetchPlaylist(PL.sunday, 1),
-      fetchPlaylist(PL.friday, 1),
-      fetchPlaylist(PL.promise, 1),
-      fetchPlaylist(PL.deliverance, 3),
-      fetchPlaylist(PL.testimony, 3),
-      fetchShorts(3),
-    ]);
+    // Use API results; fall back to events.json if API returned nothing
+    const liveFinal        = lives.length        ? lives        : jsonVideos(jsonData?.recentStreams, 'live');
+    const sundayFinal      = sunday.length        ? sunday       : jsonVideos(jsonData?.events?.filter(e => e.topic === 'worship').slice(0, 1), 'sunday');
+    const fridayFinal      = friday.length        ? friday       : jsonVideos(jsonData?.events?.filter(e => e.topic === 'prayer').slice(0, 1), 'friday');
+    const promiseFinal     = promise.length       ? promise      : [];
+    const deliveranceFinal = deliverance.length   ? deliverance  : [];
+    const testimonyFinal   = testimony.length     ? testimony    : [];
+    const shortsFinal      = shorts.length        ? shorts       : jsonVideos(jsonData?.verseReels, 'shorts');
+    const popularFinal     = mostWatched.length   ? mostWatched  : jsonVideos(jsonData?.mostWatched, 'popular');
 
-    // Use API results; fall back to JSON data if API returned nothing
-    const liveFinal        = lives.length       ? lives.map(v => normalizeVideo(v, 'live')) : jsonVideos(jsonData?.recentStreams, 'live');
-    const sundayFinal      = sunday.length      ? sunday.map(v => normalizeVideo(v, 'sunday')) : jsonVideos(jsonData?.events?.filter(e=>e.topic==='worship').slice(0,1), 'sunday');
-    const fridayFinal      = friday.length      ? friday.map(v => normalizeVideo(v, 'friday')) : jsonVideos(jsonData?.events?.filter(e=>e.topic==='prayer').slice(0,1), 'friday');
-    const promiseFinal     = promise.length     ? promise.map(v => normalizeVideo(v, 'promise')) : [];
-    const deliveranceFinal = deliverance.length ? deliverance.map(v => normalizeVideo(v, 'deliverance')) : [];
-    const testimonyFinal   = testimony.length   ? testimony.map(v => normalizeVideo(v, 'testimony')) : [];
-    const shortsFinal      = shorts.length      ? shorts.map(v => normalizeVideo(v, 'shorts')) : jsonVideos(jsonData?.verseReels, 'shorts');
+    // Render all sections (replaces skeletons)
+    renderServiceSection('sunday-section',  sundayFinal[0]  || null, 'sunday',  PL.sunday);
+    renderServiceSection('friday-section',  fridayFinal[0]  || null, 'friday',  PL.friday);
+    renderServiceSection('promise-section', promiseFinal[0] || null, 'promise', PL.promise);
+    renderGrid('recent-streams-grid', liveFinal,        'live');
+    renderGrid('most-watched-grid',   popularFinal,     'popular');
+    renderGrid('deliverance-grid',    deliveranceFinal, 'deliverance');
+    renderGrid('testimony-grid',      testimonyFinal,   'testimony');
+    renderGrid('verse-reels-row',     shortsFinal,      'shorts');
 
-    // Render all sections
-    renderGrid('recent-streams-grid', liveFinal, 'live');
-    renderGrid('most-watched-grid', mostWatchedFinal, 'popular');
-    renderServiceSection('sunday-section',  sundayFinal[0]  || null, 'sunday',  PL.sunday,  'Sunday Service');
-    renderServiceSection('friday-section',  fridayFinal[0]  || null, 'friday',  PL.friday,  'Friday Prayer');
-    renderServiceSection('promise-section', promiseFinal[0] || null, 'promise', PL.promise, 'Promise Service');
-    renderGrid('deliverance-grid', deliveranceFinal, 'deliverance');
-    renderGrid('testimony-grid',   testimonyFinal,   'testimony');
-    renderReelsRow('verse-reels-row', shortsFinal);
-
-    // Search pool
+    // Build global search pool
     allVideos = [
-      ...liveFinal.map(v        => ({ ...v, _type: 'live' })),
-      ...sundayFinal.map(v      => ({ ...v, _type: 'sunday' })),
-      ...fridayFinal.map(v      => ({ ...v, _type: 'friday' })),
-      ...promiseFinal.map(v     => ({ ...v, _type: 'promise' })),
-      ...deliveranceFinal.map(v => ({ ...v, _type: 'deliverance' })),
-      ...testimonyFinal.map(v   => ({ ...v, _type: 'testimony' })),
-      ...shortsFinal.map(v      => ({ ...v, _type: 'shorts' })),
+      ...liveFinal.map(v        => ({ ...normalizeVideo(v, 'live'),        _type: 'live' })),
+      ...sundayFinal.map(v      => ({ ...normalizeVideo(v, 'sunday'),      _type: 'sunday' })),
+      ...fridayFinal.map(v      => ({ ...normalizeVideo(v, 'friday'),      _type: 'friday' })),
+      ...promiseFinal.map(v     => ({ ...normalizeVideo(v, 'promise'),     _type: 'promise' })),
+      ...deliveranceFinal.map(v => ({ ...normalizeVideo(v, 'deliverance'), _type: 'deliverance' })),
+      ...testimonyFinal.map(v   => ({ ...normalizeVideo(v, 'testimony'),   _type: 'testimony' })),
+      ...shortsFinal.map(v      => ({ ...normalizeVideo(v, 'shorts'),      _type: 'shorts' })),
+      ...popularFinal.map(v     => ({ ...normalizeVideo(v, 'popular'),     _type: 'popular' })),
     ];
-
-    initFilterButtons();
-    initSearch();
   });
 
 })();

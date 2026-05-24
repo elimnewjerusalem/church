@@ -115,7 +115,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
 .btn--outline:hover{border-color:var(--gold);color:var(--gold);}
 .divider{height:1px;background:var(--border);margin:0;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-@media(max-width:768px){.grid-3{grid-template-columns:1fr;}}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){.grid-3{grid-template-columns:1fr;}.grid-4{grid-template-columns:1fr;}}
 .section-sub{font-size:14px;color:var(--text-muted);margin:0 0 28px;max-width:600px;}
 .section-rule{width:40px;height:2px;background:var(--gold);margin:12px 0 24px;border-radius:2px;}
 </style>
@@ -182,7 +184,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
 
   <div class="divider"></div>
 
-  <section class="reveal-on-scroll section" aria-labelledby="service-highlights-heading">
+  <section class="reveal-on-scroll section normal-section" aria-labelledby="service-highlights-heading">
     <div class="container">
       <p class="section-tag anim-fade-up">Featured Services</p>
       <h2 class="section-heading anim-fade-up anim-d1" id="service-highlights-heading">Service <em>Highlights</em></h2>
@@ -218,14 +220,44 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
 
   <div class="divider"></div>
 
+  <!-- Search + Filter -->
+  <section class="section-sm normal-section" style="background:var(--color-bg-2);" id="search-filter-section">
+    <div class="container">
+      <div class="enjc-search-bar">
+        <span class="enjc-search-icon">🔍</span>
+        <input type="text" id="video-search-input" placeholder="Search sermons, messages…" autocomplete="off">
+        <button id="search-clear-btn" aria-label="Clear search">✕</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+        <button class="enjc-filter-btn enjc-filter-active" data-filter="all">All</button>
+        <button class="enjc-filter-btn" data-filter="live">Live Streams</button>
+        <button class="enjc-filter-btn" data-filter="sunday">Sunday</button>
+        <button class="enjc-filter-btn" data-filter="friday">Friday</button>
+        <button class="enjc-filter-btn" data-filter="promise">Promise</button>
+        <button class="enjc-filter-btn" data-filter="deliverance">Deliverance</button>
+        <button class="enjc-filter-btn" data-filter="testimony">Testimony</button>
+        <button class="enjc-filter-btn" data-filter="shorts">Shorts</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results (hidden by default) -->
+  <section id="search-results-section" style="display:none;" class="section">
+    <div class="container">
+      <p id="search-result-count" style="font-size:13px;color:var(--color-text-faint);margin-bottom:20px;"></p>
+      <div class="grid-3" id="search-results-grid"></div>
+    </div>
+  </section>
+
+
   <!-- Recent Live Streams -->
-  <section class="reveal-on-scroll section" aria-labelledby="streams-heading">
+  <section class="reveal-on-scroll section normal-section" aria-labelledby="streams-heading">
     <div class="container">
       <p class="section-tag anim-wipe">Watch Again</p>
       <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent Live <em>Streams</em></h2>
       <p class="section-sub">Catch up on our latest worship services and devotionals</p>
       <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
-      <div class="grid-3" id="recent-streams-grid"></div>
+      <div class="grid-4" id="recent-streams-grid"></div>
       <div style="text-align:center;margin-top:28px;">
         <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">View All on YouTube</a>
       </div>
@@ -235,7 +267,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
   <div class="divider"></div>
 
   <!-- Most Watched -->
-  <section class="reveal-on-scroll section-alt" aria-labelledby="popular-heading">
+  <section class="reveal-on-scroll section-alt normal-section" aria-labelledby="popular-heading">
     <div class="container">
       <p class="section-tag anim-roll-left">Popular</p>
       <h2 class="section-heading" id="popular-heading" style="margin-bottom:8px;">🔥 Most Watched <em>Messages</em></h2>
@@ -247,8 +279,41 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
 
   <div class="divider"></div>
 
+  <div class="divider"></div>
+
+  <!-- Deliverance Messages -->
+  <section class="reveal-on-scroll section normal-section" aria-labelledby="deliverance-heading">
+    <div class="container">
+      <p class="section-tag anim-wipe">Deliverance</p>
+      <h2 class="section-heading" id="deliverance-heading" style="margin-bottom:8px;">🔥 Deliverance <em>Messages</em></h2>
+      <p class="section-sub">Powerful deliverance ministry sessions and teachings</p>
+      <div class="grid-3" id="deliverance-grid"></div>
+      <div style="text-align:center;margin-top:28px;">
+        <a href="https://www.youtube.com/playlist?list=PLcsOT9w6kTBUbVgaE9w9rP6lA_EWwqPTj"
+           target="_blank" rel="noopener" class="btn btn--gold">Full Playlist ▶</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Testimonies -->
+  <section class="reveal-on-scroll section-alt normal-section" aria-labelledby="testimony-heading">
+    <div class="container">
+      <p class="section-tag anim-roll-left">Testimonies</p>
+      <h2 class="section-heading" id="testimony-heading" style="margin-bottom:8px;">💬 Testimony <em>Videos</em></h2>
+      <p class="section-sub">Real stories of God's grace and miracles in people's lives</p>
+      <div class="grid-3" id="testimony-grid"></div>
+      <div style="text-align:center;margin-top:28px;">
+        <a href="https://www.youtube.com/playlist?list=PLcsOT9w6kTBXwTSQuvtQDI7gq3nZjIbxJ"
+           target="_blank" rel="noopener" class="btn btn--gold">Full Playlist ▶</a>
+      </div>
+    </div>
+  </section>
+
+
   <!-- Verse Reels -->
-  <section class="reveal-on-scroll section" aria-labelledby="reels-heading">
+  <section class="reveal-on-scroll section normal-section" aria-labelledby="reels-heading">
     <div class="container">
       <p class="section-tag anim-wipe">Short Videos</p>
       <h2 class="section-heading" id="reels-heading" style="margin-bottom:8px;">📖 Verse <em>Reels</em></h2>
