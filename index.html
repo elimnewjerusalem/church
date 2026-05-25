@@ -38,13 +38,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-
-<!-- CSS -->
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/enjc-premium.css">
-<link rel="stylesheet" href="css/design-upgrade.css">
-<link rel="stylesheet" href="css/mobile-ui-fixes.css">
-<link rel="stylesheet" href="css/mobile-ux-fixes.css">
+<!-- index.html is fully self-contained — external CSS intentionally removed to prevent conflicts -->
 
 <style>
 /* ═══════════════════════════════════════════════════════════
@@ -72,9 +66,11 @@
   --border-light: rgba(0,0,0,0.08);
 }
 
+/* Reset — override any inherited styles */
+html, body { all: unset; display: block; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text-light); line-height: 1.6; }
+body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text-light); line-height: 1.6; padding-bottom: 68px; }
 a { text-decoration: none; color: inherit; }
 img { display: block; }
 
