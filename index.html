@@ -1,512 +1,642 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ENJC — Elim New Jerusalem Church | Tondiarpet, Chennai</title>
+<link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
 <link rel="icon" type="image/png" href="images/logo/logo.png">
 <link rel="apple-touch-icon" href="images/logo/logo.png">
-  <link rel="manifest" href="data/manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elim New Jerusalem Church | Tondiarpet, Chennai</title>
-<meta name="description" content="Elim New Jerusalem Church, Tondiarpet, Chennai. Sunday services at 5:30, 8:30 AM & 12:00 PM. Night Prayer daily at 10:30 PM. All are welcome.">
-<meta property="og:title" content="Elim New Jerusalem Church | Tondiarpet, Chennai">
-<meta property="og:description" content="Join us for worship, prayer and deliverance. Sunday services at 5:30, 8:30 AM & 12:00 PM.">
+<link rel="manifest" href="data/manifest.json">
+
+<!-- SEO -->
+<meta name="description" content="Elim New Jerusalem Church, Tondiarpet Chennai. Spirit-filled worship, prayer and deliverance. Three Sunday services, Night Prayer daily. All welcome in Jesus' name.">
+<meta name="keywords" content="ENJC, Elim New Jerusalem Church, Tondiarpet, Chennai, church, worship, deliverance, prayer">
+<meta name="author" content="Pastor A. Karthik Daniel">
+
+<!-- Open Graph -->
+<meta property="og:title" content="ENJC — Elim New Jerusalem Church">
+<meta property="og:description" content="Spirit-filled worship, prayer and deliverance in Tondiarpet, Chennai.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://elimnewjerusalem.github.io/church/">
-  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
-  <meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
+<meta name="twitter:title" content="ENJC — Elim New Jerusalem Church">
+<meta name="twitter:description" content="Spirit-filled worship, prayer and deliverance in Tondiarpet, Chennai.">
+<meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+
+<!-- Schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Church","name":"Elim New Jerusalem Church","alternateName":"ENJC","url":"https://elimnewjerusalem.github.io/church/","logo":"https://elimnewjerusalem.github.io/church/images/logo/logo.png","address":{"@type":"PostalAddress","streetAddress":"No.110E, Elaya Street","addressLocality":"Tondiarpet","addressRegion":"Chennai","postalCode":"600081","addressCountry":"IN"},"telephone":"+919444345102","founder":{"@type":"Person","name":"Pastor A. Karthik Daniel"}}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<!-- CSS -->
 <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/enjc-premium.css">
-  <link rel="stylesheet" href="css/design-upgrade.css">
+<link rel="stylesheet" href="css/enjc-premium.css">
+<link rel="stylesheet" href="css/design-upgrade.css">
 <link rel="stylesheet" href="css/mobile-ui-fixes.css">
+<link rel="stylesheet" href="css/mobile-ux-fixes.css">
+
 <style>
-/* ===== RESET ===== */
-*{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
-  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
-  --cream:#f4f0e8;--cream-dark:#e8e3d8;
-  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
-  --border:#1a2e50;
-}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.6;}
-a{text-decoration:none;color:inherit;}
-img{max-width:100%;display:block;}
+/* ═══════════════════════════════════════════════════════════
+   ENJC HOME PAGE — Full Redesign
+   Sections alternate: DARK → LIGHT → DARK → LIGHT …
+   ═══════════════════════════════════════════════════════════ */
 
-/* ===== NAVBAR ===== */
-.navbar{
-  position:sticky;top:0;z-index:200;
-  background:var(--navy);border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;height:60px;
-}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
-.nav-logo-fallback{
-  width:36px;height:36px;border-radius:8px;background:var(--gold);
-  display:none;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;color:var(--navy);
-  font-family:'Cormorant Garamond',serif;flex-shrink:0;
-}
-.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
-.nav-logo-text span{color:var(--gold);}
-.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
-.nav-links a{font-size:12px;color:#8fa8c8;padding:7px 11px;border-radius:6px;transition:all 0.2s;}
-.nav-links a:hover{color:var(--text-primary);}
-.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
-.nav-cta{
-  background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
-  padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;
-  transition:background 0.2s;white-space:nowrap;
-}
-.nav-cta:hover{background:var(--gold-light);}
-.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
-
-/* ===== HERO ===== */
-.hero{
-  position:relative;
-  height:calc(100svh - 60px);
-  min-height:480px;max-height:800px;
-  overflow:hidden;
-  display:flex;flex-direction:column;
-  background:var(--navy-dark);
+/* ── CSS Variables ── */
+:root {
+  --navy:       #070f1e;
+  --navy-2:     #0a1628;
+  --navy-3:     #0d1e3a;
+  --navy-4:     #112244;
+  --light-bg:   #f5f1e8;
+  --light-bg2:  #edeae0;
+  --gold:       #c9a84c;
+  --gold-bright:#f5c842;
+  --gold-dim:   rgba(201,168,76,0.55);
+  --gold-glow:  rgba(201,168,76,0.15);
+  --text-light: #e8f0fa;
+  --text-muted-dark: #6a85a8;
+  --text-dark:  #1a1a2e;
+  --text-muted-light: #5a5a7a;
+  --border-dark:  rgba(255,255,255,0.06);
+  --border-light: rgba(0,0,0,0.08);
 }
 
-/* VIDEO — full bleed, NO overlay, NO gradient */
-.hero-video{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  z-index:0;pointer-events:none;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text-light); line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
+img { display: block; }
 
-/* Thin left gold bar */
-.hero-side-bar{
-  position:absolute;left:0;top:0;bottom:0;
-  width:3px;background:var(--gold);opacity:0.8;z-index:3;
-}
+/* ── Section alternating ── */
+.s-dark  { background: var(--navy); color: var(--text-light); }
+.s-dark2 { background: var(--navy-2); color: var(--text-light); }
+.s-dark3 { background: var(--navy-3); color: var(--text-light); }
+.s-light { background: var(--light-bg); color: var(--text-dark); }
+.s-light2{ background: var(--light-bg2); color: var(--text-dark); }
+.s-white { background: #ffffff; color: var(--text-dark); }
 
-/* Live badge */
-.live-badge{
-  position:absolute;top:18px;right:24px;z-index:5;
-  display:flex;align-items:center;gap:6px;
-  background:rgba(6,14,26,0.65);
-  border:1px solid rgba(201,168,76,0.3);border-radius:20px;
-  padding:6px 14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-}
-.live-dot{width:7px;height:7px;background:#e24b4a;border-radius:50%;animation:blink 1.5s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
-.live-text{font-size:11px;color:#c0d4e8;}
+.section { padding: 80px 48px; }
+.section-sm { padding: 48px 48px; }
+.container { max-width: 1200px; margin: 0 auto; }
 
-/* ── HERO BODY: left text | right card ── */
-.hero-body{
-  position:relative;z-index:2;
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:52px 52px 48px 52px;
-  gap:40px;
+/* ── Typography ── */
+.eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-weight: 600; color: var(--gold); margin-bottom: 8px;
 }
+.heading-serif {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700; line-height: 1.15;
+}
+.heading-serif em { color: var(--gold); font-style: italic; }
+.heading-dark { color: var(--text-dark); }
+.heading-light { color: var(--text-light); }
+.sub-text { font-size: 14px; color: var(--text-muted-dark); margin-top: 10px; }
+.sub-text-light { color: var(--text-muted-light); }
 
+/* ── Buttons ── */
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--gold); color: var(--navy);
+  padding: 12px 26px; border-radius: 8px;
+  font-size: 13px; font-weight: 700; transition: all 0.2s;
+}
+.btn-gold:hover { background: var(--gold-bright); transform: translateY(-1px); }
+.btn-outline-light {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.1); color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 12px 26px; border-radius: 8px;
+  font-size: 13px; font-weight: 600; transition: all 0.2s; backdrop-filter: blur(4px);
+}
+.btn-outline-light:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.6); }
+.btn-outline-dark {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: var(--navy);
+  border: 2px solid var(--navy);
+  padding: 11px 24px; border-radius: 8px;
+  font-size: 13px; font-weight: 700; transition: all 0.2s;
+}
+.btn-outline-dark:hover { background: var(--navy); color: #fff; }
+
+/* ── Reveal animations ── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.anim-roll-left { transform: translateX(-40px) rotate(-3deg); }
+.reveal.anim-roll-left.visible { transform: translateX(0) rotate(0); }
+.reveal.anim-roll-right { transform: translateX(40px) rotate(3deg); }
+.reveal.anim-roll-right.visible { transform: translateX(0) rotate(0); }
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; }
+.delay-6 { transition-delay: 0.48s; }
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px;
+  background: rgba(7,15,30,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-dark);
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-logo-img { height: 36px; width: 36px; object-fit: contain; border-radius: 6px; }
+.nav-brand-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 700; color: var(--gold);
+}
+.nav-brand-sub { font-size: 11px; color: var(--text-muted-dark); line-height: 1.2; }
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a { font-size: 12px; color: #7a9ab8; padding: 7px 12px; border-radius: 6px; transition: all 0.2s; font-weight: 500; }
+.nav-links a:hover { color: #e8f0fa; }
+.nav-links a.active { color: var(--gold); background: var(--gold-glow); font-weight: 600; }
+.nav-visit {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--gold); color: var(--navy);
+  padding: 8px 18px; border-radius: 7px;
+  font-size: 12px; font-weight: 700; transition: all 0.2s;
+}
+.nav-visit:hover { background: var(--gold-bright); }
+.nav-toggle { display: none; background: none; border: none; color: var(--text-light); font-size: 22px; cursor: pointer; }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO  — video bg, left text, right event card
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+  position: relative; height: 100vh; min-height: 600px;
+  display: flex; align-items: center;
+  overflow: hidden; background: var(--navy);
+}
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0; opacity: 0.45;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    120deg,
+    rgba(7,15,30,0.80) 0%,
+    rgba(7,15,30,0.55) 55%,
+    rgba(7,15,30,0.72) 100%
+  );
+}
+.hero-body {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1200px; margin: 0 auto;
+  padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  padding-top: 60px; /* nav height */
+}
 /* LEFT */
-.hero-left{flex:1;max-width:540px;}
-.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-.hero-eyebrow-line{width:28px;height:1px;background:var(--gold);flex-shrink:0;}
-.hero-eyebrow-text{font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;font-weight:500;}
+.hero-left { flex: 1; max-width: 560px; }
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+}
+.hero-eyebrow-line {
+  width: 32px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.hero-eyebrow-text { font-size: 10px; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase; font-weight: 600; }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(46px, 6.5vw, 82px);
+  font-weight: 700; line-height: 1.05; color: #ffffff; margin-bottom: 16px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+}
+.hero-title em { color: var(--gold); font-style: italic; }
+.hero-verse {
+  font-size: 13px; font-style: italic; color: rgba(255,255,255,0.75);
+  font-family: 'Cormorant Garamond', serif; margin-bottom: 14px;
+}
+.hero-desc {
+  font-size: 14px; color: rgba(255,255,255,0.80); line-height: 1.65;
+  max-width: 440px; margin-bottom: 28px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+/* RIGHT */
+.hero-right { flex-shrink: 0; width: 250px; }
+.event-card {
+  background: rgba(10,22,40,0.88); backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 16px; padding: 20px 22px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+}
+.event-card-label {
+  font-size: 9px; letter-spacing: 0.18em; color: var(--gold);
+  text-transform: uppercase; font-weight: 700; margin-bottom: 14px;
+}
+.event-card-month { font-size: 9px; color: #4a6080; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; }
+.event-card-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px;
+}
+.event-card-title { font-size: 14px; color: #e8f0fa; font-weight: 700; margin-bottom: 5px; }
+.event-card-detail { font-size: 11px; color: #4a6080; line-height: 1.6; }
+.event-card-sep { height: 1px; background: rgba(255,255,255,0.07); margin: 14px 0; }
+.event-card-view {
+  font-size: 11px; color: var(--gold); font-weight: 600;
+  display: flex; align-items: center; gap: 5px;
+  transition: color 0.2s;
+}
+.event-card-view:hover { color: var(--gold-bright); }
 
-/* Text with outline/drop-shadow so readable on any video frame */
-.hero-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(42px,6vw,72px);
-  font-weight:700;
-  color:#ffffff;
-  line-height:1.0;
-  margin-bottom:12px;
-  /* drop shadow — two layers: sharp dark + soft dark */
-  text-shadow:
-    0 2px 4px rgba(0,0,0,0.9),
-    0 4px 24px rgba(0,0,0,0.7),
-    0 0 60px rgba(0,0,0,0.4);
-  /* optional: thin outline via paint-order trick */
-  -webkit-text-stroke: 0.5px rgba(0,0,0,0.3);
-  paint-order: stroke fill;
+/* live badge */
+.live-badge {
+  position: absolute; top: 80px; right: 32px; z-index: 3;
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(10,22,40,0.85); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 7px 14px; border-radius: 99px;
+  font-size: 11px; color: rgba(255,255,255,0.85); font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
 }
-.hero-title em{
-  color:var(--gold);font-style:italic;
-  text-shadow:
-    0 2px 4px rgba(0,0,0,0.9),
-    0 0 30px rgba(201,168,76,0.5),
-    0 4px 20px rgba(0,0,0,0.6);
-  -webkit-text-stroke:0;
+.live-badge:hover { border-color: rgba(255,80,80,0.5); }
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #ef4444;
+  animation: livePulse 1.4s ease-in-out infinite;
 }
-.hero-verse{
-  font-size:13px;font-style:italic;
-  color:rgba(255,255,255,0.80);
-  font-family:'Cormorant Garamond',serif;
-  margin-bottom:10px;
-  text-shadow:0 1px 6px rgba(0,0,0,0.85),0 2px 12px rgba(0,0,0,0.6);
+@keyframes livePulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
 }
-.hero-desc{
-  font-size:13px;color:rgba(255,255,255,0.82);
-  line-height:1.65;margin-bottom:28px;max-width:400px;
-  text-shadow:0 1px 6px rgba(0,0,0,0.85),0 2px 12px rgba(0,0,0,0.5);
-}
-.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
-.btn-gold{
-  background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;
-  padding:11px 22px;border-radius:7px;border:none;cursor:pointer;
-  font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;
-  transition:background 0.2s;
-  box-shadow:0 2px 12px rgba(0,0,0,0.4);
-}
-.btn-gold:hover{background:var(--gold-light);}
-.btn-outline{
-  background:rgba(0,0,0,0.25);color:#ffffff;
-  font-size:12px;font-weight:500;padding:11px 22px;border-radius:7px;
-  border:1px solid rgba(255,255,255,0.45);cursor:pointer;
-  font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;
-  transition:all 0.2s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  box-shadow:0 2px 12px rgba(0,0,0,0.3);
-}
-.btn-outline:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.7);}
 
-/* RIGHT: Deliverance card */
-.hero-right{flex-shrink:0;width:240px;display:flex;align-items:center;}
-.event-card{
-  width:100%;
-  background:rgba(6,14,26,0.78);
-  border:1px solid rgba(201,168,76,0.35);
-  border-top:2px solid var(--gold);
-  border-radius:12px;padding:18px;
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  box-shadow:0 8px 32px rgba(0,0,0,0.45);
+/* ═══════════════════════════════════════════════════════════
+   COUNTDOWN STRIP  — dark
+   ═══════════════════════════════════════════════════════════ */
+.cd-strip {
+  background: var(--navy-2);
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 48px; gap: 20px;
 }
-.event-card-label{
-  font-size:9px;letter-spacing:0.15em;color:var(--gold);
-  text-transform:uppercase;font-weight:600;margin-bottom:14px;
+.cd-left { display: flex; align-items: center; gap: 10px; }
+.cd-label { font-size: 11px; color: var(--text-muted-dark); }
+.cd-units { display: flex; align-items: center; gap: 10px; }
+.cd-unit { text-align: center; }
+.cd-num { font-size: 26px; font-weight: 700; color: var(--gold-bright); line-height: 1; }
+.cd-unit-label { font-size: 8px; color: #3a5070; text-transform: uppercase; letter-spacing: 0.12em; margin-top: 2px; }
+.cd-sep { font-size: 20px; color: var(--border-dark); padding-bottom: 10px; }
+.cd-wa {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--gold); color: var(--navy);
+  padding: 8px 18px; border-radius: 7px;
+  font-size: 12px; font-weight: 700; transition: all 0.2s; white-space: nowrap;
 }
-.event-card-next{
-  background:rgba(17,37,80,0.85);
-  border:1px solid rgba(201,168,76,0.18);
-  border-radius:8px;padding:14px;margin-bottom:12px;
-}
-.event-card-month{font-size:9px;color:#5a7090;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;}
-.event-card-date{
-  font-family:'Cormorant Garamond',serif;
-  font-size:38px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px;
-}
-.event-card-title{font-size:13px;color:#ffffff;font-weight:600;margin-bottom:4px;}
-.event-card-detail{font-size:10px;color:#5a7090;line-height:1.55;}
-.event-card-sep{height:1px;background:rgba(26,46,80,0.8);margin:10px 0;}
-.event-card-view{
-  font-size:11px;color:var(--gold);
-  display:flex;align-items:center;justify-content:space-between;
-  transition:color 0.2s;
-}
-.event-card-view:hover{color:var(--gold-light);}
+.cd-wa:hover { background: var(--gold-bright); }
 
-/* ===== COUNTDOWN STRIP — below hero ===== */
-.cd-strip{
-  background:var(--navy-dark);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:12px 40px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
+/* ═══════════════════════════════════════════════════════════
+   SERVICE STRIP  — slightly lighter dark
+   ═══════════════════════════════════════════════════════════ */
+.service-strip {
+  background: var(--navy-3);
+  display: flex; align-items: stretch;
+  border-bottom: 1px solid var(--border-dark);
 }
-.cd-left{display:flex;align-items:center;gap:8px;}
-.cd-icon{font-size:15px;color:var(--gold-dim);}
-.cd-label{font-size:11px;color:var(--text-muted);}
-.cd-units{display:flex;align-items:center;gap:8px;}
-.cd-unit{text-align:center;min-width:40px;}
-.cd-num{font-size:22px;font-weight:600;color:var(--gold);font-family:'DM Sans',sans-serif;line-height:1;}
-.cd-unit-label{font-size:8px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;}
-.cd-sep{font-size:18px;color:var(--border);padding-bottom:10px;font-weight:300;}
-.cd-right{display:flex;align-items:center;}
-.cd-wa{
-  font-size:11px;color:var(--navy);background:var(--gold);
-  padding:7px 16px;border-radius:6px;font-weight:600;
-  display:flex;align-items:center;gap:5px;transition:background 0.2s;
+.service-item {
+  flex: 1; display: flex; align-items: center; gap: 14px;
+  padding: 22px 28px;
+  border-right: 1px solid var(--border-dark);
+  transition: background 0.2s;
 }
-.cd-wa:hover{background:var(--gold-light);}
+.service-item:last-child { border-right: none; }
+.service-item:hover { background: rgba(201,168,76,0.04); }
+.service-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(201,168,76,0.1);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.service-icon i { font-size: 17px; color: var(--gold); }
+.service-time { font-size: 14px; font-weight: 600; color: var(--gold); }
+.service-name { font-size: 11px; color: var(--text-muted-dark); margin-top: 2px; }
 
-/* ===== SERVICE TIMES STRIP — below countdown ===== */
-.service-strip{
-  background:var(--navy-dark);
-  border-bottom:1px solid var(--border);
-  display:grid;grid-template-columns:repeat(4,1fr);
+/* ═══════════════════════════════════════════════════════════
+   ABOUT  — LIGHT section
+   ═══════════════════════════════════════════════════════════ */
+.about-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
 }
-.service-item{
-  padding:16px 20px;border-right:1px solid var(--border);
-  display:flex;align-items:center;gap:12px;
+.about-video-wrap {
+  position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
 }
-.service-item:last-child{border-right:none;}
-.service-icon{
-  width:36px;height:36px;border-radius:8px;background:var(--navy-light);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+.about-video-wrap iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: none; border-radius: 16px;
 }
-.service-icon i{font-size:17px;color:var(--gold);}
-.service-time{font-size:14px;font-weight:500;color:var(--gold);}
-.service-name{font-size:11px;color:var(--text-muted);margin-top:1px;}
-
-/* ===== SECTIONS ===== */
-.section{padding:52px 40px;}
-.section-dark{background:var(--navy);}
-.section-mid{background:#0f1e38;}
-.section-cream{background:var(--cream);}
-.section-white{background:#fff;}
-.sec-eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:6px;}
-.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,34px);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:6px;}
-.sec-title em{color:var(--gold);font-style:italic;}
-.sec-title-light{color:var(--text-primary);}
-.sec-sub{font-size:13px;color:#7a7060;line-height:1.65;margin-bottom:28px;max-width:560px;}
-.sec-sub-light{color:var(--text-muted);}
-.sec-header{margin-bottom:28px;}
-.sec-header-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;}
-.sec-view-all{font-size:12px;color:var(--gold);display:flex;align-items:center;gap:4px;transition:color 0.2s;}
-.sec-view-all:hover{color:var(--gold-light);}
-
-/* ===== SCHEDULE CARDS ===== */
-.schedule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.schedule-card{
-  background:#fff;border:0.5px solid var(--cream-dark);
-  border-radius:10px;padding:18px;border-top:2px solid var(--gold);
-  transition:box-shadow 0.2s,transform 0.2s;
+.video-caption { font-size: 11px; color: var(--text-muted-light); margin-top: 10px; text-align: center; }
+.about-pillars { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 24px; }
+.pillar {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; color: var(--text-dark);
 }
-.schedule-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.07);transform:translateY(-2px);}
-.sc-icon{font-size:20px;color:var(--gold);margin-bottom:10px;}
-.sc-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;}
-.sc-detail{font-size:11px;color:#7a7060;line-height:1.55;}
-.sc-time{font-size:12px;color:var(--gold);font-weight:600;margin-top:8px;}
+.pillar i { color: var(--gold); font-size: 15px; width: 20px; }
 
-/* ===== ABOUT ===== */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
-.about-photo{
-  background:var(--navy-light);border-radius:12px;
-  min-height:280px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+/* ═══════════════════════════════════════════════════════════
+   SCHEDULE  — DARK section
+   ═══════════════════════════════════════════════════════════ */
+.schedule-grid {
+  max-width: 1100px; margin: 40px auto 0;
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
 }
-.about-photo-hint{text-align:center;}
-.about-photo-hint p{font-size:11px;color:var(--border);margin-top:6px;}
-.about-video{width:100%;}
-.about-quote{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:12px;}
-.about-quote em{color:var(--gold);font-style:italic;}
-.about-desc{font-size:13px;color:#5a5040;line-height:1.75;margin-bottom:16px;}
-.about-pillars{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
-.pillar{display:flex;align-items:center;gap:8px;font-size:12px;color:#5a5040;}
-.pillar i{font-size:14px;color:var(--gold);}
-
-/* ===== DELIVERANCE ===== */
-.deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.deliv-card{
-  background:var(--navy-mid);border:0.5px solid var(--border);
-  border-radius:10px;padding:14px;text-align:center;transition:border-color 0.2s;
+.schedule-card {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid var(--border-dark);
+  border-radius: 14px; padding: 24px 22px;
+  transition: border-color 0.2s, transform 0.2s;
 }
-.deliv-card:hover{border-color:var(--gold-dim);}
-.deliv-card.past{opacity:0.28;}
-.deliv-card.upcoming{border-color:var(--gold);background:var(--navy-light);}
-.deliv-month{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;}
-.deliv-date{font-size:15px;font-weight:600;color:var(--gold);}
-.deliv-day{font-size:10px;color:var(--text-dim);margin-top:3px;}
-.deliv-tag{display:inline-block;font-size:8px;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:99px;margin-top:5px;font-weight:600;}
+.schedule-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+.sc-icon { font-size: 24px; color: var(--gold); margin-bottom: 12px; display: block; }
+.sc-name { font-size: 15px; font-weight: 700; color: var(--text-light); margin-bottom: 5px; }
+.sc-detail { font-size: 12px; color: var(--text-muted-dark); margin-bottom: 10px; line-height: 1.5; }
+.sc-time { font-size: 13px; font-weight: 600; color: var(--gold); }
 
-/* ===== MINISTRIES ===== */
-.ministry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.ministry-card{
-  background:var(--navy-mid);border:0.5px solid var(--border);
-  border-radius:10px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;
+/* ═══════════════════════════════════════════════════════════
+   DELIVERANCE DATES  — LIGHT section
+   ═══════════════════════════════════════════════════════════ */
+.deliv-grid {
+  max-width: 1100px; margin: 40px auto 0;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
 }
-.ministry-card:hover{border-color:var(--gold-dim);transform:translateY(-2px);}
-.ministry-card-img{height:90px;background:var(--navy-light);display:flex;align-items:center;justify-content:center;}
-.ministry-card-img i{font-size:28px;color:var(--border);}
-.ministry-card-body{padding:14px;}
-.ministry-name{font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;}
-.ministry-desc{font-size:11px;color:var(--text-muted);line-height:1.55;}
-
-/* ===== BIBLE TOOLS ===== */
-.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.tool-card{
-  background:#fff;border:0.5px solid var(--cream-dark);
-  border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px;
-  transition:all 0.2s;cursor:pointer;
+.deliv-card {
+  border: 1px solid var(--border-light);
+  border-radius: 14px; padding: 18px 16px;
+  text-align: center; position: relative;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.tool-card:hover{border-color:var(--gold-dim);box-shadow:0 6px 20px rgba(201,168,76,0.12);transform:translateY(-2px);}
-.tool-icon{width:40px;height:40px;border-radius:9px;background:var(--cream);display:flex;align-items:center;justify-content:center;}
-.tool-icon i{font-size:20px;color:var(--gold);}
-.tool-name{font-size:13px;font-weight:600;color:var(--navy);}
-.tool-desc{font-size:11px;color:#7a7060;line-height:1.5;}
-.tool-link{font-size:11px;color:var(--gold);margin-top:auto;display:flex;align-items:center;gap:3px;}
-
-/* ===== GALLERY ===== */
-.gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
-.gallery-item{
-  aspect-ratio:1;border-radius:8px;background:var(--navy-light);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;transition:transform 0.2s;
+.deliv-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.deliv-card.past { opacity: 0.45; }
+.deliv-card.upcoming {
+  border-color: var(--gold); background: #fffbf0;
+  box-shadow: 0 4px 24px rgba(201,168,76,0.18);
 }
-.gallery-item:hover{transform:scale(1.03);}
-.gallery-item i{font-size:24px;color:var(--border);}
-
-/* ===== CONTACT ===== */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-.contact-info{display:flex;flex-direction:column;gap:16px;}
-.contact-row{display:flex;align-items:flex-start;gap:12px;}
-.contact-row-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:rgba(201,168,76,0.1);border:0.5px solid var(--gold-dim);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+.deliv-month { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted-light); margin-bottom: 4px; }
+.deliv-date { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--text-dark); line-height: 1; margin-bottom: 4px; }
+.deliv-card.upcoming .deliv-date { color: var(--gold); }
+.deliv-day { font-size: 10px; color: var(--text-muted-light); }
+.deliv-tag {
+  position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: var(--navy);
+  font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 99px;
 }
-.contact-row-icon i{font-size:16px;color:var(--gold);}
-.contact-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;}
-.contact-value{font-size:13px;color:var(--text-primary);margin-top:2px;line-height:1.55;}
-.map-embed{background:var(--navy-mid);border-radius:10px;border:0.5px solid var(--border);overflow:hidden;height:220px;}
-.map-embed iframe{width:100%;height:100%;border:0;}
 
-/* ===== FOOTER ===== */
-.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
-.footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
-.footer-brand-name span{color:var(--gold);}
-.footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
-.footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
-.footer-social{display:flex;gap:6px;margin-top:14px;}
-.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
-.social-icon:hover{border-color:var(--gold-dim);}
-.social-icon i{font-size:14px;color:var(--text-muted);}
-.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
-.footer-links{display:flex;flex-direction:column;gap:6px;}
-.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
-.footer-links a:hover{color:var(--gold);}
-.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
-.footer-copy{font-size:11px;color:var(--text-dim);}
-.footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
-
-/* ===== FLOATING BUTTONS ===== */
-.wa-float{
-  position:fixed;bottom:28px;right:24px;z-index:150;
-  width:46px;height:46px;border-radius:50%;background:#25d366;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;
+/* ═══════════════════════════════════════════════════════════
+   MINISTRIES  — DARK section
+   ═══════════════════════════════════════════════════════════ */
+.section-header-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  max-width: 1100px; margin: 0 auto 32px;
 }
-.wa-float:hover{transform:scale(1.08);}
-.wa-float i{font-size:22px;color:#fff;}
-
-#scroll-top-btn{
-  position:fixed;bottom:28px;right:82px;z-index:150;
-  width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:18px;color:var(--navy);
-  box-shadow:0 4px 16px rgba(201,168,76,0.4);
-  opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;
+.view-all-link {
+  font-size: 12px; font-weight: 600; color: var(--gold);
+  display: flex; align-items: center; gap: 5px; transition: color 0.2s;
 }
-#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
-#scroll-top-btn:hover{transform:scale(1.1);}
-
-/* ===== MOBILE BOTTOM NAV ===== */
-.mob-nav{
-  display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;
-  background:var(--navy);border-top:1px solid var(--border);
-  padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));
-  padding-bottom:calc(8px + max(8px, env(safe-area-inset-bottom,0px)));
+.view-all-link:hover { color: var(--gold-bright); }
+.ministry-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
 }
-.mob-nav-inner{display:flex;justify-content:space-around;align-items:center;}
-.mob-item{
-  display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 12px;
-  min-height:48px;justify-content:center;transition:all 0.2s;
-  flex:1;text-align:center;
+.ministry-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-dark);
+  border-radius: 16px; overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer;
 }
-.mob-item:active{opacity:0.7;transform:scale(0.95);}
-.mob-item i{font-size:22px;color:var(--text-dim);transition:color 0.2s;}
-.mob-item span{font-size:10px;color:var(--text-dim);transition:color 0.2s;font-weight:500;}
-.mob-item.active i,.mob-item.active span{color:var(--gold);}
-
-/* ===== REVEAL ANIMATIONS ===== */
-.reveal{
-  opacity:0;transform:translateY(24px);
-  transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);
+.ministry-card:hover { border-color: var(--gold-dim); transform: translateY(-3px); }
+.ministry-card-img {
+  height: 130px;
+  background: linear-gradient(135deg, var(--navy-3), var(--navy-4));
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border-dark);
 }
-.reveal.visible{opacity:1;transform:translateY(0);}
-.reveal.d1{transition-delay:0.06s;}.reveal.d2{transition-delay:0.12s;}
-.reveal.d3{transition-delay:0.18s;}.reveal.d4{transition-delay:0.24s;}
-.reveal.d5{transition-delay:0.30s;}.reveal.d6{transition-delay:0.36s;}
+.ministry-card-img i { font-size: 40px; color: var(--gold-dim); }
+.ministry-card-body { padding: 18px 16px; }
+.ministry-name { font-size: 14px; font-weight: 700; color: var(--text-light); margin-bottom: 6px; }
+.ministry-desc { font-size: 12px; color: var(--text-muted-dark); line-height: 1.55; }
 
-/* ===== HAMBURGER ANIMATION ===== */
-.nav-mobile-toggle{transition:all 0.3s;}
-.nav-mobile-toggle i{display:inline-block;transition:transform 0.3s;}
-.nav-mobile-toggle.active i{transform:rotate(90deg);}
+/* ═══════════════════════════════════════════════════════════
+   BIBLE TOOLS  — LIGHT section
+   ═══════════════════════════════════════════════════════════ */
+.tools-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+}
+.tool-card {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 16px; padding: 28px 24px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: block;
+}
+.tool-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.tool-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--light-bg); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.tool-icon i { font-size: 22px; color: var(--gold); }
+.tool-name { font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+.tool-desc { font-size: 12px; color: var(--text-muted-light); line-height: 1.6; margin-bottom: 14px; }
+.tool-link { font-size: 12px; font-weight: 700; color: var(--gold); display: flex; align-items: center; gap: 5px; }
 
-/* ===== MOBILE MENU IMPROVEMENTS ===== */
-#nav-links{transition:all 0.3s cubic-bezier(0.4,0,0.2,1);}
-@media(max-width:900px){
-  #nav-links{max-height:0;overflow:hidden;display:flex;}
-  #nav-links.mob-open{
-    display:flex!important;flex-direction:column;
-    position:absolute;top:60px;left:0;right:0;
-    background:var(--navy);border-bottom:1px solid var(--border);
-    padding:8px 0;z-index:300;
-    max-height:calc(100vh - 60px);overflow-y:auto;
+/* ═══════════════════════════════════════════════════════════
+   GALLERY PREVIEW  — DARK section
+   ═══════════════════════════════════════════════════════════ */
+.gallery-strip {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+}
+.gallery-item {
+  aspect-ratio: 3/2; border-radius: 12px; overflow: hidden;
+  cursor: pointer; position: relative;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s ease; display: block;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT  — LIGHT section
+   ═══════════════════════════════════════════════════════════ */
+.contact-grid {
+  max-width: 1100px; margin: 40px auto 0;
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start;
+}
+.contact-row {
+  display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px;
+}
+.contact-row-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--gold-glow); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: 1px solid var(--gold-dim);
+}
+.contact-row-icon i { font-size: 16px; color: var(--gold); }
+.contact-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted-light); margin-bottom: 3px; }
+.contact-value { font-size: 13px; font-weight: 500; color: var(--text-dark); line-height: 1.6; }
+.map-wrap {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  aspect-ratio: 16/10;
+}
+.map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER  — DARK
+   ═══════════════════════════════════════════════════════════ */
+.footer {
+  background: var(--navy); border-top: 1px solid var(--border-dark);
+  padding: 52px 48px 24px;
+}
+.footer-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px;
+  padding-bottom: 40px; border-bottom: 1px solid var(--border-dark);
+}
+.footer-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 700; color: var(--gold); margin-bottom: 6px;
+}
+.footer-tagline { font-size: 12px; font-style: italic; color: var(--text-muted-dark); margin-bottom: 14px; }
+.footer-addr { font-size: 12px; color: var(--text-muted-dark); line-height: 1.8; margin-bottom: 18px; }
+.footer-social { display: flex; gap: 10px; }
+.social-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border-dark);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted-dark); font-size: 16px; transition: all 0.2s;
+}
+.social-icon:hover { background: var(--gold-glow); color: var(--gold); border-color: var(--gold-dim); }
+.footer-col-title { font-size: 11px; font-weight: 700; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-links { display: flex; flex-direction: column; gap: 9px; }
+.footer-links a { font-size: 12px; color: var(--text-muted-dark); transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  max-width: 1100px; margin: 24px auto 0;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: #2a3a50;
+}
+
+/* ── WhatsApp + Scroll-top ── */
+.wa-float {
+  position: fixed; bottom: 80px; right: 20px; z-index: 800;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  transition: transform 0.2s;
+}
+.wa-float:hover { transform: scale(1.1); }
+#scroll-top-btn {
+  position: fixed; bottom: 140px; right: 20px; z-index: 800;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  display: none; align-items: center; justify-content: center;
+  border: none; cursor: pointer; font-size: 18px;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+  transition: all 0.2s;
+}
+#scroll-top-btn.visible { display: flex; }
+#scroll-top-btn:hover { transform: scale(1.1); }
+
+/* ── Mobile nav ── */
+.mob-nav {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 850;
+  background: var(--navy-2); border-top: 1px solid var(--border-dark);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+}
+.mob-nav-inner { display: flex; }
+.mob-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  padding: 10px 4px 12px; font-size: 10px; color: var(--text-muted-dark);
+  transition: color 0.2s; gap: 3px;
+}
+.mob-item i { font-size: 20px; }
+.mob-item.active, .mob-item:hover { color: var(--gold); }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .section { padding: 60px 32px; }
+  .hero-body { padding: 0 32px; padding-top: 60px; }
+  .cd-strip, .footer { padding-left: 32px; padding-right: 32px; }
+  .schedule-grid { grid-template-columns: repeat(2,1fr); }
+  .deliv-grid { grid-template-columns: repeat(3,1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-visit { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.mob-open {
+    display: flex; flex-direction: column; gap: 4px;
+    position: absolute; top: 60px; left: 0; right: 0;
+    background: var(--navy-2); border-bottom: 1px solid var(--border-dark);
+    padding: 12px 20px 16px;
   }
+  .hero { min-height: 100svh; }
+  .hero-body { flex-direction: column; align-items: flex-start; padding: 0 24px; padding-top: 80px; gap: 28px; }
+  .hero-right { width: 100%; }
+  .event-card { max-width: 360px; }
+  .live-badge { top: 68px; right: 16px; }
+  .cd-strip { flex-direction: column; gap: 14px; padding: 18px 24px; align-items: flex-start; }
+  .service-strip { flex-direction: column; }
+  .service-item { border-right: none; border-bottom: 1px solid var(--border-dark); padding: 16px 24px; }
+  .section { padding: 52px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .deliv-grid { grid-template-columns: repeat(2,1fr); }
+  .ministry-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .gallery-strip { grid-template-columns: repeat(2,1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .mob-nav { display: block; }
+  .section-header-row { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-  .navbar{padding:0 18px;}
-  .nav-links,.nav-cta{display:none;}
-  .nav-mobile-toggle{display:block;}
-  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px));}
-  .hero{height:auto;max-height:none;min-height:520px;}
-  .hero-body{flex-direction:column;align-items:flex-start;padding:36px 24px 28px;gap:24px;}
-  .hero-right{width:100%;max-width:320px;}
-  .hero-title{font-size:clamp(36px,8vw,48px);}
-  .service-strip{grid-template-columns:1fr 1fr;}
-  .service-item{border-bottom:1px solid var(--border);}
-  .about-grid,.contact-grid{grid-template-columns:1fr;}
-  .schedule-grid{grid-template-columns:1fr 1fr;}
-  .deliv-grid{grid-template-columns:repeat(3,1fr);}
-  .tools-grid{grid-template-columns:1fr 1fr;}
-  .ministry-grid{grid-template-columns:1fr 1fr;}
-  .gallery-strip{grid-template-columns:repeat(2,1fr);}
-  .footer-grid{grid-template-columns:1fr 1fr;}
-  .section{padding:36px 20px;}
-  .cd-strip{flex-wrap:wrap;gap:10px;padding:12px 20px;}
-  .mob-nav{display:flex;}
-  .wa-float{bottom:calc(72px + env(safe-area-inset-bottom,0px));}
-  #scroll-top-btn{bottom:calc(72px + env(safe-area-inset-bottom,0px));right:calc(72px + 8px);}
-}
-@media(max-width:540px){
-  .schedule-grid,.tools-grid,.ministry-grid{grid-template-columns:1fr;}
-  .deliv-grid{grid-template-columns:repeat(2,1fr);}
-  .footer-grid{grid-template-columns:1fr;}
+@media (max-width: 480px) {
+  .hero-title { font-size: 38px; }
+  .deliv-grid { grid-template-columns: repeat(2,1fr); }
+  .gallery-strip { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar">
-  <a href="index.html" class="nav-logo" style="text-decoration:none;">
-    <img
-      class="nav-logo-img"
-      src="images/logo/logo.png"
-      alt="ENJC Logo"
-      width="38" height="38"
-      onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';"
-    >
-    <div class="nav-logo-fallback" id="logo-fb">E</div>
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="main-nav">
+  <div class="nav-brand">
+    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36"
+         onerror="this.style.display='none'">
     <div>
-      <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
-      <div class="nav-logo-sub">Tondiarpet, Chennai</div>
+      <div class="nav-brand-name">ENJC</div>
+      <div class="nav-brand-sub">Elim New Jerusalem Church · Tondiarpet, Chennai</div>
     </div>
-  </a>
+  </div>
   <div class="nav-links" id="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
@@ -517,36 +647,27 @@ img{max-width:100%;display:block;}
     <a href="imagegen.html">Cards</a>
     <a href="contact.html">Contact</a>
   </div>
-  <a href="contact.html" class="nav-cta">
-    <i class="ti ti-map-pin" style="font-size:12px;"></i> Visit Us
+  <a href="contact.html" class="nav-visit">
+    <i class="ti ti-map-pin" style="font-size:13px"></i> Visit Us
   </a>
-  <button class="nav-mobile-toggle" id="mob-toggle">
-    <i class="ti ti-menu-2"></i>
-  </button>
+  <button class="nav-toggle" id="mob-toggle" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
 </nav>
 
-<!-- ===== HERO — video only, no overlay ===== -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
-  <video
-    id="hero-vid"
-    class="hero-video"
-    autoplay muted loop playsinline preload="auto"
-    aria-hidden="true"
-  >
+  <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
     <source src="images/home/hero.mp4" type="video/mp4">
   </video>
+  <div class="hero-overlay"></div>
 
-  <div class="hero-side-bar"></div>
-
-  <div class="live-badge">
+  <!-- Live badge -->
+  <a href="events.html" class="live-badge">
     <div class="live-dot"></div>
-    <span class="live-text">Watch Live ▶</span>
-  </div>
+    Watch Live ▶
+  </a>
 
-  <!-- hero body: left text + right card -->
   <div class="hero-body">
-
-    <!-- LEFT: title, verse, desc, buttons -->
+    <!-- LEFT: text -->
     <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-line"></div>
@@ -557,22 +678,25 @@ img{max-width:100%;display:block;}
         Experience <em>Life.</em>
       </h1>
       <p class="hero-verse">"Because you are precious in my sight" — Isaiah 43:4</p>
-      <p class="hero-desc">A spirit-filled church committed to worship, prayer and deliverance. Three Sunday services. Night Prayer daily. All are welcome in Jesus' name.</p>
+      <p class="hero-desc">
+        A spirit-filled church committed to worship, prayer and deliverance.
+        Three Sunday services. Night Prayer daily. All are welcome in Jesus' name.
+      </p>
       <div class="hero-btns">
         <a href="contact.html" class="btn-gold">
-          <i class="ti ti-users" style="font-size:13px;"></i> Join Us Today
+          <i class="ti ti-users" style="font-size:13px"></i> Join Us Today
         </a>
-        <a href="events.html" class="btn-outline">
-          <i class="ti ti-player-play" style="font-size:13px;"></i> Watch Live
+        <a href="events.html" class="btn-outline-light">
+          <i class="ti ti-player-play" style="font-size:13px"></i> Watch Live
         </a>
       </div>
     </div>
 
-    <!-- RIGHT: next deliverance meeting card -->
+    <!-- RIGHT: next meeting card -->
     <div class="hero-right">
       <div class="event-card">
         <div class="event-card-label">Next Deliverance Meeting</div>
-        <div class="event-card-next">
+        <div>
           <div class="event-card-month">June 2026</div>
           <div class="event-card-date">14</div>
           <div class="event-card-title">Deliverance Meeting</div>
@@ -580,18 +704,17 @@ img{max-width:100%;display:block;}
         </div>
         <div class="event-card-sep"></div>
         <a href="events.html" class="event-card-view">
-          View All Events <i class="ti ti-arrow-right" style="font-size:12px;"></i>
+          View All Events <i class="ti ti-arrow-right" style="font-size:12px"></i>
         </a>
       </div>
     </div>
-
-  </div><!-- /hero-body -->
+  </div>
 </section>
 
-<!-- ===== COUNTDOWN — below hero ===== -->
-<div class="cd-strip">
+<!-- ═══ COUNTDOWN  (dark) ═══ -->
+<div class="cd-strip s-dark2">
   <div class="cd-left">
-    <i class="ti ti-clock cd-icon"></i>
+    <i class="ti ti-clock" style="font-size:15px;color:var(--gold-dim)"></i>
     <span class="cd-label">Next Sunday Service</span>
   </div>
   <div class="cd-units">
@@ -603,14 +726,12 @@ img{max-width:100%;display:block;}
     <div class="cd-sep">:</div>
     <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-unit-label">Sec</div></div>
   </div>
-  <div class="cd-right">
-    <a href="https://wa.me/919444345102" class="cd-wa" target="_blank">
-      <i class="ti ti-brand-whatsapp" style="font-size:13px;"></i> Get Notified on WhatsApp
-    </a>
-  </div>
+  <a href="https://wa.me/919444345102" class="cd-wa" target="_blank" rel="noopener">
+    <i class="ti ti-brand-whatsapp" style="font-size:14px"></i> Get Notified on WhatsApp
+  </a>
 </div>
 
-<!-- ===== SERVICE TIMES — below countdown ===== -->
+<!-- ═══ SERVICE STRIP  (dark-3) ═══ -->
 <div class="service-strip">
   <div class="service-item">
     <div class="service-icon"><i class="ti ti-sun"></i></div>
@@ -642,156 +763,246 @@ img{max-width:100%;display:block;}
   </div>
 </div>
 
-<!-- ===== ABOUT ===== -->
-<section class="section section-cream">
-  <div class="about-grid reveal">
-    <div class="about-video anim-roll-left">
-      <div class="video-embed-wrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
+<!-- ═══ ABOUT  (LIGHT) ═══ -->
+<section class="section s-light">
+  <div class="about-grid">
+    <div class="reveal anim-roll-left">
+      <!-- autoplay=1&mute=1 → auto-plays on load; enablejsapi=0 for simplicity -->
+      <div class="about-video-wrap">
         <iframe
-          src="https://www.youtube.com/embed/t7-WJK7JGw0?rel=0&modestbranding=1&autoplay=1&mute=1&start=0&end=10"
-          title="Pastor Testimony"
-          frameborder="0"
+          src="https://www.youtube.com/embed/t7-WJK7JGw0?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&playlist=t7-WJK7JGw0"
+          title="Pastor's Testimony — How ENJC Began"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
-          style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"
-        ></iframe>
+          loading="lazy">
+        </iframe>
       </div>
-      <p style="font-size:11px;color:#8a9ab0;margin-top:10px;text-align:center;">
-        Watch: Pastor's Testimony — How ENJC began
-      </p>
+      <p class="video-caption">▶ Watch: Pastor's Testimony — How ENJC began</p>
     </div>
-    <div class="about-text anim-roll-right">
-      <div class="sec-eyebrow">About Us</div>
-      <h2 class="about-quote">We exist to<br><em>worship God</em><br>& serve His people.</h2>
-      <p class="about-desc">Elim New Jerusalem Church, Tondiarpet is a spirit-filled congregation committed to worship, prayer, and deliverance ministry. Founded by Pastor A. Karthik Daniel, we believe in the power of God to heal, restore and set the captives free.</p>
+    <div class="reveal anim-roll-right delay-2">
+      <div class="eyebrow">About Us</div>
+      <h2 class="heading-serif heading-dark" style="margin-bottom:16px;">
+        We exist to<br><em>worship God</em><br>& serve His people.
+      </h2>
+      <p style="font-size:13px;color:var(--text-muted-light);line-height:1.7;margin-bottom:4px;">
+        Elim New Jerusalem Church, Tondiarpet is a spirit-filled congregation committed to worship,
+        prayer, and deliverance ministry. Founded by Pastor A. Karthik Daniel, we believe in the
+        power of God to heal, restore and set the captives free.
+      </p>
       <div class="about-pillars">
         <div class="pillar"><i class="ti ti-flame"></i> Spirit-Filled Worship</div>
         <div class="pillar"><i class="ti ti-book"></i> Bible-Centred Teaching</div>
         <div class="pillar"><i class="ti ti-shield"></i> Deliverance Ministry</div>
         <div class="pillar"><i class="ti ti-users"></i> Village Outreach & Missions</div>
       </div>
-      <a href="about.html" class="btn-gold" style="width:fit-content;">
-        Know More About Us <i class="ti ti-arrow-right" style="font-size:13px;"></i>
+      <a href="about.html" class="btn-outline-dark">
+        Know More About Us <i class="ti ti-arrow-right" style="font-size:13px"></i>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ===== SCHEDULE ===== -->
-<section class="section section-white">
-  <div class="sec-header reveal anim-fade-up">
-    <div class="sec-eyebrow">When We Meet</div>
-    <h2 class="sec-title">Church Worship & <em>Service Times</em></h2>
-  </div>
-  <div class="schedule-grid">
-    <div class="schedule-card reveal anim-fade-up anim-d1"><i class="ti ti-sun sc-icon"></i><div class="sc-name">Sunday Worship</div><div class="sc-detail">ENJC Family Gathering — three services every Sunday morning</div><div class="sc-time">5:30 AM · 8:30 AM · 12:00 PM</div></div>
-    <div class="schedule-card reveal anim-fade-up anim-d2"><i class="ti ti-star sc-icon"></i><div class="sc-name">Promise Service</div><div class="sc-detail">Special service on the 1st of every month</div><div class="sc-time">5:30 – 7:30 AM</div></div>
-    <div class="schedule-card reveal anim-fade-up anim-d3"><i class="ti ti-pray sc-icon"></i><div class="sc-name">Tuesday Prayer</div><div class="sc-detail">ENJC Special Prayer Meeting every Tuesday</div><div class="sc-time">11:00 AM – 4:00 PM</div></div>
-    <div class="schedule-card reveal anim-fade-up anim-d4"><i class="ti ti-heart sc-icon"></i><div class="sc-name">Friday Blessing Prayer</div><div class="sc-detail">ENJC Family Blessing Prayer every Friday</div><div class="sc-time">11:00 AM – 1:30 PM</div></div>
-    <div class="schedule-card reveal anim-fade-up anim-d5"><i class="ti ti-flame sc-icon"></i><div class="sc-name">Deliverance Meetings</div><div class="sc-detail">New Moon Day — prayer, healing & deliverance. All are welcome.</div><div class="sc-time">6:00 PM · Monthly</div></div>
-    <div class="schedule-card reveal anim-fade-up anim-d6"><i class="ti ti-moon sc-icon"></i><div class="sc-name">Night Prayer</div><div class="sc-detail">Daily night prayer — every night without exception</div><div class="sc-time">10:30 PM · Daily</div></div>
-  </div>
-</section>
-
-<!-- ===== DELIVERANCE 2026 ===== -->
-<section class="section section-dark">
-  <div class="sec-header reveal anim-fade-up">
-    <div class="sec-eyebrow">2026 Schedule</div>
-    <h2 class="sec-title sec-title-light">Deliverance Meeting <em>Dates 2026</em></h2>
-    <p class="sec-sub sec-sub-light">Every New Moon Day at 6:00 PM — prayer, healing & deliverance. All are welcome.</p>
-  </div>
-  <div class="deliv-grid">
-    <div class="deliv-card past reveal anim-fade-up anim-d1"><div class="deliv-month">January</div><div class="deliv-date">18 Jan</div><div class="deliv-day">Sunday</div></div>
-    <div class="deliv-card past reveal anim-fade-up anim-d2"><div class="deliv-month">February</div><div class="deliv-date">17 Feb</div><div class="deliv-day">Tuesday</div></div>
-    <div class="deliv-card past reveal anim-fade-up anim-d3"><div class="deliv-month">March</div><div class="deliv-date">18 Mar</div><div class="deliv-day">Wednesday</div></div>
-    <div class="deliv-card past reveal anim-fade-up anim-d4"><div class="deliv-month">April</div><div class="deliv-date">17 Apr</div><div class="deliv-day">Friday</div></div>
-    <div class="deliv-card past reveal anim-fade-up anim-d5"><div class="deliv-month">May</div><div class="deliv-date">16 May</div><div class="deliv-day">Saturday</div></div>
-    <div class="deliv-card upcoming reveal anim-fade-up anim-d6"><div class="deliv-month">June</div><div class="deliv-date">14 Jun</div><div class="deliv-day">Saturday</div><div class="deliv-tag">Next</div></div>
-    <div class="deliv-card reveal anim-fade-up anim-d1"><div class="deliv-month">July</div><div class="deliv-date">14 Jul</div><div class="deliv-day">Tuesday</div></div>
-    <div class="deliv-card reveal anim-fade-up anim-d2"><div class="deliv-month">August</div><div class="deliv-date">12 Aug</div><div class="deliv-day">Wednesday</div></div>
-    <div class="deliv-card reveal anim-fade-up anim-d3"><div class="deliv-month">September</div><div class="deliv-date">10 Sep</div><div class="deliv-day">Thursday</div></div>
-    <div class="deliv-card reveal anim-fade-up anim-d4"><div class="deliv-month">October</div><div class="deliv-date">10 Oct</div><div class="deliv-day">Saturday</div></div>
-    <div class="deliv-card reveal anim-fade-up anim-d5"><div class="deliv-month">November</div><div class="deliv-date">08 Nov</div><div class="deliv-day">Sunday</div></div>
-    <div class="deliv-card reveal anim-fade-up anim-d6"><div class="deliv-month">December</div><div class="deliv-date">08 Dec</div><div class="deliv-day">Tuesday</div></div>
+<!-- ═══ SERVICE TIMES  (DARK) ═══ -->
+<section class="section s-dark">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:8px;">
+      <div class="eyebrow">When We Meet</div>
+      <h2 class="heading-serif heading-light">Church Worship & <em>Service Times</em></h2>
+    </div>
+    <div class="schedule-grid" style="margin-top:40px;">
+      <div class="schedule-card reveal delay-1"><i class="ti ti-sun sc-icon"></i><div class="sc-name">Sunday Worship</div><div class="sc-detail">ENJC Family Gathering — three services every Sunday morning</div><div class="sc-time">5:30 AM · 8:30 AM · 12:00 PM</div></div>
+      <div class="schedule-card reveal delay-2"><i class="ti ti-star sc-icon"></i><div class="sc-name">Promise Service</div><div class="sc-detail">Special service on the 1st of every month</div><div class="sc-time">5:30 – 7:30 AM</div></div>
+      <div class="schedule-card reveal delay-3"><i class="ti ti-pray sc-icon"></i><div class="sc-name">Tuesday Prayer</div><div class="sc-detail">ENJC Special Prayer Meeting every Tuesday</div><div class="sc-time">11:00 AM – 4:00 PM</div></div>
+      <div class="schedule-card reveal delay-4"><i class="ti ti-heart sc-icon"></i><div class="sc-name">Friday Blessing Prayer</div><div class="sc-detail">ENJC Family Blessing Prayer every Friday</div><div class="sc-time">11:00 AM – 1:30 PM</div></div>
+      <div class="schedule-card reveal delay-5"><i class="ti ti-flame sc-icon"></i><div class="sc-name">Deliverance Meetings</div><div class="sc-detail">New Moon Day — prayer, healing & deliverance. All welcome.</div><div class="sc-time">6:00 PM · Monthly</div></div>
+      <div class="schedule-card reveal delay-6"><i class="ti ti-moon sc-icon"></i><div class="sc-name">Night Prayer</div><div class="sc-detail">Daily night prayer — every night without exception</div><div class="sc-time">10:30 PM · Daily</div></div>
+    </div>
   </div>
 </section>
 
-<!-- ===== MINISTRIES ===== -->
-<section class="section section-mid" style="padding-top:0;">
-  <div class="sec-header-row reveal anim-fade-up" style="margin-bottom:20px;">
-    <div><div class="sec-eyebrow">What We Do</div><h2 class="sec-title sec-title-light">Our <em>Ministries</em></h2></div>
-    <a href="ministries.html" class="sec-view-all">View All <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
+<!-- ═══ DELIVERANCE DATES  (LIGHT) ═══ -->
+<section class="section s-light2">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">2026 Schedule</div>
+      <h2 class="heading-serif heading-dark">Deliverance Meeting <em>Dates 2026</em></h2>
+      <p class="sub-text sub-text-light" style="margin-top:8px;">Every New Moon Day at 6:00 PM — prayer, healing & deliverance. All are welcome.</p>
+    </div>
+    <div class="deliv-grid">
+      <div class="deliv-card past reveal delay-1"><div class="deliv-month">January</div><div class="deliv-date">18 Jan</div><div class="deliv-day">Sunday</div></div>
+      <div class="deliv-card past reveal delay-2"><div class="deliv-month">February</div><div class="deliv-date">17 Feb</div><div class="deliv-day">Tuesday</div></div>
+      <div class="deliv-card past reveal delay-3"><div class="deliv-month">March</div><div class="deliv-date">18 Mar</div><div class="deliv-day">Wednesday</div></div>
+      <div class="deliv-card past reveal delay-4"><div class="deliv-month">April</div><div class="deliv-date">17 Apr</div><div class="deliv-day">Friday</div></div>
+      <div class="deliv-card past reveal delay-1"><div class="deliv-month">May</div><div class="deliv-date">16 May</div><div class="deliv-day">Saturday</div></div>
+      <div class="deliv-card upcoming reveal delay-2"><div class="deliv-tag">Next</div><div class="deliv-month">June</div><div class="deliv-date">14 Jun</div><div class="deliv-day">Saturday</div></div>
+      <div class="deliv-card reveal delay-3"><div class="deliv-month">July</div><div class="deliv-date">14 Jul</div><div class="deliv-day">Tuesday</div></div>
+      <div class="deliv-card reveal delay-4"><div class="deliv-month">August</div><div class="deliv-date">12 Aug</div><div class="deliv-day">Wednesday</div></div>
+      <div class="deliv-card reveal delay-1"><div class="deliv-month">September</div><div class="deliv-date">10 Sep</div><div class="deliv-day">Thursday</div></div>
+      <div class="deliv-card reveal delay-2"><div class="deliv-month">October</div><div class="deliv-date">10 Oct</div><div class="deliv-day">Saturday</div></div>
+      <div class="deliv-card reveal delay-3"><div class="deliv-month">November</div><div class="deliv-date">08 Nov</div><div class="deliv-day">Sunday</div></div>
+      <div class="deliv-card reveal delay-4"><div class="deliv-month">December</div><div class="deliv-date">08 Dec</div><div class="deliv-day">Tuesday</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MINISTRIES  (DARK) ═══ -->
+<section class="section s-dark3">
+  <div class="section-header-row reveal">
+    <div>
+      <div class="eyebrow">What We Do</div>
+      <h2 class="heading-serif heading-light">Our <em>Ministries</em></h2>
+    </div>
+    <a href="ministries.html" class="view-all-link">View All <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
   </div>
   <div class="ministry-grid">
-    <div class="ministry-card reveal anim-roll-left anim-d1"><div class="ministry-card-img"><i class="ti ti-users"></i></div><div class="ministry-card-body"><div class="ministry-name">Village Ministry</div><div class="ministry-desc">Reaching villages across Tamil Nadu with the Gospel through outreach teams.</div></div></div>
-    <div class="ministry-card reveal anim-roll-left anim-d2"><div class="ministry-card-img"><i class="ti ti-user-heart"></i></div><div class="ministry-card-body"><div class="ministry-name">Sisters Ministry</div><div class="ministry-desc">A dedicated ministry for sisters — prayer, fellowship and spiritual growth.</div></div></div>
-    <div class="ministry-card reveal anim-roll-left anim-d3"><div class="ministry-card-img"><i class="ti ti-shield-heart"></i></div><div class="ministry-card-body"><div class="ministry-name">Brothers Ministry</div><div class="ministry-desc">Building men of God through the Word, prayer and accountability.</div></div></div>
+    <div class="ministry-card reveal anim-roll-left delay-1">
+      <div class="ministry-card-img"><i class="ti ti-users"></i></div>
+      <div class="ministry-card-body">
+        <div class="ministry-name">Village Ministry</div>
+        <div class="ministry-desc">Reaching villages across Tamil Nadu with the Gospel through outreach teams.</div>
+      </div>
+    </div>
+    <div class="ministry-card reveal anim-roll-left delay-2">
+      <div class="ministry-card-img"><i class="ti ti-user-heart"></i></div>
+      <div class="ministry-card-body">
+        <div class="ministry-name">Sisters Ministry</div>
+        <div class="ministry-desc">A dedicated ministry for sisters — prayer, fellowship and spiritual growth.</div>
+      </div>
+    </div>
+    <div class="ministry-card reveal anim-roll-left delay-3">
+      <div class="ministry-card-img"><i class="ti ti-shield-heart"></i></div>
+      <div class="ministry-card-body">
+        <div class="ministry-name">Brothers Ministry</div>
+        <div class="ministry-desc">Building men of God through the Word, prayer and accountability.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ===== BIBLE TOOLS ===== -->
-<section class="section section-cream">
-  <div class="sec-header-row reveal anim-fade-up" style="margin-bottom:20px;">
-    <div><div class="sec-eyebrow">Bible Tools</div><h2 class="sec-title">Read, Study & <em>Share</em> the Word</h2></div>
-    <a href="bible.html" class="sec-view-all">View All <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
+<!-- ═══ BIBLE TOOLS  (LIGHT) ═══ -->
+<section class="section s-light">
+  <div class="section-header-row reveal">
+    <div>
+      <div class="eyebrow">Bible Tools</div>
+      <h2 class="heading-serif heading-dark">Read, Study & <em>Share</em> the Word</h2>
+    </div>
+    <a href="bible.html" class="view-all-link" style="color:var(--gold)">View All <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
   </div>
   <div class="tools-grid">
-    <a href="bible.html" class="tool-card reveal anim-fade-up anim-d1"><div class="tool-icon"><i class="ti ti-book"></i></div><div class="tool-name">Bible Reader</div><div class="tool-desc">Read all 66 books in Tamil & English. Clean, distraction-free reading.</div><div class="tool-link">Open Bible <i class="ti ti-arrow-right" style="font-size:11px;"></i></div></a>
-    <a href="imagegen.html" class="tool-card reveal anim-fade-up anim-d2"><div class="tool-icon"><i class="ti ti-photo"></i></div><div class="tool-name">Scripture Cards</div><div class="tool-desc">Create beautiful verse images to share on WhatsApp & social media. 8 templates.</div><div class="tool-link">Create Cards <i class="ti ti-arrow-right" style="font-size:11px;"></i></div></a>
-    <a href="events.html" class="tool-card reveal anim-fade-up anim-d3"><div class="tool-icon"><i class="ti ti-player-play"></i></div><div class="tool-name">Watch Live & Sermons</div><div class="tool-desc">Live streams, Sunday, Friday, Promise, Deliverance & Testimony services.</div><div class="tool-link">Watch Now <i class="ti ti-arrow-right" style="font-size:11px;"></i></div></a>
+    <a href="bible.html" class="tool-card reveal delay-1">
+      <div class="tool-icon"><i class="ti ti-book"></i></div>
+      <div class="tool-name">Bible Reader</div>
+      <div class="tool-desc">Read all 66 books in Tamil & English. Clean, distraction-free reading.</div>
+      <div class="tool-link">Open Bible <i class="ti ti-arrow-right" style="font-size:11px"></i></div>
+    </a>
+    <a href="imagegen.html" class="tool-card reveal delay-2">
+      <div class="tool-icon"><i class="ti ti-photo"></i></div>
+      <div class="tool-name">Scripture Cards</div>
+      <div class="tool-desc">Create beautiful verse images to share on WhatsApp & social media. 8 templates.</div>
+      <div class="tool-link">Create Cards <i class="ti ti-arrow-right" style="font-size:11px"></i></div>
+    </a>
+    <a href="events.html" class="tool-card reveal delay-3">
+      <div class="tool-icon"><i class="ti ti-player-play"></i></div>
+      <div class="tool-name">Watch Live & Sermons</div>
+      <div class="tool-desc">Live streams, Sunday, Friday, Promise, Deliverance & Testimony services.</div>
+      <div class="tool-link">Watch Now <i class="ti ti-arrow-right" style="font-size:11px"></i></div>
+    </a>
   </div>
 </section>
 
-<!-- ===== GALLERY ===== -->
-<section class="section section-white" style="padding-bottom:32px;">
-  <div class="sec-header-row reveal anim-fade-up" style="margin-bottom:16px;">
-    <div><div class="sec-eyebrow">Our Community</div><h2 class="sec-title">Church <em>Gallery</em></h2></div>
-    <a href="gallery.html" class="sec-view-all">View More <i class="ti ti-arrow-right" style="font-size:12px;"></i></a>
+<!-- ═══ GALLERY PREVIEW  (DARK) ═══ -->
+<section class="section s-dark2">
+  <div class="section-header-row reveal" style="max-width:1100px;margin:0 auto 24px;">
+    <div>
+      <div class="eyebrow">Our Community</div>
+      <h2 class="heading-serif heading-light">Church <em>Gallery</em></h2>
+    </div>
+    <a href="gallery.html" class="view-all-link">View More <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
   </div>
   <div class="gallery-strip">
-    <div class="gallery-item reveal anim-wipe anim-d1"><img src="images/gallery/g1.webp" alt="Church Gallery" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
-    <div class="gallery-item reveal anim-wipe anim-d2"><img src="images/gallery/g2.webp" alt="Church Gallery" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
-    <div class="gallery-item reveal anim-wipe anim-d3"><img src="images/gallery/g3.webp" alt="Church Gallery" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
-    <div class="gallery-item reveal anim-wipe anim-d4"><img src="images/gallery/g4.webp" alt="Church Gallery" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+    <div class="gallery-item reveal delay-1"><img src="images/gallery/g1.webp" alt="Church gathering" loading="eager" onerror="this.src='images/logo/logo.png'"></div>
+    <div class="gallery-item reveal delay-2"><img src="images/gallery/g2.webp" alt="Worship service" loading="eager" onerror="this.src='images/logo/logo.png'"></div>
+    <div class="gallery-item reveal delay-3"><img src="images/gallery/g3.webp" alt="Community" loading="lazy" onerror="this.src='images/logo/logo.png'"></div>
+    <div class="gallery-item reveal delay-4"><img src="images/gallery/g4.webp" alt="Prayer night" loading="lazy" onerror="this.src='images/logo/logo.png'"></div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section class="section section-dark">
-  <div class="sec-header reveal anim-fade-up"><div class="sec-eyebrow">Find Us</div><h2 class="sec-title sec-title-light">Visit <em>ENJC</em></h2></div>
-  <div class="contact-grid">
-    <div class="contact-info reveal anim-fade-up">
-      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-map-pin"></i></div><div><div class="contact-label">Address</div><div class="contact-value">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081</div></div></div>
-      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-phone"></i></div><div><div class="contact-label">Phone</div><div class="contact-value">+91 94443 45102</div></div></div>
-      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-clock"></i></div><div><div class="contact-label">Service Times</div><div class="contact-value">Sunday: 5:30 · 8:30 AM · 12:00 PM<br>Friday: 11:00 AM – 1:30 PM<br>Night Prayer: 10:30 PM Daily</div></div></div>
-      <div class="contact-row"><div class="contact-row-icon"><i class="ti ti-brand-whatsapp"></i></div><div><div class="contact-label">WhatsApp</div><div class="contact-value"><a href="https://wa.me/919444345102" style="color:var(--gold);" target="_blank">Message us on WhatsApp →</a></div></div></div>
+<!-- ═══ CONTACT / MAP  (LIGHT) ═══ -->
+<section class="section s-light2">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:8px;">
+      <div class="eyebrow">Find Us</div>
+      <h2 class="heading-serif heading-dark">Visit <em>ENJC</em></h2>
     </div>
-    <div class="map-embed reveal anim-fade-up anim-d2">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.4!2d80.2935!3d13.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI4LjIiTiA4MMKwMTcnMzYuNiJF!5e0!3m2!1sen!2sin!4v1" allowfullscreen loading="lazy"></iframe>
+    <div class="contact-grid">
+      <div class="reveal anim-roll-left">
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-map-pin"></i></div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-phone"></i></div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+91 94443 45102</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-clock"></i></div>
+          <div>
+            <div class="contact-label">Service Times</div>
+            <div class="contact-value">Sunday: 5:30 · 8:30 AM · 12:00 PM<br>Friday: 11:00 AM – 1:30 PM<br>Night Prayer: 10:30 PM Daily</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-brand-whatsapp"></i></div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">
+              <a href="https://wa.me/919444345102" target="_blank" rel="noopener" style="color:var(--gold);">Message us on WhatsApp →</a>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn-outline-dark" style="margin-top:8px;">
+          Get Directions <i class="ti ti-map-2" style="font-size:14px"></i>
+        </a>
+      </div>
+      <div class="map-wrap reveal anim-roll-right delay-2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.4!2d80.2935!3d13.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI4LjIiTiA4MMKwMTcnMzYuNiJF!5e0!3m2!1sen!2sin!4v1"
+          allowfullscreen loading="lazy" title="ENJC Location Map">
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- ═══ FOOTER  (DARK) ═══ -->
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name"><span>ENJC</span> · Elim New Jerusalem Church</div>
+      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
       <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
       <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
       <div class="footer-social">
-        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-youtube"></i></a>
-        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank"><i class="ti ti-brand-instagram"></i></a>
-        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-facebook"></i></a>
-        <a href="https://wa.me/919444345102" class="social-icon" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
+        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener" title="YouTube"><i class="ti ti-brand-youtube"></i></a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener" title="Facebook"><i class="ti ti-brand-facebook"></i></a>
+        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
       </div>
     </div>
     <div>
       <div class="footer-col-title">Quick Links</div>
       <div class="footer-links">
-        <a href="index.html">Home</a><a href="about.html">About</a>
-        <a href="ministries.html">Ministries</a><a href="events.html">Events</a>
-        <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="ministries.html">Ministries</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
     <div>
@@ -814,23 +1025,23 @@ img{max-width:100%;display:block;}
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
-    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
+    <div>© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
+    <div>Built with ❤️ for the Kingdom of God</div>
   </div>
 </footer>
 
 <!-- WhatsApp float -->
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp">
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp">
   <i class="ti ti-brand-whatsapp"></i>
 </a>
 
-<!-- Scroll-to-top -->
+<!-- Scroll to top -->
 <button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <i class="ti ti-arrow-up"></i>
 </button>
 
 <!-- Mobile nav -->
-<nav class="mob-nav">
+<nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
     <a href="index.html" class="mob-item active"><i class="ti ti-home"></i><span>Home</span></a>
     <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
@@ -841,50 +1052,54 @@ img{max-width:100%;display:block;}
 </nav>
 
 <script>
-/* ── Video: error / slow connection fallback ── */
+/* ── Hero video fallback ── */
 (function(){
   var v = document.getElementById('hero-vid');
   if(!v) return;
-  // Fallback bg so hero looks good if video fails
-  function hidVideo(){
+  function hideVid(){
     v.style.display='none';
     document.querySelector('.hero').style.background=
       'linear-gradient(135deg,#060e1a 0%,#0d1e3a 55%,#060e1a 100%)';
   }
-  v.addEventListener('error', hidVideo);
-  var t = setTimeout(function(){
-    if(v.readyState < 2) hidVideo();
-  }, 5000);
+  v.addEventListener('error', hideVid);
+  var t = setTimeout(function(){ if(v.readyState < 2) hideVid(); }, 5000);
   v.addEventListener('canplay', function(){ clearTimeout(t); });
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    v.pause(); hidVideo();
-  }
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){ v.pause(); hideVid(); }
 })();
 
 /* ── Countdown ── */
-function tick(){
-  var now=new Date(), day=now.getDay(), h=now.getHours(), m=now.getMinutes(), s=now.getSeconds();
+(function(){
   var slots=[{h:5,m:30},{h:8,m:30},{h:12,m:0}];
-  var best=Infinity;
-  for(var i=0;i<7;i++){
-    if((day+i)%7===0){
-      for(var j=0;j<slots.length;j++){
-        var diff=i*86400+(slots[j].h-h)*3600+(slots[j].m-m)*60-s;
-        if(i===0&&(h>slots[j].h||(h===slots[j].h&&m>=slots[j].m))) continue;
-        if(diff>0&&diff<best) best=diff;
+  function tick(){
+    var now=new Date(), day=now.getDay(), h=now.getHours(), m=now.getMinutes(), s=now.getSeconds();
+    var best=Infinity;
+    for(var i=0;i<7;i++){
+      if((day+i)%7===0){
+        for(var j=0;j<slots.length;j++){
+          var diff=i*86400+(slots[j].h-h)*3600+(slots[j].m-m)*60-s;
+          if(i===0&&(h>slots[j].h||(h===slots[j].h&&m>=slots[j].m))) continue;
+          if(diff>0&&diff<best) best=diff;
+        }
       }
     }
+    if(best===Infinity) best=0;
+    var p=function(n){return String(Math.floor(n)).padStart(2,'0');};
+    document.getElementById('cd-d').textContent=p(best/86400);
+    document.getElementById('cd-h').textContent=p((best%86400)/3600);
+    document.getElementById('cd-m').textContent=p((best%3600)/60);
+    document.getElementById('cd-s').textContent=p(best%60);
   }
-  if(best===Infinity) best=0;
-  var p=function(n){return String(n).padStart(2,'0');};
-  document.getElementById('cd-d').textContent=p(Math.floor(best/86400));
-  document.getElementById('cd-h').textContent=p(Math.floor((best%86400)/3600));
-  document.getElementById('cd-m').textContent=p(Math.floor((best%3600)/60));
-  document.getElementById('cd-s').textContent=p(best%60);
-}
-tick(); setInterval(tick,1000);
+  tick(); setInterval(tick,1000);
+})();
 
-/* ── Scroll-to-top visibility ── */
+/* ── Scroll-to-top ── */
+(function(){
+  var btn=document.getElementById('scroll-top-btn');
+  window.addEventListener('scroll',function(){
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+})();
+
 /* ── Reveal on scroll ── */
 (function(){
   var els=document.querySelectorAll('.reveal');
@@ -893,51 +1108,34 @@ tick(); setInterval(tick,1000);
   }
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(en){
-      if(en.isIntersecting){en.target.classList.add('visible','is-visible','anim-in');obs.unobserve(en.target);}
+      if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}
     });
-  },{threshold:0.08,rootMargin:'0px 0px -32px 0px'});
+  },{threshold:0,rootMargin:'0px 0px -20px 0px'});
   els.forEach(function(e){obs.observe(e);});
+  setTimeout(function(){
+    els.forEach(function(e){if(!e.classList.contains('visible'))e.classList.add('visible');});
+  },1800);
 })();
 
 /* ── Mobile nav toggle ── */
 (function(){
-  var btn = document.getElementById('mob-toggle');
-  var links = document.getElementById('nav-links');
-  if(!btn || !links) return;
-  
-  btn.addEventListener('click', function(e){
+  var btn=document.getElementById('mob-toggle');
+  var links=document.getElementById('nav-links');
+  if(!btn||!links) return;
+  btn.addEventListener('click',function(e){
     e.stopPropagation();
-    var isOpen = links.classList.toggle('mob-open');
-    btn.classList.toggle('active', isOpen);
+    links.classList.toggle('mob-open');
   });
-  
-  /* Close menu on link click */
-  links.querySelectorAll('a').forEach(function(link){
-    link.addEventListener('click', function(){
+  document.addEventListener('click',function(e){
+    if(!links.contains(e.target)&&!btn.contains(e.target))
       links.classList.remove('mob-open');
-      btn.classList.remove('active');
-    });
   });
-  
-  /* Close menu on outside click */
-  document.addEventListener('click', function(e){
-    if(!links.contains(e.target) && !btn.contains(e.target)){
-      links.classList.remove('mob-open');
-      btn.classList.remove('active');
-    }
-  });
-  
-  /* Close on escape key */
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && links.classList.contains('mob-open')){
-      links.classList.remove('mob-open');
-      btn.classList.remove('active');
-      btn.focus();
-    }
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') links.classList.remove('mob-open');
   });
 })();
 </script>
+
 <script src="js/site.js" defer></script>
-  <script src="js/design-upgrade.js" defer></script>
 </body>
 </html>
