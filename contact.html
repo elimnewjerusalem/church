@@ -1,124 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="images/logo/logo.png">
-  <link rel="apple-touch-icon" href="images/logo/logo.png">
-  <link rel="manifest" href="data/manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Us | ENJC</title>
-  <meta name="description" content="Contact Elim New Jerusalem Church. Address: Tondiarpet, Chennai. Phone: +91 94443 45102.">
-  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/contact.html">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://elimnewjerusalem.github.io/church/contact.html">
-  <meta property="og:title" content="Contact Us | ENJC">
-  <meta property="og:description" content="Contact Elim New Jerusalem Church. Address: Tondiarpet, Chennai. Phone: +91 94443 45102.">
-  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Contact Us | ENJC">
-  <meta name="twitter:description" content="Contact Elim New Jerusalem Church. Address: Tondiarpet, Chennai. Phone: +91 94443 45102.">
-  <meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-    <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/enjc-premium.css">
-  <link rel="stylesheet" href="css/mobile-ui-fixes.css">
-<script src="js/site.js" defer></script>
-<style>
-:root{
-  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
-  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
-  --cream:#f4f0e8;--cream-dark:#e8e3d8;
-  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
-  --border:#1a2e50;
-  /* map to main.css --color-* variables */
-  --color-bg:          #0a1628;
-  --color-bg-2:        #060e1a;
-  --color-bg-3:        #0d1e3a;
-  --color-text:        #f0e6c8;
-  --color-text-muted:  #8fa8c8;
-  --color-text-faint:  #5a7090;
-  --color-border:      #1a2e50;
-  --color-border-mid:  #1e3060;
-  --color-gold:        #c9a84c;
-  --color-gold-bg:     rgba(201,168,76,.10);
-  --color-gold-border: rgba(201,168,76,.28);
-  --font-heading:      'Cormorant Garamond','Playfair Display',Georgia,serif;
-}
-body{font-family:'DM Sans',sans-serif;}
-.navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
-.nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
-.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
-.nav-logo-text span{color:var(--gold);}
-.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
-.nav-links a{font-size:12px;color:#8fa8c8;padding:7px 11px;border-radius:6px;transition:all 0.2s;}
-.nav-links a:hover{color:var(--text-primary);}
-.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
-.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;transition:background 0.2s;white-space:nowrap;}
-.nav-cta:hover{background:var(--gold-light);}
-.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
-@media(max-width:900px){.navbar{padding:0 18px;}.nav-links,.nav-cta{display:none;}.nav-mobile-toggle{display:block;}}
-.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
-.footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
-.footer-brand-name span{color:var(--gold);}
-.footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
-.footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
-.footer-social{display:flex;gap:6px;margin-top:14px;}
-.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
-.social-icon:hover{border-color:var(--gold-dim);}
-.social-icon i{font-size:14px;color:var(--text-muted);}
-.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
-.footer-links{display:flex;flex-direction:column;gap:6px;}
-.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
-.footer-links a:hover{color:var(--gold);}
-.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
-.footer-copy{font-size:11px;color:var(--text-dim);}
-.footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
-.wa-float{position:fixed;bottom:76px;right:24px;z-index:150;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;}
-.wa-float:hover{transform:scale(1.08);}
-.wa-float i{font-size:22px;color:#fff;}
-#scroll-top-btn{position:fixed;bottom:76px;right:82px;z-index:150;width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;}
-#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
-#scroll-top-btn:hover{transform:scale(1.1);}
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;}
-.mob-nav-inner{display:flex;justify-content:space-around;}
-.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;}
-.mob-item i{font-size:20px;color:var(--text-dim);}
-.mob-item span{font-size:9px;color:var(--text-dim);}
-.mob-item.active i,.mob-item.active span{color:var(--gold);}
-@media(max-width:900px){body{padding-bottom:60px;}.mob-nav{display:block;}.wa-float{bottom:76px;}.footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:28px 20px 16px;}}
-@media(max-width:540px){.footer-grid{grid-template-columns:1fr;}}
-
-/* ── page-hero & section heading fixes ── */
-.page-hero{background:linear-gradient(170deg,var(--navy-mid) 0%,var(--navy) 100%);border-bottom:1px solid var(--border);padding:56px 0 48px;}
-.page-hero h1{font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--text-primary);margin:8px 0 10px;line-height:1.15;}
-.page-hero h1 em{color:var(--gold);font-style:italic;}
-.page-hero .container>p{font-size:14px;color:var(--text-muted);margin:0;}
-.page-hero .section-tag,.page-hero .section-tag::before{color:var(--gold);}
-.section-heading{font-family:var(--font-heading);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text-primary);margin:0 0 6px;}
-.section-heading em{color:var(--gold);font-style:italic;}
-.section-tag{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);}
-.section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
-.section-rule{width:40px;height:2px;background:var(--gold);margin:12px 0 24px;border-radius:2px;}
-.card{background:var(--navy-mid);border:0.5px solid var(--border);border-radius:12px;}
-body{background:var(--navy);color:var(--text-primary);}
-</style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact & Visit | ENJC — Elim New Jerusalem Church</title>
+<meta name="description" content="Visit ENJC at No.110E, Elaya Street, Tondiarpet, Chennai – 600 081. Call +91 94443 45102 or WhatsApp us.">
+<link rel="canonical" href="https://elimnewjerusalem.github.io/church/contact.html">
+<link rel="icon" type="image/png" href="images/logo/logo.png">
+<link rel="apple-touch-icon" href="images/logo/logo.png">
+<link rel="manifest" href="data/manifest.json">
+<meta property="og:title" content="Contact & Visit | ENJC">
+<meta property="og:description" content="Visit ENJC — No.110E Elaya Street, Tondiarpet, Chennai. Call or WhatsApp +91 94443 45102.">
+<meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta property="og:url" content="https://elimnewjerusalem.github.io/church/contact.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/enjc-design.css">
 </head>
 <body>
-  <nav class="navbar">
-  <a href="index.html" class="nav-logo" style="text-decoration:none;">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
-         onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
-    <div class="nav-logo-fallback" id="logo-fb">E</div>
+
+<!-- NAV -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
     <div>
-      <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
+      <div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
   </a>
@@ -132,315 +44,228 @@ body{background:var(--navy);color:var(--text-primary);}
     <a href="imagegen.html">Cards</a>
     <a href="contact.html" class="active">Contact</a>
   </div>
-  <a href="contact.html" class="nav-cta">
-    <i class="ti ti-map-pin" style="font-size:12px;"></i> Visit Us
-  </a>
-  <button class="nav-mobile-toggle" id="mob-toggle">
-    <i class="ti ti-menu-2"></i>
-  </button>
+  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
+  <button class="nav-mobile-toggle" id="mob-toggle"><i class="ti ti-menu-2"></i></button>
 </nav>
 
 <main>
 
-  <!-- Page hero -->
-  <section class="page-hero" aria-labelledby="page-title">
-    <div class="container">
-      <p class="section-tag anim-fade-up">Reach Us</p>
-      <h1 id="page-title">Get In <em>Touch</em></h1>
-      <p>We&#39;d love to hear from you and answer any questions.</p>
-    </div>
-  </section>
+<!-- Page Hero — dark -->
+<section class="page-hero s-d3">
+  <div class="container">
+    <p class="section-tag reveal-on-scroll">Find Us</p>
+    <h1 class="reveal-on-scroll anim-d1">Visit <em>ENJC</em></h1>
+    <p class="reveal-on-scroll anim-d2">We'd love to welcome you. All are welcome in Jesus' name.</p>
+  </div>
+</section>
 
-  <!-- Contact info + Service times -->
-  <section class="reveal-on-scroll section" aria-labelledby="contact-heading">
-    <div class="container">
-      <div class="grid-2" style="align-items:start;">
+<!-- Address + Map — LIGHT -->
+<section class="section s-l1" aria-labelledby="find-heading">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:52px;align-items:start;">
 
-        <!-- Left: contact details -->
-        <div>
-          <p class="section-tag">Contact Info</p>
-          <h2 class="section-heading anim-fade-up anim-d1" id="contact-heading" style="margin-bottom:24px;">Find <em>Us</em></h2>
-          <div style="display:flex;flex-direction:column;gap:12px;">
+      <!-- Left: contact details -->
+      <div>
+        <p class="section-tag reveal-on-scroll">Contact Details</p>
+        <h2 class="section-heading reveal-on-scroll anim-d1" id="find-heading" style="margin-bottom:28px;">How to <em>Find Us</em></h2>
 
-          <div class="card contact-info-card anim-roll-left anim-d1" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
-            <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">📍</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <div class="card on-light reveal-on-scroll anim-d1" style="padding:20px 22px;display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-map-pin" style="color:var(--gold);font-size:18px;"></i>
+            </div>
             <div>
-              <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">Address</div>
-              <div style="font-size:14px;font-weight:500;color:var(--color-text);line-height:1.75;">No.110E, Elaya Street, Tondiarpet<br><span style="font-size:12px;color:var(--color-text-faint);">(Near Bedestha Swimming Pool)</span><br>Chennai – 600 081</div>
+              <div style="font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--t-muted-l);font-weight:700;margin-bottom:4px;">Address</div>
+              <div style="font-size:14px;font-weight:500;color:var(--t-dark);line-height:1.65;">
+                No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>Tamil Nadu, India
+              </div>
+              <a href="https://maps.google.com/?q=Elim+New+Jerusalem+Church+Tondiarpet+Chennai"
+                 target="_blank" rel="noopener"
+                 style="font-size:12px;color:var(--gold);font-weight:600;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">
+                Open in Maps <i class="ti ti-external-link" style="font-size:11px;"></i>
+              </a>
             </div>
           </div>
-          <div class="card contact-info-card anim-roll-left anim-d2" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
-            <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">📞</div>
+
+          <div class="card on-light reveal-on-scroll anim-d2" style="padding:20px 22px;display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-phone" style="color:var(--gold);font-size:18px;"></i>
+            </div>
             <div>
-              <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">Phone</div>
-              <div style="font-size:14px;font-weight:500;color:var(--color-text);line-height:1.75;"><a href="tel:+919444345102" style="color:var(--color-gold);">+91 94443 45102</a></div>
+              <div style="font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--t-muted-l);font-weight:700;margin-bottom:4px;">Phone</div>
+              <a href="tel:+919444345102" style="font-size:14px;font-weight:600;color:var(--t-dark);">+91 94443 45102</a>
             </div>
           </div>
-          <div class="card contact-info-card anim-roll-left anim-d3" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
-            <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">✉</div>
+
+          <div class="card on-light reveal-on-scroll anim-d3" style="padding:20px 22px;display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-clock" style="color:var(--gold);font-size:18px;"></i>
+            </div>
             <div>
-              <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">Email</div>
-              <div style="font-size:14px;font-weight:500;color:var(--color-text);line-height:1.75;"><a href="mailto:enjcofficial@gmail.com" style="color:var(--color-gold);">enjcofficial@gmail.com</a></div>
+              <div style="font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--t-muted-l);font-weight:700;margin-bottom:4px;">Service Times</div>
+              <div style="font-size:13px;color:var(--t-dark);line-height:1.8;">
+                Sunday: 5:30 · 8:30 AM · 12:00 PM<br>
+                Friday: 11:00 AM – 1:30 PM<br>
+                Tuesday: 11:00 AM – 4:00 PM<br>
+                Night Prayer: 10:30 PM Daily<br>
+                Promise: 1st of every month
+              </div>
             </div>
           </div>
-          <div class="card contact-info-card anim-roll-left anim-d4" style="padding:22px;display:flex;align-items:flex-start;gap:16px;">
-            <div class="contact-info-card__icon" style="width:46px;height:46px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;" aria-hidden="true">💬</div>
-            <div>
-              <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:7px;">WhatsApp</div>
-              <div style="font-size:14px;font-weight:500;color:var(--color-text);line-height:1.75;"><a href="https://wa.me/919444345102" target="_blank" rel="noopener" style="color:var(--color-gold);">Chat with us now →</a></div>
+
+          <div class="card on-light reveal-on-scroll anim-d4" style="padding:20px 22px;display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:40px;height:40px;border-radius:10px;background:#e8f5e9;border:1px solid #a5d6a7;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-brand-whatsapp" style="color:#25d366;font-size:18px;"></i>
             </div>
-          </div>
-          </div>
-          <div style="margin-top:22px;">
-            <a href="https://www.google.com/maps/search/?api=1&query=Elim+New+Jerusalem+Church+Tondiarpet+Chennai" target="_blank" rel="noopener" class="btn btn--gold">📍 Open in Google Maps</a>
+            <div>
+              <div style="font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--t-muted-l);font-weight:700;margin-bottom:4px;">WhatsApp</div>
+              <a href="https://wa.me/919444345102?text=Hello%20ENJC!%20I%20want%20to%20know%20more%20about%20your%20church."
+                 target="_blank" rel="noopener"
+                 style="font-size:13px;font-weight:600;color:#25d366;display:flex;align-items:center;gap:5px;">
+                Message us on WhatsApp <i class="ti ti-arrow-right" style="font-size:11px;"></i>
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Right: service times + prayer request -->
-        <div>
-          <p class="section-tag anim-wipe">When We Meet</p>
-          <h2 class="section-heading anim-fade-up anim-d1" style="margin-bottom:24px;">Service <em>Times</em></h2>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
-<div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Sunday</span><span style="font-size:12px;color:var(--color-gold);font-weight:700;">05:30 · 08:30 · 12:00</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Friday</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">11:00 AM</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Saturday</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">6:00 PM</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">2nd Saturday</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">6:00 AM – 6:00 PM</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-gold-bg);border:1px solid var(--color-gold-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Night Prayer</span><span style="font-size:12px;color:var(--color-gold);font-weight:700;">10:30 PM Daily</span></div><div class="service-time-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:10px;"><span style="font-size:13px;font-weight:600;color:var(--color-text);">Deliverance</span><span style="font-size:12px;color:var(--color-text-muted);font-weight:700;">6:00 PM Weekly</span></div>
-          </div>
-          <div class="card card--gold anim-fade-up anim-d2" style="padding:24px;">
-            <h3 style="margin-bottom:8px;font-size:1.05rem;">Need Prayer?</h3>
-            <p style="font-size:13px;margin-bottom:16px;">We believe in the power of prayer. Share your request and our prayer team will lift you up.</p>
-            <a href="https://wa.me/919444345102?text=Prayer%20Request%3A%20" target="_blank" rel="noopener" class="btn btn--gold" style="font-size:13px;padding:10px 22px;">Submit Prayer Request</a>
-          </div>
+        <!-- Quick links -->
+        <div class="reveal-on-scroll anim-d5" style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://wa.me/919444345102?text=Prayer%20Request%3A%20" target="_blank" rel="noopener" class="btn btn--gold" style="font-size:12px;padding:9px 18px;">🙏 Prayer Request</a>
+          <a href="mailto:enjctondiarpet@gmail.com" class="btn btn--outline-dark" style="font-size:12px;padding:9px 18px;">✉️ Email Us</a>
         </div>
-
       </div>
-    </div>
-  </section>
 
-  <div class="divider"></div>
-
-  <!-- Contact form -->
-  <section class="reveal-on-scroll section-sm" style="background:var(--color-bg-2);" aria-labelledby="form-heading">
-    <div class="container">
-      <div style="max-width:600px;margin:0 auto;">
-        <h2 class="section-heading" id="form-heading" style="text-align:center;margin-bottom:32px;">
-          Send us a <em>Message</em>
-        </h2>
-        <div class="grid-2" style="gap:13px;margin-bottom:13px;">
-          <input type="text"  id="cf-name"    placeholder="Your Name *"    class="form-field" autocomplete="name">
-          <input type="email" id="cf-email"   placeholder="Your Email *"   class="form-field" autocomplete="email">
-          <input type="tel"   id="cf-phone"   placeholder="Phone Number"   class="form-field" autocomplete="tel">
-          <input type="text"  id="cf-subject" placeholder="Subject"        class="form-field">
-        </div>
-        <textarea id="cf-msg" placeholder="Your prayer request *" rows="5" class="form-field" style="margin-bottom:16px;"></textarea>
-        <button type="button" onclick="sendViaWhatsApp()" class="btn btn--gold" style="width:100%;font-size:15px;padding:15px;border-radius:10px;justify-content:center;">
-          Send via WhatsApp
-        </button>
-        <p style="text-align:center;font-size:12px;color:var(--color-text-faint);margin-top:12px;">
-          💡 This will open WhatsApp — tap <strong style="color:var(--color-gold);">Send</strong> in the app to complete your message.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- Social / Follow Us -->
-  <section class="reveal-on-scroll section" aria-labelledby="social-heading">
-    <div class="container">
-      <p class="section-tag anim-fade-up">Follow Us</p>
-      <h2 class="section-heading anim-fade-up anim-d1" id="social-heading" style="margin-bottom:8px;">Stay <em>Connected</em></h2>
-      <p class="section-sub">Join our online community — never miss a sermon, event, or inspirational message.</p>
-      <div class="grid-2">
-
-      <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="card social-link" style="padding:22px;display:flex;align-items:center;gap:16px;transition:all .2s;">
-        <div class="social-link__icon" style="width:50px;height:50px;border-radius:14px;background:#ff0000;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:15px;font-weight:700;color:var(--color-text);margin-bottom:4px;">YouTube</div>
-          <div style="font-size:12px;color:var(--color-text-faint);line-height:1.5;">Watch live services, sermons, and verse reels. Subscribe to stay updated!</div>
-        </div>
-        <div style="font-size:12px;font-weight:600;color:var(--color-gold);flex-shrink:0;">Subscribe →</div>
-      </a>
-      <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="card social-link" style="padding:22px;display:flex;align-items:center;gap:16px;transition:all .2s;">
-        <div class="social-link__icon" style="width:50px;height:50px;border-radius:14px;background:#ff0000;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.77 10.32l-1.2-.5L18 9.06a3.74 3.74 0 00-5.31-5.31l-8 8a3.74 3.74 0 005.31 5.31l1.2.5L9.8 18.3a3.74 3.74 0 005.31 5.3l.07-.07 2.76-2.76.07-.07a3.74 3.74 0 00-5.31-5.3l-1.2-.5L12.8 13h.01l-.01.01 1.2.5-1.63 1.63-.07.07a1.74 1.74 0 01-2.47-2.47l.07-.07 8-8 .07-.07a1.74 1.74 0 012.47 2.47l-.07.07-2.67 2.68zm-2.47 5.06l.07-.07a1.74 1.74 0 012.47 2.47l-.07.07-2.76 2.76-.07.07a1.74 1.74 0 01-2.47-2.47l.07-.07 2.76-2.76z"/></svg></div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:15px;font-weight:700;color:var(--color-text);margin-bottom:4px;">YouTube Shorts</div>
-          <div style="font-size:12px;color:var(--color-text-faint);line-height:1.5;">Verse reels, worship clips, and daily scripture encouragement.</div>
-        </div>
-        <div style="font-size:12px;font-weight:600;color:var(--color-gold);flex-shrink:0;">Watch →</div>
-      </a>
-      <a href="https://whatsapp.com/channel/0029VaruXHU6xCSXGgR0pG3f" target="_blank" rel="noopener" class="card social-link" style="padding:22px;display:flex;align-items:center;gap:16px;transition:all .2s;">
-        <div class="social-link__icon" style="width:50px;height:50px;border-radius:14px;background:#25d366;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        </div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:15px;font-weight:700;color:var(--color-text);margin-bottom:4px;">WhatsApp Channel</div>
-          <div style="font-size:12px;color:var(--color-text-faint);line-height:1.5;">Follow our channel for service updates, prayer points, and announcements.</div>
-        </div>
-        <div style="font-size:12px;font-weight:600;color:var(--color-gold);flex-shrink:0;">Follow →</div>
-      </a>
-      <a href="https://www.instagram.com/elimnewjerusalemchurch?igsh=aHN3ZmQwYmE3MXow" target="_blank" rel="noopener" class="card social-link" style="padding:22px;display:flex;align-items:center;gap:16px;transition:all .2s;">
-        <div class="social-link__icon" style="width:50px;height:50px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:15px;font-weight:700;color:var(--color-text);margin-bottom:4px;">Instagram</div>
-          <div style="font-size:12px;color:var(--color-text-faint);line-height:1.5;">Inspiring quotes, event photos, and glimpses of our church family.</div>
-        </div>
-        <div style="font-size:12px;font-weight:600;color:var(--color-gold);flex-shrink:0;">Follow →</div>
-      </a>
-      <a href="https://www.facebook.com/ENJCChurch" target="_blank" rel="noopener" class="card social-link" style="padding:22px;display:flex;align-items:center;gap:16px;transition:all .2s;">
-        <div class="social-link__icon" style="width:50px;height:50px;border-radius:14px;background:#1877f2;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:15px;font-weight:700;color:var(--color-text);margin-bottom:4px;">Facebook</div>
-          <div style="font-size:12px;color:var(--color-text-faint);line-height:1.5;">Daily updates, prayer requests, and church announcements.</div>
-        </div>
-        <div style="font-size:12px;font-weight:600;color:var(--color-gold);flex-shrink:0;">Follow →</div>
-      </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Map -->
-  <section style="background:var(--color-bg-2);border-top:1px solid var(--color-border);padding-bottom:64px;" aria-label="Church location map" class="reveal-on-scroll">
-    <div class="container" style="padding-top:48px;">
-      <p class="section-tag">Location</p>
-      <h2 class="section-heading" style="margin-bottom:24px;">Find Us on <em>Map</em></h2>
-      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--color-border);">
+      <!-- Right: map -->
+      <div class="reveal-on-scroll anim-d2" style="border-radius:18px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.14);aspect-ratio:4/3;">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.0!2d80.295!3d13.121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzE2LjAiTiA4MMKwMTcnNDIuMCJF!5e0!3m2!1sen!2sin!4v1"
-          width="100%" height="380" style="border:0;display:block;"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.3874956!2d80.2935!3d13.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI4LjIiTiA4MMKwMTcnMzYuNiJF!5e0!3m2!1sen!2sin!4v1"
+          width="100%" height="100%"
+          style="border:0;display:block;"
           allowfullscreen loading="lazy"
-          title="ENJC Church location on Google Maps">
+          title="ENJC — Elim New Jerusalem Church Location">
         </iframe>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Social / Stay Connected — DARK -->
+<section class="section s-d2" aria-labelledby="connect-heading">
+  <div class="container">
+    <p class="section-tag reveal-on-scroll">Follow Us</p>
+    <h2 class="section-heading reveal-on-scroll anim-d1" id="connect-heading">Stay <em>Connected</em></h2>
+    <p class="section-sub reveal-on-scroll anim-d2">Follow ENJC on social media for sermons, testimonies, live streams and announcements.</p>
+    <div class="grid-4" style="margin-top:8px;">
+
+      <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener"
+         class="card reveal-on-scroll anim-d1"
+         style="padding:28px 20px;text-align:center;text-decoration:none;transition:transform .2s;">
+        <div style="font-size:38px;margin-bottom:12px;">▶</div>
+        <div style="font-size:14px;font-weight:700;color:var(--t-light);margin-bottom:4px;">YouTube</div>
+        <div style="font-size:11px;color:var(--t-muted-d);">Sermons & Live Streams</div>
+        <div style="font-size:11px;color:var(--gold);margin-top:10px;font-weight:600;">Subscribe →</div>
+      </a>
+
+      <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener"
+         class="card reveal-on-scroll anim-d2"
+         style="padding:28px 20px;text-align:center;text-decoration:none;transition:transform .2s;">
+        <div style="font-size:38px;margin-bottom:12px;"><i class="ti ti-brand-instagram" style="font-size:36px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;"></i></div>
+        <div style="font-size:14px;font-weight:700;color:var(--t-light);margin-bottom:4px;">Instagram</div>
+        <div style="font-size:11px;color:var(--t-muted-d);">Photos & Reels</div>
+        <div style="font-size:11px;color:var(--gold);margin-top:10px;font-weight:600;">Follow →</div>
+      </a>
+
+      <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener"
+         class="card reveal-on-scroll anim-d3"
+         style="padding:28px 20px;text-align:center;text-decoration:none;transition:transform .2s;">
+        <div style="font-size:38px;margin-bottom:12px;"><i class="ti ti-brand-facebook" style="font-size:36px;color:#1877f2;"></i></div>
+        <div style="font-size:14px;font-weight:700;color:var(--t-light);margin-bottom:4px;">Facebook</div>
+        <div style="font-size:11px;color:var(--t-muted-d);">Events & Updates</div>
+        <div style="font-size:11px;color:var(--gold);margin-top:10px;font-weight:600;">Like Page →</div>
+      </a>
+
+      <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
+         class="card reveal-on-scroll anim-d4"
+         style="padding:28px 20px;text-align:center;text-decoration:none;transition:transform .2s;">
+        <div style="font-size:38px;margin-bottom:12px;"><i class="ti ti-brand-whatsapp" style="font-size:36px;color:#25d366;"></i></div>
+        <div style="font-size:14px;font-weight:700;color:var(--t-light);margin-bottom:4px;">WhatsApp</div>
+        <div style="font-size:11px;color:var(--t-muted-d);">Direct Message</div>
+        <div style="font-size:11px;color:var(--gold);margin-top:10px;font-weight:600;">Message →</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Prayer request — LIGHT -->
+<section class="section s-l2" aria-labelledby="prayer-heading">
+  <div class="container" style="max-width:620px;margin:0 auto;text-align:center;">
+    <p class="section-tag reveal-on-scroll" style="justify-content:center;">Prayer</p>
+    <h2 class="section-heading reveal-on-scroll anim-d1" id="prayer-heading" style="margin-bottom:14px;">Need <em>Prayer?</em></h2>
+    <p class="reveal-on-scroll anim-d2" style="font-size:15px;color:var(--t-muted-l);line-height:1.8;margin-bottom:32px;">
+      We believe in the power of prayer. Send us your request and our pastoral team will pray for you personally.
+    </p>
+    <div class="reveal-on-scroll anim-d3" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/919444345102?text=Prayer%20Request%3A%20" target="_blank" rel="noopener" class="btn btn--gold">
+        <i class="ti ti-brand-whatsapp" style="font-size:14px;"></i> Send Prayer Request
+      </a>
+      <a href="mailto:enjctondiarpet@gmail.com?subject=Prayer%20Request" class="btn btn--outline-dark">
+        <i class="ti ti-mail" style="font-size:14px;"></i> Email a Request
+      </a>
+    </div>
+  </div>
+</section>
 
 </main>
 
-  <footer class="footer">
+<!-- FOOTER -->
+<footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name"><span>ENJC</span> · Elim New Jerusalem Church</div>
+      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
       <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
       <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
       <div class="footer-social">
-        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-youtube"></i></a>
-        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank"><i class="ti ti-brand-instagram"></i></a>
-        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-facebook"></i></a>
-        <a href="https://wa.me/919444345102" class="social-icon" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
+        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
+        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
       </div>
     </div>
-    <div>
-      <div class="footer-col-title">Quick Links</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a><a href="about.html">About</a>
-        <a href="ministries.html">Ministries</a><a href="events.html">Events</a>
-        <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Bible Tools</div>
-      <div class="footer-links">
-        <a href="bible.html">Bible Reader</a>
-        <a href="imagegen.html">Scripture Cards</a>
-        <a href="events.html">Watch Live</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Service Times</div>
-      <div class="footer-links">
-        <a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a>
-        <a href="#">Friday · 11:00 AM – 1:30 PM</a>
-        <a href="#">Tuesday · 11:00 AM – 4:00 PM</a>
-        <a href="#">Night Prayer · 10:30 PM Daily</a>
-        <a href="#">Promise · 1st of every month</a>
-      </div>
-    </div>
+    <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
+    <div><div class="footer-col-title">Bible Tools</div><div class="footer-links"><a href="bible.html">Bible Reader</a><a href="imagegen.html">Scripture Cards</a><a href="events.html">Watch Live</a></div></div>
+    <div><div class="footer-col-title">Service Times</div><div class="footer-links"><a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a><a href="#">Friday · 11:00 AM – 1:30 PM</a><a href="#">Tuesday · 11:00 AM – 4:00 PM</a><a href="#">Night Prayer · 10:30 PM Daily</a><a href="#">Promise · 1st of every month</a></div></div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
     <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
   </div>
 </footer>
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
-<nav class="mob-nav">
-  <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item active"><i class="ti ti-mail"></i><span>Contact</span></a>
-  </div>
-</nav>
 
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+<nav class="mob-nav"><div class="mob-nav-inner">
+  <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
+  <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
+  <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
+  <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
+  <a href="contact.html" class="mob-item active"><i class="ti ti-mail"></i><span>Contact</span></a>
+</div></nav>
 
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
+<script src="js/site.js" defer></script>
 <script>
-/* Mobile nav toggle */
 (function(){
-  var btn = document.getElementById('mob-toggle');
-  var links = document.getElementById('nav-links');
-  if(!btn || !links) return;
-  btn.addEventListener('click', function(){
-    var open = links.classList.toggle('mob-open');
-    Object.assign(links.style, open ? {
-      display:'flex', flexDirection:'column', position:'absolute',
-      top:'60px', left:'0', right:'0', background:'#0a1628',
-      padding:'8px 0', borderBottom:'1px solid #1a2e50', zIndex:'300'
-    } : {display:'', position:'', flexDirection:''});
-  });
+  var els=document.querySelectorAll('.reveal-on-scroll');
+  if(!els.length||!window.IntersectionObserver){els.forEach(function(e){e.classList.add('is-visible','anim-in');});return;}
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('is-visible','anim-in');obs.unobserve(en.target);}});},{threshold:0,rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(e){obs.observe(e);});
+  setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1800);
+  var stb=document.getElementById('scroll-top-btn');
+  window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
+  var btn=document.getElementById('mob-toggle'),links=document.getElementById('nav-links');
+  if(btn&&links){btn.addEventListener('click',function(e){e.stopPropagation();links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});}
 })();
 </script>
 </body>
 </html>
-
-<script>
-/**
- * Collect form fields, build a WhatsApp deep-link message, and open it.
- * Name and message are required; other fields are optional.
- */
-function sendViaWhatsApp() {
-  const name    = document.getElementById('cf-name').value.trim();
-  const email   = document.getElementById('cf-email').value.trim();
-  const phone   = document.getElementById('cf-phone').value.trim();
-  const subject = document.getElementById('cf-subject').value.trim();
-  const message = document.getElementById('cf-msg').value.trim();
-
-  if (!name)    { alert('Please enter your name'); return; }
-  if (!message) { alert('Please enter your message'); return; }
-
-  // Build formatted WhatsApp message
-  let text = '*New Message from ENJC Website*%0A%0A';
-  text += `*Name:* ${encodeURIComponent(name)}%0A`;
-  if (email)   text += `*Email:* ${encodeURIComponent(email)}%0A`;
-  if (phone)   text += `*Phone:* ${encodeURIComponent(phone)}%0A`;
-  if (subject) text += `*Subject:* ${encodeURIComponent(subject)}%0A`;
-  text += `%0A*Message:*%0A${encodeURIComponent(message)}`;
-
-  window.open(`https://wa.me/919444345102?text=${text}`, '_blank', 'noopener');
-}
-</script>
-
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>

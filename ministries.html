@@ -1,124 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="images/logo/logo.png">
-  <link rel="apple-touch-icon" href="images/logo/logo.png">
-  <link rel="manifest" href="data/manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Our Ministries | ENJC</title>
-  <meta name="description" content="Ministries at ENJC — Youth, Women, Prayer, Worship, Children, and Outreach.">
-  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/ministries.html">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://elimnewjerusalem.github.io/church/ministries.html">
-  <meta property="og:title" content="Our Ministries | ENJC">
-  <meta property="og:description" content="Ministries at ENJC — Youth, Women, Prayer, Worship, Children, and Outreach.">
-  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Our Ministries | ENJC">
-  <meta name="twitter:description" content="Ministries at ENJC — Youth, Women, Prayer, Worship, Children, and Outreach.">
-  <meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-    <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/enjc-premium.css">
-  <link rel="stylesheet" href="css/mobile-ui-fixes.css">
-<script src="js/site.js" defer></script>
-<style>
-:root{
-  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
-  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
-  --cream:#f4f0e8;--cream-dark:#e8e3d8;
-  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
-  --border:#1a2e50;
-  /* map to main.css --color-* variables */
-  --color-bg:          #0a1628;
-  --color-bg-2:        #060e1a;
-  --color-bg-3:        #0d1e3a;
-  --color-text:        #f0e6c8;
-  --color-text-muted:  #8fa8c8;
-  --color-text-faint:  #5a7090;
-  --color-border:      #1a2e50;
-  --color-border-mid:  #1e3060;
-  --color-gold:        #c9a84c;
-  --color-gold-bg:     rgba(201,168,76,.10);
-  --color-gold-border: rgba(201,168,76,.28);
-  --font-heading:      'Cormorant Garamond','Playfair Display',Georgia,serif;
-}
-body{font-family:'DM Sans',sans-serif;}
-.navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
-.nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
-.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
-.nav-logo-text span{color:var(--gold);}
-.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
-.nav-links a{font-size:12px;color:#8fa8c8;padding:7px 11px;border-radius:6px;transition:all 0.2s;}
-.nav-links a:hover{color:var(--text-primary);}
-.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
-.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;transition:background 0.2s;white-space:nowrap;}
-.nav-cta:hover{background:var(--gold-light);}
-.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
-@media(max-width:900px){.navbar{padding:0 18px;}.nav-links,.nav-cta{display:none;}.nav-mobile-toggle{display:block;}}
-.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
-.footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
-.footer-brand-name span{color:var(--gold);}
-.footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
-.footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
-.footer-social{display:flex;gap:6px;margin-top:14px;}
-.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
-.social-icon:hover{border-color:var(--gold-dim);}
-.social-icon i{font-size:14px;color:var(--text-muted);}
-.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
-.footer-links{display:flex;flex-direction:column;gap:6px;}
-.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
-.footer-links a:hover{color:var(--gold);}
-.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
-.footer-copy{font-size:11px;color:var(--text-dim);}
-.footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
-.wa-float{position:fixed;bottom:76px;right:24px;z-index:150;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;}
-.wa-float:hover{transform:scale(1.08);}
-.wa-float i{font-size:22px;color:#fff;}
-#scroll-top-btn{position:fixed;bottom:76px;right:82px;z-index:150;width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;}
-#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
-#scroll-top-btn:hover{transform:scale(1.1);}
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;}
-.mob-nav-inner{display:flex;justify-content:space-around;}
-.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;}
-.mob-item i{font-size:20px;color:var(--text-dim);}
-.mob-item span{font-size:9px;color:var(--text-dim);}
-.mob-item.active i,.mob-item.active span{color:var(--gold);}
-@media(max-width:900px){body{padding-bottom:60px;}.mob-nav{display:block;}.wa-float{bottom:76px;}.footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:28px 20px 16px;}}
-@media(max-width:540px){.footer-grid{grid-template-columns:1fr;}}
-
-/* ── page-hero & section heading fixes ── */
-.page-hero{background:linear-gradient(170deg,var(--navy-mid) 0%,var(--navy) 100%);border-bottom:1px solid var(--border);padding:56px 0 48px;}
-.page-hero h1{font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--text-primary);margin:8px 0 10px;line-height:1.15;}
-.page-hero h1 em{color:var(--gold);font-style:italic;}
-.page-hero .container>p{font-size:14px;color:var(--text-muted);margin:0;}
-.page-hero .section-tag,.page-hero .section-tag::before{color:var(--gold);}
-.section-heading{font-family:var(--font-heading);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text-primary);margin:0 0 6px;}
-.section-heading em{color:var(--gold);font-style:italic;}
-.section-tag{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);}
-.section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
-.section-rule{width:40px;height:2px;background:var(--gold);margin:12px 0 24px;border-radius:2px;}
-.card{background:var(--navy-mid);border:0.5px solid var(--border);border-radius:12px;}
-body{background:var(--navy);color:var(--text-primary);}
-</style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ministries | ENJC — Elim New Jerusalem Church</title>
+<meta name="description" content="Explore ENJC ministries — Village Outreach, Sisters, Brothers, Youth, Children and Worship ministries in Tondiarpet, Chennai.">
+<link rel="canonical" href="https://elimnewjerusalem.github.io/church/ministries.html">
+<link rel="icon" type="image/png" href="images/logo/logo.png">
+<link rel="apple-touch-icon" href="images/logo/logo.png">
+<link rel="manifest" href="data/manifest.json">
+<meta property="og:title" content="Ministries | ENJC">
+<meta property="og:description" content="Explore ENJC ministries — Village, Sisters, Brothers, Youth and more.">
+<meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta property="og:url" content="https://elimnewjerusalem.github.io/church/ministries.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/enjc-design.css">
 </head>
 <body>
-  <nav class="navbar">
-  <a href="index.html" class="nav-logo" style="text-decoration:none;">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
-         onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
-    <div class="nav-logo-fallback" id="logo-fb">E</div>
+
+<!-- NAV -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
     <div>
-      <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
+      <div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div>
       <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
   </a>
@@ -132,266 +44,182 @@ body{background:var(--navy);color:var(--text-primary);}
     <a href="imagegen.html">Cards</a>
     <a href="contact.html">Contact</a>
   </div>
-  <a href="contact.html" class="nav-cta">
-    <i class="ti ti-map-pin" style="font-size:12px;"></i> Visit Us
-  </a>
-  <button class="nav-mobile-toggle" id="mob-toggle">
-    <i class="ti ti-menu-2"></i>
-  </button>
+  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
+  <button class="nav-mobile-toggle" id="mob-toggle"><i class="ti ti-menu-2"></i></button>
 </nav>
 
 <main>
 
-  <section class="page-hero" aria-labelledby="page-title">
-    <div class="container">
-      <p class="section-tag anim-fade-up">All Ministries</p>
-      <h1 id="page-title">Find Your <em>Place</em></h1>
-      <p>A ministry for every person at every stage of life.</p>
+<!-- Page Hero — dark -->
+<section class="page-hero s-d3">
+  <div class="container">
+    <p class="section-tag reveal-on-scroll">What We Do</p>
+    <h1 class="reveal-on-scroll anim-d1">Our <em>Ministries</em></h1>
+    <p class="reveal-on-scroll anim-d2">Serving God and community across Chennai and Tamil Nadu.</p>
+  </div>
+</section>
+
+<!-- Core Ministries — LIGHT -->
+<section class="section s-l1" aria-labelledby="core-heading">
+  <div class="container">
+    <p class="section-tag reveal-on-scroll">Core Ministries</p>
+    <h2 class="section-heading reveal-on-scroll anim-d1" id="core-heading">Serving <em>Every</em> Member</h2>
+    <p class="section-sub reveal-on-scroll anim-d2 on-light">Every person who walks through our doors finds a place to belong, grow, and serve.</p>
+    <div class="grid-3">
+
+      <article class="card on-light reveal-on-scroll anim-d1" style="padding:30px;transition:transform .2s,box-shadow .2s;">
+        <div style="width:56px;height:56px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;">🌾</div>
+        <h3 style="font-size:1.05rem;margin-bottom:8px;color:var(--t-dark);">Village Ministry</h3>
+        <p style="font-size:13px;color:var(--t-muted-l);line-height:1.7;margin-bottom:18px;">Reaching villages across Tamil Nadu with the Gospel through outreach teams. We go where the need is greatest.</p>
+        <a href="contact.html" class="btn btn--outline-dark" style="font-size:11px;padding:8px 16px;">Get Involved</a>
+      </article>
+
+      <article class="card on-light reveal-on-scroll anim-d2" style="padding:30px;transition:transform .2s,box-shadow .2s;">
+        <div style="width:56px;height:56px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;">🌸</div>
+        <h3 style="font-size:1.05rem;margin-bottom:8px;color:var(--t-dark);">Sisters Ministry</h3>
+        <p style="font-size:13px;color:var(--t-muted-l);line-height:1.7;margin-bottom:18px;">A dedicated ministry for sisters — prayer, fellowship and spiritual growth. Women strengthening one another in Christ.</p>
+        <a href="contact.html" class="btn btn--outline-dark" style="font-size:11px;padding:8px 16px;">Get Involved</a>
+      </article>
+
+      <article class="card on-light reveal-on-scroll anim-d3" style="padding:30px;transition:transform .2s,box-shadow .2s;">
+        <div style="width:56px;height:56px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;">🛡️</div>
+        <h3 style="font-size:1.05rem;margin-bottom:8px;color:var(--t-dark);">Brothers Ministry</h3>
+        <p style="font-size:13px;color:var(--t-muted-l);line-height:1.7;margin-bottom:18px;">Building men of God through the Word, prayer and accountability. Iron sharpening iron.</p>
+        <a href="contact.html" class="btn btn--outline-dark" style="font-size:11px;padding:8px 16px;">Get Involved</a>
+      </article>
+
+      <article class="card on-light reveal-on-scroll anim-d1" style="padding:30px;transition:transform .2s,box-shadow .2s;">
+        <div style="width:56px;height:56px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;">🎸</div>
+        <h3 style="font-size:1.05rem;margin-bottom:8px;color:var(--t-dark);">Worship Ministry</h3>
+        <p style="font-size:13px;color:var(--t-muted-l);line-height:1.7;margin-bottom:18px;">Leading the congregation into God's presence through music, song and praise. Spirit-led worship every service.</p>
+        <a href="contact.html" class="btn btn--outline-dark" style="font-size:11px;padding:8px 16px;">Get Involved</a>
+      </article>
+
+      <article class="card on-light reveal-on-scroll anim-d2" style="padding:30px;transition:transform .2s,box-shadow .2s;">
+        <div style="width:56px;height:56px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;">✨</div>
+        <h3 style="font-size:1.05rem;margin-bottom:8px;color:var(--t-dark);">Youth Ministry</h3>
+        <p style="font-size:13px;color:var(--t-muted-l);line-height:1.7;margin-bottom:18px;">Raising a generation of young believers on fire for God. Bible studies, outreaches and prayer for young people.</p>
+        <a href="contact.html" class="btn btn--outline-dark" style="font-size:11px;padding:8px 16px;">Get Involved</a>
+      </article>
+
+      <article class="card on-light reveal-on-scroll anim-d3" style="padding:30px;transition:transform .2s,box-shadow .2s;">
+        <div style="width:56px;height:56px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;">🧒</div>
+        <h3 style="font-size:1.05rem;margin-bottom:8px;color:var(--t-dark);">Children's Ministry</h3>
+        <p style="font-size:13px;color:var(--t-muted-l);line-height:1.7;margin-bottom:18px;">Planting God's Word in children's hearts from an early age. Fun, Bible-based learning every Sunday.</p>
+        <a href="contact.html" class="btn btn--outline-dark" style="font-size:11px;padding:8px 16px;">Get Involved</a>
+      </article>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="reveal-on-scroll section" aria-labelledby="ministries-heading">
-    <div class="container">
-      <h2 class="section-heading sr-only" id="ministries-heading">Ministry Cards</h2>
-      <div class="grid-3">
-        <article class="card ministry-card anim-roll-left anim-d1" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/youth.webp" alt="Youth Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Youth Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2a4a,#0d1e3a);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Youth Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Moving young people toward spiritual maturity through worship, Bible study, and community.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Ages 13–25</span>
-              <span class="badge badge--gold">Weekly meetings</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Youth+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card anim-fade-up anim-d2" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/women.webp" alt="Women's Fellowship" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Women's Fellowship</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#2d1a3a,#1a0d2e);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Women's Fellowship</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">A safe, warm space for women to grow in faith together through prayer and encouragement.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">All ages</span>
-              <span class="badge badge--gold">Bible study</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Women's+Fellowship" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card anim-roll-left anim-d3" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/prayer.webp" alt="Prayer Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Prayer Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2a1a,#0d1e0d);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Prayer Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">The heartbeat of ENJC. Interceding for individuals, families, and the city of Chennai daily.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Night Prayer 10:30</span>
-              <span class="badge badge--gold">Open to all</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Prayer+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card anim-fade-up anim-d4" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/worship.webp" alt="Worship Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Worship Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#2a1a0d,#1a0f05);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Worship Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Leading the congregation into God's presence through music, song, and anointed worship.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Every service</span>
-              <span class="badge badge--gold">All musicians</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Worship+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card anim-roll-left anim-d5" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/children.webp" alt="Children's Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Children's Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2a,#0d0d1e);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Children's Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Teaching children to know and love Jesus through Bible stories, worship, and fun activities.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Ages 4–12</span>
-              <span class="badge badge--gold">Every Sunday</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Children's+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card anim-fade-up anim-d6" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/outreach.webp" alt="Outreach Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Outreach Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#2a1a1a,#1e0d0d);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Outreach Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Taking the Gospel beyond our walls — into homes, streets, and communities of Chennai.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Evangelism</span>
-              <span class="badge badge--gold">Open to all</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Outreach+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-      </div>
-
-      <!-- CTA banner -->
-      <div class="card card--gold anim-wipe" style="margin-top:52px;padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+<!-- Outreach — DARK -->
+<section class="section s-d2" aria-labelledby="outreach-heading">
+  <div class="container">
+    <p class="section-tag reveal-on-scroll">Outreach</p>
+    <h2 class="section-heading reveal-on-scroll anim-d1" id="outreach-heading">Beyond the <em>Church Walls</em></h2>
+    <p class="section-sub reveal-on-scroll anim-d2">The Gospel is for everyone. ENJC actively reaches beyond our walls into communities, villages and media.</p>
+    <div class="grid-2" style="gap:20px;">
+      <article class="card reveal-on-scroll anim-d1" style="padding:32px;display:flex;gap:22px;align-items:flex-start;">
+        <div style="font-size:32px;flex-shrink:0;">📺</div>
         <div>
-          <h3 style="margin-bottom:8px;">Want to get involved?</h3>
-          <p style="font-size:14px;">Every ministry welcomes new members. WhatsApp us and we&#39;ll connect you with the right leader.</p>
+          <h3 style="font-size:1rem;color:var(--t-light);margin-bottom:8px;">Media Ministry</h3>
+          <p style="font-size:13px;color:var(--t-muted-d);line-height:1.7;">Live streaming on YouTube, Tamil & English shorts, sermon uploads, and WhatsApp broadcast — reaching thousands across Tamil Nadu and the world.</p>
+          <a href="events.html" class="btn btn--gold" style="margin-top:14px;font-size:11px;padding:8px 16px;">Watch Live</a>
         </div>
-        <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+get+involved+in+ENJC"
-           target="_blank" rel="noopener" class="btn btn--gold">Get Involved →</a>
-      </div>
-
+      </article>
+      <article class="card reveal-on-scroll anim-d2" style="padding:32px;display:flex;gap:22px;align-items:flex-start;">
+        <div style="font-size:32px;flex-shrink:0;">🚐</div>
+        <div>
+          <h3 style="font-size:1rem;color:var(--t-light);margin-bottom:8px;">Village Gospel Teams</h3>
+          <p style="font-size:13px;color:var(--t-muted-d);line-height:1.7;">Dedicated teams travel to villages around Chennai and Tamil Nadu to preach, pray for the sick, and establish small prayer groups in homes.</p>
+          <a href="contact.html" class="btn btn--gold" style="margin-top:14px;font-size:11px;padding:8px 16px;">Join a Team</a>
+        </div>
+      </article>
+      <article class="card reveal-on-scroll anim-d3" style="padding:32px;display:flex;gap:22px;align-items:flex-start;">
+        <div style="font-size:32px;flex-shrink:0;">🤲</div>
+        <div>
+          <h3 style="font-size:1rem;color:var(--t-light);margin-bottom:8px;">Social Care</h3>
+          <p style="font-size:13px;color:var(--t-muted-d);line-height:1.7;">Feeding the hungry, supporting widows and orphans — demonstrating Christ's love through practical acts of mercy in our neighbourhood.</p>
+          <a href="contact.html" class="btn btn--gold" style="margin-top:14px;font-size:11px;padding:8px 16px;">Partner With Us</a>
+        </div>
+      </article>
+      <article class="card reveal-on-scroll anim-d4" style="padding:32px;display:flex;gap:22px;align-items:flex-start;">
+        <div style="font-size:32px;flex-shrink:0;">🏠</div>
+        <div>
+          <h3 style="font-size:1rem;color:var(--t-light);margin-bottom:8px;">Home Cell Groups</h3>
+          <p style="font-size:13px;color:var(--t-muted-d);line-height:1.7;">Small prayer and Bible study groups meeting in homes across Tondiarpet and nearby areas — building deep community and discipleship.</p>
+          <a href="contact.html" class="btn btn--gold" style="margin-top:14px;font-size:11px;padding:8px 16px;">Find a Group</a>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- CTA — LIGHT -->
+<section class="section s-l1" aria-label="Get involved">
+  <div class="container" style="text-align:center;max-width:640px;margin:0 auto;">
+    <p class="section-tag reveal-on-scroll" style="justify-content:center;">Join Us</p>
+    <h2 class="section-heading reveal-on-scroll anim-d1" style="margin-bottom:16px;">Ready to <em>Serve?</em></h2>
+    <p class="reveal-on-scroll anim-d2" style="font-size:15px;line-height:1.8;color:var(--t-muted-l);margin-bottom:32px;">
+      Every member has a gift. Every gift has a place. Come discover how God wants to use you in ENJC.
+    </p>
+    <div class="reveal-on-scroll anim-d3" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn--gold">Contact Us Today</a>
+      <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--outline-dark">WhatsApp Us</a>
+    </div>
+  </div>
+</section>
 
 </main>
 
-  <footer class="footer">
+<!-- FOOTER -->
+<footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name"><span>ENJC</span> · Elim New Jerusalem Church</div>
+      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
       <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
       <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
       <div class="footer-social">
-        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-youtube"></i></a>
-        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank"><i class="ti ti-brand-instagram"></i></a>
-        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-facebook"></i></a>
-        <a href="https://wa.me/919444345102" class="social-icon" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
+        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
+        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
       </div>
     </div>
-    <div>
-      <div class="footer-col-title">Quick Links</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a><a href="about.html">About</a>
-        <a href="ministries.html">Ministries</a><a href="events.html">Events</a>
-        <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Bible Tools</div>
-      <div class="footer-links">
-        <a href="bible.html">Bible Reader</a>
-        <a href="imagegen.html">Scripture Cards</a>
-        <a href="events.html">Watch Live</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Service Times</div>
-      <div class="footer-links">
-        <a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a>
-        <a href="#">Friday · 11:00 AM – 1:30 PM</a>
-        <a href="#">Tuesday · 11:00 AM – 4:00 PM</a>
-        <a href="#">Night Prayer · 10:30 PM Daily</a>
-        <a href="#">Promise · 1st of every month</a>
-      </div>
-    </div>
+    <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
+    <div><div class="footer-col-title">Bible Tools</div><div class="footer-links"><a href="bible.html">Bible Reader</a><a href="imagegen.html">Scripture Cards</a><a href="events.html">Watch Live</a></div></div>
+    <div><div class="footer-col-title">Service Times</div><div class="footer-links"><a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a><a href="#">Friday · 11:00 AM – 1:30 PM</a><a href="#">Tuesday · 11:00 AM – 4:00 PM</a><a href="#">Night Prayer · 10:30 PM Daily</a><a href="#">Promise · 1st of every month</a></div></div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
     <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
   </div>
 </footer>
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
-<nav class="mob-nav">
-  <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item active"><i class="ti ti-home"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
-  </div>
-</nav>
 
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+<nav class="mob-nav"><div class="mob-nav-inner">
+  <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
+  <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
+  <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
+  <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
+  <a href="contact.html" class="mob-item active"><i class="ti ti-mail"></i><span>Contact</span></a>
+</div></nav>
 
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible','anim-in'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
+<script src="js/site.js" defer></script>
 <script>
-/* Mobile nav toggle */
 (function(){
-  var btn = document.getElementById('mob-toggle');
-  var links = document.getElementById('nav-links');
-  if(!btn || !links) return;
-  btn.addEventListener('click', function(){
-    var open = links.classList.toggle('mob-open');
-    Object.assign(links.style, open ? {
-      display:'flex', flexDirection:'column', position:'absolute',
-      top:'60px', left:'0', right:'0', background:'#0a1628',
-      padding:'8px 0', borderBottom:'1px solid #1a2e50', zIndex:'300'
-    } : {display:'', position:'', flexDirection:''});
-  });
+  var els=document.querySelectorAll('.reveal-on-scroll');
+  if(!els.length||!window.IntersectionObserver){els.forEach(function(e){e.classList.add('is-visible','anim-in');});return;}
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('is-visible','anim-in');obs.unobserve(en.target);}});},{threshold:0,rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(e){obs.observe(e);});
+  setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1800);
+  var stb=document.getElementById('scroll-top-btn');
+  window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
+  var btn=document.getElementById('mob-toggle'),links=document.getElementById('nav-links');
+  if(btn&&links){btn.addEventListener('click',function(e){e.stopPropagation();links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});}
 })();
 </script>
 </body>
 </html>
-
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible','anim-in'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
-</body></html>

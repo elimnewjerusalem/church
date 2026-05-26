@@ -1,142 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="images/logo/logo.png">
-  <link rel="apple-touch-icon" href="images/logo/logo.png">
-  <link rel="manifest" href="data/manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Live & Events | ENJC</title>
-  <meta name="description" content="ENJC live streams, recent services, verse reels, and community testimonials.">
-  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/events.html">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://elimnewjerusalem.github.io/church/events.html">
-  <meta property="og:title" content="Live & Events | ENJC">
-  <meta property="og:description" content="ENJC live streams, recent services, verse reels, and community testimonials.">
-  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Live & Events | ENJC">
-  <meta name="twitter:description" content="ENJC live streams, recent services, verse reels, and community testimonials.">
-  <meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-    <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/enjc-premium.css">
-  <link rel="stylesheet" href="css/events.css">
-  <link rel="stylesheet" href="css/mobile-ui-fixes.css">
-<script src="js/site.js" defer></script>
-<style>
-:root{
-  --navy:#0a1628;--navy-dark:#060e1a;--navy-mid:#0d1e3a;--navy-light:#112550;
-  --gold:#c9a84c;--gold-light:#e0c06a;--gold-dim:#8a6f30;
-  --cream:#f4f0e8;--cream-dark:#e8e3d8;
-  --text-primary:#f0e6c8;--text-muted:#5a7090;--text-dim:#3a4f6a;
-  --border:#1a2e50;
-  /* map to main.css --color-* variables */
-  --color-bg:          #0a1628;
-  --color-bg-2:        #060e1a;
-  --color-bg-3:        #0d1e3a;
-  --color-text:        #f0e6c8;
-  --color-text-muted:  #8fa8c8;
-  --color-text-faint:  #5a7090;
-  --color-border:      #1a2e50;
-  --color-border-mid:  #1e3060;
-  --color-gold:        #c9a84c;
-  --color-gold-bg:     rgba(201,168,76,.10);
-  --color-gold-border: rgba(201,168,76,.28);
-  --font-heading:      'Cormorant Garamond','Playfair Display',Georgia,serif;
-}
-body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-primary);}
-.navbar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{height:44px;width:auto;max-width:120px;object-fit:contain;display:block;}
-.nav-logo-fallback{width:36px;height:36px;border-radius:8px;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif;flex-shrink:0;}
-.nav-logo-text{font-size:13px;font-weight:500;color:var(--text-primary);}
-.nav-logo-text span{color:var(--gold);}
-.nav-logo-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.nav-links{display:flex;gap:2px;align-items:center;flex:1;justify-content:center;}
-.nav-links a{font-size:12px;color:#8fa8c8;padding:7px 11px;border-radius:6px;transition:all 0.2s;}
-.nav-links a:hover{color:var(--text-primary);}
-.nav-links a.active{color:#f5c842!important;background:rgba(245,200,66,0.12);border-radius:6px;font-weight:600;}
-.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;padding:8px 18px;border-radius:7px;display:flex;align-items:center;gap:5px;transition:background 0.2s;white-space:nowrap;}
-.nav-cta:hover{background:var(--gold-light);}
-.nav-mobile-toggle{display:none;color:var(--text-primary);font-size:22px;background:none;border:none;cursor:pointer;}
-@media(max-width:900px){.navbar{padding:0 18px;}.nav-links,.nav-cta{display:none;}.nav-mobile-toggle{display:block;}}
-.footer{background:var(--navy-dark);border-top:1px solid var(--border);padding:36px 40px 20px;}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}
-.footer-brand-name{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;}
-.footer-brand-name span{color:var(--gold);}
-.footer-tagline{font-size:11px;color:var(--text-dim);font-style:italic;margin-bottom:12px;}
-.footer-addr{font-size:11px;color:var(--text-dim);line-height:1.7;}
-.footer-social{display:flex;gap:6px;margin-top:14px;}
-.social-icon{width:30px;height:30px;border-radius:7px;background:var(--navy-mid);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;}
-.social-icon:hover{border-color:var(--gold-dim);}
-.social-icon i{font-size:14px;color:var(--text-muted);}
-.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:500;margin-bottom:12px;}
-.footer-links{display:flex;flex-direction:column;gap:6px;}
-.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s;}
-.footer-links a:hover{color:var(--gold);}
-.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;}
-.footer-copy{font-size:11px;color:var(--text-dim);}
-.footer-verse{font-size:11px;color:var(--text-dim);font-style:italic;}
-.wa-float{position:fixed;bottom:76px;right:24px;z-index:150;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s;}
-.wa-float:hover{transform:scale(1.08);}
-.wa-float i{font-size:22px;color:#fff;}
-#scroll-top-btn{position:fixed;bottom:76px;right:82px;z-index:150;width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,0.4);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;}
-#scroll-top-btn.is-visible{opacity:1;pointer-events:all;}
-#scroll-top-btn:hover{transform:scale(1.1);}
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--navy);border-top:1px solid var(--border);padding:6px 0 8px;}
-.mob-nav-inner{display:flex;justify-content:space-around;}
-.mob-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;}
-.mob-item i{font-size:20px;color:var(--text-dim);}
-.mob-item span{font-size:9px;color:var(--text-dim);}
-.mob-item.active i,.mob-item.active span{color:var(--gold);}
-@media(max-width:900px){body{padding-bottom:60px;}.mob-nav{display:block;}.wa-float{bottom:76px;}.footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:28px 20px 16px;}}
-@media(max-width:540px){.footer-grid{grid-template-columns:1fr;}}
-
-/* ── Events page layout & padding fixes ── */
-.page-hero{background:linear-gradient(170deg,var(--navy-mid) 0%,var(--navy) 100%);border-bottom:1px solid var(--border);padding:56px 0 48px;}
-.page-hero h1{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--text-primary);margin:8px 0 10px;line-height:1.15;}
-.page-hero h1 em{color:var(--gold);font-style:italic;}
-.page-hero p{font-size:14px;color:var(--text-muted);margin:0;}
-.page-hero .section-tag{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);}
-.page-hero .section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
-.section-heading{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text-primary);margin:0 0 6px;}
-.section-heading em{color:var(--gold);font-style:italic;}
-.section-tag{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);}
-.section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
-.section{padding:64px 0;}
-.section-alt{padding:64px 0;background:var(--navy-mid);}
-.section-sm{padding:48px 0;}
-.container{max-width:1100px;margin:0 auto;padding:0 32px;}
-@media(max-width:600px){.container{padding:0 18px;}.section,.section-alt{padding:40px 0;}.page-hero{padding:40px 0 32px;}}
-.card{background:var(--navy-mid);border:0.5px solid var(--border);border-radius:12px;}
-.btn--gold{background:var(--gold);color:var(--navy);font-size:13px;font-weight:600;padding:9px 20px;border-radius:7px;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;text-decoration:none;}
-.btn--gold:hover{background:var(--gold-light);}
-.btn--outline{background:transparent;color:var(--text-primary);font-size:13px;font-weight:600;padding:9px 20px;border-radius:7px;border:1px solid var(--border);display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;text-decoration:none;}
-.btn--outline:hover{border-color:var(--gold);color:var(--gold);}
-.divider{height:1px;background:var(--border);margin:0;}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:768px){.grid-3{grid-template-columns:1fr;}.grid-4{grid-template-columns:1fr;}}
-.section-sub{font-size:14px;color:var(--text-muted);margin:0 0 28px;max-width:600px;}
-.section-rule{width:40px;height:2px;background:var(--gold);margin:12px 0 24px;border-radius:2px;}
-</style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events & Sermons | ENJC</title>
+<meta name="description" content="Watch live streams, Sunday services and more.">
+<link rel="canonical" href="https://elimnewjerusalem.github.io/church/events.html">
+<link rel="icon" type="image/png" href="images/logo/logo.png">
+<link rel="apple-touch-icon" href="images/logo/logo.png">
+<link rel="manifest" href="data/manifest.json">
+<meta property="og:title" content="Events & Sermons | ENJC">
+<meta property="og:description" content="Watch live streams, Sunday services and more.">
+<meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<meta property="og:url" content="https://elimnewjerusalem.github.io/church/events.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/enjc-design.css">
+<link rel="stylesheet" href="css/events.css">
 </head>
 <body>
   <nav class="navbar">
-  <a href="index.html" class="nav-logo" style="text-decoration:none;">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC Logo" width="38" height="38"
-         onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex';">
-    <div class="nav-logo-fallback" id="logo-fb">E</div>
-    <div>
-      <div class="nav-logo-text"><span>ENJC</span> · Elim New Jerusalem Church</div>
-      <div class="nav-logo-sub">Tondiarpet, Chennai</div>
-    </div>
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
+    <div><div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div><div class="nav-logo-sub">Tondiarpet, Chennai</div></div>
   </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
@@ -148,12 +40,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
     <a href="imagegen.html">Cards</a>
     <a href="contact.html">Contact</a>
   </div>
-  <a href="contact.html" class="nav-cta">
-    <i class="ti ti-map-pin" style="font-size:12px;"></i> Visit Us
-  </a>
-  <button class="nav-mobile-toggle" id="mob-toggle">
-    <i class="ti ti-menu-2"></i>
-  </button>
+  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
+  <button class="nav-mobile-toggle" id="mob-toggle"><i class="ti ti-menu-2"></i></button>
 </nav>
 
 <main>
@@ -341,7 +229,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
             <p id="testimonial-text" class="testimonial__text" style="font-family:var(--font-heading);font-size:1.05rem;font-style:italic;color:var(--color-text);line-height:1.8;margin-bottom:16px;">
               &#8220;The Night Prayer meetings have completely transformed my prayer life. I feel God&#39;s presence so powerfully every time I attend.&#8221;
             </p>
-            <footer id="testimonial-author" style="font-size:12px;color:var(--color-text-faint);font-weight:600;">— ENJC Member</footer>
+            
           </blockquote>
         </div>
 
@@ -356,62 +244,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
 </main>
 
   <!-- Footer -->
-  <footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name"><span>ENJC</span> · Elim New Jerusalem Church</div>
-      <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
-      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
-      <div class="footer-social">
-        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-youtube"></i></a>
-        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank"><i class="ti ti-brand-instagram"></i></a>
-        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-facebook"></i></a>
-        <a href="https://wa.me/919444345102" class="social-icon" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Quick Links</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a><a href="about.html">About</a>
-        <a href="ministries.html">Ministries</a><a href="events.html">Events</a>
-        <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Bible Tools</div>
-      <div class="footer-links">
-        <a href="bible.html">Bible Reader</a>
-        <a href="imagegen.html">Scripture Cards</a>
-        <a href="events.html">Watch Live</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Service Times</div>
-      <div class="footer-links">
-        <a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a>
-        <a href="#">Friday · 11:00 AM – 1:30 PM</a>
-        <a href="#">Tuesday · 11:00 AM – 4:00 PM</a>
-        <a href="#">Night Prayer · 10:30 PM Daily</a>
-        <a href="#">Promise · 1st of every month</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
-    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
-  </div>
-</footer>
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
-<nav class="mob-nav">
-  <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item active"><i class="ti ti-calendar"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
-  </div>
-</nav>
+  
+
+
+
 
   <!-- JS: live detection — shows LIVE NOW or offline schedule card -->
   <script src="js/live-stream.js"></script>
@@ -446,6 +282,51 @@ body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-pr
       padding:'8px 0', borderBottom:'1px solid #1a2e50', zIndex:'300'
     } : {display:'', position:'', flexDirection:''});
   });
+})();
+</script>
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
+      <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
+      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
+      <div class="footer-social">
+        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
+        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
+      </div>
+    </div>
+    <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
+    <div><div class="footer-col-title">Bible Tools</div><div class="footer-links"><a href="bible.html">Bible Reader</a><a href="imagegen.html">Scripture Cards</a><a href="events.html">Watch Live</a></div></div>
+    <div><div class="footer-col-title">Service Times</div><div class="footer-links"><a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a><a href="#">Friday · 11:00 AM – 1:30 PM</a><a href="#">Tuesday · 11:00 AM – 4:00 PM</a><a href="#">Night Prayer · 10:30 PM Daily</a><a href="#">Promise · 1st of every month</a></div></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
+    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
+  </div>
+</footer>
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+<nav class="mob-nav"><div class="mob-nav-inner">
+  <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
+  <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
+  <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
+  <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
+  <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
+</div></nav>
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal-on-scroll');
+  if(els.length&&window.IntersectionObserver){
+    var obs=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible','anim-in');obs.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -20px 0px'});
+    els.forEach(function(e){obs.observe(e);});
+    setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1800);
+  }else{els.forEach(function(e){e.classList.add('is-visible','anim-in');});}
+  var stb=document.getElementById('scroll-top-btn');
+  if(stb)window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
+  var btn=document.getElementById('mob-toggle'),lnks=document.getElementById('nav-links');
+  if(btn&&lnks){btn.addEventListener('click',function(e){e.stopPropagation();lnks.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!lnks.contains(e.target)&&!btn.contains(e.target))lnks.classList.remove('mob-open');});}
 })();
 </script>
 </body></html>
