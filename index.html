@@ -183,26 +183,27 @@ img { display: block; }
 }
 .hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: 0; opacity: 0.45;
+  object-fit: cover; z-index: 0; opacity: 0.82;
 }
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(
-    120deg,
-    rgba(7,15,30,0.80) 0%,
-    rgba(7,15,30,0.55) 55%,
-    rgba(7,15,30,0.72) 100%
+    to right,
+    rgba(7,15,30,0.82) 0%,
+    rgba(7,15,30,0.55) 38%,
+    rgba(7,15,30,0.18) 62%,
+    rgba(7,15,30,0.10) 100%
   );
 }
 .hero-body {
   position: relative; z-index: 2;
-  width: 100%; max-width: 1200px; margin: 0 auto;
-  padding: 0 48px;
-  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  width: 100%; max-width: 1280px; margin: 0 auto;
+  padding: 0 40px 0 52px;
+  display: flex; align-items: center; justify-content: space-between; gap: 60px;
   padding-top: 60px; /* nav height */
 }
 /* LEFT */
-.hero-left { flex: 1; max-width: 560px; }
+.hero-left { flex: 1; max-width: 620px; padding-left: 8px; }
 .hero-eyebrow {
   display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
 }
@@ -213,7 +214,7 @@ img { display: block; }
 .hero-eyebrow-text { font-size: 10px; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase; font-weight: 600; }
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(46px, 6.5vw, 82px);
+  font-size: clamp(48px, 6.8vw, 88px);
   font-weight: 700; line-height: 1.05; color: #ffffff; margin-bottom: 16px;
   text-shadow: 0 2px 24px rgba(0,0,0,0.5);
 }
@@ -228,7 +229,7 @@ img { display: block; }
 }
 .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 /* RIGHT */
-.hero-right { flex-shrink: 0; width: 250px; }
+.hero-right { flex-shrink: 0; width: 280px; margin-right: 8px; }
 .event-card {
   background: rgba(10,22,40,0.88); backdrop-filter: blur(20px);
   border: 1px solid rgba(201,168,76,0.25);
@@ -239,10 +240,11 @@ img { display: block; }
   font-size: 9px; letter-spacing: 0.18em; color: var(--gold);
   text-transform: uppercase; font-weight: 700; margin-bottom: 14px;
 }
-.event-card-month { font-size: 9px; color: #4a6080; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; }
+.event-card-month { display: none; }
 .event-card-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 44px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px;
+  font-size: 22px; font-weight: 700; color: var(--gold); line-height: 1.3; margin-bottom: 6px;
+  letter-spacing: 0.02em;
 }
 .event-card-title { font-size: 14px; color: #e8f0fa; font-weight: 700; margin-bottom: 5px; }
 .event-card-detail { font-size: 11px; color: #4a6080; line-height: 1.6; }
@@ -328,17 +330,17 @@ img { display: block; }
    ABOUT  — LIGHT section
    ═══════════════════════════════════════════════════════════ */
 .about-grid {
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 52px; align-items: center;
 }
 .about-video-wrap {
-  position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+  position: relative; padding-bottom: 62%; height: 0; overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.22);
 }
 .about-video-wrap iframe {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  border: none; border-radius: 16px;
+  border: none; border-radius: 18px;
 }
 .video-caption { font-size: 11px; color: var(--text-muted-light); margin-top: 10px; text-align: center; }
 .about-pillars { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 24px; }
@@ -693,8 +695,7 @@ img { display: block; }
       <div class="event-card">
         <div class="event-card-label">Next Deliverance Meeting</div>
         <div>
-          <div class="event-card-month">June 2026</div>
-          <div class="event-card-date">14</div>
+          <div class="event-card-date">14 June 2026</div>
           <div class="event-card-title">Deliverance Meeting</div>
           <div class="event-card-detail">6:00 PM · Saturday<br>New Moon Day</div>
         </div>
@@ -760,7 +761,7 @@ img { display: block; }
 </div>
 
 <!-- ═══ ABOUT  (LIGHT) ═══ -->
-<section class="section s-light">
+<section class="section s-light" style="padding-left:52px;padding-right:48px;">
   <div class="about-grid">
     <div class="reveal anim-roll-left">
       <!-- autoplay=1&mute=1 → auto-plays on load; enablejsapi=0 for simplicity -->
