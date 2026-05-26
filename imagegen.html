@@ -60,6 +60,30 @@
 </head>
 <body>
 
+<!-- ENJC SITE NAV (compact) -->
+<nav class="navbar" style="position:sticky;top:0;z-index:900;background:rgba(7,15,30,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <img src="images/logo/logo.png" alt="ENJC" width="32" height="32" style="border-radius:6px;object-fit:contain;" onerror="this.style.display='none'">
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:700;color:#c9a84c;line-height:1;">ENJC</div>
+      <div style="font-size:9px;color:#4a6080;">Verse Studio</div>
+    </div>
+  </a>
+  <div style="display:flex;align-items:center;gap:2px;" id="nav-links">
+    <a href="index.html" style="font-size:11px;color:#6a85a8;padding:5px 10px;border-radius:5px;transition:color .2s;">Home</a>
+    <a href="about.html" style="font-size:11px;color:#6a85a8;padding:5px 10px;border-radius:5px;transition:color .2s;">About</a>
+    <a href="events.html" style="font-size:11px;color:#6a85a8;padding:5px 10px;border-radius:5px;transition:color .2s;">Events</a>
+    <a href="gallery.html" style="font-size:11px;color:#6a85a8;padding:5px 10px;border-radius:5px;transition:color .2s;">Gallery</a>
+    <a href="bible.html" style="font-size:11px;color:#6a85a8;padding:5px 10px;border-radius:5px;transition:color .2s;">Bible</a>
+    <a href="imagegen.html" style="font-size:11px;color:#f5c842;padding:5px 10px;border-radius:5px;background:rgba(245,200,66,0.1);font-weight:600;">Cards</a>
+    <a href="contact.html" style="font-size:11px;color:#6a85a8;padding:5px 10px;border-radius:5px;transition:color .2s;">Contact</a>
+  </div>
+  <a href="contact.html" style="background:#c9a84c;color:#070f1e;font-size:11px;font-weight:700;padding:7px 16px;border-radius:6px;display:flex;align-items:center;gap:4px;white-space:nowrap;">
+    📍 Visit Us
+  </a>
+  <button onclick="document.getElementById('nav-links').classList.toggle('mob-open')" style="display:none;background:none;border:none;color:#e8f0fa;font-size:20px;cursor:pointer;" id="mob-toggle">☰</button>
+</nav>
+
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="tb-logo">
@@ -446,12 +470,75 @@
 
 <div id="toast"></div>
 
-<a href="https://wa.me/919444345102" target="_blank" rel="noopener"
-   class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp"
-   style="position:fixed;bottom:80px;right:18px;z-index:800;width:48px;height:48px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 14px rgba(0,0,0,.3);text-decoration:none;">
-  💬
-</a>
+
 
 <script type="module" src="js/imagegen-main.js"></script>
+
+<!-- ENJC FOOTER (compact) -->
+<footer style="background:#070f1e;border-top:1px solid rgba(255,255,255,0.06);padding:32px 40px 20px;">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:28px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.06);">
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#c9a84c;margin-bottom:4px;">ENJC · Elim New Jerusalem Church</div>
+      <div style="font-size:11px;color:#3a5070;font-style:italic;margin-bottom:10px;">"Because you are precious in my sight" — Isaiah 43:4</div>
+      <div style="font-size:11px;color:#3a5070;line-height:1.8;margin-bottom:14px;">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
+      <div style="display:flex;gap:8px;">
+        <a href="https://www.youtube.com/@enjcmedia" target="_blank" rel="noopener" style="width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:14px;">▶</a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" style="width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:14px;">📸</a>
+        <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" style="width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:14px;">f</a>
+        <a href="https://wa.me/919444345102" target="_blank" rel="noopener" style="width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:14px;">💬</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#c9a84c;font-weight:700;margin-bottom:12px;">Quick Links</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <a href="index.html" style="font-size:11px;color:#3a5070;transition:color .2s;">Home</a>
+        <a href="about.html" style="font-size:11px;color:#3a5070;transition:color .2s;">About</a>
+        <a href="ministries.html" style="font-size:11px;color:#3a5070;transition:color .2s;">Ministries</a>
+        <a href="events.html" style="font-size:11px;color:#3a5070;transition:color .2s;">Events</a>
+        <a href="gallery.html" style="font-size:11px;color:#3a5070;transition:color .2s;">Gallery</a>
+        <a href="contact.html" style="font-size:11px;color:#3a5070;transition:color .2s;">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#c9a84c;font-weight:700;margin-bottom:12px;">Bible Tools</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <a href="bible.html" style="font-size:11px;color:#3a5070;transition:color .2s;">Bible Reader</a>
+        <a href="imagegen.html" style="font-size:11px;color:#c9a84c;font-weight:600;">Scripture Cards</a>
+        <a href="events.html" style="font-size:11px;color:#3a5070;transition:color .2s;">Watch Live</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#c9a84c;font-weight:700;margin-bottom:12px;">Service Times</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <span style="font-size:11px;color:#3a5070;">Sunday · 5:30 / 8:30 AM / 12 PM</span>
+        <span style="font-size:11px;color:#3a5070;">Friday · 11:00 AM – 1:30 PM</span>
+        <span style="font-size:11px;color:#3a5070;">Night Prayer · 10:30 PM Daily</span>
+        <span style="font-size:11px;color:#3a5070;">Promise · 1st of every month</span>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:16px auto 0;display:flex;justify-content:space-between;align-items:center;">
+    <div style="font-size:11px;color:#2a3a50;">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
+    <div style="font-size:11px;color:#2a3a50;font-style:italic;">Built with ❤️ for the Kingdom of God</div>
+  </div>
+</footer>
+<a href="https://wa.me/919444345102" target="_blank" rel="noopener" title="WhatsApp"
+   style="position:fixed;bottom:80px;right:22px;z-index:800;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);font-size:22px;text-decoration:none;">💬</a>
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})"
+   style="position:fixed;bottom:80px;right:78px;z-index:800;width:42px;height:42px;border-radius:50%;background:#c9a84c;border:none;display:none;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:#070f1e;box-shadow:0 4px 16px rgba(201,168,76,.35);"
+   id="scroll-top-btn">↑</button>
+<nav style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:850;background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);" class="mob-nav">
+  <div style="display:flex;">
+    <a href="index.html" style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:#3a5070;gap:3px;text-decoration:none;">🏠<span>Home</span></a>
+    <a href="bible.html" style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:#3a5070;gap:3px;text-decoration:none;">📖<span>Bible</span></a>
+    <a href="imagegen.html" style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:#c9a84c;gap:3px;text-decoration:none;">🖼<span>Cards</span></a>
+    <a href="events.html" style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:#3a5070;gap:3px;text-decoration:none;">📺<span>Events</span></a>
+    <a href="contact.html" style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:#3a5070;gap:3px;text-decoration:none;">✉️<span>Contact</span></a>
+  </div>
+</nav>
+<script>
+var stb=document.getElementById('scroll-top-btn');
+if(stb)window.addEventListener('scroll',function(){stb.style.display=window.scrollY>400?'flex':'none';});
+</script>
 </body>
 </html>
