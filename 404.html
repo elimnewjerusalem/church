@@ -6,7 +6,7 @@
   <title>Page Not Found | ENJC</title>
   <link rel="icon" type="image/png" href="images/logo/logo.png">
   <link rel="manifest" href="data/manifest.json">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/enjc-design.css">
   <link rel="stylesheet" href="css/enjc-premium.css">
   <link rel="stylesheet" href="css/design-upgrade.css">
   <link rel="stylesheet" href="css/mobile-ux-fixes.css">
@@ -139,5 +139,44 @@
 <script src="js/mobile-ux-fixes.js" defer></script>
 <script src="js/design-upgrade.js" defer></script>
 
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
+      <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
+      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
+      <div class="footer-social">
+        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
+        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
+      </div>
+    </div>
+    <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
+    <div><div class="footer-col-title">Bible Tools</div><div class="footer-links"><a href="bible.html">Bible Reader</a><a href="imagegen.html">Scripture Cards</a><a href="events.html">Watch Live</a></div></div>
+    <div><div class="footer-col-title">Service Times</div><div class="footer-links"><a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a><a href="#">Friday · 11:00 AM – 1:30 PM</a><a href="#">Tuesday · 11:00 AM – 4:00 PM</a><a href="#">Night Prayer · 10:30 PM Daily</a><a href="#">Promise · 1st of every month</a></div></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
+    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
+  </div>
+</footer>
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+<nav class="mob-nav"><div class="mob-nav-inner">
+  <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
+  <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
+  <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
+  <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
+  <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
+</div></nav>
+<script>
+(function(){
+  var stb=document.getElementById('scroll-top-btn');
+  if(stb)window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
+  var btn=document.getElementById('mob-toggle'),lnks=document.getElementById('nav-links');
+  if(btn&&lnks){btn.addEventListener('click',function(e){e.stopPropagation();lnks.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!lnks.contains(e.target)&&!btn.contains(e.target))lnks.classList.remove('mob-open');});}
+})();
+</script>
 </body>
 </html>

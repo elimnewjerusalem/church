@@ -26,6 +26,7 @@ const SHELL_ASSETS = [
   '/church/css/design-upgrade.css',
   '/church/css/imagegen.css',
   '/church/css/events.css',
+  '/church/css/bible.css',
   '/church/js/site.js',
   '/church/js/bible.js',
   '/church/js/events.js',
