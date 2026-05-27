@@ -692,3 +692,6 @@ export function pickPhoto(){
   // Placeholder for photo picker
   alert('Photo picker not implemented yet');
 }
+
+// ── AUTO-INIT on page load ────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => { initStudio(); });

@@ -1041,32 +1041,49 @@ export async function biSelectCh(ch){
   const vl = g('bi-v-list'); if(vl) vl.innerHTML='';
   const vld = g('bi-v-loading'); if(vld) vld.style.display='block';
 
+  // Load local Tamil data first — show immediately without waiting for API
   const localTexts = await getLocalTamilChapter(BI.book.id, ch) || [];
-  const englishPromise = fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
-    .then(r=>r.ok?r.json():null)
-    .catch(()=>null);
-
-  const englishData = await englishPromise;
   if(vld) vld.style.display='none';
 
-  const verses = englishData?.verses||[];
-  const versesToShow = verses.length ? verses : localTexts.map((text,i)=>({verse:i+1,text}));
-  if(vl) vl.innerHTML = versesToShow.map(v=>{
-    const tamilText = localTexts[v.verse-1] || '';
-    const displayText = tamilText || v.text.trim();
-    const clickText = v.text?.trim() || tamilText || '';
-    const safe = encodeURIComponent(clickText);
-    return `
-      <div class="vi" onclick="biUseVerse('${BI.book.id}',${ch},${v.verse},decodeURIComponent('${safe}'),'${BI.book.en}')"
-           style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
-        <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
-        ${displayText}
-      </div>`;
-  }).join('');
-
-  if(!verses.length && !localTexts.length){
-    if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
+  function renderVerseList(texts, enVerses){
+    const versesToShow = enVerses.length
+      ? enVerses
+      : texts.map((text,i)=>({verse:i+1,text}));
+    if(!versesToShow.length){
+      if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
+      return;
+    }
+    if(vl) vl.innerHTML = versesToShow.map(v=>{
+      const tamilText = texts[v.verse-1] || '';
+      const displayText = tamilText || v.text?.trim() || '';
+      const clickText = v.text?.trim() || tamilText || '';
+      const safe = encodeURIComponent(clickText);
+      return `
+        <div class="vi" onclick="biUseVerse('${BI.book.id}',${ch},${v.verse},decodeURIComponent('${safe}'),'${BI.book.en}')"
+             style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:11px;color:var(--tx2)">
+          <span style="color:var(--gd);font-size:10px;font-weight:600">${v.verse}.</span>
+          ${displayText}
+        </div>`;
+    }).join('');
   }
+
+  // Show Tamil verses immediately if local data available
+  if(localTexts.length){
+    renderVerseList(localTexts, []);
+  }
+
+  // Fetch English in background and enhance display (non-blocking)
+  fetch(`https://bible-api.com/${BI.book.id}+${ch}?translation=kjv`)
+    .then(r=>r.ok?r.json():null)
+    .catch(()=>null)
+    .then(englishData=>{
+      const verses = englishData?.verses||[];
+      if(verses.length){
+        renderVerseList(localTexts, verses);
+      } else if(!localTexts.length){
+        if(vl) vl.innerHTML='<div style="padding:12px;color:var(--tx3);font-size:11px">Could not load — check connection.</div>';
+      }
+    });
 }
 
 export function biBackCh(){
