@@ -19,7 +19,7 @@
   // → HTTP referrers → add: elimnewjerusalem.github.io/*
   // SECURITY: Set your YouTube Data API v3 key here.
   // Restrict it in Google Cloud Console to your GitHub Pages domain to prevent abuse.
-  const YT_API_KEY = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+  const YT_API_KEY = '';
   const CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 
   const PL = {
@@ -98,6 +98,7 @@
   ────────────────────────────── */
 
   async function ytFetch(endpoint, params) {
+    if (!YT_API_KEY) return null;  // No API key — skip, use local fallback
     const qs = new URLSearchParams({ ...params, key: YT_API_KEY }).toString();
     try {
       const res  = await fetch(`https://www.googleapis.com/youtube/v3/${endpoint}?${qs}`);
@@ -496,11 +497,11 @@
 
     // Use API results; fall back to events.json if API returned nothing
     const liveFinal        = lives.length        ? lives        : jsonVideos(jsonData?.recentStreams, 'live');
-    const sundayFinal      = sunday.length        ? sunday       : jsonVideos(jsonData?.events?.filter(e => e.topic === 'worship').slice(0, 1), 'sunday');
-    const fridayFinal      = friday.length        ? friday       : jsonVideos(jsonData?.events?.filter(e => e.topic === 'prayer').slice(0, 1), 'friday');
-    const promiseFinal     = promise.length       ? promise      : [];
-    const deliveranceFinal = deliverance.length   ? deliverance  : [];
-    const testimonyFinal   = testimony.length     ? testimony    : [];
+    const sundayFinal      = sunday.length        ? sunday       : jsonVideos((jsonData?.recentStreams || []).filter(e => e.topic === 'worship').slice(0, 1), 'sunday');
+    const fridayFinal      = friday.length        ? friday       : jsonVideos((jsonData?.recentStreams || []).filter(e => e.topic === 'prayer').slice(0, 1), 'friday');
+    const promiseFinal     = promise.length       ? promise      : jsonVideos((jsonData?.recentStreams || []).slice(0, 1), 'promise');
+    const deliveranceFinal = deliverance.length   ? deliverance  : jsonVideos(jsonData?.deliverance, 'deliverance');
+    const testimonyFinal   = testimony.length     ? testimony    : jsonVideos(jsonData?.testimony,   'testimony');
     const shortsFinal      = shorts.length        ? shorts       : jsonVideos(jsonData?.verseReels, 'shorts');
     const popularFinal     = mostWatched.length   ? mostWatched  : jsonVideos(jsonData?.mostWatched, 'popular');
 
