@@ -59,7 +59,7 @@ export function draw(){
 
   if(ST.showWM){
     const wmName=(g('wm-name')?.value||'ELIM NEW JERUSALEM CHURCH').toUpperCase();
-    const wmSub=g('wm-sub')?.value||'110e, Elaya Street, Tondiarpet, Chennai, 600 081';
+    const wmSub=g('wm-sub')?.value||'No.110E, Elaya Street, Tondiarpet, Chennai, 600 081';
 
     // Header dark overlay
     const hg=ctx.createLinearGradient(0,0,0,HDR*1.3);

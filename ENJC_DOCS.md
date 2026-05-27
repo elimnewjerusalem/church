@@ -27,7 +27,7 @@
 **Location:** No.110E, Ellaya Mudali Street, Tondiarpet, Chennai – 600 081  
 **Pastor:** Pastor A. Karthik Daniel  
 **Phone:** +91 94443 45102  
-**Email:** enjcofficial@gmail.com  
+**Email:** enjctondiarpet@gmail.com  
 **Hosting:** GitHub Pages — `https://elimnewjerusalem.github.io/church/`  
 **YouTube:** `https://www.youtube.com/@elimnewjerusalemchurch`  
 **WhatsApp:** `https://wa.me/919444345102`
