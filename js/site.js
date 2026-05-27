@@ -177,3 +177,37 @@ document.addEventListener('DOMContentLoaded',function(){
     })();
   })();
 });
+
+/* ── Mouse-tracking glow (page-hero) ── */
+(function(){
+  var sec=document.querySelector('.page-hero');
+  var cv=document.getElementById('hero-glow-cv');
+  if(!sec||!cv)return;
+  cv.width=sec.offsetWidth;cv.height=sec.offsetHeight;
+  var ctx=cv.getContext('2d');
+  var mx=-999,my=sec.offsetHeight/2,active=false;
+  var cx=-999,cy=sec.offsetHeight/2,alpha=0,hue=40;
+  sec.addEventListener('mousemove',function(e){
+    var r=sec.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;active=true;
+  });
+  sec.addEventListener('mouseleave',function(){active=false;});
+  (function draw(){
+    cx+=(mx-cx)*0.07;cy+=(my-cy)*0.07;
+    alpha+=((active?1:0)-alpha)*0.05;
+    hue=(hue+0.4)%360;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    if(alpha>0.01){
+      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,280);
+      g.addColorStop(0,'hsla('+hue+',70%,65%,'+(alpha*0.18)+')');
+      g.addColorStop(0.4,'hsla('+hue+',60%,50%,'+(alpha*0.06)+')');
+      g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.fillRect(0,0,cv.width,cv.height);
+      /* secondary lobe */
+      var g2=ctx.createRadialGradient(cx,cy,0,cx,cy,280*0.4);
+      g2.addColorStop(0,'hsla('+((hue+120)%360)+',90%,70%,'+(alpha*0.08)+')');
+      g2.addColorStop(1,'transparent');
+      ctx.fillStyle=g2;ctx.fillRect(0,0,cv.width,cv.height);
+    }
+    requestAnimationFrame(draw);
+  })();
+})();
