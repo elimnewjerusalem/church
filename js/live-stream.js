@@ -7,7 +7,9 @@
 // SECURITY: Restrict this key in Google Cloud Console →
 // APIs & Services → Credentials → API key → Application restrictions
 // Set HTTP referrer to: elimnewjerusalem.github.io/*
-const YT_API_KEY   = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+// SECURITY: Set your YouTube Data API v3 key here.
+// Restrict it in Google Cloud Console to your GitHub Pages domain to prevent abuse.
+const YT_API_KEY   = '';
 const MAIN_CHANNEL_ID   = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 // SHORTS_CHANNEL_ID removed — same as MAIN_CHANNEL_ID, no separate API call needed
 

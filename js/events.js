@@ -17,7 +17,9 @@
 
   // SECURITY: Restrict in Google Cloud Console → APIs → Credentials
   // → HTTP referrers → add: elimnewjerusalem.github.io/*
-  const YT_API_KEY = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+  // SECURITY: Set your YouTube Data API v3 key here.
+  // Restrict it in Google Cloud Console to your GitHub Pages domain to prevent abuse.
+  const YT_API_KEY = '';
   const CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 
   const PL = {
@@ -469,7 +471,7 @@
     // Load events.json for testimonials fallback
     let jsonData = null;
     try {
-      const r = await fetch('data/events.json').catch(() => fetch('events.json'));
+      const r = await fetch('data/events.json').catch(() => fetch('./data/events.json'));
       if (r.ok) jsonData = await r.json();
     } catch {}
     initTestimonials(jsonData?.testimonials || []);

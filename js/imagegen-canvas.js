@@ -1,5 +1,6 @@
+import { g, SIZES, ST, FONTS, QUICK_VERSES } from "./imagegen-data.js";
 // ── DRAW ─────────────────────────────────────────────────────────
-window.roundRect = function(ctx, x, y, w, h, r) {
+export function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
   ctx.lineTo(x + w - r, y);
@@ -13,7 +14,7 @@ window.roundRect = function(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-window.draw = function(){
+export function draw(){
   const cv=g('igcv');if(!cv)return;
   const sz=SIZES[ST.sz]||SIZES['9:16'];
   const W=sz.w, H=sz.h;
@@ -123,7 +124,6 @@ window.draw = function(){
     ctx.fillStyle='rgba(255,255,255,.92)';
     // Clip text to max width if needed
     ctx.save();
-    ctx.beginPath();
     ctx.rect(NX, LY, maxTextW, LSZ);
     ctx.clip();
     ctx.fillText(wmName,NX,LY+LSZ*.46);
@@ -189,7 +189,6 @@ window.draw = function(){
   ctx.font=`500 ${ytFSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
   ctx.save();
-  ctx.beginPath();
   ctx.rect(ytStartX+ICW+Math.round(W*0.018), YTY-ICH, maxFooterW-(ytStartX+ICW), ICH*1.5);
   ctx.clip();
   ctx.fillText(ytHandle,ytStartX+ICW+Math.round(W*0.018),YTY);
@@ -224,7 +223,6 @@ window.draw = function(){
   ctx.font=`500 ${igFSZ}px Inter,sans-serif`;
   ctx.fillStyle='rgba(255,255,255,.8)';ctx.textAlign='left';
   ctx.save();
-  ctx.beginPath();
   ctx.rect(igStartX+ICW+Math.round(W*0.018), IGY-ICH, maxFooterW-(igStartX+ICW), ICH*1.5);
   ctx.clip();
   ctx.fillText(igHandle,igStartX+ICW+Math.round(W*0.018),IGY);
@@ -268,31 +266,11 @@ window.draw = function(){
   // Cap font sizes — scale based on box height AND width
   const rawTaFs=parseInt(g('ta-size')?.value||52);
   const rawEnFs=parseInt(g('en-size')?.value||32);
-  // Font cap raised — slider can reach 150px Tamil, 120px English
-  const taFsCap = Math.min(rawTaFs, Math.round(W * 0.13));
-  const enFsCap = Math.min(rawEnFs, Math.round(W * 0.09));
-  let taFs = taFsCap;
-  let enFs = enFsCap;
-  // Auto-fit: shrink Tamil font until lines fit within 80% of canvas width
-  if(ST.autoFit!==false && v.ta){
-    const testFont = (fs)=>`${isBold?'700 ':isItalic?'italic ':''}${fs}px ${fam}`;
-    const maxFitW = Math.round(BW*0.80);  // match wrapText threshold
-    let fitFs = taFs;
-    while(fitFs > 18){
-      ctx.font = testFont(fitFs);
-      const words = ('"'+(v.ta||'')+'"').split(' ');
-      let maxLineW = 0, line = '';
-      for(const w of words){
-        const t = line?line+' '+w:w;
-        if(ctx.measureText(t).width > maxFitW && line){ maxLineW=Math.max(maxLineW,ctx.measureText(line).width); line=w; }
-        else line=t;
-      }
-      maxLineW = Math.max(maxLineW, ctx.measureText(line).width);
-      if(maxLineW <= maxFitW) break;
-      fitFs = Math.round(fitFs*0.93);
-    }
-    taFs = Math.min(taFs, fitFs);
-  }
+  // Max Tamil size: never more than 10% of box height or 5.8% of width
+  const taFsCap=Math.min(Math.round(BH*0.10), Math.round(W*0.058));
+  const enFsCap=Math.min(Math.round(BH*0.07), Math.round(W*0.038));
+  const taFs=Math.min(rawTaFs, taFsCap);
+  const enFs=Math.min(rawEnFs, enFsCap);
   const taLh=taFs*1.72;
   const enLh=enFs*1.62;
   const tc=ST.txColor||'#fff';
@@ -326,16 +304,11 @@ window.draw = function(){
   const enLhS = enLh * scale;
   totalH = totalH * scale;
 
-  // Vertical position inside box — textPos: 0=top 0.5=centre 1=bottom
-  const tp = ST.textPos!==undefined ? ST.textPos : 0.5;
-  const vPad = Math.round(BH*0.04);
-  const availH = BH - vPad*2;
-  let cy = BTOP + vPad + tp*(availH-totalH) + taFs*scale;
-  cy = Math.max(BTOP + vPad + taFs*scale, cy); // clamp — never above box top
+  // Vertical center inside box
+  let cy=BTOP+(BH-totalH)/2+taFs*scale;
 
   // Clip all verse text to box bounds
   ctx.save();
-  ctx.beginPath();
   ctx.rect(BX+Math.round(W*0.02), BTOP+Math.round(H*0.01), BW-Math.round(W*0.04), BH-Math.round(H*0.02));
   ctx.clip();
 
@@ -400,16 +373,9 @@ window.draw = function(){
     ctx.fillText('▲ SAFE ZONE',W/2,sT-Math.round(W*0.01));
     ctx.fillText('▼ SAFE ZONE',W/2,H-sB+Math.round(W*0.028));
   }
-
-  // Update mini preview in sheet header
-  const pv = document.getElementById('mob-preview-cv');
-  if(pv){
-    pv.width = 28; pv.height = 40;
-    pv.getContext('2d').drawImage(cv, 0, 0, 28, 40);
-  }
 }
 
-window.drawBgImage = function(ctx,img,W,H,opacity){
+export function drawBgImage(ctx,img,W,H,opacity){
   const ir=img.width/img.height, cr=W/H;
   let sx=0,sy=0,sw=img.width,sh=img.height;
   if(ir>cr){sw=img.height*cr;sx=(img.width-sw)/2;}

@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="css/enjc-design.css">
 <link rel="stylesheet" href="css/bible.css" onerror="void(0)">
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE"></script>
+<script src="js/site.js" defer></script>
 </head>
 <body>
 
@@ -504,17 +505,6 @@ function openImageStudioWithVerse(){
 
 
 
-<script>
-(function(){
-  var btn=document.getElementById('mob-toggle');
-  var links=document.getElementById('nav-links');
-  if(!btn||!links) return;
-  btn.addEventListener('click',function(){
-    var open=links.classList.toggle('mob-open');
-    Object.assign(links.style,open?{display:'flex',flexDirection:'column',position:'absolute',top:'60px',left:'0',right:'0',background:'#0a1628',padding:'8px 0',borderBottom:'1px solid #1a2e50',zIndex:'300'}:{display:'',position:'',flexDirection:''});
-  });
-})();
-</script>
 <footer class="footer">
   <div class="footer-grid">
     <div>
@@ -556,8 +546,6 @@ function openImageStudioWithVerse(){
   }else{els.forEach(function(e){e.classList.add('is-visible','anim-in');});}
   var stb=document.getElementById('scroll-top-btn');
   if(stb)window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
-  var btn=document.getElementById('mob-toggle'),lnks=document.getElementById('nav-links');
-  if(btn&&lnks){btn.addEventListener('click',function(e){e.stopPropagation();lnks.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!lnks.contains(e.target)&&!btn.contains(e.target))lnks.classList.remove('mob-open');});}
 })();
 </script>
 </body>
