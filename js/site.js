@@ -138,3 +138,42 @@
   }); /* end DOMContentLoaded */
 
 })();
+
+/* ── EFFECT 2: Stained Glass Divider ── */
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.stained-cv').forEach(function(cv){
+    var W=cv.offsetWidth||680,H=64;
+    cv.width=W;cv.height=H;
+    var ctx=cv.getContext('2d');
+    var cols=['rgba(201,168,76,','rgba(80,120,220,','rgba(160,80,200,','rgba(80,180,160,'];
+    var shards=[];
+    for(var i=0;i<18;i++)shards.push({x:Math.random()*W,w:20+Math.random()*50,col:cols[Math.floor(Math.random()*cols.length)],phase:Math.random()*6.28});
+    var t=0;
+    (function draw(){
+      ctx.clearRect(0,0,W,H);
+      shards.forEach(function(s){var a=0.04+0.04*Math.sin(t*0.4+s.phase);ctx.fillStyle=s.col+a+')';ctx.fillRect(s.x-s.w/2,0,s.w,H);});
+      var mg=ctx.createLinearGradient(0,H/2-1,0,H/2+1);
+      mg.addColorStop(0,'rgba(201,168,76,0.4)');mg.addColorStop(0.5,'rgba(201,168,76,0.9)');mg.addColorStop(1,'rgba(201,168,76,0.4)');
+      ctx.fillStyle=mg;ctx.fillRect(0,H/2-1,W,2);
+      t+=0.02;requestAnimationFrame(draw);
+    })();
+  });
+/* ── EFFECT 3: Constellation Nav ── */
+  (function(){
+    var cv=document.getElementById('const-cv');
+    if(!cv)return;
+    var nav=cv.parentElement;
+    cv.width=nav.offsetWidth||680;cv.height=nav.offsetHeight||60;
+    var W=cv.width,H=cv.height,ctx=cv.getContext('2d'),stars=[],t=0;
+    for(var i=0;i<40;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:0.4+Math.random()*0.8,phase:Math.random()*6.28});
+    (function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<stars.length;i++)for(var j=i+1;j<stars.length;j++){
+        var dx=stars[i].x-stars[j].x,dy=stars[i].y-stars[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<90){ctx.beginPath();ctx.moveTo(stars[i].x,stars[i].y);ctx.lineTo(stars[j].x,stars[j].y);ctx.strokeStyle='rgba(201,168,76,'+((1-d/90)*0.1)+')';ctx.lineWidth=0.5;ctx.stroke();}
+      }
+      stars.forEach(function(s){var a=0.15+0.45*Math.abs(Math.sin(t*0.5+s.phase));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.28);ctx.fillStyle='rgba(201,168,76,'+a+')';ctx.fill();});
+      t+=0.02;requestAnimationFrame(draw);
+    })();
+  })();
+});
