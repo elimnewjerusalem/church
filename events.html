@@ -24,6 +24,109 @@
 <link rel="stylesheet" href="css/enjc-design.css">
 <link rel="stylesheet" href="css/events.css">
 <script src="js/site.js" defer></script>
+<style>
+  /* ── EVENTS PAGE LAYOUT ─────────────────────────────────── */
+
+  /* 1. Search bar — centered, prominent */
+  .events-search-wrap {
+    background: var(--color-bg-2, #0a1628);
+    padding: 28px 0 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .events-search-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .events-search-bar {
+    display: flex;
+    align-items: center;
+    background: var(--color-bg-3, #0d1e3a);
+    border: 1.5px solid rgba(201,168,76,0.25);
+    border-radius: 10px;
+    padding: 0 16px;
+    gap: 10px;
+    transition: border-color .2s;
+  }
+  .events-search-bar:focus-within {
+    border-color: rgba(201,168,76,0.55);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.07);
+  }
+  .events-search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text, #e8f0fa);
+    font-size: 14px;
+    padding: 13px 0;
+    flex: 1;
+    font-family: inherit;
+  }
+  .events-search-bar input::placeholder { color: var(--color-text-faint, #6a85a8); }
+  .events-search-icon { color: var(--color-gold, #c9a84c); font-size: 17px; }
+  #search-clear-btn {
+    background: none; border: none; outline: none; cursor: pointer;
+    color: var(--color-text-faint, #6a85a8); font-size: 15px; padding: 4px;
+    display: none; align-items: center; justify-content: center; border-radius: 50%;
+  }
+  #search-clear-btn:hover { color: var(--color-text, #e8f0fa); }
+  .events-filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  /* 2. Live + Countdown side-by-side */
+  .live-countdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .live-countdown-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  /* Countdown block inside the grid */
+  .countdown-block {
+    background: var(--color-bg-3, #0d1e3a);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 32px 28px;
+  }
+  .countdown-block .section-tag { justify-content: flex-start; }
+  .countdown-block h2 { margin-bottom: 6px; }
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0 24px;
+  }
+  .cd-unit {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 10px;
+    padding: 16px 8px 12px;
+    text-align: center;
+  }
+  .cd-val {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-gold, #c9a84c);
+    line-height: 1;
+    display: block;
+  }
+  .cd-lbl {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-faint, #6a85a8);
+    margin-top: 5px;
+    display: block;
+  }
+</style>
 </head>
 <body>
   <nav class="navbar"><canvas id="const-cv" aria-hidden="true"></canvas>
@@ -55,26 +158,70 @@
       <p>Join us for worship, fellowship, and special gatherings</p>
     </div>
   </section>
-<div class="stained-divider" aria-hidden="true"><canvas class="stained-cv"></canvas></div>
+  <div class="stained-divider" aria-hidden="true"><canvas class="stained-cv"></canvas></div>
 
+  <!-- ① SEARCH BAR -->
+  <div class="events-search-wrap" id="search-filter-section">
+    <div class="events-search-inner">
+      <div class="events-search-bar" role="search">
+        <span class="events-search-icon"><i class="ti ti-search"></i></span>
+        <input type="text" id="video-search-input" placeholder="Search sermons, messages…" autocomplete="off" aria-label="Search sermons and messages">
+        <button id="search-clear-btn" aria-label="Clear search"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="events-filter-row">
+        <button class="enjc-filter-btn enjc-filter-active" data-filter="all">All</button>
+        <button class="enjc-filter-btn" data-filter="live">Live Streams</button>
+        <button class="enjc-filter-btn" data-filter="sunday">Sunday</button>
+        <button class="enjc-filter-btn" data-filter="friday">Friday</button>
+        <button class="enjc-filter-btn" data-filter="promise">Promise</button>
+        <button class="enjc-filter-btn" data-filter="deliverance">Deliverance</button>
+        <button class="enjc-filter-btn" data-filter="testimony">Testimony</button>
+        <button class="enjc-filter-btn" data-filter="shorts">Shorts</button>
+      </div>
+    </div>
+  </div>
 
-  <!-- Live Stream — rendered by js/live-stream.js -->
-  <section id="live-stream-section" class="reveal-on-scroll section-sm" aria-labelledby="live-heading">
+  <!-- Search Results (hidden by default) -->
+  <section id="search-results-section" style="display:none;" class="section">
     <div class="container">
-      <p class="section-tag anim-wipe">Live Stream</p>
-      <h2 class="section-heading anim-fade-up anim-d1" id="live-heading" style="margin-bottom:24px;">Join Us <em>This Week</em></h2>
-      <!--
-        live-stream.js checks the current time against the service schedule.
-        • During service hours  → shows "LIVE NOW" badge + YouTube player
-        • Outside service hours → shows offline card with schedule times
-        To go live: set YOUTUBE_LIVE_IDS.mainChannel in js/live-stream.js
-      -->
-      <div id="live-stream-container"></div>
+      <p id="search-result-count" style="font-size:13px;color:var(--color-text-faint);margin-bottom:20px;"></p>
+      <div class="grid-3" id="search-results-grid"></div>
+    </div>
+  </section>
+
+  <!-- ② LIVE STREAM (LEFT) + COUNTDOWN (RIGHT) -->
+  <section class="reveal-on-scroll section-sm normal-section" aria-label="Live stream and service countdown">
+    <div class="container">
+      <div class="live-countdown-grid">
+
+        <!-- LEFT: Join Us This Week -->
+        <div id="live-stream-section" aria-labelledby="live-heading">
+          <p class="section-tag anim-wipe">Live Stream</p>
+          <h2 class="section-heading anim-fade-up anim-d1" id="live-heading" style="margin-bottom:20px;">Join Us <em>This Week</em></h2>
+          <div id="live-stream-container"></div>
+        </div>
+
+        <!-- RIGHT: Coming Up / Next Service Countdown -->
+        <div class="countdown-block" aria-label="Countdown to next service">
+          <p class="section-tag">Coming Up</p>
+          <h2 class="section-heading" style="margin-bottom:6px;">Next <em>Service</em></h2>
+          <p style="font-size:13px;color:var(--color-text-faint);margin-bottom:4px;">This countdown loads automatically. Join us for worship and be blessed.</p>
+          <div class="countdown-grid" role="timer" aria-live="polite" aria-label="Time until next Sunday service">
+            <div class="cd-unit anim-fade-up anim-d1"><span class="cd-val" id="cd-d">--</span><span class="cd-lbl">Days</span></div>
+            <div class="cd-unit anim-fade-up anim-d2"><span class="cd-val" id="cd-h">--</span><span class="cd-lbl">Hours</span></div>
+            <div class="cd-unit anim-fade-up anim-d3"><span class="cd-val" id="cd-m">--</span><span class="cd-lbl">Mins</span></div>
+            <div class="cd-unit anim-fade-up anim-d4"><span class="cd-val" id="cd-s">--</span><span class="cd-lbl">Secs</span></div>
+          </div>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold">Get Notified on WhatsApp</a>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
+  <!-- ③ FEATURED SERVICES / SERVICE HIGHLIGHTS -->
   <section class="reveal-on-scroll section normal-section" aria-labelledby="service-highlights-heading">
     <div class="container">
       <p class="section-tag anim-fade-up">Featured Services</p>
@@ -89,65 +236,12 @@
 
   <div class="divider"></div>
 
-  <!-- Countdown -->
-  <section class="reveal-on-scroll section-sm" style="background:var(--color-bg-2);" aria-label="Countdown to next service">
-    <div class="container">
-      <div style="max-width:640px;margin:0 auto;">
-        <p class="section-tag">Coming Up</p>
-        <h2 class="section-heading" style="margin-bottom:8px;">Next <em>Service</em></h2>
-        <p style="font-size:14px;color:var(--color-text-faint);margin-bottom:28px;">This countdown loads automatically. Join us for worship and be blessed.</p>
-        <div class="countdown" style="display:flex;gap:14px;flex-wrap:wrap;" role="timer" aria-live="polite" aria-label="Time until next Sunday service">
-          <div class="card countdown__unit anim-fade-up anim-d1" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-d" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Days</div></div>
-          <div class="card countdown__unit anim-fade-up anim-d2" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-h" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Hours</div></div>
-          <div class="card countdown__unit anim-fade-up anim-d3" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-m" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Mins</div></div>
-          <div class="card countdown__unit anim-fade-up anim-d4" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-s" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Secs</div></div>
-        </div>
-        <div style="margin-top:24px;">
-          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold">Get Notified on WhatsApp</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- Search + Filter -->
-  <section class="section-sm normal-section" style="background:var(--color-bg-2);" id="search-filter-section">
-    <div class="container">
-      <div class="enjc-search-bar">
-        <span class="enjc-search-icon">🔍</span>
-        <input type="text" id="video-search-input" placeholder="Search sermons, messages…" autocomplete="off">
-        <button id="search-clear-btn" aria-label="Clear search">✕</button>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
-        <button class="enjc-filter-btn enjc-filter-active" data-filter="all">All</button>
-        <button class="enjc-filter-btn" data-filter="live">Live Streams</button>
-        <button class="enjc-filter-btn" data-filter="sunday">Sunday</button>
-        <button class="enjc-filter-btn" data-filter="friday">Friday</button>
-        <button class="enjc-filter-btn" data-filter="promise">Promise</button>
-        <button class="enjc-filter-btn" data-filter="deliverance">Deliverance</button>
-        <button class="enjc-filter-btn" data-filter="testimony">Testimony</button>
-        <button class="enjc-filter-btn" data-filter="shorts">Shorts</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Search Results (hidden by default) -->
-  <section id="search-results-section" style="display:none;" class="section">
-    <div class="container">
-      <p id="search-result-count" style="font-size:13px;color:var(--color-text-faint);margin-bottom:20px;"></p>
-      <div class="grid-3" id="search-results-grid"></div>
-    </div>
-  </section>
-
-
-  <!-- Recent Live Streams -->
+  <!-- ④ RECENT LIVE STREAMS -->
   <section class="reveal-on-scroll section normal-section" aria-labelledby="streams-heading">
     <div class="container">
       <p class="section-tag anim-wipe">Watch Again</p>
-      <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent Live <em>Streams</em></h2>
+      <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">Recent Live <em>Streams</em></h2>
       <p class="section-sub">Catch up on our latest worship services and devotionals</p>
-      <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
       <div class="grid-4" id="recent-streams-grid"></div>
       <div style="text-align:center;margin-top:28px;">
         <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">View All on YouTube</a>
@@ -157,22 +251,19 @@
 
   <div class="divider"></div>
 
-  <!-- Most Watched -->
+  <!-- ⑤ POPULAR / MOST WATCHED -->
   <section class="reveal-on-scroll section-alt normal-section" aria-labelledby="popular-heading">
     <div class="container">
       <p class="section-tag anim-roll-left">Popular</p>
       <h2 class="section-heading" id="popular-heading" style="margin-bottom:8px;">🔥 Most Watched <em>Messages</em></h2>
       <p class="section-sub">Popular sermons and devotionals that touched hearts</p>
-            <!-- Populated by js/events.js from data/events.json → mostWatched[] -->
       <div class="grid-3" id="most-watched-grid"></div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <div class="divider"></div>
-
-  <!-- Deliverance Messages -->
+  <!-- ⑥ DELIVERANCE MESSAGES -->
   <section class="reveal-on-scroll section normal-section" aria-labelledby="deliverance-heading">
     <div class="container">
       <p class="section-tag anim-wipe">Deliverance</p>
@@ -188,7 +279,7 @@
 
   <div class="divider"></div>
 
-  <!-- Testimonies -->
+  <!-- ⑦ TESTIMONIES -->
   <section class="reveal-on-scroll section-alt normal-section" aria-labelledby="testimony-heading">
     <div class="container">
       <p class="section-tag anim-roll-left">Testimonies</p>
@@ -202,14 +293,14 @@
     </div>
   </section>
 
+  <div class="divider"></div>
 
-  <!-- Verse Reels -->
+  <!-- ⑧ VERSE REELS -->
   <section class="reveal-on-scroll section normal-section" aria-labelledby="reels-heading">
     <div class="container">
       <p class="section-tag anim-wipe">Short Videos</p>
       <h2 class="section-heading" id="reels-heading" style="margin-bottom:8px;">📖 Verse <em>Reels</em></h2>
       <p class="section-sub">Daily scripture encouragement in short videos</p>
-      <!-- Populated by js/events.js from data/events.json → verseReels[] -->
       <div class="reels-row" id="verse-reels-row" style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;"></div>
       <div style="text-align:center;margin-top:32px;">
         <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">More Reels on YouTube</a>
@@ -219,26 +310,25 @@
 
   <div class="divider"></div>
 
-  <!-- Community Testimonials -->
+  <!-- ⑨ COMMUNITY — WHAT PEOPLE ARE SAYING -->
   <section class="reveal-on-scroll section-alt" aria-labelledby="testimonials-heading">
     <div class="container">
       <div style="max-width:800px;margin:0 auto;text-align:center;">
         <p class="section-tag anim-fade-up" style="justify-content:center;">Community</p>
         <h2 class="section-heading" id="testimonials-heading" style="margin-bottom:28px;">💬 What People Are <em>Saying</em></h2>
 
-        <!-- Testimonial carousel -->
         <div id="testimonial-container">
           <blockquote class="card testimonial anim-roll-right" style="background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:32px;text-align:left;">
             <p id="testimonial-text" class="testimonial__text" style="font-family:var(--font-heading);font-size:1.05rem;font-style:italic;color:var(--color-text);line-height:1.8;margin-bottom:16px;">
               &#8220;The Night Prayer meetings have completely transformed my prayer life. I feel God&#39;s presence so powerfully every time I attend.&#8221;
             </p>
-            
+            <footer id="testimonial-author" style="font-size:13px;color:var(--color-text-faint);font-weight:600;"></footer>
           </blockquote>
         </div>
 
         <nav class="testimonial-nav" style="display:flex;justify-content:center;gap:8px;margin-top:18px;" aria-label="Testimonial navigation">
-          <button onclick="changeTestimonial(-1)" class="testimonial-nav__btn" style="width:36px;height:36px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-border);color:var(--color-text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;" aria-label="Previous testimonial">&#10094;</button>
-          <button onclick="changeTestimonial(1)"  class="testimonial-nav__btn" style="width:36px;height:36px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-border);color:var(--color-text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;" aria-label="Next testimonial">&#10095;</button>
+          <button onclick="changeTestimonial(-1)" class="testimonial-nav__btn" aria-label="Previous testimonial">&#10094;</button>
+          <button onclick="changeTestimonial(1)"  class="testimonial-nav__btn" aria-label="Next testimonial">&#10095;</button>
         </nav>
       </div>
     </div>
@@ -247,30 +337,6 @@
 </main>
 
   <!-- Footer -->
-  
-
-
-
-
-  <!-- JS: live detection — shows LIVE NOW or offline schedule card -->
-  <script src="js/live-stream.js"></script>
-  <!-- JS: loads videos + testimonials from data/events.json -->
-  <script src="js/events.js"></script>
-
-
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible','anim-in'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
 <footer class="footer">
   <div class="footer-grid">
     <div>
@@ -302,16 +368,23 @@
   <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
   <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
 </div></nav>
-<script>
-(function(){
-  var els=document.querySelectorAll('.reveal-on-scroll');
-  if(els.length&&window.IntersectionObserver){
-    var obs=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible','anim-in');obs.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -20px 0px'});
-    els.forEach(function(e){obs.observe(e);});
-    setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1800);
-  }else{els.forEach(function(e){e.classList.add('is-visible','anim-in');});}
-  var stb=document.getElementById('scroll-top-btn');
-  if(stb)window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
-})();
-</script>
+
+  <!-- JS: live detection — shows LIVE NOW or offline schedule card -->
+  <script src="js/live-stream.js"></script>
+  <!-- JS: loads videos + testimonials from data/events.json -->
+  <script src="js/events.js"></script>
+
+  <!-- Scroll Reveal Observer -->
+  <script>
+  (function(){
+    var els=document.querySelectorAll('.reveal-on-scroll');
+    if(els.length&&window.IntersectionObserver){
+      var obs=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible','anim-in');obs.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -20px 0px'});
+      els.forEach(function(e){obs.observe(e);});
+      setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1800);
+    }else{els.forEach(function(e){e.classList.add('is-visible','anim-in');});}
+    var stb=document.getElementById('scroll-top-btn');
+    if(stb)window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
+  })();
+  </script>
 </body></html>
