@@ -57,6 +57,18 @@
     });
   })();
   </script>
+<style>
+/* ── imagegen: account for ENJC navbar (60px) above imagegen topbar (52px) ── */
+:root {
+  --enjc-nav: 60px;   /* ENJC sticky navbar height */
+  --bar: 112px;        /* topbar top = 60px, studio top = 112px */
+}
+.topbar { top: var(--enjc-nav) !important; }
+/* Footer + mob-nav hidden — imagegen is fullscreen studio, no footer needed */
+.footer, .mob-nav, .wa-float, #scroll-top-btn { display: none !important; }
+/* Ensure html/body stays overflow:hidden for studio */
+html, body { overflow: hidden !important; height: 100% !important; }
+</style>
 </head>
 <body>
 
@@ -84,7 +96,7 @@
 </nav>
 
 <!-- TOP BAR -->
-<div class="topbar" style="top:52px !important;">
+<div class="topbar">
   <div class="tb-logo">
     <div class="tb-logo-dot"></div>
     ENJC <span>Verse Studio</span>
@@ -105,7 +117,7 @@
 </div>
 
 <!-- STUDIO -->
-<div class="studio" style="padding-top:calc(var(--bar) + 52px);">
+<div class="studio">
 
 <!-- ── LEFT PANEL ── -->
 <div class="lp">
@@ -532,9 +544,6 @@
     <a href="contact.html" class="mob-item">✉️<span>Contact</span></a>
   </div>
 </nav>
-<script>
-var stb=document.getElementById('scroll-top-btn');
-if(stb)window.addEventListener('scroll',function(){stb.style.display=window.scrollY>400?'flex':'none';});
-</script>
+
 </body>
 </html>
