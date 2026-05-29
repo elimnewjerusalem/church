@@ -140,7 +140,7 @@ h1,h2,h3,h4 {
 
 /* ── NAV ── */
 .navbar {
-  position: sticky; top: 0; z-index: 900;
+  position: sticky !important; top: 0; z-index: 900;
   background: rgba(7,15,30,0.94); backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--bd);
   display: flex; align-items: center; justify-content: space-between;
@@ -294,12 +294,21 @@ textarea.form-field { resize:vertical;min-height:120px; }
 .cin-card:hover::after{transform:scaleX(1);}
 .cin-card>*{position:relative;z-index:2;}
 
+/* cin-card on light backgrounds — use navy line instead of gold for visibility */
+.s-light .cin-card::after,
+.s-light2 .cin-card::after { background: linear-gradient(90deg,transparent,#1a3060,transparent); }
+.s-light .cin-card::before,
+.s-light2 .cin-card::before { background: radial-gradient(circle at 30% 85%,rgba(26,48,96,0.08),transparent 65%); }
+.s-light .cin-card:hover,
+.s-light2 .cin-card:hover { border-color: rgba(26,48,96,0.3); }
+
 /* ── EFFECT 2: Stained Glass Divider ── */
 .stained-divider{position:relative;height:64px;overflow:hidden;background:transparent;}
 .stained-cv{position:absolute;inset:0;width:100%;height:100%;display:block;}
 
 /* ── EFFECT 3: Constellation Nav ── */
-.navbar{position:relative;overflow:hidden;}
+/* NOTE: Do NOT override position here — .navbar already has sticky at line 142 */
+.navbar{overflow:hidden;}
 #const-cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 .navbar>*:not(#const-cv){position:relative;z-index:1;}
 

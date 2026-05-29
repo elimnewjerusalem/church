@@ -34,9 +34,12 @@
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   .events-search-inner {
-    max-width: 640px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
+  }
+  @media (max-width: 600px) {
+    .events-search-inner { padding: 0 18px; }
   }
   .events-search-bar {
     display: flex;

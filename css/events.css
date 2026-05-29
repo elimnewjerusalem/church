@@ -144,7 +144,7 @@
   background: var(--gold-bg, rgba(201,168,76,0.08));
 }
 
-/* ── NORMAL / SECTION HELPERS ───────────────────────────────── */
+/* ── NORMAL SECTION BACKGROUND ─────────────────────────────── */
 .normal-section { background: var(--d2, #0a1628); }
 
 /* ── SKELETON LOADING ───────────────────────────────────────── */
@@ -243,4 +243,49 @@
   .schedule-row { flex-wrap: wrap; gap: 6px; }
   .schedule-name { text-align: left; }
   .testimonial { padding: 20px 18px; }
+}
+
+/* ── EVENTS PAGE GLOBAL PADDING FIXES ──────────────────────── */
+
+/* Search wrap: match main container max-width */
+.events-search-wrap {
+  padding-left: 0;
+  padding-right: 0;
+}
+.events-search-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 600px) {
+  .events-search-inner { padding: 0 18px; }
+}
+
+/* Filter row: allow wrapping neatly */
+.events-filter-row {
+  padding-bottom: 4px;
+}
+
+/* Live/countdown grid: balanced spacing */
+.live-countdown-grid {
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .live-countdown-grid { gap: 20px; }
+}
+
+/* Countdown block: consistent padding */
+.countdown-block {
+  padding: 28px 24px;
+}
+
+/* All section headings: consistent spacing */
+.normal-section .section-heading {
+  margin-bottom: 6px;
+}
+
+/* Grid items: proper padding on mobile */
+@media (max-width: 600px) {
+  .live-countdown-grid { gap: 16px; }
+  .countdown-block { padding: 20px 18px; }
 }
