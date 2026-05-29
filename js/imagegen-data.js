@@ -3,14 +3,14 @@
 
 // ── DATA ─────────────────────────────────────────────────────────
 
-export const SIZES={
+window.SIZES={
   '9:16':{w:1080,h:1920,label:'Story / Reel',hint:'1080×1920'},
   '3:4': {w:900, h:1200,label:'Portrait Post',hint:'900×1200'},
   '1:1': {w:1080,h:1080,label:'Square Post',hint:'1080×1080'},
   '16:9':{w:1920,h:1080,label:'YouTube / Wide',hint:'1920×1080'},
 };
 
-export const TEMPLATES=[
+window.TEMPLATES=[
   {id:'royal',   name:'Royal Dark',   bg:'#0d0621',accent:'#f5c842',tc:'#fff'},
   {id:'fire',    name:'Fire & Faith', bg:'#1a0500',accent:'#ff7020',tc:'#fff'},
   {id:'ocean',   name:'Ocean Grace',  bg:'#020d1a',accent:'#38bdf8',tc:'#e0f2fe'},
@@ -21,33 +21,43 @@ export const TEMPLATES=[
   {id:'stone',   name:'Stone & Word', bg:'#0f0f0f',accent:'#d4b896',tc:'#f5f0eb'},
 ];
 
-export const FONTS={
+window.FONTS={
   serif: {label:'Serif',   fam:"'Noto Serif Tamil',Georgia,serif",  hint:'Traditional'},
   sans:  {label:'Sans',    fam:"'Inter',system-ui,sans-serif",       hint:'Modern'},
   italic:{label:'Italic',  fam:"'Playfair Display',Georgia,serif",   hint:'Elegant'},
   bold:  {label:'Bold',    fam:"700 'Noto Serif Tamil',serif",       hint:'Strong'},
 };
 
-export const TC_COLORS=['#ffffff','#f5c842','#fbbf24','#4ade80','#38bdf8','#f472b6','#a78bfa','#fed7aa','#fca5a5'];
+window.TC_COLORS=['#ffffff','#f5f5dc','#fffde7','#f5c842','#fbbf24','#fb923c','#f87171','#4ade80','#34d399','#38bdf8','#60a5fa','#f472b6','#c084fc','#a78bfa','#fed7aa','#fca5a5','#d1fae5','#1a1a1a'];
 
-export const PRESETS=[
+window.PRESETS=[
   '#1a0a3a','#0a1a3a','#0a2a1a','#3a0a0a',
   '#1a1a1a','#2a1a08','#08082a','#1a0820',
   '#2d1654','#0d2447','#14451f','#45140d',
   '#0f0f0f','#1a1500','#001a1a','#1a001a',
 ];
 
-export const GALLERY=[
-  {label:'🌅',name:'Sunrise',   seed:42},
-  {label:'⛰️',name:'Mountains',seed:15},
-  {label:'🌊',name:'Ocean',     seed:30},
-  {label:'✨',name:'Stars',     seed:70},
-  {label:'🌸',name:'Flowers',  seed:55},
-  {label:'🌿',name:'Forest',   seed:82},
-  {label:'☁️',name:'Clouds',   seed:20},
-  {label:'🌾',name:'Fields',   seed:90},
-  {label:'🌙',name:'Moon',     seed:65},
+window.GALLERY=[
+  /* ── Nature ── */
+  {seed:'dawn',    name:'Sunrise',  label:'🌅', url:'https://picsum.photos/seed/dawn/1080/1920',    group:'Nature'},
+  {seed:'ocean1',  name:'Ocean',    label:'🌊', url:'https://picsum.photos/seed/ocean1/1080/1920',  group:'Nature'},
+  {seed:'forest3', name:'Forest',   label:'🌲', url:'https://picsum.photos/seed/forest3/1080/1920', group:'Nature'},
+  {seed:'mount2',  name:'Mountain', label:'⛰',  url:'https://picsum.photos/seed/mount2/1080/1920',  group:'Nature'},
+  {seed:'sky77',   name:'Sky',      label:'☁',  url:'https://picsum.photos/seed/sky77/1080/1920',   group:'Nature'},
+  {seed:'wheat1',  name:'Harvest',  label:'🌾', url:'https://picsum.photos/seed/wheat1/1080/1920',  group:'Nature'},
+  {seed:'river4',  name:'River',    label:'🏞',  url:'https://picsum.photos/seed/river4/1080/1920',  group:'Nature'},
+  {seed:'flower9', name:'Flowers',  label:'🌸', url:'https://picsum.photos/seed/flower9/1080/1920', group:'Nature'},
+  {seed:'desert2', name:'Desert',   label:'🏜',  url:'https://picsum.photos/seed/desert2/1080/1920', group:'Nature'},
+  {seed:'night3',  name:'Night Sky',label:'🌙', url:'https://picsum.photos/seed/night3/1080/1920',  group:'Nature'},
+  /* ── Faith ── */
+  {seed:'bible1',  name:'Open Bible',  label:'📖', url:'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'cross1',  name:'Cross',       label:'✝',  url:'https://images.unsplash.com/photo-1531913964703-f7a1c2a1b8c9?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'pray1',   name:'Prayer',      label:'🙏', url:'https://images.unsplash.com/photo-1457269449834-928af64c684d?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'church1', name:'Church',      label:'⛪', url:'https://images.unsplash.com/photo-1520803941685-7f2c71cf1a28?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'candle1', name:'Candle',      label:'🕯', url:'https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1080&h=1920&fit=crop', group:'Faith'},
+  {seed:'dove2',   name:'Holy Spirit', label:'🌟', url:'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1080&h=1920&fit=crop', group:'Faith'},
 ];
+window.GALLERY_GROUPS=['All','Nature','Faith'];
 
 export const BOOKS=[
   {id:'genesis',n:1,ta:'ஆதியாகமம்',en:'Genesis',ch:50,t:'OT'},
@@ -118,44 +128,56 @@ export const BOOKS=[
   {id:'revelation',n:66,ta:'வெளிப்படுத்தல்',en:'Revelation',ch:22,t:'NT'},
 ];
 
-export const QUICK_VERSES=[
-  {ta:'தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார்.',tref:'யோவான் 3:16',en:'For God so loved the world.',ref:'John 3:16'},
-  {ta:'என்னை பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்.',tref:'பிலிப்பியர் 4:13',en:'I can do all things through Christ who strengthens me.',ref:'Philippians 4:13'},
-  {ta:'கர்த்தர் என் மேய்ப்பர்; எனக்கு குறைவுண்டாவதில்லை.',tref:'சங்கீதம் 23:1',en:'The Lord is my shepherd; I shall not want.',ref:'Psalm 23:1'},
-  {ta:'நீ என் கண்களுக்கு அருமையானவன்; நான் உன்னை நேசிக்கிறேன்.',tref:'ஏசாயா 43:4',en:'You are precious in my sight, and I love you.',ref:'Isaiah 43:4'},
-  {ta:'கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்.',tref:'ஏசாயா 40:31',en:'They who wait for the Lord shall renew their strength.',ref:'Isaiah 40:31'},
-  {ta:'வருத்தப்பட்டு பாரஞ்சுமக்கிறவர்களே, என்னிடத்தில் வாருங்கள்.',tref:'மத்தேயு 11:28',en:'Come to me, all who labour and are heavy laden.',ref:'Matthew 11:28'},
-  {ta:'உன் சம்பூர்ண இருதயத்தோடே கர்த்தரில் நம்பிக்கைவை.',tref:'நீதிமொழிகள் 3:5',en:'Trust in the Lord with all your heart.',ref:'Proverbs 3:5'},
-  {ta:'சமாதானத்தை உங்களுக்கு வைத்துவிடுகிறேன்.',tref:'யோவான் 14:27',en:'Peace I leave with you; my peace I give to you.',ref:'John 14:27'},
-  {ta:'என்னால் நினைக்கப்படுகிற நினைவுகளை நான் அறிவேன்.',tref:'எரேமியா 29:11',en:'For I know the plans I have for you.',ref:'Jeremiah 29:11'},
-  {ta:'திடமனதாயிரு, தைரியமாயிரு; கர்த்தர் உன்னோடிருக்கிறார்.',tref:'யோசுவா 1:9',en:'Be strong and courageous. The Lord your God is with you.',ref:'Joshua 1:9'},
-  {ta:'கர்த்தர் என் வெளிச்சமும் என் இரட்சிப்புமாயிருக்கிறார்.',tref:'சங்கீதம் 27:1',en:'The Lord is my light and my salvation; whom shall I fear?',ref:'Psalm 27:1'},
-  {ta:'என் கிருபை உனக்குப் போதும்.',tref:'2 கொரிந்தியர் 12:9',en:'My grace is sufficient for you.',ref:'2 Corinthians 12:9'},
-  {ta:'தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும்.',tref:'ரோமர் 8:28',en:'For those who love God all things work together for good.',ref:'Romans 8:28'},
-  {ta:'இயேசு கிறிஸ்துவே நேற்றும் இன்றும் என்றும் மாறாதவர்.',tref:'எபிரெயர் 13:8',en:'Jesus Christ is the same yesterday and today and forever.',ref:'Hebrews 13:8'},
-  {ta:'கர்த்தருடைய கிருபைகள் தீர்ந்துபோவதில்லை.',tref:'புலம்பல் 3:22',en:'The steadfast love of the Lord never ceases.',ref:'Lamentations 3:22'},
+// BOOKS via ES module export (imagegen-main.js Object.assign exposes it to window)
+
+window.VERSE_TAGS=['All','Faith','Peace','Strength','Love','Hope','Healing'];
+window.BOOKS=BOOKS;
+
+window.QUICK_VERSES=[
+  {ta:'தேவன் இவ்வளவாய் உலகத்தில் அன்பு கூர்ந்தார்.',tref:'யோவான் 3:16',en:'For God so loved the world.',ref:'John 3:16',tags:['Love','Faith']},
+  {ta:'என்னை பலப்படுத்துகிற கிறிஸ்துவினால் எல்லாவற்றையும் செய்யவல்லேன்.',tref:'பிலிப்பியர் 4:13',en:'I can do all things through Christ who strengthens me.',ref:'Philippians 4:13',tags:['Strength','Faith']},
+  {ta:'கர்த்தர் என் மேய்ப்பர்; எனக்கு குறைவுண்டாவதில்லை.',tref:'சங்கீதம் 23:1',en:'The Lord is my shepherd; I shall not want.',ref:'Psalm 23:1',tags:['Peace','Faith']},
+  {ta:'நீ என் கண்களுக்கு அருமையானவன்; நான் உன்னை நேசிக்கிறேன்.',tref:'ஏசாயா 43:4',en:'You are precious in my sight, and I love you.',ref:'Isaiah 43:4',tags:['Love']},
+  {ta:'கர்த்தருக்கு காத்திருக்கிறவர்களோ புதுப்பெலன் அடைவார்கள்.',tref:'ஏசாயா 40:31',en:'They who wait for the Lord shall renew their strength.',ref:'Isaiah 40:31',tags:['Strength','Hope']},
+  {ta:'வருத்தப்பட்டு பாரஞ்சுமக்கிறவர்களே, என்னிடத்தில் வாருங்கள்.',tref:'மத்தேயு 11:28',en:'Come to me, all who labour and are heavy laden.',ref:'Matthew 11:28',tags:['Peace','Healing']},
+  {ta:'உன் சம்பூர்ண இருதயத்தோடே கர்த்தரில் நம்பிக்கைவை.',tref:'நீதிமொழிகள் 3:5',en:'Trust in the Lord with all your heart.',ref:'Proverbs 3:5',tags:['Faith']},
+  {ta:'சமாதானத்தை உங்களுக்கு வைத்துவிடுகிறேன்.',tref:'யோவான் 14:27',en:'Peace I leave with you; my peace I give to you.',ref:'John 14:27',tags:['Peace']},
+  {ta:'என்னால் நினைக்கப்படுகிற நினைவுகளை நான் அறிவேன்.',tref:'எரேமியா 29:11',en:'For I know the plans I have for you.',ref:'Jeremiah 29:11',tags:['Hope','Faith']},
+  {ta:'திடமனதாயிரு, தைரியமாயிரு; கர்த்தர் உன்னோடிருக்கிறார்.',tref:'யோசுவா 1:9',en:'Be strong and courageous. The Lord your God is with you.',ref:'Joshua 1:9',tags:['Strength','Faith']},
+  {ta:'கர்த்தர் என் வெளிச்சமும் என் இரட்சிப்புமாயிருக்கிறார்.',tref:'சங்கீதம் 27:1',en:'The Lord is my light and my salvation; whom shall I fear?',ref:'Psalm 27:1',tags:['Faith','Hope']},
+  {ta:'என் கிருபை உனக்குப் போதும்.',tref:'2 கொரிந்தியர் 12:9',en:'My grace is sufficient for you.',ref:'2 Corinthians 12:9',tags:['Healing','Faith']},
+  {ta:'தேவனிடத்தில் அன்பு கூருகிறவர்களுக்கு எல்லாமும் நன்மைக்கு ஏதுவாக நடக்கும்.',tref:'ரோமர் 8:28',en:'All things work together for good to those who love God.',ref:'Romans 8:28',tags:['Hope','Faith']},
+  {ta:'இயேசு கிறிஸ்துவே நேற்றும் இன்றும் என்றும் மாறாதவர்.',tref:'எபிரெயர் 13:8',en:'Jesus Christ is the same yesterday and today and forever.',ref:'Hebrews 13:8',tags:['Faith']},
+  {ta:'கர்த்தருடைய கிருபைகள் தீர்ந்துபோவதில்லை.',tref:'புலம்பல் 3:22',en:'The steadfast love of the Lord never ceases.',ref:'Lamentations 3:22',tags:['Love','Hope']},
+  {ta:'அன்பே தேவன்.',tref:'1 யோவான் 4:8',en:'God is love.',ref:'1 John 4:8',tags:['Love']},
+  {ta:'கர்த்தர் என் கோட்டையும் என் கன்மலையும் என் இரட்சகரும் ஆவார்.',tref:'சங்கீதம் 18:2',en:'The Lord is my rock and my fortress and my deliverer.',ref:'Psalm 18:2',tags:['Strength','Faith']},
+  {ta:'இதோ, நான் உங்களுக்கு ஆரோக்கியத்தையும் சுகத்தையும் கொடுப்பேன்.',tref:'எரேமியா 33:6',en:'I will bring health and healing to them.',ref:'Jeremiah 33:6',tags:['Healing']},
+  {ta:'கர்த்தருக்கு நன்றி சொல்லுங்கள்; அவர் நல்லவர்.',tref:'சங்கீதம் 107:1',en:'Give thanks to the Lord, for He is good.',ref:'Psalm 107:1',tags:['Faith','Hope']},
+  {ta:'தேவன் நம்முடன் இருக்கிறார்.',tref:'மத்தேயு 1:23',en:'God is with us.',ref:'Matthew 1:23',tags:['Faith','Hope']},
 ];
 
 // ── STATE ─────────────────────────────────────────────────────────
-export const ST={
+window.ST={
   sz:'9:16', bgMode:'solid', bgColor:'#1a0a3a',
   font:'serif', taSize:52, enSize:32, txColor:'#ffffff',
   showTa:true, showEn:true, showRef:true, showWM:true, textGlow:false,
   bgImg:null, galImg:null, userPhoto:null, galIdx:-1,
-  verse:QUICK_VERSES[0], verseIdx:0,
+  verse:window.QUICK_VERSES[0], verseIdx:0,
   activeTpl:'royal',
   // Gradient
   gradMode:false, grad1:'#1a0a3a', grad2:'#0a1a3a', gradAngle:135,
   // Safe zone
   safeZone:false,
+  // Text layout — must be in ST to avoid NaN in canvas draw
+  textPos:0.5, autoFit:true,
 };
-export const BI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
+window.BI={book:null,ch:null,_verses:[],_filter:'all',_search:''};
 
 // ── HELPERS ───────────────────────────────────────────────────────
-export function g(id){return document.getElementById(id);}
-export let _tt;
-export function toast(msg,dur=2500){
-  const el=g('toast');el.textContent=msg;el.classList.add('show');
-  clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),dur);
+window.g=function(id){return document.getElementById(id);}
+window._tt;
+window.toast=function(msg,dur=2500){
+  const el=window.g('toast');if(!el)return;el.textContent=msg;el.classList.add('show');
+  clearTimeout(window._tt);window._tt=setTimeout(()=>el.classList.remove('show'),dur);
 }
 
