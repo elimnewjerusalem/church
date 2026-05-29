@@ -1,15 +1,10 @@
-/* ═══════════════════════════════════════════════════════════
-   ENJC — Shared Design System
-   Dark ↔ Light alternating sections, consistent nav/footer
-   ═══════════════════════════════════════════════════════════ */
 
-/* ── Variables ── */
 :root {
-  --d1:  #070f1e;   /* darkest */
+  --d1:  #070f1e;
   --d2:  #0a1628;
   --d3:  #0d1e3a;
   --d4:  #112244;
-  --l1:  #f5f1e8;   /* lightest cream */
+  --l1:  #f5f1e8;
   --l2:  #edeae0;
   --l3:  #ffffff;
   --gold:       #c9a84c;
@@ -23,10 +18,9 @@
   --t-dim-d:    #3a5070;
   --t-dark:     #1a1a2e;
   --t-muted-l:  #5a5a78;
-  --bd:  rgba(255,255,255,0.065);  /* border dark */
-  --bl:  rgba(0,0,0,0.09);         /* border light */
+  --bd:  rgba(255,255,255,0.065);
+  --bl:  rgba(0,0,0,0.09);
 
-  /* keep compatibility with old main.css vars */
   --color-bg:           var(--d2);
   --color-bg-2:         var(--d1);
   --color-bg-3:         var(--d3);
@@ -51,7 +45,6 @@
   --font-heading:       'Cormorant Garamond','Playfair Display',Georgia,serif;
 }
 
-/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -60,12 +53,11 @@ body {
   color: var(--t-light);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  padding-bottom: 68px; /* mobile nav room */
+  padding-bottom: 68px;
 }
 a { text-decoration: none; color: inherit; }
 img { display: block; }
 
-/* ── Section backgrounds ── */
 .s-d1  { background: var(--d1); color: var(--t-light); }
 .s-d2  { background: var(--d2); color: var(--t-light); }
 .s-d3  { background: var(--d3); color: var(--t-light); }
@@ -74,12 +66,10 @@ img { display: block; }
 .s-l2  { background: var(--l2); color: var(--t-dark);  }
 .s-l3  { background: var(--l3); color: var(--t-dark);  }
 
-/* Legacy aliases kept for existing pages */
 .section      { padding: 72px 0; }
 .section-alt  { padding: 72px 0; background: var(--d3); }
 .section-sm   { padding: 48px 0; }
 
-/* ── Layout ── */
 .container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
 @media(max-width:600px){ .container { padding: 0 18px; } }
 
@@ -89,7 +79,6 @@ img { display: block; }
 @media(max-width:900px){ .grid-3{ grid-template-columns:1fr 1fr; } .grid-4{ grid-template-columns:1fr 1fr; } }
 @media(max-width:600px){ .grid-2,.grid-3,.grid-4{ grid-template-columns:1fr; } }
 
-/* ── Typography ── */
 h1,h2,h3,h4 {
   font-family: 'Cormorant Garamond','Playfair Display',Georgia,serif;
   line-height: 1.15; font-weight: 700;
@@ -101,7 +90,6 @@ h1,h2,h3,h4 {
 }
 .eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--gold); }
 
-/* Legacy section-tag */
 .section-tag { display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold); }
 .section-tag::before { content:'';display:block;width:24px;height:1px;background:var(--gold); }
 
@@ -112,7 +100,6 @@ h1,h2,h3,h4 {
 .section-sub { font-size:14px;color:var(--t-muted-d);margin:0 0 28px;max-width:600px; }
 .section-sub.on-light { color:var(--t-muted-l); }
 
-/* ── Buttons ── */
 .btn { display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:8px;font-size:13px;font-weight:700;transition:all .2s;cursor:pointer;border:none; }
 .btn--gold { background:var(--gold);color:var(--d1); }
 .btn--gold:hover { background:var(--gold-hi);transform:translateY(-1px); }
@@ -121,7 +108,6 @@ h1,h2,h3,h4 {
 .btn--outline-dark { background:transparent;color:var(--t-dark);border:2px solid var(--t-dark); }
 .btn--outline-dark:hover { background:var(--d2);color:var(--t-light); }
 
-/* ── Cards ── */
 .card {
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--bd);
@@ -138,7 +124,6 @@ h1,h2,h3,h4 {
 .divider { height:1px; background:var(--bd); margin:0; }
 .divider.on-light { background:var(--bl); }
 
-/* ── NAV ── */
 .navbar {
   position: sticky !important; top: 0; z-index: 900;
   background: rgba(7,15,30,0.94); backdrop-filter: blur(16px);
@@ -174,7 +159,6 @@ h1,h2,h3,h4 {
   }
 }
 
-/* ── Page Hero ── */
 .page-hero {
   background: linear-gradient(160deg, var(--d3) 0%, var(--d1) 100%);
   border-bottom: 1px solid var(--bd);
@@ -189,7 +173,6 @@ h1,h2,h3,h4 {
 .page-hero h1 em { color:var(--gold);font-style:italic; }
 .page-hero .container > p { font-size:14px;color:var(--t-muted-d);margin:0; }
 
-/* ── Animations ── */
 .reveal-on-scroll {
   opacity: 0; transform: translateY(28px);
   transition: opacity 0.72s ease, transform 0.72s ease;
@@ -212,11 +195,9 @@ h1,h2,h3,h4 {
   }
 }
 
-/* ── Section alternating helpers ── */
-/* Dark sections: text is light, cards are navy */
 .s-d1 .card,.s-d2 .card,.s-d3 .card,.s-d4 .card { background:rgba(255,255,255,0.04);border-color:var(--bd); }
 .s-d1 .section-heading,.s-d2 .section-heading,.s-d3 .section-heading,.s-d4 .section-heading { color:var(--t-light); }
-/* Light sections: text is dark, cards are white */
+
 .s-l1 .card,.s-l2 .card,.s-l3 .card { background:#fff;border-color:var(--bl);box-shadow:0 2px 16px rgba(0,0,0,.06); }
 .s-l1 .section-heading,.s-l2 .section-heading,.s-l3 .section-heading { color:var(--t-dark); }
 .s-l1 .section-tag,.s-l2 .section-tag,.s-l3 .section-tag { color:var(--gold); }
@@ -224,11 +205,10 @@ h1,h2,h3,h4 {
 .s-l1 .section-sub,.s-l2 .section-sub,.s-l3 .section-sub { color:var(--t-muted-l); }
 .s-l1 p,.s-l2 p,.s-l3 p { color:var(--t-muted-l); }
 .s-l1 h3,.s-l2 h3,.s-l3 h3 { color:var(--t-dark); }
-/* Override for specific colored text inside light sections */
+
 .s-l1 .keep-gold,.s-l2 .keep-gold { color:var(--gold)!important; }
 .s-l1 .divider,.s-l2 .divider,.s-l3 .divider { background:var(--bl); }
 
-/* ── FOOTER ── */
 .footer {
   background: var(--d1);
   border-top: 1px solid var(--bd);
@@ -258,7 +238,6 @@ h1,h2,h3,h4 {
 @media(max-width:900px){ .footer-grid{grid-template-columns:1fr 1fr;}.footer{padding:36px 20px 16px;} }
 @media(max-width:540px){ .footer-grid{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;gap:6px;text-align:center;} }
 
-/* ── WhatsApp float + scroll-top ── */
 .wa-float { position:fixed;bottom:78px;right:22px;z-index:800;width:46px;height:46px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:transform .2s; }
 .wa-float:hover { transform:scale(1.1); }
 .wa-float i { font-size:22px;color:#fff; }
@@ -266,7 +245,6 @@ h1,h2,h3,h4 {
 #scroll-top-btn.is-visible { display:flex; }
 #scroll-top-btn:hover { transform:scale(1.1); }
 
-/* ── Mobile nav ── */
 .mob-nav { display:none;position:fixed;bottom:0;left:0;right:0;z-index:850;background:var(--d2);border-top:1px solid var(--bd);box-shadow:0 -4px 20px rgba(0,0,0,.3); }
 .mob-nav-inner { display:flex; }
 .mob-item { flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:var(--t-dim-d);transition:color .2s;gap:3px; }
@@ -274,7 +252,6 @@ h1,h2,h3,h4 {
 .mob-item.active,.mob-item:hover { color:var(--gold); }
 @media(max-width:900px){ .mob-nav{display:block;} }
 
-/* ── Form fields ── */
 .form-field {
   width:100%;padding:12px 16px;border-radius:10px;
   background:rgba(255,255,255,0.06);border:1px solid var(--bd);
@@ -285,7 +262,6 @@ h1,h2,h3,h4 {
 .form-field::placeholder { color:var(--t-dim-d); }
 textarea.form-field { resize:vertical;min-height:120px; }
 
-/* ── EFFECT 1: Cinematic Cards ── */
 .cin-card{position:relative;overflow:hidden;transition:transform .3s ease,border-color .3s ease;}
 .cin-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,0.35);}
 .cin-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 85%,rgba(201,168,76,0.12),transparent 65%);opacity:0;transition:opacity .4s ease;pointer-events:none;z-index:0;}
@@ -294,7 +270,6 @@ textarea.form-field { resize:vertical;min-height:120px; }
 .cin-card:hover::after{transform:scaleX(1);}
 .cin-card>*{position:relative;z-index:2;}
 
-/* cin-card on light backgrounds — use navy line instead of gold for visibility */
 .s-light .cin-card::after,
 .s-light2 .cin-card::after { background: linear-gradient(90deg,transparent,#1a3060,transparent); }
 .s-light .cin-card::before,
@@ -302,17 +277,13 @@ textarea.form-field { resize:vertical;min-height:120px; }
 .s-light .cin-card:hover,
 .s-light2 .cin-card:hover { border-color: rgba(26,48,96,0.3); }
 
-/* ── EFFECT 2: Stained Glass Divider ── */
 .stained-divider{position:relative;height:64px;overflow:hidden;background:transparent;}
 .stained-cv{position:absolute;inset:0;width:100%;height:100%;display:block;}
 
-/* ── EFFECT 3: Constellation Nav ── */
-/* NOTE: Do NOT override position here — .navbar already has sticky at line 142 */
 .navbar{overflow:hidden;}
 #const-cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 .navbar>*:not(#const-cv){position:relative;z-index:1;}
 
-/* ── Mouse-tracking glow on page-hero ── */
 .page-hero { position: relative; overflow: hidden; cursor: default; }
 #hero-glow-cv {
   position: absolute; inset: 0;
@@ -321,14 +292,6 @@ textarea.form-field { resize:vertical;min-height:120px; }
 }
 .page-hero > *:not(#hero-glow-cv) { position: relative; z-index: 1; }
 
-
-/* ══════════════════════════════════════════════════════════════
-   DESIGN SYSTEM UPGRADES — 7-FIX PATCH
-   ══════════════════════════════════════════════════════════════ */
-
-/* ─────────────────────────────────────────────────────────────
-   FIX 1 — TYPOGRAPHY SCALE
-   ───────────────────────────────────────────────────────────── */
 :root {
   --fs-xs:  11px;
   --fs-sm:  13px;
@@ -348,9 +311,6 @@ body { font-size: var(--fs-sm); line-height: var(--lh-body); }
 p { font-size: var(--fs-sm); line-height: var(--lh-body); }
 .sub-text, .section-sub { font-size: var(--fs-sm); }
 
-/* ─────────────────────────────────────────────────────────────
-   FIX 2 — SPACING SYSTEM
-   ───────────────────────────────────────────────────────────── */
 :root {
   --sp-xs: 8px;  --sp-sm: 16px; --sp-md: 32px;
   --sp-lg: 56px; --sp-xl: 88px; --sp-2xl: 120px;
@@ -366,9 +326,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
   .section { padding: var(--sp-lg) var(--sp-sm); }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   FIX 3 — DESIGN CONSISTENCY
-   ───────────────────────────────────────────────────────────── */
 :root {
   --sh-sm:   0 2px 8px rgba(0,0,0,0.12);
   --sh-md:   0 6px 24px rgba(0,0,0,0.18);
@@ -394,9 +351,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
 .navbar { box-shadow: 0 1px 0 rgba(255,255,255,0.04); }
 .page-hero { border-bottom: 1px solid rgba(255,255,255,0.04); }
 
-/* ─────────────────────────────────────────────────────────────
-   FIX 4 — SMOOTH ANIMATIONS
-   ───────────────────────────────────────────────────────────── */
 *, *::before, *::after {
   transition-timing-function: cubic-bezier(0.22, 0.68, 0, 1.2);
 }
@@ -425,9 +379,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
 .reveal-on-scroll:nth-child(5) { transition-delay: 0.33s; }
 .reveal-on-scroll:nth-child(6) { transition-delay: 0.40s; }
 
-/* ─────────────────────────────────────────────────────────────
-   FIX 5 — MOBILE EXPERIENCE
-   ───────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .section-heading { font-size: clamp(26px,7vw,38px); }
   .hero-title      { font-size: clamp(34px,9vw,52px); }
@@ -454,9 +405,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
   .cd-strip { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   FIX 6 — VISUAL BRANDING
-   ───────────────────────────────────────────────────────────── */
 :root {
   --gold-gradient:      linear-gradient(135deg, #c9a84c 0%, #f5d675 50%, #c9a84c 100%);
   --gold-text-gradient: linear-gradient(90deg, #c9a84c, #f5d675, #c9a84c);
@@ -490,9 +438,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
   border-top: 1px solid rgba(201,168,76,0.12);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   FIX 7 — HERO IMPROVEMENTS
-   ───────────────────────────────────────────────────────────── */
 .hero-title {
   letter-spacing: -0.025em;
   text-shadow: 0 2px 40px rgba(0,0,0,0.7), 0 0 80px rgba(0,0,0,0.4);
@@ -519,7 +464,7 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
               inset 0 0 0 1px rgba(201,168,76,0.18);
   border: none;
 }
-/* Page hero top shimmer — must stack above existing page-hero rules */
+
 .page-hero::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 1px;
@@ -527,19 +472,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
   z-index: 2;
 }
 
-/* ── END 7-FIX PATCH ──────────────────────────────────────── */
-
-
-/* ══════════════════════════════════════════════════════════════
-   PRECISION UPGRADE PATCH — TARGET 8.7+/10
-   3 Core Fixes: Cinematic Depth · Typography Rhythm · Section Consistency
-   ══════════════════════════════════════════════════════════════ */
-
-/* ─────────────────────────────────────────────────────────────
-   UPGRADE A — CINEMATIC VISUAL DEPTH
-   ───────────────────────────────────────────────────────────── */
-
-/* A1. Dark sections — gold atmospheric glow from top */
 .s-dark, .s-dark2, .s-dark3 { position: relative; }
 .s-dark::before, .s-dark2::before, .s-dark3::before {
   content: '';
@@ -550,7 +482,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
 }
 .s-dark > *, .s-dark2 > *, .s-dark3 > * { position: relative; z-index: 1; }
 
-/* A2. Light sections — warm paper vignette */
 .s-light, .s-light2 { position: relative; }
 .s-light::before, .s-light2::before {
   content: '';
@@ -561,7 +492,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
 }
 .s-light > *, .s-light2 > * { position: relative; z-index: 1; }
 
-/* A3. Section-to-section gold hairline separators */
 .s-light + .s-dark, .s-dark + .s-light,
 .s-light2 + .s-dark2, .s-dark2 + .s-light2,
 .s-light + .s-dark2, .s-dark3 + .s-light,
@@ -569,7 +499,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
   border-top: 1px solid rgba(201,168,76,0.10);
 }
 
-/* A4. Hero cinematic multi-layer overlay */
 .hero-overlay {
   background:
     linear-gradient(to bottom,
@@ -581,11 +510,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
       rgba(201,168,76,0.07) 0%, transparent 60%);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   UPGRADE B — TYPOGRAPHY RHYTHM SYSTEM
-   ───────────────────────────────────────────────────────────── */
-
-/* B1. Three-tier heading hierarchy */
 .hero-title {
   font-size: clamp(42px, 6.5vw, 80px);
   line-height: 1.06;
@@ -604,7 +528,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
   letter-spacing: -0.01em;
 }
 
-/* B2. Eyebrow / section-tag tight uppercase rhythm */
 .section-tag, .eyebrow, .hero-eyebrow-text {
   font-size: 10px;
   letter-spacing: 0.22em;
@@ -613,7 +536,6 @@ p { font-size: var(--fs-sm); line-height: var(--lh-body); }
   line-height: 1;
 }
 
-/* B3. Body copy optimal line width */
 p, .section-sub, .sub-text, .sc-detail,
 .tool-desc, .ministry-desc, .hero-desc {
   font-size: 14px;
@@ -623,7 +545,6 @@ p, .section-sub, .sub-text, .sc-detail,
 .hero-desc  { max-width: 52ch; }
 .section-sub { max-width: 56ch; }
 
-/* B4. Consistent heading → subtitle → body vertical rhythm */
 .section-tag + .section-heading,
 .eyebrow + .section-heading     { margin-top: 10px; }
 .section-heading + .section-sub,
@@ -631,11 +552,6 @@ p, .section-sub, .sub-text, .sc-detail,
 .section-sub + *,
 p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
 
-/* ─────────────────────────────────────────────────────────────
-   UPGRADE C — SECTION DESIGN CONSISTENCY
-   ───────────────────────────────────────────────────────────── */
-
-/* C1. Universal card baseline — one system, all sections */
 .card, .schedule-card, .tool-card, .ministry-card,
 .testimonial, .deliv-card, .countdown-block {
   border-radius: var(--radius-md);
@@ -644,7 +560,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
               border-color 0.26s ease;
 }
 
-/* Dark section cards */
 .s-dark .card, .s-dark2 .card, .s-dark3 .card,
 .schedule-card, .countdown-block {
   background: rgba(255,255,255,0.03);
@@ -659,7 +574,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   transform: translateY(-3px);
 }
 
-/* Light section cards */
 .s-light .card, .s-light2 .card, .tool-card {
   background: #ffffff;
   border: 1px solid rgba(0,0,0,0.07);
@@ -671,17 +585,14 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   transform: translateY(-3px);
 }
 
-/* C2. Uniform section header block vertical rhythm */
 .section > .container > .section-tag:first-child,
 .section > .container > p.eyebrow:first-child { margin-bottom: 8px; }
 .section > .container > .section-heading      { margin-bottom: 12px; }
 .section > .container > .section-sub          { margin-bottom: 36px; }
 
-/* C3. Section minimum height — no orphaned short sections */
 .section    { min-height: 240px; }
 .section-sm { min-height: 180px; }
 
-/* C4. Button system — unified primary + outline */
 .btn-gold, .btn--gold {
   background: var(--gold);
   color: var(--d1);
@@ -722,12 +633,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   background: rgba(255,255,255,0.07);
 }
 
-/* ── END PRECISION UPGRADE PATCH ─────────────────────────── */
-/* ═══════════════════════════════════════
-   FULL SITE FIX — ALL 8 PAGES
-   ═══════════════════════════════════════ */
-
-/* ── FIX 1: Cinematic depth for s-d1/d2/d3 system (inner pages) ── */
 .s-d1, .s-d2, .s-d3, .s-d4 { position: relative; }
 .s-d1::before, .s-d2::before, .s-d3::before {
   content: '';
@@ -738,7 +643,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
 }
 .s-d1 > *, .s-d2 > *, .s-d3 > * { position: relative; z-index: 1; }
 
-/* Light sections */
 .s-l1, .s-l2, .s-l3 { position: relative; }
 .s-l1::before, .s-l2::before {
   content: '';
@@ -749,14 +653,12 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
 }
 .s-l1 > *, .s-l2 > *, .s-l3 > * { position: relative; z-index: 1; }
 
-/* Section transitions */
 .s-l1 + .s-d2, .s-d2 + .s-l1,
 .s-l1 + .s-d3, .s-d3 + .s-l1,
 .s-l2 + .s-d2, .s-l2 + .s-d1 {
   border-top: 1px solid rgba(201,168,76,0.10);
 }
 
-/* ── FIX 2: Navbar gold glow on scroll ── */
 .navbar.scrolled {
   background: rgba(7,15,30,0.97);
   border-bottom-color: rgba(201,168,76,0.18);
@@ -769,7 +671,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   border-radius: 6px;
 }
 
-/* ── FIX 3: Page hero (inner pages) — cinematic upgrade ── */
 .page-hero {
   padding: 72px 0 60px;
   background: linear-gradient(160deg, var(--d3) 0%, var(--d1) 100%);
@@ -818,7 +719,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   display: block;
 }
 
-/* ── FIX 4: About page — pastor card & timeline polish ── */
 .pastor-card, .about-pastor-img-wrap {
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -867,7 +767,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   background: rgba(255,255,255,0.04);
 }
 
-/* ── FIX 5: Ministries page — card system upgrade ── */
 .ministry-card, [class*="ministry-card"] {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.07);
@@ -919,7 +818,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   pointer-events: none;
 }
 
-/* ── FIX 6: Gallery page — photo grid & hover effects ── */
 .gallery-grid, .gallery-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -969,7 +867,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   opacity: 1;
 }
 
-/* ── FIX 7: Contact page — info cards & map wrapper ── */
 .contact-card, .contact-item,
 .contact-info-card {
   background: rgba(255,255,255,0.03);
@@ -1020,7 +917,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
 .service-time-day { color: var(--t-muted-d); font-weight: 500; }
 .service-time-time { color: var(--gold); font-weight: 600; }
 
-/* ── FIX 8: Section-tag shimmer safe on light backgrounds ── */
 .s-l1 .section-tag, .s-l2 .section-tag, .s-l3 .section-tag,
 .s-light .section-tag, .s-light2 .section-tag {
   background: linear-gradient(90deg, #a07830, #c9a84c, #a07830);
@@ -1035,7 +931,6 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   -webkit-text-fill-color: initial;
 }
 
-/* ── FIX 9: Mobile — inner page nav & bottom spacing ── */
 @media (max-width: 768px) {
   .page-hero { padding: 48px 0 40px; }
   .page-hero h1 { font-size: clamp(26px, 8vw, 40px); }
@@ -1048,5 +943,3 @@ p + .btn--gold, p + .btn-gold   { margin-top: 24px; }
   .hero-stats, .page-hero .stat-row { gap: 20px; }
   .page-hero .stat-num { font-size: 28px; }
 }
-
-/* ── END FULL SITE FIX ─────────────────────────────────── */

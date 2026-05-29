@@ -1,17 +1,6 @@
-/* ================================================================
-   ENJC — PREMIUM DESIGN SYSTEM v3.0
-   "Cinematic Revival" — Unified across all 8 pages
-   Load order: main.css → enjc-premium.css → mobile-ux-fixes.css
-   ================================================================ */
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 1 — DESIGN TOKENS
-   Single source of truth for every visual decision.
-═══════════════════════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap');
 
 :root {
-  /* ── Backgrounds — Gospel Blue dark ── */
+
   --bg:            #030a1a;
   --bg-2:          #060f24;
   --bg-3:          #0c1e3e;
@@ -19,7 +8,6 @@
   --bg-card:       rgba(6, 15, 36, 0.82);
   --bg-glass:      rgba(3, 10, 26, 0.75);
 
-  /* ── Accent — royal blue ── */
   --gold:          #93b8ff;
   --gold-warm:     #b8d0ff;
   --gold-dim:      #5d8ef5;
@@ -28,27 +16,23 @@
   --gold-bg:       rgba(147, 184, 255, 0.09);
   --gold-bg-rich:  rgba(147, 184, 255, 0.18);
 
-  /* ── Text — cool white ── */
   --text:          #eaf0ff;
   --text-muted:    #8aabdf;
   --text-faint:    #506890;
 
-  /* ── Borders ── */
   --border:        rgba(26, 86, 219, 0.12);
   --border-mid:    rgba(26, 86, 219, 0.22);
   --border-gold:   rgba(147, 184, 255, 0.28);
 
-  /* ── Typography ── */
   --font-display:  'Cormorant Garamond', Georgia, serif;
   --font-body:     'DM Sans', system-ui, sans-serif;
   --font-tamil:    'Noto Serif Tamil', serif;
-  /* Legacy aliases — keeps bible.js and old code working */
+
   --font-heading:  var(--font-display);
   --serif:         var(--font-display);
   --sans:          var(--font-body);
   --tamil:         var(--font-tamil);
 
-  /* ── Spacing ── */
   --max-width:     1280px;
   --nav-height:    68px;
   --section-v:     clamp(72px, 9vw, 120px);
@@ -56,30 +40,26 @@
   --container-px:  clamp(20px, 5vw, 64px);
   --card-pad:      clamp(22px, 3vw, 36px);
 
-  /* ── Radius ── */
   --radius-xs:     8px;
   --radius-sm:     12px;
   --radius-md:     18px;
   --radius-lg:     26px;
   --radius-xl:     36px;
-  /* Legacy map */
+
   --r:             var(--radius-xs);
   --rl:            var(--radius-sm);
   --rx:            var(--radius-md);
 
-  /* ── Shadows ── */
   --shadow-card:   0 2px 16px rgba(0,0,0,0.45), 0 0 0 1px var(--border);
   --shadow-hover:  0 10px 48px rgba(0,0,0,0.60), 0 0 0 1px var(--border-mid);
   --shadow-gold:   0 0 48px rgba(147, 184, 255, 0.20), 0 0 120px rgba(147, 184, 255, 0.08);
 
-  /* ── Transitions ── */
   --ease-out:      cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
   --t-fast:        0.18s var(--ease-out);
   --t-med:         0.35s var(--ease-out);
   --t-slow:        0.6s  var(--ease-out);
 
-  /* ── Bible legacy bridge ── */
   --color-bg:          var(--bg);
   --color-bg-2:        var(--bg-2);
   --color-bg-3:        var(--bg-3);
@@ -123,7 +103,6 @@
   --color-border-gold: var(--border-gold);
 }
 
-/* ── Light theme — Ember Parchment ── */
 [data-theme="light"] {
   --bg:            #fdfaf0;
   --bg-2:          #f5edd8;
@@ -154,10 +133,6 @@
   --gd2:           #c08018;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 2 — BASE & TYPOGRAPHY
-═══════════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -187,10 +162,6 @@ p { color: var(--text-muted); line-height: 1.85; font-size: 15px; }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 3 — LAYOUT
-═══════════════════════════════════════════════════════════════ */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -216,10 +187,6 @@ img { max-width: 100%; display: block; }
 
 .divider { height: 1px; background: var(--border); margin: 0; }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 4 — NAVIGATION (Unified — same on every page)
-═══════════════════════════════════════════════════════════════ */
 .site-nav {
   position: sticky;
   top: 0;
@@ -244,7 +211,6 @@ img { max-width: 100%; display: block; }
   gap: 16px;
 }
 
-/* Logo */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -283,7 +249,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.5px;
 }
 
-/* Desktop links */
 .nav-links {
   display: flex;
   align-items: center;
@@ -307,7 +272,6 @@ img { max-width: 100%; display: block; }
   background: var(--gold-bg);
 }
 
-/* Controls */
 .nav-controls {
   display: flex;
   align-items: center;
@@ -355,7 +319,6 @@ img { max-width: 100%; display: block; }
   color: var(--gold-warm);
 }
 
-/* Hamburger */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -374,7 +337,6 @@ img { max-width: 100%; display: block; }
   transition: transform var(--t-fast), opacity var(--t-fast);
 }
 
-/* Mobile dropdown */
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -394,7 +356,6 @@ img { max-width: 100%; display: block; }
 .mobile-menu a:hover { background: var(--border); color: var(--text); }
 .mobile-menu a.nav-link--active { color: var(--gold); background: var(--gold-bg); }
 
-/* Service ticker */
 .service-ticker {
   background: var(--bg-2);
   border-bottom: 1px solid var(--border);
@@ -414,10 +375,6 @@ img { max-width: 100%; display: block; }
   .nav-visit-btn { display: none; }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 5 — HERO
-═══════════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
   min-height: min(92vh, 860px);
@@ -427,7 +384,6 @@ img { max-width: 100%; display: block; }
   background: var(--bg);
 }
 
-/* Cinematic ambient layers */
 .hero__ambient {
   position: absolute;
   inset: 0;
@@ -444,7 +400,6 @@ img { max-width: 100%; display: block; }
     radial-gradient(ellipse 50% 80% at 80% 50%, rgba(80,100,200,0.04) 0%, transparent 60%);
 }
 
-/* Floating particles canvas */
 .hero__particles {
   position: absolute;
   inset: 0;
@@ -452,7 +407,6 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-/* Slider images */
 .hero__bg-slides {
   position: absolute;
   inset: 0;
@@ -479,7 +433,6 @@ img { max-width: 100%; display: block; }
     linear-gradient(to top, rgba(6,8,16,0.70) 0%, transparent 50%);
 }
 
-/* Content */
 .hero__content {
   position: relative;
   z-index: 10;
@@ -537,7 +490,6 @@ img { max-width: 100%; display: block; }
   flex-wrap: wrap;
 }
 
-/* Scroll indicator */
 .hero__scroll-hint {
   position: absolute;
   bottom: 32px;
@@ -566,7 +518,6 @@ img { max-width: 100%; display: block; }
   50%       { opacity: 0.9; transform: translateX(-50%) translateY(6px); }
 }
 
-/* Slide dots */
 .hero__dots {
   position: absolute;
   bottom: 32px;
@@ -590,7 +541,6 @@ img { max-width: 100%; display: block; }
   transform: scale(1.4);
 }
 
-/* Live badge */
 .live-badge {
   display: inline-flex;
   align-items: center;
@@ -630,10 +580,6 @@ img { max-width: 100%; display: block; }
   .hero__dots { bottom: 20px; right: 20px; }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 6 — BUTTONS (Unified system)
-═══════════════════════════════════════════════════════════════ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -695,7 +641,6 @@ img { max-width: 100%; display: block; }
   background: rgba(220,40,40,0.25);
 }
 
-/* Legacy buttons still used in inline HTML */
 .btn--navy {
   display: inline-flex;
   align-items: center;
@@ -714,10 +659,6 @@ img { max-width: 100%; display: block; }
   transform: translateY(-1px);
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 7 — SECTION HEADINGS
-═══════════════════════════════════════════════════════════════ */
 .section-tag {
   font-size: 11px;
   font-weight: 500;
@@ -750,11 +691,6 @@ img { max-width: 100%; display: block; }
   border-radius: 2px;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 8 — CARDS
-═══════════════════════════════════════════════════════════════ */
-/* ── CARD BASE ── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -766,13 +702,6 @@ img { max-width: 100%; display: block; }
   z-index: 0;
 }
 
-/* ── SVG RUNNING BORDER ─────────────────────────────────────────
-   JS injects one <svg class="card-svg"> per .card.
-   The SVG rect traces the full perimeter with stroke-dasharray.
-   fill → reveal → retract loop = 2.4 s.
-   Dark  → var(--gold) = Gospel Blue #93b8ff
-   Light → var(--gold) = warm gold   #8a6010
-─────────────────────────────────────────────────────────────────*/
 .card-svg {
   position: absolute;
   inset: 0;
@@ -804,14 +733,12 @@ img { max-width: 100%; display: block; }
   100% { stroke-dashoffset: calc(var(--p) * -1); stroke-dasharray: 0 var(--p); }
 }
 
-/* Lift + glow on hover */
 .card:hover {
   transform: translateY(-3px);
   border-color: var(--border-mid);
   box-shadow: var(--shadow-hover);
 }
 
-/* Reduced-motion: skip animation, keep lift */
 @media (prefers-reduced-motion: reduce) {
   .card:hover .card-svg rect { animation: none; opacity: 0; }
 }
@@ -819,10 +746,6 @@ img { max-width: 100%; display: block; }
 .card h3 { color: var(--text); }
 .card p   { color: var(--text-muted); }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 9 — ACTIVITY CARDS (service times)
-═══════════════════════════════════════════════════════════════ */
 .activity-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -862,10 +785,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 10 — SERVICE SLOTS (Sunday times)
-═══════════════════════════════════════════════════════════════ */
 .service-slot {
   background: var(--gold-bg);
   border: 1px solid var(--gold-border);
@@ -889,10 +808,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: -0.02em;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 11 — DATE CARDS (deliverance schedule)
-═══════════════════════════════════════════════════════════════ */
 .date-card__month {
   font-size: 10px;
   letter-spacing: 0.12em;
@@ -907,10 +822,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.5;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 12 — VIDEO CARDS
-═══════════════════════════════════════════════════════════════ */
 .enjc-video-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -973,10 +884,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.02em;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 13 — CTA BAND
-═══════════════════════════════════════════════════════════════ */
 .cta-band {
   padding: clamp(48px,7vw,80px) 0;
   background: var(--bg-2);
@@ -1003,10 +910,6 @@ img { max-width: 100%; display: block; }
 }
 .cta-band p { margin-bottom: 28px; font-size: 15px; }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 14 — FOOTER (Unified)
-═══════════════════════════════════════════════════════════════ */
 .site-footer {
   background: var(--bg-2);
   border-top: 1px solid var(--border);
@@ -1090,10 +993,6 @@ img { max-width: 100%; display: block; }
   .site-footer__bottom { flex-direction: column; text-align: center; }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 15 — MOBILE BOTTOM NAV (Unified)
-═══════════════════════════════════════════════════════════════ */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -1141,7 +1040,6 @@ img { max-width: 100%; display: block; }
   transform: scale(1.08);
 }
 
-/* Show bottom nav only on mobile */
 @media (max-width: 900px) {
   .bottom-nav {
     display: flex;
@@ -1149,11 +1047,6 @@ img { max-width: 100%; display: block; }
   }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 16 — FLOATING ACTIONS
-═══════════════════════════════════════════════════════════════ */
-/* ── WhatsApp float — always visible, bottom-right ── */
 .wa-float {
   position: fixed;
   bottom: 24px;
@@ -1174,11 +1067,10 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 6px 28px rgba(37, 211, 102, 0.50);
 }
 
-/* ── Scroll-to-top — sits above WA button ── */
 .scroll-top-btn {
   position: fixed;
-  bottom: 84px;   /* 24px WA bottom + 50px WA height + 10px gap */
-  right: 23px;    /* visually centered over WA (WA is 50px, btn is 38px → offset 6px) */
+  bottom: 84px;
+  right: 23px;
   z-index: 989;
   width: 38px;
   height: 38px;
@@ -1193,7 +1085,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
 }
-/* support both .visible and .is-visible (site.js uses is-visible) */
+
 .scroll-top-btn.visible,
 .scroll-top-btn.is-visible { display: flex; }
 .scroll-top-btn:hover {
@@ -1202,20 +1094,15 @@ img { max-width: 100%; display: block; }
   transform: translateY(-2px);
 }
 
-/* Mobile — clear bottom nav (64px) */
 @media (max-width: 900px) {
   .wa-float       { bottom: 78px; right: 16px; }
-  .scroll-top-btn { bottom: 138px; right: 19px; } /* 78+50+10 */
+  .scroll-top-btn { bottom: 138px; right: 19px; }
 }
 @media (min-width: 901px) {
   .wa-float       { bottom: 24px; right: 20px; }
   .scroll-top-btn { bottom: 84px; right: 23px; }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 17 — SKIP LINK
-═══════════════════════════════════════════════════════════════ */
 .skip-to-content {
   position: absolute;
   top: -100px;
@@ -1232,10 +1119,6 @@ img { max-width: 100%; display: block; }
 }
 .skip-to-content:focus { top: 8px; }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 18 — SCROLL REVEAL ANIMATIONS
-═══════════════════════════════════════════════════════════════ */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1252,10 +1135,6 @@ img { max-width: 100%; display: block; }
 .reveal-delay-5 { transition-delay: 0.40s; }
 .reveal-delay-6 { transition-delay: 0.48s; }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 19 — ABOUT PAGE
-═══════════════════════════════════════════════════════════════ */
 .pastor-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1310,10 +1189,6 @@ img { max-width: 100%; display: block; }
   .stat-row { grid-template-columns: 1fr 1fr; }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 20 — TESTIMONIAL / QUOTE BLOCK
-═══════════════════════════════════════════════════════════════ */
 .quote-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1353,10 +1228,6 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 21 — MINISTRY CARDS
-═══════════════════════════════════════════════════════════════ */
 .ministry-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1377,10 +1248,6 @@ img { max-width: 100%; display: block; }
 .ministry-card h3 { color: var(--text); margin-bottom: 10px; }
 .ministry-card p  { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 22 — EVENTS / VIDEO FILTER TABS
-═══════════════════════════════════════════════════════════════ */
 .filter-tabs {
   display: flex;
   gap: 8px;
@@ -1402,10 +1269,6 @@ img { max-width: 100%; display: block; }
 .filter-tab:hover { border-color: var(--gold-border); color: var(--gold); }
 .filter-tab.is-active { background: var(--gold-bg-rich); border-color: var(--gold-border); color: var(--gold); }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 23 — GALLERY
-═══════════════════════════════════════════════════════════════ */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -1425,10 +1288,6 @@ img { max-width: 100%; display: block; }
 }
 .gallery-item:hover img { transform: scale(1.06); }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 24 — CONTACT
-═══════════════════════════════════════════════════════════════ */
 .contact-info-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1449,10 +1308,6 @@ img { max-width: 100%; display: block; }
 .contact-row__value a { color: var(--gold); }
 .contact-row__value a:hover { color: var(--gold-warm); }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 25 — PAGE HERO (inner pages)
-═══════════════════════════════════════════════════════════════ */
 .page-hero {
   padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px);
   position: relative;
@@ -1489,10 +1344,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.75;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 26 — COUNTDOWN / LIVE SECTION
-═══════════════════════════════════════════════════════════════ */
 .countdown-card {
   background: var(--bg-card);
   border: 1px solid var(--gold-border);
@@ -1537,10 +1388,6 @@ img { max-width: 100%; display: block; }
   margin-top: 6px;
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 27 — UTILITIES
-═══════════════════════════════════════════════════════════════ */
 .text-gold  { color: var(--gold); }
 .text-muted { color: var(--text-muted); }
 .text-faint { color: var(--text-faint); }
@@ -1556,10 +1403,6 @@ img { max-width: 100%; display: block; }
 .mb-28 { margin-bottom: 28px; }
 .mb-36 { margin-bottom: 36px; }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION 28 — PREMIUM GLOW EFFECTS
-═══════════════════════════════════════════════════════════════ */
 .glow-gold {
   box-shadow: var(--shadow-gold);
 }
@@ -1574,7 +1417,6 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(to right, transparent, var(--gold-border), transparent);
 }
 
-/* Announcement / info band */
 .info-band {
   padding: 14px 0;
   background: var(--gold-bg);
@@ -1586,4 +1428,3 @@ img { max-width: 100%; display: block; }
 .info-band strong { color: var(--gold); }
 .info-band a { color: var(--gold); font-weight: 500; }
 .info-band a:hover { color: var(--gold-warm); }
-

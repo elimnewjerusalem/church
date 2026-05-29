@@ -1,10 +1,4 @@
-/* ============================================================
-   ENJC — events.css
-   Page-specific styles for Live & Events (events.html)
-   Requires: enjc-design.css (design tokens must be loaded first)
-   ============================================================ */
 
-/* ── COUNTDOWN ──────────────────────────────────────────────── */
 .countdown {
   display: flex;
   gap: 16px;
@@ -39,7 +33,6 @@
   margin-top: 4px;
 }
 
-/* ── VERSE REELS ROW ────────────────────────────────────────── */
 .reels-row {
   display: flex;
   gap: 12px;
@@ -51,7 +44,6 @@
 .reels-row::-webkit-scrollbar { height: 3px; }
 .reels-row::-webkit-scrollbar-thumb { background: var(--gold-dim, rgba(201,168,76,0.4)); border-radius: 99px; }
 
-/* ── TESTIMONIALS ───────────────────────────────────────────── */
 .testimonial {
   background: var(--d3, #0d1e3a);
   border: 1px solid var(--bd, rgba(255,255,255,0.065));
@@ -101,7 +93,6 @@
   background: var(--gold-bg, rgba(201,168,76,0.1));
 }
 
-/* ── SEARCH / FILTER ────────────────────────────────────────── */
 .enjc-search-bar {
   display: flex;
   align-items: center;
@@ -144,10 +135,8 @@
   background: var(--gold-bg, rgba(201,168,76,0.08));
 }
 
-/* ── NORMAL SECTION BACKGROUND ─────────────────────────────── */
 .normal-section { background: var(--d2, #0a1628); }
 
-/* ── SKELETON LOADING ───────────────────────────────────────── */
 .skeleton {
   background: linear-gradient(90deg,
     rgba(255,255,255,0.05) 25%,
@@ -174,7 +163,6 @@
   100% { background-position: -200% 0; }
 }
 
-/* ── LIVE BADGE ─────────────────────────────────────────────── */
 .live-badge {
   display: inline-flex;
   align-items: center;
@@ -201,7 +189,6 @@
   50%       { opacity: 0.4; transform: scale(0.7); }
 }
 
-/* ── SCHEDULE TABLE ─────────────────────────────────────────── */
 .schedule-grid {
   display: grid;
   gap: 12px;
@@ -235,7 +222,6 @@
   text-align: right;
 }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .countdown { gap: 10px; }
   .countdown__value { font-size: 1.5rem; }
@@ -245,9 +231,6 @@
   .testimonial { padding: 20px 18px; }
 }
 
-/* ── EVENTS PAGE GLOBAL PADDING FIXES ──────────────────────── */
-
-/* Search wrap: match main container max-width */
 .events-search-wrap {
   padding-left: 0;
   padding-right: 0;
@@ -261,12 +244,10 @@
   .events-search-inner { padding: 0 18px; }
 }
 
-/* Filter row: allow wrapping neatly */
 .events-filter-row {
   padding-bottom: 4px;
 }
 
-/* Live/countdown grid: balanced spacing */
 .live-countdown-grid {
   gap: 24px;
 }
@@ -274,30 +255,21 @@
   .live-countdown-grid { gap: 20px; }
 }
 
-/* Countdown block: consistent padding */
 .countdown-block {
   padding: 28px 24px;
 }
 
-/* All section headings: consistent spacing */
 .normal-section .section-heading {
   margin-bottom: 6px;
 }
 
-/* Grid items: proper padding on mobile */
 @media (max-width: 600px) {
   .live-countdown-grid { gap: 16px; }
   .countdown-block { padding: 20px 18px; }
 }
 
-/* ═══════════════════════════════════════
-   EVENTS PAGE — ALL 6 FIXES
-   ═══════════════════════════════════════ */
-
-/* FIX 4: page-hero needs position:relative for ::after gold rule */
 .page-hero { position: relative; }
 
-/* FIX 5: testimonial — ensure CSS wins now inline styles are gone */
 .testimonial {
   background: var(--d3, #0d1e3a);
   border: 1px solid var(--gold-border, rgba(201,168,76,0.2));
@@ -320,7 +292,6 @@
   font-weight: 600;
 }
 
-/* FIX 2: reels-row — enforce scroll, prevent wrap bleed */
 .reels-row {
   flex-wrap: nowrap;
   padding-bottom: 12px;
@@ -330,7 +301,6 @@
   scroll-snap-align: start;
 }
 
-/* FIX 3: Video cards — YouTube grid thumbnails */
 .video-card {
   background: var(--d3, #0d1e3a);
   border: 1px solid rgba(255,255,255,0.07);
@@ -362,7 +332,7 @@
 .video-card:hover .video-card__thumb img {
   transform: scale(1.04);
 }
-/* Play overlay on hover */
+
 .video-card__thumb::after {
   content: '';
   position: absolute;
@@ -424,7 +394,7 @@
   color: var(--gold, #c9a84c);
   font-weight: 600;
 }
-/* Live badge inside thumb */
+
 .video-card__live {
   position: absolute;
   top: 8px;
@@ -432,7 +402,6 @@
   z-index: 3;
 }
 
-/* FIX — section depth: ensure s-d1/d2/d3 set correct bg over section/section-alt */
 .section.s-d1, .section-alt.s-d1,
 .section-sm.s-d1  { background: var(--d1); }
 .section.s-d2, .section-alt.s-d2,
@@ -440,7 +409,4 @@
 .section.s-d3, .section-alt.s-d3,
 .section-sm.s-d3  { background: var(--d3); }
 
-/* FIX — dead CSS cleanup: unify countdown class naming */
-.countdown__unit { display: none; } /* superseded by .cd-unit in inline styles */
-
-/* ── END EVENTS FIXES ──────────────────────────────────── */
+.countdown__unit { display: none; }
