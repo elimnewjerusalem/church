@@ -320,3 +320,211 @@ textarea.form-field { resize:vertical;min-height:120px; }
   pointer-events: none; z-index: 0;
 }
 .page-hero > *:not(#hero-glow-cv) { position: relative; z-index: 1; }
+
+
+/* ══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM UPGRADES — 7-FIX PATCH
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────
+   FIX 1 — TYPOGRAPHY SCALE
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --fs-xs:  11px;
+  --fs-sm:  13px;
+  --fs-md:  15px;
+  --fs-lg:  18px;
+  --fs-xl:  clamp(28px, 3.5vw, 42px);
+  --fs-2xl: clamp(38px, 5.5vw, 68px);
+  --lh-tight: 1.12;
+  --lh-body:  1.68;
+  --fw-normal: 400;
+  --fw-mid:    500;
+  --fw-bold:   700;
+}
+body { font-size: var(--fs-sm); line-height: var(--lh-body); }
+.section-heading { font-size: var(--fs-xl); line-height: var(--lh-tight); }
+.eyebrow, .section-tag { font-size: var(--fs-xs); letter-spacing: 0.20em; }
+p { font-size: var(--fs-sm); line-height: var(--lh-body); }
+.sub-text, .section-sub { font-size: var(--fs-sm); }
+
+/* ─────────────────────────────────────────────────────────────
+   FIX 2 — SPACING SYSTEM
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --sp-xs: 8px;  --sp-sm: 16px; --sp-md: 32px;
+  --sp-lg: 56px; --sp-xl: 88px; --sp-2xl: 120px;
+}
+.section    { padding: var(--sp-xl) var(--sp-md); }
+.section-sm { padding: var(--sp-lg) var(--sp-md); }
+.container  { max-width: 1120px; margin: 0 auto; padding: 0 var(--sp-md); }
+.card       { padding: var(--sp-md); gap: var(--sp-sm); }
+.eyebrow    { margin-bottom: var(--sp-xs); }
+.section-heading { margin-bottom: var(--sp-sm); }
+.section-sub     { margin-bottom: var(--sp-md); }
+@media (max-width: 768px) {
+  .section { padding: var(--sp-lg) var(--sp-sm); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FIX 3 — DESIGN CONSISTENCY
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --sh-sm:   0 2px 8px rgba(0,0,0,0.12);
+  --sh-md:   0 6px 24px rgba(0,0,0,0.18);
+  --sh-lg:   0 16px 48px rgba(0,0,0,0.28);
+  --sh-gold: 0 4px 20px rgba(201,168,76,0.20);
+  --radius-sm: 8px; --radius-md: 14px; --radius-lg: 20px;
+  --border-width: 1px;
+}
+.card             { border-radius: var(--radius-md); box-shadow: var(--sh-sm); }
+.card:hover       { box-shadow: var(--sh-md); }
+.card.on-light    { box-shadow: var(--sh-sm); }
+.card.on-light:hover { box-shadow: var(--sh-md); }
+.btn, .btn-gold, .btn--gold, .nav-cta {
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+  padding: 11px 22px;
+}
+.btn--gold:hover, .btn-gold:hover {
+  box-shadow: var(--sh-gold); transform: translateY(-1px);
+}
+.navbar { box-shadow: 0 1px 0 rgba(255,255,255,0.04); }
+.page-hero { border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+/* ─────────────────────────────────────────────────────────────
+   FIX 4 — SMOOTH ANIMATIONS
+   ───────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  transition-timing-function: cubic-bezier(0.22, 0.68, 0, 1.2);
+}
+.card, .btn, .btn-gold, .btn--gold, .btn--outline,
+.nav-links a, .social-icon, .footer-links a,
+.bento__item, .gallery-item, .ministry-card, .tool-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.68,0,1.2),
+              box-shadow 0.28s ease,
+              border-color 0.28s ease,
+              opacity 0.28s ease;
+}
+.card:hover       { transform: translateY(-3px); }
+.bento__item:hover { transform: scale(1.018); }
+.btn-gold:hover, .btn--gold:hover { transform: translateY(-2px); }
+.social-icon:hover { transform: translateY(-2px) scale(1.1); }
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22,0.68,0,1.2);
+}
+.reveal-on-scroll.is-visible { opacity: 1; transform: none; }
+.reveal-on-scroll:nth-child(1) { transition-delay: 0.05s; }
+.reveal-on-scroll:nth-child(2) { transition-delay: 0.12s; }
+.reveal-on-scroll:nth-child(3) { transition-delay: 0.19s; }
+.reveal-on-scroll:nth-child(4) { transition-delay: 0.26s; }
+.reveal-on-scroll:nth-child(5) { transition-delay: 0.33s; }
+.reveal-on-scroll:nth-child(6) { transition-delay: 0.40s; }
+
+/* ─────────────────────────────────────────────────────────────
+   FIX 5 — MOBILE EXPERIENCE
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section-heading { font-size: clamp(26px,7vw,38px); }
+  .hero-title      { font-size: clamp(34px,9vw,52px); }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 14px; }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .deliv-grid    { grid-template-columns: 1fr 1fr; }
+  .footer-grid   { grid-template-columns: 1fr; gap: 20px; }
+  .card { padding: var(--sp-sm); }
+  .hero-btns { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .btn, .btn-gold, .btn--gold { padding: 12px 20px; font-size: 12px; }
+  .section { padding: 44px 18px; }
+  .container { padding: 0 16px; }
+  .service-strip { flex-direction: column; }
+  .service-item  { padding: 14px 18px; }
+  .navbar { padding: 0 16px; height: 56px; }
+  .contact-grid, .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .gallery-strip { grid-template-columns: 1fr 1fr; gap: 8px; }
+}
+@media (max-width: 480px) {
+  .deliv-grid    { grid-template-columns: 1fr 1fr; }
+  .gallery-strip { grid-template-columns: 1fr 1fr; }
+  .hero-btns     { gap: 8px; }
+  .cd-strip { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FIX 6 — VISUAL BRANDING
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --gold-gradient:      linear-gradient(135deg, #c9a84c 0%, #f5d675 50%, #c9a84c 100%);
+  --gold-text-gradient: linear-gradient(90deg, #c9a84c, #f5d675, #c9a84c);
+}
+.section-tag, .eyebrow {
+  background: var(--gold-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: goldShimmer 3s linear infinite;
+}
+@keyframes goldShimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+.section-rule {
+  width: 48px; height: 2px;
+  background: var(--gold-gradient);
+  border-radius: 2px; margin: 10px 0 22px;
+}
+.card { position: relative; overflow: hidden; }
+.card:hover::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold-gradient);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.s-l1 + .s-d1, .s-d2 + .s-l1,
+.s-l2 + .s-d2, .s-d3 + .s-l2 {
+  border-top: 1px solid rgba(201,168,76,0.12);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FIX 7 — HERO IMPROVEMENTS
+   ───────────────────────────────────────────────────────────── */
+.hero-title {
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.7), 0 0 80px rgba(0,0,0,0.4);
+}
+.hero-desc {
+  color: rgba(255,255,255,0.82);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+.btn-gold, .btn--gold {
+  box-shadow: 0 0 0 0 rgba(201,168,76,0.4);
+  animation: goldPulse 2.8s cubic-bezier(0.4,0,0.6,1) 1.5s 3;
+}
+@keyframes goldPulse {
+  0%  { box-shadow: 0 0 0 0 rgba(201,168,76,0.45); }
+  60% { box-shadow: 0 0 0 12px rgba(201,168,76,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+}
+.event-card {
+  background: rgba(6,14,28,0.78);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5),
+              inset 0 1px 0 rgba(255,255,255,0.08),
+              inset 0 0 0 1px rgba(201,168,76,0.18);
+  border: none;
+}
+/* Page hero top shimmer — must stack above existing page-hero rules */
+.page-hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  z-index: 2;
+}
+
+/* ── END 7-FIX PATCH ──────────────────────────────────────── */
