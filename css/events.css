@@ -289,3 +289,158 @@
   .live-countdown-grid { gap: 16px; }
   .countdown-block { padding: 20px 18px; }
 }
+
+/* ═══════════════════════════════════════
+   EVENTS PAGE — ALL 6 FIXES
+   ═══════════════════════════════════════ */
+
+/* FIX 4: page-hero needs position:relative for ::after gold rule */
+.page-hero { position: relative; }
+
+/* FIX 5: testimonial — ensure CSS wins now inline styles are gone */
+.testimonial {
+  background: var(--d3, #0d1e3a);
+  border: 1px solid var(--gold-border, rgba(201,168,76,0.2));
+  border-radius: var(--radius-md, 14px);
+  padding: 32px;
+  text-align: left;
+  position: relative;
+}
+.testimonial__text {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--t-light, #e8f0fa);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.testimonial__author {
+  font-size: 13px;
+  color: var(--t-muted-d, #6a85a8);
+  font-weight: 600;
+}
+
+/* FIX 2: reels-row — enforce scroll, prevent wrap bleed */
+.reels-row {
+  flex-wrap: nowrap;
+  padding-bottom: 12px;
+}
+.reels-row > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* FIX 3: Video cards — YouTube grid thumbnails */
+.video-card {
+  background: var(--d3, #0d1e3a);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+  transition: transform 0.26s cubic-bezier(0.22,0.68,0,1.2),
+              border-color 0.26s ease, box-shadow 0.26s ease;
+  cursor: pointer;
+  position: relative;
+}
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,168,76,0.3);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+.video-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--d4, #070f1e);
+}
+.video-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.22,0.68,0,1.2);
+}
+.video-card:hover .video-card__thumb img {
+  transform: scale(1.04);
+}
+/* Play overlay on hover */
+.video-card__thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(7,15,30,0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.video-card:hover .video-card__thumb::after {
+  opacity: 1;
+}
+.video-card__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.video-card:hover .video-card__play {
+  opacity: 1;
+}
+.video-card__play-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(201,168,76,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #070f1e;
+  font-size: 18px;
+}
+.video-card__body {
+  padding: 12px 14px 14px;
+}
+.video-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t-light, #e8f0fa);
+  line-height: 1.45;
+  margin: 0 0 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.video-card__meta {
+  font-size: 11px;
+  color: var(--t-muted-d, #6a85a8);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.video-card__views {
+  color: var(--gold, #c9a84c);
+  font-weight: 600;
+}
+/* Live badge inside thumb */
+.video-card__live {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+}
+
+/* FIX — section depth: ensure s-d1/d2/d3 set correct bg over section/section-alt */
+.section.s-d1, .section-alt.s-d1,
+.section-sm.s-d1  { background: var(--d1); }
+.section.s-d2, .section-alt.s-d2,
+.section-sm.s-d2  { background: var(--d2); }
+.section.s-d3, .section-alt.s-d3,
+.section-sm.s-d3  { background: var(--d3); }
+
+/* FIX — dead CSS cleanup: unify countdown class naming */
+.countdown__unit { display: none; } /* superseded by .cd-unit in inline styles */
+
+/* ── END EVENTS FIXES ──────────────────────────────────── */
