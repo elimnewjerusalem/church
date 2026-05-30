@@ -1,5 +1,0 @@
-The following files were deleted as part of this fix:
-- css/premium-upgrade.css  (exact duplicate of css/enjc-premium.css)
-- js/slider.js             (dead code — never loaded by any page)
-
-Delete these from your GitHub repo manually via GitHub Desktop or git rm.
