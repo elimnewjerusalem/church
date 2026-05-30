@@ -131,17 +131,7 @@ img { display: block; }
   opacity: 0; transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal.anim-roll-left { transform: translateX(-40px) rotate(-3deg); }
-.reveal.anim-roll-left.visible { transform: translateX(0) rotate(0); }
-.reveal.anim-roll-right { transform: translateX(40px) rotate(3deg); }
-.reveal.anim-roll-right.visible { transform: translateX(0) rotate(0); }
-.delay-1 { transition-delay: 0.08s; }
-.delay-2 { transition-delay: 0.16s; }
-.delay-3 { transition-delay: 0.24s; }
-.delay-4 { transition-delay: 0.32s; }
-.delay-5 { transition-delay: 0.40s; }
-.delay-6 { transition-delay: 0.48s; }
+/* reveal animations and delay helpers → enjc-design.css */
 
 /* ═══════════════════════════════════════════════════════════
    NAV
@@ -574,32 +564,7 @@ img { display: block; }
   transition: transform 0.2s;
 }
 .wa-float:hover { transform: scale(1.1); }
-#scroll-top-btn {
-  position: fixed; bottom: 140px; right: 20px; z-index: 800;
-  width: 42px; height: 42px; border-radius: 50%;
-  background: var(--gold); color: var(--navy);
-  display: none; align-items: center; justify-content: center;
-  border: none; cursor: pointer; font-size: 18px;
-  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
-  transition: all 0.2s;
-}
-#scroll-top-btn.visible { display: flex; }
-#scroll-top-btn:hover { transform: scale(1.1); }
-
-/* ── Mobile nav ── */
-.mob-nav {
-  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 850;
-  background: var(--navy-2); border-top: 1px solid var(--border-dark);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-}
-.mob-nav-inner { display: flex; }
-.mob-item {
-  flex: 1; display: flex; flex-direction: column; align-items: center;
-  padding: 10px 4px 12px; font-size: 10px; color: var(--text-muted-dark);
-  transition: color 0.2s; gap: 3px;
-}
-.mob-item i { font-size: 20px; }
-.mob-item.active, .mob-item:hover { color: var(--gold); }
+/* #scroll-top-btn, .mob-nav, .mob-item → enjc-design.css */
 
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE
@@ -625,17 +590,6 @@ img { display: block; }
   .hero-right { width: 100%; }
   .event-card { max-width: 100%; }
   .live-badge { top: 68px; right: 14px; font-size: 10px; padding: 6px 12px; }
-  /* Mobile cinema overlay: darken bottom 52% for stacked content */
-  .hero-overlay {
-    background: linear-gradient(
-      to top,
-      rgba(4,10,22,0.97) 0%,
-      rgba(4,10,22,0.92) 22%,
-      rgba(4,10,22,0.72) 42%,
-      rgba(4,10,22,0.22) 58%,
-      transparent 72%
-    ) !important;
-  }
   .cd-strip { flex-direction: column; gap: 14px; padding: 18px 24px; align-items: flex-start; }
   .service-strip { flex-direction: column; }
   .service-item { border-right: none; border-bottom: 1px solid var(--border-dark); padding: 16px 24px; }
@@ -649,7 +603,6 @@ img { display: block; }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 24px; }
   .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
-  .mob-nav { display: block; }
   .section-header-row { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
 @media (max-width: 480px) {
@@ -1204,31 +1157,6 @@ img { display: block; }
     document.getElementById('cd-s').textContent=p(best%60);
   }
   tick(); setInterval(tick,1000);
-})();
-
-/* ── Scroll-to-top ── */
-(function(){
-  var btn=document.getElementById('scroll-top-btn');
-  window.addEventListener('scroll',function(){
-    btn.classList.toggle('visible', window.scrollY > 400);
-  });
-})();
-
-/* ── Reveal on scroll ── */
-(function(){
-  var els=document.querySelectorAll('.reveal');
-  if(!els.length||!window.IntersectionObserver){
-    els.forEach(function(e){e.classList.add('visible');});return;
-  }
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}
-    });
-  },{threshold:0,rootMargin:'0px 0px -20px 0px'});
-  els.forEach(function(e){obs.observe(e);});
-  setTimeout(function(){
-    els.forEach(function(e){if(!e.classList.contains('visible'))e.classList.add('visible');});
-  },1800);
 })();
 
 /* ── Mobile nav toggle ── */
