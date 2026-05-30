@@ -146,31 +146,7 @@ img { display: block; }
 /* ═══════════════════════════════════════════════════════════
    NAV
    ═══════════════════════════════════════════════════════════ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 32px; height: 60px;
-  background: rgba(7,15,30,0.92); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-dark);
-}
-.nav-brand { display: flex; align-items: center; gap: 10px; }
-.nav-logo-img { height: 36px; width: 36px; object-fit: contain; border-radius: 6px; }
-.nav-brand-name {
-  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 700; color: var(--gold);
-}
-.nav-brand-sub { font-size: 11px; color: var(--text-muted-dark); line-height: 1.2; }
-.nav-links { display: flex; align-items: center; gap: 2px; }
-.nav-links a { font-size: 12px; color: #7a9ab8; padding: 7px 12px; border-radius: 6px; transition: all 0.2s; font-weight: 500; }
-.nav-links a:hover { color: #e8f0fa; }
-.nav-links a.active { color: var(--gold); background: var(--gold-glow); font-weight: 600; }
-.nav-visit {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--gold); color: var(--navy);
-  padding: 8px 18px; border-radius: 7px;
-  font-size: 12px; font-weight: 700; transition: all 0.2s;
-}
-.nav-visit:hover { background: var(--gold-bright); }
-.nav-toggle { display: none; background: none; border: none; color: var(--text-light); font-size: 22px; cursor: pointer; }
+/* nav styles handled by enjc-design.css */
 
 /* ═══════════════════════════════════════════════════════════
    HERO — Cinema Style
@@ -637,14 +613,6 @@ img { display: block; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 @media (max-width: 768px) {
-  .nav-links, .nav-visit { display: none; }
-  .nav-toggle { display: block; }
-  .nav-links.mob-open {
-    display: flex; flex-direction: column; gap: 4px;
-    position: absolute; top: 60px; left: 0; right: 0;
-    background: var(--navy-2); border-bottom: 1px solid var(--border-dark);
-    padding: 12px 20px 16px;
-  }
   .hero { min-height: 100svh; }
   /* Cinema mobile: stack vertically, still pinned to bottom */
   .hero-body {
@@ -690,19 +658,74 @@ img { display: block; }
   .gallery-strip { grid-template-columns: 1fr 1fr; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Church",
+  "name": "Elim New Jerusalem Church",
+  "alternateName": "ENJC",
+  "url": "https://elimnewjerusalem.github.io/church/",
+  "logo": "https://elimnewjerusalem.github.io/church/images/logo/logo.png",
+  "image": "https://elimnewjerusalem.github.io/church/images/logo/logo.png",
+  "description": "Spirit-filled Pentecostal church in Tondiarpet, Chennai. Three Sunday services, deliverance ministry, night prayer and Tamil Nadu village outreach.",
+  "telephone": "+91-94443-45102",
+  "email": "enjctondiarpet@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "No.110E, Elaya Street",
+    "addressLocality": "Tondiarpet",
+    "addressRegion": "Tamil Nadu",
+    "postalCode": "600081",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 13.1338,
+    "longitude": 80.2939
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "05:30",
+      "closes": "13:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "11:00",
+      "closes": "16:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "11:00",
+      "closes": "13:30"
+    }
+  ],
+  "sameAs": [
+    "https://www.youtube.com/@elimnewjerusalemchurch",
+    "https://www.instagram.com/elimnewjerusalemchurch",
+    "https://www.facebook.com/enjcmedia"
+  ],
+  "pastor": {
+    "@type": "Person",
+    "name": "Pastor A. Karthik Daniel"
+  }
+}
+</script>
 </head>
 <body>
 
 <!-- ═══ NAV ═══ -->
-<nav class="nav" id="main-nav"><canvas id="const-cv" aria-hidden="true"></canvas>
-  <div class="nav-brand">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36"
-         onerror="this.style.display='none'">
+<nav class="navbar" id="main-nav"><canvas id="const-cv" aria-hidden="true"></canvas>
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
     <div>
-      <div class="nav-brand-name">ENJC</div>
-      <div class="nav-brand-sub">Elim New Jerusalem Church · Tondiarpet, Chennai</div>
+      <div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div>
+      <div class="nav-logo-sub">Tondiarpet, Chennai</div>
     </div>
-  </div>
+  </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
@@ -713,10 +736,8 @@ img { display: block; }
     <a href="imagegen.html">Cards</a>
     <a href="contact.html">Contact</a>
   </div>
-  <a href="contact.html" class="nav-visit">
-    <i class="ti ti-map-pin" style="font-size:13px"></i> Visit Us
-  </a>
-  <button class="nav-toggle" id="mob-toggle" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
+  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
+  <button class="nav-mobile-toggle" id="mob-toggle" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -1212,20 +1233,8 @@ img { display: block; }
 
 /* ── Mobile nav toggle ── */
 (function(){
-  var btn=document.getElementById('mob-toggle');
-  var links=document.getElementById('nav-links');
-  if(!btn||!links) return;
-  btn.addEventListener('click',function(e){
-    e.stopPropagation();
-    links.classList.toggle('mob-open');
-  });
-  document.addEventListener('click',function(e){
-    if(!links.contains(e.target)&&!btn.contains(e.target))
-      links.classList.remove('mob-open');
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape') links.classList.remove('mob-open');
-  });
+  var btn=document.getElementById('mob-toggle'),links=document.getElementById('nav-links');
+  if(btn&&links){btn.addEventListener('click',function(e){e.stopPropagation();links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});}
 })();
 </script>
 
