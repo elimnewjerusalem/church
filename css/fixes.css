@@ -293,8 +293,11 @@ nav.nav#main-nav {
 }
 @media (min-width: 901px) {
   .mobile-menu { display: none !important; }
-  .nav-hamburger,
-  .nav-toggle { display: none !important; }
+  .nav-hamburger { display: none !important; }
+  /* Index page uses .nav-toggle for mobile — keep hidden on desktop */
+  nav.nav#main-nav .nav-toggle { display: none !important; }
+  /* Ensure index nav-links visible on desktop */
+  nav.nav#main-nav .nav-links { display: flex !important; }
 }
 
 /* ── 6. MOBILE NAV BAR (bottom) ─────────────────────────────── */

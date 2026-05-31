@@ -68,8 +68,7 @@
   --border-light: rgba(0,0,0,0.08);
 }
 
-/* Reset — override any inherited styles */
-html, body { all: unset; display: block; }
+/* Reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text-light); line-height: 1.6; padding-bottom: 68px; }
@@ -639,11 +638,11 @@ img { display: block; }
   .deliv-grid { grid-template-columns: repeat(3,1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-links, .nav-visit { display: none; }
   .nav-toggle { display: block; }
   .nav-links.mob-open {
-    display: flex; flex-direction: column; gap: 4px;
+    display: flex !important; flex-direction: column; gap: 4px;
     position: absolute; top: 60px; left: 0; right: 0;
     background: var(--navy-2); border-bottom: 1px solid var(--border-dark);
     padding: 12px 20px 16px;
@@ -716,7 +715,7 @@ img { display: block; }
     <a href="bible.html">Bible</a>
     <a href="imagegen.html">Cards</a>
     <a href="contact.html">Contact</a>
-  </div>
+  </ul>
   <button class="theme-toggle" id="theme-btn" aria-label="Toggle dark/light theme" aria-pressed="false"><div class="theme-toggle__dot"></div></button>
   <a href="contact.html" class="nav-visit">
     <i class="ti ti-map-pin" class="icon-sm"></i> Visit Us
