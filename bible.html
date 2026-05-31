@@ -2,53 +2,95 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bible Reader | ENJC</title>
-<meta name="description" content="Read the Tamil & English Bible — all 66 books, distraction-free.">
-<link rel="canonical" href="https://elimnewjerusalem.github.io/church/bible.html">
-<link rel="icon" type="image/png" href="images/logo/logo.png">
-<link rel="apple-touch-icon" href="images/logo/logo.png">
-<link rel="manifest" href="data/manifest.json">
-<meta property="og:title" content="Bible Reader | ENJC">
-<meta property="og:description" content="Read the Tamil & English Bible — all 66 books, distraction-free.">
-<meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-<meta property="og:url" content="https://elimnewjerusalem.github.io/church/bible.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="apple-touch-icon" href="images/logo/logo.png">
+  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/bible.html">
+<title>பரிசுத்த வேதாகமம் | ENJC</title>
+<meta name="description" content="Tamil & English Bible — 66 books, Audio, Image, Bookmark | ENJC Tondiarpet Chennai">
+<script src="js/site.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<link rel="stylesheet" href="css/enjc-design.css">
-<link rel="stylesheet" href="css/bible.css" onerror="void(0)">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/mobile-ux-fixes.css">
+<link rel="stylesheet" href="css/premium-upgrade.css">
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE"></script>
-<script src="js/site.js" defer></script>
+
+
+  <!-- SEO: Open Graph & Twitter Card -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/bible.html">
+  <meta property="og:title"       content="பரிசுத்த வேதாகமம் | ENJC">
+  <meta property="og:description" content="Tamil &amp; English Bible — 66 books, Audio, Bookmarks, Image Generator | ENJC Tondiarpet Chennai">
+  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"      content="பரிசுத்த வேதாகமம் | ENJC">
+  <meta name="twitter:description" content="Tamil &amp; English Bible — 66 books, Audio, Bookmarks, Image Generator | ENJC Tondiarpet Chennai">
+  <meta name="twitter:image"      content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+
+<link rel="stylesheet" href="css/fixes.css">
 </head>
 <body>
-<style>.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}</style>
+  <div id="enjc-service-banner" role="status" aria-live="polite" aria-atomic="true">
+    <span class="banner-icon" aria-hidden="true">⛪</span>
+    <span class="banner-label">Service starts in</span>
+    <span class="banner-time">–</span>
+    <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener"
+       style="margin-left:8px;font-size:12px;color:var(--color-gold);text-decoration:underline;">Watch Live ▶</a>
+  </div>
 
 <!-- ── SITE NAV ─────────────────────────────────────── -->
-<nav class="navbar"><canvas id="const-cv" aria-hidden="true"></canvas>
-  <a href="index.html" class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
-    <div><div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div><div class="nav-logo-sub">Tondiarpet, Chennai</div></div>
-  </a>
-  <div class="nav-links" id="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="ministries.html">Ministries</a>
-    <a href="events.html">Events</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="bible.html" class="active">Bible</a>
-    <a href="imagegen.html">Cards</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
-  <button class="nav-mobile-toggle" id="mob-toggle"><i class="ti ti-menu-2"></i></button>
-</nav>
-<main id="bible-main"><h1 class="sr-only">ENJC Bible Reader — Tamil &amp; English</h1>
-<div class="stained-divider" aria-hidden="true"><canvas class="stained-cv"></canvas></div>
-
+<header>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="ENJC home">
+        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
+        <div>
+          <div class="nav-logo__name">ENJC</div>
+          <div class="nav-logo__sub">Elim New Jerusalem Church</div>
+        </div>
+      </a>
+      <div class="nav-links" role="list">
+        <a href="index.html"      class="nav-link" role="listitem">Home</a>
+        <a href="about.html"      class="nav-link" role="listitem">About</a>
+        <a href="gallery.html"    class="nav-link" role="listitem">Gallery</a>
+        <a href="ministries.html" class="nav-link" role="listitem">Ministries</a>
+        <a href="events.html"     class="nav-link" role="listitem">Events</a>
+        <a href="contact.html"    class="nav-link" role="listitem">Contact</a>
+        <a href="bible.html"      class="nav-link nav-link--active" aria-current="page" role="listitem">Bible</a>
+      </div>
+      <div class="nav-controls">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+          <div class="theme-toggle__dot"></div>
+        </button>
+        <a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
+          📍 Visit Us
+        </a>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" role="menu">
+      <a href="index.html"      class="mobile-menu__link" role="menuitem">Home</a>
+      <a href="about.html"      class="mobile-menu__link" role="menuitem">About</a>
+      <a href="gallery.html"    class="mobile-menu__link" role="menuitem">Gallery</a>
+      <a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a>
+      <a href="events.html"     class="mobile-menu__link" role="menuitem">Events</a>
+      <a href="contact.html"    class="mobile-menu__link" role="menuitem">Contact</a>
+      <a href="bible.html"      class="mobile-menu__link is-active" role="menuitem">Bible</a>
+    </div>
+  </nav>
+</header>
 
 <!-- ── MAIN LAYOUT — New 2026 ─────────────────────────── -->
 
@@ -115,8 +157,9 @@
     </div>
     <!-- search -->
     <div class="nx-search-row">
-      <input class="nx-search-inp" id="sinp" type="text"
+      <input class="nx-search-inp" id="sinp" type="search"
         placeholder="தேடுக — John 3:16, faith, அன்பு..."
+        inputmode="search" autocomplete="off" autocorrect="off" spellcheck="false"
         onkeydown="if(event.key==='Enter')doSearch()">
       <button class="nx-search-btn" onclick="doSearch()">🔍</button>
     </div>
@@ -327,7 +370,7 @@
         <span class="vs-act-lbl">Share</span>
       </button>
 
-      <button class="vs-act-btn" onclick="toggleHLRow()">
+      <button class="vs-act-btn" onclick="toggleNoteRow()">
         <span class="vs-act-icon" style="background:#78350f;color:#ffffff">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
@@ -379,6 +422,67 @@
 </nav>
 
 <!-- WA FLOAT -->
+<a href="https://wa.me/919444345102" target="_blank" rel="noopener"
+   class="wa-float" title="WhatsApp" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__rich">
+        <div class="site-footer__col">
+          <div class="site-footer__logo">ENJC</div>
+          <p class="site-footer__tagline">Elim New Jerusalem Church<br>Tondiarpet, Chennai</p>
+          <p class="site-footer__addr">📍 No.110E, Elaya Street, Tondiarpet, Chennai – 600 081</p>
+          <a href="tel:+919444345102" class="site-footer__phone">📞 +91 94443 45102</a>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__heading">Quick Links</div>
+          <nav aria-label="Footer navigation">
+            <a href="index.html" class="site-footer__link">🏠 Home</a>
+            <a href="about.html" class="site-footer__link">✝ About</a>
+            <a href="events.html" class="site-footer__link">📅 Live &amp; Events</a>
+            <a href="bible.html" class="site-footer__link">📖 Bible Reader</a>
+            <a href="gallery.html" class="site-footer__link">🖼 Gallery</a>
+            <a href="ministries.html" class="site-footer__link">🙏 Ministries</a>
+            <a href="contact.html" class="site-footer__link">✉ Contact</a>
+            <a href="imagegen.html" class="site-footer__link">🖼️ Scripture Cards</a>
+          </nav>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__heading">Connect With Us</div>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">▶</span> YouTube — Main Channel
+          </a>
+          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📱</span> YouTube — ENJC Shorts
+          </a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">📸</span> Instagram
+          </a>
+          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">👥</span> Facebook
+          </a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social">
+            <span aria-hidden="true">💬</span> WhatsApp
+          </a>
+          <div class="site-footer__services">
+            <div class="site-footer__heading" style="margin-top:16px">Service Times</div>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">✝ Fri · 11:00 AM – 1:30 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🌙 Night Prayer · 10:30 PM Daily</p>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 Elim New Jerusalem Church, Chennai</span>
+        <span>Built with ❤️ for the Kingdom</span>
+      </div>
+    </div>
+  </footer>
 
 
 <!-- BOTTOM SHEET JS -->
@@ -395,6 +499,22 @@ function toggleHLRow(){
   const row = document.getElementById('vs-hl-row');
   if(!row) return;
   row.classList.toggle('show');
+  // Hide note row when HL row shown
+  const nr = document.getElementById('vs-note-row');
+  if(nr && row.classList.contains('show')) nr.classList.remove('show');
+}
+
+function toggleNoteRow(){
+  const row = document.getElementById('vs-note-row');
+  if(!row) return;
+  row.classList.toggle('show');
+  // Hide HL row when note row shown
+  const hr = document.getElementById('vs-hl-row');
+  if(hr && row.classList.contains('show')) hr.classList.remove('show');
+  // Focus textarea
+  if(row.classList.contains('show')){
+    setTimeout(()=>document.getElementById('vs-note')?.focus(), 100);
+  }
 }
 
 function setSheetHL(dot, color){
@@ -500,55 +620,13 @@ function openImageStudioWithVerse(){
 
 <!-- BIBLE ENGINE -->
 <script src="js/bible.js"></script>
+<script src="js/mobile-ux-fixes.js" defer></script>
 
+<!-- SCROLL TOP -->
+<button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
 
+<script src="js/premium-upgrade.js" defer></script>
 
-
-
-
-</main>
-<footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
-      <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
-      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
-      <div class="footer-social">
-        <a aria-label="ENJC YouTube channel" href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
-        <a aria-label="ENJC Instagram" href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
-        <a aria-label="ENJC Facebook page" href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
-        <a aria-label="Contact on WhatsApp" href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
-      </div>
-    </div>
-    <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
-    <div><div class="footer-col-title">Bible Tools</div><div class="footer-links"><a href="bible.html">Bible Reader</a><a href="imagegen.html">Scripture Cards</a><a href="events.html">Watch Live</a></div></div>
-    <div><div class="footer-col-title">Service Times</div><div class="footer-links"><a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a><a href="#">Friday · 11:00 AM – 1:30 PM</a><a href="#">Tuesday · 11:00 AM – 4:00 PM</a><a href="#">Night Prayer · 10:30 PM Daily</a><a href="#">Promise · 1st of every month</a></div></div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
-    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
-  </div>
-</footer>
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
-<nav class="mob-nav"><div class="mob-nav-inner">
-  <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
-  <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
-  <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-  <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
-  <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
-</div></nav>
-<script>
-(function(){
-  var els=document.querySelectorAll('.reveal-on-scroll');
-  if(els.length&&window.IntersectionObserver){
-    var obs=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible','anim-in');obs.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -20px 0px'});
-    els.forEach(function(e){obs.observe(e);});
-    setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1800);
-  }else{els.forEach(function(e){e.classList.add('is-visible','anim-in');});}
-  var stb=document.getElementById('scroll-top-btn');
-  if(stb)window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
-})();
-</script>
+<script>window.ENJC_PAGE="bible";</script>
 </body>
 </html>

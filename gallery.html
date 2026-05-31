@@ -1,282 +1,626 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gallery | ENJC — Elim New Jerusalem Church</title>
-<meta name="description" content="Photos from ENJC church services, community gatherings, and ministry events in Tondiarpet, Chennai.">
-<link rel="canonical" href="https://elimnewjerusalem.github.io/church/gallery.html">
-<link rel="icon" type="image/png" href="images/logo/logo.png">
-<link rel="apple-touch-icon" href="images/logo/logo.png">
-<link rel="manifest" href="data/manifest.json">
-<meta property="og:title" content="Gallery | ENJC">
-<meta property="og:description" content="Photos from ENJC church services and community events in Chennai.">
-<meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-<meta property="og:url" content="https://elimnewjerusalem.github.io/church/gallery.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<link rel="stylesheet" href="css/enjc-design.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery | ENJC — Elim New Jerusalem Church</title>
+  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/gallery.html">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="apple-touch-icon" href="images/logo/logo.png">
+  <link rel="manifest" href="data/manifest.json">
 
-<style>
-/* ── Bento grid ── */
-.bento { display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(160px,22vw,240px);gap:10px; }
-.bento__item { border-radius:14px;overflow:hidden;cursor:pointer;position:relative;background:var(--d3);border:1px solid var(--bd);transition:transform .2s,border-color .2s; }
-.bento__item:hover { transform:scale(1.015);border-color:var(--gold-dim); }
-.bento__item picture { position:absolute;inset:0;width:100%;height:100%;display:block; }
-.bento__item picture img,.bento__item>img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .38s; }
-.bento__item:hover picture img,.bento__item:hover>img { transform:scale(1.06); }
-.bento__cap { position:absolute;bottom:0;left:0;right:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.72));font-size:11px;font-weight:600;color:#fff;opacity:0;transition:opacity .2s;z-index:2; }
-.bento__item:hover .bento__cap { opacity:1; }
-@media(hover:none){ .bento__cap{opacity:1;} }
-@media(max-width:768px){ .bento{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(140px,24vw,200px);} .bento__item{grid-column:auto!important;grid-row:auto!important;} }
-@media(max-width:480px){ .bento{grid-template-columns:1fr;grid-auto-rows:220px;} }
+  <!-- SEO -->
+  <meta name="description" content="Photo gallery of Elim New Jerusalem Church, Tondiarpet, Chennai. Worship services, prayer meetings, community events and outreach ministry photos.">
+  <meta name="author" content="Pastor A. Karthik Daniel">
 
-/* Lightbox */
-.lightbox { display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.94);align-items:center;justify-content:center; }
-.lightbox.open { display:flex; }
-.lightbox__img { max-width:90vw;max-height:82vh;object-fit:contain;border-radius:10px;display:block; }
-.lightbox__close { position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:10;opacity:.7;transition:opacity .2s; }
-.lightbox__close:hover { opacity:1; }
-.lightbox__arrow { position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:22px;cursor:pointer;border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;transition:background .2s; }
-.lightbox__arrow:hover { background:rgba(255,255,255,.25); }
-.lightbox__prev { left:18px; }
-.lightbox__next { right:18px; }
-</style>
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/gallery.html">
+  <meta property="og:title"       content="Gallery | ENJC — Elim New Jerusalem Church">
+  <meta property="og:description" content="Photos from worship services, prayer meetings, and community outreach at ENJC Tondiarpet, Chennai.">
+  <meta property="og:image"       content="https://elimnewjerusalem.github.io/church/images/gallery/g1.webp">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Gallery | ENJC — Elim New Jerusalem Church">
+  <meta name="twitter:description" content="Photos from worship services, prayer meetings, and community outreach at ENJC Tondiarpet.">
+  <meta name="twitter:image"       content="https://elimnewjerusalem.github.io/church/images/gallery/g1.webp">
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ImageGallery","name":"ENJC Church Gallery","description":"Photos from Elim New Jerusalem Church worship and ministry","url":"https://elimnewjerusalem.github.io/church/gallery.html","author":{"@type":"Organization","name":"Elim New Jerusalem Church"}}
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/enjc-design.css">
+  <link rel="stylesheet" href="css/fixes.css">
+
+  <style>
+    /* ─── Gallery page styles ─────────────────────────────── */
+    :root {
+      --gold: #c9a84c;
+      --navy: #070f1e;
+      --navy-2: #0a1628;
+    }
+
+    body {
+      background: var(--navy, #070f1e);
+      color: #e8f0fa;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      padding-top: 60px; /* nav height */
+    }
+
+    /* ── Page hero ── */
+    .gal-hero {
+      padding: clamp(48px, 7vw, 80px) clamp(20px, 5vw, 48px) clamp(32px, 5vw, 56px);
+      text-align: center;
+      background: linear-gradient(to bottom, #0a1628 0%, #070f1e 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .gal-eyebrow {
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      font-weight: 700; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .gal-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .gal-title em { color: var(--gold); font-style: italic; }
+    .gal-subtitle { font-size: 14px; color: rgba(200,220,255,0.6); max-width: 500px; margin: 0 auto; }
+
+    /* ── Masonry grid ── */
+    .gal-section {
+      padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 48px);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .gal-section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .gal-section-title em { color: var(--gold); font-style: italic; }
+    .gal-section-sub { font-size: 13px; color: rgba(200,220,255,0.5); margin-bottom: 32px; }
+
+    .gal-grid {
+      columns: 3 280px;
+      column-gap: 16px;
+    }
+    @media (max-width: 600px) { .gal-grid { columns: 2 140px; column-gap: 10px; } }
+    @media (max-width: 380px) { .gal-grid { columns: 1; } }
+
+    .gal-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: rgba(255,255,255,0.04);
+    }
+    @media (max-width: 600px) { .gal-item { margin-bottom: 10px; } }
+
+    .gal-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .gal-item:hover img { transform: scale(1.04); }
+    .gal-item:focus-within img { transform: scale(1.04); }
+
+    .gal-item__caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 14px 12px;
+      background: linear-gradient(to top, rgba(7,15,30,0.85) 0%, transparent 100%);
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gal-item:hover .gal-item__caption,
+    .gal-item:focus-within .gal-item__caption { opacity: 1; }
+
+    /* Focus ring on items */
+    .gal-item:focus { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 12px; }
+    .gal-item { outline: none; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.06s; }
+    .delay-2 { transition-delay: 0.12s; }
+    .delay-3 { transition-delay: 0.18s; }
+    .delay-4 { transition-delay: 0.24s; }
+    .delay-5 { transition-delay: 0.30s; }
+    .delay-6 { transition-delay: 0.36s; }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 9000;
+      background: rgba(3,8,20,0.96);
+      backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+
+    .lb-img-wrap {
+      max-width: min(90vw, 1000px);
+      max-height: 88vh;
+      position: relative;
+    }
+    .lb-img {
+      display: block;
+      max-width: 100%;
+      max-height: 88vh;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.8);
+    }
+    .lb-caption {
+      text-align: center;
+      color: rgba(200,220,255,0.7);
+      font-size: 13px;
+      margin-top: 14px;
+    }
+    .lb-close {
+      position: fixed; top: 20px; right: 20px;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      color: #fff; font-size: 20px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s;
+      z-index: 9001;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.2); }
+    .lb-prev, .lb-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      color: #fff; font-size: 20px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s;
+      z-index: 9001;
+    }
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
+    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.18); }
+    @media (max-width: 600px) {
+      .lb-prev { left: 8px; }
+      .lb-next { right: 8px; }
+    }
+
+    /* ── CTA section ── */
+    .gal-cta {
+      text-align: center;
+      padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 48px);
+      background: #0a1628;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .gal-cta-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 700; margin-bottom: 8px;
+    }
+    .gal-cta-title em { color: var(--gold); font-style: italic; }
+    .gal-cta-sub { font-size: 14px; color: rgba(200,220,255,0.55); margin-bottom: 28px; }
+    .gal-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--gold); color: #070f1e;
+      padding: 12px 26px; border-radius: 8px;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none; transition: background 0.18s, transform 0.18s;
+    }
+    .btn-gold:hover { background: #f5c842; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.08); color: #e8f0fa;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 12px 26px; border-radius: 8px;
+      font-size: 13px; font-weight: 600;
+      text-decoration: none; transition: background 0.18s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.14); }
+  </style>
 </head>
+
 <body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-<!-- NAV -->
-<nav class="navbar"><canvas id="const-cv" aria-hidden="true"></canvas>
-  <a href="index.html" class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
-    <div>
-      <div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div>
-      <div class="nav-logo-sub">Tondiarpet, Chennai</div>
+  <!-- NAV — uses site-nav pattern matching about/contact/events -->
+  <header>
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="ENJC home">
+          <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36"
+               onerror="this.style.display='none'">
+          <div>
+            <div class="nav-logo__name">ENJC</div>
+            <div class="nav-logo__sub">Elim New Jerusalem Church</div>
+          </div>
+        </a>
+        <ul class="nav-links" aria-label="Main navigation">
+          <li><a href="index.html"      class="nav-link">Home</a></li>
+          <li><a href="about.html"      class="nav-link">About</a></li>
+          <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+          <li><a href="events.html"     class="nav-link">Events</a></li>
+          <li><a href="gallery.html"    class="nav-link nav-link--active" aria-current="page">Gallery</a></li>
+          <li><a href="bible.html"      class="nav-link">Bible</a></li>
+          <li><a href="imagegen.html"   class="nav-link">Cards</a></li>
+          <li><a href="contact.html"    class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-controls">
+          <button class="theme-toggle" id="theme-btn" aria-label="Toggle dark/light theme" aria-pressed="false">
+            <div class="theme-toggle__dot"></div>
+          </button>
+          <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
+             target="_blank" rel="noopener" class="nav-visit-btn">Plan a Visit</a>
+        </div>
+        <button class="nav-hamburger" id="nav-hamburger"
+          aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="index.html"      class="mobile-menu__link">Home</a>
+        <a href="about.html"      class="mobile-menu__link">About</a>
+        <a href="ministries.html" class="mobile-menu__link">Ministries</a>
+        <a href="events.html"     class="mobile-menu__link">Events</a>
+        <a href="gallery.html"    class="mobile-menu__link is-active" aria-current="page">Gallery</a>
+        <a href="bible.html"      class="mobile-menu__link">Bible Reader</a>
+        <a href="imagegen.html"   class="mobile-menu__link">Scripture Cards</a>
+        <a href="contact.html"    class="mobile-menu__link">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Page Hero -->
+    <section class="gal-hero" aria-labelledby="gal-title">
+      <p class="gal-eyebrow">Our Community</p>
+      <h1 class="gal-title" id="gal-title">Church <em>Gallery</em></h1>
+      <p class="gal-subtitle">Moments of worship, prayer, fellowship and service captured in Christ.</p>
+    </section>
+
+    <!-- Photo Grid -->
+    <section class="gal-section" aria-labelledby="gal-photos-title">
+      <h2 class="gal-section-title" id="gal-photos-title">Church <em>Memories</em></h2>
+      <p class="gal-section-sub">Click or tap any photo to view full size</p>
+
+      <div class="gal-grid" role="list">
+
+        <div class="gal-item reveal" role="listitem" tabindex="0"
+             data-src="images/gallery/g1.webp"
+             data-caption="Sunday Worship Service"
+             aria-label="Open photo: Sunday Worship Service">
+          <img src="images/gallery/g1.webp" alt="Sunday worship service at ENJC Tondiarpet Chennai"
+               loading="eager" width="800" height="600"
+               onerror="this.src='images/logo/logo.png'">
+          <div class="gal-item__caption" aria-hidden="true">Sunday Worship Service</div>
+        </div>
+
+        <div class="gal-item reveal delay-1" role="listitem" tabindex="0"
+             data-src="images/gallery/g2.webp"
+             data-caption="Youth Fellowship"
+             aria-label="Open photo: Youth Fellowship">
+          <img src="images/gallery/g2.webp" alt="Youth fellowship gathering at ENJC"
+               loading="lazy" width="800" height="600"
+               onerror="this.src='images/logo/logo.png'">
+          <div class="gal-item__caption" aria-hidden="true">Youth Fellowship</div>
+        </div>
+
+        <div class="gal-item reveal delay-2" role="listitem" tabindex="0"
+             data-src="images/gallery/g3.webp"
+             data-caption="Community Prayer Meeting"
+             aria-label="Open photo: Community Prayer Meeting">
+          <img src="images/gallery/g3.webp" alt="Community prayer meeting congregation"
+               loading="lazy" width="800" height="600"
+               onerror="this.src='images/logo/logo.png'">
+          <div class="gal-item__caption" aria-hidden="true">Community Prayer Meeting</div>
+        </div>
+
+        <div class="gal-item reveal delay-3" role="listitem" tabindex="0"
+             data-src="images/gallery/g4.webp"
+             data-caption="Night Prayer"
+             aria-label="Open photo: Night Prayer">
+          <img src="images/gallery/g4.webp" alt="Night prayer service at ENJC"
+               loading="lazy" width="800" height="600"
+               onerror="this.src='images/logo/logo.png'">
+          <div class="gal-item__caption" aria-hidden="true">Night Prayer</div>
+        </div>
+
+        <div class="gal-item reveal delay-4" role="listitem" tabindex="0"
+             data-src="images/gallery/g1.webp"
+             data-caption="Deliverance Meeting"
+             aria-label="Open photo: Deliverance Meeting">
+          <img src="images/gallery/g1.webp" alt="Deliverance meeting worship session"
+               loading="lazy" width="800" height="600"
+               onerror="this.src='images/logo/logo.png'">
+          <div class="gal-item__caption" aria-hidden="true">Deliverance Meeting</div>
+        </div>
+
+        <div class="gal-item reveal delay-5" role="listitem" tabindex="0"
+             data-src="images/gallery/g2.webp"
+             data-caption="Village Outreach"
+             aria-label="Open photo: Village Outreach Ministry">
+          <img src="images/gallery/g2.webp" alt="Village outreach ministry team"
+               loading="lazy" width="800" height="600"
+               onerror="this.src='images/logo/logo.png'">
+          <div class="gal-item__caption" aria-hidden="true">Village Outreach</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button class="lb-close" id="lb-close" aria-label="Close photo viewer">
+        <i class="ti ti-x" aria-hidden="true"></i>
+      </button>
+      <button class="lb-prev" id="lb-prev" aria-label="Previous photo">
+        <i class="ti ti-chevron-left" aria-hidden="true"></i>
+      </button>
+      <div class="lb-img-wrap">
+        <img class="lb-img" id="lb-img" src="" alt="">
+        <p class="lb-caption" id="lb-caption"></p>
+      </div>
+      <button class="lb-next" id="lb-next" aria-label="Next photo">
+        <i class="ti ti-chevron-right" aria-hidden="true"></i>
+      </button>
     </div>
+
+    <!-- CTA -->
+    <section class="gal-cta" aria-labelledby="cta-title">
+      <h2 class="gal-cta-title" id="cta-title">Come <em>Join Us</em></h2>
+      <p class="gal-cta-sub">Three Sunday services every week. All are welcome in Jesus' name.</p>
+      <div class="gal-cta-btns">
+        <a href="contact.html" class="btn-gold">
+          <i class="ti ti-map-pin icon-sm" aria-hidden="true"></i> Visit Us
+        </a>
+        <a href="events.html" class="btn-outline">
+          <i class="ti ti-calendar icon-sm" aria-hidden="true"></i> Upcoming Events
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid container">
+      <div class="footer-brand">
+        <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
+        <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
+        <address class="footer-addr">
+          No.110E, Elaya Street<br>
+          Tondiarpet, Chennai – 600 081<br>
+          <a href="tel:+919444345102">+91 94443 45102</a>
+        </address>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook" aria-hidden="true"></i></a>
+          <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <nav aria-label="Footer quick links">
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Footer Bible tools">
+        <div class="footer-col-title">Bible Tools</div>
+        <ul class="footer-links">
+          <li><a href="bible.html">Bible Reader</a></li>
+          <li><a href="imagegen.html">Scripture Cards</a></li>
+          <li><a href="events.html">Watch Live</a></li>
+        </ul>
+      </nav>
+      <div>
+        <div class="footer-col-title">Service Times</div>
+        <ul class="footer-links">
+          <li>Sunday · 5:30 / 8:30 AM / 12:00 PM</li>
+          <li>Tuesday · 11:00 AM – 4:00 PM</li>
+          <li>Friday · 11:00 AM – 1:30 PM</li>
+          <li>Night Prayer · 10:30 PM Daily</li>
+          <li>Promise · 1st of every month</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</span>
+      <span>Built with ❤️ for the Kingdom of God</span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp float -->
+  <a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
   </a>
-  <div class="nav-links" id="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="ministries.html">Ministries</a>
-    <a href="events.html">Events</a>
-    <a href="gallery.html" class="active">Gallery</a>
-    <a href="bible.html">Bible</a>
-    <a href="imagegen.html">Cards</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
-  <button class="nav-mobile-toggle" id="mob-toggle"><i class="ti ti-menu-2"></i></button>
-</nav>
+  <!-- Scroll to top -->
+  <button id="scroll-top-btn" class="scroll-top" aria-label="Back to top">
+    <i class="ti ti-arrow-up" aria-hidden="true"></i>
+  </button>
 
-<main>
-
-<!-- Page Hero — dark -->
-<section class="page-hero s-d3"><canvas id="hero-glow-cv" aria-hidden="true"></canvas>
-  <div class="container">
-    <p class="section-tag">Our Community</p>
-    <h1>Church <em>Gallery</em></h1>
-    <p>Moments of worship, fellowship and ministry at ENJC.</p>
-  </div>
-</section>
-<div class="stained-divider" aria-hidden="true"><canvas class="stained-cv"></canvas></div>
-
-
-<!-- Gallery grid — DARK -->
-<section class="section s-d1" aria-label="Photo gallery">
-  <div class="container">
-    <div class="bento" id="bento-grid">
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d1" style="grid-column:1;grid-row:1/3;" onclick="openLightbox(0)">
-        <picture>
-          <img src="images/gallery/g1.webp" alt="ENJC Church Gathering" width="800" height="600" loading="eager" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Church Gathering</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d2" onclick="openLightbox(1)">
-        <picture>
-          <img src="images/gallery/g2.webp" alt="Worship Service" width="800" height="600" loading="eager" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Worship Service</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d3" onclick="openLightbox(2)">
-        <picture>
-          <img src="images/gallery/g3.webp" alt="Community Fellowship" width="800" height="600" loading="eager" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Community Fellowship</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d4" onclick="openLightbox(3)">
-        <picture>
-          <img src="images/gallery/g4.webp" alt="Prayer Night" width="800" height="600" loading="eager" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Prayer Night</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d2" onclick="openLightbox(4)">
-        <picture>
-          <img src="images/gallery/g5.webp" alt="Sunday School" width="800" height="600" loading="lazy" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Sunday School</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d1" style="grid-column:2;grid-row:3/5;" onclick="openLightbox(5)">
-        <picture>
-          <img src="images/gallery/g6.webp" alt="Deliverance Meeting" width="800" height="600" loading="lazy" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Deliverance Meeting</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d3" onclick="openLightbox(6)">
-        <picture>
-          <img src="images/gallery/g7.webp" alt="Gospel Ministry" width="800" height="600" loading="lazy" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Gospel Ministry</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d2" onclick="openLightbox(7)">
-        <picture>
-          <img src="images/gallery/g8.webp" alt="Fasting Prayer" width="800" height="600" loading="lazy" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Fasting Prayer</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d4" onclick="openLightbox(8)">
-        <picture>
-          <img src="images/gallery/g9.webp" alt="Youth Ministry" width="800" height="600" loading="lazy" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Youth Ministry</div>
-      </div>
-
-      <div class="bento__item reveal-on-scroll anim-fade-up anim-d3" onclick="openLightbox(9)">
-        <picture>
-          <img src="images/gallery/g10.webp" alt="Women's Fellowship" width="800" height="600" loading="lazy" onerror="this.src='images/logo/logo.png'">
-        </picture>
-        <div class="bento__cap">Women's Fellowship</div>
-      </div>
-
+  <!-- Mobile bottom nav -->
+  <nav class="mob-nav" aria-label="Mobile navigation">
+    <div class="mob-nav-inner">
+      <a href="index.html"  class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
+      <a href="about.html"  class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
+      <a href="bible.html"  class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
+      <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+      <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- CTA — LIGHT -->
-<section class="section s-l1" aria-label="Visit us">
-  <div class="container" style="text-align:center;max-width:580px;margin:0 auto;">
-    <p class="section-tag" style="justify-content:center;">Join Us</p>
-    <h2 class="section-heading" style="margin-bottom:14px;">Be Part of <em>Our Story</em></h2>
-    <p style="font-size:15px;color:var(--t-muted-l);line-height:1.8;margin-bottom:28px;">
-      Every Sunday is a new chapter. Join our family in worship, prayer and fellowship at ENJC.
-    </p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="contact.html" class="btn btn--gold">Plan Your Visit</a>
-      <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--outline-dark">WhatsApp Us</a>
-    </div>
-  </div>
-</section>
+  <script>
+    window.ENJC_PAGE = 'gallery';
 
-</main>
+    /* ── Theme ── */
+    (function(){
+      var stored = localStorage.getItem('enjc-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', stored);
+      var btn = document.getElementById('theme-btn');
+      if(!btn) return;
+      btn.setAttribute('aria-pressed', stored === 'light' ? 'true' : 'false');
+      btn.addEventListener('click', function(){
+        var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('enjc-theme', next);
+        btn.setAttribute('aria-pressed', next === 'light' ? 'true' : 'false');
+      });
+    })();
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="lightbox__close" id="lb-close" aria-label="Close">✕</button>
-  <button class="lightbox__arrow lightbox__prev" id="lb-prev" aria-label="Previous">‹</button>
-  <img class="lightbox__img" id="lb-img" src="" alt="" aria-hidden="true">
-  <button class="lightbox__arrow lightbox__next" id="lb-next" aria-label="Next">›</button>
-</div>
+    /* ── Mobile menu ── */
+    (function(){
+      var btn = document.getElementById('nav-hamburger');
+      var menu = document.getElementById('mobile-menu');
+      if(!btn || !menu) return;
+      btn.addEventListener('click', function(){
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        menu.setAttribute('aria-hidden', String(open));
+        btn.classList.toggle('is-open', !open);
+        menu.classList.toggle('is-open', !open);
+      });
+      document.addEventListener('click', function(e){
+        if(!menu.contains(e.target) && !btn.contains(e.target)){
+          btn.setAttribute('aria-expanded', 'false');
+          menu.setAttribute('aria-hidden', 'true');
+          btn.classList.remove('is-open');
+          menu.classList.remove('is-open');
+        }
+      });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          btn.setAttribute('aria-expanded', 'false');
+          menu.setAttribute('aria-hidden', 'true');
+          btn.classList.remove('is-open');
+          menu.classList.remove('is-open');
+          btn.focus();
+        }
+      });
+    })();
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
-      <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
-      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
-      <div class="footer-social">
-        <a aria-label="ENJC YouTube channel" href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
-        <a aria-label="ENJC Instagram" href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
-        <a aria-label="ENJC Facebook page" href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
-        <a aria-label="Contact on WhatsApp" href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
-      </div>
-    </div>
-    <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
-    <div><div class="footer-col-title">Bible Tools</div><div class="footer-links"><a href="bible.html">Bible Reader</a><a href="imagegen.html">Scripture Cards</a><a href="events.html">Watch Live</a></div></div>
-    <div><div class="footer-col-title">Service Times</div><div class="footer-links"><a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a><a href="#">Friday · 11:00 AM – 1:30 PM</a><a href="#">Tuesday · 11:00 AM – 4:00 PM</a><a href="#">Night Prayer · 10:30 PM Daily</a><a href="#">Promise · 1st of every month</a></div></div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
-    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
-  </div>
-</footer>
+    /* ── Lightbox ── */
+    (function(){
+      var items = Array.from(document.querySelectorAll('.gal-item'));
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lb-img');
+      var lbCap = document.getElementById('lb-caption');
+      var cur = 0;
 
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
-<nav class="mob-nav"><div class="mob-nav-inner">
-  <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
-  <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
-  <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-  <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
-  <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
-</div></nav>
+      function open(idx){
+        cur = idx;
+        var item = items[idx];
+        lbImg.src = item.dataset.src || item.querySelector('img').src;
+        lbImg.alt = item.querySelector('img').alt;
+        lbCap.textContent = item.dataset.caption || '';
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('lb-close').focus();
+      }
+      function close(){
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+        items[cur].focus();
+      }
+      function prev(){
+        cur = (cur - 1 + items.length) % items.length;
+        var item = items[cur];
+        lbImg.src = item.dataset.src || item.querySelector('img').src;
+        lbImg.alt = item.querySelector('img').alt;
+        lbCap.textContent = item.dataset.caption || '';
+      }
+      function next(){
+        cur = (cur + 1) % items.length;
+        var item = items[cur];
+        lbImg.src = item.dataset.src || item.querySelector('img').src;
+        lbImg.alt = item.querySelector('img').alt;
+        lbCap.textContent = item.dataset.caption || '';
+      }
 
-<script src="js/site.js" defer></script>
-<script>
-(function(){
-  /* Images data */
-  var imgs=[
-    {src:'images/gallery/g1.webp',alt:'Church Gathering'},
-    {src:'images/gallery/g2.webp',alt:'Worship Service'},
-    {src:'images/gallery/g3.webp',alt:'Community Fellowship'},
-    {src:'images/gallery/g4.webp',alt:'Prayer Night'},
-    {src:'images/gallery/g5.webp',alt:'Sunday School'},
-    {src:'images/gallery/g6.webp',alt:'Deliverance Meeting'},
-    {src:'images/gallery/g7.webp',alt:'Gospel Ministry'},
-    {src:'images/gallery/g8.webp',alt:'Fasting Prayer'},
-    {src:'images/gallery/g9.webp',alt:'Youth Ministry'},
-    {src:'images/gallery/g10.webp',alt:"Women's Fellowship"}
-  ];
-  var cur=0;
-  var lb=document.getElementById('lightbox');
-  var lbImg=document.getElementById('lb-img');
+      items.forEach(function(item, idx){
+        item.addEventListener('click', function(){ open(idx); });
+        item.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' ') open(idx); });
+      });
+      document.getElementById('lb-close').addEventListener('click', close);
+      document.getElementById('lb-prev').addEventListener('click', prev);
+      document.getElementById('lb-next').addEventListener('click', next);
+      lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+      document.addEventListener('keydown', function(e){
+        if(!lb.classList.contains('active')) return;
+        if(e.key==='Escape') close();
+        if(e.key==='ArrowLeft') prev();
+        if(e.key==='ArrowRight') next();
+      });
+    })();
 
-  window.openLightbox=function(i){cur=i;lbImg.src=imgs[i].src;lbImg.alt=imgs[i].alt;lbImg.removeAttribute('aria-hidden');lb.classList.add('open');document.body.style.overflow='hidden';};
-  document.getElementById('lb-close').onclick=function(){lb.classList.remove('open');document.body.style.overflow='';lbImg.setAttribute('aria-hidden','true');};
-  document.getElementById('lb-prev').onclick=function(){cur=(cur-1+imgs.length)%imgs.length;lbImg.src=imgs[cur].src;lbImg.alt=imgs[cur].alt;};
-  document.getElementById('lb-next').onclick=function(){cur=(cur+1)%imgs.length;lbImg.src=imgs[cur].src;lbImg.alt=imgs[cur].alt;};
-  lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='';lbImg.setAttribute('aria-hidden','true');}});
-  document.addEventListener('keydown',function(e){
-    if(!lb.classList.contains('open'))return;
-    if(e.key==='Escape'){lb.classList.remove('open');document.body.style.overflow='';lbImg.setAttribute('aria-hidden','true');}
-    if(e.key==='ArrowLeft'){cur=(cur-1+imgs.length)%imgs.length;lbImg.src=imgs[cur].src;}
-    if(e.key==='ArrowRight'){cur=(cur+1)%imgs.length;lbImg.src=imgs[cur].src;}
-  });
-  /* Touch swipe on lightbox */
-  var tsx=0;
-  lbImg.addEventListener('touchstart',function(e){tsx=e.touches[0].clientX;},{passive:true});
-  lbImg.addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-tsx;
-    if(Math.abs(dx)>40){dx<0?document.getElementById('lb-next').click():document.getElementById('lb-prev').click();}
-  },{passive:true});
+    /* ── Reveal on scroll ── */
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      if(!window.IntersectionObserver){
+        els.forEach(function(e){ e.classList.add('visible'); }); return;
+      }
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ en.target.classList.add('visible'); obs.unobserve(en.target); }
+        });
+      }, {threshold:0, rootMargin:'0px 0px -20px 0px'});
+      els.forEach(function(e){ obs.observe(e); });
+      setTimeout(function(){ els.forEach(function(e){ e.classList.add('visible'); }); }, 2000);
+    })();
 
-  /* Reveal on scroll */
-  var els=document.querySelectorAll('.reveal-on-scroll');
-  if(!els.length||!window.IntersectionObserver){els.forEach(function(e){e.classList.add('is-visible','anim-in');});return;}
-  var obs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('is-visible','anim-in');obs.unobserve(en.target);}});},{threshold:0,rootMargin:'0px 0px -10px 0px'});
-  els.forEach(function(e){obs.observe(e);});
-  setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1500);
-
-  /* Scroll-top */
-  var stb=document.getElementById('scroll-top-btn');
-  window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
-
-  /* Mobile nav */
-  var btn=document.getElementById('mob-toggle'),links=document.getElementById('nav-links');
-  if(btn&&links){btn.addEventListener('click',function(e){e.stopPropagation();links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});}
-})();
-</script>
+    /* ── Scroll top ── */
+    (function(){
+      var btn = document.getElementById('scroll-top-btn');
+      if(!btn) return;
+      window.addEventListener('scroll', function(){
+        btn.classList.toggle('visible', window.scrollY > 400);
+      }, {passive:true});
+      btn.addEventListener('click', function(){
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+    })();
+  </script>
 </body>
 </html>

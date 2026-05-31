@@ -34,9 +34,12 @@
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,600&amp;display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,600&amp;display=swap"></noscript>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link rel="stylesheet" href="css/enjc-design.css">
+<link rel="stylesheet" href="css/fixes.css">
 <!-- index.html is fully self-contained — external CSS intentionally removed to prevent conflicts -->
 
 <style>
@@ -131,12 +134,46 @@ img { display: block; }
   opacity: 0; transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-/* reveal animations and delay helpers → enjc-design.css */
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.anim-roll-left { transform: translateX(-40px) rotate(-3deg); }
+.reveal.anim-roll-left.visible { transform: translateX(0) rotate(0); }
+.reveal.anim-roll-right { transform: translateX(40px) rotate(3deg); }
+.reveal.anim-roll-right.visible { transform: translateX(0) rotate(0); }
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; }
+.delay-6 { transition-delay: 0.48s; }
 
 /* ═══════════════════════════════════════════════════════════
    NAV
    ═══════════════════════════════════════════════════════════ */
-/* nav styles handled by enjc-design.css */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px;
+  background: rgba(7,15,30,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-dark);
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-logo-img { height: 36px; width: 36px; object-fit: contain; border-radius: 6px; }
+.nav-brand-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 700; color: var(--gold);
+}
+.nav-brand-sub { font-size: 11px; color: var(--text-muted-dark); line-height: 1.2; }
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a { font-size: 12px; color: #7a9ab8; padding: 7px 12px; border-radius: 6px; transition: all 0.2s; font-weight: 500; }
+.nav-links a:hover { color: #e8f0fa; }
+.nav-links a.active { color: var(--gold); background: var(--gold-glow); font-weight: 600; }
+.nav-visit {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--gold); color: var(--navy);
+  padding: 8px 18px; border-radius: 7px;
+  font-size: 12px; font-weight: 700; transition: all 0.2s;
+}
+.nav-visit:hover { background: var(--gold-bright); }
+.nav-toggle { display: none; background: none; border: none; color: var(--text-light); font-size: 22px; cursor: pointer; }
 
 /* ═══════════════════════════════════════════════════════════
    HERO — Cinema Style
@@ -564,7 +601,32 @@ img { display: block; }
   transition: transform 0.2s;
 }
 .wa-float:hover { transform: scale(1.1); }
-/* #scroll-top-btn, .mob-nav, .mob-item → enjc-design.css */
+#scroll-top-btn {
+  position: fixed; bottom: 140px; right: 20px; z-index: 800;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  display: none; align-items: center; justify-content: center;
+  border: none; cursor: pointer; font-size: 18px;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+  transition: all 0.2s;
+}
+#scroll-top-btn.visible { display: flex; }
+#scroll-top-btn:hover { transform: scale(1.1); }
+
+/* ── Mobile nav ── */
+.mob-nav {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 850;
+  background: var(--navy-2); border-top: 1px solid var(--border-dark);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+}
+.mob-nav-inner { display: flex; }
+.mob-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  padding: 10px 4px 12px; font-size: 10px; color: var(--text-muted-dark);
+  transition: color 0.2s; gap: 3px;
+}
+.mob-item i { font-size: 20px; }
+.mob-item.active, .mob-item:hover { color: var(--gold); }
 
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE
@@ -578,6 +640,14 @@ img { display: block; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 @media (max-width: 768px) {
+  .nav-links, .nav-visit { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.mob-open {
+    display: flex; flex-direction: column; gap: 4px;
+    position: absolute; top: 60px; left: 0; right: 0;
+    background: var(--navy-2); border-bottom: 1px solid var(--border-dark);
+    padding: 12px 20px 16px;
+  }
   .hero { min-height: 100svh; }
   /* Cinema mobile: stack vertically, still pinned to bottom */
   .hero-body {
@@ -590,6 +660,17 @@ img { display: block; }
   .hero-right { width: 100%; }
   .event-card { max-width: 100%; }
   .live-badge { top: 68px; right: 14px; font-size: 10px; padding: 6px 12px; }
+  /* Mobile cinema overlay: darken bottom 52% for stacked content */
+  .hero-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(4,10,22,0.97) 0%,
+      rgba(4,10,22,0.92) 22%,
+      rgba(4,10,22,0.72) 42%,
+      rgba(4,10,22,0.22) 58%,
+      transparent 72%
+    ) !important;
+  }
   .cd-strip { flex-direction: column; gap: 14px; padding: 18px 24px; align-items: flex-start; }
   .service-strip { flex-direction: column; }
   .service-item { border-right: none; border-bottom: 1px solid var(--border-dark); padding: 16px 24px; }
@@ -603,6 +684,7 @@ img { display: block; }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 24px; }
   .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .mob-nav { display: block; }
   .section-header-row { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
 @media (max-width: 480px) {
@@ -611,75 +693,21 @@ img { display: block; }
   .gallery-strip { grid-template-columns: 1fr 1fr; }
 }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Church",
-  "name": "Elim New Jerusalem Church",
-  "alternateName": "ENJC",
-  "url": "https://elimnewjerusalem.github.io/church/",
-  "logo": "https://elimnewjerusalem.github.io/church/images/logo/logo.png",
-  "image": "https://elimnewjerusalem.github.io/church/images/logo/logo.png",
-  "description": "Spirit-filled Pentecostal church in Tondiarpet, Chennai. Three Sunday services, deliverance ministry, night prayer and Tamil Nadu village outreach.",
-  "telephone": "+91-94443-45102",
-  "email": "enjctondiarpet@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "No.110E, Elaya Street",
-    "addressLocality": "Tondiarpet",
-    "addressRegion": "Tamil Nadu",
-    "postalCode": "600081",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 13.1338,
-    "longitude": 80.2939
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "05:30",
-      "closes": "13:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Tuesday",
-      "opens": "11:00",
-      "closes": "16:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday",
-      "opens": "11:00",
-      "closes": "13:30"
-    }
-  ],
-  "sameAs": [
-    "https://www.youtube.com/@elimnewjerusalemchurch",
-    "https://www.instagram.com/elimnewjerusalemchurch",
-    "https://www.facebook.com/enjcmedia"
-  ],
-  "pastor": {
-    "@type": "Person",
-    "name": "Pastor A. Karthik Daniel"
-  }
-}
-</script>
 </head>
 <body>
 
+<a href="#hero" class="skip-to-content">Skip to main content</a>
 <!-- ═══ NAV ═══ -->
-<nav class="navbar" id="main-nav"><canvas id="const-cv" aria-hidden="true"></canvas>
-  <a href="index.html" class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
+<nav class="nav" id="main-nav" aria-label="Primary navigation"><canvas id="const-cv" aria-hidden="true"></canvas>
+  <div class="nav-brand">
+    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36"
+         onerror="this.style.display='none'">
     <div>
-      <div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div>
-      <div class="nav-logo-sub">Tondiarpet, Chennai</div>
+      <div class="nav-brand-name">ENJC</div>
+      <div class="nav-brand-sub">Elim New Jerusalem Church · Tondiarpet, Chennai</div>
     </div>
-  </a>
-  <div class="nav-links" id="nav-links">
+  </div>
+  <ul class="nav-links" id="nav-links" role="list">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
     <a href="ministries.html">Ministries</a>
@@ -689,14 +717,17 @@ img { display: block; }
     <a href="imagegen.html">Cards</a>
     <a href="contact.html">Contact</a>
   </div>
-  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
-  <button class="nav-mobile-toggle" id="mob-toggle" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
+  <button class="theme-toggle" id="theme-btn" aria-label="Toggle dark/light theme" aria-pressed="false"><div class="theme-toggle__dot"></div></button>
+  <a href="contact.html" class="nav-visit">
+    <i class="ti ti-map-pin" class="icon-sm"></i> Visit Us
+  </a>
+  <button class="nav-toggle" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><i class="ti ti-menu-2"></i></button>
 </nav>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <!-- Full-opacity video background -->
-  <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="none" poster="images/home/slide1.webp" aria-hidden="true">
+  <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
     <source src="images/home/hero.mp4" type="video/mp4">
   </video>
 
@@ -729,10 +760,10 @@ img { display: block; }
       </p>
       <div class="hero-btns">
         <a href="contact.html" class="btn-gold">
-          <i class="ti ti-users" style="font-size:13px"></i> Join Us Today
+          <i class="ti ti-users" class="icon-sm"></i> Join Us Today
         </a>
         <a href="events.html" class="btn-outline-light">
-          <i class="ti ti-player-play" style="font-size:13px"></i> Watch Live
+          <i class="ti ti-player-play" class="icon-sm"></i> Watch Live
         </a>
       </div>
     </div>
@@ -746,7 +777,7 @@ img { display: block; }
         <div class="event-card-detail">6:00 PM · Saturday<br>New Moon Day</div>
         <div class="event-card-sep"></div>
         <a href="events.html" class="event-card-view">
-          View All Events <i class="ti ti-arrow-right" style="font-size:12px"></i>
+          View All Events <i class="ti ti-arrow-right" class="icon-xs"></i>
         </a>
       </div>
     </div>
@@ -759,7 +790,7 @@ img { display: block; }
 <!-- ═══ COUNTDOWN  (dark) ═══ -->
 <div class="cd-strip s-dark2">
   <div class="cd-left">
-    <i class="ti ti-clock" style="font-size:15px;color:var(--gold-dim)"></i>
+    <i class="ti ti-clock" class="icon-md"></i>
     <span class="cd-label">Next Sunday Service</span>
   </div>
   <div class="cd-units">
@@ -772,7 +803,7 @@ img { display: block; }
     <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-unit-label">Sec</div></div>
   </div>
   <a href="https://wa.me/919444345102" class="cd-wa" target="_blank" rel="noopener">
-    <i class="ti ti-brand-whatsapp" style="font-size:14px"></i> Get Notified on WhatsApp
+    <i class="ti ti-brand-whatsapp" class="icon-sm"></i> Get Notified on WhatsApp
   </a>
 </div>
 
@@ -841,7 +872,7 @@ img { display: block; }
         <div class="pillar"><i class="ti ti-users"></i> Village Outreach & Missions</div>
       </div>
       <a href="about.html" class="btn-outline-dark">
-        Know More About Us <i class="ti ti-arrow-right" style="font-size:13px"></i>
+        Know More About Us <i class="ti ti-arrow-right" class="icon-sm"></i>
       </a>
     </div>
   </div>
@@ -897,7 +928,7 @@ img { display: block; }
       <div class="eyebrow">What We Do</div>
       <h2 class="heading-serif heading-light">Our <em>Ministries</em></h2>
     </div>
-    <a href="ministries.html" class="view-all-link">View All <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+    <a href="ministries.html" class="view-all-link">View All <i class="ti ti-arrow-right" class="icon-xs"></i></a>
   </div>
   <div class="ministry-grid">
     <div class="ministry-card cin-card cin-card reveal anim-roll-left delay-1">
@@ -931,26 +962,26 @@ img { display: block; }
       <div class="eyebrow">Bible Tools</div>
       <h2 class="heading-serif heading-dark">Read, Study & <em>Share</em> the Word</h2>
     </div>
-    <a href="bible.html" class="view-all-link" style="color:var(--gold)">View All <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+    <a href="bible.html" class="view-all-link" style="color:var(--gold)">View All <i class="ti ti-arrow-right" class="icon-xs"></i></a>
   </div>
   <div class="tools-grid">
     <a href="bible.html" class="tool-card cin-card cin-card reveal delay-1">
       <div class="tool-icon"><i class="ti ti-book"></i></div>
       <div class="tool-name">Bible Reader</div>
       <div class="tool-desc">Read all 66 books in Tamil & English. Clean, distraction-free reading.</div>
-      <div class="tool-link">Open Bible <i class="ti ti-arrow-right" style="font-size:11px"></i></div>
+      <div class="tool-link">Open Bible <i class="ti ti-arrow-right" class="icon-xs"></i></div>
     </a>
     <a href="imagegen.html" class="tool-card cin-card cin-card reveal delay-2">
       <div class="tool-icon"><i class="ti ti-photo"></i></div>
       <div class="tool-name">Scripture Cards</div>
       <div class="tool-desc">Create beautiful verse images to share on WhatsApp & social media. 8 templates.</div>
-      <div class="tool-link">Create Cards <i class="ti ti-arrow-right" style="font-size:11px"></i></div>
+      <div class="tool-link">Create Cards <i class="ti ti-arrow-right" class="icon-xs"></i></div>
     </a>
     <a href="events.html" class="tool-card cin-card cin-card reveal delay-3">
       <div class="tool-icon"><i class="ti ti-player-play"></i></div>
       <div class="tool-name">Watch Live & Sermons</div>
       <div class="tool-desc">Live streams, Sunday, Friday, Promise, Deliverance & Testimony services.</div>
-      <div class="tool-link">Watch Now <i class="ti ti-arrow-right" style="font-size:11px"></i></div>
+      <div class="tool-link">Watch Now <i class="ti ti-arrow-right" class="icon-xs"></i></div>
     </a>
   </div>
 </section>
@@ -962,7 +993,7 @@ img { display: block; }
       <div class="eyebrow">Our Community</div>
       <h2 class="heading-serif heading-light">Church <em>Gallery</em></h2>
     </div>
-    <a href="gallery.html" class="view-all-link">View More <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+    <a href="gallery.html" class="view-all-link">View More <i class="ti ti-arrow-right" class="icon-xs"></i></a>
   </div>
   <div class="gallery-strip">
     <div class="gallery-item reveal delay-1"><img src="images/gallery/g1.webp" alt="Church gathering" loading="eager" onerror="this.src='images/logo/logo.png'"></div>
@@ -1012,7 +1043,7 @@ img { display: block; }
           </div>
         </div>
         <a href="contact.html" class="btn-outline-dark" style="margin-top:8px;">
-          Get Directions <i class="ti ti-map-2" style="font-size:14px"></i>
+          Get Directions <i class="ti ti-map-2" class="icon-sm"></i>
         </a>
       </div>
       <div class="map-wrap reveal anim-roll-right delay-2">
@@ -1033,10 +1064,10 @@ img { display: block; }
       <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
       <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
       <div class="footer-social">
-        <a aria-label="ENJC YouTube channel" href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener" title="YouTube"><i class="ti ti-brand-youtube"></i></a>
-        <a aria-label="ENJC Instagram" href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
-        <a aria-label="ENJC Facebook page" href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener" title="Facebook"><i class="ti ti-brand-facebook"></i></a>
-        <a aria-label="Contact on WhatsApp" href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener" title="YouTube"><i class="ti ti-brand-youtube"></i></a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener" title="Facebook"><i class="ti ti-brand-facebook"></i></a>
+        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
       </div>
     </div>
     <div>
@@ -1159,13 +1190,52 @@ img { display: block; }
   tick(); setInterval(tick,1000);
 })();
 
+/* ── Scroll-to-top ── */
+(function(){
+  var btn=document.getElementById('scroll-top-btn');
+  window.addEventListener('scroll',function(){
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+})();
+
+/* ── Reveal on scroll ── */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!els.length||!window.IntersectionObserver){
+    els.forEach(function(e){e.classList.add('visible');});return;
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}
+    });
+  },{threshold:0,rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(e){obs.observe(e);});
+  setTimeout(function(){
+    els.forEach(function(e){if(!e.classList.contains('visible'))e.classList.add('visible');});
+  },1800);
+})();
+
 /* ── Mobile nav toggle ── */
 (function(){
-  var btn=document.getElementById('mob-toggle'),links=document.getElementById('nav-links');
-  if(btn&&links){btn.addEventListener('click',function(e){e.stopPropagation();links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});}
+  var btn=document.getElementById('mob-toggle');
+  var links=document.getElementById('nav-links');
+  if(!btn||!links) return;
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    btn.setAttribute('aria-expanded', !links.classList.contains('mob-open') ? 'true' : 'false');
+    links.classList.toggle('mob-open');
+  });
+  document.addEventListener('click',function(e){
+    if(!links.contains(e.target)&&!btn.contains(e.target))
+      links.classList.remove('mob-open');
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') links.classList.remove('mob-open');
+  });
 })();
 </script>
 
+<script>window.ENJC_PAGE="home";</script>
 <script src="js/site.js" defer></script>
 </body>
 </html>

@@ -1,235 +1,1115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About Us | ENJC — Elim New Jerusalem Church</title>
-<meta name="description" content="Learn about ENJC — Pastor A. Karthik Daniel, our Deliverance Ministry, Mission and Vision.">
-<link rel="canonical" href="https://elimnewjerusalem.github.io/church/about.html">
-<link rel="icon" type="image/png" href="images/logo/logo.png">
-<link rel="apple-touch-icon" href="images/logo/logo.png">
-<link rel="manifest" href="data/manifest.json">
-<meta property="og:title" content="About Us | ENJC">
-<meta property="og:description" content="Learn about ENJC — Pastor A. Karthik Daniel, our Deliverance Ministry, Mission and Vision.">
-<meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-<meta property="og:url" content="https://elimnewjerusalem.github.io/church/about.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<link rel="stylesheet" href="css/enjc-design.css">
+  <meta charset="UTF-8">
+  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/about.html">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="apple-touch-icon" href="images/logo/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | ENJC — Elim New Jerusalem Church</title>
+  <meta name="description" content="Learn about ENJC — Pastor A. Karthik Daniel, our Deliverance Ministry, Mission and Vision. Tondiarpet, Chennai.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+
+  <script src="js/site.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/enjc-premium.css">
+  <link rel="stylesheet" href="css/design-upgrade.css">
+  <link rel="stylesheet" href="css/mobile-ux-fixes.css">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://elimnewjerusalem.github.io/church/about.html">
+  <meta property="og:title"       content="About Us | ENJC">
+  <meta property="og:description" content="Learn about ENJC — Pastor A. Karthik Daniel, our Deliverance Ministry, Mission and Vision.">
+  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"      content="About Us | ENJC">
+  <meta name="twitter:description" content="Learn about ENJC — Pastor A. Karthik Daniel, our Deliverance Ministry, Mission and Vision.">
+  <meta name="twitter:image"      content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+
+  <style>
+  /* ═══════════════════════════════════════
+     ABOUT PAGE — Elevation Style
+  ═══════════════════════════════════════ */
+
+  /* Shared section helpers */
+  .ab-wrap {
+    max-width: var(--max-width, 1280px);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 64px);
+  }
+  .ab-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .ab-eyebrow span { display: inline-block; width: 28px; height: 1px; background: var(--gold); opacity: .6; }
+  .ab-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .ab-title em { font-style: italic; color: var(--gold-warm); }
+  .ab-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 580px;
+    line-height: 1.85;
+  }
+
+  /* ── PAGE HERO ── */
+  .ab-hero {
+    background: var(--bg);
+    padding: clamp(80px, 10vw, 130px) 0 clamp(60px, 8vw, 100px);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle radial glow behind text */
+  .ab-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse at center, rgba(147,184,255,.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ab-hero .ab-wrap { position: relative; z-index: 1; }
+  .ab-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.05;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: abFadeUp .9s .2s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .ab-hero__title em { font-style: italic; color: var(--gold-warm); }
+  .ab-hero__sub {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.8vw, 17px);
+    color: rgba(234,240,255,.65);
+    max-width: 540px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: abFadeUp .9s .4s cubic-bezier(.22,1,.36,1) forwards;
+  }
+
+  /* ── STATS BAND ── */
+  .ab-stats {
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border-mid);
+  }
+  .ab-stats__inner {
+    max-width: var(--max-width, 1280px);
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+    display: flex;
+  }
+  .ab-stat {
+    flex: 1;
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .ab-stat:last-child { border-right: none; }
+  .ab-stat__n {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .ab-stat__l {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ── PASTOR SECTION ── */
+  .ab-pastor {
+    background: var(--bg);
+    padding: clamp(72px,9vw,120px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ab-pastor__layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+    margin-top: 48px;
+  }
+  .ab-pastor__photo-col { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .ab-pastor__photo-frame {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 3/4;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-3);
+    border: 1px solid var(--border-mid);
+    position: relative;
+  }
+  .ab-pastor__photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .ab-pastor__photo-fallback {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    background: var(--bg-3);
+  }
+  .ab-pastor__badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 99px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .ab-pastor__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+  }
+  .ab-pastor__actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .ab-pastor__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .ab-pastor__btn--gold {
+    background: var(--gold);
+    color: var(--bg);
+  }
+  .ab-pastor__btn--gold:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .ab-pastor__btn--outline {
+    background: transparent;
+    border: 1px solid var(--border-gold);
+    color: var(--gold);
+  }
+  .ab-pastor__btn--outline:hover { background: var(--gold-bg); }
+
+  .ab-pastor__bio-col {}
+  .ab-pastor__bio {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+  .ab-pastor__video-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+  .ab-pastor__video {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--border-mid);
+  }
+  .ab-pastor__video iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  /* ── TIMELINE ── */
+  .ab-timeline {
+    background: var(--bg-2);
+    padding: clamp(72px,9vw,120px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ab-tl {
+    position: relative;
+    margin-top: 56px;
+    padding-left: 32px;
+  }
+  /* Vertical line */
+  .ab-tl::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border-gold) 10%, var(--border-gold) 90%, transparent);
+  }
+  .ab-tl-item {
+    position: relative;
+    padding: 0 0 52px 40px;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .ab-tl-item.is-visible { opacity: 1; transform: none; }
+  .ab-tl-item:last-child { padding-bottom: 0; }
+  /* Dot */
+  .ab-tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    border: 2px solid var(--border-gold);
+    transition: background .3s;
+  }
+  .ab-tl-item.is-now::before {
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(147,184,255,.5);
+  }
+  .ab-tl-year {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .ab-tl-card {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    transition: border-color .2s;
+  }
+  .ab-tl-card:hover { border-color: var(--border-gold); }
+  .ab-tl-card.is-now {
+    background: linear-gradient(135deg, rgba(147,184,255,.08), rgba(147,184,255,.03));
+    border-color: var(--border-gold);
+  }
+  .ab-tl-icon { font-size: 24px; margin-bottom: 10px; }
+  .ab-tl-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .ab-tl-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* ── DELIVERANCE MINISTRY ── */
+  .ab-deliverance {
+    background: var(--bg);
+    padding: clamp(72px,9vw,120px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ab-del-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .ab-del-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all .25s cubic-bezier(.22,1,.36,1);
+  }
+  .ab-del-card:hover {
+    border-color: var(--border-gold);
+    background: var(--bg-3);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 48px rgba(0,0,0,.5);
+  }
+  .ab-del-card__icon { font-size: 34px; margin-bottom: 18px; display: block; }
+  .ab-del-card__title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .ab-del-card__desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* ── MISSION + VISION ── */
+  .ab-mv {
+    background: var(--bg-2);
+    padding: clamp(72px,9vw,120px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ab-mv__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px,5vw,72px);
+    margin-top: 48px;
+    align-items: start;
+  }
+  .ab-mv__col-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem,3vw,2rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .ab-mv__col-title em { font-style: italic; color: var(--gold-warm); }
+  .ab-mv__col-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+  .ab-mv__list { display: flex; flex-direction: column; gap: 10px; }
+  .ab-mv__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: border-color .2s;
+  }
+  .ab-mv__item:hover { border-color: var(--border-gold); }
+  .ab-mv__item-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .ab-mv__item-title {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .ab-mv__item-desc {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-faint);
+    line-height: 1.5;
+  }
+
+  /* ── TESTIMONIES ── */
+  .ab-testimonies {
+    background: var(--bg);
+    padding: clamp(72px,9vw,120px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ab-testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .ab-testi-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color .2s;
+  }
+  .ab-testi-card:hover { border-color: var(--border-gold); }
+  .ab-testi-quote-mark {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: .7;
+    color: var(--gold);
+    opacity: .4;
+  }
+  .ab-testi-text {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-style: italic;
+    flex: 1;
+  }
+  .ab-testi-name {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .ab-testi-detail {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: .5px;
+  }
+
+  /* ── FOUNDATION VERSE ── */
+  .ab-verse {
+    background: var(--bg-2);
+    padding: clamp(64px,8vw,100px) 0;
+  }
+  .ab-verse__card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(147,184,255,.09), rgba(147,184,255,.03));
+    border: 1px solid var(--border-gold);
+    border-radius: 20px;
+    padding: clamp(32px,5vw,56px);
+    text-align: center;
+  }
+  .ab-verse__text {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem,2.8vw,1.6rem);
+    color: var(--text);
+    line-height: 1.75;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .ab-verse__ref {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── CTA BAND ── */
+  .ab-cta {
+    background: var(--bg-3);
+    border-top: 1px solid var(--border-mid);
+    padding: clamp(56px,7vw,96px) 0;
+    text-align: center;
+  }
+  .ab-cta__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem,4.5vw,3rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .ab-cta__sub {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .ab-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 36px;
+    background: var(--gold);
+    color: var(--bg);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .ab-cta__btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(147,184,255,.25); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes abFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .ab-pastor__layout { grid-template-columns: 1fr; }
+    .ab-pastor__photo-col { flex-direction: row; align-items: center; gap: 24px; }
+    .ab-pastor__photo-frame { max-width: 160px; aspect-ratio: 1/1; }
+    .ab-del-grid { grid-template-columns: repeat(2,1fr); }
+    .ab-mv__grid { grid-template-columns: 1fr; }
+    .ab-testi-grid { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 600px) {
+    .ab-stats__inner { flex-direction: column; }
+    .ab-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 20px; }
+    .ab-stat:last-child { border-bottom: none; }
+    .ab-del-grid { grid-template-columns: 1fr; }
+    .ab-testi-grid { grid-template-columns: 1fr; }
+    .ab-pastor__photo-col { flex-direction: column; }
+    .ab-tl { padding-left: 20px; }
+    .ab-tl-item { padding-left: 28px; }
+  }
+  </style>
+<link rel="stylesheet" href="css/fixes.css">
 </head>
+
 <body>
+  <a href="#main" class="skip-to-content">Skip to main content</a>
 
-<!-- NAV -->
-<nav class="navbar"><canvas id="const-cv" aria-hidden="true"></canvas>
-  <a href="index.html" class="nav-logo">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
-    <div>
-      <div class="nav-logo-text">ENJC · Elim New Jerusalem Church</div>
-      <div class="nav-logo-sub">Tondiarpet, Chennai</div>
-    </div>
-  </a>
-  <div class="nav-links" id="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="ministries.html">Ministries</a>
-    <a href="events.html">Events</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="bible.html">Bible</a>
-    <a href="imagegen.html">Cards</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <a href="contact.html" class="nav-cta"><i class="ti ti-map-pin" style="font-size:12px"></i> Visit Us</a>
-  <button class="nav-mobile-toggle" id="mob-toggle"><i class="ti ti-menu-2"></i></button>
-</nav>
-
-<main>
-
-<!-- Page Hero — dark -->
-<section class="page-hero s-d3"><canvas id="hero-glow-cv" aria-hidden="true"></canvas>
-  <div class="container">
-    <p class="section-tag reveal-on-scroll">Our Story</p>
-    <h1 class="reveal-on-scroll anim-d1">About <em>ENJC</em></h1>
-    <p class="reveal-on-scroll anim-d2">Elim New Jerusalem Church — Tondiarpet, Chennai.</p>
-  </div>
-</section>
-<div class="stained-divider" aria-hidden="true"><canvas class="stained-cv"></canvas></div>
-
-
-<!-- Pastor — LIGHT -->
-<section class="section s-l1" aria-labelledby="pastor-heading">
-  <div class="container">
-    <p class="section-tag reveal-on-scroll">Leadership</p>
-    <h2 class="section-heading reveal-on-scroll anim-d1" id="pastor-heading">Our <em>Pastor</em></h2>
-    <div class="section-rule reveal-on-scroll anim-d2"></div>
-    <article class="card on-light cin-card reveal-on-scroll anim-d2"
-      style="padding:36px;display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin-top:4px;">
-      <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--gold-border);flex-shrink:0;">
-        <img src="images/pastor.webp" alt="Pastor A. Karthik Daniel"
-          style="width:100%;height:100%;object-fit:cover;"
-          onerror="this.parentElement.style.background='var(--gold-bg)';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';this.outerHTML='<span style=font-size:52px>👨‍⚖️</span>'">
+  <!-- ══ NAV ══ -->
+  <header>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="ENJC home">
+          <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
+          <div>
+            <div class="nav-logo__name">ENJC</div>
+            <div class="nav-logo__sub">Elim New Jerusalem Church</div>
+          </div>
+        </a>
+        <ul class="nav-links" aria-label="Main navigation">
+          <li><a href="index.html"      class="nav-link">Home</a></li>
+          <li><a href="events.html"     class="nav-link">Sermons</a></li>
+          <li><a href="about.html"      class="nav-link nav-link--active" aria-current="page">About</a></li>
+          <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+          <li><a href="contact.html"    class="nav-link">Visit Us</a></li>
+        </ul>
+        <div class="nav-controls">
+          <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+            <div class="theme-toggle__dot"></div>
+          </button>
+          <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
+             target="_blank" rel="noopener" class="nav-visit-btn">Plan a Visit</a>
+        </div>
+        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+          <span class="nav-hamburger__line"></span>
+        </button>
       </div>
-      <div style="flex:1;min-width:240px;">
-        <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Senior Pastor</p>
-        <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:12px;color:var(--t-dark);">Pastor A. Karthik Daniel</h2>
-        <p style="font-size:15px;line-height:1.85;margin-bottom:18px;color:var(--t-muted-l);">
-          Pastor A. Karthik Daniel leads Elim New Jerusalem Church with a vision for deliverance,
-          prayer, and reaching the lost across Chennai and Tamil Nadu. He is deeply committed to the
-          Word of God and the transforming power of the Holy Spirit.
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="index.html"      class="mobile-menu__link" >Home</a>
+        <a href="about.html"      class="mobile-menu__link is-active" >About</a>
+        <a href="events.html"     class="mobile-menu__link" >Sermons &amp; Events</a>
+        <a href="ministries.html" class="mobile-menu__link" >Ministries</a>
+        <a href="gallery.html"    class="mobile-menu__link" >Gallery</a>
+        <a href="contact.html"    class="mobile-menu__link" >Contact</a>
+        <a href="bible.html"      class="mobile-menu__link" >Bible Reader</a>
+        <a href="imagegen.html"   class="mobile-menu__link" >🖼️ Scripture Cards</a>
+      </div>
+    </nav>
+  </header>
+
+
+  <main id="main">
+
+    <!-- ══════════════════════════════════════════════
+         PAGE HERO
+    ══════════════════════════════════════════════ -->
+    <section class="ab-hero" aria-labelledby="page-title">
+      <div class="ab-wrap">
+        <div class="ab-eyebrow"><span></span> Our Story</div>
+        <h1 class="ab-hero__title" id="page-title">
+          About <em>ENJC</em>
+        </h1>
+        <p class="ab-hero__sub">
+          Elim New Jerusalem Church — Tondiarpet, Chennai.<br>
+          Rooted in the Word. Moving in the Spirit. Reaching the Nations.
         </p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="btn btn--gold">Contact Pastor</a>
-          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--outline-dark">Watch Sermons</a>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         STATS BAND
+    ══════════════════════════════════════════════ -->
+    <div class="ab-stats" role="complementary" aria-label="Church at a glance">
+      <div class="ab-stats__inner">
+        <div class="ab-stat">
+          <div class="ab-stat__n">35+</div>
+          <div class="ab-stat__l">Years of Ministry</div>
+        </div>
+        <div class="ab-stat">
+          <div class="ab-stat__n">3</div>
+          <div class="ab-stat__l">Sunday Services</div>
+        </div>
+        <div class="ab-stat">
+          <div class="ab-stat__n">Daily</div>
+          <div class="ab-stat__l">Night Prayer</div>
+        </div>
+        <div class="ab-stat">
+          <div class="ab-stat__n">TN+</div>
+          <div class="ab-stat__l">Outreach Across Tamil Nadu</div>
         </div>
       </div>
-    </article>
-  </div>
-</section>
-
-<!-- Deliverance Ministry — DARK -->
-<section class="section s-d2" aria-labelledby="ministry-heading">
-  <div class="container">
-    <p class="section-tag reveal-on-scroll">Our Ministry</p>
-    <h2 class="section-heading reveal-on-scroll anim-d1" id="ministry-heading">About Our <em>Deliverance Ministry</em></h2>
-    <p class="section-sub reveal-on-scroll anim-d2">
-      We believe in the power of Jesus Christ to set people free — from bondage, sickness,
-      and spiritual oppression. Our deliverance ministry is rooted in prayer, God's Word,
-      and the presence of the Holy Spirit.
-    </p>
-    <div class="grid-3">
-      <article class="card reveal-on-scroll anim-d1" style="padding:30px;">
-        <div style="width:52px;height:52px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;"><i class="ti ti-hearts" style="font-size:24px;color:var(--gold);"></i></div>
-        <h3 style="margin-bottom:10px;color:var(--t-light);font-size:1.05rem;">Prayer &amp; Intercession</h3>
-        <p style="font-size:13px;color:var(--t-muted-d);line-height:1.7;">Daily prayer meetings and special intercession gatherings. Every believer is invited to pray for families, Chennai, and nations.</p>
-      </article>
-      <article class="card reveal-on-scroll anim-d2" style="padding:30px;">
-        <div style="width:52px;height:52px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;"><i class="ti ti-book-2" style="font-size:24px;color:var(--gold);"></i></div>
-        <h3 style="margin-bottom:10px;color:var(--t-light);font-size:1.05rem;">Word &amp; Worship</h3>
-        <p style="font-size:13px;color:var(--t-muted-d);line-height:1.7;">Grounded in the authority of Scripture. We preach, teach, and live God's Word every week through three Sunday services.</p>
-      </article>
-      <article class="card reveal-on-scroll anim-d3" style="padding:30px;">
-        <div style="width:52px;height:52px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;"><i class="ti ti-flame" style="font-size:24px;color:var(--gold);"></i></div>
-        <h3 style="margin-bottom:10px;color:var(--t-light);font-size:1.05rem;">Holy Spirit Ministry</h3>
-        <p style="font-size:13px;color:var(--t-muted-d);line-height:1.7;">We welcome the gifts and move of the Holy Spirit. Healing, deliverance, and transformation happen when God's people gather.</p>
-      </article>
     </div>
-  </div>
-</section>
 
-<!-- Mission + Vision — LIGHT -->
-<section class="section s-l2" aria-labelledby="mission-heading">
-  <div class="container">
-    <div class="grid-2" style="align-items:start;gap:52px;">
-      <div>
-        <p class="section-tag reveal-on-scroll">Mission</p>
-        <h2 class="section-heading reveal-on-scroll anim-d1" id="mission-heading">Our <em>Mission</em></h2>
-        <p class="reveal-on-scroll anim-d2" style="font-size:15px;line-height:1.85;margin:14px 0 28px;color:var(--t-muted-l);">
-          To bring the transforming power of Jesus Christ to families and communities in
-          Tondiarpet, Chennai, and beyond — through worship, prayer, the Word of God,
-          and Spirit-led ministry.
+
+    <!-- ══════════════════════════════════════════════
+         PASTOR
+    ══════════════════════════════════════════════ -->
+    <section class="ab-pastor" aria-labelledby="pastor-heading">
+      <div class="ab-wrap">
+        <div class="ab-eyebrow"><span></span> Leadership</div>
+        <h2 class="ab-title" id="pastor-heading">Our <em>Pastor</em></h2>
+        <p class="ab-desc">God-called, Spirit-led — serving ENJC with humility, faith, and fire since the founding of this church.</p>
+
+        <div class="ab-pastor__layout">
+
+          <!-- Photo column -->
+          <div class="ab-pastor__photo-col">
+            <div class="ab-pastor__photo-frame">
+              <div class="ab-pastor__photo-fallback" id="pastor-fallback" style="display:none;">🙏</div>
+              <picture>
+                <source srcset="images/pastor.webp" type="image/webp">
+                <img src="images/pastor.jpg" alt="Pastor A. Karthik Daniel"
+                     onerror="this.style.display='none';document.getElementById('pastor-fallback').style.display='flex'">
+              </picture>
+            </div>
+            <div class="ab-pastor__badge">Senior Pastor</div>
+            <div class="ab-pastor__name">Pastor A. Karthik Daniel</div>
+            <div class="ab-pastor__actions">
+              <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="ab-pastor__btn ab-pastor__btn--gold">
+                💬 Contact Pastor
+              </a>
+              <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="ab-pastor__btn ab-pastor__btn--outline">
+                ▶ Watch Sermons
+              </a>
+            </div>
+          </div>
+
+          <!-- Bio column -->
+          <div class="ab-pastor__bio-col">
+            <p class="ab-pastor__bio">
+              Pastor A. Karthik Daniel leads Elim New Jerusalem Church with a God-given vision for
+              deliverance, prayer, and reaching the lost across Chennai and Tamil Nadu. Called by
+              God from a young age, he has faithfully served the congregation at Tondiarpet with
+              humility, faith, and fire.
+            </p>
+            <p class="ab-pastor__bio">
+              He is deeply committed to the Word of God, the transforming power of the Holy Spirit,
+              and seeing families — whole households — saved, healed, and set free in Jesus' name.
+              His ministry spans Sunday services, Friday prayer meetings, daily night prayer, and
+              special deliverance and Promise services.
+            </p>
+
+            <div class="ab-pastor__video-label">Featured Sermon</div>
+            <div class="ab-pastor__video">
+              <iframe
+                src="https://www.youtube.com/embed/5AxMYxuA2Do"
+                title="Featured Sermon — Pastor A. Karthik Daniel"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         TIMELINE
+    ══════════════════════════════════════════════ -->
+    <section class="ab-timeline" aria-labelledby="history-heading">
+      <div class="ab-wrap">
+        <div class="ab-eyebrow"><span></span> Our Journey</div>
+        <h2 class="ab-title" id="history-heading">Church <em>History</em></h2>
+        <p class="ab-desc">From a small gathering in Tondiarpet to reaching across Tamil Nadu and the nations.</p>
+
+        <div class="ab-tl" id="ab-tl">
+
+          <div class="ab-tl-item">
+            <div class="ab-tl-year">1989</div>
+            <div class="ab-tl-card">
+              <div class="ab-tl-icon">🌱</div>
+              <div class="ab-tl-title">Church Founded</div>
+              <p class="ab-tl-desc">Elim New Jerusalem Church was established in Tondiarpet, Chennai — a small gathering with a great vision: to bring the power of Jesus Christ to the people of North Chennai.</p>
+            </div>
+          </div>
+
+          <div class="ab-tl-item">
+            <div class="ab-tl-year">2000s</div>
+            <div class="ab-tl-card">
+              <div class="ab-tl-icon">🔥</div>
+              <div class="ab-tl-title">Deliverance Ministry Grows</div>
+              <p class="ab-tl-desc">God's power moved mightily through the Deliverance Ministry. Families were set free, healings took place, and the congregation grew as testimonies spread across Chennai.</p>
+            </div>
+          </div>
+
+          <div class="ab-tl-item">
+            <div class="ab-tl-year">2010s</div>
+            <div class="ab-tl-card">
+              <div class="ab-tl-icon">📖</div>
+              <div class="ab-tl-title">Multiple Services &amp; Outreach</div>
+              <p class="ab-tl-desc">Sunday services expanded to three gatherings. Promise Services, Testimony nights, and Tamil Nadu village outreaches began, extending the ministry's reach.</p>
+            </div>
+          </div>
+
+          <div class="ab-tl-item">
+            <div class="ab-tl-year">2020</div>
+            <div class="ab-tl-card">
+              <div class="ab-tl-icon">📡</div>
+              <div class="ab-tl-title">Live Streaming Begins</div>
+              <p class="ab-tl-desc">ENJC took the Gospel online — live streaming Sunday services and night prayer meetings on YouTube, reaching believers across India and around the world.</p>
+            </div>
+          </div>
+
+          <div class="ab-tl-item is-now">
+            <div class="ab-tl-year">Today</div>
+            <div class="ab-tl-card is-now">
+              <div class="ab-tl-icon">✝️</div>
+              <div class="ab-tl-title">Still Pressing Forward</div>
+              <p class="ab-tl-desc">Three Sunday services · Friday Family Blessing Prayer · Daily Night Prayer at 10:30 PM · Bible Reader app · Reaching Tamil Nadu and the nations for Jesus Christ.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         DELIVERANCE MINISTRY
+    ══════════════════════════════════════════════ -->
+    <section class="ab-deliverance" aria-labelledby="deliverance-heading">
+      <div class="ab-wrap">
+        <div class="ab-eyebrow"><span></span> Our Ministry</div>
+        <h2 class="ab-title" id="deliverance-heading">About Our <em>Deliverance Ministry</em></h2>
+        <p class="ab-desc">
+          We believe in the power of Jesus Christ to set people free — from bondage, sickness,
+          and spiritual oppression. Our deliverance ministry is rooted in prayer, God's Word,
+          and the presence of the Holy Spirit.
         </p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-          <li class="card on-light cin-card reveal-on-scroll anim-d3" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px;">
-            <i class="ti ti-check" style="color:var(--gold);font-size:18px;flex-shrink:0;margin-top:2px;"></i>
-            <div><div style="font-size:14px;font-weight:600;color:var(--t-dark);margin-bottom:3px;">Reach the lost</div><div style="font-size:12px;color:var(--t-muted-l);">Proclaim the Gospel in Tondiarpet and all of Chennai</div></div>
-          </li>
-          <li class="card on-light cin-card reveal-on-scroll anim-d4" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px;">
-            <i class="ti ti-check" style="color:var(--gold);font-size:18px;flex-shrink:0;margin-top:2px;"></i>
-            <div><div style="font-size:14px;font-weight:600;color:var(--t-dark);margin-bottom:3px;">Strengthen believers</div><div style="font-size:12px;color:var(--t-muted-l);">Build up every member in faith, prayer, and God's Word</div></div>
-          </li>
-          <li class="card on-light cin-card reveal-on-scroll anim-d5" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px;">
-            <i class="ti ti-check" style="color:var(--gold);font-size:18px;flex-shrink:0;margin-top:2px;"></i>
-            <div><div style="font-size:14px;font-weight:600;color:var(--t-dark);margin-bottom:3px;">Transform families</div><div style="font-size:12px;color:var(--t-muted-l);">See whole households saved, healed, and set free</div></div>
-          </li>
-        </ul>
+
+        <div class="ab-del-grid">
+
+          <article class="ab-del-card">
+            <span class="ab-del-card__icon">🙏</span>
+            <div class="ab-del-card__title">Prayer &amp; Intercession</div>
+            <p class="ab-del-card__desc">Daily prayer meetings and special intercession gatherings. Every believer is invited to pray for families, Chennai, and the nations.</p>
+          </article>
+
+          <article class="ab-del-card">
+            <span class="ab-del-card__icon">📖</span>
+            <div class="ab-del-card__title">Word &amp; Worship</div>
+            <p class="ab-del-card__desc">Grounded in the authority of Scripture. We preach, teach, and live God's Word every week through three Sunday services.</p>
+          </article>
+
+          <article class="ab-del-card">
+            <span class="ab-del-card__icon">🕊️</span>
+            <div class="ab-del-card__title">Holy Spirit Ministry</div>
+            <p class="ab-del-card__desc">We welcome the gifts and move of the Holy Spirit. Healing, deliverance, and transformation happen when God's people gather in His name.</p>
+          </article>
+
+        </div>
       </div>
-      <div>
-        <p class="section-tag reveal-on-scroll">Vision</p>
-        <h2 class="section-heading reveal-on-scroll anim-d1">Our <em>Vision</em></h2>
-        <p class="reveal-on-scroll anim-d2" style="font-size:15px;line-height:1.85;margin:14px 0 28px;color:var(--t-muted-l);">
-          Starting in Chennai and expanding across all of Tamil Nadu and beyond —
-          to every village and nation where Jesus has not yet been named.
-        </p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-          <li class="card on-light cin-card reveal-on-scroll anim-d3" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px;"><span style="font-size:18px;flex-shrink:0;">🌍</span><div><div style="font-size:14px;font-weight:600;color:var(--t-dark);margin-bottom:3px;">Expand church branches worldwide</div><div style="font-size:12px;color:var(--t-muted-l);">Establish ENJC branches globally</div></div></li>
-          <li class="card on-light cin-card reveal-on-scroll anim-d4" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px;"><span style="font-size:18px;flex-shrink:0;">🔥</span><div><div style="font-size:14px;font-weight:600;color:var(--t-dark);margin-bottom:3px;">Establish deliverance ministries</div><div style="font-size:12px;color:var(--t-muted-l);">Spirit-led deliverance centres across Tamil Nadu</div></div></li>
-          <li class="card on-light cin-card reveal-on-scroll anim-d5" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px;"><span style="font-size:18px;flex-shrink:0;">🧑</span><div><div style="font-size:14px;font-weight:600;color:var(--t-dark);margin-bottom:3px;">Reach young people with Jesus</div><div style="font-size:12px;color:var(--t-muted-l);">Preach the Gospel to the next generation</div></div></li>
-          <li class="card on-light cin-card reveal-on-scroll anim-d6" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px;"><span style="font-size:18px;flex-shrink:0;">🏘</span><div><div style="font-size:14px;font-weight:600;color:var(--t-dark);margin-bottom:3px;">Village expansion across Tamil Nadu</div><div style="font-size:12px;color:var(--t-muted-l);">Starting in Chennai — reaching every Tamil Nadu village</div></div></li>
-        </ul>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         MISSION + VISION
+    ══════════════════════════════════════════════ -->
+    <section class="ab-mv" aria-labelledby="mission-heading">
+      <div class="ab-wrap">
+        <div class="ab-eyebrow"><span></span> Purpose &amp; Direction</div>
+        <h2 class="ab-title" id="mission-heading">Mission &amp; <em>Vision</em></h2>
+
+        <div class="ab-mv__grid">
+
+          <!-- Mission -->
+          <div>
+            <div class="ab-mv__col-title">Our <em>Mission</em></div>
+            <p class="ab-mv__col-desc">
+              To bring the transforming power of Jesus Christ to families and communities in
+              Tondiarpet, Chennai, and beyond — through worship, prayer, the Word of God,
+              and Spirit-led ministry.
+            </p>
+            <div class="ab-mv__list">
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">✓</span>
+                <div>
+                  <div class="ab-mv__item-title">Reach the lost</div>
+                  <div class="ab-mv__item-desc">Proclaim the Gospel in Tondiarpet and all of Chennai</div>
+                </div>
+              </div>
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">✓</span>
+                <div>
+                  <div class="ab-mv__item-title">Strengthen believers</div>
+                  <div class="ab-mv__item-desc">Build up every member in faith, prayer, and God's Word</div>
+                </div>
+              </div>
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">✓</span>
+                <div>
+                  <div class="ab-mv__item-title">Transform families</div>
+                  <div class="ab-mv__item-desc">See whole households saved, healed, and set free</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vision -->
+          <div>
+            <div class="ab-mv__col-title">Our <em>Vision</em></div>
+            <p class="ab-mv__col-desc">
+              Starting in Chennai and expanding across all of Tamil Nadu and beyond —
+              to every village and nation where Jesus has not yet been named.
+            </p>
+            <div class="ab-mv__list">
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">🌍</span>
+                <div>
+                  <div class="ab-mv__item-title">Expand church branches worldwide</div>
+                  <div class="ab-mv__item-desc">Establish ENJC branches globally</div>
+                </div>
+              </div>
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">🔥</span>
+                <div>
+                  <div class="ab-mv__item-title">Establish deliverance ministries</div>
+                  <div class="ab-mv__item-desc">Spirit-led deliverance centres across Tamil Nadu</div>
+                </div>
+              </div>
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">🧑</span>
+                <div>
+                  <div class="ab-mv__item-title">Reach young people with Jesus</div>
+                  <div class="ab-mv__item-desc">Preach the Gospel to the next generation</div>
+                </div>
+              </div>
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">🏫</span>
+                <div>
+                  <div class="ab-mv__item-title">Support youth development</div>
+                  <div class="ab-mv__item-desc">Trust · School · Tuition · Sports &amp; development</div>
+                </div>
+              </div>
+              <div class="ab-mv__item">
+                <span class="ab-mv__item-icon">🏘️</span>
+                <div>
+                  <div class="ab-mv__item-title">Village expansion across Tamil Nadu</div>
+                  <div class="ab-mv__item-desc">Reaching every Tamil Nadu village for Christ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         TESTIMONIES
+    ══════════════════════════════════════════════ -->
+    <section class="ab-testimonies" aria-labelledby="testi-heading">
+      <div class="ab-wrap">
+        <div class="ab-eyebrow"><span></span> God's Work</div>
+        <h2 class="ab-title" id="testi-heading">What God Has <em>Done</em></h2>
+        <p class="ab-desc">Real lives changed by the power of Jesus — in our church, in our city.</p>
+
+        <div class="ab-testi-grid">
+
+          <div class="ab-testi-card">
+            <div class="ab-testi-quote-mark" aria-hidden="true">"</div>
+            <p class="ab-testi-text">God healed my body completely. The doctors had no explanation — but we know Jesus did it. ENJC's prayer changed everything for our family.</p>
+            <div>
+              <div class="ab-testi-name">Sister Leela, Tondiarpet</div>
+              <div class="ab-testi-detail">Healing testimony · 2024</div>
+            </div>
+          </div>
+
+          <div class="ab-testi-card">
+            <div class="ab-testi-quote-mark" aria-hidden="true">"</div>
+            <p class="ab-testi-text">I came to the Deliverance Meeting broken and hopeless. That night, God set me free from years of bondage. My life has never been the same.</p>
+            <div>
+              <div class="ab-testi-name">Brother Samuel, Chennai</div>
+              <div class="ab-testi-detail">Deliverance testimony · 2025</div>
+            </div>
+          </div>
+
+          <div class="ab-testi-card">
+            <div class="ab-testi-quote-mark" aria-hidden="true">"</div>
+            <p class="ab-testi-text">Our marriage was on the verge of breaking. Pastor prayed for us and God restored everything. Today we serve in the church together.</p>
+            <div>
+              <div class="ab-testi-name">A Couple from North Chennai</div>
+              <div class="ab-testi-detail">Restoration testimony · 2025</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         FOUNDATION VERSE
+    ══════════════════════════════════════════════ -->
+    <section class="ab-verse" aria-label="Foundation verse">
+      <div class="ab-wrap">
+        <div class="ab-verse__card">
+          <p class="ab-verse__text">
+            "You are precious in my sight, you are honoured, and I love you."
+          </p>
+          <div class="ab-verse__ref">— Isaiah 43:4 &nbsp;·&nbsp; The Foundation of ENJC</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         CTA
+    ══════════════════════════════════════════════ -->
+    <div class="ab-cta">
+      <div class="ab-wrap">
+        <div class="ab-cta__title">Ready to visit ENJC?</div>
+        <p class="ab-cta__sub">Join us this Sunday — all are welcome. Come as you are.</p>
+        <a href="contact.html" class="ab-cta__btn">📍 Plan Your Visit</a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- Foundation verse — DARK -->
-<section class="section s-d3" aria-label="Foundation verse">
-  <div class="container" style="text-align:center;">
-    <blockquote class="card card--gold reveal-on-scroll" style="padding:44px;max-width:700px;margin:0 auto;">
-      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--t-light);line-height:1.8;font-style:italic;margin-bottom:16px;">
-        &#8220;You are precious in my sight, you are honoured, and I love you.&#8221;
-      </p>
-      <footer style="font-size:12px;color:var(--gold);font-weight:700;letter-spacing:1px;">
-        — Isaiah 43:4 · The Foundation of ENJC
-      </footer>
-    </blockquote>
-  </div>
-</section>
+  </main>
 
-</main>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
-      <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
-      <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
-      <div class="footer-social">
-        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
-        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
-        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
-        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__rich">
+        <div class="site-footer__col">
+          <div class="site-footer__logo">ENJC</div>
+          <p class="site-footer__tagline">Elim New Jerusalem Church<br>Tondiarpet, Chennai</p>
+          <p class="site-footer__addr">📍 No.110E, Elaya Street, Tondiarpet, Chennai – 600 081</p>
+          <a href="tel:+919444345102" class="site-footer__phone">📞 +91 94443 45102</a>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__heading">Quick Links</div>
+          <nav aria-label="Footer navigation">
+            <a href="index.html"      class="site-footer__link">🏠 Home</a>
+            <a href="about.html"      class="site-footer__link">✝ About</a>
+            <a href="events.html"     class="site-footer__link">📅 Sermons &amp; Events</a>
+            <a href="bible.html"      class="site-footer__link">📖 Bible Reader</a>
+            <a href="gallery.html"    class="site-footer__link">🖼 Gallery</a>
+            <a href="ministries.html" class="site-footer__link">🙏 Ministries</a>
+            <a href="contact.html"    class="site-footer__link">✉ Contact</a>
+            <a href="imagegen.html"   class="site-footer__link">🖼️ Scripture Cards</a>
+          </nav>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__heading">Connect With Us</div>
+          <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="site-footer__social"><span>▶</span> YouTube — Main Channel</a>
+          <a href="https://www.youtube.com/@ENJCShorts" target="_blank" rel="noopener" class="site-footer__social"><span>📱</span> YouTube — ENJC Shorts</a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener" class="site-footer__social"><span>📸</span> Instagram</a>
+          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener" class="site-footer__social"><span>👥</span> Facebook</a>
+          <a href="https://wa.me/919444345102" target="_blank" rel="noopener" class="site-footer__social"><span>💬</span> WhatsApp</a>
+          <div class="site-footer__services">
+            <div class="site-footer__heading" style="margin-top:16px">Service Times</div>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🙏 Sun · 5:30 / 8:30 AM &amp; 12:00 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">✝ Fri · 11:00 AM – 1:30 PM</p>
+            <p style="margin:4px 0;font-size:12px;color:var(--color-text-faint)">🌙 Night Prayer · 10:30 PM Daily</p>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 Elim New Jerusalem Church, Chennai</span>
+        <span>Built with ❤️ for the Kingdom</span>
       </div>
     </div>
-    <div><div class="footer-col-title">Quick Links</div><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="ministries.html">Ministries</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
-    <div><div class="footer-col-title">Bible Tools</div><div class="footer-links"><a href="bible.html">Bible Reader</a><a href="imagegen.html">Scripture Cards</a><a href="events.html">Watch Live</a></div></div>
-    <div><div class="footer-col-title">Service Times</div><div class="footer-links"><a href="#">Sunday · 5:30 / 8:30 AM / 12 PM</a><a href="#">Friday · 11:00 AM – 1:30 PM</a><a href="#">Tuesday · 11:00 AM – 4:00 PM</a><a href="#">Night Prayer · 10:30 PM Daily</a><a href="#">Promise · 1st of every month</a></div></div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
-    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
-  </div>
-</footer>
+  </footer>
 
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
-<nav class="mob-nav"><div class="mob-nav-inner">
-  <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
-  <a href="about.html" class="mob-item active"><i class="ti ti-info-circle"></i><span>About</span></a>
-  <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-  <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
-  <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
-</div></nav>
 
-<script src="js/site.js" defer></script>
-<script>
-(function(){
-  // Scroll reveal
-  var els=document.querySelectorAll('.reveal-on-scroll');
-  if(!els.length||!window.IntersectionObserver){els.forEach(function(e){e.classList.add('is-visible','anim-in');});return;}
-  var obs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('is-visible','anim-in');obs.unobserve(en.target);}});},{threshold:0,rootMargin:'0px 0px -20px 0px'});
-  els.forEach(function(e){obs.observe(e);});
-  setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('is-visible'))e.classList.add('is-visible','anim-in');});},1800);
-  // Scroll-top
-  var stb=document.getElementById('scroll-top-btn');
-  window.addEventListener('scroll',function(){stb.classList.toggle('is-visible',window.scrollY>400);});
-  // Mobile nav
-  var btn=document.getElementById('mob-toggle'),links=document.getElementById('nav-links');
-  if(btn&&links){btn.addEventListener('click',function(e){e.stopPropagation();links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});}
-})();
-</script>
+  <!-- ══ FLOATING ACTIONS ══ -->
+  <a href="https://wa.me/919444345102" target="_blank" rel="noopener"
+     class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+  <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
+
+
+  <!-- ══ MOBILE BOTTOM NAV ══ -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"   class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="about.html"   class="bottom-nav__item is-active">
+      <span class="bottom-nav__icon" aria-hidden="true">✝</span>
+      <span class="bottom-nav__label">About</span>
+    </a>
+    <div class="bottom-nav__center">
+      <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
+    </div>
+    <a href="events.html"  class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">📺</span>
+      <span class="bottom-nav__label">Sermons</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon" aria-hidden="true">✉</span>
+      <span class="bottom-nav__label">Contact</span>
+    </a>
+  </nav>
+
+
+  <!-- Timeline scroll-reveal -->
+  <script>
+  (function() {
+    var items = document.querySelectorAll('.ab-tl-item');
+    if (!items.length) return;
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function(el, i) {
+      el.style.transitionDelay = (i * 0.1) + 's';
+      io.observe(el);
+    });
+  })();
+  </script>
+
+  <script src="js/premium-upgrade.js" defer></script>
+  <script src="js/mobile-ux-fixes.js" defer></script>
+  <script src="js/design-upgrade.js" defer></script>
+<script>window.ENJC_PAGE="about";</script>
 </body>
 </html>
