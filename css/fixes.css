@@ -36,21 +36,12 @@
 .pb-lg  { padding-bottom: var(--sp-lg)  !important; }
 .pb-xl  { padding-bottom: var(--sp-xl)  !important; }
 
-/* Container with consistent horizontal padding */
-.container {
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: clamp(20px, 5vw, 48px);
-}
-
-/* Section spacing — stops manual inline padding */
+/* Section spacing — vertical only; horizontal padding belongs on .container inside */
 .section {
   padding-block: clamp(56px, 8vw, 96px);
-  padding-inline: clamp(20px, 5vw, 48px);
 }
 .section-sm {
   padding-block: clamp(40px, 5vw, 64px);
-  padding-inline: clamp(20px, 5vw, 48px);
 }
 
 /* ── 2. ACCESSIBILITY — skip link ───────────────────────────────
@@ -327,7 +318,7 @@ nav.nav#main-nav {
 [data-theme="light"] .mob-item.active,
 [data-theme="light"] .mob-item:hover { color: #9a6e1f; }
 /* Push page content above bottom nav on mobile */
-@media (max-width: 900px) { body { padding-bottom: 68px; } }
+@media (max-width: 900px) { body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); } }
 
 /* ── 7. FOOTER — unified ────────────────────────────────────────*/
 .footer {

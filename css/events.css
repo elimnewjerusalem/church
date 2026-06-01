@@ -409,4 +409,4 @@
 .section.s-d3, .section-alt.s-d3,
 .section-sm.s-d3  { background: var(--d3); }
 
-.countdown__unit { display: none; }
+/* .countdown__unit display is managed by JS — do not hide here */

@@ -91,12 +91,10 @@
   }
 }
 
-/* ── 7. BODY PADDING: account for bottom nav + safe area ─── */
+/* ── 7. BODY PADDING: handled in fixes.css ── */
+/* body padding-bottom is set once in fixes.css to: calc(64px + env(safe-area-inset-bottom, 0px)) */
+/* Push bottom nav itself above home indicator on iOS */
 @media (max-width: 900px) {
-  body {
-    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  /* Push bottom nav itself above home indicator on iOS */
   .bottom-nav {
     padding-bottom: env(safe-area-inset-bottom, 0px);
     height: calc(64px + env(safe-area-inset-bottom, 0px));
