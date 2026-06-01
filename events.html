@@ -408,4 +408,5 @@ main{padding-top:60px;}
 (function(){var btn=document.getElementById('mob-toggle');var links=document.getElementById('nav-links');if(!btn||!links)return;btn.addEventListener('click',function(e){e.stopPropagation();btn.setAttribute('aria-expanded',!links.classList.contains('mob-open')?'true':'false');links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});document.addEventListener('keydown',function(e){if(e.key==='Escape')links.classList.remove('mob-open');});})();
 </script>
 
+<script src="js/nav.js" defer></script>
 </body></html>

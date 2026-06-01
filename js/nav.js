@@ -66,8 +66,16 @@
 
   /* ── Inject header ── */
   function injectNav() {
-    /* Skip if custom nav already present (index.html uses its own canvas nav) */
-    if (document.getElementById('main-nav')) return;
+    /* Skip if index.html's custom canvas nav is present (flagged with data-custom-nav) */
+    if (document.querySelector('[data-custom-nav]')) return;
+
+    /* Remove any pre-existing hardcoded nav/header/mob-nav */
+    var old;
+    old = document.querySelector('header'); if (old) old.remove();
+    old = document.querySelector('#main-nav'); if (old) old.remove();
+    old = document.querySelectorAll('.mob-nav'); old.forEach(function(el){ el.remove(); });
+    old = document.querySelector('.bottom-nav'); if (old) old.remove();
+    old = document.querySelector('.skip-to-content'); if (old) old.remove();
 
     var skip = '<a href="#main" class="skip-to-content">Skip to main content</a>';
 
