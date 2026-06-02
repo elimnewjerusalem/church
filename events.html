@@ -39,6 +39,7 @@
   <meta property="og:description" content="Upcoming events, prayer meetings, and special services at Elim New Jerusalem Church, Chennai.">
   <meta property="og:url" content="https://elimnewjerusalem.github.io/church/events.html">
   <meta property="og:type" content="website">
+<link rel="stylesheet" href="css/events.css">
 <link rel="stylesheet" href="css/fixes.css">
 <link rel="stylesheet" href="css/mobile-ux-fixes.css">
 <style>
@@ -90,30 +91,44 @@ main{padding-top:60px;}
 </style>
 </head>
 <body>
-<nav class="nav" id="main-nav" aria-label="Primary navigation">
-  <div class="nav-brand">
-    <img class="nav-logo-img" src="images/logo/logo.png" alt="ENJC" width="36" height="36" onerror="this.style.display='none'">
-    <div>
-      <div class="nav-brand-name">ENJC</div>
-      <div class="nav-brand-sub">Elim New Jerusalem Church · Tondiarpet, Chennai</div>
+<a href="#main" class="skip-to-content">Skip to main content</a>
+<header>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="ENJC home">
+        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36" onerror="this.style.display='none'">
+        <div><div class="nav-logo__name">ENJC</div><div class="nav-logo__sub">Elim New Jerusalem Church · Tondiarpet</div></div>
+      </a>
+      <ul class="nav-links" id="nav-links" role="list" aria-label="Main navigation">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+        <li><a href="events.html" class="nav-link nav-link--active" aria-current="page">Events</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="bible.html" class="nav-link">Bible</a></li>
+        <li><a href="imagegen.html" class="nav-link">Cards</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark/light theme" aria-pressed="false"><div class="theme-toggle__dot"></div></button>
+        <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="nav-hamburger__line"></span><span class="nav-hamburger__line"></span><span class="nav-hamburger__line"></span>
+      </button>
     </div>
-  </div>
-  <ul class="nav-links" id="nav-links" role="list">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="ministries.html">Ministries</a>
-    <a href="events.html" class="active">Events</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="bible.html">Bible</a>
-    <a href="imagegen.html">Cards</a>
-    <a href="contact.html">Contact</a>
-  </ul>
-  <button class="theme-toggle" id="theme-btn" aria-label="Toggle dark/light theme" aria-pressed="false"><div class="theme-toggle__dot"></div></button>
-  <a href="contact.html" class="nav-visit">
-    <i class="ti ti-map-pin icon-sm"></i> Visit Us
-  </a>
-  <button class="nav-toggle" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><i class="ti ti-menu-2"></i></button>
-</nav>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <a href="index.html" class="mobile-menu__link">Home</a>
+      <a href="about.html" class="mobile-menu__link">About</a>
+      <a href="ministries.html" class="mobile-menu__link">Ministries</a>
+      <a href="events.html" class="mobile-menu__link is-active" aria-current="page">Events</a>
+      <a href="gallery.html" class="mobile-menu__link">Gallery</a>
+      <a href="bible.html" class="mobile-menu__link">Bible</a>
+      <a href="imagegen.html" class="mobile-menu__link">Cards</a>
+      <a href="contact.html" class="mobile-menu__link">Contact</a>
+    </div>
+  </nav>
+</header>
 
 <main>
 
@@ -262,28 +277,7 @@ main{padding-top:60px;}
 
   <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
 
-  <!-- Mobile Bottom Nav -->
-  <nav class="bottom-nav" aria-label="Mobile navigation">
-    <a href="index.html" class="bottom-nav__item">
-      <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
-      <span class="bottom-nav__label">Home</span>
-    </a>
-    <a href="about.html" class="bottom-nav__item">
-      <span class="bottom-nav__icon" aria-hidden="true">✝</span>
-      <span class="bottom-nav__label">About</span>
-    </a>
-    <div class="bottom-nav__center">
-      <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
-    </div>
-    <a href="events.html" class="bottom-nav__item is-active">
-      <span class="bottom-nav__icon" aria-hidden="true">📅</span>
-      <span class="bottom-nav__label">Events</span>
-    </a>
-    <a href="contact.html" class="bottom-nav__item">
-      <span class="bottom-nav__icon" aria-hidden="true">✉</span>
-      <span class="bottom-nav__label">Contact</span>
-    </a>
-  </nav>
+
 
   <!-- JS: live detection — shows LIVE NOW or offline schedule card -->
   <script src="js/live-stream.js"></script>
@@ -315,26 +309,6 @@ main{padding-top:60px;}
   <i class="ti ti-arrow-up"></i>
 </button>
 
-<!-- Mobile Nav -->
-<nav class="mob-nav" aria-label="Mobile navigation">
-  <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item ">
-      <i class="ti ti-home"></i><span>Home</span>
-    </a>
-    <a href="about.html" class="mob-item ">
-      <i class="ti ti-info-circle"></i><span>About</span>
-    </a>
-    <a href="bible.html" class="mob-item ">
-      <i class="ti ti-book"></i><span>Bible</span>
-    </a>
-    <a href="events.html" class="mob-item active">
-      <i class="ti ti-calendar"></i><span>Events</span>
-    </a>
-    <a href="contact.html" class="mob-item ">
-      <i class="ti ti-phone"></i><span>Contact</span>
-    </a>
-  </div>
-</nav>
 
 <script>
 (function(){
@@ -394,6 +368,11 @@ main{padding-top:60px;}
 </footer>
 <a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
 <button id="scroll-top-btn" class="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+<script>
+(function(){var btn=document.getElementById('scroll-top-btn');window.addEventListener('scroll',function(){btn.classList.toggle('is-visible',window.scrollY>400);});})();
+(function(){var btn=document.getElementById('mob-toggle');var links=document.getElementById('nav-links');if(!btn||!links)return;btn.addEventListener('click',function(e){e.stopPropagation();btn.setAttribute('aria-expanded',!links.classList.contains('mob-open')?'true':'false');links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});document.addEventListener('keydown',function(e){if(e.key==='Escape')links.classList.remove('mob-open');});})();
+</script>
+
 <nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
     <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
@@ -403,10 +382,5 @@ main{padding-top:60px;}
     <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
   </div>
 </nav>
-<script>
-(function(){var btn=document.getElementById('scroll-top-btn');window.addEventListener('scroll',function(){btn.classList.toggle('is-visible',window.scrollY>400);});})();
-(function(){var btn=document.getElementById('mob-toggle');var links=document.getElementById('nav-links');if(!btn||!links)return;btn.addEventListener('click',function(e){e.stopPropagation();btn.setAttribute('aria-expanded',!links.classList.contains('mob-open')?'true':'false');links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});document.addEventListener('keydown',function(e){if(e.key==='Escape')links.classList.remove('mob-open');});})();
-</script>
-
-<script src="js/nav.js" defer></script>
+<script src="js/site.js" defer></script>
 </body></html>

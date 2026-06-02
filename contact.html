@@ -66,8 +66,16 @@
           <span class="nav-hamburger__line"></span>
         </button>
       </div>
-      <div class="mobile-menu" id="mobile-menu" aria-hidden="true"><a href="index.html" class="mobile-menu__link" >Home</a><a href="about.html" class="mobile-menu__link" >About</a><a href="gallery.html" class="mobile-menu__link" >Gallery</a><a href="ministries.html" class="mobile-menu__link" >Ministries</a><a href="events.html" class="mobile-menu__link" >Events</a><a href="contact.html" class="mobile-menu__link  is-active" >Contact</a><a href="bible.html" class="mobile-menu__link" >Bible</a>
-        <a href="imagegen.html" class="mobile-menu__link" >🖼️ Scripture Cards</a></div>
+          <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <a href="index.html" class="mobile-menu__link">Home</a>
+      <a href="about.html" class="mobile-menu__link">About</a>
+      <a href="ministries.html" class="mobile-menu__link">Ministries</a>
+      <a href="events.html" class="mobile-menu__link">Events</a>
+      <a href="gallery.html" class="mobile-menu__link">Gallery</a>
+      <a href="bible.html" class="mobile-menu__link">Bible</a>
+      <a href="imagegen.html" class="mobile-menu__link">Cards</a>
+      <a href="contact.html" class="mobile-menu__link is-active" aria-current="page">Contact</a>
+    </div>
     </nav>
   </header>
 
@@ -433,14 +441,14 @@
   <button class="scroll-top-btn" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><i class="ti ti-arrow-up"></i></button>
 
 <style>
-.mob-nav-c{display:none;position:fixed;bottom:0;left:0;right:0;z-index:850;background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);}
-.mob-nav-c .mob-nav-inner{display:flex;}
-.mob-nav-c .mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:#6a85a8;gap:3px;}
-.mob-nav-c .mob-item i{font-size:20px;}
-.mob-nav-c .mob-item.active,.mob-nav-c .mob-item:hover{color:#c9a84c;}
-@media(max-width:600px){.mob-nav-c{display:block;}}
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:850;background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);}
+.mob-nav .mob-nav-inner{display:flex;}
+.mob-nav .mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 12px;font-size:10px;color:#6a85a8;gap:3px;}
+.mob-nav .mob-item i{font-size:20px;}
+.mob-nav .mob-item.active,.mob-nav .mob-item:hover{color:#c9a84c;}
+@media(max-width:600px){.mob-nav{display:block;}}
 </style>
-<nav class="mob-nav-c" aria-label="Mobile navigation">
+<nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
     <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
     <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
@@ -485,6 +493,6 @@
     window.open(`https://wa.me/919444345102?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
   }
   </script><script>window.ENJC_PAGE="contact";</script>
-<script src="js/nav.js" defer></script>
+<script src="js/site.js" defer></script>
 </body>
 </html>
