@@ -47,42 +47,42 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="container">
       <a href="index.html" class="nav-logo" aria-label="ENJC home">
-        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <span class="nav-logo__fallback" aria-hidden="true">ENJC</span>
+        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36"
+             onerror="this.style.display='none'">
         <div>
           <div class="nav-logo__name">ENJC</div>
-          <div class="nav-logo__sub">Elim New Jerusalem Church</div>
+          <div class="nav-logo__sub">Elim New Jerusalem Church · Tondiarpet</div>
         </div>
       </a>
-      <div class="nav-links" role="list">
-        <a href="index.html"      class="nav-link" role="listitem">Home</a>
-        <a href="about.html"      class="nav-link" role="listitem">About</a>
-        <a href="gallery.html"    class="nav-link" role="listitem">Gallery</a>
-        <a href="ministries.html" class="nav-link" role="listitem">Ministries</a>
-        <a href="events.html"     class="nav-link" role="listitem">Events</a>
-        <a href="contact.html"    class="nav-link" role="listitem">Contact</a>
-        <a href="bible.html"      class="nav-link nav-link--active" aria-current="page" role="listitem">Bible</a>
-      </div>
+      <ul class="nav-links" id="nav-links" role="list" aria-label="Main navigation">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="bible.html" class="nav-link nav-link--active" aria-current="page">Bible</a></li>
+        <li><a href="imagegen.html" class="nav-link">Cards</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
       <div class="nav-controls">
-<a href="https://maps.app.goo.gl/MBCqCCf7mtkW4bkh6" target="_blank" rel="noopener" class="nav-visit-btn">
-          📍 Visit Us
-        </a>
+        <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
       </div>
-      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
+        aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="nav-hamburger__line"></span>
         <span class="nav-hamburger__line"></span>
         <span class="nav-hamburger__line"></span>
       </button>
     </div>
-    <div class="mobile-menu" id="mobile-menu" role="menu">
-      <a href="index.html"      class="mobile-menu__link" role="menuitem">Home</a>
-      <a href="about.html"      class="mobile-menu__link" role="menuitem">About</a>
-      <a href="gallery.html"    class="mobile-menu__link" role="menuitem">Gallery</a>
-      <a href="ministries.html" class="mobile-menu__link" role="menuitem">Ministries</a>
-      <a href="events.html"     class="mobile-menu__link" role="menuitem">Events</a>
-      <a href="contact.html"    class="mobile-menu__link" role="menuitem">Contact</a>
-      <a href="bible.html"      class="mobile-menu__link is-active" role="menuitem">Bible</a>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <a href="index.html" class="mobile-menu__link">Home</a>
+      <a href="about.html" class="mobile-menu__link">About</a>
+      <a href="ministries.html" class="mobile-menu__link">Ministries</a>
+      <a href="events.html" class="mobile-menu__link">Events</a>
+      <a href="gallery.html" class="mobile-menu__link">Gallery</a>
+      <a href="bible.html" class="mobile-menu__link is-active" aria-current="page">Bible</a>
+      <a href="imagegen.html" class="mobile-menu__link">Cards</a>
+      <a href="contact.html" class="mobile-menu__link">Contact</a>
     </div>
   </nav>
 </header>
@@ -394,26 +394,14 @@
 <div id="toast"></div>
 
 <!-- BOTTOM NAV -->
-<nav class="bottom-nav" aria-label="Mobile navigation">
-  <a href="index.html"   class="bottom-nav__item">
-    <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
-    <span class="bottom-nav__label">Home</span>
-  </a>
-  <a href="about.html"   class="bottom-nav__item">
-    <span class="bottom-nav__icon" aria-hidden="true">✝</span>
-    <span class="bottom-nav__label">About</span>
-  </a>
-  <div class="bottom-nav__center">
-    <a href="bible.html" class="bottom-nav__bible-btn" aria-label="Bible">📖</a>
+<nav class="mob-nav" aria-label="Mobile navigation">
+  <div class="mob-nav-inner">
+    <a href="index.html" class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
+    <a href="about.html" class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
+    <a href="bible.html" class="mob-item active" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
+    <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+    <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
   </div>
-  <a href="events.html"  class="bottom-nav__item">
-    <span class="bottom-nav__icon" aria-hidden="true">📅</span>
-    <span class="bottom-nav__label">Events</span>
-  </a>
-  <a href="contact.html" class="bottom-nav__item">
-    <span class="bottom-nav__icon" aria-hidden="true">✉</span>
-    <span class="bottom-nav__label">Contact</span>
-  </a>
 </nav>
 
 <!-- WA FLOAT -->
