@@ -33,276 +33,79 @@
   {"@context":"https://schema.org","@type":"ImageGallery","name":"ENJC Church Gallery","description":"Photos from Elim New Jerusalem Church worship and ministry","url":"https://elimnewjerusalem.github.io/church/gallery.html","author":{"@type":"Organization","name":"Elim New Jerusalem Church"}}
   </script>
 
+<!-- Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/enjc-shared.css">
+<link rel="stylesheet" href="css/gallery.css">
+
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap"
-    media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+  
+  
+  
+  <noscript>
+</noscript>
 
   <!-- Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  
 
-  <!-- Stylesheets -->  <link rel="stylesheet" href="css/enjc-premium.css">
-<link rel="stylesheet" href="css/design-upgrade.css">
-  <link rel="stylesheet" href="css/fixes.css">
-<link rel="stylesheet" href="css/mobile-ux-fixes.css">
+  <!-- Stylesheets -->  
 
-  <style>
-    /* ─── Gallery page styles ─────────────────────────────── */
-    :root {
-      --gold: #c9a84c;
-      --navy: #070f1e;
-      --navy-2: #0a1628;
-    }
+  
 
-    body {
-      background: var(--navy, #070f1e);
-      color: #e8f0fa;
-      font-family: 'DM Sans', system-ui, sans-serif;
-      padding-top: 60px; /* nav height */
-    }
-
-    /* ── Page hero ── */
-    .gal-hero {
-      padding: clamp(48px, 7vw, 80px) clamp(20px, 5vw, 48px) clamp(32px, 5vw, 56px);
-      text-align: center;
-      background: linear-gradient(to bottom, #0a1628 0%, #070f1e 100%);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .gal-eyebrow {
-      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-      font-weight: 700; color: var(--gold);
-      margin-bottom: 12px;
-    }
-    .gal-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(32px, 5vw, 54px);
-      font-weight: 700; line-height: 1.15;
-      margin-bottom: 14px;
-    }
-    .gal-title em { color: var(--gold); font-style: italic; }
-    .gal-subtitle { font-size: 14px; color: rgba(200,220,255,0.6); max-width: 500px; margin: 0 auto; }
-
-    /* ── Masonry grid ── */
-    .gal-section {
-      padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 48px);
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    .gal-section-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(22px, 3vw, 32px);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .gal-section-title em { color: var(--gold); font-style: italic; }
-    .gal-section-sub { font-size: 13px; color: rgba(200,220,255,0.5); margin-bottom: 32px; }
-
-    .gal-grid {
-      columns: 3 280px;
-      column-gap: 16px;
-    }
-    @media (max-width: 600px) { .gal-grid { columns: 2 140px; column-gap: 10px; } }
-    @media (max-width: 380px) { .gal-grid { columns: 1; } }
-
-    .gal-item {
-      break-inside: avoid;
-      margin-bottom: 16px;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      background: rgba(255,255,255,0.04);
-    }
-    @media (max-width: 600px) { .gal-item { margin-bottom: 10px; } }
-
-    .gal-item img {
-      display: block;
-      width: 100%;
-      height: auto;
-      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
-    }
-    .gal-item:hover img { transform: scale(1.04); }
-    .gal-item:focus-within img { transform: scale(1.04); }
-
-    .gal-item__caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 28px 14px 12px;
-      background: linear-gradient(to top, rgba(7,15,30,0.85) 0%, transparent 100%);
-      font-size: 12px; font-weight: 600;
-      color: rgba(255,255,255,0.9);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .gal-item:hover .gal-item__caption,
-    .gal-item:focus-within .gal-item__caption { opacity: 1; }
-
-    /* Focus ring on items */
-    .gal-item:focus { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 12px; }
-    .gal-item { outline: none; }
-
-    /* Reveal */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .delay-1 { transition-delay: 0.06s; }
-    .delay-2 { transition-delay: 0.12s; }
-    .delay-3 { transition-delay: 0.18s; }
-    .delay-4 { transition-delay: 0.24s; }
-    .delay-5 { transition-delay: 0.30s; }
-    .delay-6 { transition-delay: 0.36s; }
-
-    /* ── Lightbox ── */
-    .lightbox {
-      display: none;
-      position: fixed; inset: 0;
-      z-index: 9000;
-      background: rgba(3,8,20,0.96);
-      backdrop-filter: blur(8px);
-      align-items: center; justify-content: center;
-    }
-    .lightbox.active { display: flex; }
-
-    .lb-img-wrap {
-      max-width: min(90vw, 1000px);
-      max-height: 88vh;
-      position: relative;
-    }
-    .lb-img {
-      display: block;
-      max-width: 100%;
-      max-height: 88vh;
-      border-radius: 12px;
-      object-fit: contain;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.8);
-    }
-    .lb-caption {
-      text-align: center;
-      color: rgba(200,220,255,0.7);
-      font-size: 13px;
-      margin-top: 14px;
-    }
-    .lb-close {
-      position: fixed; top: 20px; right: 20px;
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 50%;
-      color: #fff; font-size: 20px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.18s;
-      z-index: 9001;
-    }
-    .lb-close:hover { background: rgba(255,255,255,0.2); }
-    .lb-prev, .lb-next {
-      position: fixed; top: 50%; transform: translateY(-50%);
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 50%;
-      color: #fff; font-size: 20px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.18s;
-      z-index: 9001;
-    }
-    .lb-prev { left: 16px; }
-    .lb-next { right: 16px; }
-    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.18); }
-    @media (max-width: 600px) {
-      .lb-prev { left: 8px; }
-      .lb-next { right: 8px; }
-    }
-
-    /* ── CTA section ── */
-    .gal-cta {
-      text-align: center;
-      padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 48px);
-      background: #0a1628;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .gal-cta-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 700; margin-bottom: 8px;
-    }
-    .gal-cta-title em { color: var(--gold); font-style: italic; }
-    .gal-cta-sub { font-size: 14px; color: rgba(200,220,255,0.55); margin-bottom: 28px; }
-    .gal-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: var(--gold); color: #070f1e;
-      padding: 12px 26px; border-radius: 8px;
-      font-size: 13px; font-weight: 700;
-      text-decoration: none; transition: background 0.18s, transform 0.18s;
-    }
-    .btn-gold:hover { background: #f5c842; transform: translateY(-1px); }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: rgba(255,255,255,0.08); color: #e8f0fa;
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 12px 26px; border-radius: 8px;
-      font-size: 13px; font-weight: 600;
-      text-decoration: none; transition: background 0.18s;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.14); }
-  </style>
+  
 </head>
 
 <body>
-  <a href="#main-content" class="skip-to-content">Skip to main content</a>
-
   <!-- NAV — uses site-nav pattern matching about/contact/events -->
-  <header>
-    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-      <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="ENJC home">
-          <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36"
-               onerror="this.style.display='none'">
-          <div>
-            <div class="nav-logo__name">ENJC</div>
-            <div class="nav-logo__sub">Elim New Jerusalem Church</div>
-          </div>
-        </a>
-        <ul class="nav-links" aria-label="Main navigation">
-          <li><a href="index.html"      class="nav-link">Home</a></li>
-          <li><a href="about.html"      class="nav-link">About</a></li>
-          <li><a href="ministries.html" class="nav-link">Ministries</a></li>
-          <li><a href="events.html"     class="nav-link">Events</a></li>
-          <li><a href="gallery.html"    class="nav-link nav-link--active" aria-current="page">Gallery</a></li>
-          <li><a href="bible.html"      class="nav-link">Bible</a></li>
-          <li><a href="imagegen.html"   class="nav-link">Cards</a></li>
-          <li><a href="contact.html"    class="nav-link">Contact</a></li>
-        </ul>
-        <div class="nav-controls">
-<a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+visit+ENJC"
-             target="_blank" rel="noopener" class="nav-visit-btn">Plan a Visit</a>
+  <a href="#main" class="skip-to-content">Skip to main content</a>
+<header>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="ENJC home">
+        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36" onerror="this.style.display='none'">
+        <div>
+          <div class="nav-logo__name">ENJC</div>
+          <div class="nav-logo__sub">Elim New Jerusalem Church · Tondiarpet</div>
         </div>
-        <button class="nav-hamburger" id="nav-hamburger"
-          aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span class="nav-hamburger__line"></span>
-          <span class="nav-hamburger__line"></span>
-          <span class="nav-hamburger__line"></span>
-        </button>
+      </a>
+      <ul class="nav-links" id="nav-links" role="list" aria-label="Main navigation">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="gallery.html" class="nav-link  nav-link--active" aria-current="page">Gallery</a></li>
+        <li><a href="bible.html" class="nav-link">Bible</a></li>
+        <li><a href="imagegen.html" class="nav-link">Cards</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-controls">
+        <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
       </div>
-      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <a href="index.html"      class="mobile-menu__link">Home</a>
-        <a href="about.html"      class="mobile-menu__link">About</a>
-        <a href="ministries.html" class="mobile-menu__link">Ministries</a>
-        <a href="events.html"     class="mobile-menu__link">Events</a>
-        <a href="gallery.html"    class="mobile-menu__link is-active" aria-current="page">Gallery</a>
-        <a href="bible.html"      class="mobile-menu__link">Bible Reader</a>
-        <a href="imagegen.html"   class="mobile-menu__link">Scripture Cards</a>
-        <a href="contact.html"    class="mobile-menu__link">Contact</a>
-      </div>
-    </nav>
-  </header>
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
+        aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <a href="index.html" class="mobile-menu__link">Home</a>
+      <a href="about.html" class="mobile-menu__link">About</a>
+      <a href="ministries.html" class="mobile-menu__link">Ministries</a>
+      <a href="events.html" class="mobile-menu__link">Events</a>
+      <a href="gallery.html" class="mobile-menu__link  is-active" aria-current="page">Gallery</a>
+      <a href="bible.html" class="mobile-menu__link">Bible</a>
+      <a href="imagegen.html" class="mobile-menu__link">Cards</a>
+      <a href="contact.html" class="mobile-menu__link">Contact</a>
+    </div>
+  </nav>
+</header>
 
-  <main id="main-content">
+  <main id="main" id="main-content">
 
     <!-- Page Hero -->
     <section class="gal-hero" aria-labelledby="gal-title">
@@ -537,14 +340,14 @@
 
   <!-- Mobile bottom nav -->
   <nav class="mob-nav" aria-label="Mobile navigation">
-    <div class="mob-nav-inner">
-      <a href="index.html"  class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
-      <a href="about.html"  class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
-      <a href="bible.html"  class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
-      <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
-      <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
-    </div>
-  </nav>
+  <div class="mob-nav-inner">
+    <a href="index.html" class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
+    <a href="about.html" class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
+    <a href="bible.html" class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
+    <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+    <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
+  </div>
+</nav>
 
   <script>
     window.ENJC_PAGE = 'gallery';
