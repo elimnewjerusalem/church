@@ -378,7 +378,7 @@ p  { color: var(--text-muted); line-height: 1.85; font-size: 15px; }
     radial-gradient(ellipse 70% 80% at 90% 50%, var(--accent-glow) 0%, transparent 65%),
     radial-gradient(ellipse 40% 60% at 5%  50%, rgba(147,184,255,0.04) 0%, transparent 60%);
 }
-.page-hero .container { position: relative; z-index: 1; }
+.page-hero .container { position: relative; z-index: 1; padding-left: var(--container-px); padding-right: var(--container-px); }
 .page-hero h1 {
   font-family: var(--font-display);
   font-size: clamp(36px,5vw,64px); font-weight: 700;
