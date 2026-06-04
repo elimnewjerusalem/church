@@ -119,7 +119,7 @@
 .cd-wa {
   display: flex; align-items: center; gap: 7px;
   background: var(--gold); color: var(--navy);
-  padding: 8px 18px; border-radius: 7px; font-size: 12px; font-weight: 700; white-space: nowrap;
+  padding: 8px 18px; border-radius: 40px; font-size: 12px; font-weight: 700; white-space: nowrap;
 }
 .cd-wa:hover { background: var(--gold-bright); }
 
@@ -164,8 +164,8 @@
 /* ── SCHEDULE CARDS — dark section ── */
 .schedule-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px; }
 .schedule-card {
-  background: rgba(255,255,255,0.035); border: 1px solid var(--border-dark);
-  border-radius: 14px; padding: 24px 22px; transition: border-color 0.2s, transform 0.2s;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 24px 22px; transition: border-color 0.2s, transform 0.2s;
   color: var(--text-light);
 }
 .schedule-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
@@ -203,17 +203,17 @@
 .view-all-link:hover { color: var(--gold-bright); }
 .ministry-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .ministry-card {
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark);
-  border-radius: 16px; overflow: hidden; transition: border-color 0.2s, transform 0.2s;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-md); overflow: hidden; transition: border-color 0.2s, transform 0.2s;
 }
 .ministry-card:hover { border-color: var(--gold-dim); transform: translateY(-3px); }
 .ministry-card-img {
-  height: 130px;
+  height: 160px;
   background: linear-gradient(135deg, var(--navy-3), var(--navy-4));
   display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid var(--border-dark);
 }
-.ministry-card-img i { font-size: 40px; color: var(--gold-dim); }
+.ministry-card-img i { font-size: 40px; color: rgba(201,168,76,0.75); }
 .ministry-card-body { padding: 18px 16px; }
 .ministry-name { font-size: 14px; font-weight: 700; color: var(--text-light); margin-bottom: 6px; }
 .ministry-desc { font-size: 12px; color: var(--text-muted-dark); line-height: 1.55; }
@@ -221,7 +221,7 @@
 /* ── BIBLE TOOLS — light ── */
 .tools-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .tool-card {
-  background: #fff; border: 1px solid var(--border-light); border-radius: 16px;
+  background: #fff; border: 1px solid var(--border-light); border-radius: var(--r-md);
   padding: 28px 24px; transition: box-shadow 0.2s, transform 0.2s; display: block;
 }
 .tool-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.10); transform: translateY(-2px); }
@@ -348,7 +348,7 @@
 }
 .tl-item.is-now::before { background: var(--gold); box-shadow: 0 0 12px var(--gold-glow); }
 .tl-year  { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-.tl-card  { background: rgba(255,255,255,0.035); border: 1px solid var(--border-dark); border-radius: 14px; padding: 22px 24px; transition: border-color 0.2s; }
+.tl-card  { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 22px 24px; transition: border-color 0.2s; }
 .tl-card:hover { border-color: var(--gold-dim); }
 .tl-card.is-now { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
 .tl-icon  { font-size: 22px; margin-bottom: 8px; display: block; }
@@ -360,8 +360,8 @@
   display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px;
 }
 .del-card {
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark);
-  border-radius: 16px; padding: 28px 24px; color: var(--text-light);
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 28px 24px; color: var(--text-light);
   transition: border-color 0.2s, transform 0.25s;
 }
 .del-card:hover { border-color: var(--gold-dim); transform: translateY(-3px); }
@@ -380,7 +380,7 @@
 .mv-list { display: flex; flex-direction: column; gap: 10px; }
 .mv-item {
   display: flex; align-items: flex-start; gap: 14px; background: #fff;
-  border: 1px solid var(--border-light); border-radius: 12px; padding: 14px 16px;
+  border: 1px solid var(--border-light); border-radius: var(--r-sm); padding: 14px 16px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .mv-item:hover { border-color: var(--gold-dim); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
@@ -391,8 +391,8 @@
 /* ── TESTIMONIES — dark ── */
 .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px; }
 .testi-card {
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark);
-  border-radius: 16px; padding: 24px; color: var(--text-light);
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 24px; color: var(--text-light);
   display: flex; flex-direction: column; gap: 14px; transition: border-color 0.2s;
 }
 .testi-card:hover  { border-color: var(--gold-dim); }
@@ -404,7 +404,7 @@
 /* ── VERSE CARD — light ── */
 .verse-card {
   max-width: 680px; margin: 0 auto; background: #fff;
-  border: 1px solid var(--gold-dim); border-radius: 20px;
+  border: 1px solid var(--gold-dim); border-radius: var(--r-md);
   padding: clamp(32px,5vw,56px); text-align: center;
   box-shadow: 0 8px 40px rgba(201,168,76,0.12);
 }
@@ -414,7 +414,7 @@
 /* ── CTA BAND — dark-3 ── */
 .cta-band {
   background: var(--navy-3); border-top: 1px solid var(--border-dark);
-  padding: clamp(48px,7vw,72px) var(--container-px);
+  padding: var(--section-v) var(--container-px);
   text-align: center; color: var(--text-light);
 }
 .cta-title { font-family: var(--font-display); font-size: clamp(28px,4.5vw,48px); font-weight: 700; color: #fff; margin-bottom: 10px; }
@@ -448,21 +448,21 @@
    ════════════════════════════════════════════════════════════ */
 
 .gal-hero {
-  padding: clamp(48px,7vw,80px) 0 clamp(32px,5vw,56px); text-align: center;
+  padding: var(--section-v) 0 var(--section-v-sm); text-align: center;
   background: linear-gradient(to bottom, var(--navy-2) 0%, var(--navy) 100%);
   border-bottom: 1px solid var(--border-dark); color: var(--text-light);
 }
 .gal-title { font-family: var(--font-display); font-size: clamp(32px,5vw,54px); font-weight: 700; line-height: 1.15; margin-bottom: 14px; color: #fff; }
 .gal-title em    { color: var(--gold); font-style: italic; }
 .gal-subtitle    { font-size: 14px; color: rgba(200,220,255,0.6); max-width: 500px; margin: 0 auto; }
-.gal-section     { padding: clamp(40px,6vw,72px) var(--container-px); max-width: var(--max-width); margin: 0 auto; }
+.gal-section     { padding: var(--section-v) var(--container-px); max-width: var(--max-width); margin: 0 auto; }
 .gal-section-title { font-family: var(--font-display); font-size: clamp(22px,3vw,32px); font-weight: 700; margin-bottom: 8px; color: var(--text-light); }
 .gal-section-title em { color: var(--gold); font-style: italic; }
 .gal-section-sub { font-size: 13px; color: rgba(200,220,255,0.5); margin-bottom: 32px; }
 
 .gal-grid { columns: 3 280px; column-gap: 16px; }
 .gal-item {
-  break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden;
+  break-inside: avoid; margin-bottom: 16px; border-radius: var(--r-sm); overflow: hidden;
   position: relative; cursor: pointer; background: rgba(255,255,255,0.04); outline: none;
 }
 .gal-item:focus { outline: 2px solid var(--gold); outline-offset: 3px; }
@@ -485,7 +485,7 @@
 }
 .lightbox.active { display: flex; }
 .lb-img-wrap { max-width: min(90vw,1000px); max-height: 88vh; position: relative; }
-.lb-img { display: block; max-width: 100%; max-height: 88vh; border-radius: 12px; object-fit: contain; box-shadow: 0 32px 80px rgba(0,0,0,0.8); }
+.lb-img { display: block; max-width: 100%; max-height: 88vh; border-radius: var(--r-sm); object-fit: contain; box-shadow: 0 32px 80px rgba(0,0,0,0.8); }
 .lb-caption { text-align: center; color: rgba(200,220,255,0.7); font-size: 13px; margin-top: 14px; }
 .lb-close {
   position: fixed; top: 20px; right: 20px;
@@ -504,7 +504,7 @@
 .lb-next { right: 16px; }
 .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.18); }
 
-.gal-cta { text-align: center; padding: clamp(40px,6vw,72px) var(--container-px); background: var(--navy-2); border-top: 1px solid var(--border-dark); color: var(--text-light); }
+.gal-cta { text-align: center; padding: var(--section-v) var(--container-px); background: var(--navy-2); border-top: 1px solid var(--border-dark); color: var(--text-light); }
 .gal-cta-title { font-family: var(--font-display); font-size: clamp(24px,3.5vw,36px); font-weight: 700; margin-bottom: 8px; color: #fff; }
 .gal-cta-title em { color: var(--gold); font-style: italic; }
 .gal-cta-sub  { font-size: 14px; color: rgba(200,220,255,0.55); margin-bottom: 28px; }
@@ -610,14 +610,14 @@ textarea.form-field { resize: vertical; min-height: 100px; }
 .min-card-cta   {
   display: inline-flex; align-items: center; gap: 6px;
   background: var(--gold); color: var(--navy);
-  padding: 9px 20px; border-radius: 7px; font-size: 12px; font-weight: 700;
+  padding: 9px 20px; border-radius: 40px; font-size: 12px; font-weight: 700;
   margin-top: auto; transition: background var(--t-fast);
 }
 .min-card-cta:hover { background: var(--gold-bright); }
 
 .min-join-band {
   background: var(--navy-3); border-top: 1px solid var(--border-dark);
-  padding: clamp(40px,6vw,64px) var(--container-px); text-align: center;
+  padding: var(--section-v) var(--container-px); text-align: center;
   color: var(--text-light);
 }
 .min-join-title { font-family: var(--font-display); font-size: clamp(24px,4vw,40px); font-weight: 700; color: #fff; margin-bottom: 10px; }
@@ -661,7 +661,7 @@ textarea.form-field { resize: vertical; min-height: 100px; }
 
 /* Video cards */
 .video-card {
-  background: var(--bg-3); border: 1px solid rgba(255,255,255,0.07);
+  background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--r-md); overflow: hidden; cursor: pointer;
   transition: transform 0.26s var(--ease-out), border-color 0.26s, box-shadow 0.26s;
 }

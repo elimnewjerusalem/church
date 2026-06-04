@@ -257,17 +257,21 @@
 .nx-feat-bar {
   display: grid; grid-template-columns: repeat(7,1fr);
   border-bottom: 1px solid var(--border-dark); background: var(--bg-2);
+  position: sticky; top: var(--nav-height); z-index: 80;
+  overflow-x: auto; scrollbar-width: none;
 }
+.nx-feat-bar::-webkit-scrollbar { display: none; }
 .nx-feat-btn {
   display: flex; flex-direction: column; align-items: center;
   padding: 12px 8px; gap: 4px; cursor: pointer;
   color: var(--text-muted); font-size: 11px; font-weight: 500;
-  transition: background var(--t-fast), color var(--t-fast);
-  border: none; background: transparent; font-family: var(--font-body);
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+  border: none; border-bottom: 2px solid transparent;
+  background: transparent; font-family: var(--font-body);
 }
 .nx-feat-btn i { font-size: 20px; }
 .nx-feat-btn:hover,
-.nx-feat-btn.active { background: var(--accent-bg); color: var(--gold); }
+.nx-feat-btn.active { background: var(--accent-bg); color: var(--gold); border-bottom-color: var(--gold); }
 .nx-feat-lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; }
 
 /* ── Controls ── */
@@ -518,7 +522,7 @@
 
 .studio {
   display: grid;
-  grid-template-columns: 340px 1fr 260px;
+  grid-template-columns: 360px 1fr 260px;
   min-height: calc(100vh - var(--nav-height) - 52px);
 }
 

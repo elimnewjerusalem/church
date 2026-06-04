@@ -101,7 +101,8 @@
   <section id="live-stream-section" class="reveal-on-scroll section-sm" aria-labelledby="live-heading">
     <div class="container">
       <p class="section-tag">Live Stream</p>
-      <h2 class="section-heading" id="live-heading" style="margin-bottom:24px;">Join Us <em>This Week</em></h2>
+      <h2 class="section-heading">Join Us <em>This Week</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
       <!--
         live-stream.js checks the current time against the service schedule.
         • During service hours  → shows "LIVE NOW" badge + YouTube player
@@ -119,7 +120,8 @@
     <div class="container">
       <div style="max-width:640px;margin:0 auto;">
         <p class="section-tag">Coming Up</p>
-        <h2 class="section-heading" style="margin-bottom:8px;">Next <em>Service</em></h2>
+        <h2 class="section-heading">Next <em>Service</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
         <p style="font-size:14px;color:var(--color-text-faint);margin-bottom:28px;">This countdown loads automatically. Join us for worship and be blessed.</p>
         <div class="countdown" style="display:flex;gap:14px;flex-wrap:wrap;" role="timer" aria-live="polite" aria-label="Time until next Sunday service">
           <div class="card countdown__unit" style="padding:20px 28px;text-align:center;flex:1;min-width:80px;"><div id="cd-d" class="countdown__value" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:700;color:var(--color-gold);line-height:1;">--</div><div style="font-size:10px;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px;">Days</div></div>
@@ -140,7 +142,8 @@
   <section class="reveal-on-scroll section" aria-labelledby="streams-heading">
     <div class="container">
       <p class="section-tag">Watch Again</p>
-      <h2 class="section-heading" id="streams-heading" style="margin-bottom:8px;">📺 Recent Live <em>Streams</em></h2>
+      <h2 class="section-heading">📺 Recent Live <em>Streams</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
       <p class="section-sub">Catch up on our latest worship services and devotionals</p>
       <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
       <div class="grid-3" id="recent-streams-grid"></div>
@@ -156,7 +159,8 @@
   <section class="reveal-on-scroll section-alt" aria-labelledby="popular-heading">
     <div class="container">
       <p class="section-tag">Popular</p>
-      <h2 class="section-heading" id="popular-heading" style="margin-bottom:8px;">🔥 Most Watched <em>Messages</em></h2>
+      <h2 class="section-heading">🔥 Most Watched <em>Messages</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
       <p class="section-sub">Popular sermons and devotionals that touched hearts</p>
             <!-- Populated by js/events.js from data/events.json → mostWatched[] -->
       <div class="grid-3" id="most-watched-grid"></div>
@@ -169,10 +173,11 @@
   <section class="reveal-on-scroll section" aria-labelledby="reels-heading">
     <div class="container">
       <p class="section-tag">Short Videos</p>
-      <h2 class="section-heading" id="reels-heading" style="margin-bottom:8px;">📖 Verse <em>Reels</em></h2>
+      <h2 class="section-heading">📖 Verse <em>Reels</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
       <p class="section-sub">Daily scripture encouragement in short videos</p>
       <!-- Populated by js/events.js from data/events.json → verseReels[] -->
-      <div class="reels-row" id="verse-reels-row" style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;"></div>
+      <div class="reels-row" id="verse-reels-row"></div>
       <div style="text-align:center;margin-top:32px;">
         <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">More Reels on YouTube</a>
       </div>
@@ -186,7 +191,8 @@
     <div class="container">
       <div style="max-width:800px;margin:0 auto;text-align:center;">
         <p class="section-tag" style="justify-content:center;">Community</p>
-        <h2 class="section-heading" id="testimonials-heading" style="margin-bottom:28px;">💬 What People Are <em>Saying</em></h2>
+        <h2 class="section-heading">💬 What People Are <em>Saying</em></h2>
+      <div class="section-rule" aria-hidden="true"></div>
 
         <!-- Testimonial carousel -->
         <div id="testimonial-container">
