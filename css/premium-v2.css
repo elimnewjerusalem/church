@@ -815,88 +815,12 @@ em, .italic-gold { color: var(--gold); font-style: italic; }
 }
 
 /* Lightbox */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(2,5,14,0.97);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
-  padding: 20px;
-}
-
-.lightbox.is-open { opacity: 1; }
-
-.lb-img {
-  max-width: min(1000px, 90vw);
-  max-height: 85vh;
-  object-fit: contain;
-  border-radius: var(--r-md);
-  box-shadow: 0 36px 90px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,164,90,0.10);
-}
-
-.lb-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.18);
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--t-fast);
-}
-
-.lb-close:hover { background: rgba(255,255,255,0.20); }
-
-.lb-prev, .lb-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(200,164,90,0.15);
-  border: 1px solid var(--gold-border);
-  color: var(--gold);
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--t-fast);
-}
-
-.lb-prev { left: 20px; }
-.lb-next { right: 20px; }
-.lb-prev:hover, .lb-next:hover { background: rgba(200,164,90,0.28); }
-
-/* Gallery filters */
-.gal-filters {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-  margin-top: 8px;
-}
+/* Lightbox gold enhancements */
+.lb-prev, .lb-next { background: rgba(200,164,90,0.14) !important; border: 1px solid rgba(200,164,90,0.28) !important; color: var(--gold) !important; }
+.lb-prev:hover, .lb-next:hover { background: rgba(200,164,90,0.30) !important; }
+.lb-img { border-radius: var(--r-md); }
 
 .gal-filter-btn {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 7px 18px;
-  border-radius: 99px;
-  border: 1px solid var(--border-dark);
-  background: transparent;
   color: var(--text-muted-dark);
   cursor: pointer;
   transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
@@ -2050,3 +1974,261 @@ textarea.form-field { min-height: 110px; resize: vertical; line-height: 1.7; }
 
 /* ── IMAGEGEN PAGE ENHANCEMENTS ──────────────────────────── */
 .imagegen-page .page-hero { padding-bottom: 0; }
+
+/* ══════════════════════════════════════════════════════════
+   PAGE-SPECIFIC HERO VARIETY
+   Each page gets a distinct radial accent so they feel different
+══════════════════════════════════════════════════════════ */
+
+/* About — warm amber-gold glow, left-side */
+body[data-page="about"] .page-hero,
+.about-page .page-hero {
+  background: linear-gradient(145deg, #0d1a30 0%, #071428 45%, var(--bg) 100%);
+}
+body[data-page="about"] .page-hero::before,
+.about-page .page-hero::before {
+  background:
+    radial-gradient(ellipse 80% 90% at 0% 60%, rgba(200,164,90,0.11) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 95% 20%, rgba(147,184,255,0.04) 0%, transparent 55%);
+}
+
+/* Ministries — deep blue-purple, centered cross-light */
+body[data-page="ministries"] .page-hero,
+.ministries-page .page-hero {
+  background: linear-gradient(160deg, #0a1530 0%, #060e22 50%, var(--bg) 100%);
+}
+body[data-page="ministries"] .page-hero::before,
+.ministries-page .page-hero::before {
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 0%, rgba(100,140,255,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 80% at 85% 80%, rgba(200,164,90,0.08) 0%, transparent 60%);
+}
+
+/* Events — energetic, right-side warm */
+body[data-page="events"] .page-hero,
+.events-page .page-hero {
+  background: linear-gradient(135deg, #060e22 0%, #0a1530 40%, #071020 100%);
+}
+body[data-page="events"] .page-hero::before,
+.events-page .page-hero::before {
+  background:
+    radial-gradient(ellipse 70% 85% at 100% 50%, rgba(200,164,90,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(239,68,68,0.04) 0%, transparent 55%);
+}
+
+/* Gallery — cinematic, top-center spotlight */
+.gal-hero {
+  background: linear-gradient(180deg, #0c1a34 0%, #070f22 55%, var(--bg) 100%) !important;
+  position: relative;
+}
+.gal-hero::before {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% -10%, rgba(200,164,90,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 95% 80%, rgba(147,184,255,0.04) 0%, transparent 55%) !important;
+}
+
+/* Bible — deep spiritual, purple-toned */
+body[data-page="bible"] .page-hero,
+.bible-page .page-hero {
+  background: linear-gradient(145deg, #0d1030 0%, #081020 55%, var(--bg) 100%);
+}
+body[data-page="bible"] .page-hero::before,
+.bible-page .page-hero::before {
+  background:
+    radial-gradient(ellipse 75% 80% at 50% 100%, rgba(140,100,255,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 90% 10%, rgba(200,164,90,0.07) 0%, transparent 60%);
+}
+
+/* Cards/Imagegen — futuristic, left-blue */
+body[data-page="imagegen"] .page-hero,
+.imagegen-page .page-hero {
+  background: linear-gradient(135deg, #060d22 0%, #0a1428 45%, var(--bg) 100%);
+}
+body[data-page="imagegen"] .page-hero::before,
+.imagegen-page .page-hero::before {
+  background:
+    radial-gradient(ellipse 60% 70% at 5% 50%, rgba(100,200,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 30%, rgba(200,164,90,0.08) 0%, transparent 55%);
+}
+
+/* Contact — warm welcoming, bottom glow */
+body[data-page="contact"] .page-hero,
+.contact-page .page-hero {
+  background: linear-gradient(145deg, #0a1628 0%, #071020 50%, var(--bg) 100%);
+}
+body[data-page="contact"] .page-hero::before,
+.contact-page .page-hero::before {
+  background:
+    radial-gradient(ellipse 80% 90% at 50% 110%, rgba(200,164,90,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 95% 10%, rgba(147,184,255,0.04) 0%, transparent 55%);
+}
+
+/* ── PAGE HERO OVERLINE VARIETY ───────────────────────────── */
+/* Add a subtle left-border accent line to overlines on inner pages */
+.page-hero .section-tag,
+.page-hero .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-hero .section-tag::before,
+.page-hero .eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── SECTION VARIETY — alternating depth ─────────────────── */
+/* About page hero stats bar — accent gradient */
+.stats-bar .stat-item:nth-child(2) .stat-num,
+.about-stats-bar .stat-item:nth-child(2) .stat-num { color: var(--gold-bright); }
+
+/* Ministry section gets a subtle grid texture */
+.ministries-page .section {
+  background-image: radial-gradient(circle at 20% 80%, rgba(200,164,90,0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(100,140,255,0.02) 0%, transparent 50%);
+}
+
+/* Events page countdown section accent */
+.events-page .cd-strip,
+body[data-page="events"] .cd-strip {
+  background: linear-gradient(90deg, var(--navy-2) 0%, rgba(7,20,40,1) 50%, var(--navy-2) 100%);
+  border-top: 1px solid rgba(200,164,90,0.06);
+}
+
+/* ── HERO SUBTITLE LINE VARIETY ───────────────────────────── */
+.page-hero h1 { position: relative; display: inline-block; }
+
+/* Gallery hero — centered large type */
+.gal-hero .gal-title {
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+}
+
+/* ── SECTION TRANSITION DIVIDERS ──────────────────────────── */
+.section-divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,164,90,0.25), transparent);
+  border: none;
+  margin: 0;
+}
+
+/* ── MINISTRY CARDS SECTION BACKGROUND ───────────────────── */
+.ministries-page .section.s-dark {
+  background:
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(200,164,90,0.03) 0%, transparent 60%)
+    var(--navy);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECTION SURFACE VARIETY
+   Richer background variations within pages
+══════════════════════════════════════════════════════════ */
+
+/* S-DARK gets a very subtle noise-like radial pattern */
+.s-dark {
+  background:
+    radial-gradient(ellipse 55% 45% at 85% 15%, rgba(200,164,90,0.025) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 55% at 15% 85%, rgba(100,140,255,0.015) 0%, transparent 50%)
+    var(--navy);
+  background-color: var(--navy);
+}
+
+/* S-DARK2 — slightly cooler */
+.s-dark2 {
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 50%, rgba(100,140,255,0.02) 0%, transparent 60%)
+    var(--navy-2);
+  background-color: var(--navy-2);
+}
+
+/* S-DARK3 — warmest dark */
+.s-dark3 {
+  background-color: var(--navy-3);
+  background-image:
+    radial-gradient(ellipse 65% 55% at 80% 60%, rgba(200,164,90,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 65% at 15% 30%, rgba(130,170,255,0.02) 0%, transparent 55%);
+}
+
+/* S-LIGHT — warm paper */
+.s-light {
+  background-color: var(--light-bg);
+  background-image: radial-gradient(ellipse 70% 60% at 90% 10%, rgba(200,164,90,0.06) 0%, transparent 60%);
+}
+
+/* S-LIGHT2 — slightly deeper warm */
+.s-light2 {
+  background-color: var(--light-bg2);
+  background-image: radial-gradient(ellipse 60% 70% at 5% 90%, rgba(200,164,90,0.05) 0%, transparent 55%);
+}
+
+/* ── ABOUT PAGE — SECTION VARIETY ────────────────────────── */
+[data-page="about"] .section:nth-of-type(odd) .page-hero ~ .section {
+  background-color: var(--navy-2);
+}
+
+/* ── MINISTRIES — card section warm accent ────────────────── */
+[data-page="ministries"] .s-dark {
+  background-color: var(--navy);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,164,90,0.04) 0%, transparent 60%);
+}
+
+/* ── EVENTS — sections feel dynamic with colored separators ── */
+[data-page="events"] .s-dark + .s-dark2,
+[data-page="events"] .s-dark2 + .s-dark {
+  border-top: 1px solid rgba(200,164,90,0.06);
+}
+
+/* ── CONTACT — warm section tones ────────────────────────── */
+[data-page="contact"] .s-dark {
+  background-color: var(--navy);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 100% 50%, rgba(200,164,90,0.05) 0%, transparent 55%);
+}
+
+/* ── SCHEDULE CARDS — striped alternating rows ────────────── */
+.schedule-grid .schedule-card:nth-child(even) {
+  background: rgba(200,164,90,0.03);
+}
+
+/* ── MINISTRY CARDS — subtle bg gradient on image hover ───── */
+.ministry-card__image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(2,8,16,0.65) 0%,
+    transparent 45%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Move the image-title above the overlay */
+.ministry-card__image-title { z-index: 4; }
+
+/* ── NAVIGATION ACTIVE DOT — page color accents ──────────── */
+[data-page="about"]      .nav-link--active::after { background: var(--gold); }
+[data-page="ministries"] .nav-link--active::after { background: var(--gold-bright); }
+[data-page="events"]     .nav-link--active::after { background: var(--gold-warm); }
+[data-page="gallery"]    .nav-link--active::after { background: var(--gold); }
+[data-page="bible"]      .nav-link--active::after { background: var(--gold-pale); }
+[data-page="contact"]    .nav-link--active::after { background: var(--gold); }
+
+/* ── PAGE HERO — bottom fade line ────────────────────────── */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--container-px);
+  right: var(--container-px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,164,90,0.20), transparent);
+}
