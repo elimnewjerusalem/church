@@ -2232,3 +2232,143 @@ body[data-page="events"] .cd-strip {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(200,164,90,0.20), transparent);
 }
+
+
+/* ════════════════════════════════════════════════════════════
+   UNIFIED PAGE HERO — same layout/size on every inner page
+   ════════════════════════════════════════════════════════════ */
+
+/* Remove old inconsistent hero classes */
+.page-hero-inner,
+.page-hero-title,
+.page-hero-sub,
+.gal-hero,
+.gal-eyebrow,
+.gal-title,
+.gal-subtitle { all: unset; }
+
+/* One hero rule for all inner pages */
+.page-hero {
+  padding: clamp(56px, 8vw, 96px) 0 clamp(40px, 6vw, 72px) !important;
+}
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+.page-hero h1 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(36px, 5vw, 64px) !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 12px !important;
+}
+.page-hero h1 em { color: var(--gold) !important; font-style: italic !important; }
+.page-hero p {
+  font-size: clamp(13px, 1.6vw, 15px) !important;
+  color: rgba(255,255,255,0.60) !important;
+  line-height: 1.7 !important;
+  max-width: 520px !important;
+  margin: 0 !important;
+}
+.page-hero .section-tag {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--gold) !important;
+  margin-bottom: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+.page-hero .section-tag::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════════════
+   UNIFIED SECTION TYPOGRAPHY — consistent h2 across all pages
+   ════════════════════════════════════════════════════════════ */
+
+.section-heading,
+h2.section-heading {
+  font-family: var(--font-display) !important;
+  font-size: clamp(26px, 3.5vw, 44px) !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--text, #eaf0ff);
+}
+.section-heading em { color: var(--gold) !important; font-style: italic !important; }
+
+.section-tag,
+p.section-tag {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--gold) !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+.section-rule {
+  width: 40px !important;
+  height: 2px !important;
+  background: linear-gradient(to right, var(--gold), transparent) !important;
+  margin: 12px 0 28px !important;
+  border-radius: 2px !important;
+  border: none !important;
+}
+
+.section-sub {
+  font-size: 14px !important;
+  color: rgba(200,220,255,0.55) !important;
+  line-height: 1.65 !important;
+  max-width: 560px !important;
+}
+
+/* All section containers get consistent padding */
+.section .container,
+.section-alt .container,
+.section-sm .container {
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+/* Remove gal-section custom padding — use standard section */
+.gal-section {
+  padding: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CONSISTENT SECTION VERTICAL SPACING
+   ════════════════════════════════════════════════════════════ */
+:root {
+  --section-v: clamp(64px, 9vw, 108px);
+  --section-v-sm: clamp(40px, 5vw, 64px);
+}
+.section     { padding: var(--section-v) 0; }
+.section-alt { padding: var(--section-v) 0; }
+.section-sm  { padding: var(--section-v-sm) 0; }
+
+@media (max-width: 768px) {
+  .page-hero h1 { font-size: clamp(28px, 8vw, 40px) !important; }
+  .section-heading { font-size: clamp(22px, 6vw, 32px) !important; }
+}
+@media (max-width: 480px) {
+  .page-hero { padding: 48px 0 36px !important; }
+  .page-hero h1 { font-size: 28px !important; }
+}
