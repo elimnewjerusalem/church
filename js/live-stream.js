@@ -32,9 +32,34 @@ async function fetchLiveVideoId(channelId) {
   } catch { return ''; }
 }
 
+// Fetch latest video from channel for offline featured section
+async function fetchLatestVideo(channelId) {
+  try {
+    const qs = new URLSearchParams({
+      part: 'snippet', type: 'video',
+      channelId, key: YT_API_KEY, maxResults: '1', order: 'date'
+    });
+    const res = await fetch('https://www.googleapis.com/youtube/v3/search?' + qs);
+    const data = await res.json();
+    const item = data && data.items && data.items[0];
+    if (!item) return null;
+    return {
+      videoId: item.id.videoId || '',
+      title: item.snippet.title || '',
+      thumb: (item.snippet.thumbnails && item.snippet.thumbnails.high && item.snippet.thumbnails.high.url) || ''
+    };
+  } catch(e) { return null; }
+}
+
+let LATEST_VIDEO = null;
+
 async function initLiveIds() {
   YOUTUBE_LIVE_IDS.mainChannel = await fetchLiveVideoId(MAIN_CHANNEL_ID);
   YOUTUBE_LIVE_IDS.shortsChannel = YOUTUBE_LIVE_IDS.mainChannel;
+  // Fetch latest video for offline featured section
+  if (!YOUTUBE_LIVE_IDS.mainChannel) {
+    LATEST_VIDEO = await fetchLatestVideo(MAIN_CHANNEL_ID);
+  }
 }
 
 // ── CHANNEL & SCHEDULE CONFIG ────────────────────────────────
@@ -169,7 +194,19 @@ function displayLiveStream() {
 </div>`;
 
   } else {
-    // ── OFFLINE — dark cinematic card ──
+    // ── OFFLINE — show latest video + schedule ──
+    const lv = LATEST_VIDEO;
+    const featuredHtml = lv && lv.videoId ? `
+<div style="margin:24px auto;max-width:640px;">
+  <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);margin-bottom:8px;text-align:center;">🎬 Latest Upload</p>
+  <a href="https://www.youtube.com/watch?v=${lv.videoId}" target="_blank" rel="noopener" class="ls-thumb-wrap" style="display:block;text-decoration:none;border-radius:10px;overflow:hidden;border:1px solid var(--color-gold-border);">
+    <img src="${lv.thumb || 'https://img.youtube.com/vi/' + lv.videoId + '/hqdefault.jpg'}" alt="${lv.title}" style="width:100%;height:auto;display:block;">
+    <div class="ls-thumb-overlay"></div>
+    <div class="ls-play-btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+  </a>
+  <p style="text-align:center;color:var(--color-text-muted);font-size:13px;margin-top:10px;font-weight:600;">${lv.title}</p>
+</div>` : '';
+
     container.innerHTML = `
 <div class="ls-offline-card">
   <div class="ls-offline-top">
@@ -182,6 +219,8 @@ function displayLiveStream() {
       &#128250; Visit YouTube Channel
     </a>
   </div>
+
+  ${featuredHtml}
 
   <div class="ls-schedule-grid">
     <div class="ls-sched-cell">
