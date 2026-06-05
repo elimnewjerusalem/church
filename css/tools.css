@@ -523,13 +523,15 @@
 .studio {
   display: grid;
   grid-template-columns: 360px 1fr 260px;
-  min-height: calc(100vh - var(--nav-height) - 52px);
+  height: calc(100vh - var(--nav-height) - 52px);
+  /* Each panel scrolls internally; footer lives below in normal flow */
 }
 
 /* Left panel */
 .lp {
   background: var(--bg-2); border-right: 1px solid var(--border-dark);
-  display: flex; flex-direction: column; overflow-y: auto;
+  display: flex; flex-direction: column;
+  height: 100%; overflow: hidden; min-height: 0;
 }
 .lp-tabs {
   display: flex; border-bottom: 1px solid var(--border-dark);
@@ -543,7 +545,7 @@
 }
 .lp-tab:hover { color: var(--text-light); }
 .lp-tab.on { color: var(--gold); border-bottom-color: var(--gold); }
-.lp-body { flex: 1; padding: 16px 14px; overflow-y: auto; }
+.lp-body { flex: 1; padding: 16px 14px; overflow-y: auto; min-height: 0; }
 .lp-sec { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
 .lp-lbl {
   font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
@@ -659,6 +661,7 @@
 .canvas-area {
   display: flex; align-items: center; justify-content: center;
   background: var(--bg); padding: 24px 16px; overflow: hidden;
+  height: 100%;
 }
 .canvas-wrap {
   display: flex; flex-direction: column; align-items: center; gap: 10px;
@@ -677,7 +680,7 @@
 .rp {
   background: var(--bg-2); border-left: 1px solid var(--border-dark);
   padding: 16px 14px; display: flex; flex-direction: column; gap: 12px;
-  overflow-y: auto;
+  overflow-y: auto; height: 100%; min-height: 0;
 }
 .rp-card {
   border: 1px solid var(--border-dark); border-radius: var(--r-sm);
@@ -788,13 +791,14 @@
 .mob-sheet-body { padding: 14px 16px; overflow-y: auto; flex: 1; }
 
 @media (max-width: 900px) {
-  .studio { grid-template-columns: 300px 1fr; }
+  .studio { grid-template-columns: 300px 1fr; height: calc(100vh - var(--nav-height) - 52px); }
   .rp { display: none; }
+  .lp { height: 100%; min-height: 0; }
 }
 @media (max-width: 640px) {
-  .studio { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .studio { grid-template-columns: 1fr; grid-template-rows: 1fr; height: calc(100vh - var(--nav-height) - 52px - 56px); }
   .lp { display: none; }
-  .canvas-area { padding: 16px 10px; min-height: 55vw; }
+  .canvas-area { padding: 16px 10px; height: 100%; }
   .mob-bar { display: flex; }
   .topbar { padding: 6px 10px; }
   .tb-logo { display: none; }
@@ -1588,3 +1592,84 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
 
 /* Dropdown selects brighter */
 [data-page="bible"] .nx-sel { color: #dce8ff; }
+
+/* ════════════════════════════════════════════════════════════
+   IMAGEGEN PAGE — Full-viewport studio layout
+   nav + topbar = sticky top
+   .studio = fixed height viewport slice (panels scroll inside)
+   footer = normal flow below studio (scroll down to see)
+   ════════════════════════════════════════════════════════════ */
+
+[data-page="imagegen"] body {
+  overflow-x: hidden;
+}
+
+/* Ensure header/nav stays on top */
+[data-page="imagegen"] header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+/* studio — exact viewport slice so panels scroll internally */
+[data-page="imagegen"] .studio {
+  height: calc(100vh - var(--nav-height) - 52px);
+  overflow: hidden; /* clips panels; each panel scrolls individually */
+}
+
+/* Left panel: tabs fixed, body scrolls */
+[data-page="imagegen"] .lp {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+[data-page="imagegen"] .lp-tabs {
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+[data-page="imagegen"] .lp-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Center canvas: centered, no scroll */
+[data-page="imagegen"] .canvas-area {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Right panel: scrolls independently */
+[data-page="imagegen"] .rp {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Footer sits in normal document flow below studio */
+[data-page="imagegen"] .footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  [data-page="imagegen"] .studio {
+    height: calc(100vh - var(--nav-height) - 52px);
+  }
+}
+
+/* Mobile — subtract mob-bar height (56px) */
+@media (max-width: 640px) {
+  [data-page="imagegen"] .studio {
+    height: calc(100vh - var(--nav-height) - 52px - 56px);
+  }
+}
