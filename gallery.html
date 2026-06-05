@@ -41,6 +41,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/premium-v2.css">
 
 <!-- Styles -->
 
@@ -487,5 +488,60 @@
   </script>
 <script src="js/site.js" defer></script>
 <script src="js/design-upgrade.js" defer></script>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+  <button class="lb-close" id="lb-close" aria-label="Close lightbox"><i class="ti ti-x"></i></button>
+  <button class="lb-prev" id="lb-prev" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next" id="lb-next" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+</div>
+
+<script>
+/* Gallery lightbox */
+(function(){
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var items = Array.from(document.querySelectorAll('.gal-item'));
+  var current = 0;
+
+  function open(idx){
+    current = idx;
+    var item = items[idx];
+    var src = item.dataset.src || item.querySelector('img').src;
+    var cap = item.dataset.caption || item.querySelector('img').alt || '';
+    lbImg.src = src;
+    lbImg.alt = cap;
+    lb.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close(){
+    lb.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function prev(){ open((current - 1 + items.length) % items.length); }
+  function next(){ open((current + 1) % items.length); }
+
+  items.forEach(function(item, i){
+    item.addEventListener('click', function(){ open(i); });
+    item.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(i); } });
+  });
+
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', function(e){ e.stopPropagation(); prev(); });
+  document.getElementById('lb-next').addEventListener('click', function(e){ e.stopPropagation(); next(); });
+
+  lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('is-open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') prev();
+    if(e.key==='ArrowRight') next();
+  });
+})();
+</script>
 </body>
 </html>

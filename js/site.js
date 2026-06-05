@@ -211,3 +211,14 @@ document.addEventListener('DOMContentLoaded',function(){
     requestAnimationFrame(draw);
   })();
 })();
+
+/* ── NAV SCROLL STATE ── */
+(function(){
+  var nav = document.querySelector('.site-nav');
+  if(!nav) return;
+  function onScroll(){
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();

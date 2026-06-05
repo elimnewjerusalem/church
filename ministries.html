@@ -1,21 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Our Ministries | ENJC</title>
-  <meta name="description" content="Ministries at ENJC — Youth, Women, Prayer, Worship, Children, and Outreach.">
-
-  
-  
-  
-  <noscript>
-</noscript>
-  
-
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Our Ministries | ENJC — Elim New Jerusalem Church</title>
+  <meta name="description" content="Discover all ministries at ENJC — Youth, Women's Fellowship, Prayer, Worship, Children, and Outreach. A ministry for every person at every stage of life.">
+  <link rel="canonical" href="https://elimnewjerusalem.github.io/church/ministries.html">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="apple-touch-icon" href="images/logo/logo.png">
+  <link rel="manifest" href="data/manifest.json">
+  <meta property="og:title" content="Our Ministries | ENJC — Elim New Jerusalem Church">
+  <meta property="og:description" content="A ministry for every person at every stage of life. Join ENJC's Youth, Women, Prayer, Worship, Children, or Outreach ministry.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elimnewjerusalem.github.io/church/ministries.html">
+  <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/logo/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/premium-v2.css">
 </head>
 <body>
-  <a href="#main" class="skip-to-content">Skip to main content</a>
+
+<a href="#main" class="skip-to-content">Skip to main content</a>
 <header>
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="container">
@@ -29,7 +44,7 @@
       <ul class="nav-links" id="nav-links" role="list" aria-label="Main navigation">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="ministries.html" class="nav-link  nav-link--active" aria-current="page">Ministries</a></li>
+        <li><a href="ministries.html" class="nav-link nav-link--active" aria-current="page">Ministries</a></li>
         <li><a href="events.html" class="nav-link">Events</a></li>
         <li><a href="gallery.html" class="nav-link">Gallery</a></li>
         <li><a href="bible.html" class="nav-link">Bible</a></li>
@@ -39,8 +54,7 @@
       <div class="nav-controls">
         <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
       </div>
-      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
-        aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="nav-hamburger__line"></span>
         <span class="nav-hamburger__line"></span>
         <span class="nav-hamburger__line"></span>
@@ -49,7 +63,7 @@
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="index.html" class="mobile-menu__link">Home</a>
       <a href="about.html" class="mobile-menu__link">About</a>
-      <a href="ministries.html" class="mobile-menu__link  is-active" aria-current="page">Ministries</a>
+      <a href="ministries.html" class="mobile-menu__link is-active" aria-current="page">Ministries</a>
       <a href="events.html" class="mobile-menu__link">Events</a>
       <a href="gallery.html" class="mobile-menu__link">Gallery</a>
       <a href="bible.html" class="mobile-menu__link">Bible</a>
@@ -61,6 +75,7 @@
 
 <main id="main">
 
+  <!-- Page Hero -->
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
       <p class="section-tag">All Ministries</p>
@@ -69,167 +84,208 @@
     </div>
   </section>
 
-  <section class="reveal-on-scroll section" aria-labelledby="ministries-heading">
+  <!-- Ministry Cards -->
+  <section class="section s-dark" aria-labelledby="ministries-heading">
     <div class="container">
-      <h2 class="section-heading sr-only" id="ministries-heading">Ministry Cards</h2>
-      <div class="section-rule" aria-hidden="true"></div>
+      <h2 class="sr-only" id="ministries-heading">Our Ministries</h2>
       <div class="grid-3">
-        <article class="card ministry-card" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/youth.jpg" alt="Youth Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Youth Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2a4a,#0d1e3a);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Youth Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Moving young people toward spiritual maturity through worship, Bible study, and community.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Ages 13–25</span>
-              <span class="badge badge--gold">Weekly meetings</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Youth+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/women.jpg" alt="Women's Fellowship" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Women's Fellowship</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#2d1a3a,#1a0d2e);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Women's Fellowship</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">A safe, warm space for women to grow in faith together through prayer and encouragement.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">All ages</span>
-              <span class="badge badge--gold">Bible study</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Women's+Fellowship" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/prayer.jpg" alt="Prayer Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Prayer Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2a1a,#0d1e0d);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Prayer Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">The heartbeat of ENJC. Interceding for individuals, families, and the city of Chennai daily.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Night Prayer 10:30</span>
-              <span class="badge badge--gold">Open to all</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Prayer+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/worship.jpg" alt="Worship Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Worship Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#2a1a0d,#1a0f05);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Worship Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Leading the congregation into God's presence through music, song, and anointed worship.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Every service</span>
-              <span class="badge badge--gold">All musicians</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Worship+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/children.jpg" alt="Children's Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Children's Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2a,#0d0d1e);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Children's Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Teaching children to know and love Jesus through Bible stories, worship, and fun activities.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Ages 4–12</span>
-              <span class="badge badge--gold">Every Sunday</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Children's+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-        <article class="card ministry-card" style="overflow:hidden;">
-          <div class="ministry-card__image" style="height:200px;position:relative;overflow:hidden;">
-            <img src="images/ministries/outreach.jpg" alt="Outreach Ministry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-            <div style="position:absolute;top:14px;left:14px;z-index:2;font-size:15px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:5px 12px;border-radius:8px;backdrop-filter:blur(4px);pointer-events:none;">Outreach Ministry</div>
-            <!-- Gradient fallback shown when image is absent -->
-            <div class="ministry-card__overlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#2a1a1a,#1e0d0d);display:none;align-items:center;justify-content:center;">
-              <h3 style="color:white;font-size:1.1rem;text-align:center;padding:20px;">Outreach Ministry</h3>
-            </div>
-          </div>
-          <div class="ministry-card__body" style="padding:24px;">
-            <p style="font-size:13px;margin-bottom:16px;">Taking the Gospel beyond our walls — into homes, streets, and communities of Chennai.</p>
-            <div class="ministry-card__tags" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span class="badge badge--gold">Evangelism</span>
-              <span class="badge badge--gold">Open to all</span>
-            </div>
-            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Outreach+Ministry" target="_blank" rel="noopener"
-               class="btn btn--outline" style="font-size:13px;padding:9px 20px;">Join →</a>
-          </div>
-        </article>
-      </div>
 
-      <!-- CTA banner -->
-      <div class="card card--gold" style="margin-top:52px;padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+        <!-- Youth Ministry -->
+        <article class="ministry-card reveal delay-1">
+          <div class="ministry-card__image">
+            <img src="images/ministries/youth.jpg" alt="Youth Ministry — young people in worship" loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="ministry-card__overlay" style="display:none;">
+              <div class="ministry-card__overlay-inner">
+                <i class="ti ti-users" aria-hidden="true"></i>
+                <h3>Youth Ministry</h3>
+              </div>
+            </div>
+            <span class="ministry-card__image-title" aria-hidden="true">Youth Ministry</span>
+          </div>
+          <div class="ministry-card__body">
+            <p>Moving young people toward spiritual maturity through worship, Bible study, and community.</p>
+            <div class="ministry-card__tags">
+              <span class="badge">Ages 13–25</span>
+              <span class="badge">Weekly meetings</span>
+            </div>
+            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Youth+Ministry"
+               target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 22px;">
+              Join <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Women's Fellowship -->
+        <article class="ministry-card reveal delay-2">
+          <div class="ministry-card__image">
+            <img src="images/ministries/women.jpg" alt="Women's Fellowship — sisters in prayer" loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="ministry-card__overlay" style="display:none;">
+              <div class="ministry-card__overlay-inner">
+                <i class="ti ti-heart" aria-hidden="true"></i>
+                <h3>Women's Fellowship</h3>
+              </div>
+            </div>
+            <span class="ministry-card__image-title" aria-hidden="true">Women's Fellowship</span>
+          </div>
+          <div class="ministry-card__body">
+            <p>A safe, warm space for women to grow in faith together through prayer and encouragement.</p>
+            <div class="ministry-card__tags">
+              <span class="badge">All ages</span>
+              <span class="badge">Bible study</span>
+            </div>
+            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Women%27s+Fellowship"
+               target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 22px;">
+              Join <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Prayer Ministry -->
+        <article class="ministry-card reveal delay-3">
+          <div class="ministry-card__image">
+            <img src="images/ministries/prayer.jpg" alt="Prayer Ministry — intercession gathering" loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="ministry-card__overlay" style="display:none;">
+              <div class="ministry-card__overlay-inner">
+                <i class="ti ti-flame" aria-hidden="true"></i>
+                <h3>Prayer Ministry</h3>
+              </div>
+            </div>
+            <span class="ministry-card__image-title" aria-hidden="true">Prayer Ministry</span>
+          </div>
+          <div class="ministry-card__body">
+            <p>The heartbeat of ENJC. Interceding for individuals, families, and the city of Chennai daily.</p>
+            <div class="ministry-card__tags">
+              <span class="badge">Night Prayer 10:30</span>
+              <span class="badge">Open to all</span>
+            </div>
+            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Prayer+Ministry"
+               target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 22px;">
+              Join <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Worship Ministry -->
+        <article class="ministry-card reveal delay-1">
+          <div class="ministry-card__image">
+            <img src="images/ministries/worship.jpg" alt="Worship Ministry — musicians and singers" loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="ministry-card__overlay" style="display:none;">
+              <div class="ministry-card__overlay-inner">
+                <i class="ti ti-music" aria-hidden="true"></i>
+                <h3>Worship Ministry</h3>
+              </div>
+            </div>
+            <span class="ministry-card__image-title" aria-hidden="true">Worship Ministry</span>
+          </div>
+          <div class="ministry-card__body">
+            <p>Leading the congregation into God's presence through music, song, and anointed worship.</p>
+            <div class="ministry-card__tags">
+              <span class="badge">Every service</span>
+              <span class="badge">All musicians</span>
+            </div>
+            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Worship+Ministry"
+               target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 22px;">
+              Join <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Children's Ministry -->
+        <article class="ministry-card reveal delay-2">
+          <div class="ministry-card__image">
+            <img src="images/ministries/children.jpg" alt="Children's Ministry — kids in Sunday school" loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="ministry-card__overlay" style="display:none;">
+              <div class="ministry-card__overlay-inner">
+                <i class="ti ti-star" aria-hidden="true"></i>
+                <h3>Children's Ministry</h3>
+              </div>
+            </div>
+            <span class="ministry-card__image-title" aria-hidden="true">Children's Ministry</span>
+          </div>
+          <div class="ministry-card__body">
+            <p>Teaching children to know and love Jesus through Bible stories, worship, and fun activities.</p>
+            <div class="ministry-card__tags">
+              <span class="badge">Ages 4–12</span>
+              <span class="badge">Every Sunday</span>
+            </div>
+            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Children%27s+Ministry"
+               target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 22px;">
+              Join <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Outreach Ministry -->
+        <article class="ministry-card reveal delay-3">
+          <div class="ministry-card__image">
+            <img src="images/ministries/outreach.jpg" alt="Outreach Ministry — village gospel mission" loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="ministry-card__overlay" style="display:none;">
+              <div class="ministry-card__overlay-inner">
+                <i class="ti ti-world" aria-hidden="true"></i>
+                <h3>Outreach Ministry</h3>
+              </div>
+            </div>
+            <span class="ministry-card__image-title" aria-hidden="true">Outreach Ministry</span>
+          </div>
+          <div class="ministry-card__body">
+            <p>Taking the Gospel beyond our walls — into homes, streets, and communities of Chennai.</p>
+            <div class="ministry-card__tags">
+              <span class="badge">Evangelism</span>
+              <span class="badge">Open to all</span>
+            </div>
+            <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+join+Outreach+Ministry"
+               target="_blank" rel="noopener" class="btn btn--outline" style="font-size:13px;padding:9px 22px;">
+              Join <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /grid-3 -->
+
+      <!-- CTA Banner -->
+      <div class="cta-band s-dark3 reveal" style="margin-top:56px;border-radius:var(--r-lg);padding:clamp(28px,4vw,44px) clamp(24px,4vw,40px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;border:1px solid var(--border-dark);">
         <div>
-          <h3 style="margin-bottom:8px;">Want to get involved?</h3>
-          <p style="font-size:14px;">Every ministry welcomes new members. WhatsApp us and we&#39;ll connect you with the right leader.</p>
+          <h3 style="color:var(--text-light);margin-bottom:8px;">Want to get involved?</h3>
+          <p style="margin:0;font-size:14px;color:var(--text-muted-dark);max-width:480px;">Every ministry welcomes new members. WhatsApp us and we'll connect you with the right leader.</p>
         </div>
         <a href="https://wa.me/919444345102?text=Hi%2C+I+want+to+get+involved+in+ENJC"
-           target="_blank" rel="noopener" class="btn btn--gold">Get Involved →</a>
+           target="_blank" rel="noopener" class="btn btn--gold">
+          <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Get Involved
+        </a>
       </div>
-
     </div>
   </section>
 
 </main>
 
-  <footer class="footer">
+<footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name"><span>ENJC</span> · Elim New Jerusalem Church</div>
+      <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
       <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
       <div class="footer-addr">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>+91 94443 45102</div>
       <div class="footer-social">
-        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-youtube"></i></a>
-        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank"><i class="ti ti-brand-instagram"></i></a>
-        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank"><i class="ti ti-brand-facebook"></i></a>
-        <a href="https://wa.me/919444345102" class="social-icon" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
+        <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener" title="YouTube"><i class="ti ti-brand-youtube"></i></a>
+        <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener" title="Facebook"><i class="ti ti-brand-facebook"></i></a>
+        <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
       </div>
     </div>
     <div>
       <div class="footer-col-title">Quick Links</div>
       <div class="footer-links">
-        <a href="index.html">Home</a><a href="about.html">About</a>
-        <a href="ministries.html">Ministries</a><a href="events.html">Events</a>
-        <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="ministries.html">Ministries</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
     <div>
@@ -252,12 +308,19 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
-    <div class="footer-verse">Built with ❤️ for the Kingdom of God</div>
+    <div>© 2026 Elim New Jerusalem Church, Chennai. All rights reserved.</div>
+    <div>Built with ❤️ for the Kingdom of God</div>
   </div>
 </footer>
-<a href="https://wa.me/919444345102" class="wa-float" target="_blank" title="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
-<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+
+<a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" title="WhatsApp">
+  <i class="ti ti-brand-whatsapp"></i>
+</a>
+
+<button id="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="ti ti-arrow-up"></i>
+</button>
+
 <nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
     <a href="index.html" class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
@@ -268,56 +331,57 @@
   </div>
 </nav>
 
-  <!-- Scroll Reveal Observer -->
-  <script>
-  (function(){
-    var els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
-    els.forEach(function(el){ obs.observe(el); });
-  })();
-  </script>
 <script>
-/* Mobile nav toggle */
+/* Ministry image fallback */
 (function(){
-  var btn = document.getElementById('mob-toggle');
-  var links = document.getElementById('nav-links');
-  if(!btn || !links) return;
-  btn.addEventListener('click', function(){
-    var open = links.classList.toggle('mob-open');
-    Object.assign(links.style, open ? {
-      display:'flex', flexDirection:'column', position:'absolute',
-      top:'60px', left:'0', right:'0', background:'#0a1628',
-      padding:'8px 0', borderBottom:'1px solid #1a2e50', zIndex:'300'
-    } : {display:'', position:'', flexDirection:''});
+  document.querySelectorAll('.ministry-card__image img').forEach(function(img){
+    img.addEventListener('error', function(){
+      img.style.display = 'none';
+      var overlay = img.nextElementSibling;
+      while(overlay && !overlay.classList.contains('ministry-card__overlay')){
+        overlay = overlay.nextElementSibling;
+      }
+      if(overlay) overlay.style.display = 'flex';
+    });
   });
 })();
+
+/* Nav hamburger */
+(function(){
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('mobile-menu');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('is-open');
+    btn.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open);
+    menu.setAttribute('aria-hidden', !open);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ menu.classList.remove('is-open'); btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); }
+  });
+})();
+
+/* Scroll to top */
+(function(){
+  var btn = document.getElementById('scroll-top-btn');
+  window.addEventListener('scroll', function(){ btn.classList.toggle('visible', window.scrollY > 400); });
+})();
+
+/* Reveal */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!els.length || !window.IntersectionObserver){ els.forEach(function(e){e.classList.add('visible');}); return; }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('visible'); obs.unobserve(en.target); } });
+  },{threshold:0, rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(e){ obs.observe(e); });
+  setTimeout(function(){ els.forEach(function(e){ if(!e.classList.contains('visible')) e.classList.add('visible'); }); }, 1800);
+})();
 </script>
+
 <script>window.ENJC_PAGE="ministries";</script>
-<!-- Styles -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" onload="this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap"></noscript>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;600;700&display=swap" onload="this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/pages.css">
-<link rel="stylesheet" href="css/design-system.css">
-
-<!-- Styles -->
-
-<noscript>
-</noscript>
-<noscript>
-</noscript>
-
 <script src="js/site.js" defer></script>
-<script src="js/design-upgrade.js" defer></script>
+
 </body>
 </html>
