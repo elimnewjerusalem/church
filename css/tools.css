@@ -1431,3 +1431,160 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
   .vact      { width: 24px; height: 24px; font-size: 11px; }
   .vs-actions { grid-template-columns: repeat(4,1fr); gap: 8px; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   BIBLE PAGE — .site-footer (bible.html uses this class)
+   ════════════════════════════════════════════════════════════ */
+
+.site-footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border-dark);
+  padding: clamp(40px,5vw,64px) 0 0;
+  margin-top: 40px;
+}
+
+.site-footer .container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+}
+
+.site-footer__rich {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(24px,4vw,48px);
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+/* Logo / brand col */
+.site-footer__logo {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700;
+  color: var(--gold); margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+.site-footer__tagline {
+  font-size: 13px; color: #8aabdf;
+  line-height: 1.7; margin-bottom: 10px;
+}
+.site-footer__addr {
+  font-size: 12px; color: #6a85a8;
+  line-height: 1.9; margin-bottom: 8px;
+}
+.site-footer__phone {
+  font-size: 13px; color: var(--gold);
+  font-weight: 600; text-decoration: none;
+  transition: color 0.15s;
+  display: inline-block; margin-bottom: 16px;
+}
+.site-footer__phone:hover { color: var(--gold-bright); }
+
+/* Column headings */
+.site-footer__heading {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+/* Nav links */
+.site-footer__link {
+  display: block; font-size: 13px;
+  color: #8aabdf; text-decoration: none;
+  padding: 4px 0; transition: color 0.15s;
+  line-height: 1.6;
+}
+.site-footer__link:hover { color: var(--gold); }
+
+/* Social links */
+.site-footer__social {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: #8aabdf;
+  text-decoration: none; padding: 5px 0;
+  transition: color 0.15s; line-height: 1.5;
+}
+.site-footer__social:hover { color: var(--gold); }
+.site-footer__social span { font-size: 14px; flex-shrink: 0; }
+
+/* Service times */
+.site-footer__services p {
+  margin: 4px 0; font-size: 12px; color: #6a85a8;
+  line-height: 1.7;
+}
+
+/* Bottom bar */
+.site-footer__bottom {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 8px;
+  padding: 18px var(--container-px);
+  font-size: 11px; color: #506890;
+  max-width: var(--max-width); margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .site-footer__rich {
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-footer__col:first-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 480px) {
+  .site-footer__rich { grid-template-columns: 1fr; }
+  .site-footer__bottom { flex-direction: column; text-align: center; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   BIBLE PAGE — Brighter text colors
+   ════════════════════════════════════════════════════════════ */
+
+/* VOTD text brighter */
+[data-page="bible"] .nx-votd-ta {
+  color: #f0f4ff;
+  text-shadow: 0 1px 20px rgba(201,168,76,0.15);
+}
+[data-page="bible"] .nx-votd-taref {
+  color: var(--gold-bright);
+}
+[data-page="bible"] .nx-votd-en {
+  color: #b8d0f0;
+}
+[data-page="bible"] .nx-votd-enref {
+  color: #7a98c0;
+}
+
+/* Controls brighter */
+[data-page="bible"] .nx-lbl { color: #7a98c0; }
+[data-page="bible"] .nx-para-lbl { color: #9ab8d8; }
+[data-page="bible"] .nx-para-state { color: var(--gold); }
+[data-page="bible"] .nx-search-inp { color: #dce8ff; }
+[data-page="bible"] .nx-search-inp::placeholder { color: #4a6882; }
+[data-page="bible"] .nx-fsz-val { color: #9ab8d8; }
+
+/* Feature bar brighter */
+[data-page="bible"] .nx-feat { color: #8aabdf; }
+[data-page="bible"] .nx-feat-lbl { color: #8aabdf; }
+
+/* Audio bar brighter */
+[data-page="bible"] .aud-title { color: #dce8ff; }
+[data-page="bible"] .aud-stat  { color: #7a98c0; }
+
+/* Chapter bar brighter */
+[data-page="bible"] .ch-title { color: #f0f4ff; }
+[data-page="bible"] .ch-sub   { color: #7a98c0; }
+[data-page="bible"] .ch-btn   { color: #9ab8d8; }
+
+/* Verse text brighter */
+[data-page="bible"] .vtxt { color: #dce8ff; }
+[data-page="bible"] .vi-ta .vtxt { color: #f0f4ff; }
+[data-page="bible"] .v-en-para   { color: #8aabdf; }
+[data-page="bible"] .vn          { color: var(--gold); opacity: 0.9; }
+
+/* Loading text brighter */
+[data-page="bible"] .bload p { color: #7a98c0; }
+
+/* Dropdown selects brighter */
+[data-page="bible"] .nx-sel { color: #dce8ff; }
