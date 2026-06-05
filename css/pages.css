@@ -728,12 +728,20 @@ textarea.form-field { resize: vertical; min-height: 100px; }
 
 /* Reels row (horizontal scroll) */
 .reels-row {
-  display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;
-  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
 }
-.reels-row > * { flex-shrink: 0; scroll-snap-align: start; }
-.reels-row::-webkit-scrollbar { height: 3px; }
-.reels-row::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 99px; }
+.reels-row > * { flex-shrink: 0; }
+/* Portrait card override for shorts */
+.reels-row .video-card a[style*="aspect-ratio:16/9"],
+.reels-row .card a[style*="aspect-ratio:16/9"] {
+  aspect-ratio: 9/16 !important;
+}
+@media (max-width: 600px) {
+  .reels-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
 
 /* Search bar */
 .enjc-search-bar {
@@ -756,3 +764,12 @@ textarea.form-field { resize: vertical; min-height: 100px; }
   .schedule-name { text-align: left; }
   .testimonial { padding: 20px 18px; }
 }
+
+/* ── SHORTS / PORTRAIT VIDEO CARDS ── */
+.video-card--short { max-width: 240px; }
+.reels-row { justify-items: center; }
+.reels-row .video-card--short { width: 100%; max-width: 100%; }
+
+/* Section missing containers fix for events */
+.reveal-on-scroll.section .container,
+.reveal-on-scroll.section-alt .container { width: 100%; }

@@ -246,10 +246,12 @@
       ? `${item.views}${item.date ? ' · ' + item.date : ''}`
       : (item.date || '');
 
+    const isShort = type === 'shorts';
+    const thumbRatio = isShort ? '9/16' : '16/9';
     return `
-      <article class="card video-card" style="overflow:hidden;" data-type="${type}">
+      <article class="card video-card${isShort ? ' video-card--short' : ''}" style="overflow:hidden;" data-type="${type}">
         <a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"
-           style="display:block;position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;">
+           style="display:block;position:relative;aspect-ratio:${thumbRatio};background:#000;overflow:hidden;">
           <img src="${item.thumbnail || `https://img.youtube.com/vi/${id}/mqdefault.jpg`}"
                alt="${escHtml(item.title)}"
                style="width:100%;height:100%;object-fit:cover;opacity:0.88;" loading="lazy">
