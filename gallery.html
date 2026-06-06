@@ -36,50 +36,60 @@
     /* ── Hero ── */
     .gal-hero {
       position: relative;
-      padding: clamp(48px,8vw,96px) var(--container-px) clamp(32px,5vw,56px);
+      padding: clamp(40px,6vw,80px) var(--container-px) clamp(28px,4vw,48px);
       text-align: center;
-      background: linear-gradient(180deg, var(--bg-3) 0%, var(--bg) 100%);
+      background: var(--bg-3);
       overflow: hidden;
     }
     .gal-hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%);
       pointer-events: none;
+    }
+    .gal-hero-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
     }
     .gal-hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--gold); border: 1px solid var(--gold-border);
       padding: 5px 16px; border-radius: 99px;
-      background: rgba(201,168,76,0.08); margin-bottom: 18px;
+      background: rgba(201,168,76,0.08); margin-bottom: 16px;
     }
     .gal-hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(36px,6vw,64px); font-weight: 700;
-      color: var(--text-light); line-height: 1.1; margin-bottom: 14px;
+      font-size: clamp(32px,5vw,60px); font-weight: 700;
+      color: var(--text-light); line-height: 1.1; margin-bottom: 12px;
+      white-space: nowrap;
     }
     .gal-hero h1 em { color: var(--gold); font-style: italic; }
     .gal-hero p {
-      font-size: clamp(14px,1.6vw,16px); color: var(--text-muted);
-      max-width: 520px; margin: 0 auto 32px; line-height: 1.7;
+      font-size: 15px; color: var(--text-muted);
+      max-width: 480px; margin: 0 auto 28px; line-height: 1.7;
     }
 
     /* Stats bar */
     .gal-stats {
-      display: flex; gap: 32px; justify-content: center;
-      flex-wrap: wrap; margin-top: 8px;
+      display: flex; gap: 0; justify-content: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px; overflow: hidden;
+      margin-top: 4px;
     }
     .gal-stat {
-      text-align: center;
+      text-align: center; padding: 14px 32px;
+      border-right: 1px solid var(--border-dark);
     }
+    .gal-stat:last-child { border-right: none; }
     .gal-stat-num {
       font-family: var(--font-display);
-      font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1;
+      font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1;
     }
     .gal-stat-lbl {
-      font-size: 11px; color: var(--text-faint);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;
+      font-size: 10px; color: var(--text-faint);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px;
     }
 
     /* ── Filter Tab Bar ── */
@@ -129,7 +139,10 @@
       grid-template-columns: repeat(12, 1fr);
       gap: 12px;
       margin-bottom: 12px;
+      align-items: stretch;
     }
+    /* When filtering hides all items in a row, hide the whole wrap */
+    .bento-wrap:empty { display: none; }
 
     /* Bento item base */
     .bento-item {
@@ -201,19 +214,12 @@
     }
 
     /* ── Bento size classes ── */
-    /* Row 1: big feature (8col) + 2 stacked (4col) */
-    .bento-feat   { grid-column: span 8; height: 420px; }
-    .bento-side   { grid-column: span 4; height: 204px; }
-
-    /* Row 2: 3 equal */
-    .bento-third  { grid-column: span 4; height: 280px; }
-
-    /* Row 3: 2 wide + 1 narrow */
-    .bento-half   { grid-column: span 6; height: 300px; }
-    .bento-full   { grid-column: span 12; height: 300px; }
-
-    /* Rows 4+: standard grid */
-    .bento-std    { grid-column: span 3; height: 220px; }
+    .bento-feat   { grid-column: span 8; height: 380px; }
+    .bento-side   { grid-column: span 4; height: 184px; }
+    .bento-third  { grid-column: span 4; height: 260px; }
+    .bento-half   { grid-column: span 6; height: 280px; }
+    .bento-full   { grid-column: span 12; height: 280px; }
+    .bento-std    { grid-column: span 3; height: 200px; }
 
     /* ── Filter animation ── */
     .bento-item {
@@ -223,8 +229,11 @@
                   scale 0.3s;
     }
     .bento-item.hidden {
-      opacity: 0; pointer-events: none;
-      scale: 0.95;
+      display: none;
+    }
+    .bento-item.hiding {
+      opacity: 0; scale: 0.95; pointer-events: none;
+      transition: opacity 0.2s, scale 0.2s;
     }
 
     /* ── Empty state ── */
@@ -352,23 +361,35 @@
     .btn-outline:hover { border-color: var(--gold-border); }
 
     /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .bento-feat  { grid-column: span 8; height: 320px; }
+      .bento-side  { grid-column: span 4; height: 154px; }
+      .bento-third { grid-column: span 4; height: 220px; }
+      .bento-half  { grid-column: span 6; height: 240px; }
+      .bento-std   { grid-column: span 3; height: 180px; }
+    }
     @media (max-width: 900px) {
-      .bento-feat  { grid-column: span 12; height: 320px; }
-      .bento-side  { grid-column: span 6; height: 180px; }
-      .bento-third { grid-column: span 6; height: 200px; }
-      .bento-half  { grid-column: span 6; height: 220px; }
-      .bento-std   { grid-column: span 6; height: 180px; }
+      .bento-feat  { grid-column: span 12; height: 300px; }
+      .bento-side  { grid-column: span 6; height: 170px; }
+      .bento-third { grid-column: span 6; height: 190px; }
+      .bento-half  { grid-column: span 6; height: 210px; }
+      .bento-std   { grid-column: span 6; height: 170px; }
     }
     @media (max-width: 600px) {
-      .bento-feat  { grid-column: span 12; height: 240px; }
-      .bento-side  { grid-column: span 12; height: 200px; }
-      .bento-third { grid-column: span 12; height: 200px; }
+      .bento-wrap  { gap: 8px; }
+      .bento-feat  { grid-column: span 12; height: 220px; }
+      .bento-side  { grid-column: span 6; height: 150px; }
+      .bento-third { grid-column: span 6; height: 160px; }
       .bento-half  { grid-column: span 12; height: 200px; }
       .bento-full  { grid-column: span 12; height: 200px; }
-      .bento-std   { grid-column: span 12; height: 200px; }
-      .bento-wrap  { gap: 8px; }
+      .bento-std   { grid-column: span 6; height: 150px; }
       .lb-btn      { width: 36px; height: 36px; font-size: 16px; }
       .lb-thumbs   { display: none; }
+    }
+    @media (max-width: 420px) {
+      .bento-side  { grid-column: span 12; height: 180px; }
+      .bento-third { grid-column: span 12; height: 180px; }
+      .bento-std   { grid-column: span 12; height: 180px; }
     }
   </style>
 </head>
@@ -422,13 +443,15 @@
 
     <!-- ── Hero ── -->
     <section class="gal-hero">
-      <div class="gal-hero-tag">Our Community</div>
-      <h1>Church <em>Gallery</em></h1>
-      <p>Moments of worship, prayer, fellowship and service captured in Christ.</p>
-      <div class="gal-stats">
-        <div class="gal-stat"><div class="gal-stat-num" id="stat-count">10</div><div class="gal-stat-lbl">Photos</div></div>
-        <div class="gal-stat"><div class="gal-stat-num">4</div><div class="gal-stat-lbl">Categories</div></div>
-        <div class="gal-stat"><div class="gal-stat-num">2026</div><div class="gal-stat-lbl">Latest Year</div></div>
+      <div class="gal-hero-inner">
+        <div class="gal-hero-tag">Our Community</div>
+        <h1>Church <em>Gallery</em></h1>
+        <p>Moments of worship, prayer, fellowship and service captured in Christ.</p>
+        <div class="gal-stats">
+          <div class="gal-stat"><div class="gal-stat-num" id="stat-count">10</div><div class="gal-stat-lbl">Photos</div></div>
+          <div class="gal-stat"><div class="gal-stat-num">4</div><div class="gal-stat-lbl">Categories</div></div>
+          <div class="gal-stat"><div class="gal-stat-num">2026</div><div class="gal-stat-lbl">Latest Year</div></div>
+        </div>
       </div>
     </section>
 
@@ -455,155 +478,129 @@
 
     <!-- ── Bento Gallery Grid ── -->
     <section class="gal-main" aria-label="Photo gallery">
+      <div class="bento-wrap" id="bento-grid">
 
-      <!-- Row 1: Featured big + 2 stacked -->
-      <div class="bento-wrap" id="bento-row-1">
+        <!-- g1: Featured big — Scripture -->
         <div class="bento-item bento-feat reveal" tabindex="0"
              data-cat="scripture" data-src="images/gallery/g1.webp"
              data-title="Promise 2026" data-sub="ENJC Scripture Card">
-          <img src="images/gallery/g1.webp" alt="ENJC Promise 2026 scripture card - வாக்குத்தத்தம்" loading="eager">
+          <img src="images/gallery/g1.webp" alt="ENJC Promise 2026 - நீ என் பார்வைக்கு அருமையானபடியினால்" loading="eager">
           <span class="bento-tag bento-tag--scripture">Scripture</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Promise 2026</div>
-            <div class="bento-cap-sub">ENJC Scripture Card</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Promise 2026</div><div class="bento-cap-sub">Isaiah 43:4</div></div>
         </div>
+
+        <!-- g2: Side top — Scripture -->
         <div class="bento-item bento-side reveal" tabindex="0"
              data-cat="scripture" data-src="images/gallery/g2.webp"
-             data-title="Promise 2025" data-sub="Behold I and My Children">
-          <img src="images/gallery/g2.webp" alt="Promise 2025 scripture - Behold I and My Children" loading="eager">
+             data-title="Promise 2025" data-sub="Isaiah 8:18">
+          <img src="images/gallery/g2.webp" alt="Promise 2025 - Behold I and My Children Isaiah 8:18" loading="eager">
           <span class="bento-tag bento-tag--scripture">Scripture</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Promise 2025</div>
-            <div class="bento-cap-sub">Isaiah 8:18</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Promise 2025</div><div class="bento-cap-sub">Isaiah 8:18</div></div>
         </div>
+
+        <!-- g3: Side bottom — Worship -->
         <div class="bento-item bento-side reveal" tabindex="0"
              data-cat="worship" data-src="images/gallery/g3.webp"
-             data-title="White Dove" data-sub="Worship & Spirit">
-          <img src="images/gallery/g3.webp" alt="White dove - worship and spirit illustration" loading="eager">
+             data-title="White Dove" data-sub="In Spirit and Truth">
+          <img src="images/gallery/g3.webp" alt="White dove - worship in spirit and truth" loading="eager">
           <span class="bento-tag bento-tag--worship">Worship</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Worship</div>
-            <div class="bento-cap-sub">In Spirit and Truth</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Worship</div><div class="bento-cap-sub">In Spirit and Truth</div></div>
         </div>
-      </div>
 
-      <!-- Row 2: 3 equal thirds -->
-      <div class="bento-wrap" id="bento-row-2">
+        <!-- g4: Third — Scripture -->
         <div class="bento-item bento-third reveal" tabindex="0"
              data-cat="scripture" data-src="images/gallery/g4.webp"
              data-title="Promise 2025" data-sub="Mount Sion">
           <img src="images/gallery/g4.webp" alt="Promise 2025 - Behold I and My Children Mount Sion" loading="lazy">
           <span class="bento-tag bento-tag--scripture">Scripture</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Promise 2025</div>
-            <div class="bento-cap-sub">Isaiah 8:18</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Promise 2025</div><div class="bento-cap-sub">Isaiah 8:18</div></div>
         </div>
+
+        <!-- g5: Third — Worship -->
         <div class="bento-item bento-third reveal" tabindex="0"
              data-cat="worship" data-src="images/gallery/g5.webp"
              data-title="Anointing" data-sub="Kingdom of God">
-          <img src="images/gallery/g5.webp" alt="Anointing - Kingdom of God illustration" loading="lazy">
+          <img src="images/gallery/g5.webp" alt="Anointing - Kingdom of God illustration ENJC" loading="lazy">
           <span class="bento-tag bento-tag--worship">Worship</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Anointing</div>
-            <div class="bento-cap-sub">Kingdom of God</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Anointing</div><div class="bento-cap-sub">Kingdom of God</div></div>
         </div>
+
+        <!-- g6: Third — Worship -->
         <div class="bento-item bento-third reveal" tabindex="0"
              data-cat="worship" data-src="images/gallery/g6.webp"
              data-title="Lion & Eagle" data-sub="God's Majesty">
-          <img src="images/gallery/g6.webp" alt="Lion and Eagle - God's majesty illustration" loading="lazy">
+          <img src="images/gallery/g6.webp" alt="Lion and Eagle - God's majesty and power" loading="lazy">
           <span class="bento-tag bento-tag--worship">Worship</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Lion &amp; Eagle</div>
-            <div class="bento-cap-sub">God's Majesty</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Lion &amp; Eagle</div><div class="bento-cap-sub">God's Majesty</div></div>
         </div>
-      </div>
 
-      <!-- Row 3: 2 col - narrow + wide (featured tall) -->
-      <div class="bento-wrap" id="bento-row-3">
+        <!-- g7: Half — Scripture -->
         <div class="bento-item bento-half reveal" tabindex="0"
              data-cat="scripture" data-src="images/gallery/g7.webp"
-             data-title="Vaazhga 2024" data-sub="ENJC Scripture">
-          <img src="images/gallery/g7.webp" alt="Vaazhga 2024 ENJC scripture blessing card" loading="lazy">
+             data-title="வாழ்க 2024" data-sub="ENJC Blessing Card">
+          <img src="images/gallery/g7.webp" alt="வாழ்க 2024 ENJC blessing scripture card Tondiarpet" loading="lazy">
           <span class="bento-tag bento-tag--scripture">Scripture</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">வாழ்க 2024</div>
-            <div class="bento-cap-sub">ENJC Blessing</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">வாழ்க 2024</div><div class="bento-cap-sub">ENJC Blessing</div></div>
         </div>
+
+        <!-- g8: Half — Prayer -->
         <div class="bento-item bento-half reveal" tabindex="0"
              data-cat="prayer" data-src="images/gallery/g8.webp"
              data-title="Blessed New Year" data-sub="Pas. A. Karthik Daniel">
-          <img src="images/gallery/g8.webp" alt="Blessed New Year - Pastor A. Karthik Daniel ENJC" loading="lazy">
+          <img src="images/gallery/g8.webp" alt="Blessed New Year - Pastor A. Karthik Daniel ENJC Tondiarpet" loading="lazy">
           <span class="bento-tag bento-tag--prayer">Prayer</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Blessed New Year</div>
-            <div class="bento-cap-sub">Pas. A. Karthik Daniel</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Blessed New Year</div><div class="bento-cap-sub">Pas. A. Karthik Daniel</div></div>
         </div>
-      </div>
 
-      <!-- Row 4: 4 equal -->
-      <div class="bento-wrap" id="bento-row-4">
+        <!-- g9: Std — Worship -->
         <div class="bento-item bento-std reveal" tabindex="0"
              data-cat="worship" data-src="images/gallery/g9.webp"
              data-title="Fire & Eagle" data-sub="God's Power">
-          <img src="images/gallery/g9.webp" alt="Fire and eagle - God's power illustration" loading="lazy">
+          <img src="images/gallery/g9.webp" alt="Fire and eagle - God's power and glory ENJC" loading="lazy">
           <span class="bento-tag bento-tag--worship">Worship</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Fire &amp; Eagle</div>
-            <div class="bento-cap-sub">God's Power</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Fire &amp; Eagle</div><div class="bento-cap-sub">God's Power</div></div>
         </div>
+
+        <!-- g10: Std — Prayer -->
         <div class="bento-item bento-std reveal" tabindex="0"
              data-cat="prayer" data-src="images/gallery/g10.webp"
-             data-title="Night Prayer" data-sub="Anointing">
-          <img src="images/gallery/g10.webp" alt="Night prayer anointing illustration" loading="lazy">
+             data-title="Night Prayer" data-sub="Daily 10:30 PM">
+          <img src="images/gallery/g10.webp" alt="Night prayer anointing - ENJC daily 10:30 PM prayer" loading="lazy">
           <span class="bento-tag bento-tag--prayer">Prayer</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Night Prayer</div>
-            <div class="bento-cap-sub">Daily 10:30 PM</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Night Prayer</div><div class="bento-cap-sub">Daily 10:30 PM</div></div>
         </div>
-        <div class="bento-item bento-std reveal" tabindex="0"
-             data-cat="worship" data-src="images/gallery/g6.webp"
-             data-title="Majesty" data-sub="Glory of God">
-          <img src="images/gallery/g6.webp" alt="Majesty - glory of God worship art" loading="lazy">
-          <span class="bento-tag bento-tag--worship">Worship</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Majesty</div>
-            <div class="bento-cap-sub">Glory of God</div>
-          </div>
-        </div>
+
+        <!-- g5b: Std — Outreach (reuse g5) -->
         <div class="bento-item bento-std reveal" tabindex="0"
              data-cat="outreach" data-src="images/gallery/g5.webp"
-             data-title="Outreach" data-sub="Ministry Work">
-          <img src="images/gallery/g5.webp" alt="ENJC outreach ministry" loading="lazy">
+             data-title="Outreach Ministry" data-sub="ENJC Chennai">
+          <img src="images/gallery/g5.webp" alt="ENJC outreach ministry Chennai Tondiarpet" loading="lazy">
           <span class="bento-tag bento-tag--outreach">Outreach</span>
           <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap">
-            <div class="bento-cap-text">Outreach</div>
-            <div class="bento-cap-sub">Ministry Work</div>
-          </div>
+          <div class="bento-cap"><div class="bento-cap-text">Outreach</div><div class="bento-cap-sub">ENJC Ministry</div></div>
         </div>
-      </div>
 
+        <!-- g10b: Std — Prayer (reuse g10) -->
+        <div class="bento-item bento-std reveal" tabindex="0"
+             data-cat="worship" data-src="images/gallery/g6.webp"
+             data-title="His Glory" data-sub="ENJC Worship">
+          <img src="images/gallery/g6.webp" alt="His glory - ENJC worship art" loading="lazy">
+          <span class="bento-tag bento-tag--worship">Worship</span>
+          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
+          <div class="bento-cap"><div class="bento-cap-text">His Glory</div><div class="bento-cap-sub">ENJC Worship</div></div>
+        </div>
+
+      </div>
     </section>
 
     <!-- ── Lightbox ── -->
@@ -744,7 +741,7 @@
     }
 
     /* ── Gather all bento items ── */
-    var allItems = Array.from(document.querySelectorAll('.bento-item'));
+    var allItems = Array.from(document.querySelectorAll('#bento-grid .bento-item'));
 
     /* ── Filter Tabs ── */
     var tabs = document.querySelectorAll('.gal-tab');
@@ -753,11 +750,29 @@
     function applyFilter(cat){
       currentFilter = cat;
       var visible = [];
+
+      // First pass: add hiding class for animation
       allItems.forEach(function(item){
         var match = cat === 'all' || item.dataset.cat === cat;
-        item.classList.toggle('hidden', !match);
-        if(match) visible.push(item);
+        if (!match) {
+          item.classList.add('hiding');
+        } else {
+          item.classList.remove('hiding');
+          item.classList.remove('hidden');
+          visible.push(item);
+        }
       });
+
+      // After animation, set display:none
+      setTimeout(function(){
+        allItems.forEach(function(item){
+          var match = cat === 'all' || item.dataset.cat === cat;
+          item.classList.toggle('hidden', !match);
+          item.classList.remove('hiding');
+        });
+        // (single grid — no row hiding needed)
+      }, 220);
+
       // Update stat count
       document.getElementById('stat-count').textContent = visible.length;
     }
