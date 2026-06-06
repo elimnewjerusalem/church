@@ -411,53 +411,13 @@
     render();
   }
 
-  /* ──────────────────────────────
-     COUNTDOWN
-  ────────────────────────────── */
 
-  function startCountdown() {
-    const pad = n => String(Math.floor(n)).padStart(2, '0');
-    const SLOTS = [
-      [0,  5, 30],  // Sunday 5:30 AM
-      [0,  8, 30],  // Sunday 8:30 AM
-      [0, 12,  0],  // Sunday 12:00 PM
-      [5, 11,  0],  // Friday 11:00 AM
-    ];
-    const getNext = () => {
-      const now = new Date();
-      let best = null;
-      for (const [day, h, m] of SLOTS) {
-        const t = new Date(now);
-        let diff = day - now.getDay();
-        if (diff < 0) diff += 7;
-        t.setDate(now.getDate() + diff);
-        t.setHours(h, m, 0, 0);
-        if (t <= now) t.setDate(t.getDate() + 7);
-        if (!best || t < best) best = t;
-      }
-      return best;
-    };
-    const tick = () => {
-      const diff = getNext() - Date.now();
-      if (diff < 0) return;
-      const dEl = document.getElementById('cd-d');
-      const hEl = document.getElementById('cd-h');
-      const mEl = document.getElementById('cd-m');
-      const sEl = document.getElementById('cd-s');
-      if (dEl) dEl.textContent = pad(diff / 86_400_000);
-      if (hEl) hEl.textContent = pad((diff % 86_400_000) / 3_600_000);
-      if (mEl) mEl.textContent = pad((diff % 3_600_000) / 60_000);
-      if (sEl) sEl.textContent = pad((diff % 60_000) / 1_000);
-    };
-    setInterval(tick, 1000); tick();
-  }
 
   /* ──────────────────────────────
      MAIN INIT
   ────────────────────────────── */
 
   document.addEventListener('DOMContentLoaded', async () => {
-    startCountdown();
     initFilterButtons();
     initSearch();
 
@@ -469,7 +429,7 @@
     showSkeletons('most-watched-grid',   3, 'grid');
     showSkeletons('deliverance-grid',    3, 'grid');
     showSkeletons('testimony-grid',      3, 'grid');
-    showSkeletons('verse-reels-row',     3, 'grid');
+    showSkeletons('verse-reels-row',     5, 'grid');
 
     // Load events.json for testimonials fallback
     let jsonData = null;
@@ -493,7 +453,7 @@
         fetchPlaylist(PL.promise,     1),
         fetchPlaylist(PL.deliverance, 3),
         fetchPlaylist(PL.testimony,   3),
-        fetchShorts(3),
+        fetchShorts(5),
         fetchMostWatched(3),
       ]);
 
