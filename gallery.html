@@ -3,21 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gallery | ENJC — Elim New Jerusalem Church</title>
+  <title>Gallery | ENJC — Elim New Jerusalem Church, Tondiarpet</title>
   <link rel="canonical" href="https://elimnewjerusalem.github.io/church/gallery.html">
   <link rel="icon" type="image/png" href="images/logo/logo.png">
   <link rel="apple-touch-icon" href="images/logo/logo.png">
   <link rel="manifest" href="data/manifest.json">
-  <meta name="description" content="Photo gallery of Elim New Jerusalem Church, Tondiarpet, Chennai. Worship services, prayer meetings, community events and outreach ministry photos.">
-  <meta name="author" content="Pastor A. Karthik Daniel">
+  <meta name="description" content="Photo gallery of Elim New Jerusalem Church, Tondiarpet, Chennai — worship services, prayer meetings, scripture cards and outreach ministry.">
+  <meta name="keywords" content="ENJC gallery, Elim New Jerusalem Church photos, Tondiarpet church, Chennai church gallery, சபை படங்கள்">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://elimnewjerusalem.github.io/church/gallery.html">
   <meta property="og:title" content="Gallery | ENJC — Elim New Jerusalem Church">
-  <meta property="og:description" content="Photos from worship services, prayer meetings, and community outreach at ENJC Tondiarpet, Chennai.">
   <meta property="og:image" content="https://elimnewjerusalem.github.io/church/images/gallery/g1.webp">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ImageGallery","name":"ENJC Church Gallery","description":"Photos from Elim New Jerusalem Church worship and ministry","url":"https://elimnewjerusalem.github.io/church/gallery.html","author":{"@type":"Organization","name":"Elim New Jerusalem Church"}}
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" onload="this.rel='stylesheet'">
@@ -29,373 +25,326 @@
   <link rel="stylesheet" href="css/premium-v2.css">
 
   <style>
-    /* ═══════════════════════════════════════
-       BENTO GALLERY — Page-scoped styles
-    ═══════════════════════════════════════ */
+  /* ═══════════════════════════════════════════
+     GALLERY — Pinterest 3-col Masonry Layout
+  ═══════════════════════════════════════════ */
 
-    /* ── Hero ── */
-    .gal-hero {
-      position: relative;
-      padding: clamp(40px,6vw,80px) var(--container-px) clamp(28px,4vw,48px);
-      text-align: center;
-      background: var(--bg-3);
-      overflow: hidden;
-    }
-    .gal-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .gal-hero-inner {
-      position: relative; z-index: 1;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .gal-hero-tag {
-      display: inline-block;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); border: 1px solid var(--gold-border);
-      padding: 5px 16px; border-radius: 99px;
-      background: rgba(201,168,76,0.08); margin-bottom: 16px;
-    }
-    .gal-hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(32px,5vw,60px); font-weight: 700;
-      color: var(--text-light); line-height: 1.1; margin-bottom: 12px;
-      white-space: nowrap;
-    }
-    .gal-hero h1 em { color: var(--gold); font-style: italic; }
-    .gal-hero p {
-      font-size: 15px; color: var(--text-muted);
-      max-width: 480px; margin: 0 auto 28px; line-height: 1.7;
-    }
+  /* ── Hero ── */
+  .gal-hero {
+    position: relative;
+    padding: clamp(40px,6vw,80px) var(--container-px) clamp(28px,4vw,48px);
+    text-align: center;
+    background: var(--bg-3);
+    overflow: hidden;
+  }
+  .gal-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .gal-hero-inner {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .gal-hero-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold-border);
+    padding: 5px 16px; border-radius: 99px;
+    background: rgba(201,168,76,0.08); margin-bottom: 16px;
+  }
+  .gal-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px,6vw,64px); font-weight: 700;
+    color: var(--text-light); line-height: 1.1; margin-bottom: 12px;
+  }
+  .gal-hero h1 em { color: var(--gold); font-style: italic; }
+  .gal-hero p {
+    font-size: 15px; color: var(--text-muted);
+    max-width: 480px; margin: 0 auto 28px; line-height: 1.7;
+  }
+  .gal-stats {
+    display: flex; gap: 0; justify-content: center;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px; overflow: hidden;
+  }
+  .gal-stat { text-align: center; padding: 14px 32px; border-right: 1px solid var(--border-dark); }
+  .gal-stat:last-child { border-right: none; }
+  .gal-stat-num {
+    font-family: var(--font-display);
+    font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1;
+  }
+  .gal-stat-lbl {
+    font-size: 10px; color: var(--text-faint);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px;
+  }
 
-    /* Stats bar */
-    .gal-stats {
-      display: flex; gap: 0; justify-content: center;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border-dark);
-      border-radius: 12px; overflow: hidden;
-      margin-top: 4px;
-    }
-    .gal-stat {
-      text-align: center; padding: 14px 32px;
-      border-right: 1px solid var(--border-dark);
-    }
-    .gal-stat:last-child { border-right: none; }
-    .gal-stat-num {
-      font-family: var(--font-display);
-      font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1;
-    }
-    .gal-stat-lbl {
-      font-size: 10px; color: var(--text-faint);
-      text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px;
-    }
+  /* ── Filter Tab Bar ── */
+  .gal-filter-wrap {
+    position: sticky; top: var(--nav-height); z-index: 80;
+    background: rgba(6,15,36,0.95);
+    border-bottom: 1px solid var(--border-dark);
+    backdrop-filter: blur(16px);
+  }
+  .gal-filter-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 0 var(--container-px);
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .gal-filter-inner::-webkit-scrollbar { display: none; }
+  .gal-tab {
+    flex-shrink: 0; padding: 14px 20px;
+    font-size: 13px; font-weight: 600; font-family: var(--font-body);
+    color: var(--text-faint); background: none; border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer; transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  }
+  .gal-tab:hover { color: var(--text-light); }
+  .gal-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .gal-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; height: 18px; border-radius: 99px; padding: 0 4px;
+    background: rgba(201,168,76,0.15); color: var(--gold);
+    font-size: 9px; font-weight: 800;
+  }
+  .gal-tab.active .gal-count { background: rgba(201,168,76,0.25); }
 
-    /* ── Filter Tab Bar ── */
-    .gal-filter-wrap {
-      position: sticky; top: var(--nav-height); z-index: 80;
-      background: var(--bg-2);
-      border-bottom: 1px solid var(--border-dark);
-      backdrop-filter: blur(12px);
-    }
-    .gal-filter-inner {
-      max-width: var(--max-width); margin: 0 auto;
-      padding: 0 var(--container-px);
-      display: flex; align-items: center; gap: 4px;
-      overflow-x: auto; scrollbar-width: none;
-    }
-    .gal-filter-inner::-webkit-scrollbar { display: none; }
-    .gal-tab {
-      flex-shrink: 0;
-      padding: 14px 20px;
-      font-size: 13px; font-weight: 600; font-family: var(--font-body);
-      color: var(--text-faint); background: none; border: none;
-      border-bottom: 2px solid transparent;
-      cursor: pointer; transition: color 0.2s, border-color 0.2s;
-      white-space: nowrap;
-    }
-    .gal-tab:hover { color: var(--text-light); }
-    .gal-tab.active {
-      color: var(--gold);
-      border-bottom-color: var(--gold);
-    }
-    .gal-count {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 18px; height: 18px; border-radius: 99px;
-      background: rgba(201,168,76,0.15); color: var(--gold);
-      font-size: 9px; font-weight: 800; margin-left: 6px;
-    }
+  /* ── Masonry Container ── */
+  .gal-main {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: clamp(24px,3vw,40px) var(--container-px) clamp(32px,4vw,56px);
+  }
 
-    /* ── Main Content Area ── */
-    .gal-main {
-      max-width: var(--max-width); margin: 0 auto;
-      padding: clamp(32px,4vw,56px) var(--container-px);
-    }
+  /* Pinterest 3-col CSS columns masonry */
+  .masonry-grid {
+    columns: 3;
+    column-gap: 14px;
+  }
 
-    /* ── Bento Grid ── */
-    .bento-wrap {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-      margin-bottom: 12px;
-      align-items: stretch;
-    }
-    /* When filtering hides all items in a row, hide the whole wrap */
-    .bento-wrap:empty { display: none; }
+  /* Each card */
+  .pin-card {
+    break-inside: avoid;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: var(--bg-3);
+    display: block;
+    /* fade-in on scroll */
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease,
+                box-shadow 0.3s ease;
+  }
+  .pin-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .pin-card.hidden {
+    display: none;
+  }
+  .pin-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+  }
+  .pin-card:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
 
-    /* Bento item base */
-    .bento-item {
-      position: relative; overflow: hidden;
-      border-radius: 12px; cursor: pointer;
-      background: var(--bg-3);
-      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
-                  box-shadow 0.3s;
-    }
-    .bento-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-      z-index: 2;
-    }
-    .bento-item img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .bento-item:hover img { transform: scale(1.06); }
+  /* Image — natural height, no crop */
+  .pin-card img {
+    width: 100%; height: auto;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .pin-card:hover img { transform: scale(1.03); }
 
-    /* Gold border on focus */
-    .bento-item:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
+  /* Overlay on hover */
+  .pin-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0) 50%,
+      rgba(0,0,0,0.72) 100%);
+    opacity: 0;
+    transition: opacity 0.25s;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 12px;
+  }
+  .pin-card:hover .pin-overlay { opacity: 1; }
 
-    /* Caption overlay */
-    .bento-cap {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 32px 14px 14px;
-      background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%);
-      opacity: 0; transition: opacity 0.25s;
-    }
-    .bento-item:hover .bento-cap,
-    .bento-item:focus-visible .bento-cap { opacity: 1; }
-    .bento-cap-text {
-      font-size: 12px; font-weight: 600; color: #fff;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-    }
-    .bento-cap-sub {
-      font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 2px;
-    }
+  /* Top row — category tag + zoom icon */
+  .pin-top {
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+  .pin-tag {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 99px;
+    backdrop-filter: blur(8px);
+  }
+  .pin-tag--worship  { background: rgba(201,168,76,0.9); color: #0c1220; }
+  .pin-tag--scripture{ background: rgba(99,180,243,0.9); color: #0c1220; }
+  .pin-tag--prayer   { background: rgba(167,139,250,0.9); color: #0c1220; }
+  .pin-tag--outreach { background: rgba(74,222,128,0.9); color: #0c1220; }
 
-    /* Category tag on image */
-    .bento-tag {
-      position: absolute; top: 10px; left: 10px;
-      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 3px 9px; border-radius: 99px;
-      backdrop-filter: blur(8px);
-    }
-    .bento-tag--worship  { background: rgba(201,168,76,0.85); color: #0c1220; }
-    .bento-tag--scripture { background: rgba(99,180,243,0.85); color: #0c1220; }
-    .bento-tag--prayer   { background: rgba(167,139,250,0.85); color: #0c1220; }
-    .bento-tag--outreach { background: rgba(74,222,128,0.85); color: #0c1220; }
+  .pin-zoom {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 13px;
+    transform: scale(0.7); transition: transform 0.2s;
+  }
+  .pin-card:hover .pin-zoom { transform: scale(1); }
 
-    /* Zoom icon on hover */
-    .bento-zoom {
-      position: absolute; top: 10px; right: 10px;
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(0,0,0,0.5); backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: 14px;
-      opacity: 0; transform: scale(0.7);
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .bento-item:hover .bento-zoom {
-      opacity: 1; transform: scale(1);
-    }
+  /* Bottom row — caption */
+  .pin-cap {
+    margin-top: auto;
+  }
+  .pin-cap-title {
+    font-size: 13px; font-weight: 700; color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5); margin-bottom: 2px;
+  }
+  .pin-cap-sub {
+    font-size: 11px; color: rgba(255,255,255,0.6);
+  }
 
-    /* ── Bento size classes ── */
-    .bento-feat   { grid-column: span 8; height: 380px; }
-    .bento-side   { grid-column: span 4; height: 184px; }
-    .bento-third  { grid-column: span 4; height: 260px; }
-    .bento-half   { grid-column: span 6; height: 280px; }
-    .bento-full   { grid-column: span 12; height: 280px; }
-    .bento-std    { grid-column: span 3; height: 200px; }
+  /* Always-visible tag (no hover needed on mobile) */
+  .pin-tag-always {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 99px;
+    backdrop-filter: blur(8px); pointer-events: none;
+  }
 
-    /* ── Filter animation ── */
-    .bento-item {
-      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
-                  box-shadow 0.3s,
-                  opacity 0.3s,
-                  scale 0.3s;
-    }
-    .bento-item.hidden {
-      display: none;
-    }
-    .bento-item.hiding {
-      opacity: 0; scale: 0.95; pointer-events: none;
-      transition: opacity 0.2s, scale 0.2s;
-    }
+  /* ── Empty state ── */
+  .gal-empty {
+    display: none; text-align: center;
+    padding: 80px 20px; color: var(--text-faint); font-size: 15px;
+  }
+  .gal-empty.show { display: block; }
 
-    /* ── Empty state ── */
-    .gal-empty {
-      grid-column: 1/-1;
-      padding: 80px 20px; text-align: center;
-      display: none;
-    }
-    .gal-empty.show { display: block; }
-    .gal-empty p { color: var(--text-faint); font-size: 15px; }
+  /* ── Lightbox ── */
+  .lb {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.93); backdrop-filter: blur(16px);
+    align-items: center; justify-content: center;
+  }
+  .lb.open { display: flex; }
+  .lb-inner {
+    position: relative; display: flex; flex-direction: column;
+    align-items: center; max-width: 92vw; max-height: 92vh;
+  }
+  .lb-img {
+    max-width: 88vw; max-height: 78vh;
+    object-fit: contain; border-radius: 12px;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+    display: block;
+  }
+  .lb-info { margin-top: 14px; text-align: center; }
+  .lb-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .lb-sub   { font-size: 12px; color: rgba(255,255,255,0.45); }
 
-    /* ── Lightbox ── */
-    .bento-lb {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
-      align-items: center; justify-content: center;
-    }
-    .bento-lb.open { display: flex; }
+  .lb-close {
+    position: fixed; top: 16px; right: 16px;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; backdrop-filter: blur(8px);
+  }
+  .lb-close:hover { background: rgba(255,255,255,0.22); }
+  .lb-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+    color: #fff; font-size: 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; backdrop-filter: blur(8px);
+  }
+  .lb-nav:hover { background: rgba(255,255,255,0.2); }
+  .lb-prev { left: 14px; }
+  .lb-next { right: 14px; }
+  .lb-counter {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    font-size: 12px; color: rgba(255,255,255,0.45);
+    background: rgba(0,0,0,0.45); padding: 4px 14px; border-radius: 99px;
+    backdrop-filter: blur(8px); pointer-events: none;
+  }
+  .lb-thumbs {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; padding: 8px 10px; border-radius: 12px;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(12px);
+    max-width: 90vw; overflow-x: auto; scrollbar-width: none;
+  }
+  .lb-thumbs::-webkit-scrollbar { display: none; }
+  .lb-thumb {
+    width: 42px; height: 42px; border-radius: 7px; overflow: hidden;
+    flex-shrink: 0; cursor: pointer; opacity: 0.45;
+    border: 2px solid transparent; transition: opacity 0.2s, border-color 0.2s;
+  }
+  .lb-thumb.active { opacity: 1; border-color: var(--gold); }
+  .lb-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-    .lb-container {
-      position: relative; max-width: 90vw; max-height: 90vh;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .lb-img-wrap {
-      position: relative;
-    }
-    .lb-main-img {
-      max-width: 90vw; max-height: 80vh;
-      object-fit: contain; border-radius: 10px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-      display: block;
-    }
-    .lb-info {
-      margin-top: 14px; text-align: center;
-    }
-    .lb-title {
-      font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px;
-    }
-    .lb-sub {
-      font-size: 12px; color: rgba(255,255,255,0.5);
-    }
+  /* ── CTA ── */
+  .gal-cta {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border-dark);
+    padding: clamp(48px,6vw,72px) var(--container-px);
+    text-align: center;
+  }
+  .gal-cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px,4vw,42px); font-weight: 700;
+    color: var(--text-light); margin-bottom: 10px;
+  }
+  .gal-cta h2 em { color: var(--gold); font-style: italic; }
+  .gal-cta p { font-size: 15px; color: var(--text-muted); margin-bottom: 26px; }
+  .gal-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 12px 24px; border-radius: 99px;
+    background: var(--gold); color: var(--bg);
+    font-weight: 700; font-size: 14px; text-decoration: none;
+    font-family: var(--font-body); transition: opacity 0.2s;
+  }
+  .btn-gold:hover { opacity: 0.88; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 12px 24px; border-radius: 99px;
+    background: transparent; color: var(--text-light);
+    border: 1px solid var(--border-mid);
+    font-weight: 600; font-size: 14px; text-decoration: none;
+    font-family: var(--font-body); transition: border-color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold-border); }
 
-    /* Nav buttons */
-    .lb-btn {
-      position: fixed; top: 50%; transform: translateY(-50%);
-      width: 48px; height: 48px; border-radius: 50%;
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-      color: #fff; font-size: 20px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s; backdrop-filter: blur(8px);
-    }
-    .lb-btn:hover { background: rgba(255,255,255,0.2); }
-    .lb-prev-btn { left: 16px; }
-    .lb-next-btn { right: 16px; }
-    .lb-close-btn {
-      position: fixed; top: 16px; right: 16px;
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-      color: #fff; font-size: 18px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      backdrop-filter: blur(8px); transition: background 0.2s;
-    }
-    .lb-close-btn:hover { background: rgba(255,255,255,0.2); }
-
-    /* Counter */
-    .lb-counter {
-      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-      font-size: 12px; color: rgba(255,255,255,0.5);
-      background: rgba(0,0,0,0.4); padding: 4px 14px; border-radius: 99px;
-      backdrop-filter: blur(8px);
-    }
-
-    /* Thumbnail strip */
-    .lb-thumbs {
-      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 6px;
-      background: rgba(0,0,0,0.5); padding: 8px; border-radius: 12px;
-      backdrop-filter: blur(12px);
-      max-width: 90vw; overflow-x: auto; scrollbar-width: none;
-    }
-    .lb-thumbs::-webkit-scrollbar { display: none; }
-    .lb-thumb {
-      width: 44px; height: 44px; border-radius: 6px; overflow: hidden;
-      flex-shrink: 0; cursor: pointer; opacity: 0.5;
-      border: 2px solid transparent; transition: opacity 0.2s, border-color 0.2s;
-    }
-    .lb-thumb.active { opacity: 1; border-color: var(--gold); }
-    .lb-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* ── CTA Section ── */
-    .gal-cta {
-      background: var(--bg-2);
-      border-top: 1px solid var(--border-dark);
-      padding: clamp(48px,6vw,72px) var(--container-px);
-      text-align: center;
-    }
-    .gal-cta-title {
-      font-family: var(--font-display);
-      font-size: clamp(28px,4vw,42px); font-weight: 700;
-      color: var(--text-light); margin-bottom: 12px;
-    }
-    .gal-cta-title em { color: var(--gold); font-style: italic; }
-    .gal-cta-sub {
-      font-size: 15px; color: var(--text-muted); margin-bottom: 28px;
-    }
-    .gal-cta-btns {
-      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-    }
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 12px 24px; border-radius: 99px;
-      background: var(--gold); color: var(--bg); font-weight: 700;
-      font-size: 14px; text-decoration: none; transition: opacity 0.2s;
-      font-family: var(--font-body);
-    }
-    .btn-gold:hover { opacity: 0.88; }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 12px 24px; border-radius: 99px;
-      background: transparent; color: var(--text-light);
-      border: 1px solid var(--border-mid); font-weight: 600;
-      font-size: 14px; text-decoration: none; transition: border-color 0.2s;
-      font-family: var(--font-body);
-    }
-    .btn-outline:hover { border-color: var(--gold-border); }
-
-    /* ── Responsive ── */
-    @media (max-width: 1100px) {
-      .bento-feat  { grid-column: span 8; height: 320px; }
-      .bento-side  { grid-column: span 4; height: 154px; }
-      .bento-third { grid-column: span 4; height: 220px; }
-      .bento-half  { grid-column: span 6; height: 240px; }
-      .bento-std   { grid-column: span 3; height: 180px; }
-    }
-    @media (max-width: 900px) {
-      .bento-feat  { grid-column: span 12; height: 300px; }
-      .bento-side  { grid-column: span 6; height: 170px; }
-      .bento-third { grid-column: span 6; height: 190px; }
-      .bento-half  { grid-column: span 6; height: 210px; }
-      .bento-std   { grid-column: span 6; height: 170px; }
-    }
-    @media (max-width: 600px) {
-      .bento-wrap  { gap: 8px; }
-      .bento-feat  { grid-column: span 12; height: 220px; }
-      .bento-side  { grid-column: span 6; height: 150px; }
-      .bento-third { grid-column: span 6; height: 160px; }
-      .bento-half  { grid-column: span 12; height: 200px; }
-      .bento-full  { grid-column: span 12; height: 200px; }
-      .bento-std   { grid-column: span 6; height: 150px; }
-      .lb-btn      { width: 36px; height: 36px; font-size: 16px; }
-      .lb-thumbs   { display: none; }
-    }
-    @media (max-width: 420px) {
-      .bento-side  { grid-column: span 12; height: 180px; }
-      .bento-third { grid-column: span 12; height: 180px; }
-      .bento-std   { grid-column: span 12; height: 180px; }
-    }
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .masonry-grid { columns: 2; column-gap: 10px; }
+    .pin-card     { margin-bottom: 10px; }
+    .pin-overlay  { opacity: 1; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.65) 100%); }
+    .pin-zoom     { transform: scale(1); }
+    .gal-tab      { padding: 12px 14px; font-size: 12px; }
+    .lb-nav       { width: 38px; height: 38px; font-size: 17px; }
+    .lb-thumbs    { display: none; }
+  }
+  @media (max-width: 480px) {
+    .masonry-grid { columns: 2; column-gap: 8px; }
+    .pin-card     { margin-bottom: 8px; border-radius: 10px; }
+    .gal-stat     { padding: 12px 20px; }
+    .gal-stat-num { font-size: 20px; }
+  }
   </style>
 </head>
 
 <body>
   <a href="#main" class="skip-to-content">Skip to main content</a>
+
   <header>
     <nav class="site-nav" aria-label="Primary navigation">
       <div class="container">
@@ -406,7 +355,7 @@
             <div class="nav-logo__sub">Elim New Jerusalem Church · Tondiarpet</div>
           </div>
         </a>
-        <ul class="nav-links" id="nav-links" role="list" aria-label="Main navigation">
+        <ul class="nav-links" id="nav-links" role="list">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="ministries.html" class="nav-link">Ministries</a></li>
@@ -419,8 +368,7 @@
         <div class="nav-controls">
           <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
         </div>
-        <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
-          aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
           <span class="nav-hamburger__line"></span>
           <span class="nav-hamburger__line"></span>
           <span class="nav-hamburger__line"></span>
@@ -441,196 +389,279 @@
 
   <main id="main">
 
-    <!-- ── Hero ── -->
+    <!-- Hero -->
     <section class="gal-hero">
       <div class="gal-hero-inner">
-        <div class="gal-hero-tag">Our Community</div>
+        <span class="gal-hero-tag">Our Community</span>
         <h1>Church <em>Gallery</em></h1>
         <p>Moments of worship, prayer, fellowship and service captured in Christ.</p>
         <div class="gal-stats">
-          <div class="gal-stat"><div class="gal-stat-num" id="stat-count">10</div><div class="gal-stat-lbl">Photos</div></div>
-          <div class="gal-stat"><div class="gal-stat-num">4</div><div class="gal-stat-lbl">Categories</div></div>
-          <div class="gal-stat"><div class="gal-stat-num">2026</div><div class="gal-stat-lbl">Latest Year</div></div>
+          <div class="gal-stat">
+            <div class="gal-stat-num" id="stat-count">10</div>
+            <div class="gal-stat-lbl">Photos</div>
+          </div>
+          <div class="gal-stat">
+            <div class="gal-stat-num">4</div>
+            <div class="gal-stat-lbl">Categories</div>
+          </div>
+          <div class="gal-stat">
+            <div class="gal-stat-num">2026</div>
+            <div class="gal-stat-lbl">Latest Year</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Filter Tabs ── -->
-    <div class="gal-filter-wrap" role="navigation" aria-label="Gallery filter">
+    <!-- Filter Tabs -->
+    <div class="gal-filter-wrap" role="navigation" aria-label="Gallery categories">
       <div class="gal-filter-inner">
-        <button class="gal-tab active" data-filter="all">
-          All <span class="gal-count" id="cnt-all">10</span>
-        </button>
-        <button class="gal-tab" data-filter="worship">
-          Worship <span class="gal-count" id="cnt-worship">3</span>
-        </button>
-        <button class="gal-tab" data-filter="scripture">
-          Scripture <span class="gal-count" id="cnt-scripture">4</span>
-        </button>
-        <button class="gal-tab" data-filter="prayer">
-          Prayer <span class="gal-count" id="cnt-prayer">2</span>
-        </button>
-        <button class="gal-tab" data-filter="outreach">
-          Outreach <span class="gal-count" id="cnt-outreach">1</span>
-        </button>
+        <button class="gal-tab active" data-filter="all">All <span class="gal-count">10</span></button>
+        <button class="gal-tab" data-filter="scripture">Scripture <span class="gal-count">4</span></button>
+        <button class="gal-tab" data-filter="worship">Worship <span class="gal-count">3</span></button>
+        <button class="gal-tab" data-filter="prayer">Prayer <span class="gal-count">2</span></button>
+        <button class="gal-tab" data-filter="outreach">Outreach <span class="gal-count">1</span></button>
       </div>
     </div>
 
-    <!-- ── Bento Gallery Grid ── -->
-    <section class="gal-main" aria-label="Photo gallery">
-      <div class="bento-wrap" id="bento-grid">
+    <!-- Masonry Grid -->
+    <section class="gal-main" aria-label="Church photo gallery">
 
-        <!-- g1: Featured big — Scripture -->
-        <div class="bento-item bento-feat reveal" tabindex="0"
-             data-cat="scripture" data-src="images/gallery/g1.webp"
-             data-title="Promise 2026" data-sub="ENJC Scripture Card">
-          <img src="images/gallery/g1.webp" alt="ENJC Promise 2026 - நீ என் பார்வைக்கு அருமையானபடியினால்" loading="eager">
-          <span class="bento-tag bento-tag--scripture">Scripture</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Promise 2026</div><div class="bento-cap-sub">Isaiah 43:4</div></div>
+      <div class="masonry-grid" id="masonry-grid">
+
+        <!-- g1 — Scripture (landscape 1200×800) -->
+        <div class="pin-card" tabindex="0" data-cat="scripture"
+             data-src="images/gallery/g1.webp"
+             data-title="Promise 2026" data-sub="Isaiah 43:4 — ENJC Scripture Card">
+          <img src="images/gallery/g1.webp"
+               alt="ENJC Promise 2026 scripture card — நீ என் பார்வைக்கு அருமையானபடியினால் Isaiah 43:4"
+               loading="eager" width="1200" height="800">
+          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--scripture">Scripture</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Promise 2026</div>
+              <div class="pin-cap-sub">Isaiah 43:4</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g2: Side top — Scripture -->
-        <div class="bento-item bento-side reveal" tabindex="0"
-             data-cat="scripture" data-src="images/gallery/g2.webp"
-             data-title="Promise 2025" data-sub="Isaiah 8:18">
-          <img src="images/gallery/g2.webp" alt="Promise 2025 - Behold I and My Children Isaiah 8:18" loading="eager">
-          <span class="bento-tag bento-tag--scripture">Scripture</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Promise 2025</div><div class="bento-cap-sub">Isaiah 8:18</div></div>
+        <!-- g6 — Worship (portrait 506×900) -->
+        <div class="pin-card" tabindex="0" data-cat="worship"
+             data-src="images/gallery/g6.webp"
+             data-title="Lion & Eagle" data-sub="God's Majesty — ENJC Worship">
+          <img src="images/gallery/g6.webp"
+               alt="Lion and eagle illustration — God's majesty ENJC Tondiarpet worship"
+               loading="eager" width="506" height="900">
+          <span class="pin-tag-always pin-tag--worship">Worship</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--worship">Worship</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Lion &amp; Eagle</div>
+              <div class="pin-cap-sub">God's Majesty</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g3: Side bottom — Worship -->
-        <div class="bento-item bento-side reveal" tabindex="0"
-             data-cat="worship" data-src="images/gallery/g3.webp"
-             data-title="White Dove" data-sub="In Spirit and Truth">
-          <img src="images/gallery/g3.webp" alt="White dove - worship in spirit and truth" loading="eager">
-          <span class="bento-tag bento-tag--worship">Worship</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Worship</div><div class="bento-cap-sub">In Spirit and Truth</div></div>
+        <!-- g8 — Prayer (square 900×900) -->
+        <div class="pin-card" tabindex="0" data-cat="prayer"
+             data-src="images/gallery/g8.webp"
+             data-title="Blessed New Year" data-sub="Pas. A. Karthik Daniel — ENJC">
+          <img src="images/gallery/g8.webp"
+               alt="Blessed New Year — Pastor A. Karthik Daniel Elim New Jerusalem Church Tondiarpet"
+               loading="eager" width="900" height="900">
+          <span class="pin-tag-always pin-tag--prayer">Prayer</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--prayer">Prayer</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Blessed New Year</div>
+              <div class="pin-cap-sub">Pas. A. Karthik Daniel</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g4: Third — Scripture -->
-        <div class="bento-item bento-third reveal" tabindex="0"
-             data-cat="scripture" data-src="images/gallery/g4.webp"
-             data-title="Promise 2025" data-sub="Mount Sion">
-          <img src="images/gallery/g4.webp" alt="Promise 2025 - Behold I and My Children Mount Sion" loading="lazy">
-          <span class="bento-tag bento-tag--scripture">Scripture</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Promise 2025</div><div class="bento-cap-sub">Isaiah 8:18</div></div>
+        <!-- g2 — Scripture (landscape) -->
+        <div class="pin-card" tabindex="0" data-cat="scripture"
+             data-src="images/gallery/g2.webp"
+             data-title="Promise 2025" data-sub="Isaiah 8:18 — Behold I and My Children">
+          <img src="images/gallery/g2.webp"
+               alt="Promise 2025 scripture card — Behold I and My Children Isaiah 8:18 ENJC"
+               loading="lazy" width="1200" height="800">
+          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--scripture">Scripture</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Promise 2025</div>
+              <div class="pin-cap-sub">Isaiah 8:18</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g5: Third — Worship -->
-        <div class="bento-item bento-third reveal" tabindex="0"
-             data-cat="worship" data-src="images/gallery/g5.webp"
-             data-title="Anointing" data-sub="Kingdom of God">
-          <img src="images/gallery/g5.webp" alt="Anointing - Kingdom of God illustration ENJC" loading="lazy">
-          <span class="bento-tag bento-tag--worship">Worship</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Anointing</div><div class="bento-cap-sub">Kingdom of God</div></div>
+        <!-- g9 — Worship (landscape) -->
+        <div class="pin-card" tabindex="0" data-cat="worship"
+             data-src="images/gallery/g9.webp"
+             data-title="Fire & Eagle" data-sub="God's Power — ENJC">
+          <img src="images/gallery/g9.webp"
+               alt="Fire and eagle — God's power and glory ENJC Elim New Jerusalem Church"
+               loading="lazy" width="1200" height="800">
+          <span class="pin-tag-always pin-tag--worship">Worship</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--worship">Worship</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Fire &amp; Eagle</div>
+              <div class="pin-cap-sub">God's Power</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g6: Third — Worship -->
-        <div class="bento-item bento-third reveal" tabindex="0"
-             data-cat="worship" data-src="images/gallery/g6.webp"
-             data-title="Lion & Eagle" data-sub="God's Majesty">
-          <img src="images/gallery/g6.webp" alt="Lion and Eagle - God's majesty and power" loading="lazy">
-          <span class="bento-tag bento-tag--worship">Worship</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Lion &amp; Eagle</div><div class="bento-cap-sub">God's Majesty</div></div>
+        <!-- g10 — Prayer (landscape) -->
+        <div class="pin-card" tabindex="0" data-cat="prayer"
+             data-src="images/gallery/g10.webp"
+             data-title="Night Prayer" data-sub="Daily 10:30 PM — ENJC Tondiarpet">
+          <img src="images/gallery/g10.webp"
+               alt="Night prayer anointing — ENJC Tondiarpet Chennai daily 10:30 PM prayer"
+               loading="lazy" width="1200" height="800">
+          <span class="pin-tag-always pin-tag--prayer">Prayer</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--prayer">Prayer</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Night Prayer</div>
+              <div class="pin-cap-sub">Daily 10:30 PM</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g7: Half — Scripture -->
-        <div class="bento-item bento-half reveal" tabindex="0"
-             data-cat="scripture" data-src="images/gallery/g7.webp"
-             data-title="வாழ்க 2024" data-sub="ENJC Blessing Card">
-          <img src="images/gallery/g7.webp" alt="வாழ்க 2024 ENJC blessing scripture card Tondiarpet" loading="lazy">
-          <span class="bento-tag bento-tag--scripture">Scripture</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">வாழ்க 2024</div><div class="bento-cap-sub">ENJC Blessing</div></div>
+        <!-- g3 — Worship (landscape) -->
+        <div class="pin-card" tabindex="0" data-cat="worship"
+             data-src="images/gallery/g3.webp"
+             data-title="White Dove" data-sub="Worship in Spirit and Truth — ENJC">
+          <img src="images/gallery/g3.webp"
+               alt="White dove — worship in spirit and truth Elim New Jerusalem Church"
+               loading="lazy" width="1200" height="800">
+          <span class="pin-tag-always pin-tag--worship">Worship</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--worship">Worship</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">White Dove</div>
+              <div class="pin-cap-sub">In Spirit and Truth</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g8: Half — Prayer -->
-        <div class="bento-item bento-half reveal" tabindex="0"
-             data-cat="prayer" data-src="images/gallery/g8.webp"
-             data-title="Blessed New Year" data-sub="Pas. A. Karthik Daniel">
-          <img src="images/gallery/g8.webp" alt="Blessed New Year - Pastor A. Karthik Daniel ENJC Tondiarpet" loading="lazy">
-          <span class="bento-tag bento-tag--prayer">Prayer</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Blessed New Year</div><div class="bento-cap-sub">Pas. A. Karthik Daniel</div></div>
+        <!-- g4 — Scripture (landscape) -->
+        <div class="pin-card" tabindex="0" data-cat="scripture"
+             data-src="images/gallery/g4.webp"
+             data-title="Promise 2025" data-sub="Mount Sion — Isaiah 8:18">
+          <img src="images/gallery/g4.webp"
+               alt="Promise 2025 — Behold I and My Children Mount Sion Isaiah 8:18 ENJC"
+               loading="lazy" width="1200" height="800">
+          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--scripture">Scripture</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Promise 2025</div>
+              <div class="pin-cap-sub">Isaiah 8:18</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g9: Std — Worship -->
-        <div class="bento-item bento-std reveal" tabindex="0"
-             data-cat="worship" data-src="images/gallery/g9.webp"
-             data-title="Fire & Eagle" data-sub="God's Power">
-          <img src="images/gallery/g9.webp" alt="Fire and eagle - God's power and glory ENJC" loading="lazy">
-          <span class="bento-tag bento-tag--worship">Worship</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Fire &amp; Eagle</div><div class="bento-cap-sub">God's Power</div></div>
+        <!-- g5 — Outreach (landscape) -->
+        <div class="pin-card" tabindex="0" data-cat="outreach"
+             data-src="images/gallery/g5.webp"
+             data-title="Outreach Ministry" data-sub="ENJC Chennai Community">
+          <img src="images/gallery/g5.webp"
+               alt="ENJC outreach ministry — Elim New Jerusalem Church Tondiarpet Chennai community"
+               loading="lazy" width="1200" height="800">
+          <span class="pin-tag-always pin-tag--outreach">Outreach</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--outreach">Outreach</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">Outreach</div>
+              <div class="pin-cap-sub">ENJC Community</div>
+            </div>
+          </div>
         </div>
 
-        <!-- g10: Std — Prayer -->
-        <div class="bento-item bento-std reveal" tabindex="0"
-             data-cat="prayer" data-src="images/gallery/g10.webp"
-             data-title="Night Prayer" data-sub="Daily 10:30 PM">
-          <img src="images/gallery/g10.webp" alt="Night prayer anointing - ENJC daily 10:30 PM prayer" loading="lazy">
-          <span class="bento-tag bento-tag--prayer">Prayer</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Night Prayer</div><div class="bento-cap-sub">Daily 10:30 PM</div></div>
-        </div>
-
-        <!-- g5b: Std — Outreach (reuse g5) -->
-        <div class="bento-item bento-std reveal" tabindex="0"
-             data-cat="outreach" data-src="images/gallery/g5.webp"
-             data-title="Outreach Ministry" data-sub="ENJC Chennai">
-          <img src="images/gallery/g5.webp" alt="ENJC outreach ministry Chennai Tondiarpet" loading="lazy">
-          <span class="bento-tag bento-tag--outreach">Outreach</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">Outreach</div><div class="bento-cap-sub">ENJC Ministry</div></div>
-        </div>
-
-        <!-- g10b: Std — Prayer (reuse g10) -->
-        <div class="bento-item bento-std reveal" tabindex="0"
-             data-cat="worship" data-src="images/gallery/g6.webp"
-             data-title="His Glory" data-sub="ENJC Worship">
-          <img src="images/gallery/g6.webp" alt="His glory - ENJC worship art" loading="lazy">
-          <span class="bento-tag bento-tag--worship">Worship</span>
-          <div class="bento-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>
-          <div class="bento-cap"><div class="bento-cap-text">His Glory</div><div class="bento-cap-sub">ENJC Worship</div></div>
+        <!-- g7 — Scripture (landscape 1200×848) -->
+        <div class="pin-card" tabindex="0" data-cat="scripture"
+             data-src="images/gallery/g7.webp"
+             data-title="வாழ்க 2024" data-sub="ENJC Blessing — Elim New Jerusalem Church">
+          <img src="images/gallery/g7.webp"
+               alt="வாழ்க 2024 ENJC blessing scripture card — Elim New Jerusalem Church Tondiarpet"
+               loading="lazy" width="1200" height="848">
+          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
+          <div class="pin-overlay">
+            <div class="pin-top">
+              <span class="pin-tag pin-tag--scripture">Scripture</span>
+              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
+            </div>
+            <div class="pin-cap">
+              <div class="pin-cap-title">வாழ்க 2024</div>
+              <div class="pin-cap-sub">ENJC Blessing</div>
+            </div>
+          </div>
         </div>
 
       </div>
+
+      <div class="gal-empty" id="gal-empty">
+        <p>No photos in this category yet.</p>
+      </div>
+
     </section>
 
-    <!-- ── Lightbox ── -->
-    <div class="bento-lb" id="bentoLb" role="dialog" aria-modal="true" aria-label="Photo viewer">
-      <div class="lb-counter" id="lbCounter">1 / 10</div>
-      <button class="lb-close-btn" id="lbClose" aria-label="Close">
+    <!-- Lightbox -->
+    <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <span class="lb-counter" id="lb-counter">1 / 10</span>
+      <button class="lb-close" id="lb-close" aria-label="Close lightbox">
         <i class="ti ti-x" aria-hidden="true"></i>
       </button>
-      <button class="lb-btn lb-prev-btn" id="lbPrev" aria-label="Previous">
+      <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous photo">
         <i class="ti ti-chevron-left" aria-hidden="true"></i>
       </button>
-      <div class="lb-container">
-        <div class="lb-img-wrap">
-          <img class="lb-main-img" id="lbImg" src="" alt="">
-        </div>
+      <div class="lb-inner">
+        <img class="lb-img" id="lb-img" src="" alt="">
         <div class="lb-info">
-          <div class="lb-title" id="lbTitle"></div>
-          <div class="lb-sub" id="lbSub"></div>
+          <div class="lb-title" id="lb-title"></div>
+          <div class="lb-sub"   id="lb-sub"></div>
         </div>
       </div>
-      <button class="lb-btn lb-next-btn" id="lbNext" aria-label="Next">
+      <button class="lb-nav lb-next" id="lb-next" aria-label="Next photo">
         <i class="ti ti-chevron-right" aria-hidden="true"></i>
       </button>
-      <div class="lb-thumbs" id="lbThumbs"></div>
+      <div class="lb-thumbs" id="lb-thumbs"></div>
     </div>
 
-    <!-- ── CTA ── -->
-    <section class="gal-cta" aria-labelledby="cta-title">
-      <h2 class="gal-cta-title" id="cta-title">Come <em>Join Us</em></h2>
-      <p class="gal-cta-sub">Three Sunday services every week. All are welcome in Jesus' name.</p>
+    <!-- CTA -->
+    <section class="gal-cta" aria-label="Join us">
+      <h2>Come <em>Join Us</em></h2>
+      <p>Three Sunday services every week. All are welcome in Jesus' name.</p>
       <div class="gal-cta-btns">
         <a href="contact.html" class="btn-gold">
           <i class="ti ti-map-pin" aria-hidden="true"></i> Visit Us
@@ -643,25 +674,24 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer class="footer" role="contentinfo">
     <div class="footer-grid container">
       <div class="footer-brand">
         <div class="footer-brand-name">ENJC · Elim New Jerusalem Church</div>
         <div class="footer-tagline">"Because you are precious in my sight" — Isaiah 43:4</div>
         <address class="footer-addr">
-          No.110E, Elaya Street<br>
-          Tondiarpet, Chennai – 600 081<br>
+          No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081<br>
           <a href="tel:+919444345102">+91 94443 45102</a>
         </address>
         <div class="footer-social">
-          <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube" aria-hidden="true"></i></a>
-          <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
-          <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook" aria-hidden="true"></i></a>
-          <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@enjcmedia" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+          <a href="https://www.instagram.com/elimnewjerusalemchurch" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+          <a href="https://www.facebook.com/enjcmedia" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+          <a href="https://wa.me/919444345102" class="social-icon" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
         </div>
       </div>
-      <nav aria-label="Footer quick links">
+      <nav aria-label="Quick links">
         <div class="footer-col-title">Quick Links</div>
         <ul class="footer-links">
           <li><a href="index.html">Home</a></li>
@@ -672,7 +702,7 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <nav aria-label="Footer Bible tools">
+      <nav aria-label="Bible tools">
         <div class="footer-col-title">Bible Tools</div>
         <ul class="footer-links">
           <li><a href="bible.html">Bible Reader</a></li>
@@ -697,7 +727,7 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
     <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
   </a>
   <button id="scroll-top-btn" class="scroll-top" aria-label="Back to top">
@@ -705,19 +735,19 @@
   </button>
   <nav class="mob-nav" aria-label="Mobile navigation">
     <div class="mob-nav-inner">
-      <a href="index.html" class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
-      <a href="about.html" class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
-      <a href="bible.html" class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
-      <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
-      <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
+      <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
+      <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
+      <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
+      <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
+      <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
     </div>
   </nav>
 
   <script>
   (function(){
     /* ── Theme ── */
-    var stored = localStorage.getItem('enjc-theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', stored);
+    var t = localStorage.getItem('enjc-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
 
     /* ── Mobile menu ── */
     var hbtn = document.getElementById('nav-hamburger');
@@ -740,41 +770,20 @@
       });
     }
 
-    /* ── Gather all bento items ── */
-    var allItems = Array.from(document.querySelectorAll('#bento-grid .bento-item'));
-
-    /* ── Filter Tabs ── */
-    var tabs = document.querySelectorAll('.gal-tab');
-    var currentFilter = 'all';
+    /* ── Cards & Filter ── */
+    var allCards = Array.from(document.querySelectorAll('.pin-card'));
+    var tabs     = document.querySelectorAll('.gal-tab');
+    var empty    = document.getElementById('gal-empty');
 
     function applyFilter(cat){
-      currentFilter = cat;
-      var visible = [];
-
-      // First pass: add hiding class for animation
-      allItems.forEach(function(item){
-        var match = cat === 'all' || item.dataset.cat === cat;
-        if (!match) {
-          item.classList.add('hiding');
-        } else {
-          item.classList.remove('hiding');
-          item.classList.remove('hidden');
-          visible.push(item);
-        }
+      var visible = 0;
+      allCards.forEach(function(c){
+        var match = cat === 'all' || c.dataset.cat === cat;
+        c.classList.toggle('hidden', !match);
+        if(match) visible++;
       });
-
-      // After animation, set display:none
-      setTimeout(function(){
-        allItems.forEach(function(item){
-          var match = cat === 'all' || item.dataset.cat === cat;
-          item.classList.toggle('hidden', !match);
-          item.classList.remove('hiding');
-        });
-        // (single grid — no row hiding needed)
-      }, 220);
-
-      // Update stat count
-      document.getElementById('stat-count').textContent = visible.length;
+      document.getElementById('stat-count').textContent = visible;
+      empty.classList.toggle('show', visible === 0);
     }
 
     tabs.forEach(function(tab){
@@ -785,54 +794,69 @@
       });
     });
 
+    /* ── Scroll reveal ── */
+    if(window.IntersectionObserver){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            en.target.classList.add('visible');
+            obs.unobserve(en.target);
+          }
+        });
+      }, {threshold: 0.05, rootMargin: '0px 0px -40px 0px'});
+      allCards.forEach(function(c){ obs.observe(c); });
+    } else {
+      allCards.forEach(function(c){ c.classList.add('visible'); });
+    }
+    // Fallback — show all after 1.5s
+    setTimeout(function(){
+      allCards.forEach(function(c){ c.classList.add('visible'); });
+    }, 1500);
+
     /* ── Lightbox ── */
-    var lb = document.getElementById('bentoLb');
-    var lbImg = document.getElementById('lbImg');
-    var lbTitle = document.getElementById('lbTitle');
-    var lbSub = document.getElementById('lbSub');
-    var lbCounter = document.getElementById('lbCounter');
-    var lbThumbs = document.getElementById('lbThumbs');
-    var curIdx = 0;
+    var lb      = document.getElementById('lb');
+    var lbImg   = document.getElementById('lb-img');
+    var lbTitle = document.getElementById('lb-title');
+    var lbSub   = document.getElementById('lb-sub');
+    var lbCnt   = document.getElementById('lb-counter');
+    var lbThumbs= document.getElementById('lb-thumbs');
+    var curIdx  = 0;
 
     function getVisible(){
-      return allItems.filter(function(i){ return !i.classList.contains('hidden'); });
+      return allCards.filter(function(c){ return !c.classList.contains('hidden'); });
     }
 
     function buildThumbs(items){
       lbThumbs.innerHTML = '';
-      items.forEach(function(item, i){
+      items.forEach(function(card, i){
         var th = document.createElement('div');
         th.className = 'lb-thumb' + (i === curIdx ? ' active' : '');
-        th.innerHTML = '<img src="' + item.dataset.src + '" alt="">';
-        th.addEventListener('click', function(){ showLb(i, items); });
+        th.innerHTML = '<img src="' + card.dataset.src + '" alt="">';
+        th.addEventListener('click', function(){ showSlide(i, items); });
         lbThumbs.appendChild(th);
       });
     }
 
-    function showLb(idx, items){
+    function showSlide(idx, items){
       curIdx = idx;
-      var item = items[idx];
-      lbImg.src = item.dataset.src;
-      lbImg.alt = item.dataset.title || '';
-      lbTitle.textContent = item.dataset.title || '';
-      lbSub.textContent = item.dataset.sub || '';
-      lbCounter.textContent = (idx + 1) + ' / ' + items.length;
-      // Update thumbs
-      var thumbEls = lbThumbs.querySelectorAll('.lb-thumb');
-      thumbEls.forEach(function(t,i){ t.classList.toggle('active', i === idx); });
-      // Scroll thumb into view
-      if(thumbEls[idx]) thumbEls[idx].scrollIntoView({inline:'center', behavior:'smooth'});
+      var c  = items[idx];
+      lbImg.src        = c.dataset.src;
+      lbImg.alt        = c.querySelector('img').alt;
+      lbTitle.textContent = c.dataset.title || '';
+      lbSub.textContent   = c.dataset.sub   || '';
+      lbCnt.textContent   = (idx + 1) + ' / ' + items.length;
+      var ths = lbThumbs.querySelectorAll('.lb-thumb');
+      ths.forEach(function(th, i){ th.classList.toggle('active', i === idx); });
+      if(ths[idx]) ths[idx].scrollIntoView({inline:'center', behavior:'smooth'});
     }
 
     function openLb(idx){
       var items = getVisible();
-      if(!items.length) return;
-      curIdx = idx;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
       buildThumbs(items);
-      showLb(curIdx, items);
-      document.getElementById('lbClose').focus();
+      showSlide(idx, items);
+      document.getElementById('lb-close').focus();
     }
 
     function closeLb(){
@@ -842,56 +866,35 @@
 
     function navLb(dir){
       var items = getVisible();
-      curIdx = (curIdx + dir + items.length) % items.length;
-      showLb(curIdx, items);
+      showSlide((curIdx + dir + items.length) % items.length, items);
     }
 
-    allItems.forEach(function(item, idx){
-      item.addEventListener('click', function(){
-        var visible = getVisible();
-        var visIdx = visible.indexOf(item);
-        openLb(visIdx >= 0 ? visIdx : 0);
+    allCards.forEach(function(card){
+      card.addEventListener('click', function(){
+        var vis = getVisible();
+        openLb(Math.max(0, vis.indexOf(card)));
       });
-      item.addEventListener('keydown', function(e){
+      card.addEventListener('keydown', function(e){
         if(e.key === 'Enter' || e.key === ' '){
           e.preventDefault();
-          var visible = getVisible();
-          var visIdx = visible.indexOf(item);
-          openLb(visIdx >= 0 ? visIdx : 0);
+          var vis = getVisible();
+          openLb(Math.max(0, vis.indexOf(card)));
         }
       });
     });
 
-    document.getElementById('lbClose').addEventListener('click', closeLb);
-    document.getElementById('lbPrev').addEventListener('click', function(){ navLb(-1); });
-    document.getElementById('lbNext').addEventListener('click', function(){ navLb(1); });
+    document.getElementById('lb-close').addEventListener('click', closeLb);
+    document.getElementById('lb-prev').addEventListener('click', function(){ navLb(-1); });
+    document.getElementById('lb-next').addEventListener('click', function(){ navLb(1); });
     lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
-
     document.addEventListener('keydown', function(e){
       if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape') closeLb();
-      if(e.key === 'ArrowLeft') navLb(-1);
-      if(e.key === 'ArrowRight') navLb(1);
+      if(e.key === 'Escape')      closeLb();
+      if(e.key === 'ArrowLeft')   navLb(-1);
+      if(e.key === 'ArrowRight')  navLb(1);
     });
 
-    /* ── Reveal on scroll ── */
-    var revEls = document.querySelectorAll('.reveal');
-    if(window.IntersectionObserver){
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-          if(en.isIntersecting){
-            en.target.classList.add('visible');
-            obs.unobserve(en.target);
-          }
-        });
-      }, {threshold: 0.05});
-      revEls.forEach(function(el){ obs.observe(el); });
-    } else {
-      revEls.forEach(function(el){ el.classList.add('visible'); });
-    }
-    setTimeout(function(){ revEls.forEach(function(el){ el.classList.add('visible'); }); }, 2000);
-
-    /* ── Scroll top ── */
+    /* ── Scroll-top button ── */
     var stBtn = document.getElementById('scroll-top-btn');
     if(stBtn){
       window.addEventListener('scroll', function(){
