@@ -284,16 +284,16 @@
   </style>
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <nav class="nav container" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo" aria-label="ENJC Home">
-        <img src="images/logo/logo.png" alt="" class="nav-logo__img" width="36" height="36" aria-hidden="true">
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="ENJC home">
+        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36" onerror="this.style.display='none'">
         <div>
           <div class="nav-logo__name">ENJC</div>
           <div class="nav-logo__sub">Elim New Jerusalem Church · Tondiarpet</div>
         </div>
       </a>
-      <ul class="nav-links" id="nav-links" role="list">
+      <ul class="nav-links" id="nav-links" role="list" aria-label="Main navigation">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="ministries.html" class="nav-link">Ministries</a></li>
@@ -306,12 +306,13 @@
       <div class="nav-controls">
         <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
       </div>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
+        aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="nav-hamburger__line"></span>
         <span class="nav-hamburger__line"></span>
         <span class="nav-hamburger__line"></span>
       </button>
-    </nav>
+    </div>
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="index.html" class="mobile-menu__link">Home</a>
       <a href="about.html" class="mobile-menu__link">About</a>
@@ -322,7 +323,7 @@
       <a href="imagegen.html" class="mobile-menu__link">Cards</a>
       <a href="contact.html" class="mobile-menu__link">Contact</a>
     </div>
-  </header>
+  </nav>
 
   <main id="main">
 
