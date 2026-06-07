@@ -111,6 +111,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  padding-top: var(--nav-height);
 }
 
 ::selection { background: rgba(200,164,90,0.28); color: #fff; }
