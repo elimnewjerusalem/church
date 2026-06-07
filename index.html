@@ -553,11 +553,6 @@
   var v = document.getElementById('hero-vid');
   if(!v) return;
 
-  // Pause video on mobile to save data
-  if (window.innerWidth < 768) {
-    v.pause(); v.removeAttribute('src'); v.load(); return;
-  }
-
   function showFallback(){
     v.style.display = 'none';
     /* Fallback: church gallery photo as static bg */

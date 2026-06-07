@@ -2385,10 +2385,9 @@ p.section-tag {
 @media (max-width: 768px) {
 
   /* ── Hero video & bg ─────────────────────────────────── */
-  .hero-video { display: none; }
+  .hero-video { display: block; }
   .hero {
     min-height: auto;
-    background: linear-gradient(160deg, #1a1035 0%, #0d1e3c 55%, #0a2218 100%);
     padding: 16px 16px 20px;
     display: flex; flex-direction: column;
   }
