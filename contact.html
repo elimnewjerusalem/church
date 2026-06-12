@@ -89,7 +89,7 @@
   </section>
 
   <!-- Contact info + Service times -->
-  <section class="section" aria-labelledby="contact-heading">
+  <section class="section s-dark" aria-labelledby="contact-heading">
     <div class="container">
       <div class="grid-2" style="align-items:start;gap:48px;">
 
@@ -203,7 +203,7 @@
   <div class="divider"></div>
 
   <!-- Contact form -->
-  <section class="section-sm" style="background:var(--color-bg-2);" aria-labelledby="form-heading">
+  <section class="section-sm s-light" aria-labelledby="form-heading">
     <div class="container">
       <div style="max-width:600px;margin:0 auto;">
         <h2 class="section-heading" id="form-heading" style="text-align:center;margin-bottom:32px;">
@@ -229,7 +229,7 @@
   <div class="divider"></div>
 
   <!-- ── PRAYER REQUEST ─────────────────────────────────────── -->
-  <section class="prayer-section" aria-labelledby="prayer-heading">
+  <section class="section prayer-section s-dark3" aria-labelledby="prayer-heading">
     <div class="container">
       <div style="max-width:680px;">
         <p class="section-tag" style="color:#c9a84c;">Prayer</p>
@@ -241,7 +241,7 @@
           <input type="text" id="pr-name" placeholder="Your Name *" class="form-field" style="background:rgba(255,255,255,0.06);border-color:#1a2e50;color:#f0e6c8;">
           <input type="tel" id="pr-phone" placeholder="Phone (optional)" class="form-field" style="background:rgba(255,255,255,0.06);border-color:#1a2e50;color:#f0e6c8;">
         </div>
-        <textarea id="pr-request" placeholder="Share your prayer need..." rows="4" class="form-field" style="background:rgba(255,255,255,0.06);border-color:#1a2e50;color:#f0e6c8;margin-bottom:14px;"></textarea>
+        <textarea id="pr-request" placeholder="Share your prayer need..." rows="4" class="form-field" style="margin-bottom:14px;"></textarea>
         <button type="button" onclick="sendPrayerRequest()" class="btn btn--gold" style="font-size:14px;padding:12px 28px;">
           🙏 Send Prayer Request
         </button>
@@ -252,7 +252,7 @@
   <div class="divider"></div>
 
   <!-- ── PLAN YOUR VISIT ────────────────────────────────────── -->
-  <section class="section" aria-labelledby="visit-heading">
+  <section class="section s-light2" aria-labelledby="visit-heading">
     <div class="container">
       <p class="section-tag">First Time?</p>
       <h2 class="section-heading" id="visit-heading">Plan Your <em>Visit</em></h2>
@@ -290,7 +290,7 @@
           </div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.062!2d80.283730!3d13.133763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265b11d595555%3A0x1!2zMTPCsDA4JzAxLjYiTiA4MMKwMTcnMDQuMyJF!5e0!3m2!1sen!2sin!4v1"
-            width="100%" height="200" style="border:0;border-radius:10px;border:0.5px solid var(--color-border);"
+            width="100%" height="200" style="border:0;border-radius:10px;border:1px solid rgba(0,0,0,0.1);"
             allowfullscreen loading="lazy" title="ENJC location map">
           </iframe>
         </div>
@@ -299,7 +299,7 @@
   </section>
 
   <!-- Social / Follow Us -->
-  <section class="section" aria-labelledby="social-heading">
+  <section class="section s-dark2" aria-labelledby="social-heading">
     <div class="container">
       <p class="section-tag">Follow Us</p>
       <h2 class="section-heading" id="social-heading" style="margin-bottom:8px;">Stay <em>Connected</em></h2>
@@ -368,14 +368,14 @@
   </section>
 
   <!-- Map -->
-  <section style="background:var(--color-bg-2);border-top:1px solid var(--color-border);padding-bottom:64px;" aria-label="Church location map">
+  <section class="s-light" style="padding-bottom:64px;border-top:1px solid var(--border-light, rgba(0,0,0,0.08));" aria-label="Church location map">
     <div class="container" style="padding-top:48px;">
       <p class="section-tag">Location</p>
       <h2 class="section-heading" style="margin-bottom:24px;">Find Us on <em>Map</em></h2>
-      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--color-border);">
+      <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,0.12);box-shadow:0 4px 24px rgba(0,0,0,0.08);">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3885.453602760552!2d80.2867307!3d13.133763!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526ff328352739%3A0x62ebb7c4199c32ee!2sElim%20New%20Jerusalam%20Church!5e0!3m2!1sen!2sin!4v1776582297470!5m2!1sen!2sin"
-          width="100%" height="380" style="border:0;display:block;"
+          width="100%" height="450" style="border:0;display:block;"
           allowfullscreen loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           title="ENJC Church location on Google Maps">
