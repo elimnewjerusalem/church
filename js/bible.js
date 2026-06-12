@@ -5,6 +5,8 @@
 
 // FCBH audio API key (leave empty to use ResponsiveVoice instead)
 const FCBH_KEY = '';
+const FCBH_TA = ''; // Tamil fileset ID (e.g. 'TANIRV2DA')
+const FCBH_EN = ''; // English fileset ID (e.g. 'ENGESV2DA')
 // ── CONFIG ───────────────────────────────────────────────────────
 const C = {
   enAPI:  'https://bible-api.com/',
@@ -295,12 +297,14 @@ async function loadData(){
     // On mobile/app: lazy-load when user first taps EN button
     if(isPC){
       fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
+        S.enDB=en;
       }).catch(()=>{});
     }
 
     // Full Tamil (13MB) — load only on PC, background
     if(isPC){
       fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
+        S.tamilDB=tf;
       }).catch(()=>{});
     }
   }catch(e){}
@@ -398,9 +402,6 @@ function togParallel(){
   if(S.verses.length)renderVerses();
 }
 
-function togParallelNew(){
-  togParallel();
-}
 
 // ── BOOKS ────────────────────────────────────────────────────────
 function populateBooks(){
@@ -575,7 +576,7 @@ function updateChUI(){
   safe('apstat','வசனத்தை தொட்டு கேளுங்கள்');
   g('chprogf').style.width='0%';
   // Auto-populate image gen verse
-  setTimeout(igAutoPopulate, 400);
+  igAutoPopulate();
 
   updateBMChapterBtn();
 }
@@ -909,17 +910,17 @@ function getBM(){return JSON.parse(localStorage.getItem('enjc_bm')||'[]');}
 function saveBM(bms){localStorage.setItem('enjc_bm',JSON.stringify(bms));S.bm=bms;}
 
 function togBM(refEN,text,refTA,i){
-  const bms=getBM();const fi=bms.findIndex(b=>b.ref===refEN);
+  const bms=S.bm;const fi=bms.findIndex(b=>b.ref===refEN);
   const btn=g('bmbtn'+i);
   if(fi>=0){bms.splice(fi,1);btn?.classList.remove('bm-on');toast('Removed');}
   else{bms.unshift({ref:refEN,refTA,text});btn?.classList.add('bm-on');toast('\u2665 சேமிக்கப்பட்டது!');}
   saveBM(bms);updateBmBadge();
 }
 function updateBmBadge(){
-  const n=getBM().length;
+  const n=S.bm.length;
   const el=g('bm-lbl');if(el)el.textContent=n?'Saved ('+n+')':'Saved';
 }
-function rmBM(i){const bms=getBM();bms.splice(i,1);saveBM(bms);updateBmBadge();openPanel('bm');}
+function rmBM(i){const bms=S.bm;bms.splice(i,1);saveBM(bms);updateBmBadge();openPanel('bm');}
 
 
 // ── BOOKMARK CHAPTER ─────────────────────────────────────────────
@@ -928,7 +929,7 @@ function togBMChapter(){
   const bk = BOOKS.find(b => b.id === S.book);
   if(!bk) return;
   const key = 'bmc_' + S.book + '_' + S.ch;
-  const bms = getBM();
+  const bms = S.bm;
   const already = bms.findIndex(b => b.refEN === key);
   if(already >= 0){
     bms.splice(already, 1);
@@ -948,7 +949,7 @@ function togBMChapter(){
 function updateBMChapterBtn(){
   if(!S.book || !g('bmchbtn')) return;
   const key = 'bmc_' + S.book + '_' + S.ch;
-  const bms = getBM();
+  const bms = S.bm;
   const saved = bms.some(b => b.refEN === key);
   g('bmchbtn').style.color = saved ? 'var(--gd)' : '';
 }
@@ -1041,9 +1042,6 @@ function renderTopics(body){
         </div>
       </div>`).join('');
   }
-  body.innerHTML='<div class="tpills">'+topicKeys.map(k=>`<button class="tp" data-topic="${k}" onclick="this.closest('.panel-body').querySelector('#topic-res').id&&void(0);(function(t,el){el.closest('.panel-body').querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.dataset.topic===t));const vv=window._TOPICS[t]||[];el.closest('.panel-body').querySelector('#topic-res').innerHTML=vv.map(v=>'<div class=\\'tv-item\\'><div class=\\'tv-ref\\'>'+v.ref+'</div><div class=\\'tv-txt\\'>'+v.ta+'</div></div>').join('');})(this.dataset.topic,this)">${labels[k]||k}</button>`).join('')+'</div><div id="topic-res"></div>';
-  // Simpler approach — wire up properly
-  window._TOPICS=TOPICS;
   body.innerHTML=`<div class="tpills">${topicKeys.map(k=>`<button class="tp${k===activeTopic?' on':''}" data-topic="${k}">${labels[k]||k}</button>`).join('')}</div><div id="topic-res"></div>`;
   body.querySelectorAll('.tp').forEach(btn=>btn.addEventListener('click',()=>show(btn.dataset.topic)));
   show(activeTopic);
@@ -1051,7 +1049,7 @@ function renderTopics(body){
 
 // ── BOOKMARKS ────────────────────────────────────────────────────
 function renderBM(body){
-  const bms=getBM();
+  const bms=S.bm;
   if(!bms.length){body.innerHTML='<div class="bempty">♥ சேமித்த வசனங்கள் இல்லை.<br>வசனத்தில் ♥ அழுத்துங்கள்.</div>';return;}
   body.innerHTML=bms.map((b,i)=>`
     <div class="bm-item">
@@ -1611,8 +1609,6 @@ function initIGVerses(){
   // No select needed — verse comes from current reading
 }
 
-function useCurrentV(){
-  if(!S.verses.length){toast('Select a chapter first');return;}
   const v=S.verses[0];
   const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num;
   const enRef=S.bookName+' '+S.ch+':'+v.num;
@@ -2200,7 +2196,7 @@ function openVModal(i){
   if(noteEl) noteEl.value = notes[_mv.ref]||'';
 
   // Bookmark state
-  const isBm=getBM().some(b=>b.ref===_mv.ref);
+  const isBm=S.bm.some(b=>b.ref===_mv.ref);
   const bmBtn=document.getElementById('sheet-bm-btn');
   if(bmBtn) bmBtn.classList.toggle('saved', isBm);
 
@@ -2244,7 +2240,7 @@ function mAct(action){
     openPanel('img');setTimeout(drawIG,100);
   }
   else if(action==='save'){
-    const bms=getBM();
+    const bms=S.bm;
     const fi=bms.findIndex(b=>b.ref===_mv.ref);
     if(fi>=0){
       bms.splice(fi,1);saveBM(bms);

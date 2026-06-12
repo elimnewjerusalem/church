@@ -20,6 +20,7 @@
   // SECURITY: Set your YouTube Data API v3 key here.
   // Restrict it in Google Cloud Console to your GitHub Pages domain to prevent abuse.
   const YT_API_KEY = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+window.YT_API_KEY = YT_API_KEY; // shared with live-stream.js
   const CHANNEL_ID = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 
   const PL = {

@@ -13,7 +13,8 @@
 // console.cloud.google.com → APIs & Services → Credentials → your key
 // → Application restrictions → HTTP referrers → add: elimnewjerusalem.github.io/*
 // → API restrictions → YouTube Data API v3 only
-const YT_API_KEY   = 'AIzaSyCJGQlJzkfqykHnq1pxbIR_gx0SwkpCo_Y';
+// YT_API_KEY is defined by events.js (loaded first). Access via window.YT_API_KEY
+const YT_API_KEY = window.YT_API_KEY || '';
 const MAIN_CHANNEL_ID   = 'UC4yhaUWMXi-Ven-QAVx4j7w';
 // SHORTS_CHANNEL_ID removed — same as MAIN_CHANNEL_ID, no separate API call needed
 
