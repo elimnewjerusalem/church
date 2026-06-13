@@ -7,13 +7,28 @@
 'use strict';
 
 (function(){
-  const isMobile = () => window.innerWidth <= 640;
+  const isMobile = () => window.innerWidth <= 640 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   if (!isMobile()) return; // PC: don't run
 
-  // ── Wait for bible.js to init ────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initMobileApp, 50); // after bible.js DOMContentLoaded
-  });
+  // Immediately hide desktop content to prevent flash
+  const _earlyHide = document.createElement('style');
+  _earlyHide.textContent = `
+    @media (max-width: 640px) {
+      .nx-top, .nx-mid, #bcontent, .ch-bar, header,
+      .site-footer, .mob-nav { visibility: hidden; }
+    }
+  `;
+  document.head.appendChild(_earlyHide);
+
+  // ── Wait for DOM ready (handle if already fired) ────────────
+  function onReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      setTimeout(fn, 0);
+    }
+  }
+  onReady(() => setTimeout(initMobileApp, 80));
 
   // ── State ────────────────────────────────────────────────────
   const MS = {
@@ -25,7 +40,11 @@
 
   // ── Build app shell ──────────────────────────────────────────
   function initMobileApp() {
-    // Hide the desktop Bible controls
+    if (typeof BOOKS === 'undefined' || !BOOKS?.length) {
+      // BOOKS not ready yet — retry
+      setTimeout(initMobileApp, 100);
+      return;
+    }
     injectHideStyles();
     buildShell();
     renderBooks();

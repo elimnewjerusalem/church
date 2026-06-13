@@ -2354,3 +2354,7 @@ window.toggleTheme = function() {
   const next = current === 'light' ? 'dark' : 'light';
   applyTheme(next); // updates both CSS vars AND data-theme attribute
 };
+
+// ── Expose globals for bible-mobile.js ───────────────────────
+window.S = S;
+window.BOOKS = BOOKS;
