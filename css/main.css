@@ -534,20 +534,123 @@ p  { color: var(--text-muted); line-height: 1.85; font-size: 15px; }
 }
 
 /* ── 12. ANIMATIONS ───────────────────────────────────────── */
-.reveal {
-  opacity: 0; transform: translateY(24px);
-  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+
+/* Shared easing — spring-like feel */
+:root {
+  --ease-spring: cubic-bezier(0.22, 0.68, 0, 1.2);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-dur: 0.65s;
 }
-.reveal.visible, .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ── BASE: all anim-* elements start invisible ── */
+.reveal,
+.reveal-on-scroll,
+.anim-fade-up,
+.anim-roll-left,
+.anim-roll-right,
+.anim-wipe,
+.anim-scale,
+.anim-breath,
+.anim-stagger-child {
+  opacity: 0;
+  transition-duration: var(--anim-dur);
+  transition-timing-function: var(--ease-spring);
+  transition-property: opacity, transform, padding, clip-path;
+  transition-delay: var(--anim-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+/* ── 1. FADE UP (default / legacy) ── */
+.reveal,
+.reveal-on-scroll,
+.anim-fade-up {
+  transform: translateY(32px);
+}
+.reveal.visible,
+.reveal.is-visible,
+.reveal-on-scroll.is-visible,
+.anim-fade-up.anim-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 2. ROLL LEFT (slide from left) ── */
+.anim-roll-left {
+  transform: translateX(-40px) translateY(12px);
+}
+.anim-roll-left.anim-in {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* ── 3. ROLL RIGHT (slide from right) ── */
+.anim-roll-right {
+  transform: translateX(40px) translateY(12px);
+}
+.anim-roll-right.anim-in {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* ── 4. WIPE (clip-path reveal) ── */
+.anim-wipe {
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+  transform: none;
+  transition-property: clip-path;
+  transition-timing-function: var(--ease-smooth);
+  transition-duration: 0.8s;
+}
+.anim-wipe.anim-in {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ── 5. SCALE (zoom in) ── */
+.anim-scale {
+  transform: translateY(20px) scale(0.95);
+  transform-origin: center bottom;
+}
+.anim-scale.anim-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── 6. BREATH (padding expands — studio.site style) ── */
+.anim-breath {
+  transform: translateY(20px);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  transition-property: opacity, transform, padding;
+  transition-timing-function: var(--ease-spring);
+}
+.anim-breath.anim-in {
+  opacity: 1;
+  transform: translateY(0);
+  padding-top: revert !important;
+  padding-bottom: revert !important;
+}
+
+/* ── 7. STAGGER CHILDREN ── */
+/* Parent: .anim-stagger — JS auto-sets --anim-delay on children */
+.anim-stagger-child {
+  transform: translateY(28px);
+}
+.anim-stagger-child.anim-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Manual delay helpers ── */
+.delay-1, .reveal-delay-1 { --anim-delay: 80ms; }
+.delay-2, .reveal-delay-2 { --anim-delay: 160ms; }
+.delay-3, .reveal-delay-3 { --anim-delay: 240ms; }
+.delay-4, .reveal-delay-4 { --anim-delay: 320ms; }
+.delay-5, .reveal-delay-5 { --anim-delay: 400ms; }
+.delay-6, .reveal-delay-6 { --anim-delay: 480ms; }
+
+/* ── fade-up utility (shorthand) ── */
 .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .fade-up.visible { opacity: 1; transform: none; }
-
-.delay-1, .reveal-delay-1 { transition-delay: 0.08s; }
-.delay-2, .reveal-delay-2 { transition-delay: 0.16s; }
-.delay-3, .reveal-delay-3 { transition-delay: 0.24s; }
-.delay-4, .reveal-delay-4 { transition-delay: 0.32s; }
-.delay-5, .reveal-delay-5 { transition-delay: 0.40s; }
-.delay-6, .reveal-delay-6 { transition-delay: 0.48s; }
 
 @keyframes livePulse {
   0%,100% { opacity: 1; transform: scale(1); }
@@ -577,7 +680,15 @@ img { max-width: 100%; height: auto; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal, .fade-up { opacity: 1 !important; transform: none !important; }
+  .reveal, .reveal-on-scroll, .fade-up,
+  .anim-fade-up, .anim-roll-left, .anim-roll-right,
+  .anim-wipe, .anim-scale, .anim-breath, .anim-stagger-child {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    padding-top: revert !important;
+    padding-bottom: revert !important;
+  }
 }
 
 /* ── 14. RESPONSIVE GRID ──────────────────────────────────── */
