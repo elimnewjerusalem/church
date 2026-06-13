@@ -766,7 +766,8 @@
   position: fixed; bottom: 0; left: 0; right: 0;
   background: var(--bg-2); border-radius: 14px 14px 0 0;
   border-top: 1px solid var(--border-dark);
-  z-index: 400; transform: translateY(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  /* I1: z-index 500 — above canvas area (was 400) */
+  z-index: 500; transform: translateY(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
   max-height: 80vh; display: flex; flex-direction: column;
 }
 .mob-sheet.on { transform: translateY(0); }
@@ -790,6 +791,14 @@
 .mob-sheet-preview canvas { width: 100%; height: 100%; object-fit: contain; }
 .mob-sheet-body { padding: 14px 16px; overflow-y: auto; flex: 1; }
 
+/* I5: Active tab indicator */
+.mob-tab.on {
+  color: var(--gold);
+  background: rgba(201,168,76,0.12);
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid var(--gold);
+}
+
 @media (max-width: 900px) {
   .studio { grid-template-columns: 300px 1fr; height: calc(100vh - var(--nav-height) - 52px); }
   .rp { display: none; }
@@ -798,6 +807,13 @@
 @media (max-width: 640px) {
   .studio { grid-template-columns: 1fr; grid-template-rows: 1fr; height: calc(100vh - var(--nav-height) - 52px - 56px); }
   .lp { display: none; }
+  /* I2: Canvas — max-width scaling, no fixed max-height that crops */
+  .canvas-wrap canvas {
+    max-height: none;
+    max-width: min(90vw, 320px);
+    width: auto;
+    height: auto;
+  }
   .canvas-area { padding: 16px 10px; height: 100%; }
   .mob-bar { display: flex; }
   .topbar { padding: 6px 10px; }
@@ -1279,6 +1295,48 @@
   #bcontent { padding: 16px var(--container-px) 80px; }
 }
 
+/* ── B5: nx-ctrl mobile wrap (≤480px) ── */
+@media (max-width: 480px) {
+  .nx-ctrl {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nx-sel {
+    width: 100%;
+  }
+  .nx-lang-tog {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .nx-lang-btn {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+}
+
+/* ── B6: Audio bar — increased padding-bottom on mobile when visible ── */
+@media (max-width: 640px) {
+  #abar.show ~ #bcontent,
+  body.audio-playing #bcontent {
+    padding-bottom: 130px;
+  }
+  /* Also make sure abar itself has safe area bottom */
+  .audio-bar {
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ── B7: Feature bar touch targets ≥44px on mobile ── */
+@media (max-width: 640px) {
+  .nx-feat,
+  .nx-feat-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .nx-feat-icon { font-size: 20px; }
+}
+
 /* ════════════════════════════════════════════════════════════
    BIBLE.JS — Shorthand CSS variable aliases
    (bible.js uses --gd, --tx, --bg2 etc. inline styles)
@@ -1671,5 +1729,101 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
 @media (max-width: 640px) {
   [data-page="imagegen"] .studio {
     height: calc(100vh - var(--nav-height) - 52px - 56px);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   IMAGEGEN — Mobile-specific additions (I1–I7)
+   ════════════════════════════════════════════════════════════ */
+
+/* I3: Desktop-only topbar elements */
+.tb-sizes--desktop,
+.tb-actions--desktop { display: flex; }
+.tb-actions--mobile  { display: none; }
+
+/* I4: Mobile action bar (WhatsApp + Save) — hidden on desktop */
+.mob-action-bar {
+  display: none;
+  position: fixed; left: 0; right: 0; bottom: 112px; /* above mob-bar + sizes-row */
+  z-index: 450;
+  padding: 8px 12px;
+  gap: 10px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border-dark);
+}
+.mob-act-btn {
+  flex: 1; padding: 14px 10px; border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  font-family: var(--font-body);
+}
+.mob-act-wa { background: #25d366; color: #fff; }
+.mob-act-dl { background: var(--gold); color: var(--navy); }
+
+/* I3: Size pill row — hidden on desktop */
+.mob-sizes-row {
+  display: none;
+  position: fixed; left: 0; right: 0; bottom: 56px;
+  z-index: 450;
+  padding: 6px 10px;
+  gap: 8px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border-dark);
+  justify-content: center;
+}
+.mob-sz-pill {
+  padding: 6px 14px; border-radius: 99px; border: 1px solid var(--border-dark);
+  background: rgba(255,255,255,0.05); color: var(--text-muted);
+  font-size: 11px; font-weight: 700; cursor: pointer;
+  font-family: var(--font-body); transition: all 0.15s;
+}
+.mob-sz-pill.on { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+/* I6: Slider overflow fix on narrow screens */
+@media (max-width: 400px) {
+  .sl-row { flex-wrap: wrap; }
+  .sl-row input[type=range] { width: 100%; order: 3; }
+  .sl-row .sl-num { order: 4; }
+  .hex-val, #hex-inp { font-size: 10px; }
+}
+
+/* I7: Fullscreen preview button — always visible in canvas-wrap on mobile */
+.canvas-fullscreen-btn {
+  display: none;
+  position: absolute; bottom: 40px; right: 10px;
+  background: rgba(0,0,0,0.6); border: 1px solid var(--border-dark);
+  color: var(--text-light); border-radius: 8px;
+  padding: 6px 10px; font-size: 12px; cursor: pointer;
+  z-index: 50;
+}
+/* Fullscreen preview overlay */
+.canvas-fullscreen-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,0.95);
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 16px;
+}
+.canvas-fullscreen-overlay.on { display: flex; }
+.canvas-fullscreen-overlay canvas {
+  max-width: 100vw; max-height: 100vh;
+  object-fit: contain;
+}
+.canvas-fullscreen-close {
+  position: fixed; top: 16px; right: 16px; z-index: 9001;
+  background: rgba(255,255,255,0.15); border: none; color: #fff;
+  width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  /* Show mobile-only elements */
+  .mob-action-bar   { display: flex; }
+  .mob-sizes-row    { display: flex; }
+  .canvas-fullscreen-btn { display: block; }
+  /* Hide desktop-only topbar elements */
+  .tb-sizes--desktop  { display: none; }
+  .tb-actions--desktop { display: none; }
+  .tb-actions--mobile { display: flex; gap: 6px; align-items: center; }
+  /* Adjust studio height to account for action bar + sizes row */
+  [data-page="imagegen"] .studio {
+    height: calc(100vh - var(--nav-height) - 52px - 56px - 44px - 44px);
   }
 }

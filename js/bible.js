@@ -301,7 +301,8 @@ async function loadData(){
       }).catch(()=>{});
     }
 
-    // Full Tamil (13MB) — load only on PC, background
+    // Full Tamil (13MB) — load only on PC at startup
+    // On mobile: lazy-loaded on first Tamil chapter request (see loadTA)
     if(isPC){
       fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
         S.tamilDB=tf;
@@ -457,50 +458,98 @@ async function loadCh(){
   }
 }
 
+// ── B3: Lazy-load tamil_full.json on mobile on first Tamil request ──
+let _tamilFullLoading=false, _tamilFullLoaded=false;
+async function ensureTamilFull(){
+  if(_tamilFullLoaded||_tamilFullLoading) return;
+  const isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if(!isMobile) return; // PC already loads at startup
+  _tamilFullLoading=true;
+  toast('⏳ பைபிள் ஏற்றுகிறது... சற்று நேரம் பொறுங்கள்');
+  try{
+    const r=await fetchT(C.data+'tamil_full.json');
+    if(r.ok){
+      const tf=await r.json();
+      if(tf&&Object.keys(tf).length){
+        S.tamilDB=Object.assign({},S.tamilDB,tf);
+        _tamilFullLoaded=true;
+        toast('✅ தமிழ் வேதாகமம் தயார்!');
+      }
+    }
+  }catch(e){}
+  _tamilFullLoading=false;
+}
+
+// ── B4: fetchWithTimeout — 8s per request ─────────────────────────
+async function fetchWithTimeout(url, ms=8000){
+  const ctrl=new AbortController();
+  const tid=setTimeout(()=>ctrl.abort(),ms);
+  try{
+    const r=await fetch(url,{signal:ctrl.signal});
+    clearTimeout(tid);
+    return r;
+  }catch(e){clearTimeout(tid);throw e;}
+}
+
 async function loadTA(){
   const key=S.bookNum+'_'+S.ch;
+  const ck='enjc_ta_'+key;
+
+  // ── B3: Trigger lazy-load of tamil_full on mobile ────────────
+  if(!_tamilFullLoaded&&!_tamilFullLoading){
+    await ensureTamilFull();
+  }
 
   // ── 1. Embedded local DB (pre-loaded chapters) ────────────────
   if(S.tamilDB[key]){
     const vv=S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
+    // B2: also cache to localStorage for offline
+    try{if(!localStorage.getItem(ck))localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
     return vv;
   }
 
-  // ── 2. localStorage cache (previously fetched chapters) ───────
-  const ck='enjc_ta_'+key;
+  // ── B2: localStorage cache (previously fetched chapters) ──────
   try{
     const c=localStorage.getItem(ck);
     if(c){const p=JSON.parse(c);if(p?.length)return p;}
   }catch(e){}
 
-  // ── 3. Fetch from APIs — try all 3 sources ────────────────────
+  // ── 3. Fetch from APIs — B4: 8s timeout per API ──────────────
   const apis=[
     C.taAPI1+S.bookNum+'/'+S.ch+'/',
     C.taAPI2+S.bookNum+'/'+S.ch+'/',
     C.taAPI3+S.bookNum+'/'+S.ch+'.json'
   ];
+  let lastErr='';
   for(const url of apis){
     try{
-      const r=await fetchT(url);if(!r.ok)continue;
+      const r=await fetchWithTimeout(url,8000);if(!r.ok)continue;
       const d=await r.json();
       let vv=null;
       if(Array.isArray(d)&&d.length){
-        // bolls.life format: [{verse:1, text:"..."}, ...]
         if(d[0]?.verse!==undefined) vv=d.map(v=>({num:v.verse,text:v.text}));
-        // getbible format: [[1,"text"], ...]
         else if(Array.isArray(d[0])) vv=d.map(v=>({num:v[0],text:v[1]}));
       } else if(d.verses?.length){
         vv=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
       }
       if(vv?.length){
-        // Cache for offline use
+        // B2: cache for offline use
         try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
         toast('📥 '+S.bookTaName+' '+S.ch+' சேமிக்கப்பட்டது');
         return vv;
       }
-    }catch(e){continue;}
+    }catch(e){lastErr=e.message;continue;}
   }
-  toast('⚠ '+S.bookTaName+' '+S.ch+' — இணையம் தேவை. முதல் முறை API-ல் இருந்து பெறப்படும்.');
+  // B4: Show retry button + clear message after all APIs fail
+  const bc=g('bcontent');
+  if(bc){
+    bc.innerHTML=`<div class="berr" style="text-align:center;padding:32px 16px">
+      <div style="font-size:32px;margin-bottom:10px">📶</div>
+      <div style="font-size:15px;color:var(--text-light);margin-bottom:6px">${S.bookTaName} ${S.ch} — தமிழ் இல்லை</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">இணைய இணைப்பு சரிபாருங்கள்</div>
+      <button onclick="loadCh()" style="background:var(--gold);border:none;border-radius:8px;padding:10px 24px;font-size:13px;font-weight:700;color:#07090f;cursor:pointer;font-family:var(--font-body)">🔄 மீண்டும் முயற்சி</button>
+    </div>`;
+  }
   throw new Error('Tamil offline: '+key);
 }
 
@@ -857,6 +906,8 @@ function updPBtn(){
   const pl=g('plic'),pu=g('puic');
   if(pl)pl.style.display=S.playing?'none':'inline';
   if(pu)pu.style.display=S.playing?'inline':'none';
+  // B6: toggle body class so CSS increases bcontent padding
+  document.body.classList.toggle('audio-playing',S.playing);
 }
 
 function chSpd(){
