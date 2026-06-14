@@ -355,9 +355,9 @@
     <!-- VOTD -->
     <div class="votd-wrap fade-in" id="votd-wrap" onclick="goVOTD()" role="button" tabindex="0" aria-label="இன்றைய வசனம் - tap to read">
       <div class="votd-tag">இன்றைய வசனம்</div>
-      <div class="votd-verse" id="votd-verse">ஏற்றுகிறது...</div>
+      <div class="votd-verse" id="votd-verse">கர்த்தர் என் மேய்ப்பர், எனக்கு குறைவில்லை.</div>
       <div class="votd-meta">
-        <span id="votd-ref"></span>
+        <span id="votd-ref">சங்கீதம் 23:1</span>
         <span class="votd-pill">TAP TO READ</span>
       </div>
     </div>
@@ -401,8 +401,8 @@
       <div class="event-ic" id="event-ic">📅</div>
       <div class="event-body">
         <div class="event-lbl">Next meeting</div>
-        <div class="event-title" id="event-title">Sunday Worship</div>
-        <div class="event-sub" id="event-sub">Every Sunday · 8:30am</div>
+        <div class="event-title" id="event-title">Sunday Worship Service</div>
+        <div class="event-sub" id="event-sub">Every Sunday · 8:30am – 10:30am</div>
       </div>
       <div class="event-badge" id="event-badge">Soon</div>
     </a>
@@ -494,7 +494,13 @@
 
   /* ── Load VOTD from bible-data.json ── */
   let _votdBook = '', _votdChapter = 1;
-  fetch('data/bible-data.json')
+
+  const BASE = (function(){
+    const p = window.location.pathname;
+    return p.substring(0, p.lastIndexOf('/') + 1);
+  })();
+
+  fetch(BASE + 'data/bible-data.json')
     .then(r => r.json())
     .then(data => {
       const verses = data.verseOfDay || [];
@@ -524,7 +530,7 @@
   };
 
   /* ── Load next event from events.json ── */
-  fetch('data/events.json')
+  fetch(BASE + 'data/events.json')
     .then(r => r.json())
     .then(data => {
       const events = data.events || [];
