@@ -35,7 +35,7 @@
     shell.innerHTML = `
       <!-- TOP BAR: size pills + back -->
       <div class="igm-top">
-        <button class="igm-back" onclick="window.history.back()">‹</button>
+        <a href="app.html" class="igm-back" aria-label="Home">‹</a>
         <div class="igm-sizes" id="igm-sizes">
           <button class="igm-sz on" data-sz="9:16" onclick="igmSetSz(this,'9:16')">9:16</button>
           <button class="igm-sz" data-sz="3:4"   onclick="igmSetSz(this,'3:4')">3:4</button>
@@ -159,32 +159,33 @@
 
   window.igmTab = function (el, title) {
     const panelId = el.dataset.panel;
-    // Toggle: tap same tab again → close
     if (_activePanel === panelId) { igmClose(); return; }
     _activePanel = panelId;
 
-    // Highlight active tab
     document.querySelectorAll('.igm-tab').forEach(t => t.classList.remove('on'));
     el.classList.add('on');
 
-    // Sync panel content via imagegen-ui.js syncMobile()
-    if (typeof syncMobile === 'function') syncMobile();
-
-    // Show correct panel
+    // Show correct panel first (so content appears in right div)
     ['m-style','m-bg','m-text','m-verse','m-export'].forEach(id => {
       const p = document.getElementById(id);
       if (p) p.style.display = id === panelId ? 'block' : 'none';
     });
 
     document.getElementById('igm-sheet-title').textContent = title;
-
-    // Open sheet
     document.getElementById('igm-sheet').classList.add('on');
     document.getElementById('igm-backdrop').classList.add('on');
     document.body.style.overflow = 'hidden';
 
-    // Render mini preview
-    setTimeout(renderMiniPreview, 50);
+    // Sync panel content — retry if not ready yet
+    function doSync() {
+      if (typeof window.syncMobile === 'function') {
+        window.syncMobile();
+        setTimeout(renderMiniPreview, 80);
+      } else {
+        setTimeout(doSync, 100);
+      }
+    }
+    doSync();
   };
 
   window.igmClose = function () {
@@ -276,6 +277,7 @@
   background: transparent; border: 1px solid #1a1f35;
   border-radius: 8px; color: #8090b0; font-size: 18px;
   padding: 4px 10px; cursor: pointer; line-height: 1;
+  text-decoration: none; display: flex; align-items: center;
 }
 .igm-sizes { display: flex; gap: 5px; flex: 1; justify-content: center; }
 .igm-sz {

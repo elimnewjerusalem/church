@@ -73,9 +73,8 @@
       <!-- SCREEN: BOOKS -->
       <div id="mb-screen-books" class="mb-screen mb-active">
         <div class="mb-header">
-          <div class="mb-header-left">
-            <div class="mb-brand">📖 ENJC Bible</div>
-          </div>
+          <a href="app.html" class="mb-back" aria-label="Home">‹ Home</a>
+          <div class="mb-brand">📖 ENJC Bible</div>
           <div class="mb-lang-row">
             <button class="mb-lang on" id="mb-btn-ta" onclick="mbSetLang('ta')">தமிழ்</button>
             <button class="mb-lang" id="mb-btn-en" onclick="mbSetLang('en')">English</button>
@@ -567,6 +566,7 @@
   font-size: 12px; color: #c9a84c; background: transparent;
   border: none; cursor: pointer; padding: 4px 0; font-weight: 600;
   white-space: nowrap; width: 70px; text-align: left;
+  text-decoration: none; display: inline-flex; align-items: center;
 }
 .mb-lang-row { display: flex; gap: 6px; margin-left: auto; }
 .mb-lang {
