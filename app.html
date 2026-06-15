@@ -129,6 +129,7 @@
       animation: pulse 1.5s ease-in-out infinite;
     }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .live-dot-wrap.hidden { display: none; }
 
     /* ── Scroll content ── */
     .app-scroll {
@@ -215,6 +216,8 @@
       text-decoration: none; cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: background .15s;
+      min-height: 80px;
+      touch-action: manipulation;
     }
     .sm-card:active { background: var(--navy3); }
     .sm-ic { font-size: 20px; }
@@ -373,7 +376,7 @@
         <div class="feat-sub">Tamil & English reader</div>
         <span class="feat-badge">66 Books · All Chapters</span>
       </div>
-      <i class="ti ti-chevron-right feat-arr" aria-hidden="true"></i>
+      <i class="ti ti-chevron-right feat-arr" aria-hidden="true">›</i>
     </a>
 
     <!-- 3 small cards -->
@@ -475,7 +478,21 @@
     return;
   }
 
-  /* ── Greeting by time ── */
+  /* ── Live badge — show only during service times ── */
+  (function() {
+    const now = new Date();
+    const day = now.getDay(); // 0=Sun, 5=Fri
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const mins = h * 60 + m;
+    // Sun: 5:00–11:00am (300–660), Fri: 11:00am–2:00pm (660–840)
+    const isLive =
+      (day === 0 && mins >= 300 && mins <= 660) ||
+      (day === 5 && mins >= 660 && mins <= 840);
+    if (!isLive) {
+      document.querySelector('.live-dot-wrap')?.classList.add('hidden');
+    }
+  })();
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'காலை வணக்கம் 🌅'
               : hour < 17 ? 'மதிய வணக்கம் ☀'

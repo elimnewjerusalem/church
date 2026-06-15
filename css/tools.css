@@ -1832,6 +1832,13 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
    MOBILE BIBLE — Touch-first verse buttons
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  /* ── Issue 10: Hide desktop header on mobile bible/imagegen pages ── */
+  [data-page="bible"] header,
+  [data-page="imagegen"] header { display: none !important; }
+
+  /* ── Issue 7: Tamil verse line-height too large on mobile ── */
+  .vi-ta .vtxt { line-height: 1.7 !important; }
+
   /* Always show verse action buttons on mobile — no hover needed */
   .vacts {
     opacity: 1 !important;
@@ -1869,7 +1876,8 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
 
   /* Bottom sheet above mob-nav */
   .verse-sheet {
-    bottom: 60px !important;
+    bottom: 0 !important;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
     z-index: 1200 !important;
   }
   .sheet-backdrop {
