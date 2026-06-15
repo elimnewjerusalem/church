@@ -19,7 +19,7 @@
   position: relative; height: 100vh; min-height: 560px;
   overflow: hidden; background: var(--navy);
   /* Pull up to sit under fixed nav */
-  margin-top: calc(-1 * var(--nav-height));
+  
 }
 .hero-video {
   position: absolute; inset: 0;
@@ -776,3 +776,40 @@ textarea.form-field { resize: vertical; min-height: 100px; }
 /* Section missing containers fix for events */
 .reveal-on-scroll.section .container,
 .reveal-on-scroll.section-alt .container { width: 100%; }
+
+/* ── SECTION CONSISTENCY FIXES ──────────────────────────────── */
+/* Form fields inside light (cream) sections */
+.s-light .form-field,
+.s-light2 .form-field {
+  background: rgba(255,255,255,0.85);
+  border-color: rgba(0,0,0,0.15);
+  color: var(--text-dark, #0a1628);
+}
+.s-light .form-field::placeholder,
+.s-light2 .form-field::placeholder {
+  color: rgba(10,22,40,0.45);
+}
+
+/* Cards inside light sections */
+.s-light .card,
+.s-light2 .card {
+  background: rgba(255,255,255,0.7);
+  border-color: rgba(0,0,0,0.08);
+}
+
+/* prayer-section base — ensures consistent dark styling */
+.prayer-section {
+  padding: var(--section-pad, 72px 0);
+}
+
+/* Map section border on light bg */
+.s-light .map-embed-wrap,
+.s-light2 .map-embed-wrap {
+  border-color: rgba(0,0,0,0.12);
+}
+
+/* section-tag in light sections */
+.s-light .section-tag,
+.s-light2 .section-tag {
+  color: var(--gold, #c9a84c);
+}

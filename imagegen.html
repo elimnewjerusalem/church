@@ -66,6 +66,7 @@
 <link rel="stylesheet" href="css/tools.css">
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/premium-v2.css">
+  <link rel="stylesheet" href="css/mobile-fix.css">
 
 <!-- Styles -->
 
@@ -128,18 +129,26 @@
     <div class="tb-logo-dot"></div>
     ENJC <span>Verse Studio</span>
   </div>
-  <div class="tb-sizes">
+  <!-- I3: size pills hidden on mobile — moved to mob-sheet -->
+  <div class="tb-sizes tb-sizes--desktop">
     <button class="tb-sz on" data-sz="9:16" onclick="setSz(this,'9:16')">9:16 Story</button>
     <button class="tb-sz" data-sz="3:4"  onclick="setSz(this,'3:4')">3:4 Post</button>
     <button class="tb-sz" data-sz="1:1"  onclick="setSz(this,'1:1')">1:1 Square</button>
     <button class="tb-sz" data-sz="16:9" onclick="setSz(this,'16:9')">16:9 Wide</button>
   </div>
-  <div class="tb-actions">
+  <!-- I4: download/share hidden on mobile — moved to mob-actions bar -->
+  <div class="tb-actions tb-actions--desktop">
     <button class="tb-btn btn-wa" onclick="shareWA()">🟢 WhatsApp</button>
     <button class="tb-btn btn-dl" onclick="dlIG('png')">⬇ Download</button>
     <button class="tb-btn btn-back" onclick="goBack()">← Bible</button>
     <button onclick="undoLast()" aria-label="Undo" title="Undo last change" style="background:transparent;border:1px solid var(--bd2);border-radius:var(--r8);padding:4px 10px;font-size:14px;cursor:pointer;color:var(--tx2);margin-left:4px;font-family:var(--sans);transition:all .15s;flex-shrink:0">↩</button>
     <button id="studio-theme-btn" onclick="toggleStudioTheme()" aria-label="Toggle dark/light theme" style="background:transparent;border:1px solid var(--bd2);border-radius:var(--r8);padding:4px 10px;font-size:14px;cursor:pointer;color:var(--tx2);margin-left:4px;font-family:var(--sans);transition:all .15s;flex-shrink:0" title="Toggle theme">🌙</button>
+  </div>
+  <!-- I3: Mobile topbar — only undo + theme + back -->
+  <div class="tb-actions tb-actions--mobile">
+    <button class="tb-btn btn-back" onclick="goBack()">← Bible</button>
+    <button onclick="undoLast()" aria-label="Undo" style="background:transparent;border:1px solid var(--bd2);border-radius:var(--r8);padding:6px 12px;font-size:14px;cursor:pointer;color:var(--tx2);font-family:var(--sans);">↩</button>
+    <button id="studio-theme-btn2" onclick="toggleStudioTheme()" style="background:transparent;border:1px solid var(--bd2);border-radius:var(--r8);padding:6px 12px;font-size:14px;cursor:pointer;color:var(--tx2);font-family:var(--sans);">🌙</button>
   </div>
 </div>
 
@@ -415,10 +424,17 @@
 
 <!-- ── CENTER CANVAS ── -->
 <div class="canvas-area">
-  <div class="canvas-wrap">
+  <div class="canvas-wrap" style="position:relative">
     <canvas id="igcv" ontouchstart="onTS(event)" ontouchend="onTE(event)"></canvas>
+    <button class="canvas-fullscreen-btn" onclick="openCanvasFullscreen()" title="Preview full size">🔍 Full Preview</button>
     <div class="canvas-hint">Tap to cycle verse · Swipe to change</div>
   </div>
+</div>
+
+<!-- I7: Fullscreen preview overlay -->
+<div class="canvas-fullscreen-overlay" id="canvas-fullscreen-overlay" onclick="closeCanvasFullscreen()">
+  <button class="canvas-fullscreen-close" onclick="closeCanvasFullscreen()">✕</button>
+  <canvas id="fullscreen-cv"></canvas>
 </div>
 
 <!-- ── RIGHT PANEL ── -->
@@ -459,7 +475,20 @@
 </div><!-- end rp -->
 </div><!-- end studio -->
 
+<!-- I4: Mobile sticky action bar -->
+<div class="mob-action-bar" id="mob-action-bar">
+  <button class="mob-act-btn mob-act-wa" onclick="shareWA()">🟢 WhatsApp</button>
+  <button class="mob-act-btn mob-act-dl" onclick="dlIG('png')">⬇ Save Image</button>
+</div>
+
 <!-- MOBILE BOTTOM BAR -->
+<!-- I3: size pills row above tabs -->
+<div class="mob-sizes-row" id="mob-sizes-row">
+  <button class="mob-sz-pill on" data-sz="9:16" onclick="setSzMob(this,'9:16')">9:16</button>
+  <button class="mob-sz-pill" data-sz="3:4"  onclick="setSzMob(this,'3:4')">3:4</button>
+  <button class="mob-sz-pill" data-sz="1:1"  onclick="setSzMob(this,'1:1')">1:1</button>
+  <button class="mob-sz-pill" data-sz="16:9" onclick="setSzMob(this,'16:9')">16:9</button>
+</div>
 <div class="mob-bar">
   <a class="mob-tab" href="index.html" style="text-decoration:none;color:inherit;">
     <span class="mob-tab-icon">🏠</span>Home
@@ -506,6 +535,41 @@
 
 <div id="toast"></div>
 
+<script>
+// I3: setSzMob — sync size pill selection on mobile with desktop setSz
+function setSzMob(el, sz) {
+  document.querySelectorAll('.mob-sz-pill').forEach(b => b.classList.remove('on'));
+  el.classList.add('on');
+  // Sync desktop size buttons too
+  document.querySelectorAll('.tb-sz').forEach(b => {
+    b.classList.toggle('on', b.dataset.sz === sz);
+  });
+  // Call the main setSz if it's available
+  if (typeof setSz === 'function') setSz(el, sz);
+  else if (window._igSetSz) window._igSetSz(el, sz);
+}
+// I7: Fullscreen canvas preview
+function openCanvasFullscreen() {
+  const src = document.getElementById('igcv');
+  const dst = document.getElementById('fullscreen-cv');
+  if (!src || !dst) return;
+  dst.width = src.width;
+  dst.height = src.height;
+  const ctx = dst.getContext('2d');
+  ctx.drawImage(src, 0, 0);
+  document.getElementById('canvas-fullscreen-overlay').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeCanvasFullscreen() {
+  document.getElementById('canvas-fullscreen-overlay').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCanvasFullscreen();
+});
+</script>
+
+<script src="js/imagegen-mobile.js" defer></script>
 <script type="module" src="js/imagegen-main.js"></script>
 
 <!-- ENJC FOOTER (compact) -->
@@ -564,11 +628,11 @@
    id="scroll-top-btn">↑</button>
 <nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
+    <a href="app.html"     class="mob-item"        aria-label="App Home">  <i class="ti ti-home"     aria-hidden="true"></i><span>Home</span></a>
+    <a href="events.html"  class="mob-item"         aria-label="Events">   <i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+    <a href="bible.html"   class="mob-item"         aria-label="Bible">    <i class="ti ti-book"     aria-hidden="true"></i><span>Bible</span></a>
+    <a href="imagegen.html" class="mob-item active" aria-label="Verse Card"><i class="ti ti-photo"   aria-hidden="true"></i><span>Cards</span></a>
+    <a href="contact.html" class="mob-item"         aria-label="Visit">    <i class="ti ti-map-pin"  aria-hidden="true"></i><span>Visit</span></a>
   </div>
 </nav>
 <script>

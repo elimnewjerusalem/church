@@ -5,6 +5,8 @@
 
 // FCBH audio API key (leave empty to use ResponsiveVoice instead)
 const FCBH_KEY = '';
+const FCBH_TA = ''; // Tamil fileset ID (e.g. 'TANIRV2DA')
+const FCBH_EN = ''; // English fileset ID (e.g. 'ENGESV2DA')
 // ── CONFIG ───────────────────────────────────────────────────────
 const C = {
   enAPI:  'https://bible-api.com/',
@@ -295,12 +297,14 @@ async function loadData(){
     // On mobile/app: lazy-load when user first taps EN button
     if(isPC){
       fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
+        S.enDB=en;
       }).catch(()=>{});
     }
 
     // Full Tamil (13MB) — load only on PC, background
     if(isPC){
       fetchT(C.data+'tamil_full.json').then(r=>r.json()).then(tf=>{
+        S.tamilDB=tf;
       }).catch(()=>{});
     }
   }catch(e){}
@@ -398,9 +402,6 @@ function togParallel(){
   if(S.verses.length)renderVerses();
 }
 
-function togParallelNew(){
-  togParallel();
-}
 
 // ── BOOKS ────────────────────────────────────────────────────────
 function populateBooks(){
@@ -456,23 +457,50 @@ async function loadCh(){
   }
 }
 
+// ── B3: Lazy-load tamil_full.json on mobile on first Tamil request ──
+let _tamilFullLoading=false,_tamilFullLoaded=false;
+async function ensureTamilFull(){
+  if(_tamilFullLoaded||_tamilFullLoading)return;
+  const mob=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if(!mob)return;
+  _tamilFullLoading=true;
+  toast('⏳ பைபிள் ஏற்றுகிறது...');
+  try{
+    const r=await fetch(C.data+'tamil_full.json');
+    if(r.ok){
+      const tf=await r.json();
+      if(tf&&Object.keys(tf).length){S.tamilDB=Object.assign({},S.tamilDB,tf);_tamilFullLoaded=true;toast('✅ தமிழ் தயார்!');}
+    }
+  }catch(e){}
+  _tamilFullLoading=false;
+}
+
+// ── B4: 8-second timeout per API request ─────────────────────────
+async function fetchWithTimeout(url,ms=8000){
+  const ctrl=new AbortController();
+  const tid=setTimeout(()=>ctrl.abort(),ms);
+  try{const r=await fetch(url,{signal:ctrl.signal});clearTimeout(tid);return r;}
+  catch(e){clearTimeout(tid);throw e;}
+}
+
 async function loadTA(){
   const key=S.bookNum+'_'+S.ch;
+  const ck='enjc_ta_'+key;
 
-  // ── 1. Embedded local DB (pre-loaded chapters) ────────────────
+  // B3: trigger lazy-load on mobile
+  if(!_tamilFullLoaded&&!_tamilFullLoading)await ensureTamilFull();
+
+  // ── 1. Embedded local DB ──────────────────────────────────────
   if(S.tamilDB[key]){
     const vv=S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
+    try{if(!localStorage.getItem(ck))localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
     return vv;
   }
 
-  // ── 2. localStorage cache (previously fetched chapters) ───────
-  const ck='enjc_ta_'+key;
-  try{
-    const c=localStorage.getItem(ck);
-    if(c){const p=JSON.parse(c);if(p?.length)return p;}
-  }catch(e){}
+  // ── 2. B2: localStorage cache ─────────────────────────────────
+  try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
 
-  // ── 3. Fetch from APIs — try all 3 sources ────────────────────
+  // ── 3. APIs with timeout ──────────────────────────────────────
   const apis=[
     C.taAPI1+S.bookNum+'/'+S.ch+'/',
     C.taAPI2+S.bookNum+'/'+S.ch+'/',
@@ -480,26 +508,27 @@ async function loadTA(){
   ];
   for(const url of apis){
     try{
-      const r=await fetchT(url);if(!r.ok)continue;
+      const r=await fetchWithTimeout(url,8000);if(!r.ok)continue;
       const d=await r.json();
       let vv=null;
       if(Array.isArray(d)&&d.length){
-        // bolls.life format: [{verse:1, text:"..."}, ...]
-        if(d[0]?.verse!==undefined) vv=d.map(v=>({num:v.verse,text:v.text}));
-        // getbible format: [[1,"text"], ...]
-        else if(Array.isArray(d[0])) vv=d.map(v=>({num:v[0],text:v[1]}));
-      } else if(d.verses?.length){
-        vv=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));
-      }
+        if(d[0]?.verse!==undefined)vv=d.map(v=>({num:v.verse,text:v.text}));
+        else if(Array.isArray(d[0]))vv=d.map(v=>({num:v[0],text:v[1]}));
+      }else if(d.verses?.length){vv=d.verses.map(v=>({num:v.verse_nr,text:v.verse}));}
       if(vv?.length){
-        // Cache for offline use
         try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
-        toast('📥 '+S.bookTaName+' '+S.ch+' சேமிக்கப்பட்டது');
         return vv;
       }
     }catch(e){continue;}
   }
-  toast('⚠ '+S.bookTaName+' '+S.ch+' — இணையம் தேவை. முதல் முறை API-ல் இருந்து பெறப்படும்.');
+  // B4: show retry UI
+  const bc=document.getElementById('bcontent');
+  if(bc)bc.innerHTML=`<div style="text-align:center;padding:40px 16px">
+    <div style="font-size:36px;margin-bottom:12px">📶</div>
+    <div style="font-size:14px;color:var(--tx2);margin-bottom:6px">${S.bookTaName||''} ${S.ch} — தமிழ் கிடைக்கவில்லை</div>
+    <div style="font-size:12px;color:var(--tx3);margin-bottom:16px">இணைய இணைப்பு சரிபாருங்கள்</div>
+    <button onclick="loadCh()" style="background:var(--gd,#c9a84c);border:none;border-radius:8px;padding:10px 24px;font-size:13px;font-weight:700;color:#07090f;cursor:pointer">🔄 மீண்டும் முயற்சி</button>
+  </div>`;
   throw new Error('Tamil offline: '+key);
 }
 
@@ -575,7 +604,7 @@ function updateChUI(){
   safe('apstat','வசனத்தை தொட்டு கேளுங்கள்');
   g('chprogf').style.width='0%';
   // Auto-populate image gen verse
-  setTimeout(igAutoPopulate, 400);
+  igAutoPopulate();
 
   updateBMChapterBtn();
 }
@@ -856,6 +885,7 @@ function updPBtn(){
   const pl=g('plic'),pu=g('puic');
   if(pl)pl.style.display=S.playing?'none':'inline';
   if(pu)pu.style.display=S.playing?'inline':'none';
+  document.body.classList.toggle('audio-playing',!!S.playing);
 }
 
 function chSpd(){
@@ -909,17 +939,17 @@ function getBM(){return JSON.parse(localStorage.getItem('enjc_bm')||'[]');}
 function saveBM(bms){localStorage.setItem('enjc_bm',JSON.stringify(bms));S.bm=bms;}
 
 function togBM(refEN,text,refTA,i){
-  const bms=getBM();const fi=bms.findIndex(b=>b.ref===refEN);
+  const bms=S.bm;const fi=bms.findIndex(b=>b.ref===refEN);
   const btn=g('bmbtn'+i);
   if(fi>=0){bms.splice(fi,1);btn?.classList.remove('bm-on');toast('Removed');}
   else{bms.unshift({ref:refEN,refTA,text});btn?.classList.add('bm-on');toast('\u2665 சேமிக்கப்பட்டது!');}
   saveBM(bms);updateBmBadge();
 }
 function updateBmBadge(){
-  const n=getBM().length;
+  const n=S.bm.length;
   const el=g('bm-lbl');if(el)el.textContent=n?'Saved ('+n+')':'Saved';
 }
-function rmBM(i){const bms=getBM();bms.splice(i,1);saveBM(bms);updateBmBadge();openPanel('bm');}
+function rmBM(i){const bms=S.bm;bms.splice(i,1);saveBM(bms);updateBmBadge();openPanel('bm');}
 
 
 // ── BOOKMARK CHAPTER ─────────────────────────────────────────────
@@ -928,7 +958,7 @@ function togBMChapter(){
   const bk = BOOKS.find(b => b.id === S.book);
   if(!bk) return;
   const key = 'bmc_' + S.book + '_' + S.ch;
-  const bms = getBM();
+  const bms = S.bm;
   const already = bms.findIndex(b => b.refEN === key);
   if(already >= 0){
     bms.splice(already, 1);
@@ -948,7 +978,7 @@ function togBMChapter(){
 function updateBMChapterBtn(){
   if(!S.book || !g('bmchbtn')) return;
   const key = 'bmc_' + S.book + '_' + S.ch;
-  const bms = getBM();
+  const bms = S.bm;
   const saved = bms.some(b => b.refEN === key);
   g('bmchbtn').style.color = saved ? 'var(--gd)' : '';
 }
@@ -1041,9 +1071,6 @@ function renderTopics(body){
         </div>
       </div>`).join('');
   }
-  body.innerHTML='<div class="tpills">'+topicKeys.map(k=>`<button class="tp" data-topic="${k}" onclick="this.closest('.panel-body').querySelector('#topic-res').id&&void(0);(function(t,el){el.closest('.panel-body').querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.dataset.topic===t));const vv=window._TOPICS[t]||[];el.closest('.panel-body').querySelector('#topic-res').innerHTML=vv.map(v=>'<div class=\\'tv-item\\'><div class=\\'tv-ref\\'>'+v.ref+'</div><div class=\\'tv-txt\\'>'+v.ta+'</div></div>').join('');})(this.dataset.topic,this)">${labels[k]||k}</button>`).join('')+'</div><div id="topic-res"></div>';
-  // Simpler approach — wire up properly
-  window._TOPICS=TOPICS;
   body.innerHTML=`<div class="tpills">${topicKeys.map(k=>`<button class="tp${k===activeTopic?' on':''}" data-topic="${k}">${labels[k]||k}</button>`).join('')}</div><div id="topic-res"></div>`;
   body.querySelectorAll('.tp').forEach(btn=>btn.addEventListener('click',()=>show(btn.dataset.topic)));
   show(activeTopic);
@@ -1051,7 +1078,7 @@ function renderTopics(body){
 
 // ── BOOKMARKS ────────────────────────────────────────────────────
 function renderBM(body){
-  const bms=getBM();
+  const bms=S.bm;
   if(!bms.length){body.innerHTML='<div class="bempty">♥ சேமித்த வசனங்கள் இல்லை.<br>வசனத்தில் ♥ அழுத்துங்கள்.</div>';return;}
   body.innerHTML=bms.map((b,i)=>`
     <div class="bm-item">
@@ -1611,8 +1638,8 @@ function initIGVerses(){
   // No select needed — verse comes from current reading
 }
 
-function useCurrentV(){
-  if(!S.verses.length){toast('Select a chapter first');return;}
+function useCurrentForIG(){
+  if(!S.verses||!S.verses.length){toast('முதலில் ஒரு chapter திறங்கள்');return;}
   const v=S.verses[0];
   const taRef=(S.bookTaName||S.bookName)+' '+S.ch+':'+v.num;
   const enRef=S.bookName+' '+S.ch+':'+v.num;
@@ -2200,7 +2227,7 @@ function openVModal(i){
   if(noteEl) noteEl.value = notes[_mv.ref]||'';
 
   // Bookmark state
-  const isBm=getBM().some(b=>b.ref===_mv.ref);
+  const isBm=S.bm.some(b=>b.ref===_mv.ref);
   const bmBtn=document.getElementById('sheet-bm-btn');
   if(bmBtn) bmBtn.classList.toggle('saved', isBm);
 
@@ -2244,7 +2271,7 @@ function mAct(action){
     openPanel('img');setTimeout(drawIG,100);
   }
   else if(action==='save'){
-    const bms=getBM();
+    const bms=S.bm;
     const fi=bms.findIndex(b=>b.ref===_mv.ref);
     if(fi>=0){
       bms.splice(fi,1);saveBM(bms);
@@ -2307,3 +2334,7 @@ window.toggleTheme = function() {
   const next = current === 'light' ? 'dark' : 'light';
   applyTheme(next); // updates both CSS vars AND data-theme attribute
 };
+
+// ── Expose for bible-mobile.js ────────────────────────────────
+window.S = S;
+window.BOOKS = BOOKS;

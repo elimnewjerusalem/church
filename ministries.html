@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="css/pages.css">
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/premium-v2.css">
+  <link rel="stylesheet" href="css/mobile-fix.css">
 </head>
 <body>
 
@@ -78,7 +79,7 @@
   <!-- Page Hero -->
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
-      <p class="section-tag">All Ministries</p>
+      <p class="section-tag anim-wipe">All Ministries</p>
       <h1 id="page-title">Find Your <em>Place</em></h1>
       <p>A ministry for every person at every stage of life.</p>
     </div>
@@ -323,11 +324,11 @@
 
 <nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
+    <a href="index.html"   class="mob-item active" aria-label="Home">   <i class="ti ti-home"     aria-hidden="true"></i><span>Home</span></a>
+    <a href="events.html"  class="mob-item"  aria-label="Events"> <i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+    <a href="bible.html"   class="mob-item"   aria-label="Bible">  <i class="ti ti-book"     aria-hidden="true"></i><span>Bible</span></a>
+    <a href="gallery.html" class="mob-item" aria-label="Gallery"><i class="ti ti-photo"    aria-hidden="true"></i><span>Gallery</span></a>
+    <a href="contact.html" class="mob-item" aria-label="Visit">  <i class="ti ti-map-pin"  aria-hidden="true"></i><span>Visit</span></a>
   </div>
 </nav>
 
@@ -382,6 +383,7 @@
 
 <script>window.ENJC_PAGE="ministries";</script>
 <script src="js/site.js" defer></script>
+  <script src="js/design-upgrade.js" defer></script>
 
 </body>
 </html>

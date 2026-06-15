@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ENJC — Elim New Jerusalem Church | Tondiarpet, Chennai</title>
+<script>
+  // Mobile users → app.html
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && window.innerWidth <= 768) {
+    window.location.replace('app.html');
+  }
+</script>
 <link rel="canonical" href="https://elimnewjerusalem.github.io/church/">
 <link rel="icon" type="image/png" href="images/logo/logo.png">
 <link rel="apple-touch-icon" href="images/logo/logo.png">
@@ -41,6 +47,7 @@
 <link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/premium-v2.css">
+  <link rel="stylesheet" href="css/mobile-fix.css">
 
 <!-- Styles -->
 
@@ -159,6 +166,42 @@
 
   </div>
 </section>
+
+<!-- Mobile: next event card (shown only on mobile via CSS) -->
+<div class="hero-event-mobile">
+  <div class="hem-icon">🌙</div>
+  <div>
+    <div class="hem-label">Next meeting</div>
+    <div class="hem-title">Deliverance Meeting</div>
+    <div class="hem-sub">14 Jun · 6:00 PM · Saturday</div>
+  </div>
+  <div class="hem-badge">7 days</div>
+</div>
+
+<!-- Mobile quick grid — only shown on mobile -->
+<div class="mob-quick-grid">
+  <a href="bible.html" class="mqg-item">
+    <span class="mqg-icon">📖</span>
+    <div class="mqg-title">Bible Reader</div>
+    <div class="mqg-sub">Tamil &amp; English</div>
+  </a>
+  <a href="imagegen.html" class="mqg-item">
+    <span class="mqg-icon">🎴</span>
+    <div class="mqg-title">Scripture Cards</div>
+    <div class="mqg-sub">Share on WhatsApp</div>
+  </a>
+  <a href="events.html" class="mqg-item">
+    <span class="mqg-icon">▶️</span>
+    <div class="mqg-title">Watch Live</div>
+    <div class="mqg-sub">YouTube stream</div>
+  </a>
+  <a href="contact.html" class="mqg-item">
+    <span class="mqg-icon">🙏</span>
+    <div class="mqg-title">Prayer Times</div>
+    <div class="mqg-sub">Night · Daily 10:30</div>
+  </a>
+</div>
+
 <div class="stained-divider" aria-hidden="true"><canvas class="stained-cv"></canvas></div>
 
 <!-- ═══ COUNTDOWN  (dark) ═══ -->
@@ -308,7 +351,7 @@
     </div>
     <a href="ministries.html" class="view-all-link">View All <i class="ti ti-arrow-right" class="icon-xs"></i></a>
   </div>
-  <div class="ministry-grid">
+  <div class="ministry-grid anim-stagger">
     <div class="ministry-card cin-card cin-card reveal anim-roll-left delay-1">
       <div class="ministry-card-img"><i class="ti ti-users"></i></div>
       <div class="ministry-card-body">
@@ -344,7 +387,7 @@
     </div>
     <a href="bible.html" class="view-all-link" style="color:var(--gold)">View All <i class="ti ti-arrow-right" class="icon-xs"></i></a>
   </div>
-  <div class="tools-grid">
+  <div class="tools-grid anim-stagger">
     <a href="bible.html" class="tool-card cin-card cin-card reveal delay-1">
       <div class="tool-icon"><i class="ti ti-book"></i></div>
       <div class="tool-name">Bible Reader</div>
@@ -502,11 +545,11 @@
 
 <nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item  active" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
+    <a href="index.html"   class="mob-item active" aria-label="Home">   <i class="ti ti-home"    aria-hidden="true"></i><span>Home</span></a>
+    <a href="events.html"  class="mob-item"        aria-label="Events"> <i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+    <a href="bible.html"   class="mob-item"        aria-label="Bible">  <i class="ti ti-book"    aria-hidden="true"></i><span>Bible</span></a>
+    <a href="gallery.html" class="mob-item"        aria-label="Gallery"><i class="ti ti-photo"   aria-hidden="true"></i><span>Gallery</span></a>
+    <a href="contact.html" class="mob-item"        aria-label="Visit">  <i class="ti ti-map-pin" aria-hidden="true"></i><span>Visit</span></a>
   </div>
 </nav>
 

@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/premium-v2.css">
+  <link rel="stylesheet" href="css/mobile-fix.css">
 </head>
 <body>
 <a href="#main" class="skip-to-content">Skip to main content</a>
@@ -76,16 +77,16 @@
   <!-- Page hero -->
   <section class="page-hero" aria-labelledby="page-title">
     <div class="container">
-      <p class="section-tag">Live &amp; Schedule</p>
+      <p class="section-tag anim-wipe">Live &amp; Schedule</p>
       <h1 id="page-title">Live &amp; <em>Events</em></h1>
       <p>Join us for worship, fellowship, and special gatherings</p>
     </div>
   </section>
 
   <!-- Live Stream — rendered by js/live-stream.js -->
-  <section id="live-stream-section" class="reveal-on-scroll section-sm" style="background:var(--bg);" aria-labelledby="live-heading">
+  <section id="live-stream-section" class="reveal-on-scroll section-sm s-dark" aria-labelledby="live-heading">
     <div class="container">
-      <p class="section-tag">Live Stream</p>
+      <p class="section-tag anim-wipe">Live Stream</p>
       <h2 class="section-heading">Join Us <em>This Week</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
       <!--
@@ -101,12 +102,12 @@
 
 
   <!-- Recent Live Streams -->
-  <section class="reveal-on-scroll section" style="background:var(--bg-2);" aria-labelledby="streams-heading">
+  <section class="reveal-on-scroll section s-light" aria-labelledby="streams-heading">
     <div class="container">
-      <p class="section-tag">Watch Again</p>
+      <p class="section-tag anim-wipe">Watch Again</p>
       <h2 class="section-heading">📺 Recent Live <em>Streams</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
-      <p class="section-sub">Catch up on our latest worship services and devotionals</p>
+      <p class="section-sub anim-fade-up delay-1">Catch up on our latest worship services and devotionals</p>
       <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
       <div class="grid-3" id="recent-streams-grid"></div>
       <div style="text-align:center;margin-top:28px;">
@@ -118,12 +119,12 @@
   <div class="divider"></div>
 
   <!-- Most Watched -->
-  <section class="reveal-on-scroll section-alt" style="background:var(--bg-3);" aria-labelledby="popular-heading">
+  <section class="reveal-on-scroll section s-dark2" aria-labelledby="popular-heading">
     <div class="container">
-      <p class="section-tag">Popular</p>
+      <p class="section-tag anim-wipe">Popular</p>
       <h2 class="section-heading">🔥 Most Watched <em>Messages</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
-      <p class="section-sub">Popular sermons and devotionals that touched hearts</p>
+      <p class="section-sub anim-fade-up delay-1">Popular sermons and devotionals that touched hearts</p>
             <!-- Populated by js/events.js from data/events.json → mostWatched[] -->
       <div class="grid-3" id="most-watched-grid"></div>
     </div>
@@ -135,9 +136,9 @@
   <div class="divider"></div>
 
   <!-- ═══ FEATURED SERVICES — Sunday / Friday / Promise ═══ -->
-  <section class="reveal-on-scroll section" style="background:var(--bg);" aria-labelledby="services-heading">
+  <section class="reveal-on-scroll section s-light2" aria-labelledby="services-heading">
     <div class="container">
-      <p class="section-tag">Watch & Worship</p>
+      <p class="section-tag anim-wipe">Watch & Worship</p>
       <h2 class="section-heading" id="services-heading">Our <em>Services</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;margin-top:32px;">
@@ -176,9 +177,9 @@
   <div class="divider"></div>
 
   <!-- ═══ DELIVERANCE — Latest 3 ═══ -->
-  <section class="reveal-on-scroll section-alt" style="background:var(--bg-2);" aria-labelledby="deliverance-heading">
+  <section class="reveal-on-scroll section s-dark3" aria-labelledby="deliverance-heading">
     <div class="container">
-      <p class="section-tag">Deliverance Ministry</p>
+      <p class="section-tag anim-wipe">Deliverance Ministry</p>
       <h2 class="section-heading" id="deliverance-heading">🔥 Deliverance <em>Services</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
       <p class="section-sub" style="margin-bottom:24px;">Latest Deliverance Meeting messages — New Moon Day every month</p>
@@ -193,9 +194,9 @@
   <div class="divider"></div>
 
   <!-- ═══ TESTIMONY — Latest 3 ═══ -->
-  <section class="reveal-on-scroll section" style="background:var(--bg-3);" aria-labelledby="testimony-heading">
+  <section class="reveal-on-scroll section s-light" aria-labelledby="testimony-heading">
     <div class="container">
-      <p class="section-tag">Testimonies</p>
+      <p class="section-tag anim-wipe">Testimonies</p>
       <h2 class="section-heading" id="testimony-heading">💬 Testimony <em>Services</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
       <p class="section-sub" style="margin-bottom:24px;">God's miracles — healing, deliverance, and salvation testimonies</p>
@@ -210,12 +211,12 @@
   <div class="divider"></div>
 
   <!-- Verse Reels -->
-  <section class="reveal-on-scroll section" style="background:var(--bg);" aria-labelledby="reels-heading">
+  <section class="reveal-on-scroll section s-dark" aria-labelledby="reels-heading">
     <div class="container">
-      <p class="section-tag">Short Videos</p>
+      <p class="section-tag anim-wipe">Short Videos</p>
       <h2 class="section-heading">📖 Verse <em>Reels</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
-      <p class="section-sub">Daily scripture encouragement in short videos</p>
+      <p class="section-sub anim-fade-up delay-1">Daily scripture encouragement in short videos</p>
       <!-- Populated by js/events.js from data/events.json → verseReels[] -->
       <div class="reels-row" id="verse-reels-row"></div>
       <div style="text-align:center;margin-top:32px;">
@@ -227,7 +228,7 @@
   <div class="divider"></div>
 
   <!-- Community Testimonials -->
-  <section class="reveal-on-scroll section-alt" style="background:var(--bg-2);" aria-labelledby="testimonials-heading">
+  <section class="reveal-on-scroll section s-light2" aria-labelledby="testimonials-heading">
     <div class="container">
       <div style="max-width:800px;margin:0 auto;text-align:center;">
         <p class="section-tag" style="justify-content:center;">Community</p>
@@ -267,14 +268,14 @@
 
   <button class="scroll-top-btn" id="scroll-top-btn" onclick="goTop()" aria-label="Back to top">↑</button>
 
-  <!-- JS: live detection — shows LIVE NOW or offline schedule card -->
+  <!-- JS: loads videos + testimonials from data/events.json — exposes YT_API_KEY globally -->
+  <script src="js/events.js"></script>
+
+  <!-- JS: live detection -->
   <script src="js/live-stream.js"></script>
 <!-- Styles -->
 <!-- Styles -->
 
-
-  <!-- JS: loads videos + testimonials from data/events.json -->
-  <script src="js/events.js"></script>
 
   <!-- Scroll Reveal Observer -->
   <script>
@@ -365,11 +366,11 @@
 
 <nav class="mob-nav" aria-label="Mobile navigation">
   <div class="mob-nav-inner">
-    <a href="index.html" class="mob-item" aria-label="Home"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></a>
-    <a href="about.html" class="mob-item" aria-label="About"><i class="ti ti-info-circle" aria-hidden="true"></i><span>About</span></a>
-    <a href="bible.html" class="mob-item" aria-label="Bible"><i class="ti ti-book" aria-hidden="true"></i><span>Bible</span></a>
-    <a href="events.html" class="mob-item  active" aria-label="Events"><i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
-    <a href="contact.html" class="mob-item" aria-label="Contact"><i class="ti ti-mail" aria-hidden="true"></i><span>Contact</span></a>
+    <a href="index.html"   class="mob-item"   aria-label="Home">   <i class="ti ti-home"     aria-hidden="true"></i><span>Home</span></a>
+    <a href="events.html"  class="mob-item active"  aria-label="Events"> <i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+    <a href="bible.html"   class="mob-item"   aria-label="Bible">  <i class="ti ti-book"     aria-hidden="true"></i><span>Bible</span></a>
+    <a href="gallery.html" class="mob-item" aria-label="Gallery"><i class="ti ti-photo"    aria-hidden="true"></i><span>Gallery</span></a>
+    <a href="contact.html" class="mob-item" aria-label="Visit">  <i class="ti ti-map-pin"  aria-hidden="true"></i><span>Visit</span></a>
   </div>
 </nav>
 <script src="js/site.js" defer></script>

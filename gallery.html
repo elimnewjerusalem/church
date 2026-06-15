@@ -23,10 +23,15 @@
   <link rel="stylesheet" href="css/pages.css">
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/premium-v2.css">
+  <link rel="stylesheet" href="css/mobile-fix.css">
 
   <style>
   /* ═══════════════════════════════════════════
-     GALLERY — Pinterest 3-col Masonry Layout
+     GALLERY PAGE — Fan Carousel Redesign
+     Three accent colours:
+       Gold   #c8a45a  (brand / active)
+       Purple #7c3aed  (worship / prayer)
+       Teal   #0d9488  (scripture / outreach)
   ═══════════════════════════════════════════ */
 
   /* ── Hero ── */
@@ -40,19 +45,16 @@
   .gal-hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,164,90,0.07) 0%, transparent 70%);
     pointer-events: none;
   }
-  .gal-hero-inner {
-    position: relative; z-index: 1;
-    display: flex; flex-direction: column; align-items: center;
-  }
+  .gal-hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
   .gal-hero-tag {
     display: inline-block;
     font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--gold); border: 1px solid var(--gold-border);
     padding: 5px 16px; border-radius: 99px;
-    background: rgba(201,168,76,0.08); margin-bottom: 16px;
+    background: rgba(200,164,90,0.08); margin-bottom: 16px;
   }
   .gal-hero h1 {
     font-family: var(--font-display);
@@ -60,10 +62,7 @@
     color: var(--text-light); line-height: 1.1; margin-bottom: 12px;
   }
   .gal-hero h1 em { color: var(--gold); font-style: italic; }
-  .gal-hero p {
-    font-size: 15px; color: var(--text-muted);
-    max-width: 480px; margin: 0 auto 28px; line-height: 1.7;
-  }
+  .gal-hero p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
   .gal-stats {
     display: flex; gap: 0; justify-content: center;
     background: rgba(255,255,255,0.03);
@@ -72,16 +71,10 @@
   }
   .gal-stat { text-align: center; padding: 14px 32px; border-right: 1px solid var(--border-dark); }
   .gal-stat:last-child { border-right: none; }
-  .gal-stat-num {
-    font-family: var(--font-display);
-    font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1;
-  }
-  .gal-stat-lbl {
-    font-size: 10px; color: var(--text-faint);
-    text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px;
-  }
+  .gal-stat-num { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .gal-stat-lbl { font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; }
 
-  /* ── Filter Tab Bar ── */
+  /* ── Filter Pills ── */
   .gal-filter-wrap {
     position: sticky; top: var(--nav-height); z-index: 80;
     background: rgba(6,15,36,0.95);
@@ -90,312 +83,258 @@
   }
   .gal-filter-inner {
     max-width: var(--max-width); margin: 0 auto;
-    padding: 0 var(--container-px);
-    display: flex; align-items: center; gap: 0;
-    overflow-x: auto; scrollbar-width: none;
+    padding: 14px var(--container-px);
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; flex-wrap: wrap;
   }
-  .gal-filter-inner::-webkit-scrollbar { display: none; }
-  .gal-tab {
-    flex-shrink: 0; padding: 14px 20px;
-    font-size: 13px; font-weight: 600; font-family: var(--font-body);
-    color: var(--text-faint); background: none; border: none;
-    border-bottom: 2px solid transparent;
-    cursor: pointer; transition: color 0.2s, border-color 0.2s;
-    white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  .gal-pill {
+    flex-shrink: 0; padding: 7px 18px;
+    font-size: 12px; font-weight: 600; font-family: var(--font-body);
+    color: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px;
   }
-  .gal-tab:hover { color: var(--text-light); }
-  .gal-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .gal-pill:hover { color: rgba(255,255,255,0.80); border-color: rgba(255,255,255,0.25); }
+  .gal-pill.active { background: #c8a45a; color: #020810; border-color: #c8a45a; }
+  .gal-pill.active.cat-worship  { background: #7c3aed; border-color: #7c3aed; color: #fff; }
+  .gal-pill.active.cat-prayer   { background: #7c3aed; border-color: #7c3aed; color: #fff; }
+  .gal-pill.active.cat-scripture{ background: #0d9488; border-color: #0d9488; color: #fff; }
+  .gal-pill.active.cat-outreach { background: #0d9488; border-color: #0d9488; color: #fff; }
   .gal-count {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 18px; height: 18px; border-radius: 99px; padding: 0 4px;
-    background: rgba(201,168,76,0.15); color: var(--gold);
+    background: rgba(255,255,255,0.12); color: inherit;
     font-size: 9px; font-weight: 800;
   }
-  .gal-tab.active .gal-count { background: rgba(201,168,76,0.25); }
 
-  /* ── Masonry Container ── */
-  .gal-main {
+  /* ── Fan Carousel ── */
+  .gal-carousel-section {
     max-width: var(--max-width); margin: 0 auto;
-    padding: clamp(24px,3vw,40px) var(--container-px) clamp(32px,4vw,56px);
+    padding: clamp(24px,3vw,40px) 0 clamp(20px,2.5vw,32px);
   }
-
-  /* Pinterest 3-col CSS columns masonry */
-  .masonry-grid {
-    columns: 3;
-    column-gap: 14px;
-  }
-
-  /* Each card */
-  .pin-card {
-    break-inside: avoid;
-    margin-bottom: 14px;
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    background: var(--bg-3);
-    display: block;
-    /* fade-in on scroll */
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.4s ease, transform 0.4s ease,
-                box-shadow 0.3s ease;
-  }
-  .pin-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .pin-card.hidden {
-    display: none;
-  }
-  .pin-card:hover {
-    box-shadow: 0 12px 40px rgba(0,0,0,0.55);
-  }
-  .pin-card:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
-  }
-
-  /* Image — natural height, no crop */
-  .pin-card img {
-    width: 100%; height: auto;
-    display: block;
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-  }
-  .pin-card:hover img { transform: scale(1.03); }
-
-  /* Overlay on hover */
-  .pin-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg,
-      rgba(0,0,0,0) 50%,
-      rgba(0,0,0,0.72) 100%);
-    opacity: 0;
-    transition: opacity 0.25s;
-    display: flex; flex-direction: column;
-    justify-content: space-between;
-    padding: 12px;
-  }
-  .pin-card:hover .pin-overlay { opacity: 1; }
-
-  /* Top row — category tag + zoom icon */
-  .pin-top {
-    display: flex; align-items: flex-start; justify-content: space-between;
-  }
-  .pin-tag {
-    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 3px 9px; border-radius: 99px;
-    backdrop-filter: blur(8px);
-  }
-  .pin-tag--worship  { background: rgba(201,168,76,0.9); color: #0c1220; }
-  .pin-tag--scripture{ background: rgba(99,180,243,0.9); color: #0c1220; }
-  .pin-tag--prayer   { background: rgba(167,139,250,0.9); color: #0c1220; }
-  .pin-tag--outreach { background: rgba(74,222,128,0.9); color: #0c1220; }
-
-  .pin-zoom {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+  .gal-carousel-wrap {
+    position: relative; height: 360px;
     display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 13px;
-    transform: scale(0.7); transition: transform 0.2s;
+    overflow: hidden; margin-bottom: 24px; cursor: grab;
   }
-  .pin-card:hover .pin-zoom { transform: scale(1); }
+  .gal-carousel-wrap:active { cursor: grabbing; }
 
-  /* Bottom row — caption */
-  .pin-cap {
-    margin-top: auto;
+  /* Cards */
+  .gc {
+    position: absolute;
+    width: 220px; height: 300px;
+    border-radius: 18px; overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94),
+                opacity 0.5s ease, outline 0.2s;
+    will-change: transform, opacity;
+    outline: 1.5px solid transparent;
   }
-  .pin-cap-title {
-    font-size: 13px; font-weight: 700; color: #fff;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.5); margin-bottom: 2px;
-  }
-  .pin-cap-sub {
-    font-size: 11px; color: rgba(255,255,255,0.6);
-  }
+  .gc img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
 
-  /* Always-visible tag (no hover needed on mobile) */
-  .pin-tag-always {
+  /* Position states */
+  .gc[data-pos="0"]  { transform: translateX(0)     scale(1)    rotateY(0deg);   z-index:10; opacity:1;    outline-color: rgba(200,164,90,0.5); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  .gc[data-pos="-1"] { transform: translateX(-200px) scale(0.80) rotateY(10deg);  z-index:7;  opacity:0.75; }
+  .gc[data-pos="1"]  { transform: translateX(200px)  scale(0.80) rotateY(-10deg); z-index:7;  opacity:0.75; }
+  .gc[data-pos="-2"] { transform: translateX(-348px) scale(0.60) rotateY(18deg);  z-index:4;  opacity:0.38; }
+  .gc[data-pos="2"]  { transform: translateX(348px)  scale(0.60) rotateY(-18deg); z-index:4;  opacity:0.38; }
+  .gc[data-pos="hidden"] { transform: translateX(0) scale(0.3); z-index:1; opacity:0; pointer-events:none; }
+
+  /* Card badge */
+  .gc-badge {
     position: absolute; top: 10px; left: 10px;
-    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 3px 9px; border-radius: 99px;
-    backdrop-filter: blur(8px); pointer-events: none;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 3px 9px; border-radius: 6px; text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+  .gc-badge--gold   { background: rgba(200,164,90,0.25); color: #c8a45a; border: 0.5px solid rgba(200,164,90,0.4); }
+  .gc-badge--purple { background: rgba(124,58,237,0.25); color: #c4b5fd; border: 0.5px solid rgba(124,58,237,0.4); }
+  .gc-badge--teal   { background: rgba(13,148,136,0.25); color: #5eead4; border: 0.5px solid rgba(13,148,136,0.4); }
+
+  /* Card overlay + title */
+  .gc-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
+    background: linear-gradient(transparent, rgba(2,8,16,0.88));
+    border-radius: 0 0 18px 18px;
+  }
+  .gc-caption {
+    position: absolute; bottom: 12px; left: 12px; right: 12px; z-index: 2;
+  }
+  .gc-title { font-size: 12px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .gc-sub   { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+
+  /* Play badge for video cards */
+  .gc-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(4px);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 15px; z-index: 3;
   }
 
-  /* ── Empty state ── */
-  .gal-empty {
-    display: none; text-align: center;
-    padding: 80px 20px; color: var(--text-faint); font-size: 15px;
+  /* Controls */
+  .gc-controls {
+    display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 14px;
   }
-  .gal-empty.show { display: block; }
+  .gc-arrow {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.6); font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .gc-arrow:hover {
+    background: rgba(200,164,90,0.12);
+    border-color: rgba(200,164,90,0.45);
+    color: #c8a45a;
+  }
+  .gc-dots { display: flex; justify-content: center; gap: 6px; }
+  .gc-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: none; cursor: pointer; padding: 0;
+    transition: all 0.3s;
+  }
+  .gc-dot.active { background: #c8a45a; width: 22px; border-radius: 4px; }
 
   /* ── Lightbox ── */
   .lb {
-    display: none; position: fixed; inset: 0; z-index: 1000;
-    background: rgba(0,0,0,0.93); backdrop-filter: blur(16px);
-    align-items: center; justify-content: center;
+    display: none; position: fixed; inset: 0; z-index: 9000;
+    background: rgba(2,8,16,0.96); align-items: center; justify-content: center;
+    flex-direction: column;
   }
   .lb.open { display: flex; }
-  .lb-inner {
-    position: relative; display: flex; flex-direction: column;
-    align-items: center; max-width: 92vw; max-height: 92vh;
+  .lb-counter {
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.1em;
   }
-  .lb-img {
-    max-width: 88vw; max-height: 78vh;
-    object-fit: contain; border-radius: 12px;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.7);
-    display: block;
-  }
-  .lb-info { margin-top: 14px; text-align: center; }
-  .lb-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 3px; }
-  .lb-sub   { font-size: 12px; color: rgba(255,255,255,0.45); }
-
   .lb-close {
-    position: fixed; top: 16px; right: 16px;
+    position: absolute; top: 16px; right: 20px;
     width: 40px; height: 40px; border-radius: 50%;
-    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
     color: #fff; font-size: 18px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s; backdrop-filter: blur(8px);
+    transition: background 0.2s;
   }
-  .lb-close:hover { background: rgba(255,255,255,0.22); }
+  .lb-close:hover { background: rgba(255,255,255,0.15); }
+  .lb-inner { display: flex; flex-direction: column; align-items: center; max-width: 90vw; max-height: 80vh; }
+  .lb-img { max-width: 100%; max-height: 72vh; border-radius: 14px; object-fit: contain; }
+  .lb-info { text-align: center; margin-top: 12px; }
+  .lb-title { font-size: 15px; font-weight: 700; color: #fff; }
+  .lb-sub   { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 3px; }
   .lb-nav {
-    position: fixed; top: 50%; transform: translateY(-50%);
-    width: 48px; height: 48px; border-radius: 50%;
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
     color: #fff; font-size: 20px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s; backdrop-filter: blur(8px);
+    transition: background 0.2s;
   }
-  .lb-nav:hover { background: rgba(255,255,255,0.2); }
-  .lb-prev { left: 14px; }
-  .lb-next { right: 14px; }
-  .lb-counter {
-    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-    font-size: 12px; color: rgba(255,255,255,0.45);
-    background: rgba(0,0,0,0.45); padding: 4px 14px; border-radius: 99px;
-    backdrop-filter: blur(8px); pointer-events: none;
-  }
+  .lb-nav:hover { background: rgba(200,164,90,0.2); }
+  .lb-prev { left: 20px; }
+  .lb-next { right: 20px; }
   .lb-thumbs {
-    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 6px; padding: 8px 10px; border-radius: 12px;
-    background: rgba(0,0,0,0.55); backdrop-filter: blur(12px);
-    max-width: 90vw; overflow-x: auto; scrollbar-width: none;
+    display: flex; gap: 8px; margin-top: 16px;
+    overflow-x: auto; max-width: 90vw;
+    padding-bottom: 4px; scrollbar-width: none;
   }
   .lb-thumbs::-webkit-scrollbar { display: none; }
   .lb-thumb {
-    width: 42px; height: 42px; border-radius: 7px; overflow: hidden;
+    width: 52px; height: 52px; border-radius: 8px; overflow: hidden;
     flex-shrink: 0; cursor: pointer; opacity: 0.45;
-    border: 2px solid transparent; transition: opacity 0.2s, border-color 0.2s;
+    border: 2px solid transparent; transition: all 0.2s;
   }
-  .lb-thumb.active { opacity: 1; border-color: var(--gold); }
+  .lb-thumb.active { opacity: 1; border-color: #c8a45a; }
   .lb-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
   /* ── CTA ── */
   .gal-cta {
-    background: var(--bg-2);
-    border-top: 1px solid var(--border-dark);
-    padding: clamp(48px,6vw,72px) var(--container-px);
     text-align: center;
+    padding: clamp(40px,5vw,72px) var(--container-px);
+    border-top: 1px solid var(--border-dark);
+    background: var(--bg-3);
   }
   .gal-cta h2 {
     font-family: var(--font-display);
-    font-size: clamp(28px,4vw,42px); font-weight: 700;
-    color: var(--text-light); margin-bottom: 10px;
+    font-size: clamp(28px,4vw,48px); font-weight: 700;
+    color: var(--text-light); margin-bottom: 12px;
   }
   .gal-cta h2 em { color: var(--gold); font-style: italic; }
-  .gal-cta p { font-size: 15px; color: var(--text-muted); margin-bottom: 26px; }
-  .gal-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-gold {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 12px 24px; border-radius: 99px;
-    background: var(--gold); color: var(--bg);
-    font-weight: 700; font-size: 14px; text-decoration: none;
-    font-family: var(--font-body); transition: opacity 0.2s;
-  }
-  .btn-gold:hover { opacity: 0.88; }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 12px 24px; border-radius: 99px;
-    background: transparent; color: var(--text-light);
-    border: 1px solid var(--border-mid);
-    font-weight: 600; font-size: 14px; text-decoration: none;
-    font-family: var(--font-body); transition: border-color 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--gold-border); }
+  .gal-cta p { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
+  .gal-cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
   /* ── Responsive ── */
-  @media (max-width: 900px) {
-    .masonry-grid { columns: 2; column-gap: 10px; }
-    .pin-card     { margin-bottom: 10px; }
-    .pin-overlay  { opacity: 1; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.65) 100%); }
-    .pin-zoom     { transform: scale(1); }
-    .gal-tab      { padding: 12px 14px; font-size: 12px; }
-    .lb-nav       { width: 38px; height: 38px; font-size: 17px; }
-    .lb-thumbs    { display: none; }
-  }
-  @media (max-width: 480px) {
-    .masonry-grid { columns: 2; column-gap: 8px; }
-    .pin-card     { margin-bottom: 8px; border-radius: 10px; }
-    .gal-stat     { padding: 12px 20px; }
-    .gal-stat-num { font-size: 20px; }
+  @media (max-width: 768px) {
+    .gal-carousel-wrap { height: 290px; }
+    .gc { width: 165px; height: 230px; }
+    .gc[data-pos="-1"] { transform: translateX(-148px) scale(0.80) rotateY(10deg); }
+    .gc[data-pos="1"]  { transform: translateX(148px)  scale(0.80) rotateY(-10deg); }
+    .gc[data-pos="-2"] { transform: translateX(-262px) scale(0.60) rotateY(18deg); }
+    .gc[data-pos="2"]  { transform: translateX(262px)  scale(0.60) rotateY(-18deg); }
+    .gal-stat { padding: 12px 18px; }
+    .gal-filter-inner { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 12px var(--container-px); }
+    .lb-nav { display: none; }
   }
   </style>
 </head>
-
 <body>
-  <a href="#main" class="skip-to-content">Skip to main content</a>
-
-  <header>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="ENJC home">
-          <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36" onerror="this.style.display='none'">
-          <div>
-            <div class="nav-logo__name">ENJC</div>
-            <div class="nav-logo__sub">Elim New Jerusalem Church · Tondiarpet</div>
-          </div>
-        </a>
-        <ul class="nav-links" id="nav-links" role="list">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="ministries.html" class="nav-link">Ministries</a></li>
-          <li><a href="events.html" class="nav-link">Events</a></li>
-          <li><a href="gallery.html" class="nav-link nav-link--active" aria-current="page">Gallery</a></li>
-          <li><a href="bible.html" class="nav-link">Bible</a></li>
-          <li><a href="imagegen.html" class="nav-link">Cards</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="nav-controls">
-          <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="ENJC home">
+        <img src="images/logo/logo.png" class="nav-logo__img" alt="ENJC logo" width="36" height="36" onerror="this.style.display='none'">
+        <div>
+          <div class="nav-logo__name">ENJC</div>
+          <div class="nav-logo__sub">Elim New Jerusalem Church · Tondiarpet</div>
         </div>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span class="nav-hamburger__line"></span>
-          <span class="nav-hamburger__line"></span>
-          <span class="nav-hamburger__line"></span>
-        </button>
+      </a>
+      <ul class="nav-links" id="nav-links" role="list" aria-label="Main navigation">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="gallery.html" class="nav-link nav-link--active" aria-current="page">Gallery</a></li>
+        <li><a href="bible.html" class="nav-link">Bible</a></li>
+        <li><a href="imagegen.html" class="nav-link">Cards</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-controls">
+        <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
       </div>
-      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <a href="index.html" class="mobile-menu__link">Home</a>
-        <a href="about.html" class="mobile-menu__link">About</a>
-        <a href="ministries.html" class="mobile-menu__link">Ministries</a>
-        <a href="events.html" class="mobile-menu__link">Events</a>
-        <a href="gallery.html" class="mobile-menu__link is-active" aria-current="page">Gallery</a>
-        <a href="bible.html" class="mobile-menu__link">Bible</a>
-        <a href="imagegen.html" class="mobile-menu__link">Cards</a>
-        <a href="contact.html" class="mobile-menu__link">Contact</a>
-      </div>
-    </nav>
-  </header>
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
+        aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+        <span class="nav-hamburger__line"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <a href="index.html" class="mobile-menu__link">Home</a>
+      <a href="about.html" class="mobile-menu__link">About</a>
+      <a href="ministries.html" class="mobile-menu__link">Ministries</a>
+      <a href="events.html" class="mobile-menu__link">Events</a>
+      <a href="gallery.html" class="mobile-menu__link is-active" aria-current="page">Gallery</a>
+      <a href="bible.html" class="mobile-menu__link">Bible</a>
+      <a href="imagegen.html" class="mobile-menu__link">Cards</a>
+      <a href="contact.html" class="mobile-menu__link">Contact</a>
+    </div>
+  </nav>
 
   <main id="main">
 
-    <!-- Hero -->
+    <!-- ── Hero ── -->
     <section class="gal-hero">
       <div class="gal-hero-inner">
-        <span class="gal-hero-tag">Our Community</span>
+        <span class="gal-hero-tag anim-wipe">Our Community</span>
         <h1>Church <em>Gallery</em></h1>
         <p>Moments of worship, prayer, fellowship and service captured in Christ.</p>
-        <div class="gal-stats">
+        <div class="gal-stats anim-stagger">
           <div class="gal-stat">
             <div class="gal-stat-num" id="stat-count">10</div>
             <div class="gal-stat-lbl">Photos</div>
@@ -412,231 +351,114 @@
       </div>
     </section>
 
-    <!-- Filter Tabs -->
+    <!-- ── Filter Pills ── -->
     <div class="gal-filter-wrap" role="navigation" aria-label="Gallery categories">
-      <div class="gal-filter-inner">
-        <button class="gal-tab active" data-filter="all">All <span class="gal-count">10</span></button>
-        <button class="gal-tab" data-filter="scripture">Scripture <span class="gal-count">4</span></button>
-        <button class="gal-tab" data-filter="worship">Worship <span class="gal-count">3</span></button>
-        <button class="gal-tab" data-filter="prayer">Prayer <span class="gal-count">2</span></button>
-        <button class="gal-tab" data-filter="outreach">Outreach <span class="gal-count">1</span></button>
+      <div class="gal-filter-inner" id="filterRow">
+        <button class="gal-pill active"          data-filter="all">All <span class="gal-count">10</span></button>
+        <button class="gal-pill cat-scripture"   data-filter="scripture">Scripture <span class="gal-count">4</span></button>
+        <button class="gal-pill cat-worship"     data-filter="worship">Worship <span class="gal-count">3</span></button>
+        <button class="gal-pill cat-prayer"      data-filter="prayer">Prayer <span class="gal-count">2</span></button>
+        <button class="gal-pill cat-outreach"    data-filter="outreach">Outreach <span class="gal-count">1</span></button>
       </div>
     </div>
 
-    <!-- Masonry Grid -->
-    <section class="gal-main" aria-label="Church photo gallery">
+    <!-- ── Fan Carousel ── -->
+    <section class="gal-carousel-section" aria-label="Church photo gallery">
+      <div class="gal-carousel-wrap" id="gcWrap">
 
-      <div class="masonry-grid" id="masonry-grid">
-
-        <!-- g1 — Scripture (landscape 1200×800) -->
-        <div class="pin-card" tabindex="0" data-cat="scripture"
-             data-src="images/gallery/g1.webp"
-             data-title="Promise 2026" data-sub="Isaiah 43:4 — ENJC Scripture Card">
-          <img src="images/gallery/g1.webp"
-               alt="ENJC Promise 2026 scripture card — நீ என் பார்வைக்கு அருமையானபடியினால் Isaiah 43:4"
-               loading="eager" width="1200" height="800">
-          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--scripture">Scripture</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Promise 2026</div>
-              <div class="pin-cap-sub">Isaiah 43:4</div>
-            </div>
-          </div>
+        <!-- g1 — Scripture -->
+        <div class="gc" data-cat="scripture" data-src="images/gallery/g1.webp" data-title="Promise 2026" data-sub="Isaiah 43:4 — ENJC Scripture Card">
+          <img src="images/gallery/g1.webp" alt="ENJC Promise 2026 scripture card — Isaiah 43:4" loading="eager" width="1200" height="800">
+          <span class="gc-badge gc-badge--teal">Scripture</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Promise 2026</div><div class="gc-sub">Isaiah 43:4</div></div>
         </div>
 
-        <!-- g6 — Worship (portrait 506×900) -->
-        <div class="pin-card" tabindex="0" data-cat="worship"
-             data-src="images/gallery/g6.webp"
-             data-title="Lion & Eagle" data-sub="God's Majesty — ENJC Worship">
-          <img src="images/gallery/g6.webp"
-               alt="Lion and eagle illustration — God's majesty ENJC Tondiarpet worship"
-               loading="eager" width="506" height="900">
-          <span class="pin-tag-always pin-tag--worship">Worship</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--worship">Worship</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Lion &amp; Eagle</div>
-              <div class="pin-cap-sub">God's Majesty</div>
-            </div>
-          </div>
+        <!-- g6 — Worship -->
+        <div class="gc" data-cat="worship" data-src="images/gallery/g6.webp" data-title="Lion &amp; Eagle" data-sub="God's Majesty — ENJC Worship">
+          <img src="images/gallery/g6.webp" alt="Lion and eagle — God's majesty ENJC worship" loading="eager" width="506" height="900">
+          <span class="gc-badge gc-badge--purple">Worship</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Lion &amp; Eagle</div><div class="gc-sub">God's Majesty</div></div>
         </div>
 
-        <!-- g8 — Prayer (square 900×900) -->
-        <div class="pin-card" tabindex="0" data-cat="prayer"
-             data-src="images/gallery/g8.webp"
-             data-title="Blessed New Year" data-sub="Pas. A. Karthik Daniel — ENJC">
-          <img src="images/gallery/g8.webp"
-               alt="Blessed New Year — Pastor A. Karthik Daniel Elim New Jerusalem Church Tondiarpet"
-               loading="eager" width="900" height="900">
-          <span class="pin-tag-always pin-tag--prayer">Prayer</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--prayer">Prayer</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Blessed New Year</div>
-              <div class="pin-cap-sub">Pas. A. Karthik Daniel</div>
-            </div>
-          </div>
+        <!-- g8 — Prayer -->
+        <div class="gc" data-cat="prayer" data-src="images/gallery/g8.webp" data-title="Blessed New Year" data-sub="Pas. A. Karthik Daniel — ENJC">
+          <img src="images/gallery/g8.webp" alt="Blessed New Year — Pastor A. Karthik Daniel ENJC" loading="eager" width="900" height="900">
+          <span class="gc-badge gc-badge--purple">Prayer</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Blessed New Year</div><div class="gc-sub">Pas. A. Karthik Daniel</div></div>
         </div>
 
-        <!-- g2 — Scripture (landscape) -->
-        <div class="pin-card" tabindex="0" data-cat="scripture"
-             data-src="images/gallery/g2.webp"
-             data-title="Promise 2025" data-sub="Isaiah 8:18 — Behold I and My Children">
-          <img src="images/gallery/g2.webp"
-               alt="Promise 2025 scripture card — Behold I and My Children Isaiah 8:18 ENJC"
-               loading="lazy" width="1200" height="800">
-          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--scripture">Scripture</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Promise 2025</div>
-              <div class="pin-cap-sub">Isaiah 8:18</div>
-            </div>
-          </div>
+        <!-- g2 — Scripture -->
+        <div class="gc" data-cat="scripture" data-src="images/gallery/g2.webp" data-title="Promise 2025" data-sub="Isaiah 8:18 — Behold I and My Children">
+          <img src="images/gallery/g2.webp" alt="Promise 2025 scripture card — Isaiah 8:18 ENJC" loading="lazy" width="1200" height="800">
+          <span class="gc-badge gc-badge--teal">Scripture</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Promise 2025</div><div class="gc-sub">Isaiah 8:18</div></div>
         </div>
 
-        <!-- g9 — Worship (landscape) -->
-        <div class="pin-card" tabindex="0" data-cat="worship"
-             data-src="images/gallery/g9.webp"
-             data-title="Fire & Eagle" data-sub="God's Power — ENJC">
-          <img src="images/gallery/g9.webp"
-               alt="Fire and eagle — God's power and glory ENJC Elim New Jerusalem Church"
-               loading="lazy" width="1200" height="800">
-          <span class="pin-tag-always pin-tag--worship">Worship</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--worship">Worship</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Fire &amp; Eagle</div>
-              <div class="pin-cap-sub">God's Power</div>
-            </div>
-          </div>
+        <!-- g9 — Worship -->
+        <div class="gc" data-cat="worship" data-src="images/gallery/g9.webp" data-title="Fire &amp; Eagle" data-sub="God's Power — ENJC">
+          <img src="images/gallery/g9.webp" alt="Fire and eagle — God's power and glory ENJC" loading="lazy" width="1200" height="800">
+          <span class="gc-badge gc-badge--purple">Worship</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Fire &amp; Eagle</div><div class="gc-sub">God's Power</div></div>
         </div>
 
-        <!-- g10 — Prayer (landscape) -->
-        <div class="pin-card" tabindex="0" data-cat="prayer"
-             data-src="images/gallery/g10.webp"
-             data-title="Night Prayer" data-sub="Daily 10:30 PM — ENJC Tondiarpet">
-          <img src="images/gallery/g10.webp"
-               alt="Night prayer anointing — ENJC Tondiarpet Chennai daily 10:30 PM prayer"
-               loading="lazy" width="1200" height="800">
-          <span class="pin-tag-always pin-tag--prayer">Prayer</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--prayer">Prayer</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Night Prayer</div>
-              <div class="pin-cap-sub">Daily 10:30 PM</div>
-            </div>
-          </div>
+        <!-- g10 — Prayer -->
+        <div class="gc" data-cat="prayer" data-src="images/gallery/g10.webp" data-title="Night Prayer" data-sub="Daily 10:30 PM — ENJC Tondiarpet">
+          <img src="images/gallery/g10.webp" alt="Night prayer anointing — ENJC Tondiarpet daily 10:30 PM" loading="lazy" width="1200" height="800">
+          <span class="gc-badge gc-badge--purple">Prayer</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Night Prayer</div><div class="gc-sub">Daily 10:30 PM</div></div>
         </div>
 
-        <!-- g3 — Worship (landscape) -->
-        <div class="pin-card" tabindex="0" data-cat="worship"
-             data-src="images/gallery/g3.webp"
-             data-title="White Dove" data-sub="Worship in Spirit and Truth — ENJC">
-          <img src="images/gallery/g3.webp"
-               alt="White dove — worship in spirit and truth Elim New Jerusalem Church"
-               loading="lazy" width="1200" height="800">
-          <span class="pin-tag-always pin-tag--worship">Worship</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--worship">Worship</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">White Dove</div>
-              <div class="pin-cap-sub">In Spirit and Truth</div>
-            </div>
-          </div>
+        <!-- g3 — Worship -->
+        <div class="gc" data-cat="worship" data-src="images/gallery/g3.webp" data-title="White Dove" data-sub="Worship in Spirit and Truth — ENJC">
+          <img src="images/gallery/g3.webp" alt="White dove — worship in spirit and truth ENJC" loading="lazy" width="1200" height="800">
+          <span class="gc-badge gc-badge--purple">Worship</span>
+          <div class="gc-play"><i class="ti ti-player-play" aria-hidden="true"></i></div>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">White Dove</div><div class="gc-sub">In Spirit and Truth</div></div>
         </div>
 
-        <!-- g4 — Scripture (landscape) -->
-        <div class="pin-card" tabindex="0" data-cat="scripture"
-             data-src="images/gallery/g4.webp"
-             data-title="Promise 2025" data-sub="Mount Sion — Isaiah 8:18">
-          <img src="images/gallery/g4.webp"
-               alt="Promise 2025 — Behold I and My Children Mount Sion Isaiah 8:18 ENJC"
-               loading="lazy" width="1200" height="800">
-          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--scripture">Scripture</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Promise 2025</div>
-              <div class="pin-cap-sub">Isaiah 8:18</div>
-            </div>
-          </div>
+        <!-- g4 — Scripture -->
+        <div class="gc" data-cat="scripture" data-src="images/gallery/g4.webp" data-title="Promise 2025" data-sub="Mount Sion — Isaiah 8:18">
+          <img src="images/gallery/g4.webp" alt="Promise 2025 — Mount Sion Isaiah 8:18 ENJC" loading="lazy" width="1200" height="800">
+          <span class="gc-badge gc-badge--teal">Scripture</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Promise 2025</div><div class="gc-sub">Mount Sion</div></div>
         </div>
 
-        <!-- g5 — Outreach (landscape) -->
-        <div class="pin-card" tabindex="0" data-cat="outreach"
-             data-src="images/gallery/g5.webp"
-             data-title="Outreach Ministry" data-sub="ENJC Chennai Community">
-          <img src="images/gallery/g5.webp"
-               alt="ENJC outreach ministry — Elim New Jerusalem Church Tondiarpet Chennai community"
-               loading="lazy" width="1200" height="800">
-          <span class="pin-tag-always pin-tag--outreach">Outreach</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--outreach">Outreach</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">Outreach</div>
-              <div class="pin-cap-sub">ENJC Community</div>
-            </div>
-          </div>
+        <!-- g5 — Outreach -->
+        <div class="gc" data-cat="outreach" data-src="images/gallery/g5.webp" data-title="Outreach Ministry" data-sub="ENJC Chennai Community">
+          <img src="images/gallery/g5.webp" alt="ENJC outreach ministry — Elim New Jerusalem Church Tondiarpet" loading="lazy" width="1200" height="800">
+          <span class="gc-badge gc-badge--teal">Outreach</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">Outreach Ministry</div><div class="gc-sub">ENJC Community</div></div>
         </div>
 
-        <!-- g7 — Scripture (landscape 1200×848) -->
-        <div class="pin-card" tabindex="0" data-cat="scripture"
-             data-src="images/gallery/g7.webp"
-             data-title="வாழ்க 2024" data-sub="ENJC Blessing — Elim New Jerusalem Church">
-          <img src="images/gallery/g7.webp"
-               alt="வாழ்க 2024 ENJC blessing scripture card — Elim New Jerusalem Church Tondiarpet"
-               loading="lazy" width="1200" height="848">
-          <span class="pin-tag-always pin-tag--scripture">Scripture</span>
-          <div class="pin-overlay">
-            <div class="pin-top">
-              <span class="pin-tag pin-tag--scripture">Scripture</span>
-              <span class="pin-zoom"><i class="ti ti-zoom-in" aria-hidden="true"></i></span>
-            </div>
-            <div class="pin-cap">
-              <div class="pin-cap-title">வாழ்க 2024</div>
-              <div class="pin-cap-sub">ENJC Blessing</div>
-            </div>
-          </div>
+        <!-- g7 — Scripture -->
+        <div class="gc" data-cat="scripture" data-src="images/gallery/g7.webp" data-title="வாழ்க 2024" data-sub="ENJC Blessing — Elim New Jerusalem Church">
+          <img src="images/gallery/g7.webp" alt="வாழ்க 2024 ENJC blessing scripture card" loading="lazy" width="1200" height="848">
+          <span class="gc-badge gc-badge--teal">Scripture</span>
+          <div class="gc-overlay"></div>
+          <div class="gc-caption"><div class="gc-title">வாழ்க 2024</div><div class="gc-sub">ENJC Blessing</div></div>
         </div>
 
       </div>
 
-      <div class="gal-empty" id="gal-empty">
-        <p>No photos in this category yet.</p>
+      <!-- Controls -->
+      <div class="gc-controls">
+        <button class="gc-arrow" id="gcPrev" aria-label="Previous photo">&#8592;</button>
+        <button class="gc-arrow" id="gcNext" aria-label="Next photo">&#8594;</button>
       </div>
+      <div class="gc-dots" id="gcDots"></div>
 
     </section>
 
-    <!-- Lightbox -->
+    <!-- ── Lightbox ── -->
     <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
       <span class="lb-counter" id="lb-counter">1 / 10</span>
       <button class="lb-close" id="lb-close" aria-label="Close lightbox">
@@ -649,7 +471,7 @@
         <img class="lb-img" id="lb-img" src="" alt="">
         <div class="lb-info">
           <div class="lb-title" id="lb-title"></div>
-          <div class="lb-sub"   id="lb-sub"></div>
+          <div class="lb-sub" id="lb-sub"></div>
         </div>
       </div>
       <button class="lb-nav lb-next" id="lb-next" aria-label="Next photo">
@@ -658,7 +480,7 @@
       <div class="lb-thumbs" id="lb-thumbs"></div>
     </div>
 
-    <!-- CTA -->
+    <!-- ── CTA ── -->
     <section class="gal-cta" aria-label="Join us">
       <h2>Come <em>Join Us</em></h2>
       <p>Three Sunday services every week. All are welcome in Jesus' name.</p>
@@ -733,13 +555,14 @@
   <button id="scroll-top-btn" class="scroll-top" aria-label="Back to top">
     <i class="ti ti-arrow-up" aria-hidden="true"></i>
   </button>
+
   <nav class="mob-nav" aria-label="Mobile navigation">
     <div class="mob-nav-inner">
-      <a href="index.html" class="mob-item"><i class="ti ti-home"></i><span>Home</span></a>
-      <a href="about.html" class="mob-item"><i class="ti ti-info-circle"></i><span>About</span></a>
-      <a href="bible.html" class="mob-item"><i class="ti ti-book"></i><span>Bible</span></a>
-      <a href="events.html" class="mob-item"><i class="ti ti-calendar"></i><span>Events</span></a>
-      <a href="contact.html" class="mob-item"><i class="ti ti-mail"></i><span>Contact</span></a>
+      <a href="index.html"   class="mob-item"        aria-label="Home">   <i class="ti ti-home"     aria-hidden="true"></i><span>Home</span></a>
+      <a href="events.html"  class="mob-item"         aria-label="Events"> <i class="ti ti-calendar" aria-hidden="true"></i><span>Events</span></a>
+      <a href="bible.html"   class="mob-item"         aria-label="Bible">  <i class="ti ti-book"     aria-hidden="true"></i><span>Bible</span></a>
+      <a href="gallery.html" class="mob-item active"  aria-label="Gallery"><i class="ti ti-photo"    aria-hidden="true"></i><span>Gallery</span></a>
+      <a href="contact.html" class="mob-item"         aria-label="Visit">  <i class="ti ti-map-pin"  aria-hidden="true"></i><span>Visit</span></a>
     </div>
   </nav>
 
@@ -770,50 +593,102 @@
       });
     }
 
-    /* ── Cards & Filter ── */
-    var allCards = Array.from(document.querySelectorAll('.pin-card'));
-    var tabs     = document.querySelectorAll('.gal-tab');
-    var empty    = document.getElementById('gal-empty');
+    /* ══════════════════════════════════════
+       FAN CAROUSEL
+    ══════════════════════════════════════ */
+    var allCards = Array.from(document.querySelectorAll('#gcWrap .gc'));
+    var visibleCards = allCards.slice(); /* filtered subset */
+    var total = visibleCards.length;
+    var center = 0;
+    var dotsEl = document.getElementById('gcDots');
+    var autoTimer;
 
-    function applyFilter(cat){
-      var visible = 0;
-      allCards.forEach(function(c){
-        var match = cat === 'all' || c.dataset.cat === cat;
-        c.classList.toggle('hidden', !match);
-        if(match) visible++;
+    /* Build dots */
+    function buildDots(){
+      dotsEl.innerHTML = '';
+      visibleCards.forEach(function(_,i){
+        var d = document.createElement('button');
+        d.className = 'gc-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to photo ' + (i+1));
+        d.addEventListener('click', function(){ goTo(i); });
+        dotsEl.appendChild(d);
       });
-      document.getElementById('stat-count').textContent = visible;
-      empty.classList.toggle('show', visible === 0);
     }
 
-    tabs.forEach(function(tab){
-      tab.addEventListener('click', function(){
-        tabs.forEach(function(t){ t.classList.remove('active'); });
-        tab.classList.add('active');
-        applyFilter(tab.dataset.filter);
+    function getPos(i){
+      var diff = i - center;
+      if(diff >  total/2) diff -= total;
+      if(diff < -total/2) diff += total;
+      if(diff < -2 || diff > 2) return 'hidden';
+      return String(diff);
+    }
+
+    function render(){
+      visibleCards.forEach(function(c,i){ c.setAttribute('data-pos', getPos(i)); });
+      /* hide non-visible cards */
+      allCards.forEach(function(c){
+        if(visibleCards.indexOf(c) === -1) c.setAttribute('data-pos','hidden');
+      });
+      var dots = dotsEl.querySelectorAll('.gc-dot');
+      dots.forEach(function(d,i){ d.classList.toggle('active', i === center); });
+    }
+
+    function goTo(idx){ center = ((idx % total) + total) % total; render(); }
+    function next(){ goTo(center + 1); }
+    function prev(){ goTo(center - 1); }
+
+    function startAuto(){ autoTimer = setInterval(next, 3200); }
+    function stopAuto() { clearInterval(autoTimer); }
+
+    document.getElementById('gcNext').addEventListener('click', function(){ stopAuto(); next(); startAuto(); });
+    document.getElementById('gcPrev').addEventListener('click', function(){ stopAuto(); prev(); startAuto(); });
+
+    /* Click on side card — navigate to it */
+    allCards.forEach(function(c){
+      c.addEventListener('click', function(){
+        var p = parseInt(c.getAttribute('data-pos'));
+        if(isNaN(p) || p === 0){ openLb(visibleCards.indexOf(c)); return; }
+        stopAuto();
+        if(p > 0) for(var i = 0; i < p; i++) next();
+        else      for(var i = 0; i < Math.abs(p); i++) prev();
+        startAuto();
       });
     });
 
-    /* ── Scroll reveal ── */
-    if(window.IntersectionObserver){
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-          if(en.isIntersecting){
-            en.target.classList.add('visible');
-            obs.unobserve(en.target);
-          }
-        });
-      }, {threshold: 0.05, rootMargin: '0px 0px -40px 0px'});
-      allCards.forEach(function(c){ obs.observe(c); });
-    } else {
-      allCards.forEach(function(c){ c.classList.add('visible'); });
-    }
-    // Fallback — show all after 1.5s
-    setTimeout(function(){
-      allCards.forEach(function(c){ c.classList.add('visible'); });
-    }, 1500);
+    /* Swipe */
+    var sx = 0;
+    var wrap = document.getElementById('gcWrap');
+    wrap.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; stopAuto(); }, {passive:true});
+    wrap.addEventListener('touchend',   function(e){
+      var dx = e.changedTouches[0].clientX - sx;
+      if(dx < -40) next();
+      if(dx >  40) prev();
+      startAuto();
+    }, {passive:true});
+    wrap.addEventListener('mouseenter', stopAuto);
+    wrap.addEventListener('mouseleave', startAuto);
 
-    /* ── Lightbox ── */
+    /* ── Filter ── */
+    var pills = document.querySelectorAll('#filterRow .gal-pill');
+    pills.forEach(function(pill){
+      pill.addEventListener('click', function(){
+        pills.forEach(function(p){ p.classList.remove('active'); });
+        pill.classList.add('active');
+        var cat = pill.dataset.filter;
+        visibleCards = cat === 'all'
+          ? allCards.slice()
+          : allCards.filter(function(c){ return c.dataset.cat === cat; });
+        total = visibleCards.length;
+        center = 0;
+        document.getElementById('stat-count').textContent = total;
+        buildDots();
+        render();
+      });
+    });
+
+    /* ══════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════ */
     var lb      = document.getElementById('lb');
     var lbImg   = document.getElementById('lb-img');
     var lbTitle = document.getElementById('lb-title');
@@ -822,88 +697,67 @@
     var lbThumbs= document.getElementById('lb-thumbs');
     var curIdx  = 0;
 
-    function getVisible(){
-      return allCards.filter(function(c){ return !c.classList.contains('hidden'); });
-    }
-
-    function buildThumbs(items){
+    function buildThumbs(){
       lbThumbs.innerHTML = '';
-      items.forEach(function(card, i){
+      visibleCards.forEach(function(card, i){
         var th = document.createElement('div');
         th.className = 'lb-thumb' + (i === curIdx ? ' active' : '');
         th.innerHTML = '<img src="' + card.dataset.src + '" alt="">';
-        th.addEventListener('click', function(){ showSlide(i, items); });
+        th.addEventListener('click', function(){ showSlide(i); });
         lbThumbs.appendChild(th);
       });
     }
 
-    function showSlide(idx, items){
+    function showSlide(idx){
       curIdx = idx;
-      var c  = items[idx];
-      lbImg.src        = c.dataset.src;
-      lbImg.alt        = c.querySelector('img').alt;
-      lbTitle.textContent = c.dataset.title || '';
-      lbSub.textContent   = c.dataset.sub   || '';
-      lbCnt.textContent   = (idx + 1) + ' / ' + items.length;
+      var c  = visibleCards[idx];
+      lbImg.src              = c.dataset.src;
+      lbImg.alt              = c.querySelector('img').alt;
+      lbTitle.textContent    = c.dataset.title || '';
+      lbSub.textContent      = c.dataset.sub   || '';
+      lbCnt.textContent      = (idx+1) + ' / ' + visibleCards.length;
       var ths = lbThumbs.querySelectorAll('.lb-thumb');
-      ths.forEach(function(th, i){ th.classList.toggle('active', i === idx); });
+      ths.forEach(function(th,i){ th.classList.toggle('active', i===idx); });
       if(ths[idx]) ths[idx].scrollIntoView({inline:'center', behavior:'smooth'});
     }
 
     function openLb(idx){
-      var items = getVisible();
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
-      buildThumbs(items);
-      showSlide(idx, items);
+      buildThumbs();
+      showSlide(idx);
       document.getElementById('lb-close').focus();
     }
-
     function closeLb(){
       lb.classList.remove('open');
       document.body.style.overflow = '';
     }
-
     function navLb(dir){
-      var items = getVisible();
-      showSlide((curIdx + dir + items.length) % items.length, items);
+      showSlide((curIdx + dir + visibleCards.length) % visibleCards.length);
     }
 
-    allCards.forEach(function(card){
-      card.addEventListener('click', function(){
-        var vis = getVisible();
-        openLb(Math.max(0, vis.indexOf(card)));
-      });
-      card.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          var vis = getVisible();
-          openLb(Math.max(0, vis.indexOf(card)));
-        }
-      });
-    });
-
     document.getElementById('lb-close').addEventListener('click', closeLb);
-    document.getElementById('lb-prev').addEventListener('click', function(){ navLb(-1); });
-    document.getElementById('lb-next').addEventListener('click', function(){ navLb(1); });
+    document.getElementById('lb-prev').addEventListener('click',  function(){ navLb(-1); });
+    document.getElementById('lb-next').addEventListener('click',  function(){ navLb(1); });
     lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
     document.addEventListener('keydown', function(e){
       if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape')      closeLb();
-      if(e.key === 'ArrowLeft')   navLb(-1);
-      if(e.key === 'ArrowRight')  navLb(1);
+      if(e.key === 'Escape')     closeLb();
+      if(e.key === 'ArrowLeft')  navLb(-1);
+      if(e.key === 'ArrowRight') navLb(1);
     });
 
-    /* ── Scroll-top button ── */
+    /* ── Scroll-top ── */
     var stBtn = document.getElementById('scroll-top-btn');
     if(stBtn){
-      window.addEventListener('scroll', function(){
-        stBtn.classList.toggle('visible', window.scrollY > 400);
-      }, {passive:true});
-      stBtn.addEventListener('click', function(){
-        window.scrollTo({top:0, behavior:'smooth'});
-      });
+      window.addEventListener('scroll', function(){ stBtn.classList.toggle('visible', window.scrollY > 400); }, {passive:true});
+      stBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
     }
+
+    /* ── Boot ── */
+    buildDots();
+    render();
+    startAuto();
   })();
   </script>
   <script src="js/site.js" defer></script>

@@ -89,51 +89,56 @@
     }, { passive:true });
 
     /* ════════════════════════════════════════════════════
-       REVEAL-ON-SCROLL  (.reveal  /  .reveal-on-scroll)
-       Legacy class support — used by index.html inline JS
+       UNIFIED REVEAL-ON-SCROLL SYSTEM
+       Supports:
+         .reveal / .reveal-on-scroll  — fade-up (legacy)
+         .anim-fade-up                — fade up
+         .anim-roll-left              — slide from left
+         .anim-roll-right             — slide from right
+         .anim-wipe                   — clip-path wipe
+         .anim-scale                  — scale + fade
+         .anim-breath                 — padding breathing (studio.site style)
+         .anim-stagger > children     — auto stagger child items
+       All → add .anim-in + .is-visible + .visible on enter
     ════════════════════════════════════════════════════ */
-    var legacyEls = document.querySelectorAll('.reveal-on-scroll, .reveal');
-    if (legacyEls.length) {
-      if (!window.IntersectionObserver) {
-        legacyEls.forEach(function(el){ el.classList.add('is-visible','visible'); });
-      } else {
-        var legObs = new IntersectionObserver(function(entries){
-          entries.forEach(function(en){
-            if (en.isIntersecting){
-              en.target.classList.add('is-visible','visible');
-              legObs.unobserve(en.target);
-            }
-          });
-        }, { threshold:0.07, rootMargin:'0px 0px -30px 0px' });
-        legacyEls.forEach(function(el){ legObs.observe(el); });
-      }
-    }
 
-    /* ════════════════════════════════════════════════════
-       NEW ANIMATION SYSTEM
-       .anim-fade-up  |  .anim-roll-left  |  .anim-roll-right
-       .anim-wipe
-       All trigger .anim-in on scroll intersection
-    ════════════════════════════════════════════════════ */
+    /* Fallback — no IntersectionObserver */
     if (!window.IntersectionObserver) {
       document.querySelectorAll(
-        '.anim-fade-up,.anim-roll-left,.anim-roll-right,.anim-wipe'
-      ).forEach(function(el){ el.classList.add('anim-in'); });
+        '.reveal,.reveal-on-scroll,.anim-fade-up,.anim-roll-left,.anim-roll-right,.anim-wipe,.anim-scale,.anim-breath,.anim-stagger'
+      ).forEach(function(el){ el.classList.add('anim-in','is-visible','visible'); });
       return;
     }
 
-    var animObs = new IntersectionObserver(function(entries){
+    /* Stagger children: auto-assign --anim-delay to direct children */
+    document.querySelectorAll('.anim-stagger').forEach(function(parent){
+      var items = parent.querySelectorAll(':scope > *');
+      items.forEach(function(child, i){
+        child.classList.add('anim-stagger-child');
+        child.style.setProperty('--anim-delay', (i * 110) + 'ms');
+      });
+    });
+
+    /* Single shared observer for ALL animation elements */
+    var allAnimSel = [
+      '.reveal','.reveal-on-scroll',
+      '.anim-fade-up','.anim-roll-left','.anim-roll-right',
+      '.anim-wipe','.anim-scale','.anim-breath',
+      '.anim-stagger-child'
+    ].join(',');
+
+    var mainObs = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if (en.isIntersecting){
-          en.target.classList.add('anim-in', 'is-visible');
-          animObs.unobserve(en.target);
+          en.target.classList.add('anim-in','is-visible','visible');
+          mainObs.unobserve(en.target);
         }
       });
-    }, { threshold:0.08, rootMargin:'0px 0px -30px 0px' });
+    }, { threshold:0.09, rootMargin:'0px 0px -40px 0px' });
 
-    document.querySelectorAll(
-      '.anim-fade-up,.anim-roll-left,.anim-roll-right,.anim-wipe'
-    ).forEach(function(el){ animObs.observe(el); });
+    document.querySelectorAll(allAnimSel).forEach(function(el){
+      mainObs.observe(el);
+    });
 
   }); /* end DOMContentLoaded */
 
