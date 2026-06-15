@@ -1731,3 +1731,163 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
     height: calc(100vh - var(--nav-height) - 52px - 56px);
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   IMAGEGEN — Mobile-specific additions (I1–I7)
+   ════════════════════════════════════════════════════════════ */
+
+/* I3: Desktop-only topbar elements */
+.tb-sizes--desktop,
+.tb-actions--desktop { display: flex; }
+.tb-actions--mobile  { display: none; }
+
+/* I4: Mobile action bar (WhatsApp + Save) — hidden on desktop */
+.mob-action-bar {
+  display: none;
+  position: fixed; left: 0; right: 0; bottom: 112px; /* above mob-bar + sizes-row */
+  z-index: 450;
+  padding: 8px 12px;
+  gap: 10px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border-dark);
+}
+.mob-act-btn {
+  flex: 1; padding: 14px 10px; border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  font-family: var(--font-body);
+}
+.mob-act-wa { background: #25d366; color: #fff; }
+.mob-act-dl { background: var(--gold); color: var(--navy); }
+
+/* I3: Size pill row — hidden on desktop */
+.mob-sizes-row {
+  display: none;
+  position: fixed; left: 0; right: 0; bottom: 56px;
+  z-index: 450;
+  padding: 6px 10px;
+  gap: 8px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border-dark);
+  justify-content: center;
+}
+.mob-sz-pill {
+  padding: 6px 14px; border-radius: 99px; border: 1px solid var(--border-dark);
+  background: rgba(255,255,255,0.05); color: var(--text-muted);
+  font-size: 11px; font-weight: 700; cursor: pointer;
+  font-family: var(--font-body); transition: all 0.15s;
+}
+.mob-sz-pill.on { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+/* I6: Slider overflow fix on narrow screens */
+@media (max-width: 400px) {
+  .sl-row { flex-wrap: wrap; }
+  .sl-row input[type=range] { width: 100%; order: 3; }
+  .sl-row .sl-num { order: 4; }
+  .hex-val, #hex-inp { font-size: 10px; }
+}
+
+/* I7: Fullscreen preview button — always visible in canvas-wrap on mobile */
+.canvas-fullscreen-btn {
+  display: none;
+  position: absolute; bottom: 40px; right: 10px;
+  background: rgba(0,0,0,0.6); border: 1px solid var(--border-dark);
+  color: var(--text-light); border-radius: 8px;
+  padding: 6px 10px; font-size: 12px; cursor: pointer;
+  z-index: 50;
+}
+/* Fullscreen preview overlay */
+.canvas-fullscreen-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,0.95);
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 16px;
+}
+.canvas-fullscreen-overlay.on { display: flex; }
+.canvas-fullscreen-overlay canvas {
+  max-width: 100vw; max-height: 100vh;
+  object-fit: contain;
+}
+.canvas-fullscreen-close {
+  position: fixed; top: 16px; right: 16px; z-index: 9001;
+  background: rgba(255,255,255,0.15); border: none; color: #fff;
+  width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  /* Show mobile-only elements */
+  .mob-action-bar   { display: flex; }
+  .mob-sizes-row    { display: flex; }
+  .canvas-fullscreen-btn { display: block; }
+  /* Hide desktop-only topbar elements */
+  .tb-sizes--desktop  { display: none; }
+  .tb-actions--desktop { display: none; }
+  .tb-actions--mobile { display: flex; gap: 6px; align-items: center; }
+  /* Adjust studio height to account for action bar + sizes row */
+  [data-page="imagegen"] .studio {
+    height: calc(100vh - var(--nav-height) - 52px - 56px - 44px - 44px);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE BIBLE — Touch-first verse buttons
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Always show verse action buttons on mobile — no hover needed */
+  .vacts {
+    opacity: 1 !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* 44×44px minimum touch targets */
+  .vact {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 16px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Verse item layout — stack text above buttons */
+  .vi {
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding: 14px 12px !important;
+    align-items: flex-start !important;
+  }
+
+  /* Verse text full width */
+  .vi .vb { width: 100%; }
+
+  /* Prev/Next bar always visible */
+  .ch-bar { display: flex !important; }
+
+  /* Audio bar safe-area bottom */
+  .audio-bar, #abar {
+    padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  /* Bottom sheet above mob-nav */
+  .verse-sheet {
+    bottom: 60px !important;
+    z-index: 1200 !important;
+  }
+  .sheet-backdrop {
+    z-index: 1100 !important;
+  }
+
+  /* VS action grid — 4 columns on mobile */
+  .vs-actions {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+  .vs-act-icon {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* bcontent padding for mob-nav */
+  #bcontent {
+    padding-bottom: 80px !important;
+  }
+}
