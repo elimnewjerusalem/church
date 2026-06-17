@@ -83,8 +83,15 @@ body {
     margin-bottom: 6px;
   }
 
-  /* Description — hide to save space */
-  .hero-desc { display: none; }
+  /* Description — show on mobile, smaller size */
+  .hero-desc {
+    display: block;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.70);
+    margin-bottom: 4px;
+    max-width: 92%;
+  }
 
   /* Buttons */
   .hero-btns {
@@ -619,4 +626,17 @@ img, video {
   }
   .contact-info-card { padding: 16px; }
   .visit-step { gap: 12px; }
+}
+
+/* ── 31. INDEX PAGE — PC layout on mobile (no mob-nav) ───────── */
+.page-home .mob-nav        { display: none !important; }
+.page-home .mob-quick-grid { display: none !important; }
+.page-home .hero-event-mobile { display: none !important; }
+@media (max-width: 900px) {
+  .page-home body,
+  body.page-home {
+    padding-bottom: 0 !important;
+  }
+  .page-home .hero-right { display: block !important; }
+  .page-home .footer { padding-bottom: 24px !important; }
 }
