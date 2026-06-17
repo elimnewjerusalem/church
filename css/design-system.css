@@ -39,8 +39,8 @@
   --text-faint:      #4a6090;
   --text-light:      #e8f0fa;
   --text-muted-dark: #607898;
-  --text-dark:       #120e04;
-  --text-muted-light:#5a4a30;
+  --text-dark:       #0e0902;
+  --text-muted-light:#2e2010;
 
   /* Borders — subtle */
   --border:       rgba(30,90,220,0.10);

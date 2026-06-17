@@ -787,7 +787,7 @@ textarea.form-field { resize: vertical; min-height: 100px; }
 }
 .s-light .form-field::placeholder,
 .s-light2 .form-field::placeholder {
-  color: rgba(10,22,40,0.45);
+  color: rgba(10,22,40,0.55);
 }
 
 /* Cards inside light sections */
