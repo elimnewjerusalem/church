@@ -127,11 +127,17 @@
 
   <!-- CONTROL PANEL RIGHT -->
   <div class="nx-ctrl">
-    <span class="nx-lbl">மொழி</span>
-    <div class="nx-lang-tog">
-      <button class="nx-lang-btn on" id="btn-ta" onclick="setLang('ta')">🇮🇳 தமிழ்</button>
-      <button class="nx-lang-btn"    id="btn-en" onclick="setLang('en')">🇬🇧 English</button>
+    <span class="nx-lbl">பதிப்பு · Version</span>
+    <div class="nx-ver-row" id="ver-row">
+      <button class="nx-ver-btn on" data-ver="taov"   onclick="setVersion('taov')">தமிழ் OV</button>
+      <button class="nx-ver-btn"    data-ver="tabl98" onclick="setVersion('tabl98')">தமிழ் BL98</button>
+      <button class="nx-ver-btn"    data-ver="kjv"    onclick="setVersion('kjv')">KJV</button>
+      <button class="nx-ver-btn"    data-ver="web"    onclick="setVersion('web')">WEB</button>
+      <button class="nx-ver-btn"    data-ver="bbe"    onclick="setVersion('bbe')">BBE</button>
     </div>
+    <!-- compat hidden buttons for legacy ta/en checks in bible.js -->
+    <button id="btn-ta" class="on" style="display:none"></button>
+    <button id="btn-en" style="display:none"></button>
 
     <span class="nx-lbl" style="margin-top:4px">புத்தகம் & அதிகாரம்</span>
     <select id="book-sel" class="nx-sel" onchange="onBook()">
@@ -188,34 +194,22 @@
 
 <!-- ROW 3: FEATURES BAR -->
 <div class="nx-feat-bar">
-  <button class="nx-feat feat-btn" id="fb-topics" onclick="openPanel('topics')">
-    <span class="nx-feat-icon">✏️</span>
-    <span class="nx-feat-lbl">Topics</span>
-  </button>
-  <button class="nx-feat feat-btn" id="fb-plan" onclick="openPanel('plan')">
-    <span class="nx-feat-icon">📅</span>
-    <span class="nx-feat-lbl">Plan</span>
-  </button>
   <button class="nx-feat feat-btn" id="fb-bm" onclick="openPanel('bm')">
     <span class="nx-feat-icon">❤️</span>
     <span class="nx-feat-lbl" id="bm-lbl">Saved</span>
     <span class="feat-badge" id="bm-badge">0</span>
   </button>
-  <button class="nx-feat feat-btn" id="fb-img" onclick="openImageStudio()">
-    <span class="nx-feat-icon">🖼️</span>
-    <span class="nx-feat-lbl">Image</span>
-  </button>
-  <button class="nx-feat feat-btn" id="fb-settings" onclick="openPanel('settings')">
-    <span class="nx-feat-icon">⚙️</span>
-    <span class="nx-feat-lbl">Settings</span>
-  </button>
   <button class="nx-feat feat-btn" id="fb-quiz" onclick="openPanel('quiz')">
     <span class="nx-feat-icon">🧠</span>
     <span class="nx-feat-lbl">Quiz</span>
   </button>
-  <button class="nx-feat feat-btn" id="fb-tracker" onclick="openPanel('tracker')">
-    <span class="nx-feat-icon">📊</span>
-    <span class="nx-feat-lbl" id="tracker-pct">Track 1%</span>
+  <button class="nx-feat feat-btn" id="fb-compare" onclick="openPanel('compare')">
+    <span class="nx-feat-icon">⇄</span>
+    <span class="nx-feat-lbl">Compare</span>
+  </button>
+  <button class="nx-feat feat-btn" id="fb-notes" onclick="openPanel('notes')">
+    <span class="nx-feat-icon">📝</span>
+    <span class="nx-feat-lbl">Notes</span>
   </button>
 </div>
 

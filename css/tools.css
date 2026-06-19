@@ -255,7 +255,7 @@
 .bible-page { background: var(--bg); }
 
 .nx-feat-bar {
-  display: grid; grid-template-columns: repeat(7,1fr);
+  display: grid; grid-template-columns: repeat(4,1fr);
   border-bottom: 1px solid var(--border-dark); background: var(--bg-2);
   position: sticky; top: var(--nav-height); z-index: 80;
   overflow-x: auto; scrollbar-width: none;
@@ -472,7 +472,7 @@
   .bible-side-panel { width: 100%; }
 }
 @media (max-width: 480px) {
-  .nx-feat-bar { grid-template-columns: repeat(7,minmax(48px,1fr)); }
+  .nx-feat-bar { grid-template-columns: repeat(4,minmax(70px,1fr)); }
   .nx-feat-lbl { font-size: 8px; }
   .verse-text  { font-size: 15px; }
   .bible-fs-lg .verse-text { font-size: 17px; }
@@ -882,6 +882,31 @@
 }
 .nx-lang-btn:hover { border-color: var(--gold-border); color: var(--text-light); }
 .nx-lang-btn.on { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+/* ── Version pills (5 versions: 2 Tamil + 3 English) ── */
+.nx-ver-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.nx-ver-btn {
+  padding: 7px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark);
+  border-radius: 99px; color: var(--text-muted); font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: var(--font-body); transition: all 0.15s;
+}
+.nx-ver-btn:hover { border-color: var(--gold-border); color: var(--text-light); }
+.nx-ver-btn.on { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+/* ── Compare panel ── */
+.cmp-head { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
+.cmp-pickers { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.cmp-pickers .nx-sel { flex: 1; }
+.cmp-vs { font-size: 11px; color: var(--text-faint); font-weight: 700; }
+.cmp-row { border-bottom: 1px solid var(--border-dark); padding: 10px 0; }
+.cmp-vn { font-size: 11px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+.cmp-col { margin-bottom: 6px; }
+.cmp-tag {
+  display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--gold); background: var(--accent-bg);
+  border: 1px solid var(--gold-border); border-radius: 5px; padding: 1px 6px; margin-right: 6px;
+}
+.cmp-txt { font-size: 13px; line-height: 1.6; color: var(--text-light); }
 
 .nx-sel {
   padding: 8px 12px; background: rgba(255,255,255,0.05);

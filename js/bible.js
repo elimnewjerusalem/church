@@ -19,10 +19,22 @@ const C = {
   EN_LOCAL: 'data/english_kjv.json',
 };
 
+// ── 5 BIBLE VERSIONS (2 Tamil + 3 free/public-domain English) ────
+const VERSIONS=[
+  {id:'taov',  lang:'ta', code:'ov',  label:'தமிழ் OV',   short:'OV'},
+  {id:'tabl98',lang:'ta', code:'bl98',label:'தமிழ் BL98', short:'BL98'},
+  {id:'kjv',   lang:'en', code:'kjv', label:'KJV',         short:'KJV'},
+  {id:'web',   lang:'en', code:'web', label:'WEB',         short:'WEB'},
+  {id:'bbe',   lang:'en', code:'bbe', label:'BBE',         short:'BBE'},
+];
+function getVerCode(verId){ return (VERSIONS.find(v=>v.id===verId)||{}).code; }
+function getVer(verId){ return VERSIONS.find(v=>v.id===verId); }
+
 // ── STATE ────────────────────────────────────────────────────────
 const S = {
   lang:'ta', book:'', bookName:'', bookTaName:'', bookNum:1,
   ch:1, totalCh:1, verses:[], taVerses:[], enVerses:[],
+  ver: localStorage.getItem('enjc_ver')||'taov',
   fs: parseInt(localStorage.getItem('enjc_fs')||'17'),
   hl: JSON.parse(localStorage.getItem('enjc_hl')||'{}'),
   bm: JSON.parse(localStorage.getItem('enjc_bm')||'[]'),
@@ -252,6 +264,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   applyTheme(S.theme);
   applyFont(S.fontFamily);
   populateBooks();
+  syncVersionUI();
   g('fszv').textContent=S.fs+'px';
   loadVOTD();
   loadData();
@@ -392,6 +405,32 @@ function setLang(l){
   if(S.book)loadCh();
 }
 
+// ── VERSION SELECTOR (5 versions: தமிழ் OV/BL98 + KJV/WEB/BBE) ───
+function syncVersionUI(){
+  document.querySelectorAll('.nx-ver-btn').forEach(b=>b.classList.toggle('on',b.dataset.ver===S.ver));
+  const v=getVer(S.ver);
+  if(!v)return;
+  const bta=g('btn-ta'),ben=g('btn-en');
+  if(bta)bta.classList.toggle('on',v.lang==='ta');
+  if(ben)ben.classList.toggle('on',v.lang==='en');
+}
+
+function setVersion(verId){
+  const v=getVer(verId);if(!v)return;
+  S.ver=verId;S.lang=v.lang;
+  try{localStorage.setItem('enjc_ver',verId);}catch(e){}
+  syncVersionUI();
+  stopAud();
+  if(v.lang==='en'&&v.code==='kjv'&&!Object.keys(S.enDB).length){
+    toast('📖 English Bible loading...');
+    fetchT(C.EN_LOCAL).then(r=>r.json()).then(en=>{
+      if(en){S.enDB=en;if(S.book)loadCh();}
+    }).catch(()=>toast('⚠ English Bible load failed — check internet'));
+    return;
+  }
+  if(S.book)loadCh();
+}
+
 function togParallel(){
   S.showParallel=!S.showParallel;
   const btn=g('para-btn');
@@ -485,27 +524,26 @@ async function fetchWithTimeout(url,ms=8000){
 
 async function loadTA(){
   const key=S.bookNum+'_'+S.ch;
-  const ck='enjc_ta_'+key;
+  const verCode=getVerCode(S.ver)==='bl98'?'bl98':'ov';
+  const ck='enjc_ta_'+verCode+'_'+key;
 
-  // B3: trigger lazy-load on mobile
-  if(!_tamilFullLoaded&&!_tamilFullLoading)await ensureTamilFull();
-
-  // ── 1. Embedded local DB ──────────────────────────────────────
-  if(S.tamilDB[key]){
-    const vv=S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
-    try{if(!localStorage.getItem(ck))localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
-    return vv;
+  // ── 1. Embedded local DB (OV only — bundled offline dataset) ───
+  if(verCode==='ov'){
+    if(!_tamilFullLoaded&&!_tamilFullLoading)await ensureTamilFull();
+    if(S.tamilDB[key]){
+      const vv=S.tamilDB[key].map(v=>({num:v[0],text:v[1]}));
+      try{if(!localStorage.getItem(ck))localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+      return vv;
+    }
   }
 
-  // ── 2. B2: localStorage cache ─────────────────────────────────
+  // ── 2. B2: localStorage cache (per version) ───────────────────
   try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
 
-  // ── 3. APIs with timeout ──────────────────────────────────────
-  const apis=[
-    C.taAPI1+S.bookNum+'/'+S.ch+'/',
-    C.taAPI2+S.bookNum+'/'+S.ch+'/',
-    C.taAPI3+S.bookNum+'/'+S.ch+'.json'
-  ];
+  // ── 3. APIs with timeout — try selected version first ─────────
+  const apis=verCode==='bl98'
+    ? [C.taAPI2+S.bookNum+'/'+S.ch+'/', C.taAPI1+S.bookNum+'/'+S.ch+'/', C.taAPI3+S.bookNum+'/'+S.ch+'.json']
+    : [C.taAPI1+S.bookNum+'/'+S.ch+'/', C.taAPI2+S.bookNum+'/'+S.ch+'/', C.taAPI3+S.bookNum+'/'+S.ch+'.json'];
   for(const url of apis){
     try{
       const r=await fetchWithTimeout(url,8000);if(!r.ok)continue;
@@ -533,21 +571,26 @@ async function loadTA(){
 }
 
 async function loadEN(){
-  // ── 1. Local KJV JSON (instant, no network) ──────────────────
-  const localBook = S.enDB[S.bookNum];
-  if(localBook){
-    const localCh = localBook[S.ch];
-    if(localCh && localCh.length){
-      return localCh.map((text,i)=>({num:i+1, text: text||''}));
+  const verCode=getVerCode(S.ver);
+  const enCode=(verCode==='web'||verCode==='bbe')?verCode:'kjv';
+
+  // ── 1. Local KJV JSON (instant, no network) — KJV only ────────
+  if(enCode==='kjv'){
+    const localBook = S.enDB[S.bookNum];
+    if(localBook){
+      const localCh = localBook[S.ch];
+      if(localCh && localCh.length){
+        return localCh.map((text,i)=>({num:i+1, text: text||''}));
+      }
     }
   }
-  // ── 2. Fallback: remote API (with cache) ─────────────────────
-  const ck='enjc_en_'+S.bookNum+'_'+S.ch;
+  // ── 2. Fallback / other versions: remote API (with per-version cache) ─
+  const ck='enjc_en_'+enCode+'_'+S.bookNum+'_'+S.ch;
   try{
     const cached=localStorage.getItem(ck);
     if(cached){const p=JSON.parse(cached);if(p?.length)return p;}
   }catch(e){}
-  const r=await fetchT(C.enAPI+S.book+'+'+S.ch+'?translation=kjv');
+  const r=await fetchT(C.enAPI+S.book+'+'+S.ch+'?translation='+enCode);
   const d=await r.json();
   if(d.error)throw new Error(d.error);
   const vv=(d.verses||[]).map(v=>({num:v.verse,text:v.text.trim().replace(/\n/g,' ')}));
@@ -1014,7 +1057,7 @@ async function doSearch(){
 }
 
 // ── PANEL ─────────────────────────────────────────────────────────
-const PANEL_TITLES={topics:'Topics',plan:'7-நாள் திட்டம்',bm:'♥ Saved',img:'Verse Image',settings:'Settings',quiz:'Bible Quiz',tracker:'Reading Progress'};
+const PANEL_TITLES={bm:'♥ Saved',quiz:'Bible Quiz',compare:'⇄ Compare Versions',notes:'📝 My Notes',img:'Verse Image'};
 
 function openPanel(id){
   // Highlight button
@@ -1038,13 +1081,11 @@ function closePanel(){
 
 function renderPanelContent(id,body){
   try{
-    if(id==='topics')renderTopics(body);
-    else if(id==='bm')renderBM(body);
-    else if(id==='plan')renderPlan(body);
+    if(id==='bm')renderBM(body);
     else if(id==='img')renderImgPanel(body);
-    else if(id==='settings')renderSettings(body);
     else if(id==='quiz')renderQuiz(body);
-    else if(id==='tracker')renderTracker(body);
+    else if(id==='compare')renderCompare(body);
+    else if(id==='notes')renderNotesPanel(body);
   }catch(err){
     body.innerHTML='<div class="berr">Error: '+err.message+'</div>';
     console.error(err);
@@ -1135,6 +1176,154 @@ function goPlan(i){
   const cs=g('ch-sel');cs.innerHTML='';cs.disabled=false;
   for(let j=1;j<=bk.ch;j++){const o=document.createElement('option');o.value=j;o.textContent='அதிகாரம் '+j;cs.appendChild(o);}
   cs.value=p.n;g('gobtn').style.display='block';
+  closePanel();loadCh();
+  setTimeout(()=>g('bcontent').scrollIntoView({behavior:'smooth'}),300);
+}
+
+// ── COMPARE VERSIONS ──────────────────────────────────────────────
+// Generic fetch — gets one version's verses for the CURRENT book/chapter
+// without touching the main reading state (S.verses / S.lang etc).
+async function fetchVersionChapter(verId){
+  const v=getVer(verId);if(!v||!S.book)return[];
+  if(v.lang==='ta'){
+    const ck='enjc_ta_'+v.code+'_'+S.bookNum+'_'+S.ch;
+    if(v.code==='ov'&&S.tamilDB[S.bookNum+'_'+S.ch]){
+      return S.tamilDB[S.bookNum+'_'+S.ch].map(x=>({num:x[0],text:x[1]}));
+    }
+    try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
+    const url=(v.code==='bl98'?C.taAPI2:C.taAPI1)+S.bookNum+'/'+S.ch+'/';
+    try{
+      const r=await fetchWithTimeout(url,8000);if(!r.ok)return[];
+      const d=await r.json();
+      let vv=[];
+      if(Array.isArray(d)&&d.length&&d[0]?.verse!==undefined)vv=d.map(x=>({num:x.verse,text:x.text}));
+      if(vv.length)try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+      return vv;
+    }catch(e){return[];}
+  }else{
+    if(v.code==='kjv'){
+      const localBook=S.enDB[S.bookNum];
+      if(localBook&&localBook[S.ch]&&localBook[S.ch].length){
+        return localBook[S.ch].map((t,i)=>({num:i+1,text:t||''}));
+      }
+    }
+    const ck='enjc_en_'+v.code+'_'+S.bookNum+'_'+S.ch;
+    try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
+    try{
+      const r=await fetchT(C.enAPI+S.book+'+'+S.ch+'?translation='+v.code);
+      const d=await r.json();if(d.error)return[];
+      const vv=(d.verses||[]).map(x=>({num:x.verse,text:x.text.trim().replace(/\n/g,' ')}));
+      if(vv.length)try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+      return vv;
+    }catch(e){return[];}
+  }
+}
+
+let _cmpA='taov',_cmpB='kjv',_cmpData=null;
+
+function renderCompare(body){
+  if(!S.book){
+    body.innerHTML='<div class="bempty">முதலில் ஒரு புத்தகம் &amp; அதிகாரம் தேர்வு செய்யுங்கள்.</div>';
+    return;
+  }
+  body.innerHTML=`
+    <div class="cmp-head">${S.bookTaName||S.bookName} ${S.ch}</div>
+    <div class="cmp-pickers">
+      <select class="nx-sel" id="cmp-a" onchange="_cmpA=this.value;runCompare()">
+        ${VERSIONS.map(v=>`<option value="${v.id}" ${v.id===_cmpA?'selected':''}>${v.label}</option>`).join('')}
+      </select>
+      <span class="cmp-vs">vs</span>
+      <select class="nx-sel" id="cmp-b" onchange="_cmpB=this.value;runCompare()">
+        ${VERSIONS.map(v=>`<option value="${v.id}" ${v.id===_cmpB?'selected':''}>${v.label}</option>`).join('')}
+      </select>
+    </div>
+    <div id="cmp-body"><div class="bload"><div class="bspin"></div></div></div>
+    <button class="ch-btn primary" style="width:100%;margin-top:10px" onclick="shareCompare()">🔗 Share Compare</button>
+  `;
+  runCompare();
+}
+
+async function runCompare(){
+  const out=g('cmp-body');if(!out)return;
+  out.innerHTML='<div class="bload"><div class="bspin"></div></div>';
+  const [a,b]=await Promise.all([fetchVersionChapter(_cmpA),fetchVersionChapter(_cmpB)]);
+  _cmpData={a,b,verA:getVer(_cmpA),verB:getVer(_cmpB)};
+  if(!a.length&&!b.length){out.innerHTML='<div class="berr">⚠ வசனங்கள் கிடைக்கவில்லை.</div>';return;}
+  const bMap={};b.forEach(v=>bMap[v.num]=v.text);
+  const aMap={};a.forEach(v=>aMap[v.num]=v.text);
+  const nums=[...new Set([...a.map(v=>v.num),...b.map(v=>v.num)])].sort((x,y)=>x-y);
+  out.innerHTML=nums.map(n=>`
+    <div class="cmp-row">
+      <div class="cmp-vn">${n}</div>
+      <div class="cmp-col">
+        <span class="cmp-tag">${getVer(_cmpA).short}</span>
+        <span class="cmp-txt">${aMap[n]||'—'}</span>
+      </div>
+      <div class="cmp-col">
+        <span class="cmp-tag">${getVer(_cmpB).short}</span>
+        <span class="cmp-txt">${bMap[n]||'—'}</span>
+      </div>
+    </div>`).join('');
+}
+
+function shareCompare(){
+  if(!_cmpData){toast('⚠ Compare தேர்வு செய்யுங்கள்');return;}
+  const {a,b,verA,verB}=_cmpData;
+  const head=(S.bookTaName||S.bookName)+' '+S.ch+' — '+verA.short+' vs '+verB.short;
+  const bMap={};b.forEach(v=>bMap[v.num]=v.text);
+  const lines=a.slice(0,8).map(v=>`${v.num}. [${verA.short}] ${v.text}\n   [${verB.short}] ${bMap[v.num]||'—'}`);
+  const msg=head+'\n\n'+lines.join('\n\n')+'\n\nhttps://elimnewjerusalem.github.io/church/bible.html';
+  if(navigator.share){
+    navigator.share({title:head,text:msg}).catch(()=>{});
+  }else{
+    navigator.clipboard?.writeText(msg);
+    toast('📋 Compare copied!');
+  }
+}
+
+// ── MY NOTES (across the whole Bible) ─────────────────────────────
+function renderNotesPanel(body){
+  const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
+  const refs=Object.keys(notes).filter(r=>notes[r]&&notes[r].trim());
+  if(!refs.length){
+    body.innerHTML='<div class="bempty">📝 இன்னும் குறிப்புகள் இல்லை.<br>வசனத்தை திறந்து Note சேர்க்கலாம்.</div>';
+    return;
+  }
+  body.innerHTML=refs.map(ref=>`
+    <div class="bm-item">
+      <div class="bm-text" style="cursor:pointer" onclick="goToNoteRef('${ref.replace(/'/g,"\\'")}')">
+        <div class="bm-ref">${ref}</div>
+        <div class="bm-v">${(notes[ref]||'').replace(/</g,'&lt;')}</div>
+      </div>
+      <div class="bm-acts">
+        <button class="p-act" onclick="goToNoteRef('${ref.replace(/'/g,"\\'")}')">📖</button>
+        <button class="p-act" onclick="deleteNoteRef('${ref.replace(/'/g,"\\'")}')" style="color:#f87171">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+function deleteNoteRef(ref){
+  const notes=JSON.parse(localStorage.getItem('enjc_notes')||'{}');
+  delete notes[ref];
+  localStorage.setItem('enjc_notes',JSON.stringify(notes));
+  S.notes=notes;
+  toast('🗑 Note deleted');
+  openPanel('notes');
+  if(S.book)renderVerses();
+}
+
+function goToNoteRef(ref){
+  // ref looks like "Genesis 1:1" or "Psalm 23:1-2"
+  const m=ref.match(/^(.+)\s(\d+):(\d+)/);
+  if(!m){toast('⚠ Verse கண்டுபிடிக்க முடியவில்லை');return;}
+  const bookName=m[1].trim();
+  const bk=BOOKS.find(b=>b.name.toLowerCase()===bookName.toLowerCase());
+  if(!bk){toast('⚠ Book கண்டுபிடிக்க முடியவில்லை');return;}
+  g('book-sel').value=bk.id;
+  S.book=bk.id;S.bookName=bk.name;S.bookTaName=bk.ta;S.bookNum=bk.n;S.totalCh=bk.ch;S.ch=parseInt(m[2]);
+  const cs=g('ch-sel');cs.innerHTML='';cs.disabled=false;
+  for(let j=1;j<=bk.ch;j++){const o=document.createElement('option');o.value=j;o.textContent='அதிகாரம் '+j;cs.appendChild(o);}
+  cs.value=S.ch;g('gobtn').style.display='block';
   closePanel();loadCh();
   setTimeout(()=>g('bcontent').scrollIntoView({behavior:'smooth'}),300);
 }

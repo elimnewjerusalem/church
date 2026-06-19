@@ -48,6 +48,14 @@
     injectHideStyles();
     buildShell();
     renderBooks();
+    if (typeof VERSIONS !== 'undefined') {
+      const v = VERSIONS.find(x => x.id === S.ver) || VERSIONS[0];
+      const verBtn = document.getElementById('mb-ver-btn');
+      if (verBtn && v) verBtn.textContent = v.label + ' ▾';
+      document.querySelectorAll('#mb-set-ver-pills .mb-set-pill').forEach(b => {
+        b.classList.toggle('on', b.dataset.ver === S.ver);
+      });
+    }
   }
 
   function injectHideStyles() {
@@ -76,8 +84,7 @@
           <a href="app.html" class="mb-back" aria-label="Home">‹ Home</a>
           <div class="mb-brand">📖 ENJC Bible</div>
           <div class="mb-lang-row">
-            <button class="mb-lang on" id="mb-btn-ta" onclick="mbSetLang('ta')">தமிழ்</button>
-            <button class="mb-lang" id="mb-btn-en" onclick="mbSetLang('en')">English</button>
+            <button class="mb-lang on" id="mb-ver-btn" onclick="mbOpenSettings()">தமிழ் OV ▾</button>
           </div>
         </div>
         <div class="mb-tabs">
@@ -164,11 +171,14 @@
       <div class="mb-settings-sheet" id="mb-settings-sheet">
         <div class="mb-vs-handle"></div>
         <div class="mb-set-title">⚙ Settings</div>
-        <div class="mb-set-row">
-          <span class="mb-set-lbl">மொழி</span>
-          <div class="mb-set-pills">
-            <button class="mb-set-pill on" id="mb-set-ta" onclick="mbSetLang('ta')">தமிழ்</button>
-            <button class="mb-set-pill" id="mb-set-en" onclick="mbSetLang('en')">English</button>
+        <div class="mb-set-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+          <span class="mb-set-lbl">பதிப்பு · Version</span>
+          <div class="mb-set-pills" id="mb-set-ver-pills" style="flex-wrap:wrap">
+            <button class="mb-set-pill on" data-ver="taov"   onclick="mbSetVersion('taov')">தமிழ் OV</button>
+            <button class="mb-set-pill"    data-ver="tabl98" onclick="mbSetVersion('tabl98')">தமிழ் BL98</button>
+            <button class="mb-set-pill"    data-ver="kjv"    onclick="mbSetVersion('kjv')">KJV</button>
+            <button class="mb-set-pill"    data-ver="web"    onclick="mbSetVersion('web')">WEB</button>
+            <button class="mb-set-pill"    data-ver="bbe"    onclick="mbSetVersion('bbe')">BBE</button>
           </div>
         </div>
         <div class="mb-set-row">
@@ -430,14 +440,23 @@
     document.getElementById('mb-audio-bar')?.classList.remove('show');
   };
 
-  // ── Language ─────────────────────────────────────────────────
+  // ── Language / Version ──────────────────────────────────────
   window.mbSetLang = function(l) {
     S.lang = l;
-    ['ta','en'].forEach(x => {
-      document.getElementById('mb-btn-' + x)?.classList.toggle('on', x === l);
-      document.getElementById('mb-set-' + x)?.classList.toggle('on', x === l);
-    });
     if (typeof setLang === 'function') setLang(l);
+    if (MS.screen === 'reader') {
+      setTimeout(syncReaderContent, 300);
+    }
+  };
+
+  window.mbSetVersion = function(verId) {
+    if (typeof setVersion === 'function') setVersion(verId);
+    const v = (typeof VERSIONS !== 'undefined') ? VERSIONS.find(x => x.id === verId) : null;
+    document.querySelectorAll('#mb-set-ver-pills .mb-set-pill').forEach(b => {
+      b.classList.toggle('on', b.dataset.ver === verId);
+    });
+    const verBtn = document.getElementById('mb-ver-btn');
+    if (verBtn && v) verBtn.textContent = v.label + ' ▾';
     if (MS.screen === 'reader') {
       setTimeout(syncReaderContent, 300);
     }
@@ -461,6 +480,9 @@
     document.getElementById('mb-settings-backdrop').classList.add('on');
     document.getElementById('mb-settings-sheet').classList.add('on');
     document.getElementById('mb-set-fsz').textContent = S.fs + 'px';
+    document.querySelectorAll('#mb-set-ver-pills .mb-set-pill').forEach(b => {
+      b.classList.toggle('on', b.dataset.ver === S.ver);
+    });
   };
 
   window.mbCloseSettings = function() {
