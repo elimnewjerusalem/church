@@ -418,18 +418,18 @@ function setLang(l){
 
 // ── VERSION SELECTOR (11 versions: தமிழ் OV/BL98/IRV + 8 English) ─
 function renderVersionChips(){
-  const row=g('ver-row');if(!row)return;
+  const sel=g('ver-sel');if(!sel)return;
   const taVers=VERSIONS.filter(v=>v.lang==='ta');
   const enVers=VERSIONS.filter(v=>v.lang==='en');
-  const chip=v=>`<button class="bv-ver-chip${v.id===S.ver?' on':''}" data-ver="${v.id}" onclick="setVersion('${v.id}')">${v.label}</button>`;
-  row.innerHTML=
-    '<span class="bv-ver-group-lbl">தமிழ்</span>'+taVers.map(chip).join('')+
-    '<span class="bv-ver-divider" aria-hidden="true"></span>'+
-    '<span class="bv-ver-group-lbl">English</span>'+enVers.map(chip).join('');
+  const opt=v=>`<option value="${v.id}"${v.id===S.ver?' selected':''}>${v.label}</option>`;
+  sel.innerHTML=
+    '<optgroup label="தமிழ்">'+taVers.map(opt).join('')+'</optgroup>'+
+    '<optgroup label="English">'+enVers.map(opt).join('')+'</optgroup>';
 }
 
 function syncVersionUI(){
-  document.querySelectorAll('.bv-ver-chip').forEach(b=>b.classList.toggle('on',b.dataset.ver===S.ver));
+  const sel=g('ver-sel');
+  if(sel)sel.value=S.ver;
   const v=getVer(S.ver);
   if(!v)return;
   const bta=g('btn-ta'),ben=g('btn-en');

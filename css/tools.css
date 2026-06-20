@@ -2042,31 +2042,22 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
 .bv-go-btn:hover{ opacity: 0.88; }
 .bv-go-btn i{ font-size: 16px; }
 
-/* Version chips: two scrollable groups (Tamil / English) */
+/* Version dropdown — single elegant select for all 11 translations */
 .bv-console-row-versions{ align-items: center; }
-.bv-version-lbl{ flex-shrink: 0; }
-.bv-version-scroller{
-  display: flex; align-items: center; gap: 6px; overflow-x: auto;
-  scrollbar-width: none; -ms-overflow-style: none; flex: 1; padding: 2px 0;
+#ver-sel{
+  font-weight: 700; color: var(--gold);
+  background-color: var(--accent-bg);
+  border-color: var(--gold-border);
 }
-.bv-version-scroller::-webkit-scrollbar{ display: none; }
-.bv-ver-group-lbl{
-  flex-shrink: 0; font-size: 10px; font-weight: 700; color: var(--text-faint);
-  text-transform: uppercase; letter-spacing: 0.08em; padding: 0 2px;
+#ver-sel:focus{ border-color: var(--gold); }
+#ver-sel optgroup{
+  font-weight: 700; font-style: normal; color: var(--text-faint);
+  background: var(--bg-card);
 }
-.bv-ver-divider{
-  flex-shrink: 0; width: 1px; height: 16px; background: var(--border-dark); margin: 0 4px;
+#ver-sel option{
+  font-weight: 600; color: var(--text-light); background: var(--bg-card);
+  padding: 6px;
 }
-.bv-ver-chip{
-  flex-shrink: 0;
-  padding: 6px 13px; border-radius: 99px;
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark);
-  color: var(--text-muted); font-size: 12px; font-weight: 600;
-  font-family: var(--font-body); cursor: pointer; white-space: nowrap;
-  transition: all var(--t-fast,0.18s);
-}
-.bv-ver-chip:hover{ border-color: var(--gold-border); color: var(--text-light); }
-.bv-ver-chip.on{ background: var(--gold); color: var(--navy); border-color: var(--gold); }
 
 /* Tools row: search + parallel + font size */
 .bv-console-row-tools{ flex-wrap: wrap; }

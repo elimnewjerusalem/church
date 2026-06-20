@@ -145,9 +145,10 @@
     </div>
 
     <div class="bv-console-row bv-console-row-versions">
-      <span class="bv-field-lbl bv-version-lbl">பதிப்பு · Version</span>
-      <div class="bv-version-scroller" id="ver-row">
-        <!-- populated by JS: renderVersionChips() -->
+      <div class="bv-field bv-field-grow">
+        <label class="bv-field-lbl" for="ver-sel">பதிப்பு · Version</label>
+        <select id="ver-sel" class="bv-select" onchange="setVersion(this.value)">
+        </select>
       </div>
       <button id="btn-ta" class="on" style="display:none"></button>
       <button id="btn-en" style="display:none"></button>
