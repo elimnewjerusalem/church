@@ -52,9 +52,8 @@
       const v = VERSIONS.find(x => x.id === S.ver) || VERSIONS[0];
       const verBtn = document.getElementById('mb-ver-btn');
       if (verBtn && v) verBtn.textContent = v.label + ' ▾';
-      document.querySelectorAll('#mb-set-ver-pills .mb-set-pill').forEach(b => {
-        b.classList.toggle('on', b.dataset.ver === S.ver);
-      });
+      const verSel = document.getElementById('mb-set-ver-sel');
+      if (verSel) verSel.value = S.ver;
     }
   }
 
@@ -173,9 +172,14 @@
         <div class="mb-set-title">⚙ Settings</div>
         <div class="mb-set-row" style="flex-direction:column;align-items:flex-start;gap:8px">
           <span class="mb-set-lbl">பதிப்பு · Version</span>
-          <div class="mb-set-pills" id="mb-set-ver-pills" style="flex-wrap:wrap">
-            ${(typeof VERSIONS!=='undefined'?VERSIONS:[]).map(v=>`<button class="mb-set-pill${v.id==='taov'?' on':''}" data-ver="${v.id}" onclick="mbSetVersion('${v.id}')">${v.label}</button>`).join('')}
-          </div>
+          <select class="mb-set-sel" id="mb-set-ver-sel" onchange="mbSetVersion(this.value)">
+            <optgroup label="தமிழ்">
+              ${(typeof VERSIONS!=='undefined'?VERSIONS:[]).filter(v=>v.lang==='ta').map(v=>`<option value="${v.id}"${v.id==='taov'?' selected':''}>${v.label}</option>`).join('')}
+            </optgroup>
+            <optgroup label="English">
+              ${(typeof VERSIONS!=='undefined'?VERSIONS:[]).filter(v=>v.lang==='en').map(v=>`<option value="${v.id}">${v.label}</option>`).join('')}
+            </optgroup>
+          </select>
         </div>
         <div class="mb-set-row">
           <span class="mb-set-lbl">எழுத்து அளவு</span>
@@ -448,9 +452,8 @@
   window.mbSetVersion = function(verId) {
     if (typeof setVersion === 'function') setVersion(verId);
     const v = (typeof VERSIONS !== 'undefined') ? VERSIONS.find(x => x.id === verId) : null;
-    document.querySelectorAll('#mb-set-ver-pills .mb-set-pill').forEach(b => {
-      b.classList.toggle('on', b.dataset.ver === verId);
-    });
+    const verSel = document.getElementById('mb-set-ver-sel');
+    if (verSel) verSel.value = verId;
     const verBtn = document.getElementById('mb-ver-btn');
     if (verBtn && v) verBtn.textContent = v.label + ' ▾';
     if (MS.screen === 'reader') {
@@ -476,9 +479,8 @@
     document.getElementById('mb-settings-backdrop').classList.add('on');
     document.getElementById('mb-settings-sheet').classList.add('on');
     document.getElementById('mb-set-fsz').textContent = S.fs + 'px';
-    document.querySelectorAll('#mb-set-ver-pills .mb-set-pill').forEach(b => {
-      b.classList.toggle('on', b.dataset.ver === S.ver);
-    });
+    const verSel = document.getElementById('mb-set-ver-sel');
+    if (verSel) verSel.value = S.ver;
   };
 
   window.mbCloseSettings = function() {
@@ -827,6 +829,15 @@
   color: #8aa0c0; font-size: 12px; cursor: pointer; font-family: var(--font-body);
 }
 .mb-set-pill.on { background: #c9a84c; color: #08111f; border-color: #c9a84c; }
+.mb-set-sel {
+  width: 100%; appearance: none; -webkit-appearance: none;
+  background: rgba(255,255,255,.05) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border: 1px solid #c9a84c4d; border-radius: 10px;
+  color: #c9a84c; font-weight: 700; font-size: 13px;
+  padding: 11px 32px 11px 14px; font-family: var(--font-body);
+}
+.mb-set-sel optgroup { font-weight: 700; font-style: normal; color: #8aa0c0; background: #0d1726; }
+.mb-set-sel option { font-weight: 600; color: #e8e8ec; background: #0d1726; padding: 6px; }
 .mb-set-fsz { font-size: 12px; color: #c9a84c; min-width: 36px; text-align: center; }
 /* Toggle switch */
 .mb-tog-wrap { position: relative; display: inline-block; width: 42px; height: 24px; }
