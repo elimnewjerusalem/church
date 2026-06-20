@@ -174,11 +174,7 @@
         <div class="mb-set-row" style="flex-direction:column;align-items:flex-start;gap:8px">
           <span class="mb-set-lbl">பதிப்பு · Version</span>
           <div class="mb-set-pills" id="mb-set-ver-pills" style="flex-wrap:wrap">
-            <button class="mb-set-pill on" data-ver="taov"   onclick="mbSetVersion('taov')">தமிழ் OV</button>
-            <button class="mb-set-pill"    data-ver="tabl98" onclick="mbSetVersion('tabl98')">தமிழ் BL98</button>
-            <button class="mb-set-pill"    data-ver="kjv"    onclick="mbSetVersion('kjv')">KJV</button>
-            <button class="mb-set-pill"    data-ver="web"    onclick="mbSetVersion('web')">WEB</button>
-            <button class="mb-set-pill"    data-ver="bbe"    onclick="mbSetVersion('bbe')">BBE</button>
+            ${(typeof VERSIONS!=='undefined'?VERSIONS:[]).map(v=>`<button class="mb-set-pill${v.id==='taov'?' on':''}" data-ver="${v.id}" onclick="mbSetVersion('${v.id}')">${v.label}</button>`).join('')}
           </div>
         </div>
         <div class="mb-set-row">

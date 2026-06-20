@@ -101,165 +101,153 @@
   </nav>
 </header>
 
-<!-- ── MAIN LAYOUT — New 2026 ─────────────────────────── -->
+<!-- ── MAIN LAYOUT — Manuscript Reader (2026 redesign) ──────────── -->
+<div class="bv-wrap">
 
-<!-- ROW 1: VOTD + CONTROL PANEL -->
-<div class="nx-top">
-
-  <!-- VOTD LEFT -->
-  <div class="nx-votd">
-    <div class="nx-votd-badge">
-      <span>★</span> இன்றைய வேத வாக்கு
+  <!-- VERSE OF THE DAY — manuscript hero -->
+  <section class="bv-hero">
+    <div class="bv-hero-ornament" aria-hidden="true">✦</div>
+    <span class="bv-hero-eyebrow">இன்றைய வேத வாக்கு · Verse of the Day</span>
+    <p class="bv-hero-ta" id="votd-ta">ஏற்றுகிறோம்...</p>
+    <cite class="bv-hero-taref" id="votd-taref"></cite>
+    <p class="bv-hero-en" id="votd-en"></p>
+    <cite class="bv-hero-enref" id="votd-enref"></cite>
+    <div class="bv-hero-acts">
+      <button class="bv-chip bv-chip-gold" onclick="playVOTD('ta')"><i class="ti ti-volume" aria-hidden="true"></i> தமிழ்</button>
+      <button class="bv-chip bv-chip-gold" onclick="playVOTD('en')"><i class="ti ti-volume" aria-hidden="true"></i> English</button>
+      <button class="bv-chip" onclick="openImageStudio()"><i class="ti ti-photo" aria-hidden="true"></i> Image</button>
+      <button class="bv-chip" onclick="copyVOTD()"><i class="ti ti-copy" aria-hidden="true"></i> Copy</button>
+      <button class="bv-chip" onclick="shareVOTD()"><i class="ti ti-share-2" aria-hidden="true"></i> Share</button>
+      <button class="bv-chip" onclick="reqNotify()"><i class="ti ti-bell" aria-hidden="true"></i> Notify</button>
     </div>
-    <p class="nx-votd-ta" id="votd-ta">ஏற்றுகிறோம்...</p>
-    <cite class="nx-votd-taref" id="votd-taref"></cite>
-    <p class="nx-votd-en" id="votd-en"></p>
-    <cite class="nx-votd-enref" id="votd-enref"></cite>
-    <div class="nx-pills">
-      <button class="nx-pill nx-pill-gold" onclick="playVOTD('ta')">▶ தமிழ்</button>
-      <button class="nx-pill nx-pill-gold" onclick="playVOTD('en')">▶ English</button>
-      <button class="nx-pill" onclick="openImageStudio()">🖼 Image</button>
-      <button class="nx-pill" onclick="copyVOTD()">📋 Copy</button>
-      <button class="nx-pill" onclick="shareVOTD()">🔗 Share</button>
-      <button class="nx-pill" onclick="reqNotify()">🔔 Notify</button>
+  </section>
+
+  <!-- READING CONSOLE — book/chapter + version + tools, one cohesive bar -->
+  <section class="bv-console">
+
+    <div class="bv-console-row">
+      <div class="bv-field bv-field-grow">
+        <label class="bv-field-lbl" for="book-sel">புத்தகம் · Book</label>
+        <select id="book-sel" class="bv-select" onchange="onBook()">
+          <option value="">தேர்வு செய்க...</option>
+        </select>
+      </div>
+      <div class="bv-field">
+        <label class="bv-field-lbl" for="ch-sel">அதிகாரம் · Ch</label>
+        <select id="ch-sel" class="bv-select bv-select-narrow" onchange="onCh()" disabled>
+          <option>—</option>
+        </select>
+      </div>
+      <button class="bv-go-btn" onclick="loadCh()" aria-label="Read chapter">
+        <i class="ti ti-book-2" aria-hidden="true"></i><span>படி</span>
+      </button>
+      <button id="gobtn" onclick="loadCh()" style="display:none">படி</button>
     </div>
-  </div>
 
-  <!-- CONTROL PANEL RIGHT -->
-  <div class="nx-ctrl">
-    <span class="nx-lbl">பதிப்பு · Version</span>
-    <div class="nx-ver-row" id="ver-row">
-      <button class="nx-ver-btn on" data-ver="taov"   onclick="setVersion('taov')">தமிழ் OV</button>
-      <button class="nx-ver-btn"    data-ver="tabl98" onclick="setVersion('tabl98')">தமிழ் BL98</button>
-      <button class="nx-ver-btn"    data-ver="kjv"    onclick="setVersion('kjv')">KJV</button>
-      <button class="nx-ver-btn"    data-ver="web"    onclick="setVersion('web')">WEB</button>
-      <button class="nx-ver-btn"    data-ver="bbe"    onclick="setVersion('bbe')">BBE</button>
+    <div class="bv-console-row bv-console-row-versions">
+      <span class="bv-field-lbl bv-version-lbl">பதிப்பு · Version</span>
+      <div class="bv-version-scroller" id="ver-row">
+        <!-- populated by JS: renderVersionChips() -->
+      </div>
+      <button id="btn-ta" class="on" style="display:none"></button>
+      <button id="btn-en" style="display:none"></button>
     </div>
-    <!-- compat hidden buttons for legacy ta/en checks in bible.js -->
-    <button id="btn-ta" class="on" style="display:none"></button>
-    <button id="btn-en" style="display:none"></button>
 
-    <span class="nx-lbl" style="margin-top:4px">புத்தகம் & அதிகாரம்</span>
-    <select id="book-sel" class="nx-sel" onchange="onBook()">
-      <option value="">புத்தகம் தேர்வு செய்க...</option>
-    </select>
-    <select id="ch-sel" class="nx-sel" onchange="onCh()" disabled>
-      <option>அதிகாரம்</option>
-    </select>
-    <button class="nx-read-btn" onclick="loadCh()">
-      ☐ அதிகாரம் படி
-    </button>
-    <!-- compat id for bible.js -->
-    <button id="gobtn" onclick="loadCh()" style="display:none">படி</button>
-  </div>
+    <div class="bv-console-row bv-console-row-tools">
+      <div class="bv-search">
+        <i class="ti ti-search" aria-hidden="true"></i>
+        <input id="sinp" type="search"
+          placeholder="தேடுக — John 3:16, faith, அன்பு..."
+          inputmode="search" autocomplete="off" autocorrect="off" spellcheck="false"
+          onkeydown="if(event.key==='Enter')doSearch()">
+        <button onclick="doSearch()" aria-label="Search">Go</button>
+      </div>
 
-</div>
-
-<!-- ROW 2: PARALLEL + SEARCH | FONT SIZE -->
-<div class="nx-mid">
-
-  <div class="nx-mid-left">
-    <!-- parallel toggle -->
-    <div class="nx-para-row">
-      <span class="nx-para-lbl">🇮🇳+🇬🇧 Parallel</span>
-      <label class="nx-tog">
+      <label class="bv-parallel">
         <input type="checkbox" id="para-chk" onchange="togParallelNew()">
-        <span class="nx-tog-track"></span>
+        <span class="bv-parallel-track"></span>
+        <span class="bv-parallel-txt">Parallel <em id="para-state">Off</em></span>
       </label>
-      <span class="nx-para-state" id="para-state">Off</span>
-      <!-- Hidden compat button for bible.js togParallel() -->
       <button id="para-btn" style="display:none">Off</button>
+
+      <div class="bv-fsz">
+        <button onclick="chFont(-1)" aria-label="Decrease font size">A−</button>
+        <span id="fszv">17px</span>
+        <button onclick="chFont(1)" aria-label="Increase font size">A+</button>
+      </div>
     </div>
-    <!-- search -->
-    <div class="nx-search-row">
-      <input class="nx-search-inp" id="sinp" type="search"
-        placeholder="தேடுக — John 3:16, faith, அன்பு..."
-        inputmode="search" autocomplete="off" autocorrect="off" spellcheck="false"
-        onkeydown="if(event.key==='Enter')doSearch()">
-      <button class="nx-search-btn" onclick="doSearch()">🔍</button>
+
+    <div class="bv-console-row bv-console-row-feat">
+      <button class="bv-feat feat-btn" id="fb-bm" onclick="openPanel('bm')">
+        <i class="ti ti-heart" aria-hidden="true"></i><span id="bm-lbl">Saved</span><em class="feat-badge" id="bm-badge">0</em>
+      </button>
+      <button class="bv-feat feat-btn" id="fb-quiz" onclick="openPanel('quiz')">
+        <i class="ti ti-brain" aria-hidden="true"></i><span>Quiz</span>
+      </button>
+      <button class="bv-feat feat-btn" id="fb-compare" onclick="openPanel('compare')">
+        <i class="ti ti-arrows-left-right" aria-hidden="true"></i><span>Compare</span>
+      </button>
+      <button class="bv-feat feat-btn" id="fb-notes" onclick="openPanel('notes')">
+        <i class="ti ti-notes" aria-hidden="true"></i><span>Notes</span>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- OFFLINE BAR -->
+  <div class="offline-bar" id="offline-bar">
+    <strong>Offline:</strong> சேமிக்கப்பட்ட அதிகாரங்கள் மட்டும் கிடைக்கும்
+  </div>
+
+  <!-- AUDIO BAR -->
+  <div class="bv-audio" id="abar">
+    <button class="bv-audio-play" onclick="togPlay()">
+      <span id="plic">▶</span><span id="puic" style="display:none">⏸</span>
+    </button>
+    <div class="bv-audio-info">
+      <div class="bv-audio-title" id="aptitle">ENJC Bible</div>
+      <div class="bv-audio-stat"  id="apstat">வசனத்தை தொட்டு கேளுங்கள்</div>
+    </div>
+    <select class="bv-audio-spd" id="aspd" onchange="chSpd()">
+      <option value="0.8">0.8×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.25">1.25×</option>
+      <option value="1.5">1.5×</option>
+    </select>
+    <button class="bv-audio-ctrl" onclick="prevCh();playAll()" title="Prev chapter"><i class="ti ti-player-skip-back" aria-hidden="true"></i></button>
+    <button class="bv-audio-stop" onclick="stopAud()">■ Stop</button>
+    <button class="bv-audio-ctrl" onclick="nextCh();playAll()" title="Next chapter"><i class="ti ti-player-skip-forward" aria-hidden="true"></i></button>
+  </div>
+
+  <!-- CHAPTER BAR — bookmark-ribbon style -->
+  <div class="bv-chbar" id="chbar">
+    <button class="bv-chbar-nav" id="prevb" onclick="prevCh()" aria-label="Previous chapter">
+      <i class="ti ti-chevron-left" aria-hidden="true"></i>
+    </button>
+    <div class="bv-chbar-info">
+      <div class="bv-chbar-title" id="chtitle">—</div>
+      <div class="bv-chbar-sub"   id="chsub"></div>
+    </div>
+    <div class="bv-chbar-acts">
+      <button class="bv-chbar-act bv-chbar-act-gold" onclick="playAll()" title="Play all"><i class="ti ti-player-play" aria-hidden="true"></i></button>
+      <button class="bv-chbar-act" id="bmchbtn" onclick="togBMChapter()" title="Bookmark chapter"><i class="ti ti-bookmark" aria-hidden="true"></i></button>
+    </div>
+    <button class="bv-chbar-nav" id="nextb" onclick="nextCh()" aria-label="Next chapter">
+      <i class="ti ti-chevron-right" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="ch-prog"><div class="ch-prog-fill" id="chprogf"></div></div>
+
+  <!-- VERSE CONTENT -->
+  <div id="bcontent">
+    <div class="bload">
+      <div class="bspin"></div>
+      <p>புத்தகம் &amp; அதிகாரம் தேர்வு செய்யுங்கள்</p>
     </div>
   </div>
 
-  <div class="nx-mid-right">
-    <span class="nx-lbl">எழுத்து அளவு</span>
-    <div class="nx-fsz-row">
-      <button class="nx-fsz-btn" onclick="chFont(-1)">A−</button>
-      <span class="nx-fsz-val" id="fszv">17px</span>
-      <button class="nx-fsz-btn" onclick="chFont(1)">A+</button>
-      <button class="nx-fsz-reset" onclick="chFont(0)" title="Reset">↺</button>
-    </div>
-  </div>
-
 </div>
-
-<!-- ROW 3: FEATURES BAR -->
-<div class="nx-feat-bar">
-  <button class="nx-feat feat-btn" id="fb-bm" onclick="openPanel('bm')">
-    <span class="nx-feat-icon">❤️</span>
-    <span class="nx-feat-lbl" id="bm-lbl">Saved</span>
-    <span class="feat-badge" id="bm-badge">0</span>
-  </button>
-  <button class="nx-feat feat-btn" id="fb-quiz" onclick="openPanel('quiz')">
-    <span class="nx-feat-icon">🧠</span>
-    <span class="nx-feat-lbl">Quiz</span>
-  </button>
-  <button class="nx-feat feat-btn" id="fb-compare" onclick="openPanel('compare')">
-    <span class="nx-feat-icon">⇄</span>
-    <span class="nx-feat-lbl">Compare</span>
-  </button>
-  <button class="nx-feat feat-btn" id="fb-notes" onclick="openPanel('notes')">
-    <span class="nx-feat-icon">📝</span>
-    <span class="nx-feat-lbl">Notes</span>
-  </button>
-</div>
-
-<!-- OFFLINE BAR -->
-<div class="offline-bar" id="offline-bar">
-  <strong>Offline:</strong> சேமிக்கப்பட்ட அதிகாரங்கள் மட்டும் கிடைக்கும்
-</div>
-
-<!-- AUDIO BAR -->
-<div class="audio-bar" id="abar">
-  <button class="aud-play-btn" onclick="togPlay()">
-    <span id="plic">▶</span><span id="puic" style="display:none">⏸</span>
-  </button>
-  <div class="aud-info">
-    <div class="aud-title" id="aptitle">ENJC Bible</div>
-    <div class="aud-stat"  id="apstat">வசனத்தை தொட்டு கேளுங்கள்</div>
-  </div>
-  <select class="aud-spd" id="aspd" onchange="chSpd()">
-    <option value="0.8">0.8×</option>
-    <option value="1" selected>1×</option>
-    <option value="1.25">1.25×</option>
-    <option value="1.5">1.5×</option>
-  </select>
-  <button class="aud-ctrl-btn" onclick="prevCh();playAll()" title="Prev chapter">⏮</button>
-  <button class="aud-stop" onclick="stopAud()">■ Stop</button>
-  <button class="aud-ctrl-btn" onclick="nextCh();playAll()" title="Next chapter">⏭</button>
-</div>
-
-<!-- CHAPTER BAR -->
-<div class="ch-bar" id="chbar">
-  <div class="ch-info">
-    <div class="ch-title" id="chtitle">—</div>
-    <div class="ch-sub"   id="chsub"></div>
-  </div>
-  <div class="ch-nav">
-    <button class="ch-btn" id="prevb" onclick="prevCh()">← Prev</button>
-    <button class="ch-btn primary" onclick="playAll()">▶ Play All</button>
-    <button class="ch-btn" id="bmchbtn" onclick="togBMChapter()" title="Bookmark chapter">🔖</button>
-    <button class="ch-btn" id="nextb" onclick="nextCh()">Next →</button>
-  </div>
-</div>
-<div class="ch-prog"><div class="ch-prog-fill" id="chprogf"></div></div>
-
-<!-- VERSE CONTENT -->
-<div id="bcontent">
-  <div class="bload">
-    <div class="bspin"></div>
-    <p>புத்தகம் & அதிகாரம் தேர்வு செய்யுங்கள்</p>
-  </div>
-</div>
+<!-- ── END Manuscript Reader ─────────────────────────────────── -->
 
 <!-- ── SIDE PANEL ──────────────────────────────────────── -->
 <div class="overlay" id="overlay" onclick="closePanel()"></div>

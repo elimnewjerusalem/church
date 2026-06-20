@@ -13,19 +13,29 @@ const C = {
   taAPI1: 'https://bolls.life/get-text/TAMOVR/',
   taAPI2: 'https://bolls.life/get-text/TAMBL98/',
   taAPI3: 'https://api.getbible.net/v2/tamil/',
+  bollsText: 'https://bolls.life/get-text/',
   data:   'data/',
   ms:     9000,
   // Local Bible data (loaded once at startup)
   EN_LOCAL: 'data/english_kjv.json',
 };
 
-// ── 5 BIBLE VERSIONS (2 Tamil + 3 free/public-domain English) ────
+// ── 11 BIBLE VERSIONS — 3 Tamil + 8 English ──────────────────────
+// src: 'local'  -> bundled offline KJV json
+// src: 'bapi'   -> bible-api.com (free, public-domain only: kjv/web/bbe)
+// src: 'bolls'  -> bolls.life get-text/<CODE>/<book>/<ch>/  (ta + modern en)
 const VERSIONS=[
-  {id:'taov',  lang:'ta', code:'ov',  label:'தமிழ் OV',   short:'OV'},
-  {id:'tabl98',lang:'ta', code:'bl98',label:'தமிழ் BL98', short:'BL98'},
-  {id:'kjv',   lang:'en', code:'kjv', label:'KJV',         short:'KJV'},
-  {id:'web',   lang:'en', code:'web', label:'WEB',         short:'WEB'},
-  {id:'bbe',   lang:'en', code:'bbe', label:'BBE',         short:'BBE'},
+  {id:'taov',  lang:'ta', code:'ov',     label:'தமிழ் OV',          short:'OV',   src:'bolls', bcode:'TAMOVR'},
+  {id:'tabl98',lang:'ta', code:'bl98',   label:'தமிழ் BL98',        short:'BL98', src:'bolls', bcode:'TAMBL98'},
+  {id:'irvta', lang:'ta', code:'irvta',  label:'IRV தமிழ்',          short:'IRV',  src:'bolls', bcode:'IRVTam'},
+  {id:'kjv',   lang:'en', code:'kjv',    label:'KJV',                short:'KJV',  src:'local'},
+  {id:'web',   lang:'en', code:'web',    label:'WEB',                short:'WEB',  src:'bapi'},
+  {id:'bbe',   lang:'en', code:'bbe',    label:'BBE',                short:'BBE',  src:'bapi'},
+  {id:'asv',   lang:'en', code:'asv',    label:'ASV',                short:'ASV',  src:'bolls', bcode:'ASV'},
+  {id:'nkjv',  lang:'en', code:'nkjv',   label:'NKJV',               short:'NKJV', src:'bolls', bcode:'NKJV'},
+  {id:'nasb',  lang:'en', code:'nasb',   label:'NASB',               short:'NASB', src:'bolls', bcode:'NASB'},
+  {id:'amp',   lang:'en', code:'amp',    label:'Amplified',          short:'AMP',  src:'bolls', bcode:'AMP'},
+  {id:'erv',   lang:'en', code:'erv',    label:'ERV',                short:'ERV',  src:'bolls', bcode:'ERV'},
 ];
 function getVerCode(verId){ return (VERSIONS.find(v=>v.id===verId)||{}).code; }
 function getVer(verId){ return VERSIONS.find(v=>v.id===verId); }
@@ -264,6 +274,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   applyTheme(S.theme);
   applyFont(S.fontFamily);
   populateBooks();
+  renderVersionChips();
   syncVersionUI();
   g('fszv').textContent=S.fs+'px';
   loadVOTD();
@@ -405,9 +416,20 @@ function setLang(l){
   if(S.book)loadCh();
 }
 
-// ── VERSION SELECTOR (5 versions: தமிழ் OV/BL98 + KJV/WEB/BBE) ───
+// ── VERSION SELECTOR (11 versions: தமிழ் OV/BL98/IRV + 8 English) ─
+function renderVersionChips(){
+  const row=g('ver-row');if(!row)return;
+  const taVers=VERSIONS.filter(v=>v.lang==='ta');
+  const enVers=VERSIONS.filter(v=>v.lang==='en');
+  const chip=v=>`<button class="bv-ver-chip${v.id===S.ver?' on':''}" data-ver="${v.id}" onclick="setVersion('${v.id}')">${v.label}</button>`;
+  row.innerHTML=
+    '<span class="bv-ver-group-lbl">தமிழ்</span>'+taVers.map(chip).join('')+
+    '<span class="bv-ver-divider" aria-hidden="true"></span>'+
+    '<span class="bv-ver-group-lbl">English</span>'+enVers.map(chip).join('');
+}
+
 function syncVersionUI(){
-  document.querySelectorAll('.nx-ver-btn').forEach(b=>b.classList.toggle('on',b.dataset.ver===S.ver));
+  document.querySelectorAll('.bv-ver-chip').forEach(b=>b.classList.toggle('on',b.dataset.ver===S.ver));
   const v=getVer(S.ver);
   if(!v)return;
   const bta=g('btn-ta'),ben=g('btn-en');
@@ -438,8 +460,16 @@ function togParallel(){
     btn.textContent=S.showParallel?'On ✓':'Off';
     btn.classList.toggle('on',S.showParallel);
   }
+  const chk=g('para-chk');
+  if(chk)chk.checked=S.showParallel;
+  const st=g('para-state');
+  if(st)st.textContent=S.showParallel?'On':'Off';
+  const wrap=g('para-chk')?.closest('.bv-parallel');
+  if(wrap)wrap.classList.toggle('on',S.showParallel);
   if(S.verses.length)renderVerses();
 }
+// Checkbox in the new console UI calls this directly via onchange="togParallelNew()"
+function togParallelNew(){ togParallel(); }
 
 
 // ── BOOKS ────────────────────────────────────────────────────────
@@ -522,10 +552,48 @@ async function fetchWithTimeout(url,ms=8000){
   catch(e){clearTimeout(tid);throw e;}
 }
 
+// ── BOLLS.LIFE generic fetch (Tamil OV/BL98/IRV + modern English) ─
+async function fetchBolls(bcode, bookNum, ch){
+  const ck='enjc_bolls_'+bcode+'_'+bookNum+'_'+ch;
+  try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
+  const url=C.bollsText+bcode+'/'+bookNum+'/'+ch+'/';
+  const r=await fetchWithTimeout(url,8000);
+  if(!r.ok)throw new Error('bolls '+bcode+' http '+r.status);
+  const d=await r.json();
+  let vv=[];
+  if(Array.isArray(d)&&d.length){
+    if(d[0]?.verse!==undefined)vv=d.map(v=>({num:v.verse,text:(v.text||'').replace(/<[^>]+>/g,'')}));
+    else if(Array.isArray(d[0]))vv=d.map(v=>({num:v[0],text:v[1]}));
+  }
+  if(!vv.length)throw new Error('bolls '+bcode+' empty');
+  try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+  return vv;
+}
+
 async function loadTA(){
   const key=S.bookNum+'_'+S.ch;
-  const verCode=getVerCode(S.ver)==='bl98'?'bl98':'ov';
+  const vCfg=getVer(S.ver)||{};
+  const verCode=vCfg.lang==='ta'?vCfg.code:'ov';
   const ck='enjc_ta_'+verCode+'_'+key;
+
+  // ── IRV Tamil — bolls.life only, no local/legacy fallback chain ──
+  if(verCode==='irvta'){
+    try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
+    try{
+      const vv=await fetchBolls('IRVTam',S.bookNum,S.ch);
+      try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+      return vv;
+    }catch(e){
+      const bc=document.getElementById('bcontent');
+      if(bc)bc.innerHTML=`<div style="text-align:center;padding:40px 16px">
+        <div style="font-size:36px;margin-bottom:12px">📶</div>
+        <div style="font-size:14px;color:var(--tx2);margin-bottom:6px">${S.bookTaName||''} ${S.ch} — IRV தமிழ் கிடைக்கவில்லை</div>
+        <div style="font-size:12px;color:var(--tx3);margin-bottom:16px">இணைய இணைப்பு சரிபாருங்கள்</div>
+        <button onclick="loadCh()" style="background:var(--gd,#c9a84c);border:none;border-radius:8px;padding:10px 24px;font-size:13px;font-weight:700;color:#07090f;cursor:pointer">🔄 மீண்டும் முயற்சி</button>
+      </div>`;
+      throw new Error('IRV Tamil offline: '+key);
+    }
+  }
 
   // ── 1. Embedded local DB (OV only — bundled offline dataset) ───
   if(verCode==='ov'){
@@ -571,11 +639,11 @@ async function loadTA(){
 }
 
 async function loadEN(){
-  const verCode=getVerCode(S.ver);
-  const enCode=(verCode==='web'||verCode==='bbe')?verCode:'kjv';
+  const vCfg=getVer(S.ver)||{};
+  const verCode=vCfg.lang==='en'?vCfg.code:'kjv';
 
   // ── 1. Local KJV JSON (instant, no network) — KJV only ────────
-  if(enCode==='kjv'){
+  if(verCode==='kjv'){
     const localBook = S.enDB[S.bookNum];
     if(localBook){
       const localCh = localBook[S.ch];
@@ -584,7 +652,16 @@ async function loadEN(){
       }
     }
   }
-  // ── 2. Fallback / other versions: remote API (with per-version cache) ─
+  // ── 2. Modern translations (AMP/ASV/NKJV/NASB/ERV) via bolls.life ─
+  if(vCfg.src==='bolls'){
+    try{
+      return await fetchBolls(vCfg.bcode,S.bookNum,S.ch);
+    }catch(e){
+      // fall through to bible-api KJV as last resort below
+    }
+  }
+  // ── 3. Fallback / public-domain versions: bible-api.com (cached) ─
+  const enCode=(verCode==='web'||verCode==='bbe')?verCode:'kjv';
   const ck='enjc_en_'+enCode+'_'+S.bookNum+'_'+S.ch;
   try{
     const cached=localStorage.getItem(ck);
@@ -1185,38 +1262,26 @@ function goPlan(i){
 // without touching the main reading state (S.verses / S.lang etc).
 async function fetchVersionChapter(verId){
   const v=getVer(verId);if(!v||!S.book)return[];
-  if(v.lang==='ta'){
-    const ck='enjc_ta_'+v.code+'_'+S.bookNum+'_'+S.ch;
-    if(v.code==='ov'&&S.tamilDB[S.bookNum+'_'+S.ch]){
-      return S.tamilDB[S.bookNum+'_'+S.ch].map(x=>({num:x[0],text:x[1]}));
-    }
-    try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
-    const url=(v.code==='bl98'?C.taAPI2:C.taAPI1)+S.bookNum+'/'+S.ch+'/';
-    try{
-      const r=await fetchWithTimeout(url,8000);if(!r.ok)return[];
-      const d=await r.json();
-      let vv=[];
-      if(Array.isArray(d)&&d.length&&d[0]?.verse!==undefined)vv=d.map(x=>({num:x.verse,text:x.text}));
-      if(vv.length)try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
-      return vv;
-    }catch(e){return[];}
-  }else{
-    if(v.code==='kjv'){
-      const localBook=S.enDB[S.bookNum];
-      if(localBook&&localBook[S.ch]&&localBook[S.ch].length){
-        return localBook[S.ch].map((t,i)=>({num:i+1,text:t||''}));
-      }
-    }
-    const ck='enjc_en_'+v.code+'_'+S.bookNum+'_'+S.ch;
-    try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
-    try{
-      const r=await fetchT(C.enAPI+S.book+'+'+S.ch+'?translation='+v.code);
-      const d=await r.json();if(d.error)return[];
-      const vv=(d.verses||[]).map(x=>({num:x.verse,text:x.text.trim().replace(/\n/g,' ')}));
-      if(vv.length)try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
-      return vv;
-    }catch(e){return[];}
+  if(v.src==='bolls'){
+    try{return await fetchBolls(v.bcode,S.bookNum,S.ch);}catch(e){return[];}
   }
+  if(v.src==='local'){
+    const localBook=S.enDB[S.bookNum];
+    if(localBook&&localBook[S.ch]&&localBook[S.ch].length){
+      return localBook[S.ch].map((t,i)=>({num:i+1,text:t||''}));
+    }
+    return[];
+  }
+  // src==='bapi'
+  const ck='enjc_en_'+v.code+'_'+S.bookNum+'_'+S.ch;
+  try{const c=localStorage.getItem(ck);if(c){const p=JSON.parse(c);if(p?.length)return p;}}catch(e){}
+  try{
+    const r=await fetchT(C.enAPI+S.book+'+'+S.ch+'?translation='+v.code);
+    const d=await r.json();if(d.error)return[];
+    const vv=(d.verses||[]).map(x=>({num:x.verse,text:x.text.trim().replace(/\n/g,' ')}));
+    if(vv.length)try{localStorage.setItem(ck,JSON.stringify(vv));}catch(e){}
+    return vv;
+  }catch(e){return[];}
 }
 
 let _cmpA='taov',_cmpB='kjv',_cmpData=null;
