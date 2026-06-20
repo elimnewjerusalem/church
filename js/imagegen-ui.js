@@ -375,6 +375,11 @@ export function syncMobileText(){
   if(enInput) enInput.value=parseInt(g('en-size')?.value||32);
 }
 export function syncMobile(){
+  // Mobile panels (#m-style, #m-bg, #m-text, #m-verse) are built asynchronously
+  // by imagegen-mobile.js shortly after DOMContentLoaded. If this runs before
+  // they exist (e.g. the very first call from initStudio()), bail out quietly —
+  // imagegen-mobile.js's igmTab() retries this call once the user opens a tab.
+  if(!g('m-style')||!g('m-bg')||!g('m-text')||!g('m-verse'))return;
   // Style
   g('m-style').innerHTML=`
     <p style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">Templates</p>

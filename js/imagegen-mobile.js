@@ -176,16 +176,26 @@
     document.getElementById('igm-backdrop').classList.add('on');
     document.body.style.overflow = 'hidden';
 
-    // Sync panel content — retry if not ready yet
-    function doSync() {
+    // Sync panel content — retry if not ready yet, or if it throws (state not ready)
+    function doSync(attempt) {
+      attempt = attempt || 0;
       if (typeof window.syncMobile === 'function') {
-        window.syncMobile();
-        setTimeout(renderMiniPreview, 80);
-      } else {
-        setTimeout(doSync, 100);
+        try {
+          window.syncMobile();
+          setTimeout(renderMiniPreview, 80);
+        } catch (e) {
+          // Studio state (ST/GALLERY/canvas) not fully ready yet — retry a few times
+          if (attempt < 20) {
+            setTimeout(() => doSync(attempt + 1), 100);
+          } else {
+            console.error('ENJC ImageGen: syncMobile failed after retries', e);
+          }
+        }
+      } else if (attempt < 30) {
+        setTimeout(() => doSync(attempt + 1), 100);
       }
     }
-    doSync();
+    doSync(0);
   };
 
   window.igmClose = function () {
