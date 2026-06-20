@@ -498,7 +498,7 @@ function onBook(){
     o.textContent='அதிகாரம் '+i+' (Chapter '+i+')';
     cs.appendChild(o);
   }
-  g('gobtn').style.display='block';
+  g('gobtn').style.display='none';
   loadCh();
 }
 
@@ -1252,7 +1252,7 @@ function goPlan(i){
   S.book=p.book;S.bookName=bk.name;S.bookTaName=bk.ta;S.bookNum=bk.n;S.totalCh=bk.ch;S.ch=p.n;
   const cs=g('ch-sel');cs.innerHTML='';cs.disabled=false;
   for(let j=1;j<=bk.ch;j++){const o=document.createElement('option');o.value=j;o.textContent='அதிகாரம் '+j;cs.appendChild(o);}
-  cs.value=p.n;g('gobtn').style.display='block';
+  cs.value=p.n;g('gobtn').style.display='none';
   closePanel();loadCh();
   setTimeout(()=>g('bcontent').scrollIntoView({behavior:'smooth'}),300);
 }
@@ -1388,7 +1388,7 @@ function goToNoteRef(ref){
   S.book=bk.id;S.bookName=bk.name;S.bookTaName=bk.ta;S.bookNum=bk.n;S.totalCh=bk.ch;S.ch=parseInt(m[2]);
   const cs=g('ch-sel');cs.innerHTML='';cs.disabled=false;
   for(let j=1;j<=bk.ch;j++){const o=document.createElement('option');o.value=j;o.textContent='அதிகாரம் '+j;cs.appendChild(o);}
-  cs.value=S.ch;g('gobtn').style.display='block';
+  cs.value=S.ch;g('gobtn').style.display='none';
   closePanel();loadCh();
   setTimeout(()=>g('bcontent').scrollIntoView({behavior:'smooth'}),300);
 }

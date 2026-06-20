@@ -2028,7 +2028,7 @@ mark    { background: rgba(245,197,24,0.25); color: var(--text-light); border-ra
   padding: 9px 30px 9px 12px; cursor: pointer; min-width: 0; width: 100%;
 }
 .bv-select:focus{ border-color: var(--gold-border); outline: none; }
-.bv-select-narrow{ width: 92px; }
+.bv-select-narrow{ width: 168px; flex-shrink: 0; }
 
 .bv-go-btn{
   align-self: flex-end;
