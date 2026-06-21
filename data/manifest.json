@@ -1,8 +1,9 @@
 {
   "name": "Elim New Jerusalem Church",
   "short_name": "ENJC",
-  "description": "Elim New Jerusalem Church, Tondiarpet, Chennai — Bible, Live Stream & Services",
-  "start_url": "/church/index.html",
+  "description": "Elim New Jerusalem Church, Tondiarpet, Chennai — Official Website",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#07090f",
   "theme_color": "#e8a020",
