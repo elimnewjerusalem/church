@@ -105,7 +105,7 @@
       <p class="section-sub anim-fade-up delay-1">Catch up on our latest worship services and devotionals</p>
       <!-- Populated by js/events.js from data/events.json → recentStreams[] -->
       <div class="grid-3" id="recent-streams-grid"></div>
-      <div style="text-align:center;margin-top:28px;">
+      <div class="text-center mt-7">
         <a href="https://www.youtube.com/@ElimNewJerusalemChurchOfficial" target="_blank" rel="noopener" class="btn btn--gold">View All on YouTube</a>
       </div>
     </div>
@@ -136,12 +136,12 @@
       <p class="section-tag anim-wipe">Watch & Worship</p>
       <h2 class="section-heading" id="services-heading">Our <em>Services</em></h2>
       <div class="section-rule" aria-hidden="true"></div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;margin-top:32px;">
+      <div class="services-grid">
 
         <!-- Sunday -->
         <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#7c6cf0;flex-shrink:0;"></span>
+          <div class="svc-row-header">
+            <span class="svc-dot svc-dot--purple"></span>
             <h3 style="font-size:14px;font-weight:700;color:var(--color-text);letter-spacing:0.06em;text-transform:uppercase;">🙏 Sunday Service</h3>
           </div>
           <div id="sunday-section"></div>
@@ -149,8 +149,8 @@
 
         <!-- Friday -->
         <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#059669;flex-shrink:0;"></span>
+          <div class="svc-row-header">
+            <span class="svc-dot svc-dot--green"></span>
             <h3 style="font-size:14px;font-weight:700;color:var(--color-text);letter-spacing:0.06em;text-transform:uppercase;">✝️ Friday Prayer</h3>
           </div>
           <div id="friday-section"></div>
@@ -158,8 +158,8 @@
 
         <!-- Promise -->
         <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#0369a1;flex-shrink:0;"></span>
+          <div class="svc-row-header">
+            <span class="svc-dot svc-dot--blue"></span>
             <h3 style="font-size:14px;font-weight:700;color:var(--color-text);letter-spacing:0.06em;text-transform:uppercase;">🎯 Promise Service</h3>
           </div>
           <div id="promise-section"></div>
@@ -241,8 +241,8 @@
         </div>
 
         <nav class="testimonial-nav" style="display:flex;justify-content:center;gap:8px;margin-top:18px;" aria-label="Testimonial navigation">
-          <button onclick="changeTestimonial(-1)" class="testimonial-nav__btn" style="width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--color-border);color:var(--color-text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;" aria-label="Previous testimonial">&#10094;</button>
-          <button onclick="changeTestimonial(1)"  class="testimonial-nav__btn" style="width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--color-border);color:var(--color-text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;" aria-label="Next testimonial">&#10095;</button>
+          <button onclick="changeTestimonial(-1)" class="testimonial-nav__btn" aria-label="Previous testimonial">&#10094;</button>
+          <button onclick="changeTestimonial(1)"  class="testimonial-nav__btn" aria-label="Next testimonial">&#10095;</button>
         </nav>
       </div>
     </div>
