@@ -356,7 +356,53 @@
       </div>
     </div>
 
-    <!-- ── Fan Carousel ── -->
+    <!-- ── Masonry Photo Grid ── -->
+    <section class="gal-masonry-section container" style="padding: 0 0 60px;" aria-label="Church photo gallery">
+      <div class="gal-grid" id="galGrid">
+        <div class="gal-item" data-cat="scripture" tabindex="0" data-src="images/gallery/g1.webp" data-title="Promise 2026" data-sub="Isaiah 43:4 — ENJC Scripture Card">
+          <img src="images/gallery/g1.webp" alt="ENJC Promise 2026 scripture card" loading="eager">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Promise 2026</span></div>
+        </div>
+        <div class="gal-item" data-cat="worship" tabindex="0" data-src="images/gallery/g6.webp" data-title="Lion &amp; Eagle" data-sub="God's Majesty — ENJC Worship">
+          <img src="images/gallery/g6.webp" alt="Lion and eagle — God's majesty" loading="eager">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Lion &amp; Eagle</span></div>
+        </div>
+        <div class="gal-item" data-cat="prayer" tabindex="0" data-src="images/gallery/g8.webp" data-title="Blessed New Year" data-sub="Pas. A. Karthik Daniel — ENJC">
+          <img src="images/gallery/g8.webp" alt="Blessed New Year — Pastor Karthik Daniel" loading="eager">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Blessed New Year</span></div>
+        </div>
+        <div class="gal-item" data-cat="scripture" tabindex="0" data-src="images/gallery/g2.webp" data-title="Promise 2025" data-sub="Isaiah 8:18 — Behold I and My Children">
+          <img src="images/gallery/g2.webp" alt="Promise 2025 scripture card — Isaiah 8:18" loading="lazy">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Promise 2025</span></div>
+        </div>
+        <div class="gal-item" data-cat="worship" tabindex="0" data-src="images/gallery/g9.webp" data-title="Fire &amp; Eagle" data-sub="God's Power — ENJC">
+          <img src="images/gallery/g9.webp" alt="Fire and eagle — God's power" loading="lazy">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Fire &amp; Eagle</span></div>
+        </div>
+        <div class="gal-item" data-cat="prayer" tabindex="0" data-src="images/gallery/g10.webp" data-title="Night Prayer" data-sub="Daily 10:30 PM — ENJC Tondiarpet">
+          <img src="images/gallery/g10.webp" alt="Night prayer — ENJC daily 10:30 PM" loading="lazy">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Night Prayer</span></div>
+        </div>
+        <div class="gal-item" data-cat="worship" tabindex="0" data-src="images/gallery/g3.webp" data-title="White Dove" data-sub="Worship in Spirit and Truth — ENJC">
+          <img src="images/gallery/g3.webp" alt="White dove — worship in spirit" loading="lazy">
+          <div class="gal-item__overlay"><span class="gal-item__caption">White Dove</span></div>
+        </div>
+        <div class="gal-item" data-cat="scripture" tabindex="0" data-src="images/gallery/g4.webp" data-title="Promise 2024" data-sub="Scripture Card — ENJC">
+          <img src="images/gallery/g4.webp" alt="Promise 2024 scripture card" loading="lazy">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Promise 2024</span></div>
+        </div>
+        <div class="gal-item" data-cat="outreach" tabindex="0" data-src="images/gallery/g5.webp" data-title="Village Outreach" data-sub="Taking the Gospel to Chennai — ENJC">
+          <img src="images/gallery/g5.webp" alt="Village outreach ministry — ENJC" loading="lazy">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Village Outreach</span></div>
+        </div>
+        <div class="gal-item" data-cat="scripture" tabindex="0" data-src="images/gallery/g7.webp" data-title="Scripture 2026" data-sub="God's Word — ENJC">
+          <img src="images/gallery/g7.webp" alt="Scripture card 2026 — ENJC" loading="lazy">
+          <div class="gal-item__overlay"><span class="gal-item__caption">Scripture 2026</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Fan Carousel (hidden, kept for reference) ── -->
     <section class="gal-carousel-section" aria-label="Church photo gallery">
       <div class="gal-carousel-wrap" id="gcWrap">
 
@@ -535,9 +581,15 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/919444345102" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
+  <!-- FAB Cluster: WhatsApp + Prayer Request -->
+<div class="fab-cluster">
+  <a href="contact.html#prayer" class="fab-btn fab-prayer" title="Prayer Request" aria-label="Submit Prayer Request">
+    <i class="ti ti-hand-stop"></i>
   </a>
+  <a href="https://wa.me/919444345102" class="fab-btn fab-whatsapp" target="_blank" rel="noopener" title="WhatsApp" aria-label="Chat on WhatsApp">
+    <i class="ti ti-brand-whatsapp"></i>
+  </a>
+</div>
   <button id="scroll-top-btn" class="scroll-top" aria-label="Back to top">
     <i class="ti ti-arrow-up" aria-hidden="true"></i>
   </button>
@@ -655,6 +707,25 @@
 
     /* ── Filter ── */
     var pills = document.querySelectorAll('#filterRow .gal-pill');
+    var gridItems = Array.from(document.querySelectorAll('#galGrid .gal-item'));
+
+    function filterMasonry(cat) {
+      gridItems.forEach(function(item) {
+        if (cat === 'all' || item.dataset.cat === cat) {
+          item.style.display = '';
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(8px)';
+          setTimeout(function() {
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, 10);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
     pills.forEach(function(pill){
       pill.addEventListener('click', function(){
         pills.forEach(function(p){ p.classList.remove('active'); });
@@ -668,6 +739,22 @@
         document.getElementById('stat-count').textContent = total;
         buildDots();
         render();
+        filterMasonry(cat);
+      });
+    });
+
+    /* Masonry grid lightbox click */
+    gridItems.forEach(function(item, idx) {
+      item.addEventListener('click', function() {
+        var src = item.dataset.src;
+        var title = item.dataset.title || '';
+        var sub = item.dataset.sub || '';
+        lbImg.src = src;
+        lbTitle.textContent = title;
+        lbSub.textContent = sub;
+        curIdx = idx;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
       });
     });
 
