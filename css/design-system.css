@@ -90,37 +90,54 @@
 }
 
 [data-theme="light"] {
-  --bg:        #fefbf3;
-  --bg-2:      #f5edda;
-  --bg-3:      #ece0c6;
-  --bg-4:      #e2d0aa;
-  --bg-card:   rgba(255,252,246,0.94);
-  --bg-glass:  rgba(255,252,246,0.85);
-  --text:            #180e02;
-  --text-muted:      #5c4010;
-  --text-faint:      #8a6830;
-  --text-light:      #180e02;
-  --text-muted-dark: #5c4010;
-  --text-dark:       #180e02;
-  --text-muted-light:#5c4010;
-  --border:       rgba(180,130,10,0.10);
-  --border-mid:   rgba(180,130,10,0.22);
-  --border-dark:  rgba(0,0,0,0.08);
-  --border-light: rgba(0,0,0,0.09);
-  --gold:          #8a5e08;
-  --gold-bright:   #ae7a10;
-  --gold-dim:      rgba(138,94,8,0.50);
-  --gold-glow:     rgba(138,94,8,0.10);
-  --gold-border:   rgba(138,94,8,0.25);
-  --gold-border-strong: rgba(138,94,8,0.45);
+  /* ── Holy Land Stone ── */
+  --bg:        #faf6ef;
+  --bg-2:      #f2ece0;
+  --bg-3:      #e8dece;
+  --bg-4:      #ddd0b8;
+  --bg-card:   #ffffff;
+  --bg-glass:  rgba(250,246,239,0.92);
+
+  --text:            #1c1810;
+  --text-muted:      #4a3c28;
+  --text-faint:      #7a6850;
+  --text-light:      #1c1810;
+  --text-muted-dark: #5a4a34;
+  --text-dark:       #1c1810;
+  --text-muted-light:#7a6850;
+
+  --border:       rgba(26,58,42,0.10);
+  --border-mid:   rgba(26,58,42,0.22);
+  --border-dark:  rgba(26,58,42,0.08);
+  --border-light: rgba(26,58,42,0.06);
+
+  /* Forest green accent */
+  --gold:               #1a3a2a;
+  --gold-bright:        #2d6048;
+  --gold-warm:          #3a7a5a;
+  --gold-pale:          #8ab8a0;
+  --gold-dim:           rgba(26,58,42,0.55);
+  --gold-glow:          rgba(26,58,42,0.10);
+  --gold-border:        rgba(26,58,42,0.25);
+  --gold-border-strong: rgba(26,58,42,0.45);
+  --accent:        #1a3a2a;
+  --accent-warm:   #2d6048;
+  --accent-dim:    rgba(26,58,42,0.55);
+  --accent-glow:   rgba(26,58,42,0.10);
+  --accent-border: rgba(26,58,42,0.25);
+  --accent-bg:     rgba(26,58,42,0.07);
+  --accent-bg-rich:rgba(26,58,42,0.14);
+
   --navy:   var(--bg);
   --navy-2: var(--bg-2);
   --navy-3: var(--bg-3);
   --navy-4: var(--bg-4);
   --light-bg:  var(--bg-3);
   --light-bg2: var(--bg-4);
-  --shadow-card:  0 2px 16px rgba(120,60,20,0.10), 0 0 0 1px var(--border);
-  --shadow-hover: 0 10px 36px rgba(120,60,20,0.18), 0 0 0 1px var(--border-mid);
+
+  --shadow-card:  0 2px 16px rgba(26,20,10,0.08), 0 0 0 1px var(--border);
+  --shadow-hover: 0 10px 36px rgba(26,20,10,0.14), 0 0 0 1px var(--border-mid);
+  --shadow-gold:  0 4px 28px rgba(26,58,42,0.15);
 }
 
 /* ── BODY ENHANCEMENTS ─────────────────────────────────────── */
@@ -1315,4 +1332,3 @@ hr.section-divider {
   background: var(--border-dark);
   margin: 0;
 }
-
