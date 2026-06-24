@@ -2756,3 +2756,296 @@ a[href*="contact"].btn--gold,
   .map-embed-wrap iframe, #googleMap, .contact-map iframe { height: 260px !important; }
   .fab-cluster { bottom: 80px; } /* above bottom nav */
 }
+
+/* ═══════════════════════════════════════════════════════
+   HOLY LAND STONE THEME — Light mode complete overrides
+   ═══════════════════════════════════════════════════════ */
+
+/* Nav */
+[data-theme="light"] .site-nav {
+  background: rgba(250,246,239,0.96) !important;
+  border-bottom: 1px solid rgba(26,58,42,0.10) !important;
+  backdrop-filter: blur(16px);
+}
+[data-theme="light"] .nav-link {
+  color: #4a3c28 !important;
+}
+[data-theme="light"] .nav-link:hover {
+  background: rgba(26,58,42,0.07) !important;
+  color: #1a3a2a !important;
+}
+[data-theme="light"] .nav-link--active {
+  color: #1a3a2a !important;
+  background: rgba(26,58,42,0.10) !important;
+}
+[data-theme="light"] .nav-visit-btn {
+  background: #1a3a2a !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+[data-theme="light"] .nav-visit-btn:hover {
+  background: #2d6048 !important;
+}
+
+/* Hero section */
+[data-theme="light"] .hero-section,
+[data-theme="light"] .page-hero {
+  background: linear-gradient(160deg, #f2ece0 0%, #faf6ef 60%, #e8dece 100%) !important;
+}
+[data-theme="light"] .hero-title,
+[data-theme="light"] .page-hero h1 {
+  color: #1c1810 !important;
+}
+[data-theme="light"] .hero-title .italic,
+[data-theme="light"] .hero-title em,
+[data-theme="light"] .hero-title span[style*="italic"] {
+  color: #1a3a2a !important;
+}
+[data-theme="light"] .hero-desc,
+[data-theme="light"] .hero-sub {
+  color: #5a4a34 !important;
+}
+
+/* Buttons */
+[data-theme="light"] .btn--gold,
+[data-theme="light"] .btn-gold,
+[data-theme="light"] .btn--accent,
+[data-theme="light"] .nav-visit-btn,
+[data-theme="light"] .hero-cta-primary {
+  background: #1a3a2a !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 20px rgba(26,58,42,0.25) !important;
+}
+[data-theme="light"] .btn--gold:hover,
+[data-theme="light"] .btn-gold:hover {
+  background: #2d6048 !important;
+}
+[data-theme="light"] .btn--outline,
+[data-theme="light"] .hero-cta-secondary {
+  border: 1.5px solid rgba(26,58,42,0.45) !important;
+  color: #1a3a2a !important;
+  background: transparent !important;
+}
+[data-theme="light"] .btn--outline:hover {
+  background: rgba(26,58,42,0.08) !important;
+}
+
+/* Cards */
+[data-theme="light"] .card,
+[data-theme="light"] .cin-card,
+[data-theme="light"] .ministry-card,
+[data-theme="light"] .video-card,
+[data-theme="light"] .tl-card,
+[data-theme="light"] .testi-card,
+[data-theme="light"] .schedule-card,
+[data-theme="light"] .del-card,
+[data-theme="light"] .tool-card,
+[data-theme="light"] .social-connect-card {
+  background: #ffffff !important;
+  border-color: rgba(26,58,42,0.12) !important;
+  box-shadow: 0 2px 12px rgba(26,20,10,0.06) !important;
+}
+[data-theme="light"] .card:hover,
+[data-theme="light"] .ministry-card:hover,
+[data-theme="light"] .video-card:hover {
+  box-shadow: 0 8px 28px rgba(26,20,10,0.12) !important;
+  border-color: rgba(26,58,42,0.25) !important;
+}
+
+/* Section backgrounds */
+[data-theme="light"] .section--dark,
+[data-theme="light"] .service-times-section,
+[data-theme="light"] .deliv-section,
+[data-theme="light"] .prayer-section,
+[data-theme="light"] .cta-section {
+  background: #1a3a2a !important;
+  color: #f5f0e8 !important;
+}
+[data-theme="light"] .section--dark *,
+[data-theme="light"] .service-times-section *,
+[data-theme="light"] .deliv-section * {
+  --text: #f5f0e8;
+  --text-muted: rgba(245,240,232,0.7);
+  --text-light: #f5f0e8;
+}
+[data-theme="light"] .section--cream,
+[data-theme="light"] .section--light,
+[data-theme="light"] .about-section,
+[data-theme="light"] .ministries-section {
+  background: #f2ece0 !important;
+}
+
+/* Stats bar */
+[data-theme="light"] .stats-bar,
+[data-theme="light"] .stats-band {
+  background: #e8dece !important;
+  border-top: 1px solid rgba(26,58,42,0.10) !important;
+  border-bottom: 1px solid rgba(26,58,42,0.10) !important;
+}
+[data-theme="light"] .stat-num {
+  color: #1a3a2a !important;
+}
+[data-theme="light"] .stat-label {
+  color: #7a6850 !important;
+}
+[data-theme="light"] .stat-item {
+  border-right-color: rgba(26,58,42,0.12) !important;
+}
+
+/* Gold accent text → forest green */
+[data-theme="light"] .section-label,
+[data-theme="light"] .eyebrow,
+[data-theme="light"] .kicker,
+[data-theme="light"] .sc-time,
+[data-theme="light"] .service-time,
+[data-theme="light"] .view-all-link,
+[data-theme="light"] .ministry-icon,
+[data-theme="light"] .sc-icon,
+[data-theme="light"] .tl-icon,
+[data-theme="light"] .del-icon {
+  color: #1a3a2a !important;
+}
+
+/* Timeline line */
+[data-theme="light"] .tl-line {
+  background: rgba(26,58,42,0.20) !important;
+}
+[data-theme="light"] .tl-dot {
+  background: #1a3a2a !important;
+  border-color: #f2ece0 !important;
+}
+
+/* Footer */
+[data-theme="light"] .footer {
+  background: #1a3a2a !important;
+  border-top: none !important;
+}
+[data-theme="light"] .footer-brand-name {
+  color: #c4a06a !important;
+}
+[data-theme="light"] .footer-tagline,
+[data-theme="light"] .footer-addr,
+[data-theme="light"] .footer-links a,
+[data-theme="light"] .footer-links li,
+[data-theme="light"] .footer-col-title {
+  color: rgba(245,240,232,0.75) !important;
+}
+[data-theme="light"] .footer-col-title {
+  color: rgba(245,240,232,0.55) !important;
+}
+[data-theme="light"] .footer-links a:hover {
+  color: #c4a06a !important;
+}
+[data-theme="light"] .footer-bottom {
+  color: rgba(245,240,232,0.40) !important;
+  border-top-color: rgba(255,255,255,0.08) !important;
+}
+[data-theme="light"] .social-icon {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: rgba(245,240,232,0.7) !important;
+}
+[data-theme="light"] .social-icon:hover {
+  background: rgba(196,160,106,0.20) !important;
+  color: #c4a06a !important;
+}
+
+/* Gallery filter pills */
+[data-theme="light"] .gal-pill {
+  background: #ffffff !important;
+  border-color: rgba(26,58,42,0.20) !important;
+  color: #4a3c28 !important;
+}
+[data-theme="light"] .gal-pill.active,
+[data-theme="light"] .gal-filter-btn.active {
+  background: #1a3a2a !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* Form elements */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background: #ffffff !important;
+  border-color: rgba(26,58,42,0.20) !important;
+  color: #1c1810 !important;
+}
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus {
+  border-color: #1a3a2a !important;
+  box-shadow: 0 0 0 3px rgba(26,58,42,0.10) !important;
+}
+
+/* FAB cluster */
+[data-theme="light"] .fab-prayer {
+  background: #1a3a2a !important;
+  color: #fff !important;
+}
+[data-theme="light"] .fab-whatsapp {
+  background: #25D366 !important;
+}
+
+/* Mobile nav */
+[data-theme="light"] .mob-nav {
+  background: rgba(250,246,239,0.97) !important;
+  border-top: 1px solid rgba(26,58,42,0.10) !important;
+}
+[data-theme="light"] .mob-nav__icon,
+[data-theme="light"] .mob-nav__label {
+  color: #7a6850 !important;
+}
+[data-theme="light"] .mob-nav__item--active .mob-nav__icon,
+[data-theme="light"] .mob-nav__item--active .mob-nav__label {
+  color: #1a3a2a !important;
+}
+[data-theme="light"] .mob-nav__item--active::before {
+  background: #1a3a2a !important;
+}
+
+/* ── Holy Land Stone: page hero gradients override ── */
+[data-theme="light"] body[data-page="about"] .page-hero,
+[data-theme="light"] .about-page .page-hero,
+[data-theme="light"] body[data-page="ministries"] .page-hero,
+[data-theme="light"] .ministries-page .page-hero,
+[data-theme="light"] body[data-page="events"] .page-hero,
+[data-theme="light"] .events-page .page-hero,
+[data-theme="light"] body[data-page="bible"] .page-hero,
+[data-theme="light"] body[data-page="imagegen"] .page-hero,
+[data-theme="light"] body[data-page="contact"] .page-hero,
+[data-theme="light"] .gal-hero {
+  background: linear-gradient(160deg, #e8dece 0%, #f2ece0 50%, #faf6ef 100%) !important;
+}
+
+[data-theme="light"] body[data-page="about"] .page-hero::before,
+[data-theme="light"] body[data-page="ministries"] .page-hero::before,
+[data-theme="light"] body[data-page="events"] .page-hero::before,
+[data-theme="light"] body[data-page="contact"] .page-hero::before,
+[data-theme="light"] .gal-hero::before {
+  background:
+    radial-gradient(ellipse 80% 70% at 0% 50%, rgba(26,58,42,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 100% 80%, rgba(196,160,106,0.08) 0%, transparent 55%) !important;
+}
+
+[data-theme="light"] .page-hero h1,
+[data-theme="light"] .gal-hero h1 {
+  color: #1c1810 !important;
+}
+[data-theme="light"] .page-hero .page-desc,
+[data-theme="light"] .gal-hero .hero-desc {
+  color: #5a4a34 !important;
+}
+[data-theme="light"] .page-hero .section-tag,
+[data-theme="light"] .page-hero .eyebrow {
+  color: #1a3a2a !important;
+}
+
+/* ── Holy Land: Home hero specific ── */
+[data-theme="light"] .hero-section {
+  background: linear-gradient(160deg, #e8dece 0%, #f2ece0 40%, #faf6ef 100%) !important;
+}
+[data-theme="light"] .hero-overlay,
+[data-theme="light"] .hero-bg-overlay {
+  background: rgba(250,246,239,0.3) !important;
+}

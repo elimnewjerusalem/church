@@ -105,42 +105,60 @@
 }
 
 [data-theme="light"] {
-  --bg:        #fdfaf0;
-  --bg-2:      #f5edd8;
-  --bg-3:      #ede0c4;
-  --bg-4:      #e4d0a8;
-  --bg-card:   rgba(253,250,240,0.92);
-  --bg-glass:  rgba(253,250,240,0.82);
-  --text:          #1a1206;
-  --text-muted:    #5a4020;
-  --text-faint:    #8a6840;
-  --text-light:    #1a1206;
-  --text-muted-dark:#5a4020;
-  --text-dark:     #1a1206;
-  --text-muted-light:#5a4020;
-  --border:       rgba(184,134,11,0.10);
-  --border-mid:   rgba(184,134,11,0.20);
-  --border-dark:  rgba(0,0,0,0.08);
-  --border-light: rgba(0,0,0,0.10);
-  --accent:        #8a6010;
-  --accent-warm:   #b07c14;
-  --accent-dim:    rgba(138,96,16,0.55);
-  --accent-glow:   rgba(138,96,16,0.10);
-  --accent-border: rgba(138,96,16,0.28);
-  --accent-bg:     rgba(138,96,16,0.09);
-  --gold:          #8a6010;
-  --gold-bright:   #b07c14;
-  --gold-dim:      rgba(138,96,16,0.55);
-  --gold-glow:     rgba(138,96,16,0.10);
-  --gold-border:   rgba(138,96,16,0.28);
+  /* ── Holy Land Stone palette ── */
+  /* Backgrounds: warm cream → sand → stone */
+  --bg:        #faf6ef;
+  --bg-2:      #f2ece0;
+  --bg-3:      #e8dece;
+  --bg-4:      #ddd0b8;
+  --bg-card:   #ffffff;
+  --bg-glass:  rgba(250,246,239,0.90);
+
+  /* Text: deep charcoal brown */
+  --text:            #1c1810;
+  --text-muted:      #4a3c28;
+  --text-faint:      #7a6850;
+  --text-light:      #1c1810;
+  --text-muted-dark: #5a4a34;
+  --text-dark:       #1c1810;
+  --text-muted-light:#7a6850;
+
+  /* Borders: warm stone */
+  --border:       rgba(26,58,42,0.10);
+  --border-mid:   rgba(26,58,42,0.20);
+  --border-dark:  rgba(26,58,42,0.08);
+  --border-light: rgba(26,58,42,0.06);
+
+  /* Accent: forest green (Holy Land) */
+  --gold:          #1a3a2a;
+  --gold-bright:   #2d6048;
+  --gold-dim:      rgba(26,58,42,0.55);
+  --gold-glow:     rgba(26,58,42,0.10);
+  --gold-border:   rgba(26,58,42,0.25);
+  --accent:        #1a3a2a;
+  --accent-warm:   #2d6048;
+  --accent-dim:    rgba(26,58,42,0.55);
+  --accent-glow:   rgba(26,58,42,0.10);
+  --accent-border: rgba(26,58,42,0.25);
+  --accent-bg:     rgba(26,58,42,0.07);
+  --accent-bg-rich:rgba(26,58,42,0.14);
+
+  /* Sand gold for secondary highlights */
+  --sand:       #c4a06a;
+  --sand-dim:   rgba(196,160,106,0.55);
+  --sand-glow:  rgba(196,160,106,0.15);
+
+  /* Section shorthands */
   --navy:   var(--bg);
   --navy-2: var(--bg-2);
   --navy-3: var(--bg-3);
   --navy-4: var(--bg-4);
   --light-bg:  var(--bg-3);
   --light-bg2: var(--bg-4);
-  --shadow-card:  0 2px 16px rgba(120,60,20,0.10), 0 0 0 1px var(--border);
-  --shadow-hover: 0 8px 32px rgba(120,60,20,0.16), 0 0 0 1px var(--border-mid);
+
+  /* Shadows: warm brown */
+  --shadow-card:  0 2px 16px rgba(26,20,10,0.08), 0 0 0 1px var(--border);
+  --shadow-hover: 0 8px 32px rgba(26,20,10,0.14), 0 0 0 1px var(--border-mid);
 }
 
 /* ── 2. RESET ─────────────────────────────────────────────── */
