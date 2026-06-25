@@ -3527,3 +3527,8 @@ h1 em, h2 em, h3 em,
   color: #c4a06a !important;
   font-style: italic;
 }
+
+/* ═══════════════════════════════════════════════════════
+   CLEANUP — wa-float replaced by fab-cluster
+   ═══════════════════════════════════════════════════════ */
+.wa-float { display: none !important; } /* replaced by .fab-cluster */

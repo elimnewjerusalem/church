@@ -294,7 +294,7 @@
     <i class="ti ti-brand-whatsapp"></i>
   </a>
 </div>
-<button id="scroll-top-btn" class="scroll-top-btn" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button  class="scroll-top-btn" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <i class="ti ti-arrow-up"></i>
 </button>
 
@@ -347,7 +347,7 @@
   </div>
 </footer>
 
-<button id="scroll-top-btn" class="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+<button  class="scroll-top-btn" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
 <script>
 (function(){var btn=document.getElementById('scroll-top-btn');window.addEventListener('scroll',function(){btn.classList.toggle('is-visible',window.scrollY>400);});})();
 (function(){var btn=document.getElementById('mob-toggle');var links=document.getElementById('nav-links');if(!btn||!links)return;btn.addEventListener('click',function(e){e.stopPropagation();btn.setAttribute('aria-expanded',!links.classList.contains('mob-open')?'true':'false');links.classList.toggle('mob-open');});document.addEventListener('click',function(e){if(!links.contains(e.target)&&!btn.contains(e.target))links.classList.remove('mob-open');});document.addEventListener('keydown',function(e){if(e.key==='Escape')links.classList.remove('mob-open');});})();

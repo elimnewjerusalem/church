@@ -226,14 +226,14 @@
   <section class="section prayer-section s-dark3" aria-labelledby="prayer-heading">
     <div class="container">
       <div class="prayer-form-wrap">
-        <p class="section-tag" class="text-accent">Prayer</p>
-        <h2 class="section-heading" id="prayer-heading" class="text-light">Submit a <em>Prayer Request</em></h2>
+        <p class="section-tag text-accent">Prayer</p>
+        <h2 class="section-heading text-light" id="prayer-heading">Submit a <em>Prayer Request</em></h2>
         <p class="form-sub">
           We believe in the power of prayer. Share your need — our prayer team will intercede for you personally.
         </p>
         <div class="grid-2" style="gap:12px;margin-bottom:12px;">
-          <input type="text" id="pr-name" placeholder="Your Name *" class="form-field" class="input-dark">
-          <input type="tel" id="pr-phone" placeholder="Phone (optional)" class="form-field" class="input-dark">
+          <input class="form-field input-dark" type="text" id="pr-name" placeholder="Your Name *">
+          <input class="form-field input-dark" type="tel" id="pr-phone" placeholder="Phone (optional)">
         </div>
         <textarea id="pr-request" placeholder="Share your prayer need..." rows="4" class="form-field" style="margin-bottom:14px;"></textarea>
         <button type="button" onclick="sendPrayerRequest()" class="btn btn--gold" style="font-size:14px;padding:12px 28px;">
