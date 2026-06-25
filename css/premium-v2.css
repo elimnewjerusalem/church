@@ -3234,3 +3234,296 @@ a[href*="contact"].btn--gold,
 [data-theme="light"] .gal-cta { background: var(--bg-3) !important; }
 [data-theme="light"] .gal-cta h2 { color: var(--text) !important; }
 [data-theme="light"] .gal-cta h2 em { color: #c4a06a !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HOLY LAND STONE — Professional Polish & Font Consistency
+   June 2026 — All pages unified
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. TYPOGRAPHY SYSTEM — uniform hierarchy ── */
+
+/* Display headings: Cormorant Garamond always */
+h1, h2, h3,
+.heading-serif,
+.section-heading,
+.page-hero h1,
+.hero-title {
+  font-family: var(--font-display) !important;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Body / UI: DM Sans always */
+p, li, a, span, label, input, textarea, button,
+.nav-link, .footer-link, .card-desc,
+.ministry-desc, .video-caption, .sc-detail {
+  font-family: var(--font-body);
+}
+
+/* Size scale — consistent */
+h1, .page-hero h1, .hero-title {
+  font-size: clamp(36px, 5.5vw, 72px) !important;
+}
+h2, .section-heading {
+  font-size: clamp(26px, 3.5vw, 44px) !important;
+}
+h3 { font-size: clamp(18px, 2.2vw, 24px) !important; }
+h4 { font-size: 18px; font-weight: 600; }
+
+/* Body text — readable */
+p {
+  font-size: 16px !important;
+  line-height: 1.75 !important;
+  color: var(--text-muted);
+}
+
+/* Section eyebrow labels */
+.eyebrow, .section-tag, .section-label, .kicker {
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--gold) !important;
+}
+
+/* em in headings = sand gold italic always */
+h1 em, h2 em, h3 em,
+.heading-serif em,
+.section-heading em,
+.hero-title em,
+.page-hero h1 em {
+  color: #c4a06a !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+}
+
+/* ── 2. LIGHT THEME HEADING COLORS ── */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] .heading-serif,
+[data-theme="light"] .section-heading,
+[data-theme="light"] .heading-dark,
+[data-theme="light"] .heading-light {
+  color: #1c1810 !important;
+}
+
+[data-theme="light"] .heading-dark,
+[data-theme="light"] .heading-light { color: #1c1810 !important; }
+
+/* ── 3. NAV — consistent size and weight ── */
+.nav-link {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em;
+}
+.nav-logo__name {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+}
+.nav-logo__sub {
+  font-size: 10px !important;
+  letter-spacing: 0.06em;
+}
+[data-theme="light"] .nav-logo__name { color: #1a3a2a !important; }
+[data-theme="light"] .nav-logo__sub  { color: #7a6850 !important; }
+[data-theme="light"] .nav-link        { color: #4a3c28 !important; }
+
+/* ── 4. HOME MINISTRY PREVIEW CARDS — light theme fix ── */
+[data-theme="light"] .ministry-card.cin-card,
+[data-theme="light"] .ministry-card {
+  background: #fff !important;
+  border: 1px solid rgba(26,58,42,0.12) !important;
+  box-shadow: 0 2px 12px rgba(26,20,10,0.06) !important;
+}
+[data-theme="light"] .ministry-card-img {
+  background: rgba(26,58,42,0.06) !important;
+  border-bottom: 1px solid rgba(26,58,42,0.08) !important;
+}
+[data-theme="light"] .ministry-card-img i { color: #1a3a2a !important; }
+[data-theme="light"] .ministry-name { color: #1c1810 !important; }
+[data-theme="light"] .ministry-desc { color: #5a4a34 !important; }
+
+/* ── 5. MINISTRIES PAGE — photo cards on light bg ── */
+[data-theme="light"] .min-card {
+  background: #fff !important;
+  border: 1px solid rgba(26,58,42,0.12) !important;
+  box-shadow: 0 2px 16px rgba(26,20,10,0.06) !important;
+}
+[data-theme="light"] .min-card:hover {
+  box-shadow: 0 8px 32px rgba(26,20,10,0.12) !important;
+  border-color: rgba(26,58,42,0.25) !important;
+}
+[data-theme="light"] .min-card-body { background: #fff !important; }
+[data-theme="light"] .min-card-title { color: #1c1810 !important; }
+[data-theme="light"] .min-card-desc  { color: #5a4a34 !important; }
+[data-theme="light"] .min-card-badge {
+  background: rgba(26,58,42,0.08) !important;
+  color: #1a3a2a !important;
+  border-color: rgba(26,58,42,0.15) !important;
+}
+[data-theme="light"] .min-card-cta {
+  background: #1a3a2a !important;
+  color: #fff !important;
+}
+[data-theme="light"] .min-card-cta:hover { background: #2d6048 !important; }
+
+/* ── 6. VIDEO CARDS — light theme ── */
+[data-theme="light"] .video-card {
+  background: #fff !important;
+  border: 1px solid rgba(26,58,42,0.10) !important;
+  box-shadow: 0 2px 10px rgba(26,20,10,0.05) !important;
+}
+[data-theme="light"] .video-card:hover {
+  box-shadow: 0 8px 28px rgba(26,20,10,0.10) !important;
+}
+[data-theme="light"] .video-caption,
+[data-theme="light"] .video-title { color: #1c1810 !important; }
+[data-theme="light"] .video-meta,
+[data-theme="light"] .video-date  { color: #7a6850 !important; }
+[data-theme="light"] .live-badge  { background: #E24B4A !important; color: #fff !important; }
+
+/* ── 7. SCHEDULE / SERVICE TIMES — light ── */
+[data-theme="light"] .schedule-card,
+[data-theme="light"] .sc-card {
+  background: #fff !important;
+  border: 1px solid rgba(26,58,42,0.10) !important;
+}
+[data-theme="light"] .sc-name,
+[data-theme="light"] .schedule-title { color: #1c1810 !important; font-size: 15px !important; font-weight: 600 !important; }
+[data-theme="light"] .sc-time,
+[data-theme="light"] .schedule-time  { color: #1a3a2a !important; font-weight: 700 !important; }
+[data-theme="light"] .sc-detail,
+[data-theme="light"] .schedule-desc  { color: #7a6850 !important; font-size: 13px !important; }
+[data-theme="light"] .sc-icon,
+[data-theme="light"] .schedule-icon  { color: #c4a06a !important; }
+
+/* ── 8. GALLERY FILTER BAR — light ── */
+[data-theme="light"] .gal-filters,
+[data-theme="light"] .filter-row,
+[data-theme="light"] #filterRow {
+  background: var(--bg-2) !important;
+  border-bottom: 1px solid rgba(26,58,42,0.10) !important;
+}
+[data-theme="light"] .gal-pill {
+  background: #fff !important;
+  border: 1px solid rgba(26,58,42,0.18) !important;
+  color: #4a3c28 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+[data-theme="light"] .gal-pill.active {
+  background: #1a3a2a !important;
+  color: #fff !important;
+  border-color: #1a3a2a !important;
+}
+
+/* ── 9. STATS BAR — font sizes ── */
+.stat-num {
+  font-family: var(--font-display) !important;
+  font-size: clamp(32px,4vw,52px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  color: var(--gold);
+}
+.stat-label {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--text-faint) !important;
+  margin-top: 4px;
+}
+[data-theme="light"] .stat-num  { color: #1a3a2a !important; }
+[data-theme="light"] .stat-label { color: #7a6850 !important; }
+
+/* ── 10. FOOTER — font consistency ── */
+.footer-brand-name {
+  font-family: var(--font-display) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+.footer-tagline {
+  font-size: 13px !important;
+  line-height: 1.6;
+  font-style: italic;
+}
+.footer-addr { font-size: 13px !important; line-height: 1.8; }
+.footer-col-title {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+.footer-link { font-size: 13px !important; }
+.footer-bottom { font-size: 11px !important; }
+
+/* ── 11. BUTTONS — uniform sizing ── */
+.btn, .btn--gold, .btn--outline, .nav-visit-btn {
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em;
+  border-radius: 24px !important;
+}
+[data-theme="light"] .nav-visit-btn {
+  font-size: 13px !important;
+  padding: 8px 20px !important;
+}
+
+/* ── 12. SECTION SPACING — consistent rhythm ── */
+.section { padding-top: clamp(64px,8vw,100px); padding-bottom: clamp(64px,8vw,100px); }
+.section-sm { padding-top: clamp(44px,5vw,64px); padding-bottom: clamp(44px,5vw,64px); }
+.section-header-row { margin-bottom: clamp(32px,4vw,52px); }
+.section-heading { margin-bottom: 16px; }
+
+/* ── 13. CONTACT PAGE — professional info layout ── */
+[data-theme="light"] .contact-info-section { background: #fff !important; border-radius: 16px !important; border: 1px solid rgba(26,58,42,0.10) !important; box-shadow: 0 2px 16px rgba(26,20,10,0.05) !important; }
+[data-theme="light"] .service-times-card  { background: #fff !important; border-radius: 16px !important; border: 1px solid rgba(26,58,42,0.10) !important; box-shadow: 0 2px 16px rgba(26,20,10,0.05) !important; }
+
+/* ── 14. ABOUT TIMELINE — proper light style ── */
+[data-theme="light"] .timeline { border-left-color: rgba(26,58,42,0.20) !important; }
+[data-theme="light"] .tl-year  { font-size: 11px !important; font-weight: 700; letter-spacing: 0.12em; color: #c4a06a !important; }
+[data-theme="light"] .tl-title { font-size: 17px !important; font-weight: 700; color: #1c1810 !important; font-family: var(--font-display) !important; }
+[data-theme="light"] .tl-body  { font-size: 14px !important; line-height: 1.7; color: #5a4a34 !important; }
+[data-theme="light"] .tl-icon  { font-size: 20px; }
+
+/* ── 15. DELIVERANCE DATE CARDS ── */
+[data-theme="light"] .del-card,
+[data-theme="light"] .date-card {
+  background: #fff !important;
+  border: 1px solid rgba(26,58,42,0.12) !important;
+  box-shadow: 0 2px 8px rgba(26,20,10,0.05) !important;
+}
+[data-theme="light"] .del-date { color: #1a3a2a !important; font-weight: 700 !important; font-family: var(--font-display) !important; font-size: 28px !important; }
+[data-theme="light"] .del-month { color: #7a6850 !important; font-size: 11px !important; text-transform: uppercase; letter-spacing: 0.1em; }
+[data-theme="light"] .del-day   { color: #5a4a34 !important; font-size: 12px !important; }
+[data-theme="light"] .del-card.is-next,
+[data-theme="light"] .date-card.is-next { border-color: #c4a06a !important; background: rgba(196,160,106,0.06) !important; }
+
+/* ── Section separators — prevent adjacent cream sections merging ── */
+[data-theme="light"] .s-light + .s-light,
+[data-theme="light"] .s-light2 + .s-light2,
+[data-theme="light"] .s-light + .s-light2,
+[data-theme="light"] .s-light2 + .s-light {
+  border-top: 1px solid rgba(26,58,42,0.08);
+}
+
+/* Gallery stats bar dark strip ── */
+[data-theme="light"] .gal-stats,
+[data-theme="light"] .gal-header-stats {
+  background: var(--bg-2) !important;
+  border-bottom: 1px solid rgba(26,58,42,0.10) !important;
+}
+[data-theme="light"] .gal-stat-num { color: #1a3a2a !important; font-family: var(--font-display) !important; font-size: 22px !important; }
+[data-theme="light"] .gal-stat-label { color: #7a6850 !important; font-size: 10px !important; }
+
+/* Home hero: "Life." em gold must show over dark overlay */
+.hero-title em {
+  color: #c4a06a !important;
+  font-style: italic;
+}
