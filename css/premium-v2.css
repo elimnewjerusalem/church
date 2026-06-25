@@ -3081,3 +3081,156 @@ a[href*="contact"].btn--gold,
 [data-theme="light"] .page-hero h1 { color: #1c1810 !important; text-shadow: none; }
 [data-theme="light"] .page-hero h1 em { color: var(--gold) !important; }
 [data-theme="light"] .page-hero p  { color: #5a4a34 !important; }
+
+/* ═══════════════════════════════════════════════════════
+   HOLY LAND STONE — Section bg overrides
+   s-dark / s-dark2 / s-dark3 → cream in light theme
+   ═══════════════════════════════════════════════════════ */
+
+[data-theme="light"] .s-dark,
+[data-theme="light"] .s-dark2,
+[data-theme="light"] .s-dark3 {
+  background: var(--bg-2) !important;
+  color: var(--text) !important;
+}
+
+[data-theme="light"] .s-dark2 {
+  background: var(--bg-3) !important;
+}
+
+[data-theme="light"] .s-dark3 {
+  background: var(--bg-4) !important;
+}
+
+/* section headings in formerly-dark sections */
+[data-theme="light"] .s-dark .section-heading,
+[data-theme="light"] .s-dark2 .section-heading,
+[data-theme="light"] .s-dark3 .section-heading,
+[data-theme="light"] .s-dark .heading-light,
+[data-theme="light"] .s-dark2 .heading-light,
+[data-theme="light"] .s-dark3 .heading-light,
+[data-theme="light"] .heading-light {
+  color: var(--text) !important;
+}
+
+[data-theme="light"] .s-dark .section-tag,
+[data-theme="light"] .s-dark2 .section-tag,
+[data-theme="light"] .s-dark3 .section-tag {
+  color: var(--gold) !important;
+}
+
+/* timeline in light */
+[data-theme="light"] .tl-card {
+  background: #fff !important;
+  border-color: rgba(26,58,42,0.12) !important;
+}
+[data-theme="light"] .tl-year { color: var(--gold) !important; }
+[data-theme="light"] .tl-title { color: var(--text) !important; }
+[data-theme="light"] .tl-body { color: var(--text-muted) !important; }
+
+/* prayer section light */
+[data-theme="light"] .prayer-section,
+[data-theme="light"] .prayer-form-section {
+  background: var(--bg-3) !important;
+}
+[data-theme="light"] .prayer-section .section-tag,
+[data-theme="light"] .prayer-form-section .section-tag {
+  color: var(--gold) !important;
+}
+[data-theme="light"] .prayer-section .section-heading,
+[data-theme="light"] .prayer-form-section .section-heading {
+  color: var(--text) !important;
+}
+[data-theme="light"] .prayer-section p,
+[data-theme="light"] .prayer-form-section p {
+  color: var(--text-muted) !important;
+}
+[data-theme="light"] .form-field,
+[data-theme="light"] .input-dark {
+  background: #fff !important;
+  border-color: rgba(26,58,42,0.2) !important;
+  color: var(--text) !important;
+}
+[data-theme="light"] .form-field::placeholder,
+[data-theme="light"] .input-dark::placeholder {
+  color: var(--text-faint) !important;
+}
+
+/* cd-strip / service strip */
+[data-theme="light"] .cd-strip,
+[data-theme="light"] .service-strip,
+[data-theme="light"] .stats-band,
+[data-theme="light"] .schedule-row {
+  background: var(--bg-3) !important;
+  border-color: var(--border) !important;
+}
+
+/* cta bands */
+[data-theme="light"] .cta-band,
+[data-theme="light"] .cta-band-dark,
+[data-theme="light"] .min-join-band {
+  background: var(--bg-3) !important;
+  color: var(--text) !important;
+}
+[data-theme="light"] .cta-band h2,
+[data-theme="light"] .cta-band-dark h2,
+[data-theme="light"] .min-join-band h2 { color: var(--text) !important; }
+[data-theme="light"] .cta-band p,
+[data-theme="light"] .cta-band-dark p,
+[data-theme="light"] .min-join-band p { color: var(--text-muted) !important; }
+
+/* deliverance date cards on cream bg need visible border */
+[data-theme="light"] .del-date-card {
+  background: #fff !important;
+  border: 1px solid rgba(26,58,42,0.15) !important;
+  box-shadow: 0 2px 8px rgba(26,20,10,0.06) !important;
+}
+[data-theme="light"] .del-date-card.is-next { border-color: var(--gold) !important; }
+
+/* testimonial section */
+[data-theme="light"] .testimonial,
+[data-theme="light"] .testi-section { background: var(--bg-2) !important; }
+[data-theme="light"] .testi-card { background: #fff !important; border-color: rgba(26,58,42,0.10) !important; }
+
+/* ── Sand gold italic em — key Holy Land accent ── */
+[data-theme="light"] .section-heading em,
+[data-theme="light"] .hero-title em,
+[data-theme="light"] .page-hero h1 em,
+[data-theme="light"] h1 em, [data-theme="light"] h2 em, [data-theme="light"] h3 em {
+  color: #c4a06a !important;
+  font-style: italic;
+}
+
+/* ── Nav active link → forest green not gold ── */
+[data-theme="light"] .nav-link--active {
+  color: var(--gold) !important;
+  background: rgba(26,58,42,0.08) !important;
+}
+[data-theme="light"] .nav-link--active::after {
+  background: var(--gold) !important;
+}
+
+/* ── Home hero: keep photo visible, readable text ── */
+[data-theme="light"] .hero-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(26,20,10,0.82) 0%,
+    rgba(26,20,10,0.55) 25%,
+    rgba(26,20,10,0.15) 55%,
+    transparent 75%
+  ) !important;
+}
+[data-theme="light"] .hero-title { color: #f5f0e8 !important; }
+[data-theme="light"] .hero-title em { color: #c4a06a !important; }
+[data-theme="light"] .hero-desc,
+[data-theme="light"] .hero-verse { color: rgba(245,240,232,0.80) !important; }
+
+/* ── Footer separator ── */
+[data-theme="light"] .footer {
+  border-top: 3px solid #c4a06a !important;
+}
+
+/* ── Gallery gal-cta ── */
+[data-theme="light"] .gal-cta { background: var(--bg-3) !important; }
+[data-theme="light"] .gal-cta h2 { color: var(--text) !important; }
+[data-theme="light"] .gal-cta h2 em { color: #c4a06a !important; }

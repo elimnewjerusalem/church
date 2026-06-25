@@ -12,7 +12,7 @@
       ? document.documentElement.setAttribute('data-theme','light')
       : document.documentElement.removeAttribute('data-theme');
   }
-  applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+  applyTheme(localStorage.getItem(THEME_KEY) || 'light');
   window.toggleTheme = function () {
     const cur = document.documentElement.getAttribute('data-theme');
     const next = cur === 'light' ? 'dark' : 'light';
