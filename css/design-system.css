@@ -132,8 +132,8 @@
   --navy-2: var(--bg-2);
   --navy-3: var(--bg-3);
   --navy-4: var(--bg-4);
-  --light-bg:  var(--bg-3);
-  --light-bg2: var(--bg-4);
+  --light-bg:  var(--bg);
+  --light-bg2: var(--bg-2);
 
   --shadow-card:  0 2px 16px rgba(26,20,10,0.08), 0 0 0 1px var(--border);
   --shadow-hover: 0 10px 36px rgba(26,20,10,0.14), 0 0 0 1px var(--border-mid);
