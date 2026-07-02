@@ -2758,6 +2758,138 @@ a[href*="contact"].btn--gold,
   font-size: 18px;
 }
 
+/* ── FIX 15: Deliverance dates — quarterly tabs instead of flat 12-box grid ── */
+.deliv-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+  margin-bottom: 4px;
+}
+.deliv-tab {
+  padding: 9px 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--text-muted-light);
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.deliv-tab:hover { border-color: var(--gold-dim); color: var(--text-dark); }
+.deliv-tab.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1c1810;
+}
+.deliv-grid { margin-top: 20px; grid-template-columns: repeat(3,1fr) !important; }
+@media (max-width: 640px) {
+  .deliv-grid { grid-template-columns: repeat(3,1fr) !important; gap: 8px; }
+  .deliv-tab  { padding: 8px 14px; font-size: 11.5px; }
+}
+@media (max-width: 420px) {
+  .deliv-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── FIX 16: About — pastor photo/bio equal columns, video moved full-width below ── */
+.pastor-grid { grid-template-columns: 1fr 1fr !important; align-items: center !important; }
+.pastor-photo-frame { max-width: 320px !important; }
+.video-wrap--full { max-width: 860px; margin: 0 auto; }
+@media (max-width: 860px) {
+  .pastor-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── FIX 17: Gallery — uniform aspect-ratio grid instead of chaotic masonry columns ── */
+.gal-grid {
+  columns: unset !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 14px !important;
+}
+.gal-item {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 0 !important;
+}
+.gal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+@media (max-width: 760px) {
+  .gal-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 400px) {
+  .gal-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── FIX 18: Contact form — legible typed text + placeholder contrast (WCAG AA) ── */
+[data-theme="light"] .form-field,
+[data-theme="light"] .input-dark {
+  color: #1c1810 !important;
+  caret-color: #1c1810;
+}
+[data-theme="light"] .form-field::placeholder,
+[data-theme="light"] .input-dark::placeholder {
+  color: #6b5f4e !important;
+  opacity: 1;
+}
+
+/* ── FIX 19: Events page — break up repeated 3-col grid monotony ── */
+#recent-streams-grid > .video-card:first-child {
+  grid-column: span 2;
+}
+#recent-streams-grid > .video-card:first-child .video-card__thumb {
+  aspect-ratio: 21 / 9;
+}
+#recent-streams-grid > .video-card:first-child .video-card__title {
+  font-size: 16px;
+}
+#most-watched-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  counter-reset: rank;
+}
+#most-watched-grid > .video-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  counter-increment: rank;
+  position: relative;
+  padding-left: 44px;
+}
+#most-watched-grid > .video-card::before {
+  content: counter(rank);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.55;
+  width: 32px;
+  text-align: center;
+}
+#most-watched-grid > .video-card .video-card__thumb {
+  width: 200px;
+  flex-shrink: 0;
+}
+#most-watched-grid > .video-card .video-card__body { padding: 0; flex: 1; }
+@media (max-width: 720px) {
+  #recent-streams-grid > .video-card:first-child { grid-column: span 1; }
+  #recent-streams-grid > .video-card:first-child .video-card__thumb { aspect-ratio: 16/9; }
+  #most-watched-grid > .video-card { flex-direction: column; align-items: stretch; padding-left: 0; }
+  #most-watched-grid > .video-card::before { position: static; transform: none; text-align: left; margin-bottom: -6px; }
+  #most-watched-grid > .video-card .video-card__thumb { width: 100%; }
+}
+
 /* Mobile overrides for above fixes */
 @media (max-width: 900px) {
   p { font-size: 15px; }

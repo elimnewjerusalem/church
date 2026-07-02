@@ -302,22 +302,48 @@
       <h2 class="heading-serif heading-dark">Deliverance Meeting <em>Dates 2026</em></h2>
       <p class="sub-text sub-text-light" style="margin-top:8px;">Every New Moon Day at 6:00 PM — prayer, healing & deliverance. All are welcome.</p>
     </div>
-    <div class="deliv-grid">
-      <div class="deliv-card past reveal delay-1"><div class="deliv-month">January</div><div class="deliv-date">18 Jan</div><div class="deliv-day">Sunday</div></div>
-      <div class="deliv-card past reveal delay-2"><div class="deliv-month">February</div><div class="deliv-date">17 Feb</div><div class="deliv-day">Tuesday</div></div>
-      <div class="deliv-card past reveal delay-3"><div class="deliv-month">March</div><div class="deliv-date">18 Mar</div><div class="deliv-day">Wednesday</div></div>
-      <div class="deliv-card past reveal delay-4"><div class="deliv-month">April</div><div class="deliv-date">17 Apr</div><div class="deliv-day">Friday</div></div>
-      <div class="deliv-card past reveal delay-1"><div class="deliv-month">May</div><div class="deliv-date">16 May</div><div class="deliv-day">Saturday</div></div>
-      <div class="deliv-card upcoming reveal delay-2"><div class="deliv-tag">Next</div><div class="deliv-month">June</div><div class="deliv-date">14 Jun</div><div class="deliv-day">Saturday</div></div>
-      <div class="deliv-card reveal delay-3"><div class="deliv-month">July</div><div class="deliv-date">14 Jul</div><div class="deliv-day">Tuesday</div></div>
-      <div class="deliv-card reveal delay-4"><div class="deliv-month">August</div><div class="deliv-date">12 Aug</div><div class="deliv-day">Wednesday</div></div>
-      <div class="deliv-card reveal delay-1"><div class="deliv-month">September</div><div class="deliv-date">10 Sep</div><div class="deliv-day">Thursday</div></div>
-      <div class="deliv-card reveal delay-2"><div class="deliv-month">October</div><div class="deliv-date">10 Oct</div><div class="deliv-day">Saturday</div></div>
-      <div class="deliv-card reveal delay-3"><div class="deliv-month">November</div><div class="deliv-date">08 Nov</div><div class="deliv-day">Sunday</div></div>
-      <div class="deliv-card reveal delay-4"><div class="deliv-month">December</div><div class="deliv-date">08 Dec</div><div class="deliv-day">Tuesday</div></div>
+    <div class="deliv-tabs" role="tablist" aria-label="Deliverance meeting quarter">
+      <button type="button" class="deliv-tab" data-q="1" role="tab" aria-selected="false">Jan – Mar</button>
+      <button type="button" class="deliv-tab" data-q="2" role="tab" aria-selected="false">Apr – Jun</button>
+      <button type="button" class="deliv-tab" data-q="3" role="tab" aria-selected="false">Jul – Sep</button>
+      <button type="button" class="deliv-tab" data-q="4" role="tab" aria-selected="false">Oct – Dec</button>
+    </div>
+    <div class="deliv-grid" id="delivGrid">
+      <div class="deliv-card past reveal delay-1" data-q="1"><div class="deliv-month">January</div><div class="deliv-date">18 Jan</div><div class="deliv-day">Sunday</div></div>
+      <div class="deliv-card past reveal delay-2" data-q="1"><div class="deliv-month">February</div><div class="deliv-date">17 Feb</div><div class="deliv-day">Tuesday</div></div>
+      <div class="deliv-card past reveal delay-3" data-q="1"><div class="deliv-month">March</div><div class="deliv-date">18 Mar</div><div class="deliv-day">Wednesday</div></div>
+      <div class="deliv-card past reveal delay-4" data-q="2"><div class="deliv-month">April</div><div class="deliv-date">17 Apr</div><div class="deliv-day">Friday</div></div>
+      <div class="deliv-card past reveal delay-1" data-q="2"><div class="deliv-month">May</div><div class="deliv-date">16 May</div><div class="deliv-day">Saturday</div></div>
+      <div class="deliv-card upcoming reveal delay-2" data-q="2"><div class="deliv-tag">Next</div><div class="deliv-month">June</div><div class="deliv-date">14 Jun</div><div class="deliv-day">Saturday</div></div>
+      <div class="deliv-card reveal delay-3" data-q="3"><div class="deliv-month">July</div><div class="deliv-date">14 Jul</div><div class="deliv-day">Tuesday</div></div>
+      <div class="deliv-card reveal delay-4" data-q="3"><div class="deliv-month">August</div><div class="deliv-date">12 Aug</div><div class="deliv-day">Wednesday</div></div>
+      <div class="deliv-card reveal delay-1" data-q="3"><div class="deliv-month">September</div><div class="deliv-date">10 Sep</div><div class="deliv-day">Thursday</div></div>
+      <div class="deliv-card reveal delay-2" data-q="4"><div class="deliv-month">October</div><div class="deliv-date">10 Oct</div><div class="deliv-day">Saturday</div></div>
+      <div class="deliv-card reveal delay-3" data-q="4"><div class="deliv-month">November</div><div class="deliv-date">08 Nov</div><div class="deliv-day">Sunday</div></div>
+      <div class="deliv-card reveal delay-4" data-q="4"><div class="deliv-month">December</div><div class="deliv-date">08 Dec</div><div class="deliv-day">Tuesday</div></div>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.deliv-tab');
+  var cards = document.querySelectorAll('#delivGrid .deliv-card');
+  function setQ(q){
+    tabs.forEach(function(t){
+      var on = t.dataset.q === q;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', String(on));
+    });
+    cards.forEach(function(c){
+      var show = c.dataset.q === q;
+      c.style.display = show ? '' : 'none';
+      if (show) c.classList.add('anim-in','is-visible','visible');
+    });
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ setQ(t.dataset.q); }); });
+  setQ('2'); /* default: quarter with the upcoming meeting */
+})();
+</script>
 
 <!-- ═══ MINISTRIES  (DARK) ═══ -->
 <section class="section s-dark3">
