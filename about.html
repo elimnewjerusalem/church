@@ -34,6 +34,7 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/premium-v2.css">
   <link rel="stylesheet" href="css/mobile-fix.css">
+  <link rel="stylesheet" href="css/pages-refresh.css">
 
 <noscript>
 </noscript>
@@ -56,10 +57,11 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="about.html" class="nav-link  nav-link--active" aria-current="page">About</a></li>
         <li><a href="ministries.html" class="nav-link">Ministries</a></li>
-        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="events.html" class="nav-link">Events & Sermons</a></li>
         <li><a href="gallery.html" class="nav-link">Gallery</a></li>        <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-controls">
+        <a href="events.html" class="nav-watch-btn"><i class="ti ti-player-play icon-xs"></i> Watch Live</a>
         <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
@@ -73,7 +75,7 @@
       <a href="index.html" class="mobile-menu__link">Home</a>
       <a href="about.html" class="mobile-menu__link  is-active" aria-current="page">About</a>
       <a href="ministries.html" class="mobile-menu__link">Ministries</a>
-      <a href="events.html" class="mobile-menu__link">Events</a>
+      <a href="events.html" class="mobile-menu__link">Events & Sermons</a>
       <a href="gallery.html" class="mobile-menu__link">Gallery</a>      <a href="contact.html" class="mobile-menu__link">Contact</a>
     </div>
   </nav>
@@ -82,34 +84,16 @@
 <main id="main">
 
 <!-- ═══ PAGE HERO ═══ -->
-<section class="page-hero" aria-labelledby="page-title">
+<section class="page-hero ph-photo" aria-labelledby="page-title">
+  <div class="ph-sun" aria-hidden="true"></div>
+  <div class="ph-cross" aria-hidden="true"></div>
   <div class="container">
     <p class="section-tag anim-wipe">Our Story</p>
-    <h1 id="page-title">About <em>ENJC</em></h1>
-    <p>Elim New Jerusalem Church — Tondiarpet, Chennai.<br>
-      Rooted in the Word. Moving in the Spirit. Reaching the Nations.</p>
+    <h1 id="page-title">About <em>Us</em></h1>
+    <p>We are a Bible-believing church committed to worshiping God, teaching His Word,
+      bringing deliverance, and transforming lives through the power of Jesus Christ.</p>
   </div>
 </section>
-
-<!-- ═══ STATS BAND ═══ -->
-<div class="stats-band" role="complementary" aria-label="Church at a glance">
-  <div class="stat-item reveal delay-1">
-    <div class="stat-num">35+</div>
-    <div class="stat-label">Years of Ministry</div>
-  </div>
-  <div class="stat-item reveal delay-2">
-    <div class="stat-num">3</div>
-    <div class="stat-label">Sunday Services</div>
-  </div>
-  <div class="stat-item reveal delay-3">
-    <div class="stat-num">Daily</div>
-    <div class="stat-label">Night Prayer</div>
-  </div>
-  <div class="stat-item reveal delay-4">
-    <div class="stat-num">TN+</div>
-    <div class="stat-label">Outreach Across Tamil Nadu</div>
-  </div>
-</div>
 
 <!-- ═══ PASTOR (LIGHT) ═══ -->
 <section class="section s-light" aria-labelledby="pastor-heading">
@@ -252,38 +236,52 @@
   </div><!-- /container -->
 </section>
 
-<!-- ═══ MISSION + VISION (LIGHT) ═══ -->
+<!-- ═══ MISSION + VISION + VALUES (LIGHT) ═══ -->
 <section class="section s-light" aria-labelledby="mission-heading">
   <div class="container">
 
   <div class="section-header reveal">
-    <div class="eyebrow"><div class="eyebrow-line"></div> Purpose &amp; Direction</div>
+    <div class="eyebrow"><div class="eyebrow-line"></div> Our Foundation</div>
     <h2 class="heading-serif heading-dark" id="mission-heading">Mission &amp; <em>Vision</em></h2>
   </div>
-  <div class="mv-grid">
-    <div class="reveal anim-left delay-1">
-      <div class="mv-col-title">Our <em>Mission</em></div>
-      <p class="mv-col-desc">To bring the transforming power of Jesus Christ to families and communities in Tondiarpet, Chennai, and beyond — through worship, prayer, the Word of God, and Spirit-led ministry.</p>
-      <div class="mv-list">
-        <div class="mv-item"><span class="mv-icon">✓</span><div><div class="mv-item-title">Reach the lost</div><div class="mv-item-desc">Proclaim the Gospel in Tondiarpet and all of Chennai</div></div></div>
-        <div class="mv-item"><span class="mv-icon">✓</span><div><div class="mv-item-title">Strengthen believers</div><div class="mv-item-desc">Build up every member in faith, prayer, and God's Word</div></div></div>
-        <div class="mv-item"><span class="mv-icon">✓</span><div><div class="mv-item-title">Transform families</div><div class="mv-item-desc">See whole households saved, healed, and set free</div></div></div>
-      </div>
+  <div class="mvv-grid">
+    <div class="mvv-card reveal delay-1">
+      <div class="mvv-icon"><i class="ti ti-target-arrow"></i></div>
+      <div class="mvv-title">Our <em>Mission</em></div>
+      <p class="mvv-desc">To worship God, preach the Gospel, make disciples, and bring deliverance to the oppressed — starting in Tondiarpet and reaching all of Chennai.</p>
     </div>
-    <div class="reveal anim-right delay-2">
-      <div class="mv-col-title">Our <em>Vision</em></div>
-      <p class="mv-col-desc">Starting in Chennai and expanding across all of Tamil Nadu and beyond — to every village and nation where Jesus has not yet been named.</p>
-      <div class="mv-list">
-        <div class="mv-item"><span class="mv-icon">🌍</span><div><div class="mv-item-title">Expand church branches worldwide</div><div class="mv-item-desc">Establish ENJC branches globally</div></div></div>
-        <div class="mv-item"><span class="mv-icon">🔥</span><div><div class="mv-item-title">Establish deliverance ministries</div><div class="mv-item-desc">Spirit-led deliverance centres across Tamil Nadu</div></div></div>
-        <div class="mv-item"><span class="mv-icon">🧑</span><div><div class="mv-item-title">Reach young people with Jesus</div><div class="mv-item-desc">Preach the Gospel to the next generation</div></div></div>
-        <div class="mv-item"><span class="mv-icon">🏫</span><div><div class="mv-item-title">Support youth development</div><div class="mv-item-desc">Trust · School · Tuition · Sports &amp; development</div></div></div>
-        <div class="mv-item"><span class="mv-icon">🏘️</span><div><div class="mv-item-title">Village expansion across Tamil Nadu</div><div class="mv-item-desc">Reaching every Tamil Nadu village for Christ</div></div></div>
-      </div>
+    <div class="mvv-card reveal delay-2">
+      <div class="mvv-icon"><i class="ti ti-eye"></i></div>
+      <div class="mvv-title">Our <em>Vision</em></div>
+      <p class="mvv-desc">To be a Spirit-filled church that transforms lives and raises a generation of Kingdom leaders — expanding across Tamil Nadu and the nations.</p>
+    </div>
+    <div class="mvv-card reveal delay-3">
+      <div class="mvv-icon"><i class="ti ti-diamond"></i></div>
+      <div class="mvv-title">Our <em>Values</em></div>
+      <ul class="mvv-values">
+        <li>Word of God above all</li>
+        <li>Prayer &amp; Holy Spirit dependence</li>
+        <li>Love, Unity &amp; Family</li>
+        <li>Integrity &amp; Excellence</li>
+        <li>Compassion &amp; Outreach</li>
+      </ul>
     </div>
   </div>
   </div><!-- /container -->
 </section>
+
+<!-- ═══ STATS BAND v2 (DARK) ═══ -->
+<div class="section s-dark3" style="padding:44px 0;">
+  <div class="container">
+    <div class="stats-band-v2">
+      <div class="stat-v2-item reveal delay-1"><div class="stat-v2-icon"><i class="ti ti-users"></i></div><div class="stat-v2-num">20+</div><div class="stat-v2-label">Years of God's Faithfulness</div></div>
+      <div class="stat-v2-item reveal delay-2"><div class="stat-v2-icon"><i class="ti ti-users-group"></i></div><div class="stat-v2-num">1500+</div><div class="stat-v2-label">Church Family Members</div></div>
+      <div class="stat-v2-item reveal delay-3"><div class="stat-v2-icon"><i class="ti ti-book"></i></div><div class="stat-v2-num">3</div><div class="stat-v2-label">Weekly Services</div></div>
+      <div class="stat-v2-item reveal delay-4"><div class="stat-v2-icon"><i class="ti ti-crown"></i></div><div class="stat-v2-num">12+</div><div class="stat-v2-label">Active Ministries</div></div>
+      <div class="stat-v2-item reveal delay-5"><div class="stat-v2-icon"><i class="ti ti-world"></i></div><div class="stat-v2-num">Multiple</div><div class="stat-v2-label">Outreach Programs</div></div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ TESTIMONIES (DARK) ═══ -->
 <section class="section s-dark" aria-labelledby="testi-heading">
@@ -311,6 +309,11 @@
       <div><div class="testi-name">A Couple from North Chennai</div><div class="testi-detail">Restoration testimony · 2025</div></div>
     </div>
   </div>
+  <div class="testi-dots" aria-hidden="true">
+    <button class="testi-dot active"></button>
+    <button class="testi-dot"></button>
+    <button class="testi-dot"></button>
+  </div>
   </div><!-- /container -->
 </section>
 
@@ -329,12 +332,18 @@
 
 <!-- ═══ CTA BAND (DARK-3) ═══ -->
 <div class="cta-band">
-  <div class="reveal">
-    <div class="cta-title">Ready to visit <em>ENJC?</em></div>
-    <p class="cta-sub">Join us this Sunday — all are welcome. Come as you are.</p>
-    <a href="contact.html" class="btn-gold">
-      <i class="ti ti-map-pin icon-sm"></i> Plan Your Visit
-    </a>
+  <div class="container cta-v2 reveal">
+    <div class="cta-v2-left">
+      <div class="cta-v2-icon">✝</div>
+      <div>
+        <div class="cta-title" style="margin-bottom:2px;">We'd Love to Meet <em>You!</em></div>
+        <p class="cta-sub" style="margin:0;">Come and be a part of what God is doing at ENJC.</p>
+      </div>
+    </div>
+    <div class="cta-v2-btns">
+      <a href="contact.html" class="btn-gold"><i class="ti ti-calendar-event icon-sm"></i> Visit Us This Sunday</a>
+      <a href="contact.html" class="btn-outline-dark"><i class="ti ti-map-pin icon-sm"></i> Get Directions</a>
+    </div>
   </div>
 </div>
 

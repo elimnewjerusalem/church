@@ -1,0 +1,106 @@
+/* ══════════════════════════════════════════════════════════
+   PAGES REFRESH — shared additive styles for inner pages
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Nav: Watch Live button (reused across inner pages) ── */
+.nav-watch-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: var(--gold);
+  border: 1.5px solid var(--gold-border-strong, var(--gold));
+  padding: 9px 18px; border-radius: 40px;
+  font-size: 12.5px; font-weight: 700;
+  margin-right: 10px;
+  transition: background .18s, color .18s;
+  white-space: nowrap;
+}
+.nav-watch-btn:hover { background: var(--gold); color: var(--bg); }
+@media (max-width: 1080px) { .nav-watch-btn { display: none; } }
+
+/* ── ABOUT: photo-style hero (no external image — drawn cross + gradient) ── */
+.ph-photo {
+  position: relative;
+  background: linear-gradient(115deg, #0d1f16 0%, #16301f 45%, #1a3a2a 75%, #2d4a35 100%) !important;
+  overflow: hidden;
+}
+.ph-photo::before { content: none !important; }
+.ph-photo .ph-sun {
+  position: absolute; right: 6%; top: 18%;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,190,110,0.55) 0%, rgba(230,190,110,0.15) 45%, transparent 70%);
+  filter: blur(2px);
+}
+.ph-photo .ph-cross {
+  position: absolute; right: 12%; top: 10%;
+  width: 90px; height: 160px;
+  opacity: 0.85;
+}
+.ph-photo .ph-cross::before {
+  content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 10px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #3a2a18, #1c140c);
+  border-radius: 2px;
+}
+.ph-photo .ph-cross::after {
+  content: ""; position: absolute; left: 50%; top: 28%; width: 76px; height: 10px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #1c140c, #3a2a18, #1c140c);
+  border-radius: 2px;
+}
+.ph-photo .container { position: relative; z-index: 2; }
+
+/* ── MISSION / VISION / VALUES — 3 card row (matches mockup) ── */
+.mvv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 900px) { .mvv-grid { grid-template-columns: 1fr; } }
+.mvv-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+.mvv-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold); color: #fff; font-size: 19px;
+  margin-bottom: 16px;
+}
+.mvv-card:nth-child(2) .mvv-icon { background: var(--sand, var(--gold-bright)); }
+.mvv-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+.mvv-title em { color: var(--gold); font-style: normal; }
+.mvv-desc { font-size: 13px; color: var(--text-muted-light); line-height: 1.7; margin-bottom: 4px; }
+.mvv-values { list-style: none; padding: 0; margin: 6px 0 0; }
+.mvv-values li { font-size: 12.5px; color: var(--text-muted-light); padding: 5px 0 5px 22px; position: relative; }
+.mvv-values li::before { content: "\2713"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+/* ── STATS BAND v2 — dark icon band (matches mockup) ── */
+.stats-band-v2 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  text-align: center;
+}
+@media (max-width: 900px) { .stats-band-v2 { grid-template-columns: repeat(2, 1fr); gap: 28px 0; } }
+.stat-v2-item { padding: 8px 12px; }
+.stat-v2-icon { font-size: 26px; color: var(--sand, var(--gold-bright)); margin-bottom: 10px; }
+.stat-v2-num { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: #fff; }
+.stat-v2-label { font-size: 11.5px; color: rgba(255,255,255,0.65); margin-top: 4px; }
+
+/* ── TESTIMONIALS — carousel with dots ── */
+.testi-carousel { position: relative; overflow: hidden; }
+.testi-track { display: flex; transition: transform .5s ease; }
+.testi-slide { min-width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .testi-slide { grid-template-columns: 1fr; } }
+.testi-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.testi-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-mid); border: none; cursor: pointer; transition: background .2s, width .2s; }
+.testi-dot.active { background: var(--gold); width: 22px; border-radius: 5px; }
+
+/* ── CTA v2 — two buttons + icon ── */
+.cta-v2 {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.cta-v2-left { display: flex; align-items: center; gap: 14px; }
+.cta-v2-icon { font-size: 22px; color: var(--sand, var(--gold-bright)); }
+.cta-v2-btns { display: flex; gap: 12px; flex-wrap: wrap; }
