@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-page="home">
+<html lang="en" data-theme="forest" data-page="home">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/premium-v2.css">
   <link rel="stylesheet" href="css/mobile-fix.css">
-  <link rel="stylesheet" href="css/home-refresh.css">
+<link rel="stylesheet" href="css/theme-forest.css">
 
 <!-- Styles -->
 
@@ -76,7 +76,6 @@
         <li><a href="gallery.html" class="nav-link">Gallery</a></li>        <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-controls">
-        <a href="events.html" class="nav-watch-btn"><i class="ti ti-player-play icon-xs"></i> Watch Live</a>
         <a href="contact.html" class="nav-visit-btn">📍 Visit Us</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
@@ -211,15 +210,17 @@
 
   <div class="about-grid">
     <div class="reveal anim-roll-left">
-      <div class="about-photo-wrap" id="aboutPlayTrigger">
-        <img src="images/pastor.webp" alt="Pastor A. Karthik Daniel" loading="lazy" onerror="this.src='images/pastor.jpg'">
-        <div class="about-play-btn"><i class="ti ti-player-play-filled"></i></div>
-        <div class="about-pastor-tag">
-          <div class="t-label">Pastor</div>
-          <div class="t-name">A. Karthik Daniel</div>
-        </div>
+      <!-- autoplay=1&mute=1 → auto-plays on load; enablejsapi=0 for simplicity -->
+      <div class="about-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/t7-WJK7JGw0?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&playlist=t7-WJK7JGw0"
+          title="Pastor's Testimony — How ENJC Began"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
       </div>
-      <div class="about-video-embed" id="aboutVideoEmbed"></div>
+      <p class="video-caption">▶ Watch: Pastor's Testimony — How ENJC began</p>
     </div>
     <div class="reveal anim-roll-right delay-2">
       <div class="eyebrow">About Us</div>
@@ -245,20 +246,20 @@
   </div><!-- /container -->
 </section>
 
-<!-- ═══ SERVICE TIMES  (LIGHT — card row) ═══ -->
-<section class="section s-light2">
+<!-- ═══ SERVICE TIMES  (DARK) ═══ -->
+<section class="section s-dark">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:8px;">
       <div class="eyebrow">When We Meet</div>
-      <h2 class="heading-serif heading-dark">Church Worship & <em>Service Times</em></h2>
+      <h2 class="heading-serif heading-light">Church Worship & <em>Service Times</em></h2>
     </div>
-    <div class="svc-grid svc-strip">
-      <div class="svc-card reveal delay-1"><div class="svc-icon-wrap"><i class="ti ti-sun"></i></div><div class="svc-name">Sunday Worship</div><div class="svc-days">Every Sunday</div><div class="svc-time">5:30 · 8:30 AM · 12:00 PM</div></div>
-      <div class="svc-card reveal delay-2"><div class="svc-icon-wrap"><i class="ti ti-pray"></i></div><div class="svc-name">Tuesday Prayer</div><div class="svc-days">Every Tuesday</div><div class="svc-time">11:00 AM – 4:00 PM</div></div>
-      <div class="svc-card reveal delay-3"><div class="svc-icon-wrap"><i class="ti ti-heart"></i></div><div class="svc-name">Friday Fasting Prayer</div><div class="svc-days">Every Friday</div><div class="svc-time">11:00 AM – 1:30 PM</div></div>
-      <div class="svc-card reveal delay-4"><div class="svc-icon-wrap"><i class="ti ti-moon"></i></div><div class="svc-name">Night Prayer</div><div class="svc-days">Every Night</div><div class="svc-time">10:30 PM · Daily</div></div>
-      <div class="svc-card reveal delay-5"><div class="svc-icon-wrap"><i class="ti ti-star"></i></div><div class="svc-name">Promise Service</div><div class="svc-days">1st of Every Month</div><div class="svc-time">5:30 – 7:30 AM</div></div>
-      <div class="svc-card reveal delay-6"><div class="svc-icon-wrap"><i class="ti ti-flame"></i></div><div class="svc-name">Deliverance Meeting</div><div class="svc-days">New Moon Day</div><div class="svc-time">6:00 PM</div></div>
+    <div class="schedule-grid" style="margin-top:40px;">
+      <div class="schedule-card cin-card cin-card reveal delay-1"><i class="ti ti-sun sc-icon"></i><div class="sc-name">Sunday Worship</div><div class="sc-detail">ENJC Family Gathering — three services every Sunday morning</div><div class="sc-time">5:30 AM · 8:30 AM · 12:00 PM</div></div>
+      <div class="schedule-card cin-card cin-card reveal delay-2"><i class="ti ti-star sc-icon"></i><div class="sc-name">Promise Service</div><div class="sc-detail">Special service on the 1st of every month</div><div class="sc-time">5:30 – 7:30 AM</div></div>
+      <div class="schedule-card cin-card cin-card reveal delay-3"><i class="ti ti-pray sc-icon"></i><div class="sc-name">Tuesday Prayer</div><div class="sc-detail">ENJC Special Prayer Meeting every Tuesday</div><div class="sc-time">11:00 AM – 4:00 PM</div></div>
+      <div class="schedule-card cin-card cin-card reveal delay-4"><i class="ti ti-heart sc-icon"></i><div class="sc-name">Friday Blessing Prayer</div><div class="sc-detail">ENJC Family Blessing Prayer every Friday</div><div class="sc-time">11:00 AM – 1:30 PM</div></div>
+      <div class="schedule-card cin-card cin-card reveal delay-5"><i class="ti ti-flame sc-icon"></i><div class="sc-name">Deliverance Meetings</div><div class="sc-detail">New Moon Day — prayer, healing & deliverance. All welcome.</div><div class="sc-time">6:00 PM · Monthly</div></div>
+      <div class="schedule-card cin-card cin-card reveal delay-6"><i class="ti ti-moon sc-icon"></i><div class="sc-name">Night Prayer</div><div class="sc-detail">Daily night prayer — every night without exception</div><div class="sc-time">10:30 PM · Daily</div></div>
     </div>
   </div>
 </section>
@@ -322,79 +323,34 @@
       <div class="eyebrow">What We Do</div>
       <h2 class="heading-serif heading-light">Our <em>Ministries</em></h2>
     </div>
+    <a href="ministries.html" class="view-all-link">View All <i class="ti ti-arrow-right icon-xs"></i></a>
   </div>
-  <div class="ministry-grid-v2">
-    <a href="ministries.html" class="mcard reveal delay-1">
-      <div class="mcard-img-wrap"><img src="images/ministries/youth.webp" alt="Youth Ministry" loading="lazy"><div class="mcard-icon"><i class="ti ti-users"></i></div></div>
-      <div class="mcard-body"><div class="mcard-name">Youth Ministry</div><div class="mcard-desc">Empowering youth to walk with God</div></div>
-    </a>
-    <a href="ministries.html" class="mcard reveal delay-2">
-      <div class="mcard-img-wrap"><img src="images/ministries/women.webp" alt="Sisters Ministry" loading="lazy"><div class="mcard-icon"><i class="ti ti-user-heart"></i></div></div>
-      <div class="mcard-body"><div class="mcard-name">Sisters Ministry</div><div class="mcard-desc">Building godly women of faith</div></div>
-    </a>
-    <a href="ministries.html" class="mcard reveal delay-3">
-      <div class="mcard-img-wrap"><img src="images/ministries/prayer.webp" alt="Brothers Ministry" loading="lazy"><div class="mcard-icon"><i class="ti ti-shield-heart"></i></div></div>
-      <div class="mcard-body"><div class="mcard-name">Brothers Ministry</div><div class="mcard-desc">Strengthening men to lead in faith</div></div>
-    </a>
-    <a href="ministries.html" class="mcard reveal delay-4">
-      <div class="mcard-img-wrap"><img src="images/ministries/children.webp" alt="Children's Ministry" loading="lazy"><div class="mcard-icon"><i class="ti ti-baby-carriage"></i></div></div>
-      <div class="mcard-body"><div class="mcard-name">Children's Ministry</div><div class="mcard-desc">Nurturing children in God's love</div></div>
-    </a>
-    <a href="ministries.html" class="mcard reveal delay-5">
-      <div class="mcard-img-wrap"><img src="images/ministries/worship.webp" alt="Worship Ministry" loading="lazy"><div class="mcard-icon"><i class="ti ti-microphone-2"></i></div></div>
-      <div class="mcard-body"><div class="mcard-name">Worship Ministry</div><div class="mcard-desc">Leading hearts to God's presence</div></div>
-    </a>
-    <a href="ministries.html" class="mcard reveal delay-6">
-      <div class="mcard-img-wrap"><img src="images/ministries/outreach.webp" alt="Evangelism Ministry" loading="lazy"><div class="mcard-icon"><i class="ti ti-world"></i></div></div>
-      <div class="mcard-body"><div class="mcard-name">Evangelism Ministry</div><div class="mcard-desc">Reaching the lost with the Gospel</div></div>
-    </a>
-  </div>
-  <div class="reveal" style="text-align:center;margin-top:32px;">
-    <a href="ministries.html" class="view-all-btn">View All Ministries <i class="ti ti-arrow-right icon-sm"></i></a>
+  <div class="ministry-grid anim-stagger">
+    <div class="ministry-card cin-card cin-card reveal anim-roll-left delay-1">
+      <div class="ministry-card-img"><i class="ti ti-users"></i></div>
+      <div class="ministry-card-body">
+        <div class="ministry-name">Village Ministry</div>
+        <div class="ministry-desc">Reaching villages across Tamil Nadu with the Gospel through outreach teams.</div>
+      </div>
+    </div>
+    <div class="ministry-card cin-card cin-card reveal anim-roll-left delay-2">
+      <div class="ministry-card-img"><i class="ti ti-user-heart"></i></div>
+      <div class="ministry-card-body">
+        <div class="ministry-name">Sisters Ministry</div>
+        <div class="ministry-desc">A dedicated ministry for sisters — prayer, fellowship and spiritual growth.</div>
+      </div>
+    </div>
+    <div class="ministry-card cin-card cin-card reveal anim-roll-left delay-3">
+      <div class="ministry-card-img"><i class="ti ti-shield-heart"></i></div>
+      <div class="ministry-card-body">
+        <div class="ministry-name">Brothers Ministry</div>
+        <div class="ministry-desc">Building men of God through the Word, prayer and accountability.</div>
+      </div>
+    </div>
   </div>
   </div><!-- /container -->
 </section>
 
-
-<!-- ═══ PROMISE 2026 + LATEST SERMONS  (DARK) ═══ -->
-<section class="section s-dark2">
-  <div class="container">
-    <div class="promise-sermon-grid">
-
-      <div class="promise-card reveal anim-roll-left">
-        <div class="promise-eyebrow">Upcoming Event</div>
-        <div class="promise-title">Promise 2026</div>
-        <div class="promise-desc">A year of God's promises and breakthroughs. Join us as we usher in 2026 in prayer and worship.</div>
-        <div class="promise-meta">
-          <span><i class="ti ti-calendar icon-xs"></i> 31 December 2026 · 10:00 PM – 1:00 AM</span>
-          <span><i class="ti ti-map-pin icon-xs"></i> ENJC Church, Tondiarpet</span>
-        </div>
-        <div class="promise-cd" id="promiseCd">
-          <div class="promise-cd-unit"><div class="promise-cd-num" id="pcd-d">--</div><div class="promise-cd-label">Days</div></div>
-          <div class="promise-cd-unit"><div class="promise-cd-num" id="pcd-h">--</div><div class="promise-cd-label">Hrs</div></div>
-          <div class="promise-cd-unit"><div class="promise-cd-num" id="pcd-m">--</div><div class="promise-cd-label">Min</div></div>
-          <div class="promise-cd-unit"><div class="promise-cd-num" id="pcd-s">--</div><div class="promise-cd-label">Sec</div></div>
-        </div>
-      </div>
-
-      <div class="reveal anim-roll-right delay-2">
-        <div class="sermon-col-head">
-          <div>
-            <div class="eyebrow">Watch & Grow</div>
-            <h2 class="heading-serif heading-light" style="font-size:26px;">Latest <em>Sermons</em></h2>
-          </div>
-          <a href="events.html" class="view-all-link">View All <i class="ti ti-arrow-right icon-xs"></i></a>
-        </div>
-        <div class="sermon-list" id="sermonList">
-          <a href="events.html" class="sermon-card"><div class="sermon-thumb"><img src="images/gallery/g6.webp" alt="Sunday sermon" loading="lazy"><div class="sermon-play"><span><i class="ti ti-player-play-filled"></i></span></div></div><div class="sermon-body"><div class="sermon-title">Latest Sunday Worship Service</div><div class="sermon-meta">Pas. A. Karthik Daniel</div></div></a>
-          <a href="events.html" class="sermon-card"><div class="sermon-thumb"><img src="images/gallery/g7.webp" alt="Friday prayer sermon" loading="lazy"><div class="sermon-play"><span><i class="ti ti-player-play-filled"></i></span></div></div><div class="sermon-body"><div class="sermon-title">Friday Blessing Prayer Meeting</div><div class="sermon-meta">Pas. A. Karthik Daniel</div></div></a>
-          <a href="events.html" class="sermon-card"><div class="sermon-thumb"><img src="images/gallery/g8.webp" alt="Deliverance sermon" loading="lazy"><div class="sermon-play"><span><i class="ti ti-player-play-filled"></i></span></div></div><div class="sermon-body"><div class="sermon-title">Deliverance Meeting Highlights</div><div class="sermon-meta">Pas. A. Karthik Daniel</div></div></a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ═══ GALLERY PREVIEW  (DARK) ═══ -->
 <section class="section s-dark2">
@@ -416,33 +372,54 @@
   </div><!-- /container -->
 </section>
 
-<!-- ═══ VISIT + MAP  (DARK band) ═══ -->
-<section class="section s-dark3">
+<!-- ═══ CONTACT / MAP  (LIGHT) ═══ -->
+<section class="section s-light2">
   <div class="container">
-    <div class="visit-band" style="background:var(--bg-2);">
-      <div class="visit-col reveal">
-        <div class="visit-col-title">Visit Our Church</div>
-        <div class="visit-row"><i class="ti ti-map-pin"></i><div>No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081</div></div>
-        <div class="visit-row"><i class="ti ti-phone"></i><div>+91 94443 45102</div></div>
-        <div class="visit-row"><i class="ti ti-clock"></i><div>Sunday: 5:30 · 8:30 AM · 12:00 PM<br>Tuesday: 11:00 AM – 4:00 PM<br>Night Prayer: 10:30 PM Daily</div></div>
+    <div class="reveal" style="text-align:center;margin-bottom:8px;">
+      <div class="eyebrow">Find Us</div>
+      <h2 class="heading-serif heading-dark">Visit <em>ENJC</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal anim-roll-left">
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-map-pin"></i></div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value">No.110E, Elaya Street<br>Tondiarpet, Chennai – 600 081</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-phone"></i></div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+91 94443 45102</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-clock"></i></div>
+          <div>
+            <div class="contact-label">Service Times</div>
+            <div class="contact-value">Sunday: 5:30 · 8:30 AM · 12:00 PM<br>Friday: 11:00 AM – 1:30 PM<br>Night Prayer: 10:30 PM Daily</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><i class="ti ti-brand-whatsapp"></i></div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">
+              <a href="https://wa.me/919444345102" target="_blank" rel="noopener" style="color:var(--gold);">Message us on WhatsApp →</a>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn-outline-dark" style="margin-top:8px;">
+          Get Directions <i class="ti ti-map-2 icon-sm"></i>
+        </a>
       </div>
-      <div class="visit-map-col reveal delay-1">
+      <div class="map-wrap reveal anim-roll-right delay-2">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.4!2d80.2935!3d13.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI4LjIiTiA4MMKwMTcnMzYuNiJF!5e0!3m2!1sen!2sin!4v1"
-          loading="lazy" title="ENJC Location Map">
+          allowfullscreen loading="lazy" title="ENJC Location Map">
         </iframe>
-      </div>
-      <div class="visit-col reveal delay-2">
-        <div class="visit-col-title">Stay Connected</div>
-        <div class="visit-social">
-          <a href="https://www.youtube.com/@enjcmedia" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i> YouTube</a>
-          <a href="https://www.facebook.com/enjcmedia" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i> Facebook</a>
-          <a href="https://www.instagram.com/elimnewjerusalemchurch" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i> Instagram</a>
-        </div>
-        <div class="visit-actions">
-          <a href="https://wa.me/919444345102" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chat with us</a>
-          <a href="contact.html" class="btn-gold-sm"><i class="ti ti-map-2"></i> Get Directions</a>
-        </div>
       </div>
     </div>
   </div>
@@ -575,36 +552,6 @@
     document.getElementById('cd-s').textContent=p(best%60);
   }
   tick(); setInterval(tick,1000);
-})();
-
-/* ── Promise 2026 countdown ── */
-(function(){
-  var target = new Date(2026,11,31,22,0,0).getTime(); /* 31 Dec 2026, 10:00 PM */
-  var d=document.getElementById('pcd-d'), h=document.getElementById('pcd-h'),
-      m=document.getElementById('pcd-m'), s=document.getElementById('pcd-s');
-  if(!d) return;
-  function p(n){ return String(Math.max(0,Math.floor(n))).padStart(2,'0'); }
-  function tick(){
-    var diff = (target - Date.now())/1000;
-    if(diff<0) diff=0;
-    d.textContent=p(diff/86400);
-    h.textContent=p((diff%86400)/3600);
-    m.textContent=p((diff%3600)/60);
-    s.textContent=p(diff%60);
-  }
-  tick(); setInterval(tick,1000);
-})();
-
-/* ── About: lazy-load YouTube on play click ── */
-(function(){
-  var trigger=document.getElementById('aboutPlayTrigger');
-  var embedWrap=document.getElementById('aboutVideoEmbed');
-  if(!trigger||!embedWrap) return;
-  trigger.addEventListener('click', function(){
-    embedWrap.innerHTML='<iframe src="https://www.youtube.com/embed/t7-WJK7JGw0?autoplay=1&rel=0&modestbranding=1" title="Pastor\'s Testimony — How ENJC Began" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
-    embedWrap.classList.add('is-active');
-    trigger.style.display='none';
-  });
 })();
 
 /* ── Scroll-to-top ── */

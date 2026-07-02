@@ -1,0 +1,219 @@
+/* ================================================================
+   ENJC — "FOREST" THEME
+   Cream body (unchanged from current site) + genuinely dark-green
+   hero/footer/countdown + real gold accents + colour-varied ministry
+   icons and gallery filter pills.
+   Load AFTER mobile-fix.css. Applies only when <html data-theme="forest">.
+================================================================ */
+
+[data-theme="forest"] {
+  /* ── Base surfaces: same cream palette as the current light theme ── */
+  --bg:        #faf6ef;
+  --bg-2:      #f2ece0;
+  --bg-3:      #e8dece;
+  --bg-4:      #ddd0b8;
+  --bg-card:   #ffffff;
+  --bg-glass:  rgba(250,246,239,0.92);
+
+  --text:            #1c1810;
+  --text-muted:      #4a3c28;
+  --text-faint:      #7a6850;
+  --text-dark:       #1c1810;
+  --text-muted-light:#7a6850;
+
+  /* text-light / text-muted-dark are only used INSIDE dark components
+     (cards, footer, hero, cd-strip) — keep them light so they stay
+     readable once those components get a real dark-green fill below. */
+  --text-light:       #f5f0e3;
+  --text-muted-dark:  #cfe0d4;
+
+  --border:       rgba(26,58,42,0.10);
+  --border-mid:   rgba(26,58,42,0.22);
+  --border-dark:  rgba(255,255,255,0.09);
+  --border-light: rgba(26,58,42,0.06);
+
+  /* ── Real gold accent (restored) ── */
+  --gold:               #c8a45a;
+  --gold-bright:        #e8c870;
+  --gold-warm:          #d4a843;
+  --gold-pale:          #f0d896;
+  --gold-dim:           rgba(200,164,90,0.55);
+  --gold-glow:          rgba(200,164,90,0.12);
+  --gold-border:        rgba(200,164,90,0.28);
+  --gold-border-strong: rgba(200,164,90,0.48);
+  --accent:        var(--gold);
+  --accent-warm:   var(--gold-bright);
+  --accent-dim:    var(--gold-dim);
+  --accent-glow:   var(--gold-glow);
+  --accent-border: var(--gold-border);
+  --accent-bg:     rgba(200,164,90,0.08);
+  --accent-bg-rich:rgba(200,164,90,0.16);
+
+  /* .s-dark / .s-dark2 / .s-dark3 stay CREAM — these classes are used
+     on Service Times / Ministries preview / Gallery preview, which the
+     new design keeps light. Only footer + countdown strip go dark
+     green, handled below as direct component overrides. */
+  --navy:   var(--bg-2);
+  --navy-2: var(--bg-3);
+  --navy-3: var(--bg-4);
+  --navy-4: var(--bg-4);
+  --light-bg:  var(--bg-3);
+  --light-bg2: var(--bg-4);
+
+  --shadow-card:  0 2px 16px rgba(26,20,10,0.08), 0 0 0 1px var(--border);
+  --shadow-hover: 0 10px 36px rgba(26,20,10,0.14), 0 0 0 1px var(--border-mid);
+  --shadow-gold:  0 4px 28px rgba(200,164,90,0.22);
+
+  /* True deep-forest tones for hero / footer / countdown only */
+  --forest-1: #0c2a1e;
+  --forest-2: #123625;
+  --forest-3: #17402c;
+}
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+[data-theme="forest"] .site-nav {
+  background: rgba(254,251,244,0.92);
+  border-bottom-color: rgba(26,58,42,0.10);
+}
+[data-theme="forest"] .nav-logo__name { color: #1c1810; }
+[data-theme="forest"] .nav-logo__sub  { color: #7a6850; }
+[data-theme="forest"] .nav-link        { color: #4a3c28; }
+[data-theme="forest"] .nav-link--active,
+[data-theme="forest"] .nav-link:hover  { color: var(--forest-2); }
+/* Keep the header CTA a solid forest-green pill (matches target design) */
+[data-theme="forest"] .nav-visit-btn {
+  background: var(--forest-2) !important;
+  color: #f5f0e3 !important;
+  border-color: transparent !important;
+}
+[data-theme="forest"] .nav-visit-btn:hover { background: var(--forest-3) !important; }
+
+/* ── FOOTER — genuinely dark green ──────────────────────────── */
+[data-theme="forest"] .footer {
+  background: var(--forest-1) !important;
+  border-top: 1px solid rgba(200,164,90,0.14) !important;
+  color: #cfe0d4;
+}
+[data-theme="forest"] .footer-brand-name { color: #f5f0e3; }
+[data-theme="forest"] .footer-tagline    { color: #a8c4b3; }
+[data-theme="forest"] .footer-addr       { color: #cfe0d4; }
+[data-theme="forest"] .footer-col-title  { color: var(--gold); }
+[data-theme="forest"] .footer-links a    { color: #cfe0d4; }
+[data-theme="forest"] .footer-links a:hover { color: var(--gold-bright); }
+[data-theme="forest"] .footer-bottom     { color: #8fae9c; border-top-color: rgba(255,255,255,0.08); }
+[data-theme="forest"] .social-icon {
+  background: rgba(255,255,255,0.06);
+  color: #cfe0d4;
+  border-color: rgba(255,255,255,0.10);
+}
+[data-theme="forest"] .social-icon:hover {
+  background: rgba(200,164,90,0.20);
+  color: var(--gold-bright);
+}
+
+/* ── COUNTDOWN STRIP — genuinely dark green ─────────────────── */
+[data-theme="forest"] .cd-strip {
+  background: linear-gradient(90deg, var(--forest-1), var(--forest-2)) !important;
+  color: #f5f0e3 !important;
+}
+[data-theme="forest"] .cd-label     { color: #cfe0d4; }
+[data-theme="forest"] .cd-num       { color: var(--gold-bright); }
+[data-theme="forest"] .cd-unit-label{ color: #a8c4b3; }
+[data-theme="forest"] .cd-sep       { color: #a8c4b3; }
+[data-theme="forest"] .cd-wa {
+  background: var(--gold);
+  color: #14241a;
+}
+[data-theme="forest"] .cd-wa:hover { background: var(--gold-bright); }
+
+/* ── CARDS on cream sections — white, gold-accented (unchanged look,
+     but real-gold icons instead of the old flat forest icon colour) ── */
+[data-theme="forest"] .ministry-card,
+[data-theme="forest"] .schedule-card,
+[data-theme="forest"] .min-card,
+[data-theme="forest"] .deliv-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(26,58,42,0.12) !important;
+  box-shadow: 0 2px 12px rgba(26,20,10,0.06) !important;
+}
+[data-theme="forest"] .ministry-card-img,
+[data-theme="forest"] .sc-icon {
+  background: rgba(200,164,90,0.10) !important;
+  border-bottom: 1px solid rgba(200,164,90,0.14) !important;
+}
+[data-theme="forest"] .ministry-name,
+[data-theme="forest"] .sc-name,
+[data-theme="forest"] .deliv-date { color: #1c1810 !important; }
+[data-theme="forest"] .ministry-desc,
+[data-theme="forest"] .sc-detail,
+[data-theme="forest"] .deliv-month,
+[data-theme="forest"] .deliv-day { color: #5a4a34 !important; }
+[data-theme="forest"] .sc-time   { color: var(--forest-2) !important; font-weight: 600; }
+[data-theme="forest"] .deliv-card.upcoming { border-color: var(--gold) !important; }
+[data-theme="forest"] .deliv-tag { background: var(--gold); color: #14241a; }
+
+/* Icon colour itself — default gold, then vary per card like the
+   reference design (teal / purple / gold rotation on the 3 home
+   ministry cards) */
+[data-theme="forest"] .ministry-card-img i,
+[data-theme="forest"] .sc-icon { color: var(--gold-warm) !important; }
+[data-theme="forest"] .ministry-grid .ministry-card:nth-child(1) .ministry-card-img { background: rgba(13,148,136,0.10) !important; border-bottom-color: rgba(13,148,136,0.18) !important; }
+[data-theme="forest"] .ministry-grid .ministry-card:nth-child(1) .ministry-card-img i { color: #0d9488 !important; }
+[data-theme="forest"] .ministry-grid .ministry-card:nth-child(2) .ministry-card-img { background: rgba(124,58,237,0.10) !important; border-bottom-color: rgba(124,58,237,0.18) !important; }
+[data-theme="forest"] .ministry-grid .ministry-card:nth-child(2) .ministry-card-img i { color: #7c3aed !important; }
+[data-theme="forest"] .ministry-grid .ministry-card:nth-child(3) .ministry-card-img { background: rgba(200,164,90,0.14) !important; border-bottom-color: rgba(200,164,90,0.22) !important; }
+[data-theme="forest"] .ministry-grid .ministry-card:nth-child(3) .ministry-card-img i { color: var(--gold-warm) !important; }
+
+/* Deliverance-quarter tabs */
+[data-theme="forest"] .deliv-tab { background: #fff; border-color: rgba(26,58,42,0.16); color: #5a4a34; }
+[data-theme="forest"] .deliv-tab.active { background: var(--forest-2); border-color: var(--forest-2); color: #f5f0e3; }
+
+/* ── Buttons / links on cream sections ──────────────────────── */
+[data-theme="forest"] .btn-gold      { background: var(--gold); color: #14241a; }
+[data-theme="forest"] .btn-gold:hover{ background: var(--gold-bright); }
+[data-theme="forest"] .btn-outline-dark { border-color: var(--forest-2); color: var(--forest-2); }
+[data-theme="forest"] .btn-outline-dark:hover { background: var(--forest-2); color: #f5f0e3; }
+[data-theme="forest"] .s-light em, [data-theme="forest"] .s-light2 em,
+[data-theme="forest"] .section-light em { color: var(--gold) !important; }
+[data-theme="forest"] .s-light a:not(.btn):not(.btn-gold),
+[data-theme="forest"] .s-light2 a:not(.btn):not(.btn-gold) { color: var(--forest-2) !important; }
+[data-theme="forest"] .hero-title em,
+[data-theme="forest"] h1 em, [data-theme="forest"] h2 em, [data-theme="forest"] h3 em { color: var(--gold); }
+[data-theme="forest"] .eyebrow { color: var(--forest-2); }
+[data-theme="forest"] .pillar i { color: var(--gold); }
+[data-theme="forest"] .view-all-link { color: var(--forest-2); }
+[data-theme="forest"] .video-caption { color: #7a6850; }
+
+/* ── Form elements ───────────────────────────────────────────── */
+[data-theme="forest"] input,
+[data-theme="forest"] textarea,
+[data-theme="forest"] select {
+  background: #ffffff;
+  border-color: rgba(26,58,42,0.20);
+  color: #1c1810;
+}
+
+/* ================================================================
+   GALLERY PAGE
+================================================================ */
+/* Hero stays a dark photographic/gradient block (unchanged) —
+   only the filter bar + pills move onto a cream surface. */
+[data-theme="forest"] .gal-filter-wrap {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(26,58,42,0.10);
+}
+[data-theme="forest"] .gal-pill {
+  background: #f6f1e6;
+  border: 1px solid rgba(26,58,42,0.16);
+  color: #5a4a34;
+}
+[data-theme="forest"] .gal-pill:hover { color: #1c1810; border-color: rgba(26,58,42,0.30); }
+/* .gal-pill.active / .cat-worship / .cat-prayer / .cat-scripture /
+   .cat-outreach keep their existing gold / purple / teal fills from
+   pages.css — intentionally not overridden here. */
+[data-theme="forest"] .gal-count { background: rgba(26,58,42,0.10); }
+
+[data-theme="forest"] .gal-item__overlay {
+  background: linear-gradient(to top, rgba(12,42,30,0.85), transparent);
+}
+[data-theme="forest"] .lb { background: rgba(12,26,20,0.96); }

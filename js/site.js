@@ -5,14 +5,17 @@
 (function () {
   'use strict';
 
-  /* ── THEME ── */
+  /* ── THEME ──
+     Each page sets its own default via <html data-theme="..."> in the
+     markup (e.g. "forest" on index/gallery, "light" on other pages).
+     Only override that default if the visitor has an explicit stored
+     preference — never blindly strip/reset it. */
   const THEME_KEY = 'enjc-theme';
   function applyTheme(t) {
-    t === 'light'
-      ? document.documentElement.setAttribute('data-theme','light')
-      : document.documentElement.removeAttribute('data-theme');
+    if (t) document.documentElement.setAttribute('data-theme', t);
   }
-  applyTheme(localStorage.getItem(THEME_KEY) || 'light');
+  const pageDefault = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(localStorage.getItem(THEME_KEY) || pageDefault);
   window.toggleTheme = function () {
     const cur = document.documentElement.getAttribute('data-theme');
     const next = cur === 'light' ? 'dark' : 'light';

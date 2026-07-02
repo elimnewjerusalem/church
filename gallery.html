@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-page="gallery">
+<html lang="en" data-theme="forest" data-page="gallery">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/premium-v2.css">
   <link rel="stylesheet" href="css/mobile-fix.css">
+  <link rel="stylesheet" href="css/theme-forest.css">
 
   
 </head>
@@ -254,7 +255,7 @@
   <script>
   (function(){
     /* ── Theme ── */
-    var t = localStorage.getItem('enjc-theme') || 'light';
+    var t = localStorage.getItem('enjc-theme') || document.documentElement.getAttribute('data-theme') || 'forest';
     document.documentElement.setAttribute('data-theme', t);
 
     /* ── Mobile menu ── */
